@@ -1,7 +1,7 @@
 =begin
-#merged spec
+#Zitadel SDK
 
-#merged spec
+#The Zitadel SDK is a convenience wrapper around the Zitadel APIs to assist you in integrating with your Zitadel environment. This SDK enables you to handle resources, settings, and configurations within the Zitadel platform.
 
 The version of the OpenAPI document: 1.0.0
 
@@ -24,8 +24,8 @@ module ZitadelClient
     # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @return [V2GetIDPByIDResponse]
-    def identity_provider_service_get_idpby_id(id, opts = {})
-      data, _status_code, _headers = identity_provider_service_get_idpby_id_with_http_info(id, opts)
+    def get_idpby_id(id, opts = {})
+      data, _status_code, _headers = get_idpby_id_with_http_info(id, opts)
       data
     end
 
@@ -34,13 +34,13 @@ module ZitadelClient
     # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2GetIDPByIDResponse, Integer, Hash)>] V2GetIDPByIDResponse data, response status code and response headers
-    def identity_provider_service_get_idpby_id_with_http_info(id, opts = {})
+    def get_idpby_id_with_http_info(id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: IdentityProviderServiceApi.identity_provider_service_get_idpby_id ...'
+        @api_client.config.logger.debug 'Calling API: IdentityProviderServiceApi.get_idpby_id ...'
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling IdentityProviderServiceApi.identity_provider_service_get_idpby_id"
+        fail ArgumentError, "Missing the required parameter 'id' when calling IdentityProviderServiceApi.get_idpby_id"
       end
       # resource path
       local_var_path = '/v2/idps/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
@@ -66,7 +66,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"IdentityProviderServiceApi.identity_provider_service_get_idpby_id",
+        :operation => :"IdentityProviderServiceApi.get_idpby_id",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -77,7 +77,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: IdentityProviderServiceApi#identity_provider_service_get_idpby_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: IdentityProviderServiceApi#get_idpby_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

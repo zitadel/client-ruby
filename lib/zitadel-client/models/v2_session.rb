@@ -1,7 +1,7 @@
 =begin
-#merged spec
+#Zitadel SDK
 
-#merged spec
+#The Zitadel SDK is a convenience wrapper around the Zitadel APIs to assist you in integrating with your Zitadel environment. This SDK enables you to handle resources, settings, and configurations within the Zitadel platform.
 
 The version of the OpenAPI document: 1.0.0
 
@@ -15,39 +15,17 @@ require 'time'
 
 module ZitadelClient
   class V2Session
-    # \"id of the session\"
-    attr_accessor :id
+    # ID of the session, used to login the user. Connects the session to the Auth Request.
+    attr_accessor :session_id
 
-    # \"time when the session was created\"
-    attr_accessor :creation_date
-
-    # \"time when the session was last updated\"
-    attr_accessor :change_date
-
-    # \"sequence of the session\"
-    attr_accessor :sequence
-
-    attr_accessor :factors
-
-    # \"custom key value list\"
-    attr_accessor :metadata
-
-    attr_accessor :user_agent
-
-    # \"time the session will be automatically invalidated\"
-    attr_accessor :expiration_date
+    # Token to verify the session is valid
+    attr_accessor :session_token
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id',
-        :'creation_date' => :'creationDate',
-        :'change_date' => :'changeDate',
-        :'sequence' => :'sequence',
-        :'factors' => :'factors',
-        :'metadata' => :'metadata',
-        :'user_agent' => :'userAgent',
-        :'expiration_date' => :'expirationDate'
+        :'session_id' => :'sessionId',
+        :'session_token' => :'sessionToken'
       }
     end
 
@@ -64,14 +42,8 @@ module ZitadelClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'id' => :'String',
-        :'creation_date' => :'Time',
-        :'change_date' => :'Time',
-        :'sequence' => :'String',
-        :'factors' => :'V2Factors',
-        :'metadata' => :'Hash<String, String>',
-        :'user_agent' => :'V2UserAgent',
-        :'expiration_date' => :'Time'
+        :'session_id' => :'String',
+        :'session_token' => :'String'
       }
     end
 
@@ -97,38 +69,12 @@ module ZitadelClient
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'id')
-        self.id = attributes[:'id']
+      if attributes.key?(:'session_id')
+        self.session_id = attributes[:'session_id']
       end
 
-      if attributes.key?(:'creation_date')
-        self.creation_date = attributes[:'creation_date']
-      end
-
-      if attributes.key?(:'change_date')
-        self.change_date = attributes[:'change_date']
-      end
-
-      if attributes.key?(:'sequence')
-        self.sequence = attributes[:'sequence']
-      end
-
-      if attributes.key?(:'factors')
-        self.factors = attributes[:'factors']
-      end
-
-      if attributes.key?(:'metadata')
-        if (value = attributes[:'metadata']).is_a?(Hash)
-          self.metadata = value
-        end
-      end
-
-      if attributes.key?(:'user_agent')
-        self.user_agent = attributes[:'user_agent']
-      end
-
-      if attributes.key?(:'expiration_date')
-        self.expiration_date = attributes[:'expiration_date']
+      if attributes.key?(:'session_token')
+        self.session_token = attributes[:'session_token']
       end
     end
 
@@ -137,6 +83,22 @@ module ZitadelClient
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if !@session_id.nil? && @session_id.to_s.length > 200
+        invalid_properties.push('invalid value for "session_id", the character length must be smaller than or equal to 200.')
+      end
+
+      if !@session_id.nil? && @session_id.to_s.length < 1
+        invalid_properties.push('invalid value for "session_id", the character length must be great than or equal to 1.')
+      end
+
+      if !@session_token.nil? && @session_token.to_s.length > 200
+        invalid_properties.push('invalid value for "session_token", the character length must be smaller than or equal to 200.')
+      end
+
+      if !@session_token.nil? && @session_token.to_s.length < 1
+        invalid_properties.push('invalid value for "session_token", the character length must be great than or equal to 1.')
+      end
+
       invalid_properties
     end
 
@@ -144,7 +106,47 @@ module ZitadelClient
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if !@session_id.nil? && @session_id.to_s.length > 200
+      return false if !@session_id.nil? && @session_id.to_s.length < 1
+      return false if !@session_token.nil? && @session_token.to_s.length > 200
+      return false if !@session_token.nil? && @session_token.to_s.length < 1
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] session_id Value to be assigned
+    def session_id=(session_id)
+      if session_id.nil?
+        fail ArgumentError, 'session_id cannot be nil'
+      end
+
+      if session_id.to_s.length > 200
+        fail ArgumentError, 'invalid value for "session_id", the character length must be smaller than or equal to 200.'
+      end
+
+      if session_id.to_s.length < 1
+        fail ArgumentError, 'invalid value for "session_id", the character length must be great than or equal to 1.'
+      end
+
+      @session_id = session_id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] session_token Value to be assigned
+    def session_token=(session_token)
+      if session_token.nil?
+        fail ArgumentError, 'session_token cannot be nil'
+      end
+
+      if session_token.to_s.length > 200
+        fail ArgumentError, 'invalid value for "session_token", the character length must be smaller than or equal to 200.'
+      end
+
+      if session_token.to_s.length < 1
+        fail ArgumentError, 'invalid value for "session_token", the character length must be great than or equal to 1.'
+      end
+
+      @session_token = session_token
     end
 
     # Checks equality by comparing each attribute.
@@ -152,14 +154,8 @@ module ZitadelClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id == o.id &&
-          creation_date == o.creation_date &&
-          change_date == o.change_date &&
-          sequence == o.sequence &&
-          factors == o.factors &&
-          metadata == o.metadata &&
-          user_agent == o.user_agent &&
-          expiration_date == o.expiration_date
+          session_id == o.session_id &&
+          session_token == o.session_token
     end
 
     # @see the `==` method
@@ -171,7 +167,7 @@ module ZitadelClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, creation_date, change_date, sequence, factors, metadata, user_agent, expiration_date].hash
+      [session_id, session_token].hash
     end
 
     # Builds the object from hash

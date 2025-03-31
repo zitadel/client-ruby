@@ -10,3 +10,6 @@ api/*.yaml
 .gitlab-ci.yml
 .travis.yml
 git_push.sh
+Gemfile
+Gemfile.lock
+Rakefile

@@ -1,7 +1,7 @@
 =begin
-#merged spec
+#Zitadel SDK
 
-#merged spec
+#The Zitadel SDK is a convenience wrapper around the Zitadel APIs to assist you in integrating with your Zitadel environment. This SDK enables you to handle resources, settings, and configurations within the Zitadel platform.
 
 The version of the OpenAPI document: 1.0.0
 
@@ -40,7 +40,7 @@ module ZitadelClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'session' => :'V2Session1',
+        :'session' => :'V2Session',
         :'error' => :'V2AuthorizationError'
       }
     end

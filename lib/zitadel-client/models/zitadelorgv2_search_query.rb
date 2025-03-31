@@ -1,7 +1,7 @@
 =begin
-#merged spec
+#Zitadel SDK
 
-#merged spec
+#The Zitadel SDK is a convenience wrapper around the Zitadel APIs to assist you in integrating with your Zitadel environment. This SDK enables you to handle resources, settings, and configurations within the Zitadel platform.
 
 The version of the OpenAPI document: 1.0.0
 
@@ -52,7 +52,7 @@ module ZitadelClient
         :'name_query' => :'V2OrganizationNameQuery',
         :'domain_query' => :'V2OrganizationDomainQuery',
         :'state_query' => :'V2OrganizationStateQuery',
-        :'id_query' => :'V2OrganizationIdQuery',
+        :'id_query' => :'V2OrganizationIDQuery',
         :'default_query' => :'Object'
       }
     end

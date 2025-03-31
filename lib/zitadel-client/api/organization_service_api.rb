@@ -1,7 +1,7 @@
 =begin
-#merged spec
+#Zitadel SDK
 
-#merged spec
+#The Zitadel SDK is a convenience wrapper around the Zitadel APIs to assist you in integrating with your Zitadel environment. This SDK enables you to handle resources, settings, and configurations within the Zitadel platform.
 
 The version of the OpenAPI document: 1.0.0
 
@@ -24,8 +24,8 @@ module ZitadelClient
     # @param body [V2AddOrganizationRequest] 
     # @param [Hash] opts the optional parameters
     # @return [V2AddOrganizationResponse]
-    def organization_service_add_organization(body, opts = {})
-      data, _status_code, _headers = organization_service_add_organization_with_http_info(body, opts)
+    def add_organization(body, opts = {})
+      data, _status_code, _headers = add_organization_with_http_info(body, opts)
       data
     end
 
@@ -34,13 +34,13 @@ module ZitadelClient
     # @param body [V2AddOrganizationRequest] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2AddOrganizationResponse, Integer, Hash)>] V2AddOrganizationResponse data, response status code and response headers
-    def organization_service_add_organization_with_http_info(body, opts = {})
+    def add_organization_with_http_info(body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: OrganizationServiceApi.organization_service_add_organization ...'
+        @api_client.config.logger.debug 'Calling API: OrganizationServiceApi.add_organization ...'
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling OrganizationServiceApi.organization_service_add_organization"
+        fail ArgumentError, "Missing the required parameter 'body' when calling OrganizationServiceApi.add_organization"
       end
       # resource path
       local_var_path = '/v2/organizations'
@@ -71,7 +71,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"OrganizationServiceApi.organization_service_add_organization",
+        :operation => :"OrganizationServiceApi.add_organization",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -82,7 +82,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: OrganizationServiceApi#organization_service_add_organization\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: OrganizationServiceApi#add_organization\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -92,8 +92,8 @@ module ZitadelClient
     # @param body [V2ListOrganizationsRequest] 
     # @param [Hash] opts the optional parameters
     # @return [V2ListOrganizationsResponse]
-    def organization_service_list_organizations(body, opts = {})
-      data, _status_code, _headers = organization_service_list_organizations_with_http_info(body, opts)
+    def list_organizations(body, opts = {})
+      data, _status_code, _headers = list_organizations_with_http_info(body, opts)
       data
     end
 
@@ -102,13 +102,13 @@ module ZitadelClient
     # @param body [V2ListOrganizationsRequest] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2ListOrganizationsResponse, Integer, Hash)>] V2ListOrganizationsResponse data, response status code and response headers
-    def organization_service_list_organizations_with_http_info(body, opts = {})
+    def list_organizations_with_http_info(body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: OrganizationServiceApi.organization_service_list_organizations ...'
+        @api_client.config.logger.debug 'Calling API: OrganizationServiceApi.list_organizations ...'
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling OrganizationServiceApi.organization_service_list_organizations"
+        fail ArgumentError, "Missing the required parameter 'body' when calling OrganizationServiceApi.list_organizations"
       end
       # resource path
       local_var_path = '/v2/organizations/_search'
@@ -139,7 +139,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"OrganizationServiceApi.organization_service_list_organizations",
+        :operation => :"OrganizationServiceApi.list_organizations",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -150,7 +150,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: OrganizationServiceApi#organization_service_list_organizations\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: OrganizationServiceApi#list_organizations\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

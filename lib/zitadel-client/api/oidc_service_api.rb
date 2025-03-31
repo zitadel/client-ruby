@@ -1,7 +1,7 @@
 =begin
-#merged spec
+#Zitadel SDK
 
-#merged spec
+#The Zitadel SDK is a convenience wrapper around the Zitadel APIs to assist you in integrating with your Zitadel environment. This SDK enables you to handle resources, settings, and configurations within the Zitadel platform.
 
 The version of the OpenAPI document: 1.0.0
 
@@ -25,8 +25,8 @@ module ZitadelClient
     # @param body [OIDCServiceCreateCallbackBody] 
     # @param [Hash] opts the optional parameters
     # @return [V2CreateCallbackResponse]
-    def o_idc_service_create_callback(auth_request_id, body, opts = {})
-      data, _status_code, _headers = o_idc_service_create_callback_with_http_info(auth_request_id, body, opts)
+    def create_callback(auth_request_id, body, opts = {})
+      data, _status_code, _headers = create_callback_with_http_info(auth_request_id, body, opts)
       data
     end
 
@@ -36,17 +36,17 @@ module ZitadelClient
     # @param body [OIDCServiceCreateCallbackBody] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2CreateCallbackResponse, Integer, Hash)>] V2CreateCallbackResponse data, response status code and response headers
-    def o_idc_service_create_callback_with_http_info(auth_request_id, body, opts = {})
+    def create_callback_with_http_info(auth_request_id, body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: OIDCServiceApi.o_idc_service_create_callback ...'
+        @api_client.config.logger.debug 'Calling API: OIDCServiceApi.create_callback ...'
       end
       # verify the required parameter 'auth_request_id' is set
       if @api_client.config.client_side_validation && auth_request_id.nil?
-        fail ArgumentError, "Missing the required parameter 'auth_request_id' when calling OIDCServiceApi.o_idc_service_create_callback"
+        fail ArgumentError, "Missing the required parameter 'auth_request_id' when calling OIDCServiceApi.create_callback"
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling OIDCServiceApi.o_idc_service_create_callback"
+        fail ArgumentError, "Missing the required parameter 'body' when calling OIDCServiceApi.create_callback"
       end
       # resource path
       local_var_path = '/v2/oidc/auth_requests/{authRequestId}'.sub('{' + 'authRequestId' + '}', CGI.escape(auth_request_id.to_s))
@@ -77,7 +77,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"OIDCServiceApi.o_idc_service_create_callback",
+        :operation => :"OIDCServiceApi.create_callback",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -88,7 +88,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: OIDCServiceApi#o_idc_service_create_callback\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: OIDCServiceApi#create_callback\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -98,8 +98,8 @@ module ZitadelClient
     # @param auth_request_id [String] ID of the Auth Request, as obtained from the redirect URL.
     # @param [Hash] opts the optional parameters
     # @return [V2GetAuthRequestResponse]
-    def o_idc_service_get_auth_request(auth_request_id, opts = {})
-      data, _status_code, _headers = o_idc_service_get_auth_request_with_http_info(auth_request_id, opts)
+    def get_auth_request(auth_request_id, opts = {})
+      data, _status_code, _headers = get_auth_request_with_http_info(auth_request_id, opts)
       data
     end
 
@@ -108,13 +108,13 @@ module ZitadelClient
     # @param auth_request_id [String] ID of the Auth Request, as obtained from the redirect URL.
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2GetAuthRequestResponse, Integer, Hash)>] V2GetAuthRequestResponse data, response status code and response headers
-    def o_idc_service_get_auth_request_with_http_info(auth_request_id, opts = {})
+    def get_auth_request_with_http_info(auth_request_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: OIDCServiceApi.o_idc_service_get_auth_request ...'
+        @api_client.config.logger.debug 'Calling API: OIDCServiceApi.get_auth_request ...'
       end
       # verify the required parameter 'auth_request_id' is set
       if @api_client.config.client_side_validation && auth_request_id.nil?
-        fail ArgumentError, "Missing the required parameter 'auth_request_id' when calling OIDCServiceApi.o_idc_service_get_auth_request"
+        fail ArgumentError, "Missing the required parameter 'auth_request_id' when calling OIDCServiceApi.get_auth_request"
       end
       # resource path
       local_var_path = '/v2/oidc/auth_requests/{authRequestId}'.sub('{' + 'authRequestId' + '}', CGI.escape(auth_request_id.to_s))
@@ -140,7 +140,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"OIDCServiceApi.o_idc_service_get_auth_request",
+        :operation => :"OIDCServiceApi.get_auth_request",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -151,7 +151,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: OIDCServiceApi#o_idc_service_get_auth_request\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: OIDCServiceApi#get_auth_request\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

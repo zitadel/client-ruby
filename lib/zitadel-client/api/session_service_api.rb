@@ -1,7 +1,7 @@
 =begin
-#merged spec
+#Zitadel SDK
 
-#merged spec
+#The Zitadel SDK is a convenience wrapper around the Zitadel APIs to assist you in integrating with your Zitadel environment. This SDK enables you to handle resources, settings, and configurations within the Zitadel platform.
 
 The version of the OpenAPI document: 1.0.0
 
@@ -24,8 +24,8 @@ module ZitadelClient
     # @param body [V2CreateSessionRequest] 
     # @param [Hash] opts the optional parameters
     # @return [V2CreateSessionResponse]
-    def session_service_create_session(body, opts = {})
-      data, _status_code, _headers = session_service_create_session_with_http_info(body, opts)
+    def create_session(body, opts = {})
+      data, _status_code, _headers = create_session_with_http_info(body, opts)
       data
     end
 
@@ -34,13 +34,13 @@ module ZitadelClient
     # @param body [V2CreateSessionRequest] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2CreateSessionResponse, Integer, Hash)>] V2CreateSessionResponse data, response status code and response headers
-    def session_service_create_session_with_http_info(body, opts = {})
+    def create_session_with_http_info(body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: SessionServiceApi.session_service_create_session ...'
+        @api_client.config.logger.debug 'Calling API: SessionServiceApi.create_session ...'
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling SessionServiceApi.session_service_create_session"
+        fail ArgumentError, "Missing the required parameter 'body' when calling SessionServiceApi.create_session"
       end
       # resource path
       local_var_path = '/v2/sessions'
@@ -71,7 +71,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"SessionServiceApi.session_service_create_session",
+        :operation => :"SessionServiceApi.create_session",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -82,7 +82,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: SessionServiceApi#session_service_create_session\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: SessionServiceApi#create_session\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -93,8 +93,8 @@ module ZitadelClient
     # @param body [SessionServiceDeleteSessionBody] 
     # @param [Hash] opts the optional parameters
     # @return [V2DeleteSessionResponse]
-    def session_service_delete_session(session_id, body, opts = {})
-      data, _status_code, _headers = session_service_delete_session_with_http_info(session_id, body, opts)
+    def delete_session(session_id, body, opts = {})
+      data, _status_code, _headers = delete_session_with_http_info(session_id, body, opts)
       data
     end
 
@@ -104,17 +104,17 @@ module ZitadelClient
     # @param body [SessionServiceDeleteSessionBody] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2DeleteSessionResponse, Integer, Hash)>] V2DeleteSessionResponse data, response status code and response headers
-    def session_service_delete_session_with_http_info(session_id, body, opts = {})
+    def delete_session_with_http_info(session_id, body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: SessionServiceApi.session_service_delete_session ...'
+        @api_client.config.logger.debug 'Calling API: SessionServiceApi.delete_session ...'
       end
       # verify the required parameter 'session_id' is set
       if @api_client.config.client_side_validation && session_id.nil?
-        fail ArgumentError, "Missing the required parameter 'session_id' when calling SessionServiceApi.session_service_delete_session"
+        fail ArgumentError, "Missing the required parameter 'session_id' when calling SessionServiceApi.delete_session"
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling SessionServiceApi.session_service_delete_session"
+        fail ArgumentError, "Missing the required parameter 'body' when calling SessionServiceApi.delete_session"
       end
       # resource path
       local_var_path = '/v2/sessions/{sessionId}'.sub('{' + 'sessionId' + '}', CGI.escape(session_id.to_s))
@@ -145,7 +145,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"SessionServiceApi.session_service_delete_session",
+        :operation => :"SessionServiceApi.delete_session",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -156,7 +156,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: SessionServiceApi#session_service_delete_session\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: SessionServiceApi#delete_session\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -167,8 +167,8 @@ module ZitadelClient
     # @param [Hash] opts the optional parameters
     # @option opts [String] :session_token 
     # @return [V2GetSessionResponse]
-    def session_service_get_session(session_id, opts = {})
-      data, _status_code, _headers = session_service_get_session_with_http_info(session_id, opts)
+    def get_session(session_id, opts = {})
+      data, _status_code, _headers = get_session_with_http_info(session_id, opts)
       data
     end
 
@@ -178,13 +178,13 @@ module ZitadelClient
     # @param [Hash] opts the optional parameters
     # @option opts [String] :session_token 
     # @return [Array<(V2GetSessionResponse, Integer, Hash)>] V2GetSessionResponse data, response status code and response headers
-    def session_service_get_session_with_http_info(session_id, opts = {})
+    def get_session_with_http_info(session_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: SessionServiceApi.session_service_get_session ...'
+        @api_client.config.logger.debug 'Calling API: SessionServiceApi.get_session ...'
       end
       # verify the required parameter 'session_id' is set
       if @api_client.config.client_side_validation && session_id.nil?
-        fail ArgumentError, "Missing the required parameter 'session_id' when calling SessionServiceApi.session_service_get_session"
+        fail ArgumentError, "Missing the required parameter 'session_id' when calling SessionServiceApi.get_session"
       end
       # resource path
       local_var_path = '/v2/sessions/{sessionId}'.sub('{' + 'sessionId' + '}', CGI.escape(session_id.to_s))
@@ -211,7 +211,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"SessionServiceApi.session_service_get_session",
+        :operation => :"SessionServiceApi.get_session",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -222,7 +222,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: SessionServiceApi#session_service_get_session\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: SessionServiceApi#get_session\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -232,8 +232,8 @@ module ZitadelClient
     # @param body [V2ListSessionsRequest] 
     # @param [Hash] opts the optional parameters
     # @return [V2ListSessionsResponse]
-    def session_service_list_sessions(body, opts = {})
-      data, _status_code, _headers = session_service_list_sessions_with_http_info(body, opts)
+    def list_sessions(body, opts = {})
+      data, _status_code, _headers = list_sessions_with_http_info(body, opts)
       data
     end
 
@@ -242,13 +242,13 @@ module ZitadelClient
     # @param body [V2ListSessionsRequest] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2ListSessionsResponse, Integer, Hash)>] V2ListSessionsResponse data, response status code and response headers
-    def session_service_list_sessions_with_http_info(body, opts = {})
+    def list_sessions_with_http_info(body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: SessionServiceApi.session_service_list_sessions ...'
+        @api_client.config.logger.debug 'Calling API: SessionServiceApi.list_sessions ...'
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling SessionServiceApi.session_service_list_sessions"
+        fail ArgumentError, "Missing the required parameter 'body' when calling SessionServiceApi.list_sessions"
       end
       # resource path
       local_var_path = '/v2/sessions/search'
@@ -279,7 +279,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"SessionServiceApi.session_service_list_sessions",
+        :operation => :"SessionServiceApi.list_sessions",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -290,7 +290,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: SessionServiceApi#session_service_list_sessions\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: SessionServiceApi#list_sessions\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -301,8 +301,8 @@ module ZitadelClient
     # @param body [SessionServiceSetSessionBody] 
     # @param [Hash] opts the optional parameters
     # @return [V2SetSessionResponse]
-    def session_service_set_session(session_id, body, opts = {})
-      data, _status_code, _headers = session_service_set_session_with_http_info(session_id, body, opts)
+    def set_session(session_id, body, opts = {})
+      data, _status_code, _headers = set_session_with_http_info(session_id, body, opts)
       data
     end
 
@@ -312,17 +312,17 @@ module ZitadelClient
     # @param body [SessionServiceSetSessionBody] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2SetSessionResponse, Integer, Hash)>] V2SetSessionResponse data, response status code and response headers
-    def session_service_set_session_with_http_info(session_id, body, opts = {})
+    def set_session_with_http_info(session_id, body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: SessionServiceApi.session_service_set_session ...'
+        @api_client.config.logger.debug 'Calling API: SessionServiceApi.set_session ...'
       end
       # verify the required parameter 'session_id' is set
       if @api_client.config.client_side_validation && session_id.nil?
-        fail ArgumentError, "Missing the required parameter 'session_id' when calling SessionServiceApi.session_service_set_session"
+        fail ArgumentError, "Missing the required parameter 'session_id' when calling SessionServiceApi.set_session"
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling SessionServiceApi.session_service_set_session"
+        fail ArgumentError, "Missing the required parameter 'body' when calling SessionServiceApi.set_session"
       end
       # resource path
       local_var_path = '/v2/sessions/{sessionId}'.sub('{' + 'sessionId' + '}', CGI.escape(session_id.to_s))
@@ -353,7 +353,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"SessionServiceApi.session_service_set_session",
+        :operation => :"SessionServiceApi.set_session",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -364,7 +364,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:PATCH, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: SessionServiceApi#session_service_set_session\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: SessionServiceApi#set_session\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

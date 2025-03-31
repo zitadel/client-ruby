@@ -39,3 +39,7 @@ build/
 .rvmrc
 
 .env
+
+devbox.json
+devbox.lock
+.devbox

@@ -1,7 +1,7 @@
 =begin
-#merged spec
+#Zitadel SDK
 
-#merged spec
+#The Zitadel SDK is a convenience wrapper around the Zitadel APIs to assist you in integrating with your Zitadel environment. This SDK enables you to handle resources, settings, and configurations within the Zitadel platform.
 
 The version of the OpenAPI document: 1.0.0
 
@@ -23,8 +23,8 @@ module ZitadelClient
     # Returns the security settings of the ZITADEL instance.
     # @param [Hash] opts the optional parameters
     # @return [V2GetSecuritySettingsResponse]
-    def settings_service_get_security_settings(opts = {})
-      data, _status_code, _headers = settings_service_get_security_settings_with_http_info(opts)
+    def get_security_settings(opts = {})
+      data, _status_code, _headers = get_security_settings_with_http_info(opts)
       data
     end
 
@@ -32,9 +32,9 @@ module ZitadelClient
     # Returns the security settings of the ZITADEL instance.
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2GetSecuritySettingsResponse, Integer, Hash)>] V2GetSecuritySettingsResponse data, response status code and response headers
-    def settings_service_get_security_settings_with_http_info(opts = {})
+    def get_security_settings_with_http_info(opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: SettingsApi.settings_service_get_security_settings ...'
+        @api_client.config.logger.debug 'Calling API: SettingsApi.get_security_settings ...'
       end
       # resource path
       local_var_path = '/v2/settings/security'
@@ -60,7 +60,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"SettingsApi.settings_service_get_security_settings",
+        :operation => :"SettingsApi.get_security_settings",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -71,7 +71,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: SettingsApi#settings_service_get_security_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: SettingsApi#get_security_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -81,8 +81,8 @@ module ZitadelClient
     # @param body [V2SetSecuritySettingsRequest] 
     # @param [Hash] opts the optional parameters
     # @return [V2SetSecuritySettingsResponse]
-    def settings_service_set_security_settings(body, opts = {})
-      data, _status_code, _headers = settings_service_set_security_settings_with_http_info(body, opts)
+    def set_security_settings(body, opts = {})
+      data, _status_code, _headers = set_security_settings_with_http_info(body, opts)
       data
     end
 
@@ -91,13 +91,13 @@ module ZitadelClient
     # @param body [V2SetSecuritySettingsRequest] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2SetSecuritySettingsResponse, Integer, Hash)>] V2SetSecuritySettingsResponse data, response status code and response headers
-    def settings_service_set_security_settings_with_http_info(body, opts = {})
+    def set_security_settings_with_http_info(body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: SettingsApi.settings_service_set_security_settings ...'
+        @api_client.config.logger.debug 'Calling API: SettingsApi.set_security_settings ...'
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling SettingsApi.settings_service_set_security_settings"
+        fail ArgumentError, "Missing the required parameter 'body' when calling SettingsApi.set_security_settings"
       end
       # resource path
       local_var_path = '/v2/policies/security'
@@ -128,7 +128,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"SettingsApi.settings_service_set_security_settings",
+        :operation => :"SettingsApi.set_security_settings",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -139,7 +139,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:PUT, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: SettingsApi#settings_service_set_security_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: SettingsApi#set_security_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

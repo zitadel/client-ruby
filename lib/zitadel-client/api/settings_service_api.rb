@@ -1,7 +1,7 @@
 =begin
-#merged spec
+#Zitadel SDK
 
-#merged spec
+#The Zitadel SDK is a convenience wrapper around the Zitadel APIs to assist you in integrating with your Zitadel environment. This SDK enables you to handle resources, settings, and configurations within the Zitadel platform.
 
 The version of the OpenAPI document: 1.0.0
 
@@ -29,8 +29,8 @@ module ZitadelClient
     # @option opts [Boolean] :auto_creation 
     # @option opts [Boolean] :auto_linking 
     # @return [V2GetActiveIdentityProvidersResponse]
-    def settings_service_get_active_identity_providers(opts = {})
-      data, _status_code, _headers = settings_service_get_active_identity_providers_with_http_info(opts)
+    def get_active_identity_providers(opts = {})
+      data, _status_code, _headers = get_active_identity_providers_with_http_info(opts)
       data
     end
 
@@ -44,9 +44,9 @@ module ZitadelClient
     # @option opts [Boolean] :auto_creation 
     # @option opts [Boolean] :auto_linking 
     # @return [Array<(V2GetActiveIdentityProvidersResponse, Integer, Hash)>] V2GetActiveIdentityProvidersResponse data, response status code and response headers
-    def settings_service_get_active_identity_providers_with_http_info(opts = {})
+    def get_active_identity_providers_with_http_info(opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: SettingsServiceApi.settings_service_get_active_identity_providers ...'
+        @api_client.config.logger.debug 'Calling API: SettingsServiceApi.get_active_identity_providers ...'
       end
       # resource path
       local_var_path = '/v2/settings/login/idps'
@@ -78,7 +78,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"SettingsServiceApi.settings_service_get_active_identity_providers",
+        :operation => :"SettingsServiceApi.get_active_identity_providers",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -89,7 +89,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: SettingsServiceApi#settings_service_get_active_identity_providers\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: SettingsServiceApi#get_active_identity_providers\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -100,8 +100,8 @@ module ZitadelClient
     # @option opts [String] :ctx_org_id 
     # @option opts [Boolean] :ctx_instance 
     # @return [V2GetBrandingSettingsResponse]
-    def settings_service_get_branding_settings(opts = {})
-      data, _status_code, _headers = settings_service_get_branding_settings_with_http_info(opts)
+    def get_branding_settings(opts = {})
+      data, _status_code, _headers = get_branding_settings_with_http_info(opts)
       data
     end
 
@@ -111,9 +111,9 @@ module ZitadelClient
     # @option opts [String] :ctx_org_id 
     # @option opts [Boolean] :ctx_instance 
     # @return [Array<(V2GetBrandingSettingsResponse, Integer, Hash)>] V2GetBrandingSettingsResponse data, response status code and response headers
-    def settings_service_get_branding_settings_with_http_info(opts = {})
+    def get_branding_settings_with_http_info(opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: SettingsServiceApi.settings_service_get_branding_settings ...'
+        @api_client.config.logger.debug 'Calling API: SettingsServiceApi.get_branding_settings ...'
       end
       # resource path
       local_var_path = '/v2/settings/branding'
@@ -141,7 +141,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"SettingsServiceApi.settings_service_get_branding_settings",
+        :operation => :"SettingsServiceApi.get_branding_settings",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -152,7 +152,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: SettingsServiceApi#settings_service_get_branding_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: SettingsServiceApi#get_branding_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -163,8 +163,8 @@ module ZitadelClient
     # @option opts [String] :ctx_org_id 
     # @option opts [Boolean] :ctx_instance 
     # @return [V2GetDomainSettingsResponse]
-    def settings_service_get_domain_settings(opts = {})
-      data, _status_code, _headers = settings_service_get_domain_settings_with_http_info(opts)
+    def get_domain_settings(opts = {})
+      data, _status_code, _headers = get_domain_settings_with_http_info(opts)
       data
     end
 
@@ -174,9 +174,9 @@ module ZitadelClient
     # @option opts [String] :ctx_org_id 
     # @option opts [Boolean] :ctx_instance 
     # @return [Array<(V2GetDomainSettingsResponse, Integer, Hash)>] V2GetDomainSettingsResponse data, response status code and response headers
-    def settings_service_get_domain_settings_with_http_info(opts = {})
+    def get_domain_settings_with_http_info(opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: SettingsServiceApi.settings_service_get_domain_settings ...'
+        @api_client.config.logger.debug 'Calling API: SettingsServiceApi.get_domain_settings ...'
       end
       # resource path
       local_var_path = '/v2/settings/domain'
@@ -204,7 +204,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"SettingsServiceApi.settings_service_get_domain_settings",
+        :operation => :"SettingsServiceApi.get_domain_settings",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -215,7 +215,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: SettingsServiceApi#settings_service_get_domain_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: SettingsServiceApi#get_domain_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -224,8 +224,8 @@ module ZitadelClient
     # Return the basic information of the instance for the requested context
     # @param [Hash] opts the optional parameters
     # @return [V2GetGeneralSettingsResponse]
-    def settings_service_get_general_settings(opts = {})
-      data, _status_code, _headers = settings_service_get_general_settings_with_http_info(opts)
+    def get_general_settings(opts = {})
+      data, _status_code, _headers = get_general_settings_with_http_info(opts)
       data
     end
 
@@ -233,9 +233,9 @@ module ZitadelClient
     # Return the basic information of the instance for the requested context
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2GetGeneralSettingsResponse, Integer, Hash)>] V2GetGeneralSettingsResponse data, response status code and response headers
-    def settings_service_get_general_settings_with_http_info(opts = {})
+    def get_general_settings_with_http_info(opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: SettingsServiceApi.settings_service_get_general_settings ...'
+        @api_client.config.logger.debug 'Calling API: SettingsServiceApi.get_general_settings ...'
       end
       # resource path
       local_var_path = '/v2/settings'
@@ -261,7 +261,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"SettingsServiceApi.settings_service_get_general_settings",
+        :operation => :"SettingsServiceApi.get_general_settings",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -272,7 +272,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: SettingsServiceApi#settings_service_get_general_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: SettingsServiceApi#get_general_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -283,8 +283,8 @@ module ZitadelClient
     # @option opts [String] :ctx_org_id 
     # @option opts [Boolean] :ctx_instance 
     # @return [V2GetLegalAndSupportSettingsResponse]
-    def settings_service_get_legal_and_support_settings(opts = {})
-      data, _status_code, _headers = settings_service_get_legal_and_support_settings_with_http_info(opts)
+    def get_legal_and_support_settings(opts = {})
+      data, _status_code, _headers = get_legal_and_support_settings_with_http_info(opts)
       data
     end
 
@@ -294,9 +294,9 @@ module ZitadelClient
     # @option opts [String] :ctx_org_id 
     # @option opts [Boolean] :ctx_instance 
     # @return [Array<(V2GetLegalAndSupportSettingsResponse, Integer, Hash)>] V2GetLegalAndSupportSettingsResponse data, response status code and response headers
-    def settings_service_get_legal_and_support_settings_with_http_info(opts = {})
+    def get_legal_and_support_settings_with_http_info(opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: SettingsServiceApi.settings_service_get_legal_and_support_settings ...'
+        @api_client.config.logger.debug 'Calling API: SettingsServiceApi.get_legal_and_support_settings ...'
       end
       # resource path
       local_var_path = '/v2/settings/legal_support'
@@ -324,7 +324,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"SettingsServiceApi.settings_service_get_legal_and_support_settings",
+        :operation => :"SettingsServiceApi.get_legal_and_support_settings",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -335,7 +335,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: SettingsServiceApi#settings_service_get_legal_and_support_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: SettingsServiceApi#get_legal_and_support_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -346,8 +346,8 @@ module ZitadelClient
     # @option opts [String] :ctx_org_id 
     # @option opts [Boolean] :ctx_instance 
     # @return [V2GetLockoutSettingsResponse]
-    def settings_service_get_lockout_settings(opts = {})
-      data, _status_code, _headers = settings_service_get_lockout_settings_with_http_info(opts)
+    def get_lockout_settings(opts = {})
+      data, _status_code, _headers = get_lockout_settings_with_http_info(opts)
       data
     end
 
@@ -357,9 +357,9 @@ module ZitadelClient
     # @option opts [String] :ctx_org_id 
     # @option opts [Boolean] :ctx_instance 
     # @return [Array<(V2GetLockoutSettingsResponse, Integer, Hash)>] V2GetLockoutSettingsResponse data, response status code and response headers
-    def settings_service_get_lockout_settings_with_http_info(opts = {})
+    def get_lockout_settings_with_http_info(opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: SettingsServiceApi.settings_service_get_lockout_settings ...'
+        @api_client.config.logger.debug 'Calling API: SettingsServiceApi.get_lockout_settings ...'
       end
       # resource path
       local_var_path = '/v2/settings/lockout'
@@ -387,7 +387,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"SettingsServiceApi.settings_service_get_lockout_settings",
+        :operation => :"SettingsServiceApi.get_lockout_settings",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -398,7 +398,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: SettingsServiceApi#settings_service_get_lockout_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: SettingsServiceApi#get_lockout_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -409,8 +409,8 @@ module ZitadelClient
     # @option opts [String] :ctx_org_id 
     # @option opts [Boolean] :ctx_instance 
     # @return [V2GetLoginSettingsResponse]
-    def settings_service_get_login_settings(opts = {})
-      data, _status_code, _headers = settings_service_get_login_settings_with_http_info(opts)
+    def get_login_settings(opts = {})
+      data, _status_code, _headers = get_login_settings_with_http_info(opts)
       data
     end
 
@@ -420,9 +420,9 @@ module ZitadelClient
     # @option opts [String] :ctx_org_id 
     # @option opts [Boolean] :ctx_instance 
     # @return [Array<(V2GetLoginSettingsResponse, Integer, Hash)>] V2GetLoginSettingsResponse data, response status code and response headers
-    def settings_service_get_login_settings_with_http_info(opts = {})
+    def get_login_settings_with_http_info(opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: SettingsServiceApi.settings_service_get_login_settings ...'
+        @api_client.config.logger.debug 'Calling API: SettingsServiceApi.get_login_settings ...'
       end
       # resource path
       local_var_path = '/v2/settings/login'
@@ -450,7 +450,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"SettingsServiceApi.settings_service_get_login_settings",
+        :operation => :"SettingsServiceApi.get_login_settings",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -461,7 +461,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: SettingsServiceApi#settings_service_get_login_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: SettingsServiceApi#get_login_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -472,8 +472,8 @@ module ZitadelClient
     # @option opts [String] :ctx_org_id 
     # @option opts [Boolean] :ctx_instance 
     # @return [V2GetPasswordComplexitySettingsResponse]
-    def settings_service_get_password_complexity_settings(opts = {})
-      data, _status_code, _headers = settings_service_get_password_complexity_settings_with_http_info(opts)
+    def get_password_complexity_settings(opts = {})
+      data, _status_code, _headers = get_password_complexity_settings_with_http_info(opts)
       data
     end
 
@@ -483,9 +483,9 @@ module ZitadelClient
     # @option opts [String] :ctx_org_id 
     # @option opts [Boolean] :ctx_instance 
     # @return [Array<(V2GetPasswordComplexitySettingsResponse, Integer, Hash)>] V2GetPasswordComplexitySettingsResponse data, response status code and response headers
-    def settings_service_get_password_complexity_settings_with_http_info(opts = {})
+    def get_password_complexity_settings_with_http_info(opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: SettingsServiceApi.settings_service_get_password_complexity_settings ...'
+        @api_client.config.logger.debug 'Calling API: SettingsServiceApi.get_password_complexity_settings ...'
       end
       # resource path
       local_var_path = '/v2/settings/password/complexity'
@@ -513,7 +513,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"SettingsServiceApi.settings_service_get_password_complexity_settings",
+        :operation => :"SettingsServiceApi.get_password_complexity_settings",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -524,7 +524,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: SettingsServiceApi#settings_service_get_password_complexity_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: SettingsServiceApi#get_password_complexity_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -535,8 +535,8 @@ module ZitadelClient
     # @option opts [String] :ctx_org_id 
     # @option opts [Boolean] :ctx_instance 
     # @return [V2GetPasswordExpirySettingsResponse]
-    def settings_service_get_password_expiry_settings(opts = {})
-      data, _status_code, _headers = settings_service_get_password_expiry_settings_with_http_info(opts)
+    def get_password_expiry_settings(opts = {})
+      data, _status_code, _headers = get_password_expiry_settings_with_http_info(opts)
       data
     end
 
@@ -546,9 +546,9 @@ module ZitadelClient
     # @option opts [String] :ctx_org_id 
     # @option opts [Boolean] :ctx_instance 
     # @return [Array<(V2GetPasswordExpirySettingsResponse, Integer, Hash)>] V2GetPasswordExpirySettingsResponse data, response status code and response headers
-    def settings_service_get_password_expiry_settings_with_http_info(opts = {})
+    def get_password_expiry_settings_with_http_info(opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: SettingsServiceApi.settings_service_get_password_expiry_settings ...'
+        @api_client.config.logger.debug 'Calling API: SettingsServiceApi.get_password_expiry_settings ...'
       end
       # resource path
       local_var_path = '/v2/settings/password/expiry'
@@ -576,7 +576,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"SettingsServiceApi.settings_service_get_password_expiry_settings",
+        :operation => :"SettingsServiceApi.get_password_expiry_settings",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -587,7 +587,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: SettingsServiceApi#settings_service_get_password_expiry_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: SettingsServiceApi#get_password_expiry_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

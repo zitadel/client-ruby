@@ -1,7 +1,7 @@
 =begin
-#merged spec
+#Zitadel SDK
 
-#merged spec
+#The Zitadel SDK is a convenience wrapper around the Zitadel APIs to assist you in integrating with your Zitadel environment. This SDK enables you to handle resources, settings, and configurations within the Zitadel platform.
 
 The version of the OpenAPI document: 1.0.0
 
@@ -24,8 +24,8 @@ module ZitadelClient
     # @param body [V2AddHumanUserRequest] 
     # @param [Hash] opts the optional parameters
     # @return [V2AddHumanUserResponse]
-    def user_service_add_human_user(body, opts = {})
-      data, _status_code, _headers = user_service_add_human_user_with_http_info(body, opts)
+    def add_human_user(body, opts = {})
+      data, _status_code, _headers = add_human_user_with_http_info(body, opts)
       data
     end
 
@@ -34,13 +34,13 @@ module ZitadelClient
     # @param body [V2AddHumanUserRequest] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2AddHumanUserResponse, Integer, Hash)>] V2AddHumanUserResponse data, response status code and response headers
-    def user_service_add_human_user_with_http_info(body, opts = {})
+    def add_human_user_with_http_info(body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_add_human_user ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.add_human_user ...'
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.user_service_add_human_user"
+        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.add_human_user"
       end
       # resource path
       local_var_path = '/v2/users/human'
@@ -71,7 +71,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_add_human_user",
+        :operation => :"UserServiceApi.add_human_user",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -82,7 +82,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_add_human_user\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#add_human_user\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -93,8 +93,8 @@ module ZitadelClient
     # @param body [UserServiceAddIDPLinkBody] 
     # @param [Hash] opts the optional parameters
     # @return [V2AddIDPLinkResponse]
-    def user_service_add_idp_link(user_id, body, opts = {})
-      data, _status_code, _headers = user_service_add_idp_link_with_http_info(user_id, body, opts)
+    def add_idp_link(user_id, body, opts = {})
+      data, _status_code, _headers = add_idp_link_with_http_info(user_id, body, opts)
       data
     end
 
@@ -104,17 +104,17 @@ module ZitadelClient
     # @param body [UserServiceAddIDPLinkBody] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2AddIDPLinkResponse, Integer, Hash)>] V2AddIDPLinkResponse data, response status code and response headers
-    def user_service_add_idp_link_with_http_info(user_id, body, opts = {})
+    def add_idp_link_with_http_info(user_id, body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_add_idp_link ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.add_idp_link ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_add_idp_link"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.add_idp_link"
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.user_service_add_idp_link"
+        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.add_idp_link"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/links'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -145,7 +145,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_add_idp_link",
+        :operation => :"UserServiceApi.add_idp_link",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -156,7 +156,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_add_idp_link\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#add_idp_link\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -166,8 +166,8 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [V2AddOTPEmailResponse]
-    def user_service_add_otp_email(user_id, opts = {})
-      data, _status_code, _headers = user_service_add_otp_email_with_http_info(user_id, opts)
+    def add_otp_email(user_id, opts = {})
+      data, _status_code, _headers = add_otp_email_with_http_info(user_id, opts)
       data
     end
 
@@ -176,13 +176,13 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2AddOTPEmailResponse, Integer, Hash)>] V2AddOTPEmailResponse data, response status code and response headers
-    def user_service_add_otp_email_with_http_info(user_id, opts = {})
+    def add_otp_email_with_http_info(user_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_add_otp_email ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.add_otp_email ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_add_otp_email"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.add_otp_email"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/otp_email'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -208,7 +208,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_add_otp_email",
+        :operation => :"UserServiceApi.add_otp_email",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -219,7 +219,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_add_otp_email\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#add_otp_email\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -229,8 +229,8 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [V2AddOTPSMSResponse]
-    def user_service_add_otpsms(user_id, opts = {})
-      data, _status_code, _headers = user_service_add_otpsms_with_http_info(user_id, opts)
+    def add_otpsms(user_id, opts = {})
+      data, _status_code, _headers = add_otpsms_with_http_info(user_id, opts)
       data
     end
 
@@ -239,13 +239,13 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2AddOTPSMSResponse, Integer, Hash)>] V2AddOTPSMSResponse data, response status code and response headers
-    def user_service_add_otpsms_with_http_info(user_id, opts = {})
+    def add_otpsms_with_http_info(user_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_add_otpsms ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.add_otpsms ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_add_otpsms"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.add_otpsms"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/otp_sms'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -271,7 +271,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_add_otpsms",
+        :operation => :"UserServiceApi.add_otpsms",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -282,7 +282,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_add_otpsms\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#add_otpsms\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -293,8 +293,8 @@ module ZitadelClient
     # @param body [UserServiceCreateInviteCodeBody] 
     # @param [Hash] opts the optional parameters
     # @return [V2CreateInviteCodeResponse]
-    def user_service_create_invite_code(user_id, body, opts = {})
-      data, _status_code, _headers = user_service_create_invite_code_with_http_info(user_id, body, opts)
+    def create_invite_code(user_id, body, opts = {})
+      data, _status_code, _headers = create_invite_code_with_http_info(user_id, body, opts)
       data
     end
 
@@ -304,17 +304,17 @@ module ZitadelClient
     # @param body [UserServiceCreateInviteCodeBody] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2CreateInviteCodeResponse, Integer, Hash)>] V2CreateInviteCodeResponse data, response status code and response headers
-    def user_service_create_invite_code_with_http_info(user_id, body, opts = {})
+    def create_invite_code_with_http_info(user_id, body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_create_invite_code ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.create_invite_code ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_create_invite_code"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.create_invite_code"
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.user_service_create_invite_code"
+        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.create_invite_code"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/invite_code'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -345,7 +345,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_create_invite_code",
+        :operation => :"UserServiceApi.create_invite_code",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -356,7 +356,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_create_invite_code\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#create_invite_code\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -367,8 +367,8 @@ module ZitadelClient
     # @param body [UserServiceCreatePasskeyRegistrationLinkBody] 
     # @param [Hash] opts the optional parameters
     # @return [V2CreatePasskeyRegistrationLinkResponse]
-    def user_service_create_passkey_registration_link(user_id, body, opts = {})
-      data, _status_code, _headers = user_service_create_passkey_registration_link_with_http_info(user_id, body, opts)
+    def create_passkey_registration_link(user_id, body, opts = {})
+      data, _status_code, _headers = create_passkey_registration_link_with_http_info(user_id, body, opts)
       data
     end
 
@@ -378,17 +378,17 @@ module ZitadelClient
     # @param body [UserServiceCreatePasskeyRegistrationLinkBody] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2CreatePasskeyRegistrationLinkResponse, Integer, Hash)>] V2CreatePasskeyRegistrationLinkResponse data, response status code and response headers
-    def user_service_create_passkey_registration_link_with_http_info(user_id, body, opts = {})
+    def create_passkey_registration_link_with_http_info(user_id, body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_create_passkey_registration_link ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.create_passkey_registration_link ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_create_passkey_registration_link"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.create_passkey_registration_link"
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.user_service_create_passkey_registration_link"
+        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.create_passkey_registration_link"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/passkeys/registration_link'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -419,7 +419,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_create_passkey_registration_link",
+        :operation => :"UserServiceApi.create_passkey_registration_link",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -430,7 +430,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_create_passkey_registration_link\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#create_passkey_registration_link\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -440,8 +440,8 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [V2DeactivateUserResponse]
-    def user_service_deactivate_user(user_id, opts = {})
-      data, _status_code, _headers = user_service_deactivate_user_with_http_info(user_id, opts)
+    def deactivate_user(user_id, opts = {})
+      data, _status_code, _headers = deactivate_user_with_http_info(user_id, opts)
       data
     end
 
@@ -450,13 +450,13 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2DeactivateUserResponse, Integer, Hash)>] V2DeactivateUserResponse data, response status code and response headers
-    def user_service_deactivate_user_with_http_info(user_id, opts = {})
+    def deactivate_user_with_http_info(user_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_deactivate_user ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.deactivate_user ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_deactivate_user"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.deactivate_user"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/deactivate'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -482,7 +482,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_deactivate_user",
+        :operation => :"UserServiceApi.deactivate_user",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -493,7 +493,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_deactivate_user\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#deactivate_user\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -503,8 +503,8 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [V2DeleteUserResponse]
-    def user_service_delete_user(user_id, opts = {})
-      data, _status_code, _headers = user_service_delete_user_with_http_info(user_id, opts)
+    def delete_user(user_id, opts = {})
+      data, _status_code, _headers = delete_user_with_http_info(user_id, opts)
       data
     end
 
@@ -513,13 +513,13 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2DeleteUserResponse, Integer, Hash)>] V2DeleteUserResponse data, response status code and response headers
-    def user_service_delete_user_with_http_info(user_id, opts = {})
+    def delete_user_with_http_info(user_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_delete_user ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.delete_user ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_delete_user"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.delete_user"
       end
       # resource path
       local_var_path = '/v2/users/{userId}'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -545,7 +545,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_delete_user",
+        :operation => :"UserServiceApi.delete_user",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -556,7 +556,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_delete_user\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#delete_user\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -566,8 +566,8 @@ module ZitadelClient
     # @param user_id [String] User ID of the user you like to get.
     # @param [Hash] opts the optional parameters
     # @return [V2GetUserByIDResponse]
-    def user_service_get_user_by_id(user_id, opts = {})
-      data, _status_code, _headers = user_service_get_user_by_id_with_http_info(user_id, opts)
+    def get_user_by_id(user_id, opts = {})
+      data, _status_code, _headers = get_user_by_id_with_http_info(user_id, opts)
       data
     end
 
@@ -576,13 +576,13 @@ module ZitadelClient
     # @param user_id [String] User ID of the user you like to get.
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2GetUserByIDResponse, Integer, Hash)>] V2GetUserByIDResponse data, response status code and response headers
-    def user_service_get_user_by_id_with_http_info(user_id, opts = {})
+    def get_user_by_id_with_http_info(user_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_get_user_by_id ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.get_user_by_id ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_get_user_by_id"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.get_user_by_id"
       end
       # resource path
       local_var_path = '/v2/users/{userId}'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -608,7 +608,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_get_user_by_id",
+        :operation => :"UserServiceApi.get_user_by_id",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -619,7 +619,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_get_user_by_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#get_user_by_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -629,8 +629,8 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [V2HumanMFAInitSkippedResponse]
-    def user_service_human_mfa_init_skipped(user_id, opts = {})
-      data, _status_code, _headers = user_service_human_mfa_init_skipped_with_http_info(user_id, opts)
+    def human_mfa_init_skipped(user_id, opts = {})
+      data, _status_code, _headers = human_mfa_init_skipped_with_http_info(user_id, opts)
       data
     end
 
@@ -639,13 +639,13 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2HumanMFAInitSkippedResponse, Integer, Hash)>] V2HumanMFAInitSkippedResponse data, response status code and response headers
-    def user_service_human_mfa_init_skipped_with_http_info(user_id, opts = {})
+    def human_mfa_init_skipped_with_http_info(user_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_human_mfa_init_skipped ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.human_mfa_init_skipped ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_human_mfa_init_skipped"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.human_mfa_init_skipped"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/mfa_init_skipped'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -671,7 +671,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_human_mfa_init_skipped",
+        :operation => :"UserServiceApi.human_mfa_init_skipped",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -682,7 +682,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_human_mfa_init_skipped\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#human_mfa_init_skipped\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -692,8 +692,8 @@ module ZitadelClient
     # @option opts [Array<String>] :auth_factors Specify the Auth Factors you are interested in
     # @option opts [Array<String>] :states Specify the state of the Auth Factors
     # @return [V2ListAuthenticationFactorsResponse]
-    def user_service_list_authentication_factors(user_id, opts = {})
-      data, _status_code, _headers = user_service_list_authentication_factors_with_http_info(user_id, opts)
+    def list_authentication_factors(user_id, opts = {})
+      data, _status_code, _headers = list_authentication_factors_with_http_info(user_id, opts)
       data
     end
 
@@ -702,13 +702,13 @@ module ZitadelClient
     # @option opts [Array<String>] :auth_factors Specify the Auth Factors you are interested in
     # @option opts [Array<String>] :states Specify the state of the Auth Factors
     # @return [Array<(V2ListAuthenticationFactorsResponse, Integer, Hash)>] V2ListAuthenticationFactorsResponse data, response status code and response headers
-    def user_service_list_authentication_factors_with_http_info(user_id, opts = {})
+    def list_authentication_factors_with_http_info(user_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_list_authentication_factors ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.list_authentication_factors ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_list_authentication_factors"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.list_authentication_factors"
       end
       allowable_values = ["OTP", "OTP_SMS", "OTP_EMAIL", "U2F"]
       if @api_client.config.client_side_validation && opts[:'auth_factors'] && !opts[:'auth_factors'].all? { |item| allowable_values.include?(item) }
@@ -744,7 +744,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_list_authentication_factors",
+        :operation => :"UserServiceApi.list_authentication_factors",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -755,7 +755,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_list_authentication_factors\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#list_authentication_factors\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -767,8 +767,8 @@ module ZitadelClient
     # @option opts [Boolean] :domain_query_include_without_domain List also auth method types without domain information like passkey and U2F added through V1 APIs / Login UI.
     # @option opts [String] :domain_query_domain List only auth methods with specific domain.
     # @return [V2ListAuthenticationMethodTypesResponse]
-    def user_service_list_authentication_method_types(user_id, opts = {})
-      data, _status_code, _headers = user_service_list_authentication_method_types_with_http_info(user_id, opts)
+    def list_authentication_method_types(user_id, opts = {})
+      data, _status_code, _headers = list_authentication_method_types_with_http_info(user_id, opts)
       data
     end
 
@@ -779,13 +779,13 @@ module ZitadelClient
     # @option opts [Boolean] :domain_query_include_without_domain List also auth method types without domain information like passkey and U2F added through V1 APIs / Login UI.
     # @option opts [String] :domain_query_domain List only auth methods with specific domain.
     # @return [Array<(V2ListAuthenticationMethodTypesResponse, Integer, Hash)>] V2ListAuthenticationMethodTypesResponse data, response status code and response headers
-    def user_service_list_authentication_method_types_with_http_info(user_id, opts = {})
+    def list_authentication_method_types_with_http_info(user_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_list_authentication_method_types ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.list_authentication_method_types ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_list_authentication_method_types"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.list_authentication_method_types"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/authentication_methods'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -813,7 +813,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_list_authentication_method_types",
+        :operation => :"UserServiceApi.list_authentication_method_types",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -824,7 +824,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_list_authentication_method_types\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#list_authentication_method_types\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -835,8 +835,8 @@ module ZitadelClient
     # @param body [UserServiceListIDPLinksBody] 
     # @param [Hash] opts the optional parameters
     # @return [V2ListIDPLinksResponse]
-    def user_service_list_idp_links(user_id, body, opts = {})
-      data, _status_code, _headers = user_service_list_idp_links_with_http_info(user_id, body, opts)
+    def list_idp_links(user_id, body, opts = {})
+      data, _status_code, _headers = list_idp_links_with_http_info(user_id, body, opts)
       data
     end
 
@@ -846,17 +846,17 @@ module ZitadelClient
     # @param body [UserServiceListIDPLinksBody] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2ListIDPLinksResponse, Integer, Hash)>] V2ListIDPLinksResponse data, response status code and response headers
-    def user_service_list_idp_links_with_http_info(user_id, body, opts = {})
+    def list_idp_links_with_http_info(user_id, body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_list_idp_links ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.list_idp_links ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_list_idp_links"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.list_idp_links"
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.user_service_list_idp_links"
+        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.list_idp_links"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/links/_search'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -887,7 +887,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_list_idp_links",
+        :operation => :"UserServiceApi.list_idp_links",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -898,7 +898,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_list_idp_links\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#list_idp_links\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -908,8 +908,8 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [V2ListPasskeysResponse]
-    def user_service_list_passkeys(user_id, opts = {})
-      data, _status_code, _headers = user_service_list_passkeys_with_http_info(user_id, opts)
+    def list_passkeys(user_id, opts = {})
+      data, _status_code, _headers = list_passkeys_with_http_info(user_id, opts)
       data
     end
 
@@ -918,13 +918,13 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2ListPasskeysResponse, Integer, Hash)>] V2ListPasskeysResponse data, response status code and response headers
-    def user_service_list_passkeys_with_http_info(user_id, opts = {})
+    def list_passkeys_with_http_info(user_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_list_passkeys ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.list_passkeys ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_list_passkeys"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.list_passkeys"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/passkeys/_search'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -950,7 +950,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_list_passkeys",
+        :operation => :"UserServiceApi.list_passkeys",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -961,7 +961,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_list_passkeys\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#list_passkeys\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -971,8 +971,8 @@ module ZitadelClient
     # @param body [V2ListUsersRequest] 
     # @param [Hash] opts the optional parameters
     # @return [V2ListUsersResponse]
-    def user_service_list_users(body, opts = {})
-      data, _status_code, _headers = user_service_list_users_with_http_info(body, opts)
+    def list_users(body, opts = {})
+      data, _status_code, _headers = list_users_with_http_info(body, opts)
       data
     end
 
@@ -981,13 +981,13 @@ module ZitadelClient
     # @param body [V2ListUsersRequest] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2ListUsersResponse, Integer, Hash)>] V2ListUsersResponse data, response status code and response headers
-    def user_service_list_users_with_http_info(body, opts = {})
+    def list_users_with_http_info(body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_list_users ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.list_users ...'
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.user_service_list_users"
+        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.list_users"
       end
       # resource path
       local_var_path = '/v2/users'
@@ -1018,7 +1018,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_list_users",
+        :operation => :"UserServiceApi.list_users",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -1029,7 +1029,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_list_users\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#list_users\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -1039,8 +1039,8 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [V2LockUserResponse]
-    def user_service_lock_user(user_id, opts = {})
-      data, _status_code, _headers = user_service_lock_user_with_http_info(user_id, opts)
+    def lock_user(user_id, opts = {})
+      data, _status_code, _headers = lock_user_with_http_info(user_id, opts)
       data
     end
 
@@ -1049,13 +1049,13 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2LockUserResponse, Integer, Hash)>] V2LockUserResponse data, response status code and response headers
-    def user_service_lock_user_with_http_info(user_id, opts = {})
+    def lock_user_with_http_info(user_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_lock_user ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.lock_user ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_lock_user"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.lock_user"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/lock'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -1081,7 +1081,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_lock_user",
+        :operation => :"UserServiceApi.lock_user",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -1092,7 +1092,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_lock_user\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#lock_user\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -1103,8 +1103,8 @@ module ZitadelClient
     # @param body [UserServicePasswordResetBody] 
     # @param [Hash] opts the optional parameters
     # @return [V2PasswordResetResponse]
-    def user_service_password_reset(user_id, body, opts = {})
-      data, _status_code, _headers = user_service_password_reset_with_http_info(user_id, body, opts)
+    def password_reset(user_id, body, opts = {})
+      data, _status_code, _headers = password_reset_with_http_info(user_id, body, opts)
       data
     end
 
@@ -1114,17 +1114,17 @@ module ZitadelClient
     # @param body [UserServicePasswordResetBody] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2PasswordResetResponse, Integer, Hash)>] V2PasswordResetResponse data, response status code and response headers
-    def user_service_password_reset_with_http_info(user_id, body, opts = {})
+    def password_reset_with_http_info(user_id, body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_password_reset ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.password_reset ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_password_reset"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.password_reset"
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.user_service_password_reset"
+        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.password_reset"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/password_reset'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -1155,7 +1155,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_password_reset",
+        :operation => :"UserServiceApi.password_reset",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -1166,7 +1166,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_password_reset\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#password_reset\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -1176,8 +1176,8 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [V2ReactivateUserResponse]
-    def user_service_reactivate_user(user_id, opts = {})
-      data, _status_code, _headers = user_service_reactivate_user_with_http_info(user_id, opts)
+    def reactivate_user(user_id, opts = {})
+      data, _status_code, _headers = reactivate_user_with_http_info(user_id, opts)
       data
     end
 
@@ -1186,13 +1186,13 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2ReactivateUserResponse, Integer, Hash)>] V2ReactivateUserResponse data, response status code and response headers
-    def user_service_reactivate_user_with_http_info(user_id, opts = {})
+    def reactivate_user_with_http_info(user_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_reactivate_user ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.reactivate_user ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_reactivate_user"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.reactivate_user"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/reactivate'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -1218,7 +1218,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_reactivate_user",
+        :operation => :"UserServiceApi.reactivate_user",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -1229,7 +1229,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_reactivate_user\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#reactivate_user\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -1240,8 +1240,8 @@ module ZitadelClient
     # @param body [UserServiceRegisterPasskeyBody] 
     # @param [Hash] opts the optional parameters
     # @return [V2RegisterPasskeyResponse]
-    def user_service_register_passkey(user_id, body, opts = {})
-      data, _status_code, _headers = user_service_register_passkey_with_http_info(user_id, body, opts)
+    def register_passkey(user_id, body, opts = {})
+      data, _status_code, _headers = register_passkey_with_http_info(user_id, body, opts)
       data
     end
 
@@ -1251,17 +1251,17 @@ module ZitadelClient
     # @param body [UserServiceRegisterPasskeyBody] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2RegisterPasskeyResponse, Integer, Hash)>] V2RegisterPasskeyResponse data, response status code and response headers
-    def user_service_register_passkey_with_http_info(user_id, body, opts = {})
+    def register_passkey_with_http_info(user_id, body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_register_passkey ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.register_passkey ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_register_passkey"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.register_passkey"
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.user_service_register_passkey"
+        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.register_passkey"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/passkeys'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -1292,7 +1292,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_register_passkey",
+        :operation => :"UserServiceApi.register_passkey",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -1303,7 +1303,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_register_passkey\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#register_passkey\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -1313,8 +1313,8 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [V2RegisterTOTPResponse]
-    def user_service_register_totp(user_id, opts = {})
-      data, _status_code, _headers = user_service_register_totp_with_http_info(user_id, opts)
+    def register_totp(user_id, opts = {})
+      data, _status_code, _headers = register_totp_with_http_info(user_id, opts)
       data
     end
 
@@ -1323,13 +1323,13 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2RegisterTOTPResponse, Integer, Hash)>] V2RegisterTOTPResponse data, response status code and response headers
-    def user_service_register_totp_with_http_info(user_id, opts = {})
+    def register_totp_with_http_info(user_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_register_totp ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.register_totp ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_register_totp"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.register_totp"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/totp'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -1355,7 +1355,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_register_totp",
+        :operation => :"UserServiceApi.register_totp",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -1366,7 +1366,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_register_totp\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#register_totp\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -1377,8 +1377,8 @@ module ZitadelClient
     # @param body [UserServiceRegisterU2FBody] 
     # @param [Hash] opts the optional parameters
     # @return [V2RegisterU2FResponse]
-    def user_service_register_u2_f(user_id, body, opts = {})
-      data, _status_code, _headers = user_service_register_u2_f_with_http_info(user_id, body, opts)
+    def register_u2_f(user_id, body, opts = {})
+      data, _status_code, _headers = register_u2_f_with_http_info(user_id, body, opts)
       data
     end
 
@@ -1388,17 +1388,17 @@ module ZitadelClient
     # @param body [UserServiceRegisterU2FBody] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2RegisterU2FResponse, Integer, Hash)>] V2RegisterU2FResponse data, response status code and response headers
-    def user_service_register_u2_f_with_http_info(user_id, body, opts = {})
+    def register_u2_f_with_http_info(user_id, body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_register_u2_f ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.register_u2_f ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_register_u2_f"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.register_u2_f"
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.user_service_register_u2_f"
+        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.register_u2_f"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/u2f'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -1429,7 +1429,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_register_u2_f",
+        :operation => :"UserServiceApi.register_u2_f",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -1440,7 +1440,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_register_u2_f\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#register_u2_f\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -1452,8 +1452,8 @@ module ZitadelClient
     # @param linked_user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [V2RemoveIDPLinkResponse]
-    def user_service_remove_idp_link(user_id, idp_id, linked_user_id, opts = {})
-      data, _status_code, _headers = user_service_remove_idp_link_with_http_info(user_id, idp_id, linked_user_id, opts)
+    def remove_idp_link(user_id, idp_id, linked_user_id, opts = {})
+      data, _status_code, _headers = remove_idp_link_with_http_info(user_id, idp_id, linked_user_id, opts)
       data
     end
 
@@ -1464,21 +1464,21 @@ module ZitadelClient
     # @param linked_user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2RemoveIDPLinkResponse, Integer, Hash)>] V2RemoveIDPLinkResponse data, response status code and response headers
-    def user_service_remove_idp_link_with_http_info(user_id, idp_id, linked_user_id, opts = {})
+    def remove_idp_link_with_http_info(user_id, idp_id, linked_user_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_remove_idp_link ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.remove_idp_link ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_remove_idp_link"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.remove_idp_link"
       end
       # verify the required parameter 'idp_id' is set
       if @api_client.config.client_side_validation && idp_id.nil?
-        fail ArgumentError, "Missing the required parameter 'idp_id' when calling UserServiceApi.user_service_remove_idp_link"
+        fail ArgumentError, "Missing the required parameter 'idp_id' when calling UserServiceApi.remove_idp_link"
       end
       # verify the required parameter 'linked_user_id' is set
       if @api_client.config.client_side_validation && linked_user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'linked_user_id' when calling UserServiceApi.user_service_remove_idp_link"
+        fail ArgumentError, "Missing the required parameter 'linked_user_id' when calling UserServiceApi.remove_idp_link"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/links/{idpId}/{linkedUserId}'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s)).sub('{' + 'idpId' + '}', CGI.escape(idp_id.to_s)).sub('{' + 'linkedUserId' + '}', CGI.escape(linked_user_id.to_s))
@@ -1504,7 +1504,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_remove_idp_link",
+        :operation => :"UserServiceApi.remove_idp_link",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -1515,7 +1515,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_remove_idp_link\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#remove_idp_link\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -1525,8 +1525,8 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [V2RemoveOTPEmailResponse]
-    def user_service_remove_otp_email(user_id, opts = {})
-      data, _status_code, _headers = user_service_remove_otp_email_with_http_info(user_id, opts)
+    def remove_otp_email(user_id, opts = {})
+      data, _status_code, _headers = remove_otp_email_with_http_info(user_id, opts)
       data
     end
 
@@ -1535,13 +1535,13 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2RemoveOTPEmailResponse, Integer, Hash)>] V2RemoveOTPEmailResponse data, response status code and response headers
-    def user_service_remove_otp_email_with_http_info(user_id, opts = {})
+    def remove_otp_email_with_http_info(user_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_remove_otp_email ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.remove_otp_email ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_remove_otp_email"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.remove_otp_email"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/otp_email'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -1567,7 +1567,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_remove_otp_email",
+        :operation => :"UserServiceApi.remove_otp_email",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -1578,7 +1578,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_remove_otp_email\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#remove_otp_email\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -1588,8 +1588,8 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [V2RemoveOTPSMSResponse]
-    def user_service_remove_otpsms(user_id, opts = {})
-      data, _status_code, _headers = user_service_remove_otpsms_with_http_info(user_id, opts)
+    def remove_otpsms(user_id, opts = {})
+      data, _status_code, _headers = remove_otpsms_with_http_info(user_id, opts)
       data
     end
 
@@ -1598,13 +1598,13 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2RemoveOTPSMSResponse, Integer, Hash)>] V2RemoveOTPSMSResponse data, response status code and response headers
-    def user_service_remove_otpsms_with_http_info(user_id, opts = {})
+    def remove_otpsms_with_http_info(user_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_remove_otpsms ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.remove_otpsms ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_remove_otpsms"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.remove_otpsms"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/otp_sms'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -1630,7 +1630,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_remove_otpsms",
+        :operation => :"UserServiceApi.remove_otpsms",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -1641,7 +1641,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_remove_otpsms\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#remove_otpsms\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -1652,8 +1652,8 @@ module ZitadelClient
     # @param passkey_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [V2RemovePasskeyResponse]
-    def user_service_remove_passkey(user_id, passkey_id, opts = {})
-      data, _status_code, _headers = user_service_remove_passkey_with_http_info(user_id, passkey_id, opts)
+    def remove_passkey(user_id, passkey_id, opts = {})
+      data, _status_code, _headers = remove_passkey_with_http_info(user_id, passkey_id, opts)
       data
     end
 
@@ -1663,17 +1663,17 @@ module ZitadelClient
     # @param passkey_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2RemovePasskeyResponse, Integer, Hash)>] V2RemovePasskeyResponse data, response status code and response headers
-    def user_service_remove_passkey_with_http_info(user_id, passkey_id, opts = {})
+    def remove_passkey_with_http_info(user_id, passkey_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_remove_passkey ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.remove_passkey ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_remove_passkey"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.remove_passkey"
       end
       # verify the required parameter 'passkey_id' is set
       if @api_client.config.client_side_validation && passkey_id.nil?
-        fail ArgumentError, "Missing the required parameter 'passkey_id' when calling UserServiceApi.user_service_remove_passkey"
+        fail ArgumentError, "Missing the required parameter 'passkey_id' when calling UserServiceApi.remove_passkey"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/passkeys/{passkeyId}'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s)).sub('{' + 'passkeyId' + '}', CGI.escape(passkey_id.to_s))
@@ -1699,7 +1699,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_remove_passkey",
+        :operation => :"UserServiceApi.remove_passkey",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -1710,7 +1710,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_remove_passkey\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#remove_passkey\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -1720,8 +1720,8 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [V2RemovePhoneResponse]
-    def user_service_remove_phone(user_id, opts = {})
-      data, _status_code, _headers = user_service_remove_phone_with_http_info(user_id, opts)
+    def remove_phone(user_id, opts = {})
+      data, _status_code, _headers = remove_phone_with_http_info(user_id, opts)
       data
     end
 
@@ -1730,13 +1730,13 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2RemovePhoneResponse, Integer, Hash)>] V2RemovePhoneResponse data, response status code and response headers
-    def user_service_remove_phone_with_http_info(user_id, opts = {})
+    def remove_phone_with_http_info(user_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_remove_phone ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.remove_phone ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_remove_phone"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.remove_phone"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/phone'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -1762,7 +1762,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_remove_phone",
+        :operation => :"UserServiceApi.remove_phone",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -1773,7 +1773,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_remove_phone\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#remove_phone\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -1783,8 +1783,8 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [V2RemoveTOTPResponse]
-    def user_service_remove_totp(user_id, opts = {})
-      data, _status_code, _headers = user_service_remove_totp_with_http_info(user_id, opts)
+    def remove_totp(user_id, opts = {})
+      data, _status_code, _headers = remove_totp_with_http_info(user_id, opts)
       data
     end
 
@@ -1793,13 +1793,13 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2RemoveTOTPResponse, Integer, Hash)>] V2RemoveTOTPResponse data, response status code and response headers
-    def user_service_remove_totp_with_http_info(user_id, opts = {})
+    def remove_totp_with_http_info(user_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_remove_totp ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.remove_totp ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_remove_totp"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.remove_totp"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/totp'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -1825,7 +1825,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_remove_totp",
+        :operation => :"UserServiceApi.remove_totp",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -1836,7 +1836,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_remove_totp\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#remove_totp\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -1847,8 +1847,8 @@ module ZitadelClient
     # @param u2f_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [V2RemoveU2FResponse]
-    def user_service_remove_u2_f(user_id, u2f_id, opts = {})
-      data, _status_code, _headers = user_service_remove_u2_f_with_http_info(user_id, u2f_id, opts)
+    def remove_u2_f(user_id, u2f_id, opts = {})
+      data, _status_code, _headers = remove_u2_f_with_http_info(user_id, u2f_id, opts)
       data
     end
 
@@ -1858,17 +1858,17 @@ module ZitadelClient
     # @param u2f_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2RemoveU2FResponse, Integer, Hash)>] V2RemoveU2FResponse data, response status code and response headers
-    def user_service_remove_u2_f_with_http_info(user_id, u2f_id, opts = {})
+    def remove_u2_f_with_http_info(user_id, u2f_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_remove_u2_f ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.remove_u2_f ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_remove_u2_f"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.remove_u2_f"
       end
       # verify the required parameter 'u2f_id' is set
       if @api_client.config.client_side_validation && u2f_id.nil?
-        fail ArgumentError, "Missing the required parameter 'u2f_id' when calling UserServiceApi.user_service_remove_u2_f"
+        fail ArgumentError, "Missing the required parameter 'u2f_id' when calling UserServiceApi.remove_u2_f"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/u2f/{u2fId}'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s)).sub('{' + 'u2fId' + '}', CGI.escape(u2f_id.to_s))
@@ -1894,7 +1894,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_remove_u2_f",
+        :operation => :"UserServiceApi.remove_u2_f",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -1905,7 +1905,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_remove_u2_f\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#remove_u2_f\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -1916,8 +1916,8 @@ module ZitadelClient
     # @param body [UserServiceResendEmailCodeBody] 
     # @param [Hash] opts the optional parameters
     # @return [V2ResendEmailCodeResponse]
-    def user_service_resend_email_code(user_id, body, opts = {})
-      data, _status_code, _headers = user_service_resend_email_code_with_http_info(user_id, body, opts)
+    def resend_email_code(user_id, body, opts = {})
+      data, _status_code, _headers = resend_email_code_with_http_info(user_id, body, opts)
       data
     end
 
@@ -1927,17 +1927,17 @@ module ZitadelClient
     # @param body [UserServiceResendEmailCodeBody] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2ResendEmailCodeResponse, Integer, Hash)>] V2ResendEmailCodeResponse data, response status code and response headers
-    def user_service_resend_email_code_with_http_info(user_id, body, opts = {})
+    def resend_email_code_with_http_info(user_id, body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_resend_email_code ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.resend_email_code ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_resend_email_code"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.resend_email_code"
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.user_service_resend_email_code"
+        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.resend_email_code"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/email/resend'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -1968,7 +1968,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_resend_email_code",
+        :operation => :"UserServiceApi.resend_email_code",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -1979,7 +1979,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_resend_email_code\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#resend_email_code\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -1989,8 +1989,8 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [V2ResendInviteCodeResponse]
-    def user_service_resend_invite_code(user_id, opts = {})
-      data, _status_code, _headers = user_service_resend_invite_code_with_http_info(user_id, opts)
+    def resend_invite_code(user_id, opts = {})
+      data, _status_code, _headers = resend_invite_code_with_http_info(user_id, opts)
       data
     end
 
@@ -1999,13 +1999,13 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2ResendInviteCodeResponse, Integer, Hash)>] V2ResendInviteCodeResponse data, response status code and response headers
-    def user_service_resend_invite_code_with_http_info(user_id, opts = {})
+    def resend_invite_code_with_http_info(user_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_resend_invite_code ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.resend_invite_code ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_resend_invite_code"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.resend_invite_code"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/invite_code/resend'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -2031,7 +2031,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_resend_invite_code",
+        :operation => :"UserServiceApi.resend_invite_code",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -2042,7 +2042,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_resend_invite_code\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#resend_invite_code\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -2053,8 +2053,8 @@ module ZitadelClient
     # @param body [UserServiceResendPhoneCodeBody] 
     # @param [Hash] opts the optional parameters
     # @return [V2ResendPhoneCodeResponse]
-    def user_service_resend_phone_code(user_id, body, opts = {})
-      data, _status_code, _headers = user_service_resend_phone_code_with_http_info(user_id, body, opts)
+    def resend_phone_code(user_id, body, opts = {})
+      data, _status_code, _headers = resend_phone_code_with_http_info(user_id, body, opts)
       data
     end
 
@@ -2064,17 +2064,17 @@ module ZitadelClient
     # @param body [UserServiceResendPhoneCodeBody] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2ResendPhoneCodeResponse, Integer, Hash)>] V2ResendPhoneCodeResponse data, response status code and response headers
-    def user_service_resend_phone_code_with_http_info(user_id, body, opts = {})
+    def resend_phone_code_with_http_info(user_id, body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_resend_phone_code ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.resend_phone_code ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_resend_phone_code"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.resend_phone_code"
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.user_service_resend_phone_code"
+        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.resend_phone_code"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/phone/resend'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -2105,7 +2105,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_resend_phone_code",
+        :operation => :"UserServiceApi.resend_phone_code",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -2116,7 +2116,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_resend_phone_code\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#resend_phone_code\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -2127,8 +2127,8 @@ module ZitadelClient
     # @param body [UserServiceRetrieveIdentityProviderIntentBody] 
     # @param [Hash] opts the optional parameters
     # @return [V2RetrieveIdentityProviderIntentResponse]
-    def user_service_retrieve_identity_provider_intent(idp_intent_id, body, opts = {})
-      data, _status_code, _headers = user_service_retrieve_identity_provider_intent_with_http_info(idp_intent_id, body, opts)
+    def retrieve_identity_provider_intent(idp_intent_id, body, opts = {})
+      data, _status_code, _headers = retrieve_identity_provider_intent_with_http_info(idp_intent_id, body, opts)
       data
     end
 
@@ -2138,17 +2138,17 @@ module ZitadelClient
     # @param body [UserServiceRetrieveIdentityProviderIntentBody] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2RetrieveIdentityProviderIntentResponse, Integer, Hash)>] V2RetrieveIdentityProviderIntentResponse data, response status code and response headers
-    def user_service_retrieve_identity_provider_intent_with_http_info(idp_intent_id, body, opts = {})
+    def retrieve_identity_provider_intent_with_http_info(idp_intent_id, body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_retrieve_identity_provider_intent ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.retrieve_identity_provider_intent ...'
       end
       # verify the required parameter 'idp_intent_id' is set
       if @api_client.config.client_side_validation && idp_intent_id.nil?
-        fail ArgumentError, "Missing the required parameter 'idp_intent_id' when calling UserServiceApi.user_service_retrieve_identity_provider_intent"
+        fail ArgumentError, "Missing the required parameter 'idp_intent_id' when calling UserServiceApi.retrieve_identity_provider_intent"
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.user_service_retrieve_identity_provider_intent"
+        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.retrieve_identity_provider_intent"
       end
       # resource path
       local_var_path = '/v2/idp_intents/{idpIntentId}'.sub('{' + 'idpIntentId' + '}', CGI.escape(idp_intent_id.to_s))
@@ -2179,7 +2179,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_retrieve_identity_provider_intent",
+        :operation => :"UserServiceApi.retrieve_identity_provider_intent",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -2190,7 +2190,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_retrieve_identity_provider_intent\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#retrieve_identity_provider_intent\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -2201,8 +2201,8 @@ module ZitadelClient
     # @param body [UserServiceSendEmailCodeBody] 
     # @param [Hash] opts the optional parameters
     # @return [V2SendEmailCodeResponse]
-    def user_service_send_email_code(user_id, body, opts = {})
-      data, _status_code, _headers = user_service_send_email_code_with_http_info(user_id, body, opts)
+    def send_email_code(user_id, body, opts = {})
+      data, _status_code, _headers = send_email_code_with_http_info(user_id, body, opts)
       data
     end
 
@@ -2212,17 +2212,17 @@ module ZitadelClient
     # @param body [UserServiceSendEmailCodeBody] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2SendEmailCodeResponse, Integer, Hash)>] V2SendEmailCodeResponse data, response status code and response headers
-    def user_service_send_email_code_with_http_info(user_id, body, opts = {})
+    def send_email_code_with_http_info(user_id, body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_send_email_code ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.send_email_code ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_send_email_code"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.send_email_code"
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.user_service_send_email_code"
+        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.send_email_code"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/email/send'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -2253,7 +2253,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_send_email_code",
+        :operation => :"UserServiceApi.send_email_code",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -2264,7 +2264,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_send_email_code\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#send_email_code\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -2275,8 +2275,8 @@ module ZitadelClient
     # @param body [UserServiceSetEmailBody] 
     # @param [Hash] opts the optional parameters
     # @return [V2SetEmailResponse]
-    def user_service_set_email(user_id, body, opts = {})
-      data, _status_code, _headers = user_service_set_email_with_http_info(user_id, body, opts)
+    def set_email(user_id, body, opts = {})
+      data, _status_code, _headers = set_email_with_http_info(user_id, body, opts)
       data
     end
 
@@ -2286,17 +2286,17 @@ module ZitadelClient
     # @param body [UserServiceSetEmailBody] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2SetEmailResponse, Integer, Hash)>] V2SetEmailResponse data, response status code and response headers
-    def user_service_set_email_with_http_info(user_id, body, opts = {})
+    def set_email_with_http_info(user_id, body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_set_email ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.set_email ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_set_email"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.set_email"
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.user_service_set_email"
+        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.set_email"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/email'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -2327,7 +2327,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_set_email",
+        :operation => :"UserServiceApi.set_email",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -2338,7 +2338,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_set_email\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#set_email\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -2349,8 +2349,8 @@ module ZitadelClient
     # @param body [V2UserServiceSetPasswordBody] 
     # @param [Hash] opts the optional parameters
     # @return [V2SetPasswordResponse]
-    def user_service_set_password(user_id, body, opts = {})
-      data, _status_code, _headers = user_service_set_password_with_http_info(user_id, body, opts)
+    def set_password(user_id, body, opts = {})
+      data, _status_code, _headers = set_password_with_http_info(user_id, body, opts)
       data
     end
 
@@ -2360,17 +2360,17 @@ module ZitadelClient
     # @param body [V2UserServiceSetPasswordBody] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2SetPasswordResponse, Integer, Hash)>] V2SetPasswordResponse data, response status code and response headers
-    def user_service_set_password_with_http_info(user_id, body, opts = {})
+    def set_password_with_http_info(user_id, body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_set_password ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.set_password ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_set_password"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.set_password"
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.user_service_set_password"
+        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.set_password"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/password'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -2401,7 +2401,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_set_password",
+        :operation => :"UserServiceApi.set_password",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -2412,7 +2412,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_set_password\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#set_password\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -2423,8 +2423,8 @@ module ZitadelClient
     # @param body [UserServiceSetPhoneBody] 
     # @param [Hash] opts the optional parameters
     # @return [V2SetPhoneResponse]
-    def user_service_set_phone(user_id, body, opts = {})
-      data, _status_code, _headers = user_service_set_phone_with_http_info(user_id, body, opts)
+    def set_phone(user_id, body, opts = {})
+      data, _status_code, _headers = set_phone_with_http_info(user_id, body, opts)
       data
     end
 
@@ -2434,17 +2434,17 @@ module ZitadelClient
     # @param body [UserServiceSetPhoneBody] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2SetPhoneResponse, Integer, Hash)>] V2SetPhoneResponse data, response status code and response headers
-    def user_service_set_phone_with_http_info(user_id, body, opts = {})
+    def set_phone_with_http_info(user_id, body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_set_phone ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.set_phone ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_set_phone"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.set_phone"
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.user_service_set_phone"
+        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.set_phone"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/phone'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -2475,7 +2475,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_set_phone",
+        :operation => :"UserServiceApi.set_phone",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -2486,7 +2486,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_set_phone\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#set_phone\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -2496,8 +2496,8 @@ module ZitadelClient
     # @param body [V2StartIdentityProviderIntentRequest] 
     # @param [Hash] opts the optional parameters
     # @return [V2StartIdentityProviderIntentResponse]
-    def user_service_start_identity_provider_intent(body, opts = {})
-      data, _status_code, _headers = user_service_start_identity_provider_intent_with_http_info(body, opts)
+    def start_identity_provider_intent(body, opts = {})
+      data, _status_code, _headers = start_identity_provider_intent_with_http_info(body, opts)
       data
     end
 
@@ -2506,13 +2506,13 @@ module ZitadelClient
     # @param body [V2StartIdentityProviderIntentRequest] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2StartIdentityProviderIntentResponse, Integer, Hash)>] V2StartIdentityProviderIntentResponse data, response status code and response headers
-    def user_service_start_identity_provider_intent_with_http_info(body, opts = {})
+    def start_identity_provider_intent_with_http_info(body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_start_identity_provider_intent ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.start_identity_provider_intent ...'
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.user_service_start_identity_provider_intent"
+        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.start_identity_provider_intent"
       end
       # resource path
       local_var_path = '/v2/idp_intents'
@@ -2543,7 +2543,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_start_identity_provider_intent",
+        :operation => :"UserServiceApi.start_identity_provider_intent",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -2554,7 +2554,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_start_identity_provider_intent\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#start_identity_provider_intent\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -2564,8 +2564,8 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [V2UnlockUserResponse]
-    def user_service_unlock_user(user_id, opts = {})
-      data, _status_code, _headers = user_service_unlock_user_with_http_info(user_id, opts)
+    def unlock_user(user_id, opts = {})
+      data, _status_code, _headers = unlock_user_with_http_info(user_id, opts)
       data
     end
 
@@ -2574,13 +2574,13 @@ module ZitadelClient
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2UnlockUserResponse, Integer, Hash)>] V2UnlockUserResponse data, response status code and response headers
-    def user_service_unlock_user_with_http_info(user_id, opts = {})
+    def unlock_user_with_http_info(user_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_unlock_user ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.unlock_user ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_unlock_user"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.unlock_user"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/unlock'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -2606,7 +2606,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_unlock_user",
+        :operation => :"UserServiceApi.unlock_user",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -2617,7 +2617,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_unlock_user\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#unlock_user\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -2628,8 +2628,8 @@ module ZitadelClient
     # @param body [UserServiceUpdateHumanUserBody] 
     # @param [Hash] opts the optional parameters
     # @return [V2UpdateHumanUserResponse]
-    def user_service_update_human_user(user_id, body, opts = {})
-      data, _status_code, _headers = user_service_update_human_user_with_http_info(user_id, body, opts)
+    def update_human_user(user_id, body, opts = {})
+      data, _status_code, _headers = update_human_user_with_http_info(user_id, body, opts)
       data
     end
 
@@ -2639,17 +2639,17 @@ module ZitadelClient
     # @param body [UserServiceUpdateHumanUserBody] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2UpdateHumanUserResponse, Integer, Hash)>] V2UpdateHumanUserResponse data, response status code and response headers
-    def user_service_update_human_user_with_http_info(user_id, body, opts = {})
+    def update_human_user_with_http_info(user_id, body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_update_human_user ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.update_human_user ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_update_human_user"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.update_human_user"
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.user_service_update_human_user"
+        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.update_human_user"
       end
       # resource path
       local_var_path = '/v2/users/human/{userId}'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -2680,7 +2680,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_update_human_user",
+        :operation => :"UserServiceApi.update_human_user",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -2691,7 +2691,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:PUT, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_update_human_user\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#update_human_user\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -2702,8 +2702,8 @@ module ZitadelClient
     # @param body [UserServiceVerifyEmailBody] 
     # @param [Hash] opts the optional parameters
     # @return [V2VerifyEmailResponse]
-    def user_service_verify_email(user_id, body, opts = {})
-      data, _status_code, _headers = user_service_verify_email_with_http_info(user_id, body, opts)
+    def verify_email(user_id, body, opts = {})
+      data, _status_code, _headers = verify_email_with_http_info(user_id, body, opts)
       data
     end
 
@@ -2713,17 +2713,17 @@ module ZitadelClient
     # @param body [UserServiceVerifyEmailBody] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2VerifyEmailResponse, Integer, Hash)>] V2VerifyEmailResponse data, response status code and response headers
-    def user_service_verify_email_with_http_info(user_id, body, opts = {})
+    def verify_email_with_http_info(user_id, body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_verify_email ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.verify_email ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_verify_email"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.verify_email"
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.user_service_verify_email"
+        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.verify_email"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/email/verify'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -2754,7 +2754,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_verify_email",
+        :operation => :"UserServiceApi.verify_email",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -2765,7 +2765,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_verify_email\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#verify_email\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -2776,8 +2776,8 @@ module ZitadelClient
     # @param body [UserServiceVerifyInviteCodeBody] 
     # @param [Hash] opts the optional parameters
     # @return [V2VerifyInviteCodeResponse]
-    def user_service_verify_invite_code(user_id, body, opts = {})
-      data, _status_code, _headers = user_service_verify_invite_code_with_http_info(user_id, body, opts)
+    def verify_invite_code(user_id, body, opts = {})
+      data, _status_code, _headers = verify_invite_code_with_http_info(user_id, body, opts)
       data
     end
 
@@ -2787,17 +2787,17 @@ module ZitadelClient
     # @param body [UserServiceVerifyInviteCodeBody] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2VerifyInviteCodeResponse, Integer, Hash)>] V2VerifyInviteCodeResponse data, response status code and response headers
-    def user_service_verify_invite_code_with_http_info(user_id, body, opts = {})
+    def verify_invite_code_with_http_info(user_id, body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_verify_invite_code ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.verify_invite_code ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_verify_invite_code"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.verify_invite_code"
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.user_service_verify_invite_code"
+        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.verify_invite_code"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/invite_code/verify'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -2828,7 +2828,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_verify_invite_code",
+        :operation => :"UserServiceApi.verify_invite_code",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -2839,7 +2839,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_verify_invite_code\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#verify_invite_code\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -2851,8 +2851,8 @@ module ZitadelClient
     # @param body [UserServiceVerifyPasskeyRegistrationBody] 
     # @param [Hash] opts the optional parameters
     # @return [V2VerifyPasskeyRegistrationResponse]
-    def user_service_verify_passkey_registration(user_id, passkey_id, body, opts = {})
-      data, _status_code, _headers = user_service_verify_passkey_registration_with_http_info(user_id, passkey_id, body, opts)
+    def verify_passkey_registration(user_id, passkey_id, body, opts = {})
+      data, _status_code, _headers = verify_passkey_registration_with_http_info(user_id, passkey_id, body, opts)
       data
     end
 
@@ -2863,21 +2863,21 @@ module ZitadelClient
     # @param body [UserServiceVerifyPasskeyRegistrationBody] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2VerifyPasskeyRegistrationResponse, Integer, Hash)>] V2VerifyPasskeyRegistrationResponse data, response status code and response headers
-    def user_service_verify_passkey_registration_with_http_info(user_id, passkey_id, body, opts = {})
+    def verify_passkey_registration_with_http_info(user_id, passkey_id, body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_verify_passkey_registration ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.verify_passkey_registration ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_verify_passkey_registration"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.verify_passkey_registration"
       end
       # verify the required parameter 'passkey_id' is set
       if @api_client.config.client_side_validation && passkey_id.nil?
-        fail ArgumentError, "Missing the required parameter 'passkey_id' when calling UserServiceApi.user_service_verify_passkey_registration"
+        fail ArgumentError, "Missing the required parameter 'passkey_id' when calling UserServiceApi.verify_passkey_registration"
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.user_service_verify_passkey_registration"
+        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.verify_passkey_registration"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/passkeys/{passkeyId}'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s)).sub('{' + 'passkeyId' + '}', CGI.escape(passkey_id.to_s))
@@ -2908,7 +2908,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_verify_passkey_registration",
+        :operation => :"UserServiceApi.verify_passkey_registration",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -2919,7 +2919,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_verify_passkey_registration\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#verify_passkey_registration\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -2930,8 +2930,8 @@ module ZitadelClient
     # @param body [UserServiceVerifyPhoneBody] 
     # @param [Hash] opts the optional parameters
     # @return [V2VerifyPhoneResponse]
-    def user_service_verify_phone(user_id, body, opts = {})
-      data, _status_code, _headers = user_service_verify_phone_with_http_info(user_id, body, opts)
+    def verify_phone(user_id, body, opts = {})
+      data, _status_code, _headers = verify_phone_with_http_info(user_id, body, opts)
       data
     end
 
@@ -2941,17 +2941,17 @@ module ZitadelClient
     # @param body [UserServiceVerifyPhoneBody] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2VerifyPhoneResponse, Integer, Hash)>] V2VerifyPhoneResponse data, response status code and response headers
-    def user_service_verify_phone_with_http_info(user_id, body, opts = {})
+    def verify_phone_with_http_info(user_id, body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_verify_phone ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.verify_phone ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_verify_phone"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.verify_phone"
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.user_service_verify_phone"
+        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.verify_phone"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/phone/verify'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -2982,7 +2982,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_verify_phone",
+        :operation => :"UserServiceApi.verify_phone",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -2993,7 +2993,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_verify_phone\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#verify_phone\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -3004,8 +3004,8 @@ module ZitadelClient
     # @param body [UserServiceVerifyTOTPRegistrationBody] 
     # @param [Hash] opts the optional parameters
     # @return [V2VerifyTOTPRegistrationResponse]
-    def user_service_verify_totp_registration(user_id, body, opts = {})
-      data, _status_code, _headers = user_service_verify_totp_registration_with_http_info(user_id, body, opts)
+    def verify_totp_registration(user_id, body, opts = {})
+      data, _status_code, _headers = verify_totp_registration_with_http_info(user_id, body, opts)
       data
     end
 
@@ -3015,17 +3015,17 @@ module ZitadelClient
     # @param body [UserServiceVerifyTOTPRegistrationBody] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2VerifyTOTPRegistrationResponse, Integer, Hash)>] V2VerifyTOTPRegistrationResponse data, response status code and response headers
-    def user_service_verify_totp_registration_with_http_info(user_id, body, opts = {})
+    def verify_totp_registration_with_http_info(user_id, body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_verify_totp_registration ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.verify_totp_registration ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_verify_totp_registration"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.verify_totp_registration"
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.user_service_verify_totp_registration"
+        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.verify_totp_registration"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/totp/verify'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
@@ -3056,7 +3056,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_verify_totp_registration",
+        :operation => :"UserServiceApi.verify_totp_registration",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -3067,7 +3067,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_verify_totp_registration\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#verify_totp_registration\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -3079,8 +3079,8 @@ module ZitadelClient
     # @param body [UserServiceVerifyU2FRegistrationBody] 
     # @param [Hash] opts the optional parameters
     # @return [V2VerifyU2FRegistrationResponse]
-    def user_service_verify_u2_f_registration(user_id, u2f_id, body, opts = {})
-      data, _status_code, _headers = user_service_verify_u2_f_registration_with_http_info(user_id, u2f_id, body, opts)
+    def verify_u2_f_registration(user_id, u2f_id, body, opts = {})
+      data, _status_code, _headers = verify_u2_f_registration_with_http_info(user_id, u2f_id, body, opts)
       data
     end
 
@@ -3091,21 +3091,21 @@ module ZitadelClient
     # @param body [UserServiceVerifyU2FRegistrationBody] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(V2VerifyU2FRegistrationResponse, Integer, Hash)>] V2VerifyU2FRegistrationResponse data, response status code and response headers
-    def user_service_verify_u2_f_registration_with_http_info(user_id, u2f_id, body, opts = {})
+    def verify_u2_f_registration_with_http_info(user_id, u2f_id, body, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserServiceApi.user_service_verify_u2_f_registration ...'
+        @api_client.config.logger.debug 'Calling API: UserServiceApi.verify_u2_f_registration ...'
       end
       # verify the required parameter 'user_id' is set
       if @api_client.config.client_side_validation && user_id.nil?
-        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.user_service_verify_u2_f_registration"
+        fail ArgumentError, "Missing the required parameter 'user_id' when calling UserServiceApi.verify_u2_f_registration"
       end
       # verify the required parameter 'u2f_id' is set
       if @api_client.config.client_side_validation && u2f_id.nil?
-        fail ArgumentError, "Missing the required parameter 'u2f_id' when calling UserServiceApi.user_service_verify_u2_f_registration"
+        fail ArgumentError, "Missing the required parameter 'u2f_id' when calling UserServiceApi.verify_u2_f_registration"
       end
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
-        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.user_service_verify_u2_f_registration"
+        fail ArgumentError, "Missing the required parameter 'body' when calling UserServiceApi.verify_u2_f_registration"
       end
       # resource path
       local_var_path = '/v2/users/{userId}/u2f/{u2fId}'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s)).sub('{' + 'u2fId' + '}', CGI.escape(u2f_id.to_s))
@@ -3136,7 +3136,7 @@ module ZitadelClient
       auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
       new_options = opts.merge(
-        :operation => :"UserServiceApi.user_service_verify_u2_f_registration",
+        :operation => :"UserServiceApi.verify_u2_f_registration",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -3147,7 +3147,7 @@ module ZitadelClient
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserServiceApi#user_service_verify_u2_f_registration\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: UserServiceApi#verify_u2_f_registration\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
