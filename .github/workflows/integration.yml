@@ -1,0 +1,36 @@
+name: Compatibility
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check-compatibility:
+    name: With Ruby ${{ matrix.ruby-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby-version: [ '2.7', '3.0', '3.1', '3.2' ]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          path: project/library
+
+      - name: Checkout sanity stub
+        uses: actions/checkout@v4
+        with:
+          ref: sanity
+          path: project/sanity
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+          bundler-cache: true
+
+      - name: Check Installability
+        working-directory: project/sanity
+        run: bundle install

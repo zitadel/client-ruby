@@ -3,28 +3,28 @@ name: Run Tests
 on: push
 
 permissions:
-    contents: write
+  contents: write
 
 defaults:
-    run:
-        working-directory: ./
+  run:
+    working-directory: ./
 
 jobs:
-    app-testing:
-        runs-on: ubuntu-latest
+  app-testing:
+    runs-on: ubuntu-latest
 
-        steps:
-            -   name: Checkout code
-                uses: actions/checkout@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-            -   name: Set up Ruby
-                uses: ruby/setup-ruby@v1
-                with:
-                    ruby-version: '2.7'
-                    bundler-cache: true
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.7'
+          bundler-cache: true
 
-            -   name: Install Dependencies
-                run: bundle install
+      - name: Install Dependencies
+        run: bundle install
 
-            -   name: Run Tests
-                run: bundle exec rspec
+      - name: Run Tests
+        run: bundle exec rspec
