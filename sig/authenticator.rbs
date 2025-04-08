@@ -1,9 +1,0 @@
-class Authenticator
-  @host: String
-
-  def initialize: (String) -> void
-
-  def get_auth_headers: () -> Hash[String, String]
-
-  def get_host: () -> String
-end

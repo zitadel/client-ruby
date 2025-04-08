@@ -1,0 +1,131 @@
+class Authenticator
+  @host: String
+
+  def initialize: (String) -> void
+
+  def get_auth_headers: () -> Hash[String, String]
+
+  def get_host: () -> String
+end
+
+class ClientCredentialsAuthenticator
+
+  def initialize: (OpenId, String, String, Set[String]) -> void
+
+  def get_grant: (OAuth2::Client, String) -> OAuth2::AccessToken
+
+  def self.builder: (String, String, String) -> ClientCredentialsAuthenticatorBuilder
+
+  class ClientCredentialsAuthenticatorBuilder
+    @client_id: String
+    @client_secret: String
+
+    def initialize: (String, String, String) -> void
+
+    def build: -> ClientCredentialsAuthenticator
+  end
+
+end
+
+class NoAuthAuthenticator < Authenticator
+
+  def initialize: (String host) -> void
+
+  def get_auth_headers: () -> Hash[String, String]
+end
+
+class OAuthAuthenticatorBuilder
+  @auth_scopes: Set[String]
+  @open_id: OpenId
+
+  attr_reader open_id: OpenId
+  attr_reader auth_scopes: Set[String]
+
+  def initialize: (String) -> void
+
+  def auth_scopes: -> untyped
+
+  def scopes: -> untyped
+end
+
+module OAuth2
+  class AccessToken
+
+  end
+
+  class Client
+    def initialize: (String | nil, String | nil, Hash[Symbol, String]) -> void
+
+    def fetch_token: (url: String, **untyped) -> AccessToken
+  end
+end
+
+class OAuthAuthenticator < Authenticator
+  @auth_session: OAuth2::Client
+  @open_id: OpenId
+  @token: OAuth2::AccessToken | nil
+  @auth_scopes: String
+
+  def initialize: (OpenId, Set[String], OAuth2::Client) -> void
+
+  def get_auth_token: () -> String
+
+  def get_auth_headers: () -> Hash[String, String]
+
+  def get_grant: (OAuth2::Client, String) -> OAuth2::AccessToken
+
+  def refresh_token: () -> OAuth2::AccessToken
+end
+
+class OpenId
+  @host_endpoint: String
+  @token_endpoint: String
+
+  def initialize: (String) -> void
+
+  def self.build_well_known_url: (String) -> String
+
+  def get_host_endpoint: -> String
+
+  def get_token_endpoint: -> String
+end
+
+class PersonalAccessTokenAuthenticator
+  @token: String
+
+  def get_auth_headers: -> Hash[String, String]
+end
+
+module URLUtil
+
+  def self.build_hostname: (String) -> String
+end
+
+class WebTokenAuthenticator
+  @jwt_algorithm: String
+  @jwt_audience: String
+  @jwt_issuer: String
+  @jwt_lifetime: Integer
+  @jwt_subject: String
+  @private_key: String
+
+  def self.builder: (String, String, String) -> WebTokenAuthenticatorBuilder
+
+  def get_grant: (OAuth2::Client, String) -> OAuth2::AccessToken
+
+  def initialize: (OpenId, Set[String], String, String, String, String, ?Integer jwt_lifetime, ?String jwt_algorithm) -> untyped
+
+  class WebTokenAuthenticatorBuilder
+    @jwt_audience: String
+    @jwt_issuer: String
+    @jwt_lifetime: Integer
+    @jwt_subject: String
+    @private_key: String
+
+    def initialize: (String, String, String, String, String) -> void
+
+    def build: -> WebTokenAuthenticator
+
+    def token_lifetime_seconds: -> self
+  end
+end
