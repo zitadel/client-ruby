@@ -1,0 +1,5 @@
+class PersonalAccessTokenAuthenticator
+  @token: String
+
+  def get_auth_headers: -> Hash[String, String]
+end

@@ -1,0 +1,6 @@
+class NoAuthAuthenticator < Authenticator
+
+  def initialize: (String host) -> void
+
+  def get_auth_headers: () -> Hash[String, String]
+end

@@ -1,0 +1,4 @@
+module URLUtil
+
+  def self.build_hostname: (String) -> String
+end

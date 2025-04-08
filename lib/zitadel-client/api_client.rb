@@ -17,7 +17,6 @@ require 'tempfile'
 require 'time'
 require 'typhoeus'
 
-
 module ZitadelClient
   class ApiClient
     # The Configuration object holding settings to be used in the API client.
@@ -142,7 +141,7 @@ module ZitadelClient
     def build_request_body(header_params, form_params, body)
       # http form
       if header_params['Content-Type'] == 'application/x-www-form-urlencoded' ||
-          header_params['Content-Type'] == 'multipart/form-data'
+         header_params['Content-Type'] == 'multipart/form-data'
         data = {}
         form_params.each do |key, value|
           case value
@@ -194,10 +193,10 @@ module ZitadelClient
           fail ApiError.new("Failed to create the tempfile based on the HTTP response from the server: #{request.inspect}")
         end
         tempfile.close
-        @config.logger.info "Temp file written to #{tempfile.path}, please copy the file to a proper folder "\
-                            "with e.g. `FileUtils.cp(tempfile.path, '/new/file/path')` otherwise the temp file "\
-                            "will be deleted automatically with GC. It's also recommended to delete the temp file "\
-                            "explicitly with `tempfile.delete`"
+        @config.logger.info "Temp file written to #{tempfile.path}, please copy the file to a proper folder " \
+                              "with e.g. `FileUtils.cp(tempfile.path, '/new/file/path')` otherwise the temp file " \
+                              "will be deleted automatically with GC. It's also recommended to delete the temp file " \
+                              "explicitly with `tempfile.delete`"
         yield tempfile if block_given?
       end
     end
@@ -310,7 +309,7 @@ module ZitadelClient
         next unless auth_setting
         case auth_setting[:in]
         when 'header' then header_params[auth_setting[:key]] = auth_setting[:value]
-        when 'query'  then query_params[auth_setting[:key]] = auth_setting[:value]
+        when 'query' then query_params[auth_setting[:key]] = auth_setting[:value]
         else fail ArgumentError, 'Authentication token must be in `query` or `header`'
         end
       end
