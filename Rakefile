@@ -12,10 +12,19 @@ begin
     t.rspec_opts = '--format documentation'
   end
 
-  task test: :spec
+  # Minitest Task
+  require 'rake/testtask'
 
-  # Set the default rake task to run the spec suite.
-  task default: :spec
+  Rake::TestTask.new(:minitest) do |t|
+    t.libs << "test"
+    t.pattern = "test/**/*_test.rb"  # Adjust if your file pattern is different
+  end
+
+  # Combined Task: Run both RSpec and Minitest
+  task :all_tests => [:spec, :minitest]
+
+  # Optionally, set this as the default task
+  task default: :all_tests
 
 rescue LoadError => e
   # If RSpec is not available, print a message or handle gracefully.

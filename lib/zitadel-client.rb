@@ -292,6 +292,7 @@ require 'zitadel-client/api/settings_api'
 require 'zitadel-client/api/settings_service_api'
 require 'zitadel-client/api/user_service_api'
 
+require 'zitadel-client/utils/url_util'
 require 'zitadel-client/auth/authenticator'
 require 'zitadel-client/auth/no_auth_authenticator'
 require 'zitadel-client/auth/personal_access_token_authenticator'

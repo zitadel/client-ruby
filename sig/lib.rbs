@@ -96,6 +96,8 @@ module ZitadelClient
   class PersonalAccessTokenAuthenticator
     @token: String
 
+    def initialize: (String, String) -> void
+
     def get_auth_headers: -> Hash[String, String]
   end
 
