@@ -16,7 +16,10 @@ SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter
                          )
 
 SimpleCov.coverage_dir('build/coverage')
-SimpleCov.start
+SimpleCov.start do
+  add_filter '/api/'
+  add_filter '/models/'
+end
 
 begin
   require 'minitest/reporters'
