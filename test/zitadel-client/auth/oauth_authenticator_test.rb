@@ -16,31 +16,28 @@ require 'testcontainers'
 
 module ZitadelClient
   class OAuthAuthenticatorTest < Minitest::Test
+    # noinspection RbsMissingTypeSignature
     class << self
-      attr_accessor :oauth_host, :mock_oauth2_server, :initialized
+      attr_accessor :oauth_host, :mock_server, :initialized
 
       def inherited(subclass)
         super
-        # Start the container for the subclass if it hasn’t been initialized.
         subclass.setup_container unless subclass.initialized
-        # Ensure the container is stopped after the test run for this subclass.
         Minitest.after_run { subclass.teardown_container }
       end
     end
 
     def self.setup_container
-      self.mock_oauth2_server = Testcontainers::DockerContainer.new("ghcr.io/navikt/mock-oauth2-server:2.1.10")
-                                                               .with_exposed_port(8080)
-      # Optionally, add a wait strategy here if supported.
-      mock_oauth2_server.start
-      host = mock_oauth2_server.host  # Retrieve the host IP.
-      port = mock_oauth2_server.mapped_port(8080)  # Retrieve the mapped port.
-      self.oauth_host = "http://#{host}:#{port}"
+      self.mock_server = Testcontainers::DockerContainer.new("ghcr.io/navikt/mock-oauth2-server:2.1.10")
+                                                        .with_exposed_port(8080)
+      mock_server.start.wait_for_http(container_port: 8080, status: 405)
+
+      self.oauth_host = "http://#{mock_server.host}:#{mock_server.mapped_port(8080)}"
       self.initialized = true
     end
 
     def self.teardown_container
-      mock_oauth2_server&.stop
+      mock_server&.stop
     end
   end
 end

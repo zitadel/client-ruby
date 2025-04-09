@@ -14,8 +14,8 @@ module ZitadelClient
     def initialize(open_id, client_id, client_secret, auth_scopes)
       # noinspection RubyArgCount
       super(open_id, auth_scopes, OAuth2::Client.new(client_id, client_secret, options = {
-        site: open_id.get_host_endpoint,
-        token_url: open_id.get_token_endpoint
+        site: open_id.host_endpoint,
+        token_url: open_id.token_endpoint
       }))
     end
 

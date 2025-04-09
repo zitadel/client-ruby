@@ -12,6 +12,7 @@ require 'minitest/autorun'
 require 'openssl'
 require 'time'
 require 'zitadel-client'
+require_relative './oauth_authenticator_test'
 
 module ZitadelClient
   ##
@@ -29,8 +30,6 @@ module ZitadelClient
     #
     # @return [void]
     def test_refresh_token_using_builder
-      sleep 20
-
       # Generate an RSA key and convert it to PEM format.
       rsa_key = OpenSSL::PKey::RSA.new(2048)
       private_key_pem = rsa_key.to_pem

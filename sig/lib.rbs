@@ -126,6 +126,9 @@ module ZitadelClient
     @host_endpoint: String
     @token_endpoint: String
 
+    attr_accessor host_endpoint: String
+    attr_accessor token_endpoint: String
+
     def initialize: (String) -> void
 
     def self.build_well_known_url: (String) -> String
@@ -173,7 +176,7 @@ module ZitadelClient
 
       def build: -> WebTokenAuthenticator
 
-      def token_lifetime_seconds: -> self
+      def token_lifetime_seconds: (Integer) -> self
     end
   end
 end

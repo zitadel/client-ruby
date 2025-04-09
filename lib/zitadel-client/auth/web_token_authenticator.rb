@@ -4,7 +4,6 @@ require 'time'
 require 'set'
 require 'openssl'
 
-
 module ZitadelClient
   # -----------------------------------------------------------------------------
   # WebTokenAuthenticator
@@ -27,9 +26,9 @@ module ZitadelClient
     # @param jwt_algorithm [String] The JWT signing algorithm (default "RS256").
     def initialize(open_id, auth_scopes, jwt_issuer, jwt_subject, jwt_audience, private_key, jwt_lifetime = 3600, jwt_algorithm = "RS256")
       # noinspection RubyArgCount,RubyMismatchedArgumentType
-      super(open_id, auth_scopes, OAuth2::Client.new("", "", options = {
-        site: open_id.get_host_endpoint,
-        token_url: open_id.get_token_endpoint
+      super(open_id, auth_scopes, OAuth2::Client.new("zitadel", "zitadel", options = {
+        site: open_id.host_endpoint,
+        token_url: open_id.token_endpoint
       }))
       @jwt_issuer = jwt_issuer
       @jwt_subject = jwt_subject

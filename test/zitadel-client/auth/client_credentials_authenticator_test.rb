@@ -41,8 +41,6 @@ module ZitadelClient
     #
     # @return [void]
     def test_refresh_token
-      sleep 20
-
       authenticator = ClientCredentialsAuthenticator.builder(self.class.oauth_host, "dummy-client", "dummy-secret")
                                                     .scopes("openid", "foo")
                                                     .build

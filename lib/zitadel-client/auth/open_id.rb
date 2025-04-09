@@ -12,6 +12,9 @@ module ZitadelClient
   # fetches the configuration, and extracts the token endpoint.
   #
   class OpenId
+
+    attr_accessor :token_endpoint, :host_endpoint
+
     ##
     # Initializes a new OpenId instance.
     #
@@ -38,24 +41,6 @@ module ZitadelClient
         raise 'token_endpoint not found in OpenID configuration'
       end
       @token_endpoint = token_endpoint
-    end
-
-    ##
-    # Returns the host endpoint URL.
-    #
-    # @return [String] the host endpoint.
-    #
-    def get_host_endpoint
-      @host_endpoint
-    end
-
-    ##
-    # Returns the token endpoint URL extracted from the OpenID configuration.
-    #
-    # @return [String] the token endpoint.
-    #
-    def get_token_endpoint
-      @token_endpoint
     end
 
     private

@@ -20,7 +20,7 @@ module ZitadelClient
     # @param auth_session [OAuth2Session] The OAuth2Session instance used for token requests.
     #
     def initialize(open_id, auth_scopes, auth_session)
-      super(open_id.get_host_endpoint)
+      super(open_id.host_endpoint)
       @open_id = open_id
       @token = nil
       @auth_session = auth_session
