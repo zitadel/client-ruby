@@ -126,14 +126,8 @@ module ZitadelClient
     # @see https://github.com/typhoeus/ethon/blob/master/lib/ethon/easy/queryable.rb#L96
     attr_accessor :params_encoding
 
-    ##
-    # Creates a new `Configuration` instance with default values.
-    #
-    # Yields itself to a block if provided, allowing inline configuration.
-    #
-    # @yieldparam [Configuration] self
-    def initialize
-      @authenticator = NoAuthAuthenticator.new
+    def initialize(authenticator = NoAuthAuthenticator.new)
+      @authenticator = authenticator
       @client_side_validation = true
       @verify_ssl = true
       @verify_ssl_host = true
@@ -142,7 +136,7 @@ module ZitadelClient
       @timeout = 0
       @params_encoding = nil
       @debugging = false
-      @logger = defined?(Rails) ? Rails.logger : Logger.new(STDOUT)
+      @logger = defined?(Rails) ? Rails.logger : Logger.new($stdout)
 
       yield(self) if block_given?
     end

@@ -31,6 +31,9 @@ module ZitadelClient
     attr_accessor params_encoding: Symbol?
 
     def self.default: () -> Configuration
+
+    def initialize: (?Authenticator) { (Configuration) -> void }? -> void
+
   end
 
   #
@@ -178,5 +181,18 @@ module ZitadelClient
 
       def token_lifetime_seconds: (Integer) -> self
     end
+  end
+
+  class Zitadel
+    attr_reader configuration: Configuration
+    attr_reader features: untyped
+    attr_reader idps: untyped
+    attr_reader oidc: untyped
+    attr_reader organizations: untyped
+    attr_reader sessions: untyped
+    attr_reader settings: untyped
+    attr_reader users: untyped
+
+    def initialize: (Authenticator)-> void
   end
 end

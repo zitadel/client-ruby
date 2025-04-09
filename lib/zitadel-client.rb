@@ -301,6 +301,8 @@ require 'zitadel-client/auth/oauth_authenticator'
 require 'zitadel-client/auth/client_credentials_authenticator'
 require 'zitadel-client/auth/web_token_authenticator'
 
+require 'zitadel-client/zitadel'
+
 module ZitadelClient
   class << self
     # Customize default settings for the SDK using block.
