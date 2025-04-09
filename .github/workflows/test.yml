@@ -20,11 +20,11 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '2.7'
+          ruby-version: '3.0'
           bundler-cache: true
 
       - name: Install Dependencies
         run: bundle install
 
       - name: Run Tests
-        run: bundle exec rspec
+        run: bundle exec rake all_tests
