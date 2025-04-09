@@ -11,6 +11,7 @@ The container is expected to expose port 8080 and, if supported, may be configur
 for an HTTP response from the "/" endpoint with a status code of 405 (using a wait strategy).
 =end
 
+require 'test_helper'
 require 'minitest/autorun'
 require 'testcontainers'
 

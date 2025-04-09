@@ -19,6 +19,7 @@ Usage:
   bundle exec ruby test/auth/client_credentials_authenticator_test.rb
 =end
 
+require 'test_helper'
 require 'minitest/autorun'
 require 'time'
 require 'zitadel-client'

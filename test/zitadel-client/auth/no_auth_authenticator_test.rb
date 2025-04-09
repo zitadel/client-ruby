@@ -12,6 +12,7 @@ Usage:
     bundle exec ruby test/auth/no_auth_authenticator_test.rb
 =end
 
+require 'test_helper'
 require 'minitest/autorun'
 require 'zitadel-client'
 

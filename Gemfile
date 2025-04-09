@@ -11,3 +11,9 @@ group :development, :test do
   gem 'rubocop'
   gem 'testcontainers'
 end
+
+group :test do
+  gem 'minitest-reporters'
+  gem 'simplecov', require: false
+  gem 'simplecov-lcov', require: false
+end
