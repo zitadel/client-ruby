@@ -121,6 +121,7 @@ GEM
     version_gem (1.1.6)
 
 PLATFORMS
+  arm64-darwin-23
   x86_64-linux
 
 DEPENDENCIES
