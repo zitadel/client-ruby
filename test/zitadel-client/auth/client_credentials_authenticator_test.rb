@@ -22,6 +22,7 @@ Usage:
 require 'minitest/autorun'
 require 'time'
 require 'zitadel-client'
+require_relative './oauth_authenticator_test'
 
 module ZitadelClient
   ##
@@ -34,7 +35,7 @@ module ZitadelClient
   #     end
   #   end
   #
-  class ClientCredentialsAuthenticatorTest < OAuthAuthenticatorTest
+  class ClientCredentialsAuthenticatorTest < ZitadelClient::OAuthAuthenticatorTest
     ##
     # Verifies token refresh functionality of ClientCredentialsAuthenticator.
     #
@@ -51,19 +52,18 @@ module ZitadelClient
       refute_empty token_str, "Access token should not be empty"
 
       token = authenticator.refresh_token
-      expected_headers = { "Authorization" => "Bearer " + token.access_token }
+      expected_headers = { "Authorization" => "Bearer " + token.token }
       assert_equal expected_headers, authenticator.get_auth_headers
 
-      refute_nil token.access_token, "Access token should not be null"
+      refute_nil token.token, "Access token should not be null"
 
-      now = Time.now.utc
-      assert_operator token.expires_at, :>, now, "Token expiry should be in the future"
+      refute token.expired?, "Token should not be expired"
 
-      assert_equal token.access_token, authenticator.get_auth_token
-      assert_equal self.class.oauth_host, authenticator.get_host
+      assert_equal token.token, authenticator.get_auth_token
+      assert_equal self.class.oauth_host, authenticator.host
 
-      token1 = authenticator.refresh_token.access_token
-      token2 = authenticator.refresh_token.access_token
+      token1 = authenticator.refresh_token.token
+      token2 = authenticator.refresh_token.token
       refute_equal token1, token2, "Two refreshToken calls should produce different tokens"
     end
   end

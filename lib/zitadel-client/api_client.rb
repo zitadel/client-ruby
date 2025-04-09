@@ -4,6 +4,7 @@ require 'logger'
 require 'tempfile'
 require 'time'
 require 'typhoeus'
+require 'uri'
 
 module ZitadelClient
   class ApiClient
@@ -12,7 +13,7 @@ module ZitadelClient
 
     # Defines the headers to be used in HTTP requests of all API calls by default.
     #
-    # @return [Hash]
+    # @return [Hash[String, String]]
     attr_accessor :default_headers
 
     # Initializes the ApiClient
@@ -79,7 +80,7 @@ module ZitadelClient
     # @option opts [Object] :body HTTP body (JSON/XML)
     # @return [Typhoeus::Request] A Typhoeus Request
     def build_request(http_method, path, opts = {})
-      url = build_request_url(path, opts)
+      url = URI.join(@config.authenticator.host.chomp('/') + '/', path).to_s
       http_method = http_method.to_sym.downcase
 
       header_params = @default_headers.merge(opts[:header_params] || {})
@@ -87,7 +88,7 @@ module ZitadelClient
       form_params = opts[:form_params] || {}
       follow_location = opts[:follow_location] || true
 
-      update_params_for_auth! header_params, query_params, opts[:auth_names]
+      header_params = @default_headers.merge(opts[:header_params] || {}).merge(@config.authenticator.get_auth_headers)
 
       # set ssl_verifyhosts option based on @config.verify_ssl_host (true/false)
       _verify_ssl_host = @config.verify_ssl_host ? 2 : 0
@@ -278,29 +279,6 @@ module ZitadelClient
     # @return [String] the sanitized filename
     def sanitize_filename(filename)
       filename.split(/[\/\\]/).last
-    end
-
-    def build_request_url(path, opts = {})
-      # Add leading and trailing slashes to path
-      path = "/#{path}".gsub(/\/+/, '/')
-      @config.base_url(opts[:operation]) + path
-    end
-
-    # Update header and query params based on authentication settings.
-    #
-    # @param [Hash] header_params Header parameters
-    # @param [Hash] query_params Query parameters
-    # @param [String] auth_names Authentication scheme name
-    def update_params_for_auth!(header_params, query_params, auth_names)
-      Array(auth_names).each do |auth_name|
-        auth_setting = @config.auth_settings[auth_name]
-        next unless auth_setting
-        case auth_setting[:in]
-        when 'header' then header_params[auth_setting[:key]] = auth_setting[:value]
-        when 'query' then query_params[auth_setting[:key]] = auth_setting[:value]
-        else fail ArgumentError, 'Authentication token must be in `query` or `header`'
-        end
-      end
     end
 
     # Sets user agent in HTTP header

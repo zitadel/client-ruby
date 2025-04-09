@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'time'
+require 'oauth2'
 
 module ZitadelClient
   ##
@@ -35,7 +36,8 @@ module ZitadelClient
       if @token.nil? || @token.expired?
         refresh_token
       end
-      @token.access_token
+
+      @token.token
     end
 
     ##
@@ -74,9 +76,9 @@ module ZitadelClient
     #
     def refresh_token
       begin
-        self.get_grant(@auth_session, @auth_scopes)
+        @token = self.get_grant(@auth_session, @auth_scopes)
       rescue => e
-        raise "Failed to refresh token: #{e.message}"
+        raise RuntimeError.new("Failed to refresh token: #{e.message}"), cause: e
       end
     end
   end

@@ -11,6 +11,48 @@ module OAuth2
 end
 
 module ZitadelClient
+
+  VERSION: String
+
+  class Configuration
+    @@default: Configuration
+
+    attr_reader authenticator: Authenticator
+    attr_accessor debugging: bool
+    attr_accessor logger: untyped
+    attr_accessor temp_folder_path: String
+    attr_accessor timeout: Integer
+    attr_accessor client_side_validation: bool
+    attr_accessor verify_ssl: bool
+    attr_accessor verify_ssl_host: bool
+    attr_accessor ssl_ca_cert: String?
+    attr_accessor cert_file: String?
+    attr_accessor key_file: String?
+    attr_accessor params_encoding: Symbol?
+
+    def self.default: () -> Configuration
+  end
+
+  #
+  # Represents an HTTP error returned from the Zitadel API.
+  #
+  # This class captures the HTTP status code, headers, and body,
+  # and provides a helpful string representation for debugging.
+  #
+  class ApiError < StandardError
+    @message: String
+
+    attr_reader code: Integer?
+    attr_reader response_headers: untyped
+    attr_reader response_body: untyped
+
+    def initialize: (?untyped? arg) -> void
+
+    def message: () -> String
+
+    def to_s: () -> String
+  end
+
   class Authenticator
     @host: String
 
@@ -44,7 +86,7 @@ module ZitadelClient
 
   class NoAuthAuthenticator < Authenticator
 
-    def initialize: (String host) -> void
+    def initialize: (?String host) -> void
 
     def get_auth_headers: () -> Hash[String, String]
   end

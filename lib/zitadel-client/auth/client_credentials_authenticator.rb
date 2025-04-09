@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'oauth2'
+
 module ZitadelClient
   # ClientCredentialsAuthenticator implements the client credentials flow.
   class ClientCredentialsAuthenticator < OAuthAuthenticator
@@ -18,7 +20,7 @@ module ZitadelClient
     end
 
     # Overrides the base get_grant to return client credentials grant parameters.
-    #
+
     # @return [OAuth2::AccessToken] A hash containing the grant type.
     def get_grant(client, auth_scopes)
       client.client_credentials.get_token({ scope: auth_scopes })
@@ -52,7 +54,7 @@ module ZitadelClient
       #
       # @return [ClientCredentialsAuthenticator] A configured instance.
       def build
-        ClientCredentialsAuthenticator.new(open_id, @client_id, @client_secret, super.auth_scopes)
+        ClientCredentialsAuthenticator.new(open_id, @client_id, @client_secret, auth_scopes)
       end
     end
   end

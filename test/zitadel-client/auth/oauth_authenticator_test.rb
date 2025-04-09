@@ -14,60 +14,33 @@ for an HTTP response from the "/" endpoint with a status code of 405 (using a wa
 require 'minitest/autorun'
 require 'testcontainers'
 
-##
-# Base test class for OAuth authenticators using Testcontainers.
-#
-# @example
-#   class MyAuthenticatorTest < OAuthAuthenticatorTest
-#     def test_authenticator_behavior
-#       # Access the container's URL via self.class.oauth_host
-#     end
-#   end
-#
-class OAuthAuthenticatorTest < Minitest::Test
-  class << self
-    # The accessible URL for the mock OAuth2 server.
-    # @return [String]
-    attr_accessor :oauth_host
-    # The Docker container instance for the mock OAuth2 server.
-    # @return [Testcontainers::Container]
-    attr_accessor :mock_oauth2_server
-    # Flag to indicate whether the container has been initialized.
-    # @return [Boolean]
-    attr_accessor :initialized
-  end
+module ZitadelClient
+  class OAuthAuthenticatorTest < Minitest::Test
+    class << self
+      attr_accessor :oauth_host, :mock_oauth2_server, :initialized
 
-  ##
-  # Sets up the Docker container before any test cases run.
-  #
-  # Starts a container from the specified image and exposes port 8080.
-  # The container's accessible URL is stored in the class variable +oauth_host+.
-  #
-  # @return [void]
-  def self.setup_container
-    self.mock_oauth2_server = Testcontainers::Container.new("ghcr.io/navikt/mock-oauth2-server:2.1.10")
-                                                       .with_exposed_port(8080)
-    # Optionally, configure a wait strategy here if supported.
-    mock_oauth2_server.start
-    host = mock_oauth2_server.host_ip         # Retrieve the host IP.
-    port = mock_oauth2_server.mapped_port(8080)  # Retrieve the mapped port for 8080.
-    self.oauth_host = "http://#{host}:#{port}"
-    self.initialized = true
-  end
+      def inherited(subclass)
+        super
+        # Start the container for the subclass if it hasn’t been initialized.
+        subclass.setup_container unless subclass.initialized
+        # Ensure the container is stopped after the test run for this subclass.
+        Minitest.after_run { subclass.teardown_container }
+      end
+    end
 
-  ##
-  # Tears down the Docker container after all test cases have run.
-  #
-  # @return [void]
-  def self.teardown_container
-    mock_oauth2_server&.stop
-  end
+    def self.setup_container
+      self.mock_oauth2_server = Testcontainers::DockerContainer.new("ghcr.io/navikt/mock-oauth2-server:2.1.10")
+                                                               .with_exposed_port(8080)
+      # Optionally, add a wait strategy here if supported.
+      mock_oauth2_server.start
+      host = mock_oauth2_server.host  # Retrieve the host IP.
+      port = mock_oauth2_server.mapped_port(8080)  # Retrieve the mapped port.
+      self.oauth_host = "http://#{host}:#{port}"
+      self.initialized = true
+    end
 
-  # Initialize the container once before any tests are executed.
-  self.setup_container unless self.initialized
-
-  # Register the teardown of the container after the test suite runs.
-  Minitest.after_run do
-    OAuthAuthenticatorTest.teardown_container
+    def self.teardown_container
+      mock_oauth2_server&.stop
+    end
   end
 end
