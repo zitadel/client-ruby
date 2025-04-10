@@ -10,6 +10,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'rubocop'
   gem 'testcontainers'
+  gem 'dotenv'
 end
 
 group :test do
