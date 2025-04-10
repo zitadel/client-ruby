@@ -28,3 +28,6 @@ jobs:
 
       - name: Run Tests
         run: bundle exec rake all_tests
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
+          AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
