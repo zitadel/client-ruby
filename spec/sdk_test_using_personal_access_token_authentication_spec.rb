@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'rspec'
-require_relative '../lib/zitadel-client'
 require 'securerandom'
 
 RSpec.describe 'Zitadel Client' do

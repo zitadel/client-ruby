@@ -2,10 +2,10 @@
 
 require 'uri'
 
-module ZitadelClient::Utils
+module ZitadelClient
   # Utility module for URL related operations.
   # This is a placeholder for URLUtil, which provides URL utility methods.
-  module URLUtil
+  class UrlUtil
     ##
     # Builds the hostname for the provided host.
     #

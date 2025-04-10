@@ -29,7 +29,8 @@ GEM
       logger
     faraday-net_http (3.4.0)
       net-http (>= 0.5.0)
-    ffi (1.17.1)
+    ffi (1.17.1-arm64-darwin)
+    ffi (1.17.1-x86_64-linux-gnu)
     hashie (5.0.0)
     json (2.10.2)
     jwt (2.10.1)
@@ -120,6 +121,7 @@ GEM
     unicode-emoji (4.0.4)
     uri (1.0.3)
     version_gem (1.1.6)
+    zeitwerk (2.6.18)
 
 PLATFORMS
   arm64-darwin-23
@@ -137,6 +139,7 @@ DEPENDENCIES
   simplecov
   simplecov-lcov
   testcontainers
+  zeitwerk
   zitadel-client!
 
 BUNDLED WITH

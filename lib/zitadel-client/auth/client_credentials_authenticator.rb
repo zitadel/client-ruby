@@ -4,7 +4,7 @@ require 'oauth2'
 
 module ZitadelClient
   # ClientCredentialsAuthenticator implements the client credentials flow.
-  class ClientCredentialsAuthenticator < OAuthAuthenticator
+  class ClientCredentialsAuthenticator < ZitadelClient::OAuthAuthenticator
     # Constructs a ClientCredentialsAuthenticator using client credentials flow.
     #
     # @param open_id [OpenId] The OpenId instance with OAuth endpoint info.

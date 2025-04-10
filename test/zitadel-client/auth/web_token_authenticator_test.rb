@@ -12,7 +12,6 @@ require 'test_helper'
 require 'minitest/autorun'
 require 'openssl'
 require 'time'
-require 'zitadel-client'
 require_relative './oauth_authenticator_test'
 
 module ZitadelClient

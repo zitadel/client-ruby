@@ -1,5 +1,5 @@
 require 'dotenv'
-require 'zitadel-client'
+require_relative '../lib/zitadel-client'
 
 Dotenv.load('.env')
 
