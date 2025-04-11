@@ -22,13 +22,13 @@ module ZitadelClient
 
       client = ApiClient.new(configuration = @configuration)
 
-      @features = FeatureServiceApi.new(client)
-      @idps = IdentityProviderServiceApi.new(client)
-      @oidc = OIDCServiceApi.new(client)
-      @organizations = OrganizationServiceApi.new(client)
-      @sessions = SessionServiceApi.new(client)
-      @settings = SettingsServiceApi.new(client)
-      @users = UserServiceApi.new(client)
+      @features = ZitadelClient::FeatureServiceApi.new(client)
+      @idps = ZitadelClient::IdentityProviderServiceApi.new(client)
+      @oidc = ZitadelClient::OIDCServiceApi.new(client)
+      @organizations = ZitadelClient::OrganizationServiceApi.new(client)
+      @sessions = ZitadelClient::SessionServiceApi.new(client)
+      @settings = ZitadelClient::SettingsServiceApi.new(client)
+      @users = ZitadelClient::UserServiceApi.new(client)
     end
   end
 end

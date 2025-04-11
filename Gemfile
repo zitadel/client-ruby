@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gemspec
 
+gem 'zeitwerk'
 gem 'oauth2'
 
 group :development, :test do

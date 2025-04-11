@@ -14,7 +14,6 @@ Usage:
 
 require 'test_helper'
 require 'minitest/autorun'
-require 'zitadel-client'
 
 module ZitadelClient
   ##

@@ -120,6 +120,7 @@ GEM
     unicode-emoji (4.0.4)
     uri (1.0.3)
     version_gem (1.1.6)
+    zeitwerk (2.6.18)
 
 PLATFORMS
   arm64-darwin-23
@@ -137,6 +138,7 @@ DEPENDENCIES
   simplecov
   simplecov-lcov
   testcontainers
+  zeitwerk
   zitadel-client!
 
 BUNDLED WITH

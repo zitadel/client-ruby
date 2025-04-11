@@ -136,7 +136,7 @@ module ZitadelClient
       @timeout = 0
       @params_encoding = nil
       @debugging = false
-      @logger = defined?(Rails) ? Rails.logger : Logger.new($stdout)
+      @logger = nil?
 
       yield(self) if block_given?
     end

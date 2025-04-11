@@ -12,7 +12,7 @@ module ZitadelClient
   # OAuth authenticator implementing the JWT bearer flow.
   #
   # This implementation builds a JWT assertion dynamically in get_grant().
-  class WebTokenAuthenticator < OAuthAuthenticator
+  class WebTokenAuthenticator < ZitadelClient::OAuthAuthenticator
 
     # Constructs a WebTokenAuthenticator.
     #

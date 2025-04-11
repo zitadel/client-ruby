@@ -1,5 +1,9 @@
+require 'dotenv'
 require 'simplecov'
 require 'simplecov-lcov'
+require_relative '../lib/zitadel-client'
+
+Dotenv.load('.env')
 
 # Configure the LCOV formatter
 SimpleCov::Formatter::LcovFormatter.config do |config|
