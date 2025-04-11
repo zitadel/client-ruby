@@ -164,6 +164,8 @@ module ZitadelClient
 
     def self.builder: (String, String, String) -> WebTokenAuthenticatorBuilder
 
+    def self.from_json: (String, String) -> WebTokenAuthenticator
+
     def get_grant: (OAuth2::Client, String) -> OAuth2::AccessToken
 
     def initialize: (OpenId, Set[String], String, String, String, String, ?Integer jwt_lifetime, ?String jwt_algorithm) -> untyped

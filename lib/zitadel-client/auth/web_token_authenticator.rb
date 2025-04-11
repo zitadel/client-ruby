@@ -58,6 +58,42 @@ module ZitadelClient
       )
     end
 
+    # Creates a WebTokenAuthenticator instance from a JSON configuration file.
+    #
+    # The JSON file must be formatted as follows:
+    #
+    #   {
+    #     "type": "serviceaccount",
+    #     "keyId": "<key-id>",
+    #     "key": "<private-key>",
+    #     "userId": "<user-id>"
+    #   }
+    #
+    # @param host [String] Base URL for the API endpoints.
+    # @param json_path [String] File path to the JSON configuration file.
+    # @return [WebTokenAuthenticator] A new instance of WebTokenAuthenticator.
+    # @raise [RuntimeError] If the file cannot be read, the JSON is invalid, or required keys are missing.
+    def self.from_json(host, json_path)
+      begin
+        config = JSON.parse(File.read(json_path))
+      rescue Errno::ENOENT => e
+        raise "Unable to read JSON file at #{json_path}: #{e.message}"
+      rescue JSON::ParserError => e
+        raise "Invalid JSON in file at #{json_path}: #{e.message}"
+      end
+
+      unless config.is_a?(Hash)
+        raise "Expected a JSON object in file at #{json_path}, got #{config.class}"
+      end
+
+      user_id = config["userId"]
+      private_key = config["key"]
+
+      raise "Missing required keys 'userId' or 'key' in JSON file." unless user_id && private_key
+
+      WebTokenAuthenticator.builder(host, user_id, private_key).build
+    end
+
     # Returns a builder for constructing a WebTokenAuthenticator.
     #
     # @param host [String] The base URL for the OAuth provider.
