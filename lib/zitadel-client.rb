@@ -1,5 +1,7 @@
 require 'zeitwerk'
 
+module ZitadelClient; end
+
 loader = Zeitwerk::Loader.new
 loader.inflector.inflect "oidc_service_api" => "OIDCServiceApi"
 loader.tag = File.basename(__FILE__, ".rb")
