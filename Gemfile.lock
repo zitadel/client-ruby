@@ -2,7 +2,9 @@ PATH
   remote: .
   specs:
     zitadel-client (0.0.1)
+      oauth2 (~> 2.0)
       typhoeus (~> 1.0, >= 1.0.1)
+      zeitwerk (~> 2.5)
 
 GEM
   remote: https://rubygems.org/
@@ -29,7 +31,8 @@ GEM
       logger
     faraday-net_http (3.4.0)
       net-http (>= 0.5.0)
-    ffi (1.17.1)
+    ffi (1.17.1-arm64-darwin)
+    ffi (1.17.1-x86_64-linux-gnu)
     hashie (5.0.0)
     json (2.10.2)
     jwt (2.10.1)
@@ -133,11 +136,12 @@ DEPENDENCIES
   oauth2
   pry-byebug
   rake
-  rspec (~> 3.6, >= 3.6.0)
+  rspec
   rubocop
   simplecov
   simplecov-lcov
   testcontainers
+  typhoeus
   zeitwerk
   zitadel-client!
 

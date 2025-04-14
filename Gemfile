@@ -6,6 +6,7 @@ gem 'zeitwerk'
 gem 'oauth2'
 
 group :development, :test do
+  gem 'rspec'
   gem 'rake'
   gem 'minitest'
   gem 'pry-byebug'
