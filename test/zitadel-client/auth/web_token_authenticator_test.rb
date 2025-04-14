@@ -8,6 +8,7 @@ Usage:
   bundle exec ruby test/auth/web_token_authenticator_test.rb
 =end
 
+# noinspection RubyResolve
 require 'test_helper'
 require 'minitest/autorun'
 require 'openssl'
