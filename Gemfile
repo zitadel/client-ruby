@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gemspec
 
+gem 'typhoeus'
 gem 'zeitwerk'
 gem 'oauth2'
 
