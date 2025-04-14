@@ -40,9 +40,11 @@ end
 
 begin
   require 'minitest/reporters'
-  Minitest::Reporters.use!(
-    Minitest::Reporters::SpecReporter.new(color: true)
-  )
+  unless ENV['RM_INFO']
+    Minitest::Reporters.use!(
+      Minitest::Reporters::SpecReporter.new(color: true)
+    )
+  end
 rescue LoadError
   warn 'minitest-reporters not available — install with `bundle add minitest-reporters`'
 end
