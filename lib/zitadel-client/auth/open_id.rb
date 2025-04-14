@@ -12,7 +12,6 @@ module ZitadelClient
   # fetches the configuration, and extracts the token endpoint.
   #
   class OpenId
-
     attr_accessor :token_endpoint, :host_endpoint
 
     ##
@@ -45,14 +44,14 @@ module ZitadelClient
 
     private
 
-    ##
-    # Builds the well-known OpenID configuration URL for the given hostname.
-    #
-    # @param hostname [String] the hostname for the OpenID provider.
-    # @return [String] the well-known configuration URL.
-    #
-    def self.build_well_known_url(hostname)
-      URI.join(hostname, '/.well-known/openid-configuration').to_s
-    end
+      ##
+      # Builds the well-known OpenID configuration URL for the given hostname.
+      #
+      # @param hostname [String] the hostname for the OpenID provider.
+      # @return [String] the well-known configuration URL.
+      #
+      def self.build_well_known_url(hostname)
+        URI.join(hostname, '/.well-known/openid-configuration').to_s
+      end
   end
 end

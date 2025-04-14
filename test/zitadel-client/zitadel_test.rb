@@ -12,6 +12,7 @@ module ZitadelClient
   # Zitadel instance.
   # noinspection RbsMissingTypeSignature
   class ZitadelClientTest < Minitest::Test
+    # noinspection RubyArgCount
     def test_zitadel_exposes_all_service_apis
       # Collect all classes under ZitadelClient that end with "ServiceApi"
       expected = ZitadelClient.constants

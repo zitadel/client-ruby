@@ -34,7 +34,6 @@ module ZitadelClient
     def get_auth_headers
       raise NotImplementedError, "#{self.class}#get_auth_headers is an abstract method. Please override it in a subclass."
     end
-
   end
 
   ##
@@ -43,7 +42,6 @@ module ZitadelClient
   # This builder provides common configuration options such as the OpenId instance and authentication scopes.
   #
   class OAuthAuthenticatorBuilder
-
     attr_reader :open_id, :auth_scopes
 
     ##

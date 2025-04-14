@@ -17,10 +17,11 @@ module ZitadelClient
     #
     # @param authenticator [Authenticator] the authentication strategy to use
     def initialize(authenticator)
-      @configuration = Configuration.new(authenticator = authenticator)
+      # noinspection RubyArgCount
+      @configuration = Configuration.new(authenticator)
       yield @configuration if block_given?
 
-      client = ApiClient.new(configuration = @configuration)
+      client = ApiClient.new(@configuration)
 
       @features = ZitadelClient::FeatureServiceApi.new(client)
       @idps = ZitadelClient::IdentityProviderServiceApi.new(client)

@@ -14,6 +14,10 @@ module ZitadelClient
 
   VERSION: String
 
+  class UrlUtil
+    def self.build_hostname: -> String
+  end
+
   class Configuration
     @@default: Configuration
 
@@ -32,8 +36,23 @@ module ZitadelClient
 
     def self.default: () -> Configuration
 
-    def initialize: (?Authenticator) { (Configuration) -> void }? -> void
+    def initialize: (?Authenticator) { (Configuration) -> void } -> void
 
+    def configure: -> untyped
+
+  end
+
+  class ApiClient
+
+    @config: Configuration
+    @default_headers: Hash[String, String]
+    @user_agent: String
+
+    attr_accessor config: Configuration
+
+    attr_accessor default_headers: Hash[String, String]
+
+    def initialize: (?Configuration)-> void
   end
 
   #
@@ -49,7 +68,7 @@ module ZitadelClient
     attr_reader response_headers: untyped
     attr_reader response_body: untyped
 
-    def initialize: (?untyped? arg) -> void
+    def initialize: (?(String | Hash[untyped, untyped] | nil)) -> void
 
     def message: () -> String
 
@@ -89,7 +108,7 @@ module ZitadelClient
 
   class NoAuthAuthenticator < Authenticator
 
-    def initialize: (?String host) -> void
+    def initialize: (?String) -> void
 
     def get_auth_headers: () -> Hash[String, String]
   end
@@ -160,7 +179,7 @@ module ZitadelClient
     @jwt_issuer: String
     @jwt_lifetime: Integer
     @jwt_subject: String
-    @key_id: String
+    @key_id: String?
     @private_key: String
 
     def self.builder: (String, String, String) -> WebTokenAuthenticatorBuilder
@@ -169,7 +188,7 @@ module ZitadelClient
 
     def get_grant: (OAuth2::Client, String) -> OAuth2::AccessToken
 
-    def initialize: (OpenId, Set[String], String, String, String, String, ?Integer jwt_lifetime, ?String jwt_algorithm, ?String key_id) -> void
+    def initialize: (OpenId, Set[String], String, String, String, String | OpenSSL::PKey::PKey, ?jwt_lifetime: Integer, ?jwt_algorithm: String, ?key_id: String?) -> void
 
     class WebTokenAuthenticatorBuilder
       @jwt_audience: String
@@ -199,6 +218,8 @@ module ZitadelClient
     attr_reader settings: untyped
     attr_reader users: untyped
 
-    def initialize: (Authenticator)-> void
+    def initialize: (Authenticator) ?{ (Configuration) -> void } -> void
+
   end
+
 end

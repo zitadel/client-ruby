@@ -13,7 +13,6 @@ module ZitadelClient
   #
   # This implementation builds a JWT assertion dynamically in get_grant().
   class WebTokenAuthenticator < ZitadelClient::OAuthAuthenticator
-
     # Constructs a WebTokenAuthenticator.
     #
     # @param open_id [OpenId] The OpenId instance with OAuth endpoint information.

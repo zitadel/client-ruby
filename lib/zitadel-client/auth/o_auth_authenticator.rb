@@ -12,7 +12,6 @@ module ZitadelClient
   #   auth_session: An OAuth2Session instance used for fetching tokens.
   #
   class OAuthAuthenticator < Authenticator
-
     ##
     # Constructs an OAuthAuthenticator.
     #
