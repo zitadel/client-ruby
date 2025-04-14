@@ -1,4 +1,6 @@
 require 'zeitwerk'
+require 'oauth2'
+require_relative 'patch'
 
 loader = Zeitwerk::Loader.new
 loader.inflector.inflect "oidc_service_api" => "OIDCServiceApi"

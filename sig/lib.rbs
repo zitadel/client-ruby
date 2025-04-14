@@ -160,6 +160,7 @@ module ZitadelClient
     @jwt_issuer: String
     @jwt_lifetime: Integer
     @jwt_subject: String
+    @key_id: String
     @private_key: String
 
     def self.builder: (String, String, String) -> WebTokenAuthenticatorBuilder
@@ -168,18 +169,21 @@ module ZitadelClient
 
     def get_grant: (OAuth2::Client, String) -> OAuth2::AccessToken
 
-    def initialize: (OpenId, Set[String], String, String, String, String, ?Integer jwt_lifetime, ?String jwt_algorithm) -> untyped
+    def initialize: (OpenId, Set[String], String, String, String, String, ?Integer jwt_lifetime, ?String jwt_algorithm, ?String key_id) -> void
 
     class WebTokenAuthenticatorBuilder
       @jwt_audience: String
       @jwt_issuer: String
       @jwt_lifetime: Integer
       @jwt_subject: String
+      @key_id: String
       @private_key: String
 
       def initialize: (String, String, String, String, String) -> void
 
       def build: -> WebTokenAuthenticator
+
+      def key_identifier: (String) -> self
 
       def token_lifetime_seconds: (Integer) -> self
     end
