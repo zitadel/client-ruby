@@ -1,7 +1,7 @@
-# Python SDK for Zitadel
+# Ruby SDK for Zitadel
 
-This is the Zitadel Python SDK, designed to provide a convenient and idiomatic
-way to interact with the Zitadel APIs in Python. The SDK provides a seamless
+This is the Zitadel Ruby SDK, designed to provide a convenient and idiomatic
+way to interact with the Zitadel APIs in Ruby. The SDK provides a seamless
 wrapping of the Zitadel API, making it easy to authenticate service users and
 perform API operations.
 
@@ -28,16 +28,21 @@ To use this SDK, you need a Zitadel account. Sign up at the official
 Zitadel website and obtain the necessary credentials to access the API.
 
 ### Minimum Requirements
-Ensure you have Python 3 or higher installed. You also need Poetry to
-install dependencies.
+Ensure you have Ruby 3 or higher installed.
 
 ## Using the SDK
 
 ### Installation
 Install the SDK by running one of the following commands:
 
-```bash
+```
 gem install zitadel_client
+```
+
+If you're using Bundler use,
+
+```
+bundle add zitadel_client
 ```
 
 ## Authentication Methods
@@ -198,7 +203,7 @@ The SDK supports debug logging, which can be enabled for troubleshooting
 and debugging purposes. You can enable debug logging by setting the `debug`
 flag to `true` when initializing the `Zitadel` client, like this:
 
-```python
+```ruby
 zitadel = zitadel.Zitadel("your-zitadel-base-url", 'your-valid-token', lambda config: config.debug = True)
 ```
 
@@ -225,7 +230,7 @@ Instead, please open an issue for any bugs or feature requests.
 ## Reporting Issues
 
 If you encounter any issues or have suggestions for improvements, please
-open an issue in the [issue tracker](https://github.com/zitadel/client-python/issues).
+open an issue in the [issue tracker](https://github.com/zitadel/client-ruby/issues).
 When reporting an issue, please provide the following information to help
 us address it more effectively:
 
