@@ -13,3 +13,4 @@ git_push.sh
 Gemfile
 Gemfile.lock
 Rakefile
+*.rb
