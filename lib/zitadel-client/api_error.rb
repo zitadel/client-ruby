@@ -23,6 +23,7 @@ module ZitadelClient
     # Examples:
     #   ApiError.new("Internal Server Error")
     #   ApiError.new(code: 500, response_headers: {}, response_body: "Oops")
+    # noinspection RubyMismatchedVariableType
     def initialize(arg = nil)
       if arg.is_a?(Hash)
         super(arg[:message] || arg['message'] || arg.to_s)
@@ -32,6 +33,7 @@ module ZitadelClient
         @response_body    = arg[:response_body] || arg['response_body']
         @message          = arg[:message] || arg['message']
       else
+        # noinspection RubyMismatchedArgumentType
         super(arg)
         @message = arg
       end

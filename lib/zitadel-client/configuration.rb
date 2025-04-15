@@ -147,6 +147,7 @@ module ZitadelClient
     # @return [Configuration]
     # noinspection RubyClassVariableUsageInspection
     def self.default
+      # noinspection RubyArgCount
       @@default ||= Configuration.new
     end
 

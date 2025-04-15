@@ -13,7 +13,6 @@ module ZitadelClient
   #
   # This implementation builds a JWT assertion dynamically in get_grant().
   class WebTokenAuthenticator < ZitadelClient::OAuthAuthenticator
-
     # Constructs a WebTokenAuthenticator.
     #
     # @param open_id [OpenId] The OpenId instance with OAuth endpoint information.
@@ -24,7 +23,8 @@ module ZitadelClient
     # @param private_key [String] The private key used to sign the JWT.
     # @param jwt_lifetime [Integer] Lifetime of the JWT in seconds (default 3600 seconds).
     # @param jwt_algorithm [String] The JWT signing algorithm (default "RS256").
-    def initialize(open_id, auth_scopes, jwt_issuer, jwt_subject, jwt_audience, private_key, jwt_lifetime = 3600, jwt_algorithm = "RS256")
+    # @param key_id [String, nil] Optional key identifier for the JWT header (default: nil).
+    def initialize(open_id, auth_scopes, jwt_issuer, jwt_subject, jwt_audience, private_key, jwt_lifetime: 3600, jwt_algorithm: "RS256", key_id: nil)
       # noinspection RubyArgCount,RubyMismatchedArgumentType
       super(open_id, auth_scopes, OAuth2::Client.new("zitadel", "zitadel", options = {
         site: open_id.host_endpoint,
@@ -36,6 +36,7 @@ module ZitadelClient
       @private_key = private_key
       @jwt_lifetime = jwt_lifetime
       @jwt_algorithm = jwt_algorithm
+      @key_id = key_id
     end
 
     # Overrides the base get_grant to return client credentials grant parameters.
@@ -51,7 +52,9 @@ module ZitadelClient
         },
         {
           algorithm: @jwt_algorithm,
-          key: OpenSSL::PKey::RSA.new(@private_key) },
+          key: OpenSSL::PKey::RSA.new(@private_key),
+          kid: @key_id
+        },
         {
           scope: auth_scopes
         }
@@ -88,10 +91,11 @@ module ZitadelClient
 
       user_id = config["userId"]
       private_key = config["key"]
+      key_id = config["keyId"]
 
-      raise "Missing required keys 'userId' or 'key' in JSON file." unless user_id && private_key
+      raise "Missing required keys 'userId', 'key_id' or 'key' in JSON file." unless user_id && key_id && private_key
 
-      WebTokenAuthenticator.builder(host, user_id, private_key).build
+      WebTokenAuthenticator.builder(host, user_id, private_key).key_identifier(key_id).build
     end
 
     # Returns a builder for constructing a WebTokenAuthenticator.
@@ -138,11 +142,16 @@ module ZitadelClient
         self
       end
 
+      def key_identifier(key_id)
+        @key_id = key_id
+        self
+      end
+
       # Constructs and returns a new WebTokenAuthenticator instance using the configured parameters.
       #
       # @return [WebTokenAuthenticator] A configured instance.
       def build
-        WebTokenAuthenticator.new(open_id, auth_scopes, @jwt_issuer, @jwt_subject, @jwt_audience, @private_key, @jwt_lifetime)
+        WebTokenAuthenticator.new(open_id, auth_scopes, @jwt_issuer, @jwt_subject, @jwt_audience, @private_key, jwt_lifetime: @jwt_lifetime, key_id: @key_id)
       end
     end
   end

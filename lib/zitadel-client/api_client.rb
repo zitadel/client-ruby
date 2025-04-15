@@ -17,7 +17,8 @@ module ZitadelClient
     attr_accessor :default_headers
 
     # Initializes the ApiClient
-    # @option config [Configuration] Configuration for initializing the object, default to Configuration.default
+    # @option config [Configuration] Configuration for initializing the object, default to the
+    # default configuration.
     def initialize(config = Configuration.default)
       @config = config
       @user_agent = "OpenAPI-Generator/#{VERSION}/ruby"
@@ -27,6 +28,8 @@ module ZitadelClient
       }
     end
 
+    # noinspection RubyClassVariableUsageInspection,RbsMissingTypeSignature
+    # @return [ZitadelClient::ApiClient]
     def self.default
       @@default ||= ApiClient.new
     end
@@ -34,7 +37,8 @@ module ZitadelClient
     # Call an API with given options.
     #
     # @return [Array<(Object, Integer, Hash)>] an array of 3 elements:
-    #   the data deserialized from response body (may be a Tempfile or nil), response status code and response headers.
+    #   the data deserialized from response body (which may be a Tempfile or nil), response status code and response headers.
+    # noinspection RbsMissingTypeSignature
     def call_api(http_method, path, opts = {})
       request = build_request(http_method, path, opts)
       tempfile = nil
@@ -67,7 +71,7 @@ module ZitadelClient
       else
         data = nil
       end
-      return data, response.code, response.headers
+      [data, response.code, response.headers]
     end
 
     # Builds the HTTP request
@@ -79,15 +83,15 @@ module ZitadelClient
     # @option opts [Hash] :form_params Query parameters
     # @option opts [Object] :body HTTP body (JSON/XML)
     # @return [Typhoeus::Request] A Typhoeus Request
+    # noinspection RbsMissingTypeSignature
     def build_request(http_method, path, opts = {})
       url = URI.join(@config.authenticator.host.chomp('/') + '/', path).to_s
       http_method = http_method.to_sym.downcase
 
-      header_params = @default_headers.merge(opts[:header_params] || {})
+
       query_params = opts[:query_params] || {}
       form_params = opts[:form_params] || {}
       follow_location = opts[:follow_location] || true
-
       header_params = @default_headers.merge(opts[:header_params] || {}).merge(@config.authenticator.get_auth_headers)
 
       # set ssl_verifyhosts option based on @config.verify_ssl_host (true/false)
@@ -127,6 +131,7 @@ module ZitadelClient
     # @param [Hash] form_params Query parameters
     # @param [Object] body HTTP body (JSON/XML)
     # @return [String] HTTP body data in the form of string
+    # noinspection RubyMismatchedReturnType,RubyArgCount,RbsMissingTypeSignature
     def build_request_body(header_params, form_params, body)
       # http form
       if header_params['Content-Type'] == 'application/x-www-form-urlencoded' ||
@@ -158,6 +163,7 @@ module ZitadelClient
     # @see Configuration#temp_folder_path
     #
     # @return [Tempfile] the tempfile generated
+    # noinspection RbsMissingTypeSignature
     def download_file(request)
       tempfile = nil
       encoding = nil
@@ -175,10 +181,11 @@ module ZitadelClient
       end
       request.on_body do |chunk|
         chunk.force_encoding(encoding)
+        # noinspection RubyNilAnalysis
         tempfile.write(chunk)
       end
       request.on_complete do
-        if !tempfile
+        unless tempfile
           fail ApiError.new("Failed to create the tempfile based on the HTTP response from the server: #{request.inspect}")
         end
         tempfile.close
@@ -198,6 +205,7 @@ module ZitadelClient
     #   */*
     # @param [String] mime MIME
     # @return [Boolean] True if the MIME is application/json
+    # noinspection RbsMissingTypeSignature
     def json_mime?(mime)
       (mime == '*/*') || !(mime =~ /^Application\/.*json(?!p)(;.*)?/i).nil?
     end
@@ -206,6 +214,7 @@ module ZitadelClient
     #
     # @param [Response] response HTTP response
     # @param [String] return_type some examples: "User", "Array<User>", "Hash<String, Integer>"
+    # noinspection RbsMissingTypeSignature
     def deserialize(response, return_type)
       body = response.body
       return nil if body.nil? || body.empty?
@@ -235,8 +244,10 @@ module ZitadelClient
     # @param [Object] data Data to be converted
     # @param [String] return_type Return type
     # @return [Mixed] Data in a particular type
+    # noinspection RubyArgCount,RubyMismatchedArgumentType,RbsMissingTypeSignature
     def convert_to_type(data, return_type)
       return nil if data.nil?
+      # noinspection RegExpRedundantEscape
       case return_type
       when 'String'
         data.to_s
@@ -277,6 +288,7 @@ module ZitadelClient
     #
     # @param [String] filename the filename to be sanitized
     # @return [String] the sanitized filename
+    # noinspection RubyMismatchedReturnType,RbsMissingTypeSignature
     def sanitize_filename(filename)
       filename.split(/[\/\\]/).last
     end
@@ -284,6 +296,7 @@ module ZitadelClient
     # Sets user agent in HTTP header
     #
     # @param [String] user_agent User agent (e.g. openapi-generator/ruby/1.0.0)
+    # noinspection RbsMissingTypeSignature
     def user_agent=(user_agent)
       @user_agent = user_agent
       @default_headers['User-Agent'] = @user_agent
@@ -292,9 +305,10 @@ module ZitadelClient
     # Return Accept header based on an array of accepts provided.
     # @param [Array] accepts array for Accept
     # @return [String] the Accept header (e.g. application/json)
+    # noinspection RubyArgCount,RbsMissingTypeSignature
     def select_header_accept(accepts)
       return nil if accepts.nil? || accepts.empty?
-      # use JSON when present, otherwise use all of the provided
+      # use JSON when present, otherwise use all the provided
       json_accept = accepts.find { |s| json_mime?(s) }
       json_accept || accepts.join(',')
     end
@@ -302,6 +316,7 @@ module ZitadelClient
     # Return Content-Type header based on an array of content types provided.
     # @param [Array] content_types array for Content-Type
     # @return [String] the Content-Type header  (e.g. application/json)
+    # noinspection RubyArgCount,RbsMissingTypeSignature
     def select_header_content_type(content_types)
       # return nil by default
       return if content_types.nil? || content_types.empty?
@@ -310,12 +325,13 @@ module ZitadelClient
       json_content_type || content_types.first
     end
 
-    # Convert object (array, hash, object, etc) to JSON string.
+    # Convert object (array, hash, object, etc.) to JSON string.
     # @param [Object] model object to be converted into JSON string
     # @return [String] JSON string representation of the object
+    # noinspection RubyMismatchedReturnType,RbsMissingTypeSignature
     def object_to_http_body(model)
       return model if model.nil? || model.is_a?(String)
-      local_body = nil
+
       if model.is_a?(Array)
         local_body = model.map { |m| object_to_hash(m) }
       else
@@ -327,6 +343,7 @@ module ZitadelClient
     # Convert object(non-array) to hash.
     # @param [Object] obj object to be converted into JSON string
     # @return [String] JSON string representation of the object
+    # noinspection RubyMismatchedReturnType,RbsMissingTypeSignature
     def object_to_hash(obj)
       if obj.respond_to?(:to_hash)
         obj.to_hash
@@ -337,6 +354,7 @@ module ZitadelClient
 
     # Build parameter value according to the given collection format.
     # @param [String] collection_format one of :csv, :ssv, :tsv, :pipes and :multi
+    # noinspection RbsMissingTypeSignature
     def build_collection_param(param, collection_format)
       case collection_format
       when :csv

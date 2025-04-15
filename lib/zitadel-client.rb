@@ -1,4 +1,6 @@
 require 'zeitwerk'
+require 'oauth2'
+require_relative 'patch'
 
 module ZitadelClient; end
 
@@ -75,13 +77,4 @@ loader.push_dir("#{__dir__}/zitadel-client", namespace: ZitadelClient)
 loader.setup
 
 module ZitadelClient
-  class << self
-    def configure
-      if block_given?
-        yield(Configuration.default)
-      else
-        Configuration.default
-      end
-    end
-  end
 end

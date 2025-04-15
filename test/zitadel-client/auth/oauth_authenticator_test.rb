@@ -11,6 +11,7 @@ The container is expected to expose port 8080 and, if supported, may be configur
 for an HTTP response from the "/" endpoint with a status code of 405 (using a wait strategy).
 =end
 
+# noinspection RubyResolve
 require 'test_helper'
 require 'minitest/autorun'
 require 'testcontainers'
@@ -33,6 +34,7 @@ module ZitadelClient
                                                         .with_exposed_port(8080)
       mock_server.start.wait_for_http(container_port: 8080, status: 405)
 
+      # noinspection HttpUrlsUsage
       self.oauth_host = "http://#{mock_server.host}:#{mock_server.mapped_port(8080)}"
       self.initialized = true
     end
