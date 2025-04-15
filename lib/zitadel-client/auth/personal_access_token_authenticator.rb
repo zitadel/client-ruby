@@ -19,13 +19,14 @@ module ZitadelClient
       @token = token
     end
 
-    ##
-    # Returns the authentication headers using the personal access token.
-    #
-    # @return [Hash{String => String}] a hash containing the 'Authorization' header.
-    #
-    def get_auth_headers
-      { "Authorization" => "Bearer " + @token }
-    end
+    protected
+      ##
+      # Returns the authentication headers using the personal access token.
+      #
+      # @return [Hash{String => String}] a hash containing the 'Authorization' header.
+      #
+      def get_auth_headers
+        { "Authorization" => "Bearer " + @token }
+      end
   end
 end

@@ -76,6 +76,7 @@ module ZitadelClient
   end
 
   class Authenticator
+
     @host: String
 
     attr_reader host: String

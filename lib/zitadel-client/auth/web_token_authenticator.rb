@@ -39,28 +39,6 @@ module ZitadelClient
       @key_id = key_id
     end
 
-    # Overrides the base get_grant to return client credentials grant parameters.
-    #
-    # @return [OAuth2::AccessToken] A hash containing the grant type.
-    def get_grant(client, auth_scopes)
-      client.assertion.get_token(
-        { iss: @jwt_issuer,
-          sub: @jwt_subject,
-          aud: @jwt_audience,
-          iat: Time.now.utc.to_i,
-          exp: (Time.now.utc + @jwt_lifetime).to_i
-        },
-        {
-          algorithm: @jwt_algorithm,
-          key: OpenSSL::PKey::RSA.new(@private_key),
-          kid: @key_id
-        },
-        {
-          scope: auth_scopes
-        }
-      )
-    end
-
     # Creates a WebTokenAuthenticator instance from a JSON configuration file.
     #
     # The JSON file must be formatted as follows:
@@ -108,51 +86,74 @@ module ZitadelClient
       WebTokenAuthenticatorBuilder.new(host, user_id, user_id, host, private_key)
     end
 
-    # -----------------------------------------------------------------------------
-    # WebTokenAuthenticatorBuilder
-    # -----------------------------------------------------------------------------
-
-    # Builder for WebTokenAuthenticator.
-    #
-    # Provides a fluent API for configuring and constructing a WebTokenAuthenticator instance.
-    class WebTokenAuthenticatorBuilder < OAuthAuthenticatorBuilder
-      # Initializes the WebTokenAuthenticatorBuilder with required parameters.
+    protected
+      # Overrides the base get_grant to return client credentials grant parameters.
       #
-      # @param host [String] The base URL for API endpoints.
-      # @param jwt_issuer [String] The issuer claim for the JWT.
-      # @param jwt_subject [String] The subject claim for the JWT.
-      # @param jwt_audience [String] The audience claim for the JWT.
-      # @param private_key [String] The PEM-formatted private key used for signing the JWT.
-      def initialize(host, jwt_issuer, jwt_subject, jwt_audience, private_key)
-        # noinspection RubyArgCount
-        super(host)
-        @jwt_issuer = jwt_issuer
-        @jwt_subject = jwt_subject
-        @jwt_audience = jwt_audience
-        @private_key = private_key
-        @jwt_lifetime = 3600
+      # @return [OAuth2::AccessToken] A hash containing the grant type.
+      def get_grant(client, auth_scopes)
+        client.assertion.get_token(
+          { iss: @jwt_issuer,
+            sub: @jwt_subject,
+            aud: @jwt_audience,
+            iat: Time.now.utc.to_i,
+            exp: (Time.now.utc + @jwt_lifetime).to_i
+          },
+          {
+            algorithm: @jwt_algorithm,
+            key: OpenSSL::PKey::RSA.new(@private_key),
+            kid: @key_id
+          },
+          {
+            scope: auth_scopes
+          }
+        )
       end
 
-      # Sets the JWT token lifetime in seconds.
+      # -----------------------------------------------------------------------------
+      # WebTokenAuthenticatorBuilder
+      # -----------------------------------------------------------------------------
+
+      # Builder for WebTokenAuthenticator.
       #
-      # @param seconds [Integer] Lifetime of the JWT in seconds.
-      # @return [WebTokenAuthenticatorBuilder] The builder instance.
-      def token_lifetime_seconds(seconds)
-        @jwt_lifetime = seconds
-        self
-      end
+      # Provides a fluent API for configuring and constructing a WebTokenAuthenticator instance.
+      class WebTokenAuthenticatorBuilder < OAuthAuthenticatorBuilder
+        # Initializes the WebTokenAuthenticatorBuilder with required parameters.
+        #
+        # @param host [String] The base URL for API endpoints.
+        # @param jwt_issuer [String] The issuer claim for the JWT.
+        # @param jwt_subject [String] The subject claim for the JWT.
+        # @param jwt_audience [String] The audience claim for the JWT.
+        # @param private_key [String] The PEM-formatted private key used for signing the JWT.
+        def initialize(host, jwt_issuer, jwt_subject, jwt_audience, private_key)
+          # noinspection RubyArgCount
+          super(host)
+          @jwt_issuer = jwt_issuer
+          @jwt_subject = jwt_subject
+          @jwt_audience = jwt_audience
+          @private_key = private_key
+          @jwt_lifetime = 3600
+        end
 
-      def key_identifier(key_id)
-        @key_id = key_id
-        self
-      end
+        # Sets the JWT token lifetime in seconds.
+        #
+        # @param seconds [Integer] Lifetime of the JWT in seconds.
+        # @return [WebTokenAuthenticatorBuilder] The builder instance.
+        def token_lifetime_seconds(seconds)
+          @jwt_lifetime = seconds
+          self
+        end
 
-      # Constructs and returns a new WebTokenAuthenticator instance using the configured parameters.
-      #
-      # @return [WebTokenAuthenticator] A configured instance.
-      def build
-        WebTokenAuthenticator.new(open_id, auth_scopes, @jwt_issuer, @jwt_subject, @jwt_audience, @private_key, jwt_lifetime: @jwt_lifetime, key_id: @key_id)
+        def key_identifier(key_id)
+          @key_id = key_id
+          self
+        end
+
+        # Constructs and returns a new WebTokenAuthenticator instance using the configured parameters.
+        #
+        # @return [WebTokenAuthenticator] A configured instance.
+        def build
+          WebTokenAuthenticator.new(open_id, auth_scopes, @jwt_issuer, @jwt_subject, @jwt_audience, @private_key, jwt_lifetime: @jwt_lifetime, key_id: @key_id)
+        end
       end
-    end
   end
 end

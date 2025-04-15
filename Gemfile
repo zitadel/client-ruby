@@ -14,6 +14,7 @@ group :development, :test do
   gem 'rubocop'
   gem 'testcontainers'
   gem 'dotenv'
+  gem 'rubocop'
 end
 
 group :test do

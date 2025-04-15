@@ -4,8 +4,7 @@ module ZitadelClient
   # Initializes and configures the SDK with the provided authentication strategy.
   # Sets up service APIs for interacting with various Zitadel features.
   class Zitadel
-    attr_reader :configuration,
-                :features,
+    attr_reader :features,
                 :idps,
                 :oidc,
                 :organizations,

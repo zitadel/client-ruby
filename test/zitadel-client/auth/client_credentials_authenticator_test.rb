@@ -46,23 +46,23 @@ module ZitadelClient
                                                     .scopes("openid", "foo")
                                                     .build
 
-      token_str = authenticator.get_auth_token
+      token_str = authenticator.send(:get_auth_token)
       refute_nil token_str, "Access token should not be nil"
       refute_empty token_str, "Access token should not be empty"
 
-      token = authenticator.refresh_token
+      token = authenticator.send(:refresh_token)
       expected_headers = { "Authorization" => "Bearer " + token.token }
-      assert_equal expected_headers, authenticator.get_auth_headers
+      assert_equal expected_headers, authenticator.send(:get_auth_headers)
 
       refute_nil token.token, "Access token should not be null"
 
       refute token.expired?, "Token should not be expired"
 
-      assert_equal token.token, authenticator.get_auth_token
-      assert_equal self.class.oauth_host, authenticator.host
+      assert_equal token.token, authenticator.send(:get_auth_token)
+      assert_equal self.class.oauth_host, authenticator.send(:host)
 
-      token1 = authenticator.refresh_token.token
-      token2 = authenticator.refresh_token.token
+      token1 = authenticator.send(:refresh_token).token
+      token2 = authenticator.send(:refresh_token).token
       refute_equal token1, token2, "Two refreshToken calls should produce different tokens"
     end
   end

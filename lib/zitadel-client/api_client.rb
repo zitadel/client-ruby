@@ -85,14 +85,14 @@ module ZitadelClient
     # @return [Typhoeus::Request] A Typhoeus Request
     # noinspection RbsMissingTypeSignature
     def build_request(http_method, path, opts = {})
-      url = URI.join(@config.authenticator.host.chomp('/') + '/', path).to_s
+      url = URI.join(@config.authenticator.send(:host).chomp('/') + '/', path).to_s
       http_method = http_method.to_sym.downcase
 
 
       query_params = opts[:query_params] || {}
       form_params = opts[:form_params] || {}
       follow_location = opts[:follow_location] || true
-      header_params = @default_headers.merge(opts[:header_params] || {}).merge(@config.authenticator.get_auth_headers)
+      header_params = @default_headers.merge(opts[:header_params] || {}).merge(@config.authenticator.send(:get_auth_headers))
 
       # set ssl_verifyhosts option based on @config.verify_ssl_host (true/false)
       _verify_ssl_host = @config.verify_ssl_host ? 2 : 0
