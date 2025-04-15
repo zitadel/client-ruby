@@ -28,10 +28,10 @@ module ZitadelClient
       if arg.is_a?(Hash)
         super(arg[:message] || arg['message'] || arg.to_s)
 
-        @code             = arg[:code] || arg['code']
+        @code = arg[:code] || arg['code']
         @response_headers = arg[:response_headers] || arg['response_headers']
-        @response_body    = arg[:response_body] || arg['response_body']
-        @message          = arg[:message] || arg['message']
+        @response_body = arg[:response_body] || arg['response_body']
+        @message = arg[:message] || arg['message']
       else
         # noinspection RubyMismatchedArgumentType
         super(arg)

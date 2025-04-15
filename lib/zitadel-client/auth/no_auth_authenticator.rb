@@ -18,13 +18,14 @@ module ZitadelClient
     end
 
     protected
-      ##
-      # Returns an empty dictionary since no authentication is performed.
-      #
-      # @return [Hash{String => String}] an empty hash.
-      #
-      def get_auth_headers
-        {}
-      end
+
+    ##
+    # Returns an empty dictionary since no authentication is performed.
+    #
+    # @return [Hash{String => String}] an empty hash.
+    #
+    def get_auth_headers
+      {}
+    end
   end
 end

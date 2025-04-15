@@ -2,7 +2,9 @@ require 'zeitwerk'
 require 'oauth2'
 require_relative 'patch'
 
-module ZitadelClient; end
+module ZitadelClient
+  ;
+end
 
 loader = Zeitwerk::Loader.new
 loader.inflector.inflect "oidc_service_api" => "OIDCServiceApi"
@@ -66,7 +68,7 @@ loader.inflector.inflect(
   "v2_check_totp" => "V2CheckTOTP",
   "v2_list_idp_links_response" => "V2ListIDPLinksResponse",
   "v2_organization_id_query" => "V2OrganizationIDQuery"
-  )
+)
 
 loader.tag = File.basename(__FILE__, ".rb")
 loader.collapse("#{__dir__}/zitadel-client/api/")

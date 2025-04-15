@@ -31,33 +31,33 @@ module ZitadelClient
 
     protected
 
-      # Overrides the base get_grant to return client credentials grant parameters.
+    # Overrides the base get_grant to return client credentials grant parameters.
 
-      # @return [OAuth2::AccessToken] A hash containing the grant type.
-      def get_grant(client, auth_scopes)
-        client.client_credentials.get_token({ scope: auth_scopes })
+    # @return [OAuth2::AccessToken] A hash containing the grant type.
+    def get_grant(client, auth_scopes)
+      client.client_credentials.get_token({ scope: auth_scopes })
+    end
+
+    # Builder class for ClientCredentialsAuthenticator.
+    class ClientCredentialsAuthenticatorBuilder < OAuthAuthenticatorBuilder
+      # Initializes the builder with host, client ID, and client secret.
+      #
+      # @param host [String] The OAuth provider's base URL.
+      # @param client_id [String] The OAuth client identifier.
+      # @param client_secret [String] The OAuth client secret.
+      def initialize(host, client_id, client_secret)
+        # noinspection RubyArgCount
+        super(host)
+        @client_id = client_id
+        @client_secret = client_secret
       end
 
-      # Builder class for ClientCredentialsAuthenticator.
-      class ClientCredentialsAuthenticatorBuilder < OAuthAuthenticatorBuilder
-        # Initializes the builder with host, client ID, and client secret.
-        #
-        # @param host [String] The OAuth provider's base URL.
-        # @param client_id [String] The OAuth client identifier.
-        # @param client_secret [String] The OAuth client secret.
-        def initialize(host, client_id, client_secret)
-          # noinspection RubyArgCount
-          super(host)
-          @client_id = client_id
-          @client_secret = client_secret
-        end
-
-        # Constructs and returns a ClientCredentialsAuthenticator using the configured parameters.
-        #
-        # @return [ClientCredentialsAuthenticator] A configured instance.
-        def build
-          ClientCredentialsAuthenticator.new(open_id, @client_id, @client_secret, auth_scopes)
-        end
+      # Constructs and returns a ClientCredentialsAuthenticator using the configured parameters.
+      #
+      # @return [ClientCredentialsAuthenticator] A configured instance.
+      def build
+        ClientCredentialsAuthenticator.new(open_id, @client_id, @client_secret, auth_scopes)
       end
+    end
   end
 end

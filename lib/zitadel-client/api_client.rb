@@ -88,7 +88,6 @@ module ZitadelClient
       url = URI.join(@config.authenticator.send(:host).chomp('/') + '/', path).to_s
       http_method = http_method.to_sym.downcase
 
-
       query_params = opts[:query_params] || {}
       form_params = opts[:form_params] || {}
       follow_location = opts[:follow_location] || true

@@ -52,7 +52,7 @@ module ZitadelClient
 
     attr_accessor default_headers: Hash[String, String]
 
-    def initialize: (?Configuration)-> void
+    def initialize: (?Configuration) -> void
   end
 
   #
