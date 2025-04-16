@@ -12,6 +12,15 @@
       }
     ],
     [
+      "semantic-release-plugin-update-version-in-files",
+      {
+        "files": [
+          "lib/zitadel-client/version.rb"
+        ],
+        "placeholder": "0.0.0"
+      }
+    ],
+    [
       "@semantic-release/github",
       {
         "assets": [

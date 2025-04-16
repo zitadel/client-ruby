@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    zitadel-client (0.0.1)
+    zitadel-client (0.0.0)
       oauth2 (~> 2.0)
       typhoeus (~> 1.0, >= 1.0.1)
       zeitwerk (~> 2.5)

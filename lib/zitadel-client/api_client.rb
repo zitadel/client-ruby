@@ -21,10 +21,9 @@ module ZitadelClient
     # default configuration.
     def initialize(config = Configuration.default)
       @config = config
-      @user_agent = "OpenAPI-Generator/#{VERSION}/ruby"
       @default_headers = {
         'Content-Type' => 'application/json',
-        'User-Agent' => @user_agent
+        'User-Agent' => config.user_agent
       }
     end
 
@@ -290,15 +289,6 @@ module ZitadelClient
     # noinspection RubyMismatchedReturnType,RbsMissingTypeSignature
     def sanitize_filename(filename)
       filename.split(/[\/\\]/).last
-    end
-
-    # Sets user agent in HTTP header
-    #
-    # @param [String] user_agent User agent (e.g. openapi-generator/ruby/1.0.0)
-    # noinspection RbsMissingTypeSignature
-    def user_agent=(user_agent)
-      @user_agent = user_agent
-      @default_headers['User-Agent'] = @user_agent
     end
 
     # Return Accept header based on an array of accepts provided.
