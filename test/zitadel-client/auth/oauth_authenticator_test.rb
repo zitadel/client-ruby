@@ -14,33 +14,32 @@ for an HTTP response from the "/" endpoint with a status code of 405 (using a wa
 # noinspection RubyResolve
 require 'test_helper'
 require 'minitest/autorun'
+require "minitest/hooks/test"
 require 'testcontainers'
 
 module ZitadelClient
   class OAuthAuthenticatorTest < Minitest::Test
     # noinspection RbsMissingTypeSignature
-    class << self
-      attr_accessor :oauth_host, :mock_server, :initialized
+    include Minitest::Hooks
 
-      def inherited(subclass)
-        super
-        subclass.setup_container unless subclass.initialized
-        Minitest.after_run { subclass.teardown_container }
-      end
-    end
-
-    def self.setup_container
-      self.mock_server = Testcontainers::DockerContainer.new("ghcr.io/navikt/mock-oauth2-server:2.1.10")
-                                                        .with_exposed_port(8080)
-      mock_server.start.wait_for_http(container_port: 8080, status: 405)
-
+    def before_all
+      super
+      @mock_server = Testcontainers::DockerContainer.new("ghcr.io/navikt/mock-oauth2-server:2.1.10")
+                                                    .with_exposed_port(8080)
+                                                    .start
+      @mock_server.wait_for_http(container_port: 8080, status: 405)
       # noinspection HttpUrlsUsage
-      self.oauth_host = "http://#{mock_server.host}:#{mock_server.mapped_port(8080)}"
-      self.initialized = true
+      @oauth_host = "http://#{@mock_server.host}:#{@mock_server.mapped_port(8080)}"
     end
 
-    def self.teardown_container
-      mock_server&.stop
+    def after_all
+      @mock_server&.stop
+      super
+    end
+
+    # Helper for subclasses to access the OAuth host.
+    def oauth_host
+      @oauth_host
     end
   end
 end

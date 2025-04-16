@@ -35,7 +35,7 @@ module ZitadelClient
       rsa_key = OpenSSL::PKey::RSA.new(2048)
       private_key_pem = rsa_key.to_pem
 
-      authenticator = WebTokenAuthenticator.builder(self.class.oauth_host, "dummy-client", private_key_pem)
+      authenticator = WebTokenAuthenticator.builder(oauth_host, "dummy-client", private_key_pem)
                                            .token_lifetime_seconds(3600)
                                            .build
 
@@ -52,7 +52,7 @@ module ZitadelClient
       refute token.expired?, "Token should not be expired"
 
       assert_equal token.token, authenticator.send(:get_auth_token)
-      assert_equal self.class.oauth_host, authenticator.send(:host)
+      assert_equal oauth_host, authenticator.send(:host)
 
       token1 = authenticator.send(:refresh_token).token
       token2 = authenticator.send(:refresh_token).token

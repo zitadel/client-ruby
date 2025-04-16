@@ -16,6 +16,7 @@ group :development, :test do
   gem 'dotenv'
   gem 'rubocop'
   gem 'rbs'
+  gem 'minitest-hooks'
 end
 
 group :test do

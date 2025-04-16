@@ -41,6 +41,8 @@ GEM
     logger (1.7.0)
     method_source (1.1.0)
     minitest (5.25.5)
+    minitest-hooks (1.5.2)
+      minitest (> 5.3)
     minitest-reporters (1.7.1)
       ansi
       builder
@@ -133,6 +135,7 @@ PLATFORMS
 DEPENDENCIES
   dotenv
   minitest
+  minitest-hooks
   minitest-reporters
   oauth2
   pry-byebug

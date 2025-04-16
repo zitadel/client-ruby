@@ -42,7 +42,7 @@ module ZitadelClient
     #
     # @return [void]
     def test_refresh_token
-      authenticator = ClientCredentialsAuthenticator.builder(self.class.oauth_host, "dummy-client", "dummy-secret")
+      authenticator = ClientCredentialsAuthenticator.builder(oauth_host, "dummy-client", "dummy-secret")
                                                     .scopes("openid", "foo")
                                                     .build
 
@@ -59,7 +59,7 @@ module ZitadelClient
       refute token.expired?, "Token should not be expired"
 
       assert_equal token.token, authenticator.send(:get_auth_token)
-      assert_equal self.class.oauth_host, authenticator.send(:host)
+      assert_equal oauth_host, authenticator.send(:host)
 
       token1 = authenticator.send(:refresh_token).token
       token2 = authenticator.send(:refresh_token).token
