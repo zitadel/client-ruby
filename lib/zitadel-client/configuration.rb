@@ -16,6 +16,9 @@ module ZitadelClient
   #
   # noinspection RubyTooManyInstanceVariablesInspection
   class Configuration
+
+    USER_AGENT = "zitadel-client/#{ZitadelClient::VERSION} (lang=ruby; lang_version=#{RUBY_VERSION}; os=#{RUBY_PLATFORM}; arch=#{RbConfig::CONFIG['host_cpu']})".downcase
+
     ##
     # The authentication strategy used to authorize requests.
     #
@@ -126,6 +129,14 @@ module ZitadelClient
     # @see https://github.com/typhoeus/ethon/blob/master/lib/ethon/easy/queryable.rb#L96
     attr_accessor :params_encoding
 
+    ##
+    # The User-Agent header to be sent with HTTP requests.
+    #
+    # Set this to identify your client or library when making requests.
+    #
+    # @return [String, nil]
+    attr_accessor :user_agent
+
     def initialize(authenticator = NoAuthAuthenticator.new)
       @authenticator = authenticator
       @client_side_validation = true
@@ -137,6 +148,7 @@ module ZitadelClient
       @params_encoding = nil
       @debugging = false
       @logger = nil?
+      @user_agent = USER_AGENT
 
       yield(self) if block_given?
     end
