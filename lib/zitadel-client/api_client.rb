@@ -165,6 +165,7 @@ module ZitadelClient
     def download_file(request)
       tempfile = nil
       encoding = nil
+
       request.on_headers do |response|
         content_disposition = response.headers['Content-Disposition']
         if content_disposition && content_disposition =~ /filename=/i
@@ -173,26 +174,29 @@ module ZitadelClient
         else
           prefix = 'download-'
         end
-        prefix = prefix + '-' unless prefix.end_with?('-')
+        prefix += '-' unless prefix.end_with?('-')
         encoding = response.body.encoding
         tempfile = Tempfile.open(prefix, @config.temp_folder_path, encoding: encoding)
       end
+
       request.on_body do |chunk|
-        chunk.force_encoding(encoding)
-        # noinspection RubyNilAnalysis
-        tempfile.write(chunk)
+        chunk.force_encoding(encoding) if encoding
+        ensure_tempfile(tempfile).write(chunk)
       end
+
       request.on_complete do
-        unless tempfile
-          fail ApiError.new("Failed to create the tempfile based on the HTTP response from the server: #{request.inspect}")
-        end
-        tempfile.close
-        @config.logger.info "Temp file written to #{tempfile.path}, please copy the file to a proper folder " \
-                              "with e.g. `FileUtils.cp(tempfile.path, '/new/file/path')` otherwise the temp file " \
+        t = ensure_tempfile(tempfile)
+        t.close
+        @config.logger.info "Temp file written to #{t.path}, please copy the file to a proper folder " \
+                              "with e.g. `FileUtils.cp(t.path, '/new/file/path')` otherwise the temp file " \
                               "will be deleted automatically with GC. It's also recommended to delete the temp file " \
-                              "explicitly with `tempfile.delete`"
-        yield tempfile if block_given?
+                              "explicitly with `t.delete`"
+        yield t if block_given?
       end
+    end
+
+    def ensure_tempfile(temp)
+      temp || (raise "Tempfile not created")
     end
 
     # Check if the given MIME is a JSON MIME.

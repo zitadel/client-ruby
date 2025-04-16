@@ -34,11 +34,14 @@ module ZitadelClient
     # @return [String] The current access token.
     #
     def get_auth_token
-      if @token.nil? || @token.expired?
+      token = @token
+      if token.nil? || token.expired?
         refresh_token
+        token = @token
       end
 
-      @token.token
+      raise "Token is nil after refresh" if token.nil?
+      token.token
     end
 
     ##

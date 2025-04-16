@@ -1,0 +1,387 @@
+module Typhoeus::Config
+
+  attr_accessor block_connection: untyped
+
+  attr_accessor memoize: untyped
+
+  attr_accessor verbose: untyped
+
+  attr_accessor cache: untyped
+
+  attr_accessor user_agent: untyped
+
+  attr_accessor proxy: untyped
+end
+
+class Typhoeus::EasyFactory
+
+  attr_reader request: untyped
+
+  attr_reader hydra: untyped
+
+  def initialize: (untyped request, ?untyped? hydra) -> untyped
+
+  def easy: () -> untyped
+
+  def get: () -> untyped
+
+  def sanitize: (untyped options) -> untyped
+
+  def sanitize_timeout!: (untyped options, untyped timeout) -> untyped
+
+  def set_callback: () -> untyped
+
+  def provide_help: (untyped option) -> untyped
+end
+
+Typhoeus::EasyFactory::RENAMED_OPTIONS: ::Hash[untyped, untyped]
+
+Typhoeus::EasyFactory::CHANGED_OPTIONS: ::Hash[untyped, untyped]
+
+Typhoeus::EasyFactory::REMOVED_OPTIONS: untyped
+
+Typhoeus::EasyFactory::SANITIZE_IGNORE: untyped
+
+Typhoeus::EasyFactory::SANITIZE_TIMEOUT: untyped
+
+class Typhoeus::Errors
+
+end
+
+class Typhoeus::Errors::NoStub < StandardError
+  def initialize: (untyped request) -> untyped
+end
+
+class Typhoeus::Errors::TyphoeusError < StandardError
+end
+
+class Typhoeus::Expectation
+
+  attr_reader base_url: untyped
+
+  attr_reader options: untyped
+
+  attr_reader from: untyped
+
+  def self.all: () -> untyped
+
+  def self.clear: () -> untyped
+
+  def self.response_for: (untyped request) -> untyped
+
+  def self.find_by: (untyped request) -> untyped
+
+  def initialize: (untyped base_url, ?::Hash[untyped, untyped] options) -> untyped
+
+  def stubbed_from: (untyped value) -> untyped
+
+  def and_return: (?untyped? response) { () -> untyped } -> untyped
+
+  def matches?: (untyped request) -> untyped
+
+  def responses: () -> untyped
+
+  def response: (untyped request) -> untyped
+
+  def options_match?: (untyped request) -> untyped
+
+  def url_match?: (untyped request_url) -> untyped
+end
+
+module Typhoeus::Pool
+
+  def self.release: (untyped easy) -> untyped
+
+  def self.get: () -> untyped
+
+  def self.clear: () -> untyped
+
+  def self.with_easy: () { (untyped) -> untyped } -> untyped
+
+  def self.easies: () -> untyped
+end
+
+module Typhoeus
+  extend Request::Actions
+
+  extend Request::Callbacks::Types
+
+  def self.configure: () { (untyped) -> untyped } -> untyped
+
+  def self.stub: (untyped base_url, ?::Hash[untyped, untyped] options) { () -> untyped } -> untyped
+
+  def self.before: () { () -> untyped } -> untyped
+
+  def self.with_connection: () { () -> untyped } -> untyped
+end
+
+Typhoeus::USER_AGENT: ::String
+
+module Typhoeus::Request::Actions
+
+  def get: (untyped base_url, ?::Hash[untyped, untyped] options) -> untyped
+
+  def post: (untyped base_url, ?::Hash[untyped, untyped] options) -> untyped
+
+  def put: (untyped base_url, ?::Hash[untyped, untyped] options) -> untyped
+
+  def delete: (untyped base_url, ?::Hash[untyped, untyped] options) -> untyped
+
+  def head: (untyped base_url, ?::Hash[untyped, untyped] options) -> untyped
+
+  def patch: (untyped base_url, ?::Hash[untyped, untyped] options) -> untyped
+
+  def options: (untyped base_url, ?::Hash[untyped, untyped] options) -> untyped
+end
+
+module Typhoeus::Request::Before
+
+  def run: () -> untyped
+end
+
+module Typhoeus::Request::BlockConnection
+
+  def run: () -> untyped
+
+  def blocked?: () -> untyped
+end
+
+module Typhoeus::Request::Cacheable
+  def response=: (untyped response) -> untyped
+
+  def cacheable?: () -> untyped
+
+  def run: () -> untyped
+
+  def cache_ttl: () -> untyped
+
+  def cache: () -> untyped
+end
+
+module Typhoeus::Request::Callbacks
+
+  def execute_headers_callbacks: (untyped response) -> untyped
+
+  def execute_callbacks: () -> untyped
+end
+
+module Typhoeus::Request::Callbacks::Types
+
+  def on_complete: () { (Typhoeus::Response) -> void } -> void
+
+  def on_success: () { () -> untyped } -> untyped
+
+  def on_failure: () { () -> untyped } -> untyped
+
+  def on_headers: () { () -> untyped } -> untyped
+
+  def on_progress: () { () -> untyped } -> untyped
+end
+
+module Typhoeus::Request::Marshal
+
+  def marshal_dump: () -> untyped
+
+  def marshal_load: (untyped attributes) -> untyped
+end
+
+module Typhoeus::Request::Memoizable
+
+  def response=: (untyped response) -> untyped
+
+  def memoizable?: () -> untyped
+end
+
+module Typhoeus::Request::Operations
+
+  def run: () -> untyped
+
+  def finish: (untyped response, ?untyped? bypass_memoization) -> untyped
+end
+
+class Typhoeus::Request
+  extend Actions
+
+  include Callbacks::Types
+
+  include Callbacks
+
+  include Streamable
+
+  include Marshal
+
+  include Operations
+
+  include Responseable
+
+  include Memoizable
+
+  include Cacheable
+
+  include BlockConnection
+
+  include Stubbable
+
+  include Before
+
+  attr_accessor base_url: untyped
+
+  attr_accessor options: untyped
+
+  attr_accessor hydra: untyped
+
+  attr_accessor original_options: untyped
+
+  attr_accessor block_connection: untyped
+
+  def initialize: (untyped base_url, ?::Hash[untyped, untyped] options) -> untyped
+
+  def url: () -> untyped
+
+  def eql?: (untyped other) -> untyped
+
+  def hash: () -> untyped
+
+  def cache_key: () -> untyped
+
+  def encoded_body: () -> untyped
+
+  def fuzzy_hash_eql?: (untyped left, untyped right) -> untyped
+
+  def hashable_string_for: (untyped obj) -> untyped
+
+  def set_defaults: () -> untyped
+end
+
+module Typhoeus::Request::Responseable
+
+  def response=: (untyped value) -> untyped
+
+  def response: () -> untyped
+end
+
+module Typhoeus::Request::Streamable
+
+  def on_body: () { () -> untyped } -> untyped
+
+  def streaming?: () -> untyped
+end
+
+module Typhoeus::Request::Stubbable
+
+  def run: () -> untyped
+end
+
+module Typhoeus::Response::Cacheable
+
+  attr_writer cached: untyped
+
+  def cached?: () -> untyped
+end
+
+class Typhoeus::Response::Header
+
+  def initialize: (untyped raw) -> untyped
+
+  def []: (untyped key) -> untyped
+
+  def parse: () -> untyped
+
+  def process_line: (untyped header) -> untyped
+
+  def process_pair: (untyped key, untyped value) -> untyped
+
+  def set_value: (untyped key, untyped value, untyped hash) -> untyped
+
+  def raw: () -> untyped
+
+  def set_default_proc_on: (untyped hash, untyped default_proc) -> untyped
+end
+
+module Typhoeus::Response::Informations
+
+  def return_code: () -> untyped
+
+  def return_message: () -> untyped
+
+  def response_body: () -> untyped
+
+  def response_headers: () -> untyped
+
+  def response_code: () -> untyped
+
+  def httpauth_avail: () -> untyped
+
+  def total_time: () -> untyped
+
+  def starttransfer_time: () -> untyped
+
+  def appconnect_time: () -> untyped
+
+  def pretransfer_time: () -> untyped
+
+  def connect_time: () -> untyped
+
+  def namelookup_time: () -> untyped
+
+  def redirect_time: () -> untyped
+
+  def effective_url: () -> untyped
+
+  def primary_ip: () -> untyped
+
+  def redirect_count: () -> untyped
+
+  def request_size: () -> untyped
+
+  def debug_info: () -> untyped
+
+  def headers: () -> untyped
+
+  def redirections: () -> untyped
+end
+
+class Typhoeus::Response
+  include Informations
+
+  include Status
+
+  include Cacheable
+
+  attr_accessor request: untyped
+
+  attr_accessor options: untyped
+
+  attr_writer handled_response: untyped
+
+  attr_writer mock: untyped
+
+  def initialize: (?::Hash[untyped, untyped] options) -> untyped
+
+  def mock: () -> untyped
+
+  def handled_response: () -> untyped
+end
+
+module Typhoeus::Response::Status
+
+  def status_message: () -> untyped
+
+  def http_version: () -> untyped
+
+  def success?: () -> untyped
+
+  def failure?: () -> untyped
+
+  def modified?: () -> untyped
+
+  def timed_out?: () -> untyped
+
+  def first_header_line: () -> untyped
+
+  def has_good_response_code?: () -> untyped
+
+  def has_bad_response_code?: () -> untyped
+end
+
+Typhoeus::VERSION: ::String

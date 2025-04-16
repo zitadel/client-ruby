@@ -17,6 +17,7 @@ group :development, :test do
   gem 'rubocop'
   gem 'rbs'
   gem 'minitest-hooks'
+  gem 'steep'
 end
 
 group :test do

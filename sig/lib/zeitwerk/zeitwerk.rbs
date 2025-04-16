@@ -1,0 +1,21 @@
+module Zeitwerk
+  class Inflector
+    def camelize: (String, String) -> String
+
+    def inflect: (Hash[String, String]) -> void
+  end
+
+  class Loader
+    attr_accessor tag: String
+    attr_accessor inflector: Inflector
+
+    def initialize: () -> void
+
+    def collapse: (*((String | Pathname) | Array[String | Pathname])) -> void
+
+    def push_dir: (String | Pathname, namespace: Module) -> void
+
+    def setup: () -> void
+  end
+
+end

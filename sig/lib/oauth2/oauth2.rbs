@@ -1,0 +1,101 @@
+module OAuth2
+  class AccessToken
+
+    # Attributes
+    attr_reader client: Client
+    attr_reader token: String
+    attr_reader expires_in: untyped
+    attr_reader expires_at: Integer?
+    attr_reader expires_latency: untyped
+    attr_reader params: Hash[untyped, untyped]
+    attr_accessor options: Hash[Symbol, untyped]
+    attr_accessor refresh_token: String?
+    attr_accessor response: untyped
+
+    # Instance Methods
+    def initialize: (Client, String, ?Hash[Symbol, untyped]) -> void
+
+    def []: (String) -> untyped
+
+    def expires?: () -> bool
+
+    def expired?: () -> bool
+
+    def refresh: (?Hash[Symbol, untyped], ?Hash[Symbol, untyped]) -> AccessToken
+
+    def to_hash: () -> Hash[untyped, untyped]
+
+    def request: (Symbol, String, ?Hash[Symbol, untyped]) { (untyped) -> untyped } -> untyped
+
+    def get: (String, ?Hash[Symbol, untyped]) { (untyped) -> untyped } -> untyped
+
+    def post: (String, ?Hash[Symbol, untyped]) { (untyped) -> untyped } -> untyped
+
+    def put: (String, ?Hash[Symbol, untyped]) { (untyped) -> untyped } -> untyped
+
+    def patch: (String, ?Hash[Symbol, untyped]) { (untyped) -> untyped } -> untyped
+
+    def delete: (String, ?Hash[Symbol, untyped]) { (untyped) -> untyped } -> untyped
+
+    def headers: () -> Hash[String, String]
+
+  end
+
+  module Strategy
+    class Base
+      def initialize: (Client) -> void
+    end
+
+    class Assertion < Base
+      def authorize_url: () -> untyped
+
+      def get_token: (Hash[Symbol, untyped], Hash[Symbol, untyped], ?Hash[Symbol, untyped], ?Hash[Symbol, untyped]) -> untyped
+    end
+
+    class ClientCredentials < Base
+      def authorize_url: () -> untyped
+
+      def get_token: (?Hash[untyped, untyped], ?Hash[untyped, untyped]) -> untyped
+    end
+
+    class Password < Strategy::Base
+      def authorize_url: () -> untyped
+
+      def get_token: (String, String, ?Hash[untyped, untyped], ?Hash[untyped, untyped]) -> untyped
+    end
+
+    class Implicit < Base
+      def authorize_params: (?Hash[untyped, untyped]) -> Hash[untyped, untyped]
+
+      def authorize_url: (?Hash[untyped, untyped]) -> String
+
+      def get_token: (*untyped) -> untyped
+    end
+
+    class AuthCode < Base
+      def authorize_params: (?Hash[untyped, untyped]) -> Hash[untyped, untyped]
+
+      def authorize_url: (?Hash[untyped, untyped]) -> String
+
+      def get_token: (String, ?Hash[untyped, untyped], ?Hash[untyped, untyped]) -> untyped
+    end
+  end
+
+  class Client
+    def initialize: (String | nil, String | nil, Hash[Symbol, String]) -> void
+
+    def fetch_token: (url: String, **untyped) -> OAuth2::AccessToken
+
+    def auth_code: () -> Strategy::AuthCode
+
+    def implicit: () -> Strategy::Implicit
+
+    def password: () -> Strategy::Password
+
+    def client_credentials: () -> Strategy::ClientCredentials
+
+    def assertion: () -> Strategy::Assertion
+  end
+
+end
+

@@ -1,0 +1,35 @@
+name: Typecheck
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: ./
+
+jobs:
+  steep-check:
+    runs-on: ubuntu-latest
+    name: Run Steep
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+          bundler-cache: true
+
+      - name: Install Dependencies
+        run: bundle install
+
+      - name: Run Steep Check
+        run: bundle exec steep check

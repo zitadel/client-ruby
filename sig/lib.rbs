@@ -1,21 +1,44 @@
-module OAuth2
-  class AccessToken
-
-  end
-
-  class Client
-    def initialize: (String | nil, String | nil, Hash[Symbol, String]) -> void
-
-    def fetch_token: (url: String, **untyped) -> AccessToken
-  end
-end
-
 module ZitadelClient
 
   VERSION: String
 
+  class FeatureServiceApi
+
+    def initialize: (ApiClient) -> void
+  end
+
+  class IdentityProviderServiceApi
+
+    def initialize: (ApiClient) -> void
+  end
+
+  class OIDCServiceApi
+
+    def initialize: (ApiClient) -> void
+  end
+
+  class OrganizationServiceApi
+
+    def initialize: (ApiClient) -> void
+  end
+
+  class SessionServiceApi
+
+    def initialize: (ApiClient) -> void
+  end
+
+  class SettingsServiceApi
+
+    def initialize: (ApiClient) -> void
+  end
+
+  class UserServiceApi
+
+    def initialize: (ApiClient) -> void
+  end
+
   class UrlUtil
-    def self.build_hostname: -> String
+    def self.build_hostname: (String) -> String
   end
 
   class Configuration
@@ -39,9 +62,9 @@ module ZitadelClient
 
     def self.default: () -> Configuration
 
-    def initialize: (?Authenticator) { (Configuration) -> void } -> void
+    def initialize: (?Authenticator) ?{ (Configuration) -> untyped } -> void
 
-    def configure: -> untyped
+    def configure: () ?{ (Configuration) -> untyped } -> void
 
   end
 
@@ -56,6 +79,36 @@ module ZitadelClient
     attr_accessor default_headers: Hash[String, String]
 
     def initialize: (?Configuration) -> void
+
+    def self.default: () -> untyped
+
+    def call_api: (untyped http_method, untyped path, ?::Hash[untyped, untyped] opts) -> ::Array[untyped]
+
+    def build_request: (untyped http_method, untyped path, ?::Hash[untyped, untyped] opts) -> untyped
+
+    def build_request_body: (untyped header_params, untyped form_params, untyped body) -> untyped
+
+    def download_file: (untyped request) ?{ (untyped) -> untyped } -> untyped
+
+    def ensure_tempfile: (::Tempfile?) -> ::Tempfile
+
+    def json_mime?: (untyped mime) -> untyped
+
+    def deserialize: (untyped response, untyped return_type) -> (nil | untyped)
+
+    def convert_to_type: (untyped data, untyped return_type) -> (nil | untyped)
+
+    def sanitize_filename: (untyped filename) -> untyped
+
+    def select_header_accept: (untyped accepts) -> (nil | untyped)
+
+    def select_header_content_type: (untyped content_types) -> (nil | untyped)
+
+    def object_to_http_body: (untyped model) -> untyped
+
+    def object_to_hash: (untyped obj) -> untyped
+
+    def build_collection_param: (untyped param, untyped collection_format) -> untyped
   end
 
   #
@@ -91,7 +144,7 @@ module ZitadelClient
     def get_host: () -> String
   end
 
-  class ClientCredentialsAuthenticator
+  class ClientCredentialsAuthenticator < OAuthAuthenticator
 
     def initialize: (OpenId, String, String, Set[String]) -> void
 
@@ -99,7 +152,7 @@ module ZitadelClient
 
     def self.builder: (String, String, String) -> ClientCredentialsAuthenticatorBuilder
 
-    class ClientCredentialsAuthenticatorBuilder
+    class ClientCredentialsAuthenticatorBuilder < OAuthAuthenticatorBuilder
       @client_id: String
       @client_secret: String
 
@@ -125,8 +178,6 @@ module ZitadelClient
     attr_reader auth_scopes: Set[String]
 
     def initialize: (String) -> void
-
-    def auth_scopes: -> untyped
 
     def scopes: -> untyped
   end
@@ -164,7 +215,7 @@ module ZitadelClient
     def get_token_endpoint: -> String
   end
 
-  class PersonalAccessTokenAuthenticator
+  class PersonalAccessTokenAuthenticator < Authenticator
     @token: String
 
     def initialize: (String, String) -> void
@@ -177,7 +228,7 @@ module ZitadelClient
     def self.build_hostname: (String) -> String
   end
 
-  class WebTokenAuthenticator
+  class WebTokenAuthenticator < OAuthAuthenticator
     @jwt_algorithm: String
     @jwt_audience: String
     @jwt_issuer: String
@@ -194,7 +245,7 @@ module ZitadelClient
 
     def initialize: (OpenId, Set[String], String, String, String, String | OpenSSL::PKey::PKey, ?jwt_lifetime: Integer, ?jwt_algorithm: String, ?key_id: String?) -> void
 
-    class WebTokenAuthenticatorBuilder
+    class WebTokenAuthenticatorBuilder < OAuthAuthenticatorBuilder
       @jwt_audience: String
       @jwt_issuer: String
       @jwt_lifetime: Integer
