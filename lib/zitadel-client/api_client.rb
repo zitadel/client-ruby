@@ -16,6 +16,20 @@ require 'typhoeus'
 require 'uri'
 
 module ZitadelClient
+  # ApiClient handles all HTTP interactions with the Zitadel API.
+  #
+  # It is responsible for:
+  # - Constructing and signing requests via the configured authenticator
+  # - Executing HTTP calls and handling errors (timeouts, non-2xx responses)
+  # - Streaming file downloads into temporary files
+  # - Deserializing JSON responses into Ruby types and model objects
+  #
+  # === Usage Example:
+  #   config = ZitadelClient::Configuration.new do |c|
+  #     c.authenticator = ZitadelClient::ClientCredentialsAuthenticator.builder(base_url, id, secret).build
+  #   end
+  #   client = ZitadelClient::ApiClient.new(config)
+  #   data, status, headers = client.call_api(:get, '/users', query_params: { limit: 10 })
   class ApiClient
     # The Configuration object holding settings to be used in the API client.
     attr_accessor :config
@@ -97,9 +111,6 @@ module ZitadelClient
       follow_location = opts[:follow_location] || true
       header_params = @default_headers.merge(opts[:header_params] || {}).merge(@config.authenticator.send(:auth_headers))
 
-      # set ssl_verifyhosts option based on @config.verify_ssl_host (true/false)
-      _verify_ssl_host = @config.verify_ssl_host ? 2 : 0
-
       req_opts = {
         method: http_method,
         headers: header_params,
@@ -107,7 +118,7 @@ module ZitadelClient
         params_encoding: @config.params_encoding,
         timeout: @config.timeout,
         ssl_verifypeer: @config.verify_ssl,
-        ssl_verifyhost: _verify_ssl_host,
+        ssl_verifyhost: (@config.verify_ssl_host ? 2 : 0),
         sslcert: @config.cert_file,
         sslkey: @config.key_file,
         verbose: @config.debugging,

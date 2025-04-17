@@ -1,61 +1,67 @@
 # frozen_string_literal: true
 
-# rubocop:disable RSpec/ExampleLength
-# rubocop:disable Metrics/MethodLength
-
-require 'spec_helper'
-require 'rspec'
+require_relative 'spec_helper'
 require 'securerandom'
+require 'tempfile'
 
-RSpec.describe 'Zitadel Client' do
-  let(:key_file) do
-    jwt_key = ENV.fetch('JWT_KEY', nil) or raise('JWT_KEY not set in environment')
+describe 'Zitadel Client (JWT Bearer OAuth)' do
+  before do
+    jwt_key = ENV.fetch('JWT_KEY') { raise 'JWT_KEY not set in environment' }
+    # Create and retain the Tempfile so it isn't GC'd before the test runs
+    @jwt_file = Tempfile.new(['jwt', '.json'])
+    @jwt_file.write(jwt_key)
+    @jwt_file.flush
+    @jwt_file.close
+    @key_file = @jwt_file.path
+
+    @base_url = ENV.fetch('BASE_URL', nil)
+    @user_id  = create_user(@key_file, @base_url)
+  end
+
+  def create_temp_keyfile(jwt_key)
     file = Tempfile.new('jwt_')
     file.write(jwt_key)
     file.close
     file.path
   end
-  let(:base_url) { ENV.fetch('BASE_URL', nil) }
-  let(:user_id) { create_user(key_file, base_url) }
 
+  # rubocop:disable Metrics/MethodLength
   def create_user(key_file, base_url)
-    client = ZitadelClient::Zitadel.new(ZitadelClient::WebTokenAuthenticator.from_json(base_url,
-                                                                                       key_file))
+    client = ZitadelClient::Zitadel.new(
+      ZitadelClient::WebTokenAuthenticator.from_json(base_url, key_file)
+    )
 
     begin
-      response = client.users.add_human_user(
+      resp = client.users.add_human_user(
         ZitadelClient::V2AddHumanUserRequest.new(
           username: SecureRandom.hex,
           profile: ZitadelClient::V2SetHumanProfile.new(given_name: 'John', family_name: 'Doe'),
           email: ZitadelClient::V2SetHumanEmail.new(email: "johndoe#{SecureRandom.hex}@caos.ag")
         )
       )
-      puts "User created: #{response}"
-      response.user_id
+      puts "User created: #{resp}"
+      resp.user_id
     rescue StandardError => e
       raise "Exception while creating user: #{e.message}"
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
   describe 'with valid token' do
-    it 'deactivates and reactivates a user' do
-      client = ZitadelClient::Zitadel.new(ZitadelClient::WebTokenAuthenticator.from_json(base_url,
-                                                                                         key_file))
+    it 'deactivates and reactivates a user without error' do
+      client = ZitadelClient::Zitadel.new(
+        ZitadelClient::WebTokenAuthenticator.from_json(@base_url, @key_file)
+      )
 
       begin
-        deactivate_response = client.users.deactivate_user(user_id)
-        puts "User deactivated: #{deactivate_response}"
+        deactivate_resp = client.users.deactivate_user(@user_id)
+        puts "User deactivated: #{deactivate_resp}"
 
-        reactivate_response = client.users.reactivate_user(user_id)
-        puts "User reactivated: #{reactivate_response}"
-        # Adjust based on actual response format
-        # expect(reactivate_response['status']).to eq('success')
+        reactivate_resp = client.users.reactivate_user(@user_id)
+        puts "User reactivated: #{reactivate_resp}"
       rescue StandardError => e
-        raise "Exception when calling deactivate_user or reactivate_user with valid token: #{e.message}"
+        flunk "Exception when calling deactivate_user or reactivate_user with valid token: #{e.message}"
       end
     end
   end
 end
-
-# rubocop:enable RSpec/ExampleLength
-# rubocop:enable Metrics/MethodLength

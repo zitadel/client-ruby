@@ -26,6 +26,7 @@ module ZitadelClient
     #   ApiError.new("Internal Server Error")
     #   ApiError.new(code: 500, response_headers: {}, response_body: "Oops")
     # noinspection RubyMismatchedVariableType
+    # rubocop:disable Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
     def initialize(arg = nil)
       if arg.is_a?(Hash)
         super(arg[:message] || arg['message'] || arg.to_s)
@@ -40,6 +41,7 @@ module ZitadelClient
         @message = arg
       end
     end
+    # rubocop:enable Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
 
     ##
     # Returns a formatted error message including status and response details.

@@ -1,7 +1,6 @@
 plugins:
   - rubocop-minitest
   - rubocop-rake
-  - rubocop-rspec
 
 AllCops:
   Exclude:
@@ -20,3 +19,8 @@ Style/StringLiterals:
 Metrics/AbcSize:
   Exclude:
     - 'test/**/*'
+
+Metrics/BlockLength:
+  Max: 100
+  Exclude:
+    - 'spec/**/*'

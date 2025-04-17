@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 gemspec
@@ -18,10 +20,9 @@ end
 group :test do
   gem 'dotenv'
   gem 'minitest'
-  gem 'rake'
   gem 'minitest-hooks'
   gem 'minitest-reporters'
-  gem 'rspec'
+  gem 'rake'
   gem 'simplecov', require: false
   gem 'simplecov-lcov', require: false
   gem 'testcontainers'

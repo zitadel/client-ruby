@@ -90,6 +90,3 @@ loader.collapse("#{__dir__}/zitadel-client/models/")
 loader.collapse("#{__dir__}/zitadel-client/utils/")
 loader.push_dir("#{__dir__}/zitadel-client", namespace: ZitadelClient)
 loader.setup
-
-module ZitadelClient
-end

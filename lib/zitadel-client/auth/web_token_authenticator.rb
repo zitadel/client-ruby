@@ -86,6 +86,7 @@ module ZitadelClient
     # Overrides the base get_grant to return client credentials grant parameters.
     #
     # @return [OAuth2::AccessToken] A hash containing the grant type.
+    # rubocop:disable Metrics/MethodLength
     def get_grant(client, auth_scopes)
       client.assertion.get_token(
         { iss: @jwt_issuer,
@@ -103,6 +104,7 @@ module ZitadelClient
         }
       )
     end
+    # rubocop:enable Metrics/MethodLength
 
     # -----------------------------------------------------------------------------
     # WebTokenAuthenticatorBuilder
