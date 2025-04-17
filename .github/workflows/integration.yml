@@ -35,4 +35,4 @@ jobs:
 
       - name: Check Installability
         working-directory: project/sanity
-        run: bundle install --deployment --with development test
+        run: bundle install
