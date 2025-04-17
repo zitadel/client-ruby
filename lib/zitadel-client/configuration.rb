@@ -20,11 +20,15 @@ module ZitadelClient
   class Configuration
     USER_AGENT = [
       "zitadel-client/#{ZitadelClient::VERSION}",
-      '(lang=ruby',
-      "lang_version=#{RUBY_VERSION}",
-      "os=#{RUBY_PLATFORM}",
-      "arch=#{RbConfig::CONFIG['host_cpu']})"
-    ].join(' ').downcase
+
+      [
+        'lang=ruby',
+        "lang_version=#{RUBY_VERSION}",
+        "os=#{RUBY_PLATFORM}",
+        "arch=#{RbConfig::CONFIG['host_cpu']}"
+      ].join('; ')
+        .prepend('(').concat(')')
+    ].join(' ')
 
     ##
     # The authentication strategy used to authorize requests.
