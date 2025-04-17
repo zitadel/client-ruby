@@ -26,7 +26,7 @@ module ZitadelClient
   #                    .build
   #   # use authenticator methods to verify JWT token refresh functionality
   #
-  class WebTokenAuthenticatorTest < Minitest::Test
+  class WebTokenAuthenticatorTest < OAuthAuthenticatorTest
     def setup
       key = OpenSSL::PKey::RSA.new(2048).to_pem
       @authenticator = WebTokenAuthenticator
