@@ -9,4 +9,6 @@ target :app do
   ignore 'lib/zitadel-client/models'
   ignore 'lib/zitadel-client/api'
   ignore 'lib/patch.rb'
+
+  Steep.logger.level = Logger::FATAL
 end
