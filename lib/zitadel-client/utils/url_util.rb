@@ -14,9 +14,7 @@ module ZitadelClient
     #
     def self.build_hostname(host)
       uri = URI.parse(host)
-      unless uri.scheme
-        host = "https://#{host}"
-      end
+      host = "https://#{host}" unless uri.scheme
       host
     end
   end

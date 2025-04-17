@@ -50,7 +50,8 @@ GEM
       logger
     faraday-net_http (3.4.0)
       net-http (>= 0.5.0)
-    ffi (1.17.1)
+    ffi (1.17.1-arm64-darwin)
+    ffi (1.17.1-x86_64-linux-gnu)
     fileutils (1.7.3)
     hashie (5.0.0)
     i18n (1.14.7)
@@ -133,6 +134,16 @@ GEM
     rubocop-ast (1.44.1)
       parser (>= 3.3.7.2)
       prism (~> 1.4)
+    rubocop-minitest (0.38.0)
+      lint_roller (~> 1.1)
+      rubocop (>= 1.75.0, < 2.0)
+      rubocop-ast (>= 1.38.0, < 2.0)
+    rubocop-rake (0.7.1)
+      lint_roller (~> 1.1)
+      rubocop (>= 1.72.1)
+    rubocop-rspec (3.5.0)
+      lint_roller (~> 1.1)
+      rubocop (~> 1.72, >= 1.72.1)
     ruby-progressbar (1.13.0)
     securerandom (0.3.2)
     simplecov (0.22.0)
@@ -191,6 +202,9 @@ DEPENDENCIES
   rbs
   rspec
   rubocop
+  rubocop-minitest
+  rubocop-rake
+  rubocop-rspec
   simplecov
   simplecov-lcov
   steep

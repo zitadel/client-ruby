@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'dotenv'
 require 'simplecov'
 require 'simplecov-lcov'

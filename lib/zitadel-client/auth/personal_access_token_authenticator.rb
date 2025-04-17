@@ -26,8 +26,8 @@ module ZitadelClient
     #
     # @return [Hash{String => String}] a hash containing the 'Authorization' header.
     #
-    def get_auth_headers
-      { "Authorization" => "Bearer " + @token }
+    def auth_headers
+      { 'Authorization' => "Bearer #{@token}" }
     end
   end
 end

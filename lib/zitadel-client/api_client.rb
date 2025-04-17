@@ -1,3 +1,12 @@
+# frozen_string_literal: true
+
+# rubocop:disable Style/ClassVars
+# rubocop:disable Metrics/AbcSize
+# rubocop:disable Metrics/CyclomaticComplexity
+# rubocop:disable Metrics/MethodLength
+# rubocop:disable Metrics/PerceivedComplexity
+# rubocop:disable Metrics/ClassLength
+
 require 'date'
 require 'json'
 require 'logger'
@@ -19,7 +28,7 @@ module ZitadelClient
     # Initializes the ApiClient
     # @option config [Configuration] Configuration for initializing the object, default to the
     # default configuration.
-    def initialize(config = Configuration.default)
+    def initialize(config = Configuration.new)
       @config = config
       @default_headers = {
         'Content-Type' => 'application/json',
@@ -44,32 +53,28 @@ module ZitadelClient
       (download_file(request) { tempfile = _1 }) if opts[:return_type] == 'File'
       response = request.run
 
-      if @config.debugging
-        @config.logger.debug "HTTP response body ~BEGIN~\n#{response.body}\n~END~\n"
-      end
+      @config.logger.debug "HTTP response body ~BEGIN~\n#{response.body}\n~END~\n" if @config.debugging
 
       unless response.success?
         if response.timed_out?
-          fail ApiError.new('Connection timed out')
-        elsif response.code == 0
+          raise ApiError, 'Connection timed out'
+        elsif response.code.zero?
           # Errors from libcurl will be made visible here
-          fail ApiError.new(:code => 0,
-                            :message => response.return_message)
+          raise ApiError.new(code: 0,
+                             message: response.return_message)
         else
-          fail ApiError.new(:code => response.code,
-                            :response_headers => response.headers,
-                            :response_body => response.body),
-               response.status_message
+          raise ApiError.new(code: response.code,
+                             response_headers: response.headers,
+                             response_body: response.body),
+                response.status_message
         end
       end
 
-      if opts[:return_type] == 'File'
-        data = tempfile
-      elsif opts[:return_type]
-        data = deserialize(response, opts[:return_type])
-      else
-        data = nil
-      end
+      data = if opts[:return_type] == 'File'
+               tempfile
+             elsif opts[:return_type]
+               deserialize(response, opts[:return_type])
+             end
       [data, response.code, response.headers]
     end
 
@@ -84,40 +89,38 @@ module ZitadelClient
     # @return [Typhoeus::Request] A Typhoeus Request
     # noinspection RbsMissingTypeSignature
     def build_request(http_method, path, opts = {})
-      url = URI.join(@config.authenticator.send(:host).chomp('/') + '/', path).to_s
+      url = URI.join("#{@config.authenticator.send(:host).chomp('/')}/", path).to_s
       http_method = http_method.to_sym.downcase
 
       query_params = opts[:query_params] || {}
       form_params = opts[:form_params] || {}
       follow_location = opts[:follow_location] || true
-      header_params = @default_headers.merge(opts[:header_params] || {}).merge(@config.authenticator.send(:get_auth_headers))
+      header_params = @default_headers.merge(opts[:header_params] || {}).merge(@config.authenticator.send(:auth_headers))
 
       # set ssl_verifyhosts option based on @config.verify_ssl_host (true/false)
       _verify_ssl_host = @config.verify_ssl_host ? 2 : 0
 
       req_opts = {
-        :method => http_method,
-        :headers => header_params,
-        :params => query_params,
-        :params_encoding => @config.params_encoding,
-        :timeout => @config.timeout,
-        :ssl_verifypeer => @config.verify_ssl,
-        :ssl_verifyhost => _verify_ssl_host,
-        :sslcert => @config.cert_file,
-        :sslkey => @config.key_file,
-        :verbose => @config.debugging,
-        :followlocation => follow_location
+        method: http_method,
+        headers: header_params,
+        params: query_params,
+        params_encoding: @config.params_encoding,
+        timeout: @config.timeout,
+        ssl_verifypeer: @config.verify_ssl,
+        ssl_verifyhost: _verify_ssl_host,
+        sslcert: @config.cert_file,
+        sslkey: @config.key_file,
+        verbose: @config.debugging,
+        followlocation: follow_location
       }
 
       # set custom cert, if provided
       req_opts[:cainfo] = @config.ssl_ca_cert if @config.ssl_ca_cert
 
-      if [:post, :patch, :put, :delete].include?(http_method)
+      if %i[post patch put delete].include?(http_method)
         req_body = build_request_body(header_params, form_params, opts[:body])
-        req_opts.update :body => req_body
-        if @config.debugging
-          @config.logger.debug "HTTP request body param ~BEGIN~\n#{req_body}\n~END~\n"
-        end
+        req_opts.update body: req_body
+        @config.logger.debug "HTTP request body param ~BEGIN~\n#{req_body}\n~END~\n" if @config.debugging
       end
 
       Typhoeus::Request.new(url, req_opts)
@@ -132,17 +135,17 @@ module ZitadelClient
     # noinspection RubyMismatchedReturnType,RubyArgCount,RbsMissingTypeSignature
     def build_request_body(header_params, form_params, body)
       # http form
-      if header_params['Content-Type'] == 'application/x-www-form-urlencoded' ||
-         header_params['Content-Type'] == 'multipart/form-data'
+      if ['application/x-www-form-urlencoded',
+          'multipart/form-data'].include?(header_params['Content-Type'])
         data = {}
         form_params.each do |key, value|
-          case value
-          when ::File, ::Array, nil
-            # let typhoeus handle File, Array and nil parameters
-            data[key] = value
-          else
-            data[key] = value.to_s
-          end
+          data[key] = case value
+                      when ::File, ::Array, nil
+                        # let typhoeus handle File, Array and nil parameters
+                        value
+                      else
+                        value.to_s
+                      end
         end
       elsif body
         data = body.is_a?(String) ? body : body.to_json
@@ -188,15 +191,15 @@ module ZitadelClient
         t = ensure_tempfile(tempfile)
         t.close
         @config.logger.info "Temp file written to #{t.path}, please copy the file to a proper folder " \
-                              "with e.g. `FileUtils.cp(t.path, '/new/file/path')` otherwise the temp file " \
-                              "will be deleted automatically with GC. It's also recommended to delete the temp file " \
-                              "explicitly with `t.delete`"
+                            "with e.g. `FileUtils.cp(t.path, '/new/file/path')` otherwise the temp file " \
+                            "will be deleted automatically with GC. It's also recommended to delete the temp file " \
+                            'explicitly with `t.delete`'
         yield t if block_given?
       end
     end
 
     def ensure_tempfile(temp)
-      temp || (raise "Tempfile not created")
+      temp || (raise 'Tempfile not created')
     end
 
     # Check if the given MIME is a JSON MIME.
@@ -209,7 +212,7 @@ module ZitadelClient
     # @return [Boolean] True if the MIME is application/json
     # noinspection RbsMissingTypeSignature
     def json_mime?(mime)
-      (mime == '*/*') || !(mime =~ /^Application\/.*json(?!p)(;.*)?/i).nil?
+      (mime == '*/*') || !(mime =~ %r{^Application/.*json(?!p)(;.*)?}i).nil?
     end
 
     # Deserialize the response to the given return type.
@@ -227,16 +230,14 @@ module ZitadelClient
       # ensuring a default content type
       content_type = response.headers['Content-Type'] || 'application/json'
 
-      fail "Content-Type is not supported: #{content_type}" unless json_mime?(content_type)
+      raise "Content-Type is not supported: #{content_type}" unless json_mime?(content_type)
 
       begin
-        data = JSON.parse("[#{body}]", :symbolize_names => true)[0]
+        data = JSON.parse("[#{body}]", symbolize_names: true)[0]
       rescue JSON::ParserError => e
-        if %w(String Date Time).include?(return_type)
-          data = body
-        else
-          raise e
-        end
+        raise e unless %w[String Date Time].include?(return_type)
+
+        data = body
       end
 
       convert_to_type data, return_type
@@ -249,6 +250,7 @@ module ZitadelClient
     # noinspection RubyArgCount,RubyMismatchedArgumentType,RbsMissingTypeSignature
     def convert_to_type(data, return_type)
       return nil if data.nil?
+
       # noinspection RegExpRedundantEscape
       case return_type
       when 'String'
@@ -270,11 +272,11 @@ module ZitadelClient
         data
       when /\AArray<(.+)>\z/
         # e.g. Array<Pet>
-        sub_type = $1
+        sub_type = ::Regexp.last_match(1)
         data.map { |item| convert_to_type(item, sub_type) }
-      when /\AHash\<String, (.+)\>\z/
+      when /\AHash<String, (.+)>\z/
         # e.g. Hash<String, Integer>
-        sub_type = $1
+        sub_type = ::Regexp.last_match(1)
         {}.tap do |hash|
           data.each { |k, v| hash[k] = convert_to_type(v, sub_type) }
         end
@@ -292,7 +294,7 @@ module ZitadelClient
     # @return [String] the sanitized filename
     # noinspection RubyMismatchedReturnType,RbsMissingTypeSignature
     def sanitize_filename(filename)
-      filename.split(/[\/\\]/).last
+      filename.split(%r{[/\\]}).last
     end
 
     # Return Accept header based on an array of accepts provided.
@@ -301,6 +303,7 @@ module ZitadelClient
     # noinspection RubyArgCount,RbsMissingTypeSignature
     def select_header_accept(accepts)
       return nil if accepts.nil? || accepts.empty?
+
       # use JSON when present, otherwise use all the provided
       json_accept = accepts.find { |s| json_mime?(s) }
       json_accept || accepts.join(',')
@@ -313,6 +316,7 @@ module ZitadelClient
     def select_header_content_type(content_types)
       # return nil by default
       return if content_types.nil? || content_types.empty?
+
       # use JSON when present, otherwise use the first one
       json_content_type = content_types.find { |s| json_mime?(s) }
       json_content_type || content_types.first
@@ -325,11 +329,11 @@ module ZitadelClient
     def object_to_http_body(model)
       return model if model.nil? || model.is_a?(String)
 
-      if model.is_a?(Array)
-        local_body = model.map { |m| object_to_hash(m) }
-      else
-        local_body = object_to_hash(model)
-      end
+      local_body = if model.is_a?(Array)
+                     model.map { |m| object_to_hash(m) }
+                   else
+                     object_to_hash(model)
+                   end
       local_body.to_json
     end
 
@@ -362,8 +366,15 @@ module ZitadelClient
         # return the array directly as typhoeus will handle it as expected
         param
       else
-        fail "unknown collection format: #{collection_format.inspect}"
+        raise "unknown collection format: #{collection_format.inspect}"
       end
     end
   end
 end
+
+# rubocop:enable Style/ClassVars
+# rubocop:enable Metrics/AbcSize
+# rubocop:enable Metrics/CyclomaticComplexity
+# rubocop:enable Metrics/MethodLength
+# rubocop:enable Metrics/PerceivedComplexity
+# rubocop:enable Metrics/ClassLength

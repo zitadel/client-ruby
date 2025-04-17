@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'time'
-require 'set'
 require 'openssl'
 
 module ZitadelClient
@@ -24,12 +23,14 @@ module ZitadelClient
     # @param jwt_lifetime [Integer] Lifetime of the JWT in seconds (default 3600 seconds).
     # @param jwt_algorithm [String] The JWT signing algorithm (default "RS256").
     # @param key_id [String, nil] Optional key identifier for the JWT header (default: nil).
-    def initialize(open_id, auth_scopes, jwt_issuer, jwt_subject, jwt_audience, private_key, jwt_lifetime: 3600, jwt_algorithm: "RS256", key_id: nil)
+    # rubocop:disable Metrics/ParameterLists,Metrics/MethodLength
+    def initialize(open_id, auth_scopes, jwt_issuer, jwt_subject, jwt_audience, private_key,
+                   jwt_lifetime: 3600, jwt_algorithm: 'RS256', key_id: nil)
       # noinspection RubyArgCount,RubyMismatchedArgumentType
-      super(open_id, auth_scopes, OAuth2::Client.new("zitadel", "zitadel", options = {
-        site: open_id.host_endpoint,
-        token_url: open_id.token_endpoint
-      }))
+      super(open_id, auth_scopes, OAuth2::Client.new('zitadel', 'zitadel', {
+                                                       site: open_id.host_endpoint,
+                                                       token_url: open_id.token_endpoint
+                                                     }))
       @jwt_issuer = jwt_issuer
       @jwt_subject = jwt_subject
       @jwt_audience = jwt_audience
@@ -38,6 +39,7 @@ module ZitadelClient
       @jwt_algorithm = jwt_algorithm
       @key_id = key_id
     end
+    # rubocop:enable Metrics/ParameterLists,Metrics/MethodLength
 
     # Creates a WebTokenAuthenticator instance from a JSON configuration file.
     #
@@ -55,23 +57,16 @@ module ZitadelClient
     # @return [WebTokenAuthenticator] A new instance of WebTokenAuthenticator.
     # @raise [RuntimeError] If the file cannot be read, the JSON is invalid, or required keys are missing.
     def self.from_json(host, json_path)
-      begin
-        config = JSON.parse(File.read(json_path))
-      rescue Errno::ENOENT => e
-        raise "Unable to read JSON file at #{json_path}: #{e.message}"
-      rescue JSON::ParserError => e
-        raise "Invalid JSON in file at #{json_path}: #{e.message}"
-      end
+      config = JSON.parse(File.read(json_path))
+    rescue Errno::ENOENT => e
+      raise "Unable to read JSON file at #{json_path}: #{e.message}"
+    rescue JSON::ParserError => e
+      raise "Invalid JSON in file at #{json_path}: #{e.message}"
+    else
+      raise "Expected a JSON object, got #{config.class}" unless config.is_a?(Hash)
 
-      unless config.is_a?(Hash)
-        raise "Expected a JSON object in file at #{json_path}, got #{config.class}"
-      end
-
-      user_id = config["userId"]
-      private_key = config["key"]
-      key_id = config["keyId"]
-
-      raise "Missing required keys 'userId', 'key_id' or 'key' in JSON file." unless user_id && key_id && private_key
+      user_id, private_key, key_id = config.values_at('userId', 'key', 'keyId')
+      raise "Missing required keys 'userId', 'keyId' or 'key'" unless user_id && key_id && private_key
 
       WebTokenAuthenticator.builder(host, user_id, private_key).key_identifier(key_id).build
     end
@@ -97,8 +92,7 @@ module ZitadelClient
           sub: @jwt_subject,
           aud: @jwt_audience,
           iat: Time.now.utc.to_i,
-          exp: (Time.now.utc + @jwt_lifetime).to_i
-        },
+          exp: (Time.now.utc + @jwt_lifetime).to_i },
         {
           algorithm: @jwt_algorithm,
           key: OpenSSL::PKey::RSA.new(@private_key),
@@ -153,7 +147,8 @@ module ZitadelClient
       #
       # @return [WebTokenAuthenticator] A configured instance.
       def build
-        WebTokenAuthenticator.new(open_id, auth_scopes, @jwt_issuer, @jwt_subject, @jwt_audience, @private_key, jwt_lifetime: @jwt_lifetime, key_id: @key_id)
+        WebTokenAuthenticator.new(open_id, auth_scopes, @jwt_issuer, @jwt_subject, @jwt_audience,
+                                  @private_key, jwt_lifetime: @jwt_lifetime, key_id: @key_id)
       end
     end
   end

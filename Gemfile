@@ -1,23 +1,27 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 gemspec
 
+gem 'oauth2'
 gem 'typhoeus'
 gem 'zeitwerk'
-gem 'oauth2'
 
 group :development, :test do
-  gem 'rspec'
-  gem 'rake'
-  gem 'minitest'
-  gem 'pry-byebug'
-  gem 'rubocop'
-  gem 'testcontainers'
   gem 'dotenv'
-  gem 'rubocop'
-  gem 'rbs'
+  gem 'minitest'
   gem 'minitest-hooks'
+  gem 'pry-byebug'
+  gem 'rake'
+  gem 'rbs'
+  gem 'rspec'
+  gem 'rubocop', require: false
+  gem 'rubocop-minitest', require: false
+  gem 'rubocop-rake', require: false
+  gem 'rubocop-rspec', require: false
   gem 'steep'
+  gem 'testcontainers'
 end
 
 group :test do

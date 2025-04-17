@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ZitadelClient
   # Main entry point for the Zitadel SDK.
   #
