@@ -25,7 +25,7 @@ module ZitadelClient
     def before_all
       super
       @mock_server = Testcontainers::DockerContainer
-                       .new("wiremock/wiremock")
+                       .new("wiremock/wiremock:3.12.1")
                        .with_exposed_port(8080)
                        .start
 
