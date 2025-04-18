@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ZitadelClient
   ##
   # Configuration class for the ZitadelClient SDK.
@@ -16,8 +18,17 @@ module ZitadelClient
   #
   # noinspection RubyTooManyInstanceVariablesInspection
   class Configuration
+    USER_AGENT = [
+      "zitadel-client/#{ZitadelClient::VERSION}",
 
-    USER_AGENT = "zitadel-client/#{ZitadelClient::VERSION} (lang=ruby; lang_version=#{RUBY_VERSION}; os=#{RUBY_PLATFORM}; arch=#{RbConfig::CONFIG['host_cpu']})".downcase
+      [
+        'lang=ruby',
+        "lang_version=#{RUBY_VERSION}",
+        "os=#{RUBY_PLATFORM}",
+        "arch=#{RbConfig::CONFIG['host_cpu']}"
+      ].join('; ')
+        .prepend('(').concat(')')
+    ].join(' ')
 
     ##
     # The authentication strategy used to authorize requests.
@@ -137,6 +148,7 @@ module ZitadelClient
     # @return [String, nil]
     attr_accessor :user_agent
 
+    # rubocop:disable Metrics/MethodLength
     def initialize(authenticator = NoAuthAuthenticator.new)
       @authenticator = authenticator
       @client_side_validation = true
@@ -152,16 +164,7 @@ module ZitadelClient
 
       yield(self) if block_given?
     end
-
-    ##
-    # Returns the shared default configuration instance.
-    #
-    # @return [Configuration]
-    # noinspection RubyClassVariableUsageInspection
-    def self.default
-      # noinspection RubyArgCount
-      @@default ||= Configuration.new
-    end
+    # rubocop:enable Metrics/MethodLength
 
     ##
     # Allows modifying the current instance using a configuration block.

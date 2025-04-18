@@ -25,7 +25,7 @@ module ZitadelClient
       @open_id = open_id
       @token = nil
       @auth_session = auth_session
-      @auth_scopes = auth_scopes.to_a.join(" ")
+      @auth_scopes = auth_scopes.to_a.join(' ')
     end
 
     ##
@@ -33,14 +33,15 @@ module ZitadelClient
     #
     # @return [String] The current access token.
     #
-    def get_auth_token
+    def auth_token
       token = @token
       if token.nil? || token.expired?
         refresh_token
         token = @token
       end
 
-      raise "Token is nil after refresh" if token.nil?
+      raise 'Token is nil after refresh' if token.nil?
+
       token.token
     end
 
@@ -49,8 +50,8 @@ module ZitadelClient
     #
     # @return [Hash{String => String}] A hash containing the 'Authorization' header.
     #
-    def get_auth_headers
-      { "Authorization" => "Bearer " + get_auth_token }
+    def auth_headers
+      { 'Authorization' => "Bearer #{auth_token}" }
     end
 
     ##
@@ -79,11 +80,9 @@ module ZitadelClient
     # @raise [RuntimeError] if the token refresh fails.
     #
     def refresh_token
-      begin
-        @token = self.get_grant(@auth_session, @auth_scopes)
-      rescue => e
-        raise RuntimeError.new("Failed to refresh token: #{e.message}"), cause: e
-      end
+      @token = get_grant(@auth_session, @auth_scopes)
+    rescue StandardError => e
+      raise RuntimeError.new("Failed to refresh token: #{e.message}"), cause: e
     end
   end
 end

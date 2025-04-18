@@ -139,9 +139,7 @@ module ZitadelClient
 
     def initialize: (String) -> void
 
-    def get_auth_headers: () -> Hash[String, String]
-
-    def get_host: () -> String
+    def auth_headers: () -> Hash[String, String]
   end
 
   class ClientCredentialsAuthenticator < OAuthAuthenticator
@@ -167,7 +165,7 @@ module ZitadelClient
 
     def initialize: (?String) -> void
 
-    def get_auth_headers: () -> Hash[String, String]
+    def auth_headers: () -> Hash[String, String]
   end
 
   class OAuthAuthenticatorBuilder
@@ -190,9 +188,9 @@ module ZitadelClient
 
     def initialize: (OpenId, Set[String], OAuth2::Client) -> void
 
-    def get_auth_token: () -> String
+    def auth_token: () -> String
 
-    def get_auth_headers: () -> Hash[String, String]
+    def auth_headers: () -> Hash[String, String]
 
     def get_grant: (OAuth2::Client, String) -> OAuth2::AccessToken
 
@@ -209,10 +207,6 @@ module ZitadelClient
     def initialize: (String) -> void
 
     def self.build_well_known_url: (String) -> String
-
-    def get_host_endpoint: -> String
-
-    def get_token_endpoint: -> String
   end
 
   class PersonalAccessTokenAuthenticator < Authenticator
@@ -220,7 +214,7 @@ module ZitadelClient
 
     def initialize: (String, String) -> void
 
-    def get_auth_headers: -> Hash[String, String]
+    def auth_headers: -> Hash[String, String]
   end
 
   module URLUtil

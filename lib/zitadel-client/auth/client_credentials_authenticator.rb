@@ -13,10 +13,10 @@ module ZitadelClient
     # @param auth_scopes [Set<String>] The scope(s) for the token request.
     def initialize(open_id, client_id, client_secret, auth_scopes)
       # noinspection RubyArgCount
-      super(open_id, auth_scopes, OAuth2::Client.new(client_id, client_secret, options = {
-        site: open_id.host_endpoint,
-        token_url: open_id.token_endpoint
-      }))
+      super(open_id, auth_scopes, OAuth2::Client.new(client_id, client_secret, {
+                                                       site: open_id.host_endpoint,
+                                                       token_url: open_id.token_endpoint
+                                                     }))
     end
 
     # Returns a new builder for constructing a ClientCredentialsAuthenticator.

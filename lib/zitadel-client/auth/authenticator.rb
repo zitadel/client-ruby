@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'time'
-require 'set'
 
 module ZitadelClient
   ##
@@ -13,9 +12,7 @@ module ZitadelClient
   class Authenticator
     protected
 
-    def host
-      @host
-    end
+    attr_reader :host
 
     ##
     # Initializes the Authenticator with the specified host.
@@ -35,8 +32,9 @@ module ZitadelClient
     #
     # @return [Hash{String => String}]
     #
-    def get_auth_headers
-      raise NotImplementedError, "#{self.class}#get_auth_headers is an abstract method. Please override it in a subclass."
+    def auth_headers
+      raise NotImplementedError,
+            "#{self.class}#get_auth_headers is an abstract method. Please override it in a subclass."
     end
   end
 
@@ -48,13 +46,7 @@ module ZitadelClient
   class OAuthAuthenticatorBuilder
     protected
 
-    def open_id
-      @open_id
-    end
-
-    def auth_scopes
-      @auth_scopes
-    end
+    attr_reader :open_id, :auth_scopes
 
     ##
     # Initializes the OAuthAuthenticatorBuilder with a given host.

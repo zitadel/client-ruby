@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ZitadelClient
   ##
   # Represents an HTTP error returned from the Zitadel API.
@@ -24,6 +26,7 @@ module ZitadelClient
     #   ApiError.new("Internal Server Error")
     #   ApiError.new(code: 500, response_headers: {}, response_body: "Oops")
     # noinspection RubyMismatchedVariableType
+    # rubocop:disable Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
     def initialize(arg = nil)
       if arg.is_a?(Hash)
         super(arg[:message] || arg['message'] || arg.to_s)
@@ -34,17 +37,18 @@ module ZitadelClient
         @message = arg[:message] || arg['message']
       else
         # noinspection RubyMismatchedArgumentType
-        super(arg)
+        super
         @message = arg
       end
     end
+    # rubocop:enable Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
 
     ##
     # Returns a formatted error message including status and response details.
     #
     # @return [String]
     def message
-      msg = @message || "Error message: the server returned an error"
+      msg = @message || 'Error message: the server returned an error'
       msg += "\nHTTP status code: #{code}" if code
       msg += "\nResponse headers: #{response_headers}" if response_headers
       msg += "\nResponse body: #{response_body}" if response_body

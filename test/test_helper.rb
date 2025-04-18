@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'dotenv'
 require 'simplecov'
 require 'simplecov-lcov'
-require_relative '../lib/zitadel-client'
+require_relative '../lib/zitadel_client'
 
 Dotenv.load('.env')
 

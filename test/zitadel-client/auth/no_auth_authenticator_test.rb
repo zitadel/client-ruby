@@ -1,16 +1,14 @@
 # frozen_string_literal: true
 
-=begin
-Test suite for ZitadelClient::NoAuthAuthenticator.
-
-This test suite verifies that:
-- When no host is provided, the authenticator returns empty headers and defaults to "http://localhost" for the host.
-- When a custom host is provided, the authenticator returns empty headers and the custom host.
-
-Usage:
-  Run this file using:
-    bundle exec ruby test/auth/no_auth_authenticator_test.rb
-=end
+# Test suite for ZitadelClient::NoAuthAuthenticator.
+#
+# This test suite verifies that:
+# - When no host is provided, the authenticator returns empty headers and defaults to "http://localhost" for the host.
+# - When a custom host is provided, the authenticator returns empty headers and the custom host.
+#
+# Usage:
+#   Run this file using:
+#     bundle exec ruby test/auth/no_auth_authenticator_test.rb
 
 # noinspection RubyResolve
 require 'test_helper'
@@ -37,8 +35,9 @@ module ZitadelClient
     # @return [void]
     def test_default_host
       auth = NoAuthAuthenticator.new
-      assert_equal({}, auth.send(:get_auth_headers))
-      assert_equal("http://localhost", auth.send(:host))
+
+      assert_empty(auth.send(:auth_headers))
+      assert_equal('http://localhost', auth.send(:host))
     end
 
     ##
@@ -46,9 +45,10 @@ module ZitadelClient
     #
     # @return [void]
     def test_custom_host
-      auth = NoAuthAuthenticator.new("https://custom-host")
-      assert_equal({}, auth.send(:get_auth_headers))
-      assert_equal("https://custom-host", auth.send(:host))
+      auth = NoAuthAuthenticator.new('https://custom-host')
+
+      assert_empty(auth.send(:auth_headers))
+      assert_equal('https://custom-host', auth.send(:host))
     end
   end
 end

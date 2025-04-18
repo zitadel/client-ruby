@@ -1,23 +1,12 @@
-require "bundler/gem_tasks"
+# frozen_string_literal: true
 
-begin
-  require 'rspec/core/rake_task'
+require 'bundler/gem_tasks'
+require 'rake/testtask'
 
-  RSpec::Core::RakeTask.new(:spec) do |t|
-    t.rspec_opts = '--format documentation'
-  end
-
-  require 'rake/testtask'
-
-  Rake::TestTask.new(:minitest) do |t|
-    t.libs << "test"
-    t.pattern = "test/**/*_test.rb"
-  end
-
-  task :all_tests => [:spec, :minitest]
-
-  task default: :all_tests
-
-rescue LoadError => e
-  warn "RSpec not available: #{e}"
+Rake::TestTask.new(:minitest) do |t|
+  t.libs << 'lib' << 'test' << 'spec'
+  t.pattern = ['test/**/*_test.rb', 'spec/**/*_spec.rb']
+  t.verbose = true
 end
+
+task default: :minitest
