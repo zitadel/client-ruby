@@ -67,8 +67,7 @@ JSON file. This process creates a secure token.
 **How do you use it?**
 
 1. Save your private key in a JSON file.
-2. Use the provided method to load this key and create a JWT-based
-   authenticator.
+2. Use the provided method to create an authenticator.
 
 **Example:**
 
@@ -76,12 +75,7 @@ JSON file. This process creates a secure token.
 require 'zitadel_client'
 require 'securerandom'
 
-base_url = ENV['BASE_URL']
-key_file = "/path/to/jwt-key.json"
-
-client = ZitadelClient::Zitadel.new(
-  ZitadelClient::WebTokenAuthenticator.from_json(base_url, key_file)
-)
+client = ZitadelClient::Zitadel.with_private_key("https://example.us1.zitadel.cloud", "path/to/jwt-key.json")
 
 begin
   response = client.users.add_human_user(
@@ -116,7 +110,7 @@ which is then used to authenticate.
 **How do you use it?**
 
 1. Provide your client ID and client secret.
-2. Build the authenticator
+2. Use the provided method to create an authenticator.
 
 **Example:**
 
@@ -124,15 +118,7 @@ which is then used to authenticate.
 require 'zitadel_client'
 require 'securerandom'
 
-base_url     = ENV['BASE_URL']
-client_id    = ENV['CLIENT_ID']
-client_secret = ENV['CLIENT_SECRET']
-
-client = ZitadelClient::Zitadel.new(
-  ZitadelClient::ClientCredentialsAuthenticator.builder(
-    base_url, client_id, client_secret
-  ).build
-)
+client = ZitadelClient::Zitadel.with_client_credentials("https://example.us1.zitadel.cloud", "id", "secret")
 
 begin
   response = client.users.add_human_user(
@@ -167,7 +153,7 @@ authenticate without exchanging credentials every time.
 **How do you use it?**
 
 1. Obtain a valid personal access token from your account.
-2. Create the authenticator with: `PersonalAccessTokenAuthenticator`
+2. Use the provided method to create an authenticator.
 
 **Example:**
 
@@ -175,12 +161,7 @@ authenticate without exchanging credentials every time.
 require 'zitadel_client'
 require 'securerandom'
 
-base_url   = ENV['BASE_URL']
-valid_token = ENV['AUTH_TOKEN']
-
-client = ZitadelClient::Zitadel.new(
-  ZitadelClient::PersonalAccessTokenAuthenticator.new(base_url, valid_token)
-)
+client = ZitadelClient::Zitadel.with_access_token("https://example.us1.zitadel.cloud", "token")
 
 begin
   response = client.users.add_human_user(

@@ -258,6 +258,12 @@ module ZitadelClient
   end
 
   class Zitadel
+    def self.with_access_token: (String, String) -> Zitadel
+
+    def self.with_client_credentials : (String, String, String) -> Zitadel
+
+    def self.with_private_key: (String, String) -> Zitadel
+
     attr_reader configuration: Configuration
     attr_reader features: untyped
     attr_reader idps: untyped

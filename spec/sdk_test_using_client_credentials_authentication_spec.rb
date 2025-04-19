@@ -14,11 +14,7 @@ describe 'Zitadel Client' do
 
   # rubocop:disable Metrics/MethodLength
   def create_user(base_url, client_id, client_secret)
-    client = ZitadelClient::Zitadel.new(
-      ZitadelClient::ClientCredentialsAuthenticator
-        .builder(base_url, client_id, client_secret)
-        .build
-    )
+    client = ZitadelClient::Zitadel.with_client_credentials(base_url, client_id, client_secret)
 
     begin
       response = client.users.add_human_user(
@@ -38,11 +34,7 @@ describe 'Zitadel Client' do
 
   describe 'with valid token' do
     it 'deactivates and reactivates a user' do
-      client = ZitadelClient::Zitadel.new(
-        ZitadelClient::ClientCredentialsAuthenticator
-          .builder(@base_url, @client_id, @client_secret)
-          .build
-      )
+      client = ZitadelClient::Zitadel.with_client_credentials(@base_url, @client_id, @client_secret)
 
       begin
         deactivate_response = client.users.deactivate_user(@user_id)
@@ -61,11 +53,7 @@ describe 'Zitadel Client' do
 
   describe 'with invalid token' do
     it 'does not deactivate or reactivate a user' do
-      client = ZitadelClient::Zitadel.new(
-        ZitadelClient::ClientCredentialsAuthenticator
-          .builder(@base_url, 'id', 'secret')
-          .build
-      )
+      client = ZitadelClient::Zitadel.with_client_credentials(base_url, 'id', 'secret')
 
       # deactivate should raise
       assert_raises(StandardError) do

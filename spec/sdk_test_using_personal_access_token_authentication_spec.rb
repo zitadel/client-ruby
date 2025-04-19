@@ -13,9 +13,7 @@ describe 'Zitadel Client (Personal Access Token)' do
 
   # rubocop:disable Metrics/MethodLength
   def create_user(token, base_url)
-    client = ZitadelClient::Zitadel.new(
-      ZitadelClient::PersonalAccessTokenAuthenticator.new(base_url, token)
-    )
+    client = ZitadelClient::Zitadel.with_access_token(base_url, token)
 
     begin
       resp = client.users.add_human_user(
@@ -35,9 +33,7 @@ describe 'Zitadel Client (Personal Access Token)' do
 
   describe 'with valid token' do
     it 'deactivates and reactivates a user without error' do
-      client = ZitadelClient::Zitadel.new(
-        ZitadelClient::PersonalAccessTokenAuthenticator.new(@base_url, @valid_token)
-      )
+      client = ZitadelClient::Zitadel.with_access_token(@base_url, @valid_token)
 
       begin
         deactivate_resp = client.users.deactivate_user(@user_id)
@@ -53,9 +49,7 @@ describe 'Zitadel Client (Personal Access Token)' do
 
   describe 'with invalid token' do
     it 'raises an ApiError when deactivating or reactivating' do
-      client = ZitadelClient::Zitadel.new(
-        ZitadelClient::PersonalAccessTokenAuthenticator.new(@base_url, @invalid_token)
-      )
+      client = ZitadelClient::Zitadel.with_access_token(@base_url, @invalid_token)
 
       # Expect API authentication errors
       assert_raises(ZitadelClient::ApiError) do
