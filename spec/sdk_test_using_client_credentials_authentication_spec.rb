@@ -53,7 +53,7 @@ describe 'Zitadel Client' do
 
   describe 'with invalid token' do
     it 'does not deactivate or reactivate a user' do
-      client = ZitadelClient::Zitadel.with_client_credentials(base_url, 'id', 'secret')
+      client = ZitadelClient::Zitadel.with_client_credentials(@base_url, 'id', 'secret')
 
       # deactivate should raise
       assert_raises(StandardError) do
