@@ -34,21 +34,25 @@ module ZitadelClient
     end
 
     class << self
-      # Initialize the SDK using a personal access token
+      # @!group Authentication Entry Points
+
+      # Initialize the SDK with a Personal Access Token (PAT).
       #
-      # @param host [String] the Zitadel instance URL
-      # @param access_token [String] the personal access token
-      # @return [Zitadel] configured SDK instance
+      # @param host [String] API URL (e.g. "https://api.zitadel.example.com").
+      # @param access_token [String] Personal Access Token for Bearer authentication.
+      # @return [Zitadel] SDK client configured with PAT authentication.
+      # @see https://zitadel.com/docs/guides/integrate/service-users/personal-access-token
       def with_access_token(host, access_token)
         new(PersonalAccessTokenAuthenticator.new(host, access_token))
       end
 
-      # Initialize the SDK using OAuth2 client credentials
+      # Initialize the SDK using OAuth2 Client Credentials flow.
       #
-      # @param host [String] the Zitadel instance URL
-      # @param client_id [String] OAuth2 client identifier
-      # @param client_secret [String] OAuth2 client secret
-      # @return [Zitadel] configured SDK instance
+      # @param host [String] API URL.
+      # @param client_id [String] OAuth2 client identifier.
+      # @param client_secret [String] OAuth2 client secret.
+      # @return [Zitadel] SDK client with automatic token acquisition & refresh.
+      # @see https://zitadel.com/docs/guides/integrate/service-users/client-credentials
       def with_client_credentials(host, client_id, client_secret)
         new(
           ClientCredentialsAuthenticator
@@ -57,14 +61,16 @@ module ZitadelClient
         )
       end
 
-      # Initialize the SDK using a service account private key
+      # Initialize the SDK via Private Key JWT assertion.
       #
-      # @param host [String] the Zitadel instance URL
-      # @param key_file [String] path to the private key file (PEM)
-      # @return [Zitadel] configured SDK instance
+      # @param host [String] API URL.
+      # @param key_file [String] Path to service account JSON/PEM key file.
+      # @return [Zitadel] SDK client using JWT assertion for secure, secret-less auth.
+      # @see https://zitadel.com/docs/guides/integrate/service-users/private-key-jwt
       def with_private_key(host, key_file)
         new(WebTokenAuthenticator.from_json(host, key_file))
       end
+      # @!endgroup
     end
   end
 end
