@@ -63,7 +63,7 @@ module ZitadelClient
       # @param key_file [String] path to the private key file (PEM)
       # @return [Zitadel] configured SDK instance
       def with_private_key(host, key_file)
-        new(WebTokenAuthenticator.from_json(host, key_file).build)
+        new(WebTokenAuthenticator.from_json(host, key_file))
       end
     end
   end
