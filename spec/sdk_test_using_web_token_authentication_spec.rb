@@ -47,7 +47,8 @@ describe 'Zitadel Client (JWT Bearer OAuth)' do
 
   describe 'with valid token' do
     it 'deactivates and reactivates a user without error' do
-      raise ArgumentError, "key_file cannot be nil" if @key_file.nil?
+      raise ArgumentError, 'key_file cannot be nil' if @key_file.nil?
+
       client = ZitadelClient::Zitadel.with_private_key(@base_url, @key_file)
 
       begin
