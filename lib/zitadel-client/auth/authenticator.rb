@@ -33,8 +33,10 @@ module ZitadelClient
     # @return [Hash{String => String}]
     #
     def auth_headers
+      # :nocov:
       raise NotImplementedError,
             "#{self.class}#get_auth_headers is an abstract method. Please override it in a subclass."
+      # :nocov:
     end
   end
 

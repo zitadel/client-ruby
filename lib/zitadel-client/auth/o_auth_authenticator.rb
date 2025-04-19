@@ -68,7 +68,9 @@ module ZitadelClient
     # @return [OAuth2::AccessToken] A hash of parameters used to fetch a token.
     #
     def get_grant(auth_client, auth_scopes)
+      # :nocov:
       raise NotImplementedError, "#{self.class}#get_grant must be implemented"
+      # :nocov:
     end
 
     ##
