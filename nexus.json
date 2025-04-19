@@ -1,0 +1,16 @@
+{
+	"name": "rubygems-hosted",
+	"online": true,
+	"storage": {
+		"blobStoreName": "default",
+		"strictContentTypeValidation": true,
+		"writePolicy": "allow"
+	},
+	"cleanup": {
+		"policyNames": ["weekly-cleanup"]
+	},
+	"rubygems": {
+		"versionPolicy": "RELEASE",
+		"layoutPolicy": "STRICT"
+	}
+}
