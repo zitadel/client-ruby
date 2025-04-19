@@ -8,7 +8,7 @@ describe 'Zitadel Client (JWT Bearer OAuth)' do
   before do
     jwt_key = ENV.fetch('JWT_KEY') { raise 'JWT_KEY not set in environment' }
     # Create and retain the Tempfile so it isn't GC'd before the test runs
-    @jwt_file = Tempfile.new(['jwt', '.json'])
+    @jwt_file = Tempfile.new(%w[jwt .json])
     @jwt_file.write(jwt_key)
     @jwt_file.flush
     @jwt_file.close
@@ -27,9 +27,7 @@ describe 'Zitadel Client (JWT Bearer OAuth)' do
 
   # rubocop:disable Metrics/MethodLength
   def create_user(key_file, base_url)
-    client = ZitadelClient::Zitadel.new(
-      ZitadelClient::WebTokenAuthenticator.from_json(base_url, key_file)
-    )
+    client = ZitadelClient::Zitadel.with_private_key(base_url, key_file)
 
     begin
       resp = client.users.add_human_user(
@@ -49,9 +47,9 @@ describe 'Zitadel Client (JWT Bearer OAuth)' do
 
   describe 'with valid token' do
     it 'deactivates and reactivates a user without error' do
-      client = ZitadelClient::Zitadel.new(
-        ZitadelClient::WebTokenAuthenticator.from_json(@base_url, @key_file)
-      )
+      raise ArgumentError, 'key_file cannot be nil' if @key_file.nil?
+
+      client = ZitadelClient::Zitadel.with_private_key(@base_url, @key_file)
 
       begin
         deactivate_resp = client.users.deactivate_user(@user_id)
