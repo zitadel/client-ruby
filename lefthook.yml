@@ -1,0 +1,11 @@
+pre-commit:
+  parallel: true
+
+  commands:
+    format:
+      glob: "*.rb"
+      run: bundle exec rubocop --autocorrect-all
+
+    check:
+      glob: "*.rb"
+      run: bundle exec steep check
