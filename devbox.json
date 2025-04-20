@@ -1,0 +1,23 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.10.7/.schema/devbox.schema.json",
+  "packages": [
+    "ruby@3.0",
+    "lefthook@latest"
+  ],
+  "shell": {
+    "init_hook": [
+      "lefthook install"
+    ],
+    "scripts": {
+      "format": [
+        "bundle exec rubocop --autocorrect-all"
+      ],
+      "test": [
+        "bundle exec rake"
+      ],
+      "check": [
+        "bundle exec steep check"
+      ]
+    }
+  }
+}
