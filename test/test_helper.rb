@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'warning'
 require 'dotenv'
 require 'simplecov'
 require 'simplecov-lcov'
@@ -17,10 +18,16 @@ end
 # Override the HTMLFormatter so that it writes its report inside build/coverage/html
 module SimpleCov
   module Formatter
-    class HTMLFormatter
+    # rubocop:disable Style/Documentation
+    module HTMLFormatterPatch
       def output_path
         File.join(SimpleCov.coverage_path, 'html')
       end
+    end
+    # rubocop:enable Style/Documentation
+
+    class HTMLFormatter
+      prepend HTMLFormatterPatch
     end
   end
 end

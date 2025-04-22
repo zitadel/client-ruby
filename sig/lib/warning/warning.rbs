@@ -1,0 +1,3 @@
+module Warning
+  def self.ignore: (Regexp | Symbol | Array[Symbol], String?) -> void
+end
