@@ -19,8 +19,8 @@ module ZitadelClient
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
-    # Get instance level features
-    # Returns all configured features for an instance. Unset fields mean the feature is the current system default.
+    # Get Instance Features
+    # Returns all configured features for an instance. Unset fields mean the feature is the current system default.  Required permissions:  - none
     # @param [Hash] opts the optional parameters
     # @option opts [Boolean] :inheritance Inherit unset features from the resource owners. This option is recursive: if the flag is set, the resource&#39;s ancestors are consulted up to system defaults. If this option is disabled and the feature is not set on the instance, it will be omitted from the response or Not Found is returned when the instance has no features flags at all.
     # @return [FeatureServiceGetInstanceFeaturesResponse]
@@ -29,8 +29,8 @@ module ZitadelClient
       data
     end
 
-    # Get instance level features
-    # Returns all configured features for an instance. Unset fields mean the feature is the current system default.
+    # Get Instance Features
+    # Returns all configured features for an instance. Unset fields mean the feature is the current system default.  Required permissions:  - none
     # @param [Hash] opts the optional parameters
     # @option opts [Boolean] :inheritance Inherit unset features from the resource owners. This option is recursive: if the flag is set, the resource&#39;s ancestors are consulted up to system defaults. If this option is disabled and the feature is not set on the instance, it will be omitted from the response or Not Found is returned when the instance has no features flags at all.
     # @return [Array<(FeatureServiceGetInstanceFeaturesResponse, Integer, Hash)>] FeatureServiceGetInstanceFeaturesResponse data, response status code and response headers
@@ -79,8 +79,8 @@ module ZitadelClient
       return data, status_code, headers
     end
 
-    # Get organization level features
-    # Returns all configured features for an organization. Unset fields mean the feature is the current instance default.
+    # Get Organization Features
+    # Returns all configured features for an organization. Unset fields mean the feature is the current instance default.  Required permissions:  - org.feature.read  - no permission required for the organization the user belongs to
     # @param organization_id [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [Boolean] :inheritance Inherit unset features from the resource owners. This option is recursive: if the flag is set, the resource&#39;s ancestors are consulted up to system defaults. If this option is disabled and the feature is not set on the organization, it will be omitted from the response or Not Found is returned when the organization has no features flags at all.
@@ -90,8 +90,8 @@ module ZitadelClient
       data
     end
 
-    # Get organization level features
-    # Returns all configured features for an organization. Unset fields mean the feature is the current instance default.
+    # Get Organization Features
+    # Returns all configured features for an organization. Unset fields mean the feature is the current instance default.  Required permissions:  - org.feature.read  - no permission required for the organization the user belongs to
     # @param organization_id [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [Boolean] :inheritance Inherit unset features from the resource owners. This option is recursive: if the flag is set, the resource&#39;s ancestors are consulted up to system defaults. If this option is disabled and the feature is not set on the organization, it will be omitted from the response or Not Found is returned when the organization has no features flags at all.
@@ -145,8 +145,8 @@ module ZitadelClient
       return data, status_code, headers
     end
 
-    # Get system level features
-    # Returns all configured features for the system. Unset fields mean the feature is the current system default.
+    # Get System Features
+    # Returns all configured features for the system. Unset fields mean the feature is the current system default.  Required permissions:  - none
     # @param [Hash] opts the optional parameters
     # @return [FeatureServiceGetSystemFeaturesResponse]
     def feature_service_get_system_features(opts = {})
@@ -154,8 +154,8 @@ module ZitadelClient
       data
     end
 
-    # Get system level features
-    # Returns all configured features for the system. Unset fields mean the feature is the current system default.
+    # Get System Features
+    # Returns all configured features for the system. Unset fields mean the feature is the current system default.  Required permissions:  - none
     # @param [Hash] opts the optional parameters
     # @return [Array<(FeatureServiceGetSystemFeaturesResponse, Integer, Hash)>] FeatureServiceGetSystemFeaturesResponse data, response status code and response headers
     def feature_service_get_system_features_with_http_info(opts = {})
@@ -202,8 +202,8 @@ module ZitadelClient
       return data, status_code, headers
     end
 
-    # Get organization level features
-    # Returns all configured features for an organization. Unset fields mean the feature is the current instance default.
+    # Get User Features
+    # Returns all configured features for a user. Unset fields mean the feature is the current organization default.  Required permissions:  - user.feature.read  - no permission required for the own user
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [Boolean] :inheritance Inherit unset features from the resource owners. This option is recursive: if the flag is set, the resource&#39;s ancestors are consulted up to system defaults. If this option is disabled and the feature is not set on the user, it will be ommitted from the response or Not Found is returned when the user has no features flags at all.
@@ -213,8 +213,8 @@ module ZitadelClient
       data
     end
 
-    # Get organization level features
-    # Returns all configured features for an organization. Unset fields mean the feature is the current instance default.
+    # Get User Features
+    # Returns all configured features for a user. Unset fields mean the feature is the current organization default.  Required permissions:  - user.feature.read  - no permission required for the own user
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [Boolean] :inheritance Inherit unset features from the resource owners. This option is recursive: if the flag is set, the resource&#39;s ancestors are consulted up to system defaults. If this option is disabled and the feature is not set on the user, it will be ommitted from the response or Not Found is returned when the user has no features flags at all.
@@ -268,8 +268,8 @@ module ZitadelClient
       return data, status_code, headers
     end
 
-    # Reset instance level features
-    # Deletes ALL configured features for an instance, reverting the behaviors to system defaults.
+    # Reset Instance Features
+    # Deletes ALL configured features for an instance, reverting the behaviors to system defaults.  Required permissions:  - iam.feature.delete
     # @param [Hash] opts the optional parameters
     # @return [FeatureServiceResetInstanceFeaturesResponse]
     def feature_service_reset_instance_features(opts = {})
@@ -277,8 +277,8 @@ module ZitadelClient
       data
     end
 
-    # Reset instance level features
-    # Deletes ALL configured features for an instance, reverting the behaviors to system defaults.
+    # Reset Instance Features
+    # Deletes ALL configured features for an instance, reverting the behaviors to system defaults.  Required permissions:  - iam.feature.delete
     # @param [Hash] opts the optional parameters
     # @return [Array<(FeatureServiceResetInstanceFeaturesResponse, Integer, Hash)>] FeatureServiceResetInstanceFeaturesResponse data, response status code and response headers
     def feature_service_reset_instance_features_with_http_info(opts = {})
@@ -325,8 +325,8 @@ module ZitadelClient
       return data, status_code, headers
     end
 
-    # Reset organization level features
-    # Deletes ALL configured features for an organization, reverting the behaviors to instance defaults.
+    # Reset Organization Features
+    # Deletes ALL configured features for an organization, reverting the behaviors to instance defaults.  Required permissions:  - org.feature.delete
     # @param organization_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [FeatureServiceResetOrganizationFeaturesResponse]
@@ -335,8 +335,8 @@ module ZitadelClient
       data
     end
 
-    # Reset organization level features
-    # Deletes ALL configured features for an organization, reverting the behaviors to instance defaults.
+    # Reset Organization Features
+    # Deletes ALL configured features for an organization, reverting the behaviors to instance defaults.  Required permissions:  - org.feature.delete
     # @param organization_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(FeatureServiceResetOrganizationFeaturesResponse, Integer, Hash)>] FeatureServiceResetOrganizationFeaturesResponse data, response status code and response headers
@@ -388,8 +388,8 @@ module ZitadelClient
       return data, status_code, headers
     end
 
-    # Reset system level features
-    # Deletes ALL configured features for the system, reverting the behaviors to system defaults.
+    # Reset System Features
+    # Deletes ALL configured features for the system, reverting the behaviors to system defaults.  Required permissions:  - system.feature.delete
     # @param [Hash] opts the optional parameters
     # @return [FeatureServiceResetSystemFeaturesResponse]
     def feature_service_reset_system_features(opts = {})
@@ -397,8 +397,8 @@ module ZitadelClient
       data
     end
 
-    # Reset system level features
-    # Deletes ALL configured features for the system, reverting the behaviors to system defaults.
+    # Reset System Features
+    # Deletes ALL configured features for the system, reverting the behaviors to system defaults.  Required permissions:  - system.feature.delete
     # @param [Hash] opts the optional parameters
     # @return [Array<(FeatureServiceResetSystemFeaturesResponse, Integer, Hash)>] FeatureServiceResetSystemFeaturesResponse data, response status code and response headers
     def feature_service_reset_system_features_with_http_info(opts = {})
@@ -445,8 +445,8 @@ module ZitadelClient
       return data, status_code, headers
     end
 
-    # Reset user level features
-    # Deletes ALL configured features for a user, reverting the behaviors to organization defaults.
+    # Reset User Features
+    # Deletes ALL configured features for a user, reverting the behaviors to organization defaults.  Required permissions:  - user.feature.delete
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [FeatureServiceResetUserFeaturesResponse]
@@ -455,8 +455,8 @@ module ZitadelClient
       data
     end
 
-    # Reset user level features
-    # Deletes ALL configured features for a user, reverting the behaviors to organization defaults.
+    # Reset User Features
+    # Deletes ALL configured features for a user, reverting the behaviors to organization defaults.  Required permissions:  - user.feature.delete
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(FeatureServiceResetUserFeaturesResponse, Integer, Hash)>] FeatureServiceResetUserFeaturesResponse data, response status code and response headers
@@ -508,8 +508,8 @@ module ZitadelClient
       return data, status_code, headers
     end
 
-    # Set instance level features
-    # Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.
+    # Set Instance Features
+    # Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.  Required permissions:  - iam.feature.write
     # @param feature_service_set_instance_features_request [FeatureServiceSetInstanceFeaturesRequest] 
     # @param [Hash] opts the optional parameters
     # @return [FeatureServiceSetInstanceFeaturesResponse]
@@ -518,8 +518,8 @@ module ZitadelClient
       data
     end
 
-    # Set instance level features
-    # Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.
+    # Set Instance Features
+    # Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.  Required permissions:  - iam.feature.write
     # @param feature_service_set_instance_features_request [FeatureServiceSetInstanceFeaturesRequest] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(FeatureServiceSetInstanceFeaturesResponse, Integer, Hash)>] FeatureServiceSetInstanceFeaturesResponse data, response status code and response headers
@@ -576,8 +576,8 @@ module ZitadelClient
       return data, status_code, headers
     end
 
-    # Set organization level features
-    # Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.
+    # Set Organization Features
+    # Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.  Required permissions:  - org.feature.write
     # @param organization_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [FeatureServiceSetOrganizationFeaturesResponse]
@@ -586,8 +586,8 @@ module ZitadelClient
       data
     end
 
-    # Set organization level features
-    # Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.
+    # Set Organization Features
+    # Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.  Required permissions:  - org.feature.write
     # @param organization_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(FeatureServiceSetOrganizationFeaturesResponse, Integer, Hash)>] FeatureServiceSetOrganizationFeaturesResponse data, response status code and response headers
@@ -644,8 +644,8 @@ module ZitadelClient
       return data, status_code, headers
     end
 
-    # Set system level features
-    # Configure and set features that apply to the complete system. Only fields present in the request are set or unset.
+    # Set System Features
+    # Configure and set features that apply to the complete system. Only fields present in the request are set or unset.  Required permissions:  - system.feature.write
     # @param feature_service_set_system_features_request [FeatureServiceSetSystemFeaturesRequest] 
     # @param [Hash] opts the optional parameters
     # @return [FeatureServiceSetSystemFeaturesResponse]
@@ -654,8 +654,8 @@ module ZitadelClient
       data
     end
 
-    # Set system level features
-    # Configure and set features that apply to the complete system. Only fields present in the request are set or unset.
+    # Set System Features
+    # Configure and set features that apply to the complete system. Only fields present in the request are set or unset.  Required permissions:  - system.feature.write
     # @param feature_service_set_system_features_request [FeatureServiceSetSystemFeaturesRequest] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(FeatureServiceSetSystemFeaturesResponse, Integer, Hash)>] FeatureServiceSetSystemFeaturesResponse data, response status code and response headers
@@ -712,8 +712,8 @@ module ZitadelClient
       return data, status_code, headers
     end
 
-    # Set user level features
-    # Configure and set features that apply to an user. Only fields present in the request are set or unset.
+    # Set User Features
+    # Configure and set features that apply to an user. Only fields present in the request are set or unset.  Required permissions:  - user.feature.write
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [FeatureServiceSetUserFeaturesResponse]
@@ -722,8 +722,8 @@ module ZitadelClient
       data
     end
 
-    # Set user level features
-    # Configure and set features that apply to an user. Only fields present in the request are set or unset.
+    # Set User Features
+    # Configure and set features that apply to an user. Only fields present in the request are set or unset.  Required permissions:  - user.feature.write
     # @param user_id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(FeatureServiceSetUserFeaturesResponse, Integer, Hash)>] FeatureServiceSetUserFeaturesResponse data, response status code and response headers

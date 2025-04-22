@@ -22,12 +22,15 @@ module ZitadelClient
     # ID of the user in ZITADEL if external user is linked
     attr_accessor :user_id
 
+    attr_accessor :add_human_user
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'details' => :'details',
         :'idp_information' => :'idpInformation',
-        :'user_id' => :'userId'
+        :'user_id' => :'userId',
+        :'add_human_user' => :'addHumanUser'
       }
     end
 
@@ -46,7 +49,8 @@ module ZitadelClient
       {
         :'details' => :'UserServiceDetails',
         :'idp_information' => :'UserServiceIDPInformation',
-        :'user_id' => :'String'
+        :'user_id' => :'String',
+        :'add_human_user' => :'UserServiceAddHumanUserRequest'
       }
     end
 
@@ -83,6 +87,10 @@ module ZitadelClient
       if attributes.key?(:'user_id')
         self.user_id = attributes[:'user_id']
       end
+
+      if attributes.key?(:'add_human_user')
+        self.add_human_user = attributes[:'add_human_user']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -107,7 +115,8 @@ module ZitadelClient
       self.class == o.class &&
           details == o.details &&
           idp_information == o.idp_information &&
-          user_id == o.user_id
+          user_id == o.user_id &&
+          add_human_user == o.add_human_user
     end
 
     # @see the `==` method
@@ -119,7 +128,7 @@ module ZitadelClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [details, idp_information, user_id].hash
+      [details, idp_information, user_id, add_human_user].hash
     end
 
     # Builds the object from hash
