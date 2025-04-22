@@ -2,10 +2,11 @@
 
 module OAuth2
   module Strategy
-    # noinspection RbsMissingTypeSignature
-    class Assertion < Base
+    # rubocop:disable Style/Documentation
+    module AssertionPatch
       private
 
+      # noinspection RbsMissingTypeSignature
       def build_assertion(claims, opts)
         raise ArgumentError, 'encoding_opts must include :algorithm and :key' unless
           opts.is_a?(Hash) && opts.key?(:algorithm) && opts.key?(:key)
@@ -13,6 +14,11 @@ module OAuth2
         headers = opts[:kid] ? { kid: opts[:kid] } : {}
         JWT.encode(claims, opts[:key], opts[:algorithm], headers)
       end
+    end
+    # rubocop:enable Style/Documentation
+
+    class Assertion < Base
+      prepend AssertionPatch
     end
   end
 end
