@@ -167,6 +167,7 @@ GEM
     unicode-display_width (2.6.0)
     uri (1.0.3)
     version_gem (1.1.7)
+    warning (1.5.0)
     zeitwerk (2.6.18)
 
 PLATFORMS
@@ -190,6 +191,7 @@ DEPENDENCIES
   steep
   testcontainers
   typhoeus
+  warning
   zeitwerk
   zitadel-client!
 

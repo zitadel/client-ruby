@@ -16,11 +16,11 @@ describe 'Zitadel Client (Personal Access Token)' do
     client = ZitadelClient::Zitadel.with_access_token(base_url, token)
 
     begin
-      resp = client.users.add_human_user(
-        ZitadelClient::V2AddHumanUserRequest.new(
+      resp = client.users.user_service_add_human_user(
+        ZitadelClient::UserServiceAddHumanUserRequest.new(
           username: SecureRandom.hex,
-          profile: ZitadelClient::V2SetHumanProfile.new(given_name: 'John', family_name: 'Doe'),
-          email: ZitadelClient::V2SetHumanEmail.new(email: "johndoe#{SecureRandom.hex}@caos.ag")
+          profile: ZitadelClient::UserServiceSetHumanProfile.new(given_name: 'John', family_name: 'Doe'),
+          email: ZitadelClient::UserServiceSetHumanEmail.new(email: "johndoe#{SecureRandom.hex}@caos.ag")
         )
       )
       puts "User created: #{resp}"
@@ -36,10 +36,10 @@ describe 'Zitadel Client (Personal Access Token)' do
       client = ZitadelClient::Zitadel.with_access_token(@base_url, @valid_token)
 
       begin
-        deactivate_resp = client.users.deactivate_user(@user_id)
+        deactivate_resp = client.users.user_service_deactivate_user(@user_id)
         puts "User deactivated: #{deactivate_resp}"
 
-        reactivate_resp = client.users.reactivate_user(@user_id)
+        reactivate_resp = client.users.user_service_reactivate_user(@user_id)
         puts "User reactivated: #{reactivate_resp}"
       rescue StandardError => e
         flunk "Exception when calling deactivate_user or reactivate_user with valid token: #{e.message}"
@@ -53,11 +53,11 @@ describe 'Zitadel Client (Personal Access Token)' do
 
       # Expect API authentication errors
       assert_raises(ZitadelClient::ApiError) do
-        client.users.deactivate_user(@user_id)
+        client.users.user_service_deactivate_user(@user_id)
       end
 
       assert_raises(ZitadelClient::ApiError) do
-        client.users.reactivate_user(@user_id)
+        client.users.user_service_reactivate_user(@user_id)
       end
     end
   end

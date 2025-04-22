@@ -37,6 +37,11 @@ module ZitadelClient
     def initialize: (ApiClient) -> void
   end
 
+  class SAMLServiceApi
+
+    def initialize: (ApiClient) -> void
+  end
+
   class UrlUtil
     def self.build_hostname: (String) -> String
   end
@@ -269,6 +274,7 @@ module ZitadelClient
     attr_reader idps: untyped
     attr_reader oidc: untyped
     attr_reader organizations: untyped
+    attr_reader saml: untyped
     attr_reader sessions: untyped
     attr_reader settings: untyped
     attr_reader users: untyped

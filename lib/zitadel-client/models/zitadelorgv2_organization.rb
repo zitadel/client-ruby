@@ -75,8 +75,8 @@ module ZitadelClient
     def self.openapi_types
       {
         :'id' => :'String',
-        :'details' => :'V2Details',
-        :'state' => :'V2OrganizationState',
+        :'details' => :'OrganizationServiceDetails',
+        :'state' => :'OrganizationServiceOrganizationState',
         :'name' => :'String',
         :'primary_domain' => :'String'
       }

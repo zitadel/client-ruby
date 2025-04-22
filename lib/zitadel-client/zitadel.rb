@@ -12,11 +12,13 @@ module ZitadelClient
                 :organizations,
                 :sessions,
                 :settings,
-                :users
+                :users,
+                :saml
 
     # Initialize the Zitadel SDK.
     #
     # @param authenticator [Authenticator] the authentication strategy to use
+    # rubocop:disable Metrics/MethodLength
     def initialize(authenticator)
       # noinspection RubyArgCount
       @configuration = Configuration.new(authenticator)
@@ -31,7 +33,9 @@ module ZitadelClient
       @sessions = ZitadelClient::SessionServiceApi.new(client)
       @settings = ZitadelClient::SettingsServiceApi.new(client)
       @users = ZitadelClient::UserServiceApi.new(client)
+      @saml = ZitadelClient::SAMLServiceApi.new(client)
     end
+    # rubocop:enable Metrics/MethodLength
 
     class << self
       # @!group Authentication Entry Points

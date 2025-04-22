@@ -6,6 +6,7 @@ gemspec
 
 gem 'oauth2'
 gem 'typhoeus'
+gem 'warning'
 gem 'zeitwerk'
 
 group :development do

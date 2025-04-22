@@ -2,7 +2,10 @@
 
 require 'zeitwerk'
 require 'oauth2'
+require 'warning'
 require_relative 'patch'
+
+Warning.ignore(:method_redefined, __dir__)
 
 # Main entrypoint for the ZitadelClient Ruby SDK.
 #
