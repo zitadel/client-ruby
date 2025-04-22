@@ -17,11 +17,11 @@ describe 'Zitadel Client' do
     client = ZitadelClient::Zitadel.with_client_credentials(base_url, client_id, client_secret)
 
     begin
-      response = client.users.add_human_user(
-        ZitadelClient::V2AddHumanUserRequest.new(
+      response = client.users.user_service_add_human_user(
+        ZitadelClient::UserServiceAddHumanUserRequest.new(
           username: SecureRandom.hex,
-          profile: ZitadelClient::V2SetHumanProfile.new(given_name: 'John', family_name: 'Doe'),
-          email: ZitadelClient::V2SetHumanEmail.new(email: "johndoe#{SecureRandom.hex}@caos.ag")
+          profile: ZitadelClient::UserServiceSetHumanProfile.new(given_name: 'John', family_name: 'Doe'),
+          email: ZitadelClient::UserServiceSetHumanEmail.new(email: "johndoe#{SecureRandom.hex}@caos.ag")
         )
       )
       puts "User created: #{response}"
@@ -37,10 +37,10 @@ describe 'Zitadel Client' do
       client = ZitadelClient::Zitadel.with_client_credentials(@base_url, @client_id, @client_secret)
 
       begin
-        deactivate_response = client.users.deactivate_user(@user_id)
+        deactivate_response = client.users.user_service_deactivate_user(@user_id)
         puts "User deactivated: #{deactivate_response}"
 
-        reactivate_response = client.users.reactivate_user(@user_id)
+        reactivate_response = client.users.user_service_reactivate_user(@user_id)
         puts "User reactivated: #{reactivate_response}"
 
         # you can add real assertions here, for example:
@@ -57,12 +57,12 @@ describe 'Zitadel Client' do
 
       # deactivate should raise
       assert_raises(StandardError) do
-        client.users.deactivate_user(@user_id)
+        client.users.user_service_deactivate_user(@user_id)
       end
 
       # reactivate should raise
       assert_raises(StandardError) do
-        client.users.reactivate_user(@user_id)
+        client.users.user_service_reactivate_user(@user_id)
       end
     end
   end

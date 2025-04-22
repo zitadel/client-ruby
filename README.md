@@ -78,14 +78,14 @@ require 'securerandom'
 client = ZitadelClient::Zitadel.with_private_key("https://example.us1.zitadel.cloud", "path/to/jwt-key.json")
 
 begin
-  response = client.users.add_human_user(
-    ZitadelClient::V2AddHumanUserRequest.new(
+  response = client.users.user_service_add_human_user(
+    ZitadelClient::UserServiceAddHumanUserRequest.new(
       username: SecureRandom.hex,
-      profile: ZitadelClient::V2SetHumanProfile.new(
+      profile: ZitadelClient::UserServiceSetHumanProfile.new(
         given_name: 'John',
         family_name: 'Doe'
       ),
-      email: ZitadelClient::V2SetHumanEmail.new(
+      email: ZitadelClient::UserServiceSetHumanEmail.new(
         email: "john.doe@example.com"
       )
     )
@@ -121,14 +121,14 @@ require 'securerandom'
 client = ZitadelClient::Zitadel.with_client_credentials("https://example.us1.zitadel.cloud", "id", "secret")
 
 begin
-  response = client.users.add_human_user(
-    ZitadelClient::V2AddHumanUserRequest.new(
+  response = client.users.user_service_add_human_user(
+    ZitadelClient::UserServiceAddHumanUserRequest.new(
       username: SecureRandom.hex,
-      profile: ZitadelClient::V2SetHumanProfile.new(
+      profile: ZitadelClient::UserServiceSetHumanProfile.new(
         given_name: 'John',
         family_name: 'Doe'
       ),
-      email: ZitadelClient::V2SetHumanEmail.new(
+      email: ZitadelClient::UserServiceSetHumanEmail.new(
         email: "john.doe@example.com"
       )
     )
@@ -164,14 +164,14 @@ require 'securerandom'
 client = ZitadelClient::Zitadel.with_access_token("https://example.us1.zitadel.cloud", "token")
 
 begin
-  response = client.users.add_human_user(
-    ZitadelClient::V2AddHumanUserRequest.new(
+  response = client.users.user_service_add_human_user(
+    ZitadelClient::UserServiceAddHumanUserRequest.new(
       username: SecureRandom.hex,
-      profile: ZitadelClient::V2SetHumanProfile.new(
+      profile: ZitadelClient::UserServiceSetHumanProfile.new(
         given_name: 'John',
         family_name: 'Doe'
       ),
-      email: ZitadelClient::V2SetHumanEmail.new(
+      email: ZitadelClient::UserServiceSetHumanEmail.new(
         email: "john.doe@example.com"
       )
     )
