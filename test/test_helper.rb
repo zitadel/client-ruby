@@ -101,10 +101,7 @@ begin
   unless ENV['RM_INFO']
     Minitest::Reporters.use! [
       Minitest::Reporters::SpecReporter.new(color: true),
-      Minitest::Reporters::JUnitReporter.new(
-        'build/reports',
-        single_file: true
-      )
+      Minitest::Reporters::JUnitReporter.new('build/reports/', true, single_file: true)
     ]
   end
 rescue LoadError
