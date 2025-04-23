@@ -72,7 +72,9 @@ begin
             errors: suite_result[:error_count],
             tests: suite_result[:test_count],
             assertions: suite_result[:assertion_count],
-            time: suite_result[:time]
+            time: suite_result[:time],
+            timestamp: suite_result[:timestamp] || Time.now.iso8601,
+            hostname: Socket.gethostname
           }
           testsuite_attributes[:timestamp] = suite_result[:timestamp] if @timestamp_report
 
