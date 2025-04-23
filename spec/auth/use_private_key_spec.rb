@@ -1,0 +1,51 @@
+# frozen_string_literal: true
+
+require 'minitest/autorun'
+require_relative '../spec_helper'
+require 'tempfile'
+
+# SettingsService Integration Tests (Private Key Assertion)
+#
+# This suite verifies the Zitadel SettingsService API's general settings
+# endpoint works when authenticating via a private key assertion:
+#
+#  1. Retrieve general settings successfully with a valid private key
+#  2. Expect an ApiError when using an invalid private key
+#
+# Each test runs in isolation: the client is instantiated in each example to
+# guarantee a clean, stateless call.
+describe 'Zitadel SettingsService (Private Key Assertion)' do
+  before do
+    @jwt_file = Tempfile.new(%w[jwt .json])
+    @jwt_file.write(
+      ENV.fetch('JWT_KEY') { raise 'JWT_KEY not set' }
+    )
+    @jwt_file.flush
+    @jwt_file.close
+  end
+
+  it 'retrieves general settings with valid private key' do
+    jwt_file = Tempfile.new(%w[jwt .json])
+    jwt_file.write(
+      ENV.fetch('JWT_KEY') { raise 'JWT_KEY not set' }
+    )
+    jwt_file.flush
+    jwt_file.close
+
+    client = ZitadelClient::Zitadel.with_private_key(
+      ENV.fetch('BASE_URL') { raise 'BASE_URL not set' },
+      @jwt_file.path
+    )
+    client.settings.settings_service_get_general_settings
+  end
+
+  it 'raises an ApiError with invalid private key' do
+    client = ZitadelClient::Zitadel.with_private_key(
+      'https://zitadel.cloud',
+      @jwt_file.path
+    )
+    assert_raises(ZitadelClient::ApiError) do
+      client.settings.settings_service_get_general_settings
+    end
+  end
+end
