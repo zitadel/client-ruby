@@ -14,17 +14,23 @@ require_relative '../spec_helper'
 # Each test runs in isolation: the client is instantiated in each example to
 # guarantee a clean, stateless call.
 describe 'Zitadel SettingsService (Personal Access Token)' do
-  it 'retrieves general settings with valid token' do
-    client = ZitadelClient::Zitadel.with_access_token(
-      ENV.fetch('BASE_URL')   { raise 'BASE_URL not set' },
-      ENV.fetch('AUTH_TOKEN') { raise 'AUTH_TOKEN not set' }
+  let(:base_url)       { ENV.fetch('BASE_URL')   { raise 'BASE_URL not set' } }
+  let(:valid_token)    { ENV.fetch('AUTH_TOKEN') { raise 'AUTH_TOKEN not set' } }
+  let(:zitadel_client) do
+    ZitadelClient::Zitadel.with_access_token(
+      base_url,
+      valid_token
     )
+  end
+
+  it 'retrieves general settings with valid token' do
+    client = zitadel_client
     client.settings.settings_service_get_general_settings
   end
 
   it 'raises an ApiError with invalid token' do
     client = ZitadelClient::Zitadel.with_access_token(
-      ENV.fetch('BASE_URL') { raise 'BASE_URL not set' },
+      base_url,
       'invalid'
     )
     assert_raises(ZitadelClient::ApiError) do

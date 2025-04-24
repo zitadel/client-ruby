@@ -18,36 +18,39 @@ require 'minitest/autorun'
 require_relative 'spec_helper'
 require 'securerandom'
 
-VALID_TOKEN = ENV.fetch('AUTH_TOKEN')
-BASE_URL    = ENV.fetch('BASE_URL')
-CLIENT      = ZitadelClient::Zitadel.with_access_token(BASE_URL, VALID_TOKEN)
-
 describe 'Zitadel SessionService' do
-  # Setup: create a fresh session before each test example
+  let(:base_url)    { ENV.fetch('BASE_URL')   { raise 'BASE_URL not set'   } }
+  let(:valid_token) { ENV.fetch('AUTH_TOKEN') { raise 'AUTH_TOKEN not set' } }
+  let(:client)      do
+    ZitadelClient::Zitadel.with_access_token(
+      base_url,
+      valid_token
+    )
+  end
+
   before do
-    req  = ZitadelClient::SessionServiceCreateSessionRequest.new(
+    req = ZitadelClient::SessionServiceCreateSessionRequest.new(
       checks: ZitadelClient::SessionServiceChecks.new(
         user: ZitadelClient::SessionServiceCheckUser.new(login_name: 'johndoe')
       ),
       lifetime: '18000s'
     )
-    resp = CLIENT.sessions.session_service_create_session(req)
+    resp = client.sessions.session_service_create_session(req)
     @session_id    = resp.session_id
     @session_token = resp.session_token
   end
 
-  # Teardown: delete the session after each test example
   after do
     delete_req = ZitadelClient::SessionServiceDeleteSessionBody.new
     begin
-      CLIENT.sessions.session_service_delete_session(@session_id, delete_req)
+      client.sessions.session_service_delete_session(@session_id, delete_req)
     rescue StandardError
       # Ignore cleanup errors
     end
   end
 
   it 'retrieves the session details by the session identifier' do
-    response = CLIENT.sessions.session_service_get_session(
+    response = client.sessions.session_service_get_session(
       @session_id,
       session_token: @session_token
     )
@@ -56,7 +59,7 @@ describe 'Zitadel SessionService' do
 
   it 'raises an error when retrieving a non-existent session' do
     assert_raises(ZitadelClient::ApiError) do
-      CLIENT.sessions.session_service_get_session(
+      client.sessions.session_service_get_session(
         SecureRandom.uuid,
         session_token: @session_token
       )
@@ -65,15 +68,13 @@ describe 'Zitadel SessionService' do
 
   it 'includes the created session when listing all sessions' do
     request  = ZitadelClient::SessionServiceListSessionsRequest.new(queries: [])
-    response = CLIENT.sessions.session_service_list_sessions(
-      request
-    )
+    response = client.sessions.session_service_list_sessions(request)
     _(response.sessions.map(&:id)).must_include @session_id
   end
 
   it 'updates the session lifetime and returns a new token' do
     request  = ZitadelClient::SessionServiceSetSessionRequest.new(lifetime: '36000s')
-    response = CLIENT.sessions.session_service_set_session(
+    response = client.sessions.session_service_set_session(
       @session_id,
       request
     )

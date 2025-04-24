@@ -18,11 +18,16 @@ require 'securerandom'
 # Each test runs in isolation: a new user is created in `before` and deleted in
 # `after` to ensure a clean state.
 
-VALID_TOKEN = ENV.fetch('AUTH_TOKEN')
-BASE_URL    = ENV.fetch('BASE_URL')
-CLIENT      = ZitadelClient::Zitadel.with_access_token(BASE_URL, VALID_TOKEN)
-
 describe 'Zitadel UserService' do
+  let(:base_url)    { ENV.fetch('BASE_URL')   { raise 'BASE_URL not set'   } }
+  let(:valid_token) { ENV.fetch('AUTH_TOKEN') { raise 'AUTH_TOKEN not set' } }
+  let(:client)      do
+    ZitadelClient::Zitadel.with_access_token(
+      base_url,
+      valid_token
+    )
+  end
+
   before do
     request = ZitadelClient::UserServiceAddHumanUserRequest.new(
       username: SecureRandom.hex,
@@ -35,40 +40,40 @@ describe 'Zitadel UserService' do
       )
     )
 
-    @user = CLIENT.users.user_service_add_human_user(request)
+    @user = client.users.user_service_add_human_user(request)
   end
 
   after do
-    CLIENT.users.user_service_delete_user(@user.user_id)
+    client.users.user_service_delete_user(@user.user_id)
   rescue StandardError
     # Ignore cleanup errors
   end
 
   it 'retrieves the user details by ID' do
-    response = CLIENT.users.user_service_get_user_by_id(@user.user_id)
+    response = client.users.user_service_get_user_by_id(@user.user_id)
     _(response.user.user_id).must_equal @user.user_id
   end
 
   it 'raises an error when retrieving a non-existent user' do
     assert_raises(ZitadelClient::ApiError) do
-      CLIENT.users.user_service_get_user_by_id(SecureRandom.uuid)
+      client.users.user_service_get_user_by_id(SecureRandom.uuid)
     end
   end
 
   it 'includes the created user when listing all users' do
     request  = ZitadelClient::UserServiceListUsersRequest.new(queries: [])
-    response = CLIENT.users.user_service_list_users(request)
+    response = client.users.user_service_list_users(request)
     _(response.result.map(&:user_id)).must_include @user.user_id
   end
 
   it "updates the user's email and reflects the change" do
-    new_email = "updated#{SecureRandom.hex}@example.com"
+    new_email  = "updated#{SecureRandom.hex}@example.com"
     update_req = ZitadelClient::UserServiceUpdateHumanUserRequest.new(
       email: ZitadelClient::UserServiceSetHumanEmail.new(email: new_email)
     )
-    CLIENT.users.user_service_update_human_user(@user.user_id, update_req)
+    client.users.user_service_update_human_user(@user.user_id, update_req)
 
-    response = CLIENT.users.user_service_get_user_by_id(@user.user_id)
+    response = client.users.user_service_get_user_by_id(@user.user_id)
     _(response.user.human.email.email).must_equal new_email
   end
 end
