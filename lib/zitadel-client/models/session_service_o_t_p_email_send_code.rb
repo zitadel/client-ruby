@@ -14,14 +14,14 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-  class SessionServiceDeleteSessionBody
-    # \"The current token of the session, previously returned on the create / update request. The token is required unless the authenticated user terminates the own session or is granted the `session.delete` permission.\"
-    attr_accessor :session_token
+  class SessionServiceOTPEmailSendCode
+    # Optionally set a url_template, which will be used in the mail sent by ZITADEL to guide the user to your verification page. If no template is set, the default ZITADEL url will be used.  The following placeholders can be used: Code, UserID, LoginName, DisplayName, PreferredLanguage, SessionID
+    attr_accessor :url_template
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'session_token' => :'sessionToken'
+        :'url_template' => :'urlTemplate'
       }
     end
 
@@ -38,7 +38,7 @@ module ZitadelClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'session_token' => :'String'
+        :'url_template' => :'String'
       }
     end
 
@@ -52,20 +52,20 @@ module ZitadelClient
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `ZitadelClient::SessionServiceDeleteSessionBody` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `ZitadelClient::SessionServiceOTPEmailSendCode` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       acceptable_attribute_map = self.class.acceptable_attribute_map
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!acceptable_attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `ZitadelClient::SessionServiceDeleteSessionBody`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `ZitadelClient::SessionServiceOTPEmailSendCode`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'session_token')
-        self.session_token = attributes[:'session_token']
+      if attributes.key?(:'url_template')
+        self.url_template = attributes[:'url_template']
       end
     end
 
@@ -74,6 +74,14 @@ module ZitadelClient
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if !@url_template.nil? && @url_template.to_s.length > 200
+        invalid_properties.push('invalid value for "url_template", the character length must be smaller than or equal to 200.')
+      end
+
+      if !@url_template.nil? && @url_template.to_s.length < 1
+        invalid_properties.push('invalid value for "url_template", the character length must be great than or equal to 1.')
+      end
+
       invalid_properties
     end
 
@@ -81,7 +89,27 @@ module ZitadelClient
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if !@url_template.nil? && @url_template.to_s.length > 200
+      return false if !@url_template.nil? && @url_template.to_s.length < 1
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] url_template Value to be assigned
+    def url_template=(url_template)
+      if url_template.nil?
+        fail ArgumentError, 'url_template cannot be nil'
+      end
+
+      if url_template.to_s.length > 200
+        fail ArgumentError, 'invalid value for "url_template", the character length must be smaller than or equal to 200.'
+      end
+
+      if url_template.to_s.length < 1
+        fail ArgumentError, 'invalid value for "url_template", the character length must be great than or equal to 1.'
+      end
+
+      @url_template = url_template
     end
 
     # Checks equality by comparing each attribute.
@@ -89,7 +117,7 @@ module ZitadelClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          session_token == o.session_token
+          url_template == o.url_template
     end
 
     # @see the `==` method
@@ -101,7 +129,7 @@ module ZitadelClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [session_token].hash
+      [url_template].hash
     end
 
     # Builds the object from hash

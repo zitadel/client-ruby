@@ -40,7 +40,7 @@ module ZitadelClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'send_code' => :'SessionServiceRequestChallengesOTPEmailSendCode',
+        :'send_code' => :'SessionServiceOTPEmailSendCode',
         :'return_code' => :'Object'
       }
     end

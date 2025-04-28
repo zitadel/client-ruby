@@ -41,7 +41,7 @@ describe 'Zitadel SessionService' do
   end
 
   after do
-    delete_req = ZitadelClient::SessionServiceDeleteSessionBody.new
+    delete_req = ZitadelClient::SessionServiceDeleteSessionRequest.new
     begin
       client.sessions.session_service_delete_session(@session_id, delete_req)
     rescue StandardError
