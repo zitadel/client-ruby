@@ -14,16 +14,16 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-  class SessionServiceRequestChallengesOTPEmail
-    attr_accessor :send_code
+  class IdentityProviderServiceAzureADTenant
+    attr_accessor :tenant_type
 
-    attr_accessor :return_code
+    attr_accessor :tenant_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'send_code' => :'sendCode',
-        :'return_code' => :'returnCode'
+        :'tenant_type' => :'tenantType',
+        :'tenant_id' => :'tenantId'
       }
     end
 
@@ -40,8 +40,8 @@ module ZitadelClient
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'send_code' => :'SessionServiceRequestChallengesOTPEmailSendCode',
-        :'return_code' => :'Object'
+        :'tenant_type' => :'IdentityProviderServiceAzureADTenantType',
+        :'tenant_id' => :'String'
       }
     end
 
@@ -55,24 +55,26 @@ module ZitadelClient
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `ZitadelClient::SessionServiceRequestChallengesOTPEmail` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `ZitadelClient::IdentityProviderServiceAzureADTenant` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       acceptable_attribute_map = self.class.acceptable_attribute_map
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!acceptable_attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `ZitadelClient::SessionServiceRequestChallengesOTPEmail`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `ZitadelClient::IdentityProviderServiceAzureADTenant`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'send_code')
-        self.send_code = attributes[:'send_code']
+      if attributes.key?(:'tenant_type')
+        self.tenant_type = attributes[:'tenant_type']
+      else
+        self.tenant_type = 'AZURE_AD_TENANT_TYPE_COMMON'
       end
 
-      if attributes.key?(:'return_code')
-        self.return_code = attributes[:'return_code']
+      if attributes.key?(:'tenant_id')
+        self.tenant_id = attributes[:'tenant_id']
       end
     end
 
@@ -96,8 +98,8 @@ module ZitadelClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          send_code == o.send_code &&
-          return_code == o.return_code
+          tenant_type == o.tenant_type &&
+          tenant_id == o.tenant_id
     end
 
     # @see the `==` method
@@ -109,7 +111,7 @@ module ZitadelClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [send_code, return_code].hash
+      [tenant_type, tenant_id].hash
     end
 
     # Builds the object from hash

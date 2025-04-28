@@ -90,21 +90,21 @@ module ZitadelClient
     # Terminate an existing session
     # Terminate your own session or if granted any other session.
     # @param session_id [String] \&quot;id of the session to terminate\&quot;
-    # @param session_service_delete_session_body [SessionServiceDeleteSessionBody] 
+    # @param session_service_delete_session_request [SessionServiceDeleteSessionRequest] 
     # @param [Hash] opts the optional parameters
     # @return [SessionServiceDeleteSessionResponse]
-    def session_service_delete_session(session_id, session_service_delete_session_body, opts = {})
-      data, _status_code, _headers = session_service_delete_session_with_http_info(session_id, session_service_delete_session_body, opts)
+    def session_service_delete_session(session_id, session_service_delete_session_request, opts = {})
+      data, _status_code, _headers = session_service_delete_session_with_http_info(session_id, session_service_delete_session_request, opts)
       data
     end
 
     # Terminate an existing session
     # Terminate your own session or if granted any other session.
     # @param session_id [String] \&quot;id of the session to terminate\&quot;
-    # @param session_service_delete_session_body [SessionServiceDeleteSessionBody] 
+    # @param session_service_delete_session_request [SessionServiceDeleteSessionRequest] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(SessionServiceDeleteSessionResponse, Integer, Hash)>] SessionServiceDeleteSessionResponse data, response status code and response headers
-    def session_service_delete_session_with_http_info(session_id, session_service_delete_session_body, opts = {})
+    def session_service_delete_session_with_http_info(session_id, session_service_delete_session_request, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: SessionServiceApi.session_service_delete_session ...'
       end
@@ -112,9 +112,9 @@ module ZitadelClient
       if @api_client.config.client_side_validation && session_id.nil?
         fail ArgumentError, "Missing the required parameter 'session_id' when calling SessionServiceApi.session_service_delete_session"
       end
-      # verify the required parameter 'session_service_delete_session_body' is set
-      if @api_client.config.client_side_validation && session_service_delete_session_body.nil?
-        fail ArgumentError, "Missing the required parameter 'session_service_delete_session_body' when calling SessionServiceApi.session_service_delete_session"
+      # verify the required parameter 'session_service_delete_session_request' is set
+      if @api_client.config.client_side_validation && session_service_delete_session_request.nil?
+        fail ArgumentError, "Missing the required parameter 'session_service_delete_session_request' when calling SessionServiceApi.session_service_delete_session"
       end
       # resource path
       local_var_path = '/v2/sessions/{sessionId}'.sub('{' + 'sessionId' + '}', CGI.escape(session_id.to_s))
@@ -136,7 +136,7 @@ module ZitadelClient
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:debug_body] || @api_client.object_to_http_body(session_service_delete_session_body)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(session_service_delete_session_request)
 
       # return_type
       return_type = opts[:debug_return_type] || 'SessionServiceDeleteSessionResponse'
