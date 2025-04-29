@@ -1,13 +1,11 @@
 name: Typecheck
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-
-permissions:
-  contents: read
+  workflow_call:
+    inputs:
+      ref:
+        required: true
+        type: string
 
 defaults:
   run:
@@ -21,6 +19,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1

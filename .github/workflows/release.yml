@@ -1,12 +1,10 @@
 name: Release
 
 on:
-  push:
-    branches:
-      - main
-
-permissions:
-  contents: write
+  workflow_call:
+    secrets:
+      RUBYGEMS_TOKEN:
+        required: true
 
 defaults:
   run:
@@ -20,12 +18,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '2.7'
+          ruby-version: '3.0'
           bundler-cache: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
 
       - name: Install Semantic Release
         run: |
@@ -33,6 +38,8 @@ jobs:
 
       - name: Run semantic-release
         env:
+          DOCKER_REGISTRY_USER: ${{ github.actor }}
+          DOCKER_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GEM_HOST_API_KEY: ${{ secrets.RUBYGEMS_TOKEN }}
         run: npx semantic-release

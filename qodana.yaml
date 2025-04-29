@@ -9,4 +9,4 @@ exclude:
       - lib/zitadel-client/api
       - lib/zitadel-client/models
 
-linter: jetbrains/qodana-ruby:2025.1
+linter: jetbrains/qodana-php:2025.1

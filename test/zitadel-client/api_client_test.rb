@@ -60,7 +60,7 @@ module ZitadelClient
                 equalTo: 'Bearer mm'
               },
               'User-Agent' => {
-                matches: '^zitadel-client/0\\.0\\.0 \\(lang=ruby; lang_version=[^;]+; os=[^;]+; arch=[^;]+\\)$'
+                matches: '^zitadel-client/\\d\\.\\d\\.\\d \\(lang=ruby; lang_version=[^;]+; os=[^;]+; arch=[^;]+\\)$'
               }
             }
           },

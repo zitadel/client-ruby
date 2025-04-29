@@ -3,18 +3,11 @@
 require 'warning'
 require 'dotenv'
 require 'simplecov'
-require 'simplecov-lcov'
+require 'simplecov-cobertura'
 require_relative '../lib/zitadel_client'
 
 Warning.ignore(:method_redefined, __dir__)
 Dotenv.load('.env')
-
-# Configure the LCOV formatter
-SimpleCov::Formatter::LcovFormatter.config do |config|
-  config.output_directory = 'build/coverage'
-  config.lcov_file_name = 'lcov.info'
-  config.report_with_single_file = true
-end
 
 # Override the HTMLFormatter so that it writes its report inside build/coverage/html
 module SimpleCov
@@ -37,7 +30,7 @@ end
 SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new(
   [
     SimpleCov::Formatter::HTMLFormatter,
-    SimpleCov::Formatter::LcovFormatter
+    SimpleCov::Formatter::CoberturaFormatter
   ]
 )
 

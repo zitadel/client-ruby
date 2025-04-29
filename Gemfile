@@ -25,6 +25,6 @@ group :test do
   gem 'minitest-reporters'
   gem 'rake'
   gem 'simplecov', require: false
-  gem 'simplecov-lcov', require: false
+  gem 'simplecov-cobertura', require: false
   gem 'testcontainers'
 end

@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.summary = 'Official Zitadel SDK for Ruby'
   s.description = "Official Zitadel SDK for Ruby. Authenticate and access Zitadel's authentication and management APIs in Ruby."
   s.license = 'Apache-2.0'
-  s.required_ruby_version = '>= 2.7'
+  s.required_ruby_version = '>= 3.0'
   s.metadata = { 'rubygems_mfa_required' => 'true' }
 
   s.add_dependency 'oauth2', '~> 2.0'
