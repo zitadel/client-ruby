@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'oauth2', '~> 2.0'
   s.add_dependency 'typhoeus', '~> 1.0', '>= 1.0.1'
   s.add_dependency 'zeitwerk', '~> 2.5'
+  s.add_dependency 'warning', '~> 1.5.0'
 
   s.files = `find *`.split("\n").uniq.sort.reject(&:empty?)
   s.executables = []

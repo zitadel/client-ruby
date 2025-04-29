@@ -4,6 +4,7 @@ PATH
     zitadel-client (0.0.0)
       oauth2 (~> 2.0)
       typhoeus (~> 1.0, >= 1.0.1)
+      warning (~> 1.5.0)
       zeitwerk (~> 2.5)
 
 GEM
