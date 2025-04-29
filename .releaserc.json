@@ -8,16 +8,13 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "bundle install --path vendor/bundle && gem build *.gemspec"
+        "prepareCmd": "sed -i 's/0\\.0\\.0/'\"$NEXT_RELEASE_VERSION\"'/' lib/zitadel-client/version.rb"
       }
     ],
     [
-      "semantic-release-plugin-update-version-in-files",
+      "@semantic-release/exec",
       {
-        "files": [
-          "lib/zitadel-client/version.rb"
-        ],
-        "placeholder": "0.0.0"
+        "prepareCmd": "bundle install --path vendor/bundle && gem build *.gemspec"
       }
     ],
     [
