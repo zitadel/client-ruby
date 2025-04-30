@@ -58,8 +58,14 @@ jobs:
     uses: ./.github/workflows/qodana.yml
     with:
       ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.ref }}
-      test_artifact_name: test-results
-      coverage_artifact_name: test-coverage
+    secrets: inherit
+
+  build-docker:
+    name: Build Docker Container
+    needs: run-tests
+    uses: ./.github/workflows/docker.yml
+    with:
+      ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.ref }}
     secrets: inherit
 
   all-passed:
@@ -72,6 +78,7 @@ jobs:
       - type-check
       - run-tests
       - code-inspection
+      - build-docker
     if: ${{ success() }}
     steps:
       - name: Report Success
