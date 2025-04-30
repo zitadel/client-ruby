@@ -8,7 +8,7 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "sed -i 's/[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+/${nextRelease.version}/' lib/zitadel-client/version.rb && sed -i -E 's/(zitadel-client \\()[0-9]+\\.[0-9]+\\.[0-9]+(-[a-zA-Z0-9.]+)?(\\))/\\1${nextRelease.version}\\3/g' Gemfile.lock"
+        "prepareCmd": "sed -i 's/[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+/${nextRelease.version}/' lib/zitadel-client/version.rb"
       }
     ],
     [
