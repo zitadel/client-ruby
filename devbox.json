@@ -6,7 +6,8 @@
   ],
   "shell": {
     "init_hook": [
-      "lefthook install"
+      "lefthook install",
+      "bundle install"
     ],
     "scripts": {
       "format": [
