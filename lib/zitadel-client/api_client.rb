@@ -71,11 +71,9 @@ module ZitadelClient
 
       unless response.success?
         if response.timed_out?
-          raise ApiError, 'Connection timed out'
-        elsif response.code.zero?
-          # Errors from libcurl will be made visible here
-          raise ApiError.new(code: 0,
-                             message: response.return_message)
+          raise 'Connection timed out'
+        elsif response.return_code != :ok
+          raise "Network error (#{response.return_code}): #{response.return_message}"
         else
           raise ApiError.new(code: response.code,
                              response_headers: response.headers,
