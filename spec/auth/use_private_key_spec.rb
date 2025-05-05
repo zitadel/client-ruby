@@ -40,7 +40,7 @@ describe 'Zitadel SettingsService (Private Key Assertion)' do
       'https://zitadel.cloud',
       jwt_file.path
     )
-    assert_raises(ZitadelClient::ApiError) do
+    assert_raises(ZitadelClient::ZitadelError) do
       client.settings.settings_service_get_general_settings
     end
   end

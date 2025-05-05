@@ -84,7 +84,7 @@ module ZitadelClient
     def refresh_token
       @token = get_grant(@auth_session, @auth_scopes)
     rescue StandardError => e
-      raise ApiError.new("Failed to refresh token: #{e.message}"), cause: e
+      raise ZitadelError.new("Failed to refresh token: #{e.message}"), cause: e
     end
   end
 end

@@ -89,7 +89,7 @@ module ZitadelClient
 
     def call_api: (untyped http_method, untyped path, ?::Hash[untyped, untyped] opts) -> ::Array[untyped]
 
-    def build_request: (untyped http_method, untyped path, ?::Hash[untyped, untyped] opts) -> untyped
+    def build_request: (Symbol http_method, String path, Hash[Symbol, untyped] opts) -> Typhoeus::Request
 
     def build_request_body: (untyped header_params, untyped form_params, untyped body) -> untyped
 
@@ -116,24 +116,21 @@ module ZitadelClient
     def build_collection_param: (untyped param, untyped collection_format) -> untyped
   end
 
+  class ZitadelError < StandardError
+    def initialize: (String) -> void
+  end
+
   #
   # Represents an HTTP error returned from the Zitadel API.
   #
   # This class captures the HTTP status code, headers, and body,
   # and provides a helpful string representation for debugging.
   #
-  class ApiError < StandardError
-    @message: String
-
-    attr_reader code: Integer?
-    attr_reader response_headers: untyped
-    attr_reader response_body: untyped
-
-    def initialize: (?(String | Hash[untyped, untyped] | nil)) -> void
-
-    def message: () -> String
-
-    def to_s: () -> String
+  class ApiError < ZitadelError
+    attr_reader code: Integer
+    attr_reader response_headers: Hash[String, Array[String]]
+    attr_reader response_body: String | Typhoeus::Response
+    def initialize: (Integer, Hash[String, Array[String]], String | Typhoeus::Response) -> void
   end
 
   class Authenticator

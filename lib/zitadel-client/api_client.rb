@@ -75,10 +75,7 @@ module ZitadelClient
         elsif response.return_code != :ok
           raise "Network error (#{response.return_code}): #{response.return_message}"
         else
-          raise ApiError.new(code: response.code,
-                             response_headers: response.headers,
-                             response_body: response.body),
-                response.status_message
+          raise ApiError.new(response.code, response.headers, response.body)
         end
       end
 
@@ -90,16 +87,6 @@ module ZitadelClient
       [data, response.code, response.headers]
     end
 
-    # Builds the HTTP request
-    #
-    # @param [String] http_method HTTP method/verb (e.g. POST)
-    # @param [String] path URL path (e.g. /account/new)
-    # @option opts [Hash] :header_params Header parameters
-    # @option opts [Hash] :query_params Query parameters
-    # @option opts [Hash] :form_params Query parameters
-    # @option opts [Object] :body HTTP body (JSON/XML)
-    # @return [Typhoeus::Request] A Typhoeus Request
-    # noinspection RbsMissingTypeSignature
     def build_request(http_method, path, opts = {})
       url = URI.join("#{@config.authenticator.send(:host).chomp('/')}/", path).to_s
       http_method = http_method.to_sym.downcase

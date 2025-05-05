@@ -36,7 +36,7 @@ describe 'Zitadel SettingsService (Client Credentials)' do
       'invalid',
       'invalid'
     )
-    assert_raises(ZitadelClient::ApiError) do
+    assert_raises(ZitadelClient::ZitadelError) do
       client.settings.settings_service_get_general_settings
     end
   end
