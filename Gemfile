@@ -10,7 +10,6 @@ gem 'warning'
 gem 'zeitwerk'
 
 group :development do
-  gem 'pry-byebug'
   gem 'rbs'
   gem 'rubocop', require: false
   gem 'rubocop-minitest', require: false
