@@ -15,6 +15,7 @@ module ZitadelClient
       assert_equal headers, err.response_headers
       assert_equal 'body', err.response_body
     end
+
     # rubocop:enable Minitest/MultipleAssertions
   end
 end

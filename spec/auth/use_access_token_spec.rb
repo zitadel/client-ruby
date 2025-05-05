@@ -14,8 +14,8 @@ require_relative '../spec_helper'
 # Each test runs in isolation: the client is instantiated in each example to
 # guarantee a clean, stateless call.
 describe 'Zitadel SettingsService (Personal Access Token)' do
-  let(:base_url)       { ENV.fetch('BASE_URL')   { raise 'BASE_URL not set' } }
-  let(:valid_token)    { ENV.fetch('AUTH_TOKEN') { raise 'AUTH_TOKEN not set' } }
+  let(:base_url) { ENV.fetch('BASE_URL') { raise 'BASE_URL not set' } }
+  let(:valid_token) { ENV.fetch('AUTH_TOKEN') { raise 'AUTH_TOKEN not set' } }
   let(:zitadel_client) do
     ZitadelClient::Zitadel.with_access_token(
       base_url,

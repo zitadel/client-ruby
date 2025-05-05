@@ -19,9 +19,9 @@ require_relative 'spec_helper'
 require 'securerandom'
 
 describe 'Zitadel SessionService' do
-  let(:base_url)    { ENV.fetch('BASE_URL')   { raise 'BASE_URL not set'   } }
+  let(:base_url) { ENV.fetch('BASE_URL') { raise 'BASE_URL not set' } }
   let(:valid_token) { ENV.fetch('AUTH_TOKEN') { raise 'AUTH_TOKEN not set' } }
-  let(:client)      do
+  let(:client) do
     ZitadelClient::Zitadel.with_access_token(
       base_url,
       valid_token
@@ -36,7 +36,7 @@ describe 'Zitadel SessionService' do
       lifetime: '18000s'
     )
     resp = client.sessions.session_service_create_session(req)
-    @session_id    = resp.session_id
+    @session_id = resp.session_id
     @session_token = resp.session_token
   end
 
@@ -67,13 +67,13 @@ describe 'Zitadel SessionService' do
   end
 
   it 'includes the created session when listing all sessions' do
-    request  = ZitadelClient::SessionServiceListSessionsRequest.new(queries: [])
+    request = ZitadelClient::SessionServiceListSessionsRequest.new(queries: [])
     response = client.sessions.session_service_list_sessions(request)
     _(response.sessions.map(&:id)).must_include @session_id
   end
 
   it 'updates the session lifetime and returns a new token' do
-    request  = ZitadelClient::SessionServiceSetSessionRequest.new(lifetime: '36000s')
+    request = ZitadelClient::SessionServiceSetSessionRequest.new(lifetime: '36000s')
     response = client.sessions.session_service_set_session(
       @session_id,
       request

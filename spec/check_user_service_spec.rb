@@ -19,9 +19,9 @@ require 'securerandom'
 # `after` to ensure a clean state.
 
 describe 'Zitadel UserService' do
-  let(:base_url)    { ENV.fetch('BASE_URL')   { raise 'BASE_URL not set'   } }
+  let(:base_url) { ENV.fetch('BASE_URL') { raise 'BASE_URL not set' } }
   let(:valid_token) { ENV.fetch('AUTH_TOKEN') { raise 'AUTH_TOKEN not set' } }
-  let(:client)      do
+  let(:client) do
     ZitadelClient::Zitadel.with_access_token(
       base_url,
       valid_token
@@ -61,13 +61,13 @@ describe 'Zitadel UserService' do
   end
 
   it 'includes the created user when listing all users' do
-    request  = ZitadelClient::UserServiceListUsersRequest.new(queries: [])
+    request = ZitadelClient::UserServiceListUsersRequest.new(queries: [])
     response = client.users.user_service_list_users(request)
     _(response.result.map(&:user_id)).must_include @user.user_id
   end
 
   it "updates the user's email and reflects the change" do
-    new_email  = "updated#{SecureRandom.hex}@example.com"
+    new_email = "updated#{SecureRandom.hex}@example.com"
     update_req = ZitadelClient::UserServiceUpdateHumanUserRequest.new(
       email: ZitadelClient::UserServiceSetHumanEmail.new(email: new_email)
     )

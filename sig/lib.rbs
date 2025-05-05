@@ -130,6 +130,7 @@ module ZitadelClient
     attr_reader code: Integer
     attr_reader response_headers: Hash[String, Array[String]]
     attr_reader response_body: String | Typhoeus::Response
+
     def initialize: (Integer, Hash[String, Array[String]], String | Typhoeus::Response) -> void
   end
 
@@ -262,7 +263,7 @@ module ZitadelClient
   class Zitadel
     def self.with_access_token: (String, String) -> Zitadel
 
-    def self.with_client_credentials : (String, String, String) -> Zitadel
+    def self.with_client_credentials: (String, String, String) -> Zitadel
 
     def self.with_private_key: (String, String) -> Zitadel
 

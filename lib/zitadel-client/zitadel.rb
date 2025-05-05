@@ -35,6 +35,7 @@ module ZitadelClient
       @users = ZitadelClient::UserServiceApi.new(client)
       @saml = ZitadelClient::SAMLServiceApi.new(client)
     end
+
     # rubocop:enable Metrics/MethodLength
 
     class << self
@@ -74,6 +75,7 @@ module ZitadelClient
       def with_private_key(host, key_file)
         new(WebTokenAuthenticator.from_json(host, key_file))
       end
+
       # @!endgroup
     end
   end

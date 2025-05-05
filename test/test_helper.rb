@@ -89,6 +89,7 @@ begin
           end
         end
       end
+
       # rubocop:enable Metrics/AbcSize,Style/Documentation,Metrics/MethodLength
     end
   end

@@ -21,9 +21,9 @@ module ZitadelClient
     # @param response_body    [String, Typhoeus::Response]  HTTP response body
     def initialize(code, response_headers, response_body)
       super("Error #{code}")
-      @code             = code
+      @code = code
       @response_headers = response_headers
-      @response_body    = response_body
+      @response_body = response_body
     end
   end
 end

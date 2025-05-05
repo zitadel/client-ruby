@@ -14,10 +14,10 @@ require_relative '../spec_helper'
 # Each test runs in isolation: the client is instantiated in each example to
 # guarantee a clean, stateless call.
 describe 'Zitadel SettingsService (Client Credentials)' do
-  let(:base_url)      { ENV.fetch('BASE_URL')      { raise 'BASE_URL not set'      } }
-  let(:client_id)     { ENV.fetch('CLIENT_ID')     { raise 'CLIENT_ID not set'     } }
+  let(:base_url) { ENV.fetch('BASE_URL') { raise 'BASE_URL not set' } }
+  let(:client_id) { ENV.fetch('CLIENT_ID') { raise 'CLIENT_ID not set' } }
   let(:client_secret) { ENV.fetch('CLIENT_SECRET') { raise 'CLIENT_SECRET not set' } }
-  let(:zitadel_client)  do
+  let(:zitadel_client) do
     ZitadelClient::Zitadel.with_client_credentials(
       base_url,
       client_id,

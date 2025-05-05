@@ -91,6 +91,7 @@ module ZitadelClient
 
       assert_equal expected, response_data, "Expected response body #{expected}, but got #{data}"
     end
+
     # rubocop:enable Minitest/MultipleAssertions,Metrics/MethodLength
   end
 end

@@ -39,6 +39,7 @@ module ZitadelClient
       @jwt_algorithm = jwt_algorithm
       @key_id = key_id
     end
+
     # rubocop:enable Metrics/ParameterLists,Metrics/MethodLength
 
     # Creates a WebTokenAuthenticator instance from a JSON configuration file.
@@ -104,6 +105,7 @@ module ZitadelClient
         }
       )
     end
+
     # rubocop:enable Metrics/MethodLength
 
     # -----------------------------------------------------------------------------
