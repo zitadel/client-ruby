@@ -7,6 +7,10 @@ updates:
     commit-message:
       prefix: "chore(deps):"
     open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: "rbs"
+      - dependency-name: "steep"
+      - dependency-name: "zeitwerk"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
