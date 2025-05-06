@@ -18,6 +18,10 @@
       ],
       "check": [
         "bundle exec steep check"
+      ],
+      "replit": [
+        "docker build --tag ruby-repl --file Dockerfile .",
+        "docker run --rm --interactive --tty ruby-repl"
       ]
     }
   }
