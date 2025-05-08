@@ -22,6 +22,9 @@
       "replit": [
         "docker build --tag ruby-repl --file Dockerfile .",
         "docker run --rm --interactive --tty ruby-repl"
+      ],
+      "docgen": [
+        "bundle exec rake rdoc"
       ]
     }
   }
