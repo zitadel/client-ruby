@@ -52,6 +52,7 @@
         ]
       }
     ],
+    "semantic-release-rubygem",
     [
       "@semantic-release/git",
       {

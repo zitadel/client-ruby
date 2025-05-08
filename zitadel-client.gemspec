@@ -4,25 +4,30 @@ $LOAD_PATH.push File.expand_path('lib', __dir__)
 require 'zitadel-client/version'
 
 # noinspection RubyArgCount
-Gem::Specification.new do |s|
-  s.name = 'zitadel-client'
-  s.version = ZitadelClient::VERSION
-  s.platform = Gem::Platform::RUBY
-  s.authors = ['Zitadel']
-  s.email = ['hi@zitadel.com']
-  s.homepage = 'https://zitadel.com/'
-  s.summary = 'Official Zitadel SDK for Ruby'
-  s.description = "Official Zitadel SDK for Ruby. Authenticate and access Zitadel's authentication and management APIs in Ruby."
-  s.license = 'Apache-2.0'
-  s.required_ruby_version = '>= 3.0'
-  s.metadata = { 'rubygems_mfa_required' => 'true' }
+Gem::Specification.new do |gemspec|
+  gemspec.name = 'zitadel-client'
+  gemspec.version = ZitadelClient::VERSION
+  gemspec.platform = Gem::Platform::RUBY
+  gemspec.authors = ['Zitadel']
+  gemspec.email = ['hi@zitadel.com']
+  gemspec.homepage = 'https://zitadel.com/'
+  gemspec.summary = 'Official Zitadel SDK for Ruby'
+  gemspec.description =
+    "Official Zitadel SDK for Ruby. Authenticate and access Zitadel's authentication and management APIs in Ruby."
+  gemspec.license = 'Apache-2.0'
+  gemspec.required_ruby_version = '>= 3.0'
+  gemspec.metadata = { 'rubygems_mfa_required' => 'true' }
 
-  s.add_dependency 'oauth2', '~> 2.0'
-  s.add_dependency 'typhoeus', '~> 1.0', '>= 1.0.1'
-  s.add_dependency 'warning', '~> 1.5.0'
-  s.add_dependency 'zeitwerk', '~> 2.5'
+  gemspec.add_dependency 'oauth2', '~> 2.0'
+  gemspec.add_dependency 'typhoeus', '~> 1.0', '>= 1.0.1'
+  gemspec.add_dependency 'warning', '~> 1.5.0'
+  gemspec.add_dependency 'zeitwerk', '~> 2.5'
 
-  s.files = `find *`.split("\n").uniq.sort.reject(&:empty?)
-  s.executables = []
-  s.require_paths = ['lib']
+  gemspec.files = Dir.chdir(File.expand_path(__dir__)) do
+    `find lib sig README.md LICENSE -type f -print0 2>/dev/null`.split("\x0").reject do |f|
+      f.match(/\.gem\z/)
+    end
+  end
+  gemspec.executables = []
+  gemspec.require_paths = ['lib']
 end
