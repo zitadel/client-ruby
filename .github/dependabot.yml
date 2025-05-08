@@ -11,6 +11,16 @@ updates:
       - dependency-name: "rbs"
       - dependency-name: "steep"
       - dependency-name: "zeitwerk"
+    groups:
+      bundler-version-updates:
+        patterns:
+          - "*"
+        applies-to: "version-updates"
+      bundler-security-updates:
+        patterns:
+          - "*"
+        applies-to: "security-updates"
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
@@ -18,3 +28,12 @@ updates:
     commit-message:
       prefix: "chore(deps):"
     open-pull-requests-limit: 10
+    groups:
+      actions-version-updates:
+        patterns:
+          - "*"
+        applies-to: "version-updates"
+      actions-security-updates:
+        patterns:
+          - "*"
+        applies-to: "security-updates"
