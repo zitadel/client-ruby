@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    zitadel-client (1.2.1)
+    zitadel-client (1.2.2)
       oauth2 (~> 2.0)
       typhoeus (~> 1.0, >= 1.0.1)
       warning (~> 1.5.0)
