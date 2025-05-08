@@ -14,10 +14,10 @@
         "bundle exec rubocop --autocorrect-all"
       ],
       "test": [
-        "bundle exec rake"
+        "bundle exec rake test"
       ],
       "check": [
-        "bundle exec steep check"
+        "bundle exec rake steep"
       ],
       "replit": [
         "docker build --tag ruby-repl --file Dockerfile .",

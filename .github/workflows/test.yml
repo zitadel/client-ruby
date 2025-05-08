@@ -43,7 +43,7 @@ jobs:
         run: bundle install
 
       - name: Run Tests
-        run: bundle exec rake
+        run: bundle exec rake test
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
           AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
