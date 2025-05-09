@@ -17,13 +17,13 @@ module ZitadelClient
     # noinspection RubyArgCount
     def test_zitadel_exposes_all_service_apis
       # Collect all classes under ZitadelClient that end with "ServiceApi"
-      expected = ZitadelClient.constants
-                              .map { |const| ZitadelClient.const_get(const) }
-                              .select { |klass| klass.is_a?(Class) && klass.name.end_with?('ServiceApi') }
-                              .to_set
+      expected = ZitadelClient::Api.constants
+                                   .map { |const| ZitadelClient::Api.const_get(const) }
+                                   .select { |klass| klass.is_a?(Class) && klass.name.end_with?('ServiceApi') }
+                                   .to_set
 
       # Instantiate the Zitadel SDK with a dummy authenticator
-      zitadel = Zitadel.new(NoAuthAuthenticator.new)
+      zitadel = Zitadel.new(Auth::NoAuthAuthenticator.new)
 
       # Collect all instance method return types that are service API classes
       actual = Zitadel.instance_methods(false)

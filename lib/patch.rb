@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'oauth2'
+
 module OAuth2
   module Strategy
     # rubocop:disable Style/Documentation

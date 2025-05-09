@@ -13,7 +13,7 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
+module ZitadelClient::Models
   class UserServiceType
     TYPE_UNSPECIFIED = "TYPE_UNSPECIFIED".freeze
     TYPE_HUMAN = "TYPE_HUMAN".freeze
@@ -35,7 +35,8 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if UserServiceType.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #UserServiceType"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Models::UserServiceType"
     end
   end
+
 end

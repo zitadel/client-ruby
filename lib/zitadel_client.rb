@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'zeitwerk'
-require 'oauth2'
 require 'warning'
 require_relative 'patch'
 
@@ -25,9 +24,5 @@ end
 loader = Zeitwerk::Loader.new
 loader.inflector.inflect('version' => 'VERSION')
 loader.tag = File.basename(__FILE__, '.rb')
-loader.collapse("#{__dir__}/zitadel-client/api/")
-loader.collapse("#{__dir__}/zitadel-client/auth/")
-loader.collapse("#{__dir__}/zitadel-client/models/")
-loader.collapse("#{__dir__}/zitadel-client/utils/")
 loader.push_dir("#{__dir__}/zitadel-client", namespace: ZitadelClient)
 loader.setup

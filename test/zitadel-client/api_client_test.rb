@@ -78,7 +78,7 @@ module ZitadelClient
       assert_includes [200, 201], mapping_response.code.to_i,
                       "Mapping creation failed with status #{mapping_response.code}"
 
-      config = Configuration.new(PersonalAccessTokenAuthenticator.new(@oauth_host, 'mm'))
+      config = Configuration.new(Auth::PersonalAccessTokenAuthenticator.new(@oauth_host, 'mm'))
       api_client = ZitadelClient::ApiClient.new(config)
       data, status, headers = api_client.call_api('GET', '/your/endpoint', return_type: 'Object')
 

@@ -14,25 +14,27 @@ require 'test_helper'
 require 'minitest/autorun'
 
 module ZitadelClient
-  ##
-  # Test suite for the PersonalAccessTokenAuthenticator class.
-  #
-  # @example Initialization and header retrieval:
-  #   auth = ZitadelClient::PersonalAccessTokenAuthenticator.new("https://api.example.com", "my-secret-token")
-  #   auth.get_auth_headers  # => { "Authorization" => "Bearer my-secret-token" }
-  #   auth.host              # => "https://api.example.com"
-  #
-  class PersonalAccessTokenAuthenticatorTest < Minitest::Test
+  module Auth
     ##
-    # Verifies that the PersonalAccessTokenAuthenticator returns the expected authorization headers and host.
+    # Test suite for the PersonalAccessTokenAuthenticator class.
     #
-    # @return [void]
-    def test_returns_expected_headers_and_host
-      auth = ZitadelClient::PersonalAccessTokenAuthenticator.new('https://api.example.com',
-                                                                 'my-secret-token')
+    # @example Initialization and header retrieval:
+    #   auth = ZitadelClient::PersonalAccessTokenAuthenticator.new("https://api.example.com", "my-secret-token")
+    #   auth.get_auth_headers  # => { "Authorization" => "Bearer my-secret-token" }
+    #   auth.host              # => "https://api.example.com"
+    #
+    class PersonalAccessTokenAuthenticatorTest < Minitest::Test
+      ##
+      # Verifies that the PersonalAccessTokenAuthenticator returns the expected authorization headers and host.
+      #
+      # @return [void]
+      def test_returns_expected_headers_and_host
+        auth = ZitadelClient::Auth::PersonalAccessTokenAuthenticator.new('https://api.example.com',
+                                                                         'my-secret-token')
 
-      assert_equal({ 'Authorization' => 'Bearer my-secret-token' }, auth.send(:auth_headers))
-      assert_equal('https://api.example.com', auth.send(:host))
+        assert_equal({ 'Authorization' => 'Bearer my-secret-token' }, auth.send(:auth_headers))
+        assert_equal('https://api.example.com', auth.send(:host))
+      end
     end
   end
 end

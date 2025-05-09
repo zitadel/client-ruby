@@ -13,7 +13,7 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
+module ZitadelClient::Models
   class OIDCServicePrompt
     PROMPT_UNSPECIFIED = "PROMPT_UNSPECIFIED".freeze
     PROMPT_NONE = "PROMPT_NONE".freeze
@@ -38,7 +38,8 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if OIDCServicePrompt.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #OIDCServicePrompt"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Models::OIDCServicePrompt"
     end
   end
+
 end

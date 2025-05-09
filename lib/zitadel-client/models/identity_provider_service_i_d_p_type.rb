@@ -13,7 +13,7 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
+module ZitadelClient::Models
   class IdentityProviderServiceIDPType
     IDP_TYPE_UNSPECIFIED = "IDP_TYPE_UNSPECIFIED".freeze
     IDP_TYPE_OIDC = "IDP_TYPE_OIDC".freeze
@@ -45,7 +45,8 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if IdentityProviderServiceIDPType.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #IdentityProviderServiceIDPType"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Models::IdentityProviderServiceIDPType"
     end
   end
+
 end

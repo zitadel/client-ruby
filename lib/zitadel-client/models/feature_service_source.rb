@@ -13,7 +13,7 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
+module ZitadelClient::Models
   class FeatureServiceSource
     SOURCE_UNSPECIFIED = "SOURCE_UNSPECIFIED".freeze
     SOURCE_SYSTEM = "SOURCE_SYSTEM".freeze
@@ -39,7 +39,8 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if FeatureServiceSource.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #FeatureServiceSource"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Models::FeatureServiceSource"
     end
   end
+
 end

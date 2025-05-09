@@ -13,7 +13,7 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
+module ZitadelClient::Models
   class IdentityProviderServiceAzureADTenantType
     AZURE_AD_TENANT_TYPE_COMMON = "AZURE_AD_TENANT_TYPE_COMMON".freeze
     AZURE_AD_TENANT_TYPE_ORGANISATIONS = "AZURE_AD_TENANT_TYPE_ORGANISATIONS".freeze
@@ -35,7 +35,8 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if IdentityProviderServiceAzureADTenantType.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #IdentityProviderServiceAzureADTenantType"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Models::IdentityProviderServiceAzureADTenantType"
     end
   end
+
 end

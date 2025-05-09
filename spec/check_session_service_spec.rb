@@ -29,9 +29,9 @@ describe 'Zitadel SessionService' do
   end
 
   before do
-    req = ZitadelClient::SessionServiceCreateSessionRequest.new(
-      checks: ZitadelClient::SessionServiceChecks.new(
-        user: ZitadelClient::SessionServiceCheckUser.new(login_name: 'johndoe')
+    req = ZitadelClient::Models::SessionServiceCreateSessionRequest.new(
+      checks: ZitadelClient::Models::SessionServiceChecks.new(
+        user: ZitadelClient::Models::SessionServiceCheckUser.new(login_name: 'johndoe')
       ),
       lifetime: '18000s'
     )
@@ -41,7 +41,7 @@ describe 'Zitadel SessionService' do
   end
 
   after do
-    delete_req = ZitadelClient::SessionServiceDeleteSessionRequest.new
+    delete_req = ZitadelClient::Models::SessionServiceDeleteSessionRequest.new
     begin
       client.sessions.session_service_delete_session(@session_id, delete_req)
     rescue StandardError
@@ -67,13 +67,13 @@ describe 'Zitadel SessionService' do
   end
 
   it 'includes the created session when listing all sessions' do
-    request = ZitadelClient::SessionServiceListSessionsRequest.new(queries: [])
+    request = ZitadelClient::Models::SessionServiceListSessionsRequest.new(queries: [])
     response = client.sessions.session_service_list_sessions(request)
     _(response.sessions.map(&:id)).must_include @session_id
   end
 
   it 'updates the session lifetime and returns a new token' do
-    request = ZitadelClient::SessionServiceSetSessionRequest.new(lifetime: '36000s')
+    request = ZitadelClient::Models::SessionServiceSetSessionRequest.new(lifetime: '36000s')
     response = client.sessions.session_service_set_session(
       @session_id,
       request

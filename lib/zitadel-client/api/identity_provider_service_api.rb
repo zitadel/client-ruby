@@ -13,73 +13,75 @@ Generator version: 7.12.0
 require 'cgi'
 
 module ZitadelClient
+module Api # Added Api module
   class IdentityProviderServiceApi
-    attr_accessor :api_client
+  attr_accessor :api_client
 
-    def initialize(api_client = ApiClient.default)
-      @api_client = api_client
-    end
-    # Get identity provider (IdP) by ID
-    # Returns an identity provider (social/enterprise login) by its ID, which can be of the type Google, AzureAD, etc.
-    # @param id [String] 
-    # @param [Hash] opts the optional parameters
+  def initialize(api_client = ApiClient.default)
+  @api_client = api_client
+  end
+      # Get identity provider (IdP) by ID
+      # Returns an identity provider (social/enterprise login) by its ID, which can be of the type Google, AzureAD, etc.
+          # @param id [String] 
+      # @param [Hash] opts the optional parameters
     # @return [IdentityProviderServiceGetIDPByIDResponse]
     def identity_provider_service_get_idpby_id(id, opts = {})
-      data, _status_code, _headers = identity_provider_service_get_idpby_id_with_http_info(id, opts)
-      data
+    data, _status_code, _headers = identity_provider_service_get_idpby_id_with_http_info(id, opts)
+    data
     end
 
-    # Get identity provider (IdP) by ID
-    # Returns an identity provider (social/enterprise login) by its ID, which can be of the type Google, AzureAD, etc.
-    # @param id [String] 
-    # @param [Hash] opts the optional parameters
+      # Get identity provider (IdP) by ID
+      # Returns an identity provider (social/enterprise login) by its ID, which can be of the type Google, AzureAD, etc.
+          # @param id [String] 
+      # @param [Hash] opts the optional parameters
     # @return [Array<(IdentityProviderServiceGetIDPByIDResponse, Integer, Hash)>] IdentityProviderServiceGetIDPByIDResponse data, response status code and response headers
     def identity_provider_service_get_idpby_id_with_http_info(id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: IdentityProviderServiceApi.identity_provider_service_get_idpby_id ...'
-      end
-      # verify the required parameter 'id' is set
-      if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling IdentityProviderServiceApi.identity_provider_service_get_idpby_id"
-      end
-      # resource path
-      local_var_path = '/v2/idps/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+    if @api_client.config.debugging
+    @api_client.config.logger.debug 'Calling API: Api::IdentityProviderServiceApi.identity_provider_service_get_idpby_id ...' # MODIFIED
+    end
+          # verify the required parameter 'id' is set
+          if @api_client.config.client_side_validation && id.nil?
+          fail ArgumentError, "Missing the required parameter 'id' when calling Api::IdentityProviderServiceApi.identity_provider_service_get_idpby_id" # MODIFIED
+          end
+    # resource path
+    local_var_path = '/v2/idps/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
-      # query parameters
-      query_params = opts[:query_params] || {}
+    # query parameters
+    query_params = opts[:query_params] || {}
 
-      # header parameters
-      header_params = opts[:header_params] || {}
+    # header parameters
+    header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
 
-      # form parameters
-      form_params = opts[:form_params] || {}
+    # form parameters
+    form_params = opts[:form_params] || {}
 
-      # http body (model)
-      post_body = opts[:debug_body]
+    # http body (model)
+    post_body = opts[:debug_body]
 
-      # return_type
-      return_type = opts[:debug_return_type] || 'IdentityProviderServiceGetIDPByIDResponse'
+    # return_type
+    return_type = opts[:debug_return_type] || 'IdentityProviderServiceGetIDPByIDResponse'
 
-      # auth_names
-      auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
+    # auth_names
+    auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
-      new_options = opts.merge(
-        :operation => :"IdentityProviderServiceApi.identity_provider_service_get_idpby_id",
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => return_type
-      )
+    new_options = opts.merge(
+    :operation => :"Api::IdentityProviderServiceApi.identity_provider_service_get_idpby_id", # MODIFIED
+    :header_params => header_params,
+    :query_params => query_params,
+    :form_params => form_params,
+    :body => post_body,
+    :auth_names => auth_names,
+    :return_type => return_type
+    )
 
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: IdentityProviderServiceApi#identity_provider_service_get_idpby_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
+    data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+    if @api_client.config.debugging
+    @api_client.config.logger.debug "API called: Api::IdentityProviderServiceApi#identity_provider_service_get_idpby_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    end
+    return data, status_code, headers
     end
   end
+end # End of Api module
 end

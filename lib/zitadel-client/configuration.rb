@@ -149,7 +149,7 @@ module ZitadelClient
     attr_accessor :user_agent
 
     # rubocop:disable Metrics/MethodLength
-    def initialize(authenticator = NoAuthAuthenticator.new)
+    def initialize(authenticator = Auth::NoAuthAuthenticator.new)
       @authenticator = authenticator
       @client_side_validation = true
       @verify_ssl = true

@@ -2,48 +2,57 @@ module ZitadelClient
 
   VERSION: String
 
-  class FeatureServiceApi
+  module Models
 
-    def initialize: (ApiClient) -> void
   end
 
-  class IdentityProviderServiceApi
+  module Utils
+    class UrlUtil
 
-    def initialize: (ApiClient) -> void
+      def self.build_hostname: (String) -> String
+    end
   end
 
-  class OIDCServiceApi
+  module Api
+    class FeatureServiceApi
 
-    def initialize: (ApiClient) -> void
-  end
+      def initialize: (ApiClient) -> void
+    end
 
-  class OrganizationServiceApi
+    class IdentityProviderServiceApi
 
-    def initialize: (ApiClient) -> void
-  end
+      def initialize: (ApiClient) -> void
+    end
 
-  class SessionServiceApi
+    class OIDCServiceApi
 
-    def initialize: (ApiClient) -> void
-  end
+      def initialize: (ApiClient) -> void
+    end
 
-  class SettingsServiceApi
+    class OrganizationServiceApi
 
-    def initialize: (ApiClient) -> void
-  end
+      def initialize: (ApiClient) -> void
+    end
 
-  class UserServiceApi
+    class SessionServiceApi
 
-    def initialize: (ApiClient) -> void
-  end
+      def initialize: (ApiClient) -> void
+    end
 
-  class SAMLServiceApi
+    class SettingsServiceApi
 
-    def initialize: (ApiClient) -> void
-  end
+      def initialize: (ApiClient) -> void
+    end
 
-  class UrlUtil
-    def self.build_hostname: (String) -> String
+    class UserServiceApi
+
+      def initialize: (ApiClient) -> void
+    end
+
+    class SAMLServiceApi
+
+      def initialize: (ApiClient) -> void
+    end
   end
 
   class Configuration
@@ -51,7 +60,7 @@ module ZitadelClient
 
     @@default: Configuration
 
-    attr_reader authenticator: Authenticator
+    attr_reader authenticator: Auth::Authenticator
     attr_accessor debugging: bool
     attr_accessor logger: untyped
     attr_accessor temp_folder_path: String
@@ -67,7 +76,7 @@ module ZitadelClient
 
     def self.default: () -> Configuration
 
-    def initialize: (?Authenticator) ?{ (Configuration) -> untyped } -> void
+    def initialize: (?Auth::Authenticator) ?{ (Configuration) -> untyped } -> void
 
     def configure: () ?{ (Configuration) -> untyped } -> void
 
@@ -134,129 +143,127 @@ module ZitadelClient
     def initialize: (Integer, Hash[String, Array[String]], String | Typhoeus::Response) -> void
   end
 
-  class Authenticator
+  module Auth
 
-    @host: String
+    class Authenticator
 
-    attr_reader host: String
+      @host: String
 
-    def initialize: (String) -> void
+      attr_reader host: String
 
-    def auth_headers: () -> Hash[String, String]
-  end
+      def initialize: (String) -> void
 
-  class ClientCredentialsAuthenticator < OAuthAuthenticator
-
-    def initialize: (OpenId, String, String, Set[String]) -> void
-
-    def get_grant: (OAuth2::Client, String) -> OAuth2::AccessToken
-
-    def self.builder: (String, String, String) -> ClientCredentialsAuthenticatorBuilder
-
-    class ClientCredentialsAuthenticatorBuilder < OAuthAuthenticatorBuilder
-      @client_id: String
-      @client_secret: String
-
-      def initialize: (String, String, String) -> void
-
-      def build: -> ClientCredentialsAuthenticator
+      def auth_headers: () -> Hash[String, String]
     end
 
-  end
+    class ClientCredentialsAuthenticator < OAuthAuthenticator
 
-  class NoAuthAuthenticator < Authenticator
+      def initialize: (OpenId, String, String, Set[String]) -> void
 
-    def initialize: (?String) -> void
+      def get_grant: (OAuth2::Client, String) -> OAuth2::AccessToken
 
-    def auth_headers: () -> Hash[String, String]
-  end
+      def self.builder: (String, String, String) -> ClientCredentialsAuthenticatorBuilder
 
-  class OAuthAuthenticatorBuilder
-    @auth_scopes: Set[String]
-    @open_id: OpenId
+      class ClientCredentialsAuthenticatorBuilder < OAuthAuthenticatorBuilder
+        @client_id: String
+        @client_secret: String
 
-    attr_reader open_id: OpenId
-    attr_reader auth_scopes: Set[String]
+        def initialize: (String, String, String) -> void
 
-    def initialize: (String) -> void
+        def build: -> ClientCredentialsAuthenticator
+      end
 
-    def scopes: -> untyped
-  end
+    end
 
-  class OAuthAuthenticator < Authenticator
-    @auth_session: OAuth2::Client
-    @open_id: OpenId
-    @token: OAuth2::AccessToken | nil
-    @auth_scopes: String
+    class NoAuthAuthenticator < Authenticator
 
-    def initialize: (OpenId, Set[String], OAuth2::Client) -> void
+      def initialize: (?String) -> void
 
-    def auth_token: () -> String
+      def auth_headers: () -> Hash[String, String]
+    end
 
-    def auth_headers: () -> Hash[String, String]
+    class OAuthAuthenticatorBuilder
+      @auth_scopes: Set[String]
+      @open_id: OpenId
 
-    def get_grant: (OAuth2::Client, String) -> OAuth2::AccessToken
+      attr_reader open_id: OpenId
+      attr_reader auth_scopes: Set[String]
 
-    def refresh_token: () -> OAuth2::AccessToken
-  end
+      def initialize: (String) -> void
 
-  class OpenId
-    @host_endpoint: String
-    @token_endpoint: String
+      def scopes: -> untyped
+    end
 
-    attr_accessor host_endpoint: String
-    attr_accessor token_endpoint: String
+    class OAuthAuthenticator < Authenticator
+      @auth_session: OAuth2::Client
+      @open_id: OpenId
+      @token: OAuth2::AccessToken | nil
+      @auth_scopes: String
 
-    def initialize: (String) -> void
+      def initialize: (OpenId, Set[String], OAuth2::Client) -> void
 
-    def self.build_well_known_url: (String) -> String
-  end
+      def auth_token: () -> String
 
-  class PersonalAccessTokenAuthenticator < Authenticator
-    @token: String
+      def auth_headers: () -> Hash[String, String]
 
-    def initialize: (String, String) -> void
+      def get_grant: (OAuth2::Client, String) -> OAuth2::AccessToken
 
-    def auth_headers: -> Hash[String, String]
-  end
+      def refresh_token: () -> OAuth2::AccessToken
+    end
 
-  module URLUtil
+    class OpenId
+      @host_endpoint: String
+      @token_endpoint: String
 
-    def self.build_hostname: (String) -> String
-  end
+      attr_accessor host_endpoint: String
+      attr_accessor token_endpoint: String
 
-  class WebTokenAuthenticator < OAuthAuthenticator
-    @jwt_algorithm: String
-    @jwt_audience: String
-    @jwt_issuer: String
-    @jwt_lifetime: Integer
-    @jwt_subject: String
-    @key_id: String?
-    @private_key: String
+      def initialize: (String) -> void
 
-    def self.builder: (String, String, String) -> WebTokenAuthenticatorBuilder
+      def self.build_well_known_url: (String) -> String
+    end
 
-    def self.from_json: (String, String) -> WebTokenAuthenticator
+    class PersonalAccessTokenAuthenticator < Authenticator
+      @token: String
 
-    def get_grant: (OAuth2::Client, String) -> OAuth2::AccessToken
+      def initialize: (String, String) -> void
 
-    def initialize: (OpenId, Set[String], String, String, String, String | OpenSSL::PKey::PKey, ?jwt_lifetime: Integer, ?jwt_algorithm: String, ?key_id: String?) -> void
+      def auth_headers: -> Hash[String, String]
+    end
 
-    class WebTokenAuthenticatorBuilder < OAuthAuthenticatorBuilder
+    class WebTokenAuthenticator < OAuthAuthenticator
+      @jwt_algorithm: String
       @jwt_audience: String
       @jwt_issuer: String
       @jwt_lifetime: Integer
       @jwt_subject: String
-      @key_id: String
+      @key_id: String?
       @private_key: String
 
-      def initialize: (String, String, String, String, String) -> void
+      def self.builder: (String, String, String) -> WebTokenAuthenticatorBuilder
 
-      def build: -> WebTokenAuthenticator
+      def self.from_json: (String, String) -> WebTokenAuthenticator
 
-      def key_identifier: (String) -> self
+      def get_grant: (OAuth2::Client, String) -> OAuth2::AccessToken
 
-      def token_lifetime_seconds: (Integer) -> self
+      def initialize: (OpenId, Set[String], String, String, String, String | OpenSSL::PKey::PKey, ?jwt_lifetime: Integer, ?jwt_algorithm: String, ?key_id: String?) -> void
+
+      class WebTokenAuthenticatorBuilder < OAuthAuthenticatorBuilder
+        @jwt_audience: String
+        @jwt_issuer: String
+        @jwt_lifetime: Integer
+        @jwt_subject: String
+        @key_id: String
+        @private_key: String
+
+        def initialize: (String, String, String, String, String) -> void
+
+        def build: -> WebTokenAuthenticator
+
+        def key_identifier: (String) -> self
+
+        def token_lifetime_seconds: (Integer) -> self
+      end
     end
   end
 
@@ -277,7 +284,7 @@ module ZitadelClient
     attr_reader settings: untyped
     attr_reader users: untyped
 
-    def initialize: (Authenticator) ?{ (Configuration) -> void } -> void
+    def initialize: (Auth::Authenticator) ?{ (Configuration) -> void } -> void
 
   end
 

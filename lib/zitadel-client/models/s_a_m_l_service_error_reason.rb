@@ -13,7 +13,7 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
+module ZitadelClient::Models
   class SAMLServiceErrorReason
     ERROR_REASON_UNSPECIFIED = "ERROR_REASON_UNSPECIFIED".freeze
     ERROR_REASON_VERSION_MISSMATCH = "ERROR_REASON_VERSION_MISSMATCH".freeze
@@ -40,7 +40,8 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if SAMLServiceErrorReason.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #SAMLServiceErrorReason"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Models::SAMLServiceErrorReason"
     end
   end
+
 end

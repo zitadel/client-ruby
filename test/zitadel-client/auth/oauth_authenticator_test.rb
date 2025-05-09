@@ -16,26 +16,28 @@ require 'minitest/hooks/test'
 require 'testcontainers'
 
 module ZitadelClient
-  class OAuthAuthenticatorTest < Minitest::Test
-    # noinspection RbsMissingTypeSignature
-    include Minitest::Hooks
+  module Auth
+    class OAuthAuthenticatorTest < Minitest::Test
+      # noinspection RbsMissingTypeSignature
+      include Minitest::Hooks
 
-    def before_all
-      super
-      @mock_server = Testcontainers::DockerContainer.new('ghcr.io/navikt/mock-oauth2-server:2.1.10')
-                                                    .with_exposed_port(8080)
-                                                    .start
-      @mock_server.wait_for_http(container_port: 8080, status: 405)
-      # noinspection HttpUrlsUsage
-      @oauth_host = "http://#{@mock_server.host}:#{@mock_server.mapped_port(8080)}"
+      def before_all
+        super
+        @mock_server = Testcontainers::DockerContainer.new('ghcr.io/navikt/mock-oauth2-server:2.1.10')
+                                                      .with_exposed_port(8080)
+                                                      .start
+        @mock_server.wait_for_http(container_port: 8080, status: 405)
+        # noinspection HttpUrlsUsage
+        @oauth_host = "http://#{@mock_server.host}:#{@mock_server.mapped_port(8080)}"
+      end
+
+      def after_all
+        @mock_server&.stop
+        super
+      end
+
+      # Helper for subclasses to access the OAuth host.
+      attr_reader :oauth_host
     end
-
-    def after_all
-      @mock_server&.stop
-      super
-    end
-
-    # Helper for subclasses to access the OAuth host.
-    attr_reader :oauth_host
   end
 end

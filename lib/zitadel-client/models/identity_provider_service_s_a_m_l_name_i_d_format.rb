@@ -13,7 +13,7 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
+module ZitadelClient::Models
   class IdentityProviderServiceSAMLNameIDFormat
     SAML_NAME_ID_FORMAT_UNSPECIFIED = "SAML_NAME_ID_FORMAT_UNSPECIFIED".freeze
     SAML_NAME_ID_FORMAT_EMAIL_ADDRESS = "SAML_NAME_ID_FORMAT_EMAIL_ADDRESS".freeze
@@ -36,7 +36,8 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if IdentityProviderServiceSAMLNameIDFormat.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #IdentityProviderServiceSAMLNameIDFormat"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Models::IdentityProviderServiceSAMLNameIDFormat"
     end
   end
+
 end
