@@ -48,7 +48,7 @@ module ZitadelClient
       # @return [Zitadel] SDK client configured with PAT authentication.
       # @see https://zitadel.com/docs/guides/integrate/service-users/personal-access-token
       def with_access_token(host, access_token)
-        new(PersonalAccessTokenAuthenticator.new(host, access_token))
+        new(Auth::PersonalAccessTokenAuthenticator.new(host, access_token))
       end
 
       # Initialize the SDK using OAuth2 Client Credentials flow.
@@ -60,7 +60,7 @@ module ZitadelClient
       # @see https://zitadel.com/docs/guides/integrate/service-users/client-credentials
       def with_client_credentials(host, client_id, client_secret)
         new(
-          ClientCredentialsAuthenticator
+          Auth::ClientCredentialsAuthenticator
             .builder(host, client_id, client_secret)
             .build
         )
@@ -73,7 +73,7 @@ module ZitadelClient
       # @return [Zitadel] SDK client using JWT assertion for secure, secret-less auth.
       # @see https://zitadel.com/docs/guides/integrate/service-users/private-key-jwt
       def with_private_key(host, key_file)
-        new(WebTokenAuthenticator.from_json(host, key_file))
+        new(Auth::WebTokenAuthenticator.from_json(host, key_file))
       end
 
       # @!endgroup
