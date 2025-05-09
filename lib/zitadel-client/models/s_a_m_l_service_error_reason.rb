@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-          class SAMLServiceErrorReason
+module ZitadelClient::Models
+  class SAMLServiceErrorReason
     ERROR_REASON_UNSPECIFIED = "ERROR_REASON_UNSPECIFIED".freeze
     ERROR_REASON_VERSION_MISSMATCH = "ERROR_REASON_VERSION_MISSMATCH".freeze
     ERROR_REASON_AUTH_N_FAILED = "ERROR_REASON_AUTH_N_FAILED".freeze
@@ -45,5 +44,4 @@ module ZitadelClient
     end
   end
 
-  end
 end

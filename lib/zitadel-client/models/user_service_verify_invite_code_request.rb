@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class UserServiceVerifyInviteCodeRequest
+module ZitadelClient::Models
+  class UserServiceVerifyInviteCodeRequest
     # \"the verification code generated during the invite code request\"
     attr_accessor :verification_code
 
@@ -264,5 +263,4 @@ end
 
   end
 
-  end
 end

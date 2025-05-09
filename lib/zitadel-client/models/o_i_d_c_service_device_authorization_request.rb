@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class OIDCServiceDeviceAuthorizationRequest
+module ZitadelClient::Models
+  class OIDCServiceDeviceAuthorizationRequest
     # The unique identifier of the device authorization request to be used for authorizing or denying the request.
     attr_accessor :id
 
@@ -271,5 +270,4 @@ end
 
   end
 
-  end
 end

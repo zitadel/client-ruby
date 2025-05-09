@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SessionServiceChallengesWebAuthN
+module ZitadelClient::Models
+  class SessionServiceChallengesWebAuthN
     # Options for Assertion Generaration (dictionary PublicKeyCredentialRequestOptions). Generated helper methods transform the field to JSON, for use in a WebauthN client. See also: https://www.w3.org/TR/webauthn/#dictdef-publickeycredentialrequestoptions
     attr_accessor :public_key_credential_request_options
 
@@ -229,5 +228,4 @@ end
 
   end
 
-  end
 end

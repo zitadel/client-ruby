@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class IdentityProviderServiceGenericOIDCConfig
+module ZitadelClient::Models
+  class IdentityProviderServiceGenericOIDCConfig
     # The OIDC issuer of the identity provider.
     attr_accessor :issuer
 
@@ -261,5 +260,4 @@ end
 
   end
 
-  end
 end

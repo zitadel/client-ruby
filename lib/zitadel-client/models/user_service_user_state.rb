@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-          class UserServiceUserState
+module ZitadelClient::Models
+  class UserServiceUserState
     USER_STATE_UNSPECIFIED = "USER_STATE_UNSPECIFIED".freeze
     USER_STATE_ACTIVE = "USER_STATE_ACTIVE".freeze
     USER_STATE_INACTIVE = "USER_STATE_INACTIVE".freeze
@@ -43,5 +42,4 @@ module ZitadelClient
     end
   end
 
-  end
 end

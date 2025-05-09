@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class UserServiceCreateInviteCodeRequest
+module ZitadelClient::Models
+  class UserServiceCreateInviteCodeRequest
     attr_accessor :send_code
 
     attr_accessor :return_code
@@ -237,5 +236,4 @@ end
 
   end
 
-  end
 end

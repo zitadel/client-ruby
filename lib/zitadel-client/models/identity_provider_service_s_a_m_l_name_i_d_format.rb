@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-          class IdentityProviderServiceSAMLNameIDFormat
+module ZitadelClient::Models
+  class IdentityProviderServiceSAMLNameIDFormat
     SAML_NAME_ID_FORMAT_UNSPECIFIED = "SAML_NAME_ID_FORMAT_UNSPECIFIED".freeze
     SAML_NAME_ID_FORMAT_EMAIL_ADDRESS = "SAML_NAME_ID_FORMAT_EMAIL_ADDRESS".freeze
     SAML_NAME_ID_FORMAT_PERSISTENT = "SAML_NAME_ID_FORMAT_PERSISTENT".freeze
@@ -41,5 +40,4 @@ module ZitadelClient
     end
   end
 
-  end
 end

@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class UserServiceVerifyPasskeyRegistrationRequest
+module ZitadelClient::Models
+  class UserServiceVerifyPasskeyRegistrationRequest
     # PublicKeyCredential Interface. Generated helper methods populate the field from JSON created by a WebauthN client. See also:  https://www.w3.org/TR/webauthn/#publickeycredential
     attr_accessor :public_key_credential
 
@@ -290,5 +289,4 @@ end
 
   end
 
-  end
 end

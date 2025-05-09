@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class UserServiceSetHumanProfile
+module ZitadelClient::Models
+  class UserServiceSetHumanProfile
     attr_accessor :given_name
 
     attr_accessor :family_name
@@ -424,5 +423,4 @@ end
 
   end
 
-  end
 end

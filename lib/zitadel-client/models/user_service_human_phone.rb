@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class UserServiceHumanPhone
+module ZitadelClient::Models
+  class UserServiceHumanPhone
     attr_accessor :phone
 
     attr_accessor :is_verified
@@ -256,5 +255,4 @@ end
 
   end
 
-  end
 end

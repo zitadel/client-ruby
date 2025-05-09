@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class OrganizationServiceSetHumanEmail
+module ZitadelClient::Models
+  class OrganizationServiceSetHumanEmail
     attr_accessor :email
 
     attr_accessor :send_code
@@ -290,5 +289,4 @@ end
 
   end
 
-  end
 end

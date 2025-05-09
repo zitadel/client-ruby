@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class UserServiceIDPInformation
+module ZitadelClient::Models
+  class UserServiceIDPInformation
     attr_accessor :oauth
 
     attr_accessor :ldap
@@ -286,5 +285,4 @@ end
 
   end
 
-  end
 end

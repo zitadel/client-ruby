@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SessionServiceListDetails
+module ZitadelClient::Models
+  class SessionServiceListDetails
     attr_accessor :total_result
 
     attr_accessor :processed_sequence
@@ -247,5 +246,4 @@ end
 
   end
 
-  end
 end

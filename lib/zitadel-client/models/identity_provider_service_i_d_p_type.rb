@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-          class IdentityProviderServiceIDPType
+module ZitadelClient::Models
+  class IdentityProviderServiceIDPType
     IDP_TYPE_UNSPECIFIED = "IDP_TYPE_UNSPECIFIED".freeze
     IDP_TYPE_OIDC = "IDP_TYPE_OIDC".freeze
     IDP_TYPE_JWT = "IDP_TYPE_JWT".freeze
@@ -50,5 +49,4 @@ module ZitadelClient
     end
   end
 
-  end
 end

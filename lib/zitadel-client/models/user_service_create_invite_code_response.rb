@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class UserServiceCreateInviteCodeResponse
+module ZitadelClient::Models
+  class UserServiceCreateInviteCodeResponse
     attr_accessor :details
 
     # The invite code is returned if the verification was set to return_code.
@@ -238,5 +237,4 @@ end
 
   end
 
-  end
 end

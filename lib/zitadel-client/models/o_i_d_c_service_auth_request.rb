@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class OIDCServiceAuthRequest
+module ZitadelClient::Models
+  class OIDCServiceAuthRequest
     # ID of the authorization request
     attr_accessor :id
 
@@ -325,5 +324,4 @@ end
 
   end
 
-  end
 end

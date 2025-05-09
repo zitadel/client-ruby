@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-          class UserServicePasskeyAuthenticator
+module ZitadelClient::Models
+  class UserServicePasskeyAuthenticator
     PASSKEY_AUTHENTICATOR_UNSPECIFIED = "PASSKEY_AUTHENTICATOR_UNSPECIFIED".freeze
     PASSKEY_AUTHENTICATOR_PLATFORM = "PASSKEY_AUTHENTICATOR_PLATFORM".freeze
     PASSKEY_AUTHENTICATOR_CROSS_PLATFORM = "PASSKEY_AUTHENTICATOR_CROSS_PLATFORM".freeze
@@ -40,5 +39,4 @@ module ZitadelClient
     end
   end
 
-  end
 end

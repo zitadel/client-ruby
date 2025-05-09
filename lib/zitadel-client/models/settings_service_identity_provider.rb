@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SettingsServiceIdentityProvider
+module ZitadelClient::Models
+  class SettingsServiceIdentityProvider
     attr_accessor :id
 
     attr_accessor :name
@@ -279,5 +278,4 @@ end
 
   end
 
-  end
 end

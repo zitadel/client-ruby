@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class UserServiceMachineUser
+module ZitadelClient::Models
+  class UserServiceMachineUser
     attr_accessor :name
 
     attr_accessor :description
@@ -279,5 +278,4 @@ end
 
   end
 
-  end
 end

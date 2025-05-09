@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SessionServiceCreationDateQuery
+module ZitadelClient::Models
+  class SessionServiceCreationDateQuery
     attr_accessor :creation_date
 
     attr_accessor :method
@@ -261,5 +260,4 @@ end
 
   end
 
-  end
 end

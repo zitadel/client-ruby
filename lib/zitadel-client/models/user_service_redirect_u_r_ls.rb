@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class UserServiceRedirectURLs
+module ZitadelClient::Models
+  class UserServiceRedirectURLs
     # URL on which the user will be redirected after a successful login
     attr_accessor :success_url
 
@@ -295,5 +294,4 @@ end
 
   end
 
-  end
 end

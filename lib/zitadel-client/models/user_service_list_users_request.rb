@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class UserServiceListUsersRequest
+module ZitadelClient::Models
+  class UserServiceListUsersRequest
     attr_accessor :query
 
     attr_accessor :sorting_column
@@ -272,5 +271,4 @@ end
 
   end
 
-  end
 end

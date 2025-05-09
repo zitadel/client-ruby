@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SettingsServicePasswordExpirySettings
+module ZitadelClient::Models
+  class SettingsServicePasswordExpirySettings
     # Amount of days after which a password will expire. The user will be forced to change the password on the following authentication.
     attr_accessor :max_age_days
 
@@ -272,5 +271,4 @@ end
 
   end
 
-  end
 end

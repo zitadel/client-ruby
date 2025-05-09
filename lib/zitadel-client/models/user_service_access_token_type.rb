@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-          class UserServiceAccessTokenType
+module ZitadelClient::Models
+  class UserServiceAccessTokenType
     ACCESS_TOKEN_TYPE_BEARER = "ACCESS_TOKEN_TYPE_BEARER".freeze
     ACCESS_TOKEN_TYPE_JWT = "ACCESS_TOKEN_TYPE_JWT".freeze
 
@@ -39,5 +38,4 @@ module ZitadelClient
     end
   end
 
-  end
 end

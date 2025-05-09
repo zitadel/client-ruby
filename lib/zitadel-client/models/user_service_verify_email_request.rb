@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class UserServiceVerifyEmailRequest
+module ZitadelClient::Models
+  class UserServiceVerifyEmailRequest
     # \"the verification code generated during the set email request\"
     attr_accessor :verification_code
 
@@ -264,5 +263,4 @@ end
 
   end
 
-  end
 end

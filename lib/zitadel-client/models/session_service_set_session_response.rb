@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SessionServiceSetSessionResponse
+module ZitadelClient::Models
+  class SessionServiceSetSessionResponse
     attr_accessor :details
 
     # \"The current token of the session, which is required for delete session, get session or the request of other resources.\"
@@ -247,5 +246,4 @@ end
 
   end
 
-  end
 end

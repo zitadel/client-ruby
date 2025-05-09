@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class UserServiceSetPasswordRequest
+module ZitadelClient::Models
+  class UserServiceSetPasswordRequest
     attr_accessor :new_password
 
     attr_accessor :current_password
@@ -317,5 +316,4 @@ end
 
   end
 
-  end
 end

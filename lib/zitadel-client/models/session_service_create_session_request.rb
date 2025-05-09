@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SessionServiceCreateSessionRequest
+module ZitadelClient::Models
+  class SessionServiceCreateSessionRequest
     attr_accessor :checks
 
     # \"custom key value list to be stored on the session\"
@@ -268,5 +267,4 @@ end
 
   end
 
-  end
 end

@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-          class OrganizationServiceGender
+module ZitadelClient::Models
+  class OrganizationServiceGender
     GENDER_UNSPECIFIED = "GENDER_UNSPECIFIED".freeze
     GENDER_FEMALE = "GENDER_FEMALE".freeze
     GENDER_MALE = "GENDER_MALE".freeze
@@ -41,5 +40,4 @@ module ZitadelClient
     end
   end
 
-  end
 end

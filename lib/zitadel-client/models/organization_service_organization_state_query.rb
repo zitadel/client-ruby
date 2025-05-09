@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class OrganizationServiceOrganizationStateQuery
+module ZitadelClient::Models
+  class OrganizationServiceOrganizationStateQuery
     attr_accessor :state
 
     class EnumAttributeValidator
@@ -252,5 +251,4 @@ end
 
   end
 
-  end
 end

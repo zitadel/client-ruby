@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-          class IdentityProviderServiceSAMLBinding
+module ZitadelClient::Models
+  class IdentityProviderServiceSAMLBinding
     SAML_BINDING_UNSPECIFIED = "SAML_BINDING_UNSPECIFIED".freeze
     SAML_BINDING_POST = "SAML_BINDING_POST".freeze
     SAML_BINDING_REDIRECT = "SAML_BINDING_REDIRECT".freeze
@@ -41,5 +40,4 @@ module ZitadelClient
     end
   end
 
-  end
 end

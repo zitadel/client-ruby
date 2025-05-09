@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              # Query for users with a specific state.
+module ZitadelClient::Models
+  # Query for users with a specific state.
   class UserServiceLoginNameQuery
     attr_accessor :login_name
 
@@ -297,5 +296,4 @@ end
 
   end
 
-  end
 end

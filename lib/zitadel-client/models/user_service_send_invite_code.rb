@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class UserServiceSendInviteCode
+module ZitadelClient::Models
+  class UserServiceSendInviteCode
     # Optionally set a url_template, which will be used in the invite mail sent by ZITADEL to guide the user to your invitation page. If no template is set, the default ZITADEL url will be used.  The following placeholders can be used: UserID, OrgID, Code
     attr_accessor :url_template
 
@@ -295,5 +294,4 @@ end
 
   end
 
-  end
 end

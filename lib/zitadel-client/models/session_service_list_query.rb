@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              # Object unspecific list filters like offset, limit and asc/desc.
+module ZitadelClient::Models
+  # Object unspecific list filters like offset, limit and asc/desc.
   class SessionServiceListQuery
     attr_accessor :offset
 
@@ -249,5 +248,4 @@ end
 
   end
 
-  end
 end

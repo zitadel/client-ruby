@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SettingsServiceTheme
+module ZitadelClient::Models
+  class SettingsServiceTheme
     # hex value for primary color
     attr_accessor :primary_color
 
@@ -279,5 +278,4 @@ end
 
   end
 
-  end
 end

@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-          class UserServiceType
+module ZitadelClient::Models
+  class UserServiceType
     TYPE_UNSPECIFIED = "TYPE_UNSPECIFIED".freeze
     TYPE_HUMAN = "TYPE_HUMAN".freeze
     TYPE_MACHINE = "TYPE_MACHINE".freeze
@@ -40,5 +39,4 @@ module ZitadelClient
     end
   end
 
-  end
 end

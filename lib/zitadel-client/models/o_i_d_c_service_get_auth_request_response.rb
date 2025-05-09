@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class OIDCServiceGetAuthRequestResponse
+module ZitadelClient::Models
+  class OIDCServiceGetAuthRequestResponse
     attr_accessor :auth_request
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -228,5 +227,4 @@ end
 
   end
 
-  end
 end

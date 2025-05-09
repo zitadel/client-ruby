@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest
+module ZitadelClient::Models
+  class OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest
     attr_accessor :session
 
     attr_accessor :deny
@@ -237,5 +236,4 @@ end
 
   end
 
-  end
 end

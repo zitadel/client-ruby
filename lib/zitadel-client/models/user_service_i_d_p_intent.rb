@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class UserServiceIDPIntent
+module ZitadelClient::Models
+  class UserServiceIDPIntent
     # ID of the IDP intent
     attr_accessor :idp_intent_id
 
@@ -324,5 +323,4 @@ end
 
   end
 
-  end
 end

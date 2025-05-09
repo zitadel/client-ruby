@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-          class FeatureServiceSource
+module ZitadelClient::Models
+  class FeatureServiceSource
     SOURCE_UNSPECIFIED = "SOURCE_UNSPECIFIED".freeze
     SOURCE_SYSTEM = "SOURCE_SYSTEM".freeze
     SOURCE_INSTANCE = "SOURCE_INSTANCE".freeze
@@ -44,5 +43,4 @@ module ZitadelClient
     end
   end
 
-  end
 end

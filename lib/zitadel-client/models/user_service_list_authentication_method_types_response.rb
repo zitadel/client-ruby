@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class UserServiceListAuthenticationMethodTypesResponse
+module ZitadelClient::Models
+  class UserServiceListAuthenticationMethodTypesResponse
     attr_accessor :details
 
     attr_accessor :auth_method_types
@@ -239,5 +238,4 @@ end
 
   end
 
-  end
 end

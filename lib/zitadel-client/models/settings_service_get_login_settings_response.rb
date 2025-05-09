@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SettingsServiceGetLoginSettingsResponse
+module ZitadelClient::Models
+  class SettingsServiceGetLoginSettingsResponse
     attr_accessor :details
 
     attr_accessor :settings
@@ -237,5 +236,4 @@ end
 
   end
 
-  end
 end

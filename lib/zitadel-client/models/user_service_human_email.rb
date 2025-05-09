@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class UserServiceHumanEmail
+module ZitadelClient::Models
+  class UserServiceHumanEmail
     attr_accessor :email
 
     attr_accessor :is_verified
@@ -265,5 +264,4 @@ end
 
   end
 
-  end
 end

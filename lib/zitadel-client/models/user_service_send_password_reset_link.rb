@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class UserServiceSendPasswordResetLink
+module ZitadelClient::Models
+  class UserServiceSendPasswordResetLink
     attr_accessor :notification_type
 
     # Optionally set a url_template, which will be used in the password reset mail sent by ZITADEL to guide the user to your password change page. If no template is set, the default ZITADEL url will be used.  The following placeholders can be used: UserID, OrgID, Code
@@ -290,5 +289,4 @@ end
 
   end
 
-  end
 end

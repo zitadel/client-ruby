@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SessionServiceRequestChallenges
+module ZitadelClient::Models
+  class SessionServiceRequestChallenges
     attr_accessor :web_auth_n
 
     attr_accessor :otp_sms
@@ -246,5 +245,4 @@ end
 
   end
 
-  end
 end

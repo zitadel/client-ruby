@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SettingsServiceLoginSettings
+module ZitadelClient::Models
+  class SettingsServiceLoginSettings
     # defines if a user is allowed to log in with username and password
     attr_accessor :allow_username_password
 
@@ -445,5 +444,4 @@ end
 
   end
 
-  end
 end

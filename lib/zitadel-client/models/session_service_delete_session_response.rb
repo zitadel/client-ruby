@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SessionServiceDeleteSessionResponse
+module ZitadelClient::Models
+  class SessionServiceDeleteSessionResponse
     attr_accessor :details
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -228,5 +227,4 @@ end
 
   end
 
-  end
 end

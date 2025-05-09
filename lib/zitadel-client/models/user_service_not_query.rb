@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              # Negate the sub-condition.
+module ZitadelClient::Models
+  # Negate the sub-condition.
   class UserServiceNotQuery
     attr_accessor :query
 
@@ -229,5 +228,4 @@ end
 
   end
 
-  end
 end

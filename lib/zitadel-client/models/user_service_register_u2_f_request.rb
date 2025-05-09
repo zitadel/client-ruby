@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class UserServiceRegisterU2FRequest
+module ZitadelClient::Models
+  class UserServiceRegisterU2FRequest
     # \"Domain on which the user is authenticated.\"
     attr_accessor :domain
 
@@ -229,5 +228,4 @@ end
 
   end
 
-  end
 end

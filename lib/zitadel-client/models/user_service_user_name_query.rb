@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              # Query for users with a specific user name.
+module ZitadelClient::Models
+  # Query for users with a specific user name.
   class UserServiceUserNameQuery
     attr_accessor :user_name
 
@@ -297,5 +296,4 @@ end
 
   end
 
-  end
 end

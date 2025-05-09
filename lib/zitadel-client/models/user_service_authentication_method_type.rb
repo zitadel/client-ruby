@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-          class UserServiceAuthenticationMethodType
+module ZitadelClient::Models
+  class UserServiceAuthenticationMethodType
     AUTHENTICATION_METHOD_TYPE_UNSPECIFIED = "AUTHENTICATION_METHOD_TYPE_UNSPECIFIED".freeze
     AUTHENTICATION_METHOD_TYPE_PASSWORD = "AUTHENTICATION_METHOD_TYPE_PASSWORD".freeze
     AUTHENTICATION_METHOD_TYPE_PASSKEY = "AUTHENTICATION_METHOD_TYPE_PASSKEY".freeze
@@ -45,5 +44,4 @@ module ZitadelClient
     end
   end
 
-  end
 end

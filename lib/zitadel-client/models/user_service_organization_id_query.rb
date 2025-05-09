@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              # Query for users under a specific organization as resource owner.
+module ZitadelClient::Models
+  # Query for users under a specific organization as resource owner.
   class UserServiceOrganizationIdQuery
     attr_accessor :organization_id
 
@@ -264,5 +263,4 @@ end
 
   end
 
-  end
 end

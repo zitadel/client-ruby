@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SessionServiceProtobufAny
+module ZitadelClient::Models
+  class SessionServiceProtobufAny
     attr_accessor :type
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -228,5 +227,4 @@ end
 
   end
 
-  end
 end

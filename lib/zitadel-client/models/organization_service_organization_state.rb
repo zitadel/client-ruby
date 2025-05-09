@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-          class OrganizationServiceOrganizationState
+module ZitadelClient::Models
+  class OrganizationServiceOrganizationState
     ORGANIZATION_STATE_UNSPECIFIED = "ORGANIZATION_STATE_UNSPECIFIED".freeze
     ORGANIZATION_STATE_ACTIVE = "ORGANIZATION_STATE_ACTIVE".freeze
     ORGANIZATION_STATE_INACTIVE = "ORGANIZATION_STATE_INACTIVE".freeze
@@ -41,5 +40,4 @@ module ZitadelClient
     end
   end
 
-  end
 end

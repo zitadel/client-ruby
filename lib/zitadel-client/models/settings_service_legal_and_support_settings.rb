@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SettingsServiceLegalAndSupportSettings
+module ZitadelClient::Models
+  class SettingsServiceLegalAndSupportSettings
     attr_accessor :tos_link
 
     attr_accessor :privacy_policy_link
@@ -319,5 +318,4 @@ end
 
   end
 
-  end
 end

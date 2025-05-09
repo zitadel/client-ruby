@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SettingsServicePasswordComplexitySettings
+module ZitadelClient::Models
+  class SettingsServicePasswordComplexitySettings
     # Defines the minimum length of a password.
     attr_accessor :min_length
 
@@ -302,5 +301,4 @@ end
 
   end
 
-  end
 end

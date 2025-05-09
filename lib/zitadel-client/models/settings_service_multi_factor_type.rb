@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-          class SettingsServiceMultiFactorType
+module ZitadelClient::Models
+  class SettingsServiceMultiFactorType
     MULTI_FACTOR_TYPE_UNSPECIFIED = "MULTI_FACTOR_TYPE_UNSPECIFIED".freeze
     MULTI_FACTOR_TYPE_U2_F_WITH_VERIFICATION = "MULTI_FACTOR_TYPE_U2F_WITH_VERIFICATION".freeze
 
@@ -39,5 +38,4 @@ module ZitadelClient
     end
   end
 
-  end
 end

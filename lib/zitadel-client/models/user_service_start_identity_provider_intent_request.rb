@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class UserServiceStartIdentityProviderIntentRequest
+module ZitadelClient::Models
+  class UserServiceStartIdentityProviderIntentRequest
     # ID for existing identity provider
     attr_accessor :idp_id
 
@@ -275,5 +274,4 @@ end
 
   end
 
-  end
 end

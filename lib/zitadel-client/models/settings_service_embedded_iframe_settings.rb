@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SettingsServiceEmbeddedIframeSettings
+module ZitadelClient::Models
+  class SettingsServiceEmbeddedIframeSettings
     # states if iframe embedding is enabled or disabled
     attr_accessor :enabled
 
@@ -241,5 +240,4 @@ end
 
   end
 
-  end
 end

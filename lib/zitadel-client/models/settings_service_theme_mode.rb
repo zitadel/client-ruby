@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-          class SettingsServiceThemeMode
+module ZitadelClient::Models
+  class SettingsServiceThemeMode
     THEME_MODE_UNSPECIFIED = "THEME_MODE_UNSPECIFIED".freeze
     THEME_MODE_AUTO = "THEME_MODE_AUTO".freeze
     THEME_MODE_LIGHT = "THEME_MODE_LIGHT".freeze
@@ -41,5 +40,4 @@ module ZitadelClient
     end
   end
 
-  end
 end

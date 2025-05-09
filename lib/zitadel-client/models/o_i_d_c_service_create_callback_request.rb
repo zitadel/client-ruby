@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class OIDCServiceCreateCallbackRequest
+module ZitadelClient::Models
+  class OIDCServiceCreateCallbackRequest
     attr_accessor :session
 
     attr_accessor :error
@@ -237,5 +236,4 @@ end
 
   end
 
-  end
 end

@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SessionServiceSession
+module ZitadelClient::Models
+  class SessionServiceSession
     # \"id of the session\"
     attr_accessor :id
 
@@ -299,5 +298,4 @@ end
 
   end
 
-  end
 end

@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class UserServiceStartIdentityProviderIntentResponse
+module ZitadelClient::Models
+  class UserServiceStartIdentityProviderIntentResponse
     attr_accessor :details
 
     # URL to which the client should redirect
@@ -257,5 +256,4 @@ end
 
   end
 
-  end
 end

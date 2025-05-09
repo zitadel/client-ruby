@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SessionServiceWebAuthNFactor
+module ZitadelClient::Models
+  class SessionServiceWebAuthNFactor
     # \"time when the passkey challenge was last checked\"
     attr_accessor :verified_at
 
@@ -238,5 +237,4 @@ end
 
   end
 
-  end
 end

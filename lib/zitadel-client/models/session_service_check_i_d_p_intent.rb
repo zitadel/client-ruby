@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SessionServiceCheckIDPIntent
+module ZitadelClient::Models
+  class SessionServiceCheckIDPIntent
     # ID of the idp intent, previously returned on the success response of the IDP callback
     attr_accessor :idp_intent_id
 
@@ -295,5 +294,4 @@ end
 
   end
 
-  end
 end

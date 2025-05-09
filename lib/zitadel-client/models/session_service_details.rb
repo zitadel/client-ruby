@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SessionServiceDetails
+module ZitadelClient::Models
+  class SessionServiceDetails
     # on read: the sequence of the last event reduced by the projection  on manipulation: the timestamp of the event(s) added by the manipulation
     attr_accessor :sequence
 
@@ -257,5 +256,4 @@ end
 
   end
 
-  end
 end

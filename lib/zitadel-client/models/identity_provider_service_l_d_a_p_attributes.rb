@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class IdentityProviderServiceLDAPAttributes
+module ZitadelClient::Models
+  class IdentityProviderServiceLDAPAttributes
     attr_accessor :id_attribute
 
     attr_accessor :first_name_attribute
@@ -345,5 +344,4 @@ end
 
   end
 
-  end
 end

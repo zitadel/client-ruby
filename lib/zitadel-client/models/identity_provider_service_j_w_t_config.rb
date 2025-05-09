@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class IdentityProviderServiceJWTConfig
+module ZitadelClient::Models
+  class IdentityProviderServiceJWTConfig
     # The endpoint where the JWT can be extracted.
     attr_accessor :jwt_endpoint
 
@@ -259,5 +258,4 @@ end
 
   end
 
-  end
 end

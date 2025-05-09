@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class FeatureServiceImprovedPerformanceFeatureFlag
+module ZitadelClient::Models
+  class FeatureServiceImprovedPerformanceFeatureFlag
     # Which of the performance improvements is enabled
     attr_accessor :execution_paths
 
@@ -264,5 +263,4 @@ end
 
   end
 
-  end
 end

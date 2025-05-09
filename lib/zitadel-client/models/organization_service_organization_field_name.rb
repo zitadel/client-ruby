@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-          class OrganizationServiceOrganizationFieldName
+module ZitadelClient::Models
+  class OrganizationServiceOrganizationFieldName
     ORGANIZATION_FIELD_NAME_UNSPECIFIED = "ORGANIZATION_FIELD_NAME_UNSPECIFIED".freeze
     ORGANIZATION_FIELD_NAME_NAME = "ORGANIZATION_FIELD_NAME_NAME".freeze
 
@@ -39,5 +38,4 @@ module ZitadelClient
     end
   end
 
-  end
 end

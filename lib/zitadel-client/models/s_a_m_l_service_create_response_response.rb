@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SAMLServiceCreateResponseResponse
+module ZitadelClient::Models
+  class SAMLServiceCreateResponseResponse
     attr_accessor :details
 
     # URL including the Assertion Consumer Service where the user should be redirected or has to call per POST, depending on the binding. Contains details for the application to obtain the response on success, or error details on failure. Note that this field must be treated as credentials, as the contained SAMLResponse or code can be used on behalve of the user.
@@ -256,5 +255,4 @@ end
 
   end
 
-  end
 end

@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class IdentityProviderServiceSAMLConfig
+module ZitadelClient::Models
+  class IdentityProviderServiceSAMLConfig
     # Metadata of the SAML identity provider.
     attr_accessor :metadata_xml
 
@@ -293,5 +292,4 @@ end
 
   end
 
-  end
 end

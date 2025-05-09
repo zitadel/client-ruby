@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              # FeatureFlag is a simple boolean Feature setting, without further payload.
+module ZitadelClient::Models
+  # FeatureFlag is a simple boolean Feature setting, without further payload.
   class FeatureServiceFeatureFlag
     # Whether a feature is enabled.
     attr_accessor :enabled
@@ -263,5 +262,4 @@ end
 
   end
 
-  end
 end

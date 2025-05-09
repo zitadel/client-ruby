@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class UserServicePasskey
+module ZitadelClient::Models
+  class UserServicePasskey
     attr_accessor :id
 
     attr_accessor :state
@@ -298,5 +297,4 @@ end
 
   end
 
-  end
 end

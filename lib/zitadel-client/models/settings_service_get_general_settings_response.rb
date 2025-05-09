@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SettingsServiceGetGeneralSettingsResponse
+module ZitadelClient::Models
+  class SettingsServiceGetGeneralSettingsResponse
     # default organization for the current context
     attr_accessor :default_org_id
 
@@ -250,5 +249,4 @@ end
 
   end
 
-  end
 end

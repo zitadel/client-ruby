@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SAMLServiceSAMLRequest
+module ZitadelClient::Models
+  class SAMLServiceSAMLRequest
     # ID of the SAMLRequest
     attr_accessor :id
 
@@ -279,5 +278,4 @@ end
 
   end
 
-  end
 end

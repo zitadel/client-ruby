@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SettingsServiceSetSecuritySettingsRequest
+module ZitadelClient::Models
+  class SettingsServiceSetSecuritySettingsRequest
     attr_accessor :embedded_iframe
 
     # allows users to impersonate other users. The impersonator needs the appropriate `*_IMPERSONATOR` roles assigned as well
@@ -238,5 +237,4 @@ end
 
   end
 
-  end
 end

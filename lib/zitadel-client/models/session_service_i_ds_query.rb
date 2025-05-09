@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SessionServiceIDsQuery
+module ZitadelClient::Models
+  class SessionServiceIDsQuery
     attr_accessor :ids
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -230,5 +229,4 @@ end
 
   end
 
-  end
 end

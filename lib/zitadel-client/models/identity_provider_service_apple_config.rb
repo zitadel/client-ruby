@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class IdentityProviderServiceAppleConfig
+module ZitadelClient::Models
+  class IdentityProviderServiceAppleConfig
     # Client id (App ID or Service ID) provided by Apple.
     attr_accessor :client_id
 
@@ -261,5 +260,4 @@ end
 
   end
 
-  end
 end

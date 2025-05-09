@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-          class IdentityProviderServiceAutoLinkingOption
+module ZitadelClient::Models
+  class IdentityProviderServiceAutoLinkingOption
     AUTO_LINKING_OPTION_UNSPECIFIED = "AUTO_LINKING_OPTION_UNSPECIFIED".freeze
     AUTO_LINKING_OPTION_USERNAME = "AUTO_LINKING_OPTION_USERNAME".freeze
     AUTO_LINKING_OPTION_EMAIL = "AUTO_LINKING_OPTION_EMAIL".freeze
@@ -40,5 +39,4 @@ module ZitadelClient
     end
   end
 
-  end
 end

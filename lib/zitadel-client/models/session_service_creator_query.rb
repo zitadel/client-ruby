@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SessionServiceCreatorQuery
+module ZitadelClient::Models
+  class SessionServiceCreatorQuery
     # ID of the user who created the session. If empty, the calling user's ID is used.
     attr_accessor :id
 
@@ -248,5 +247,4 @@ end
 
   end
 
-  end
 end

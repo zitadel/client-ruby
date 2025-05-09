@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              # Connect multiple sub-condition with and OR operator.
+module ZitadelClient::Models
+  # Connect multiple sub-condition with and OR operator.
   class UserServiceOrQuery
     # the sub queries to 'OR'
     attr_accessor :queries
@@ -232,5 +231,4 @@ end
 
   end
 
-  end
 end

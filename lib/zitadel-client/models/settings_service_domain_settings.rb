@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SettingsServiceDomainSettings
+module ZitadelClient::Models
+  class SettingsServiceDomainSettings
     # the username has to end with the domain of its organization
     attr_accessor :login_name_includes_domain
 
@@ -282,5 +281,4 @@ end
 
   end
 
-  end
 end

@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-          class FeatureServiceImprovedPerformance
+module ZitadelClient::Models
+  class FeatureServiceImprovedPerformance
     IMPROVED_PERFORMANCE_UNSPECIFIED = "IMPROVED_PERFORMANCE_UNSPECIFIED".freeze
     IMPROVED_PERFORMANCE_ORG_BY_ID = "IMPROVED_PERFORMANCE_ORG_BY_ID".freeze
     IMPROVED_PERFORMANCE_PROJECT_GRANT = "IMPROVED_PERFORMANCE_PROJECT_GRANT".freeze
@@ -43,5 +42,4 @@ module ZitadelClient
     end
   end
 
-  end
 end

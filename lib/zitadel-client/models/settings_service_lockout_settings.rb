@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SettingsServiceLockoutSettings
+module ZitadelClient::Models
+  class SettingsServiceLockoutSettings
     # Maximum password check attempts before the account gets locked. Attempts are reset as soon as the password is entered correctly or the password is reset. If set to 0 the account will never be locked.
     attr_accessor :max_password_attempts
 
@@ -272,5 +271,4 @@ end
 
   end
 
-  end
 end

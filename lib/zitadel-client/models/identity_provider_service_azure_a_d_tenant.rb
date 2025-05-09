@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class IdentityProviderServiceAzureADTenant
+module ZitadelClient::Models
+  class IdentityProviderServiceAzureADTenant
     attr_accessor :tenant_type
 
     attr_accessor :tenant_id
@@ -239,5 +238,4 @@ end
 
   end
 
-  end
 end

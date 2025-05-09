@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SAMLServiceRpcStatus
+module ZitadelClient::Models
+  class SAMLServiceRpcStatus
     attr_accessor :code
 
     attr_accessor :message
@@ -248,5 +247,4 @@ end
 
   end
 
-  end
 end

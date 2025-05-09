@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-          class OIDCServicePrompt
+module ZitadelClient::Models
+  class OIDCServicePrompt
     PROMPT_UNSPECIFIED = "PROMPT_UNSPECIFIED".freeze
     PROMPT_NONE = "PROMPT_NONE".freeze
     PROMPT_LOGIN = "PROMPT_LOGIN".freeze
@@ -43,5 +42,4 @@ module ZitadelClient
     end
   end
 
-  end
 end

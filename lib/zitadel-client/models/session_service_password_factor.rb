@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SessionServicePasswordFactor
+module ZitadelClient::Models
+  class SessionServicePasswordFactor
     # \"time when the password was last checked\"
     attr_accessor :verified_at
 
@@ -229,5 +228,4 @@ end
 
   end
 
-  end
 end

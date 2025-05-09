@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class OrganizationServiceAddHumanUserRequest
+module ZitadelClient::Models
+  class OrganizationServiceAddHumanUserRequest
     # optionally set your own id unique for the user.
     attr_accessor :user_id
 
@@ -443,5 +442,4 @@ end
 
   end
 
-  end
 end

@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              # Query for users with a specific email.
+module ZitadelClient::Models
+  # Query for users with a specific email.
   class UserServiceEmailQuery
     # email address of the user
     attr_accessor :email_address
@@ -289,5 +288,4 @@ end
 
   end
 
-  end
 end

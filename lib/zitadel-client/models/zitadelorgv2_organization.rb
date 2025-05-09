@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class Zitadelorgv2Organization
+module ZitadelClient::Models
+  class Zitadelorgv2Organization
     # Unique identifier of the organization.
     attr_accessor :id
 
@@ -291,5 +290,4 @@ end
 
   end
 
-  end
 end

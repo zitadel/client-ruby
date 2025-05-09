@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SessionServiceUserAgent
+module ZitadelClient::Models
+  class SessionServiceUserAgent
     attr_accessor :fingerprint_id
 
     attr_accessor :ip
@@ -257,5 +256,4 @@ end
 
   end
 
-  end
 end

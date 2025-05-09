@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class IdentityProviderServiceOptions
+module ZitadelClient::Models
+  class IdentityProviderServiceOptions
     # Enable if users should be able to link an existing ZITADEL user with an external account.
     attr_accessor :is_linking_allowed
 
@@ -292,5 +291,4 @@ end
 
   end
 
-  end
 end

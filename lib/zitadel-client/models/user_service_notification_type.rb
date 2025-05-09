@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-          class UserServiceNotificationType
+module ZitadelClient::Models
+  class UserServiceNotificationType
     NOTIFICATION_TYPE_UNSPECIFIED = "NOTIFICATION_TYPE_Unspecified".freeze
     NOTIFICATION_TYPE_EMAIL = "NOTIFICATION_TYPE_Email".freeze
     NOTIFICATION_TYPE_SMS = "NOTIFICATION_TYPE_SMS".freeze
@@ -40,5 +39,4 @@ module ZitadelClient
     end
   end
 
-  end
 end

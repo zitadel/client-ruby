@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class IdentityProviderServiceGitLabSelfHostedConfig
+module ZitadelClient::Models
+  class IdentityProviderServiceGitLabSelfHostedConfig
     attr_accessor :issuer
 
     # Client id of the GitLab application.
@@ -250,5 +249,4 @@ end
 
   end
 
-  end
 end

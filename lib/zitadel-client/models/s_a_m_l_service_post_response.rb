@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SAMLServicePostResponse
+module ZitadelClient::Models
+  class SAMLServicePostResponse
     attr_accessor :relay_state
 
     attr_accessor :saml_response
@@ -237,5 +236,4 @@ end
 
   end
 
-  end
 end

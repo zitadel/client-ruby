@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              # Query for users with a specific last name.
+module ZitadelClient::Models
+  # Query for users with a specific last name.
   class UserServiceLastNameQuery
     attr_accessor :last_name
 
@@ -297,5 +296,4 @@ end
 
   end
 
-  end
 end

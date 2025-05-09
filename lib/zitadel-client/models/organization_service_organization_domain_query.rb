@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class OrganizationServiceOrganizationDomainQuery
+module ZitadelClient::Models
+  class OrganizationServiceOrganizationDomainQuery
     # Domain used in organization, not necessary primary domain.
     attr_accessor :domain
 
@@ -297,5 +296,4 @@ end
 
   end
 
-  end
 end

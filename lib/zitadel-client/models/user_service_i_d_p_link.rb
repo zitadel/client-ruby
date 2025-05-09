@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class UserServiceIDPLink
+module ZitadelClient::Models
+  class UserServiceIDPLink
     # ID of the identity provider
     attr_accessor :idp_id
 
@@ -333,5 +332,4 @@ end
 
   end
 
-  end
 end

@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class FeatureServiceLoginV2FeatureFlag
+module ZitadelClient::Models
+  class FeatureServiceLoginV2FeatureFlag
     attr_accessor :required
 
     attr_accessor :base_uri
@@ -270,5 +269,4 @@ end
 
   end
 
-  end
 end

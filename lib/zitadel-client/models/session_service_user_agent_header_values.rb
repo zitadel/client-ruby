@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              # A header may have multiple values. In Go, headers are defined as map[string][]string, but protobuf doesn't allow this scheme.
+module ZitadelClient::Models
+  # A header may have multiple values. In Go, headers are defined as map[string][]string, but protobuf doesn't allow this scheme.
   class SessionServiceUserAgentHeaderValues
     attr_accessor :values
 
@@ -231,5 +230,4 @@ end
 
   end
 
-  end
 end

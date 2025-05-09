@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SessionServiceRequestChallengesWebAuthN
+module ZitadelClient::Models
+  class SessionServiceRequestChallengesWebAuthN
     # \"Domain on which the session was created. Will be used in the WebAuthN challenge.\"
     attr_accessor :domain
 
@@ -294,5 +293,4 @@ end
 
   end
 
-  end
 end

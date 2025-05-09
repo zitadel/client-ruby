@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class OrganizationServiceSetMetadataEntry
+module ZitadelClient::Models
+  class OrganizationServiceSetMetadataEntry
     attr_accessor :key
 
     # The value has to be base64 encoded.
@@ -308,5 +307,4 @@ end
 
   end
 
-  end
 end

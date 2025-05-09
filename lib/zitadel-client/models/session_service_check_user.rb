@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SessionServiceCheckUser
+module ZitadelClient::Models
+  class SessionServiceCheckUser
     attr_accessor :user_id
 
     attr_accessor :login_name
@@ -293,5 +292,4 @@ end
 
   end
 
-  end
 end

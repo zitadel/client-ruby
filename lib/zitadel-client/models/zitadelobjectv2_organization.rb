@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class Zitadelobjectv2Organization
+module ZitadelClient::Models
+  class Zitadelobjectv2Organization
     attr_accessor :org_id
 
     attr_accessor :org_domain
@@ -237,5 +236,4 @@ end
 
   end
 
-  end
 end

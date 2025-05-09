@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class OIDCServiceSession
+module ZitadelClient::Models
+  class OIDCServiceSession
     # ID of the session, used to login the user. Connects the session to the Auth Request.
     attr_accessor :session_id
 
@@ -295,5 +294,4 @@ end
 
   end
 
-  end
 end

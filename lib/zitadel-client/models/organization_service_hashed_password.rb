@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class OrganizationServiceHashedPassword
+module ZitadelClient::Models
+  class OrganizationServiceHashedPassword
     # \"Encoded hash of a password in Modular Crypt Format: https://zitadel.com/docs/concepts/architecture/secrets#hashed-secrets\"
     attr_accessor :hash
 
@@ -273,5 +272,4 @@ end
 
   end
 
-  end
 end

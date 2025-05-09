@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class FeatureServiceSetSystemFeaturesRequest
+module ZitadelClient::Models
+  class FeatureServiceSetSystemFeaturesRequest
     # The login UI will use the settings of the default org (and not from the instance) if no organization context is set
     attr_accessor :login_default_org
 
@@ -340,5 +339,4 @@ end
 
   end
 
-  end
 end

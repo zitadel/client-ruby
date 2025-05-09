@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-          class IdentityProviderServiceIDPState
+module ZitadelClient::Models
+  class IdentityProviderServiceIDPState
     IDP_STATE_UNSPECIFIED = "IDP_STATE_UNSPECIFIED".freeze
     IDP_STATE_ACTIVE = "IDP_STATE_ACTIVE".freeze
     IDP_STATE_INACTIVE = "IDP_STATE_INACTIVE".freeze
@@ -42,5 +41,4 @@ module ZitadelClient
     end
   end
 
-  end
 end

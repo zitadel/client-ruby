@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class FeatureServiceGetInstanceFeaturesResponse
+module ZitadelClient::Models
+  class FeatureServiceGetInstanceFeaturesResponse
     attr_accessor :details
 
     attr_accessor :login_default_org
@@ -363,5 +362,4 @@ end
 
   end
 
-  end
 end

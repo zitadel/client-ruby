@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class UserServiceListIDPLinksResponse
+module ZitadelClient::Models
+  class UserServiceListIDPLinksResponse
     attr_accessor :details
 
     attr_accessor :result
@@ -239,5 +238,4 @@ end
 
   end
 
-  end
 end

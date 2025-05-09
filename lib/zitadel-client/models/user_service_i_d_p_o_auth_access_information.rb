@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class UserServiceIDPOAuthAccessInformation
+module ZitadelClient::Models
+  class UserServiceIDPOAuthAccessInformation
     attr_accessor :access_token
 
     attr_accessor :id_token
@@ -237,5 +236,4 @@ end
 
   end
 
-  end
 end

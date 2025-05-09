@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SessionServiceOTPEmailSendCode
+module ZitadelClient::Models
+  class SessionServiceOTPEmailSendCode
     # Optionally set a url_template, which will be used in the mail sent by ZITADEL to guide the user to your verification page. If no template is set, the default ZITADEL url will be used.  The following placeholders can be used: Code, UserID, LoginName, DisplayName, PreferredLanguage, SessionID
     attr_accessor :url_template
 
@@ -257,5 +256,4 @@ end
 
   end
 
-  end
 end

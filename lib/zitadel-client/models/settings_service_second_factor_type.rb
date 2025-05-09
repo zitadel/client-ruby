@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-          class SettingsServiceSecondFactorType
+module ZitadelClient::Models
+  class SettingsServiceSecondFactorType
     SECOND_FACTOR_TYPE_UNSPECIFIED = "SECOND_FACTOR_TYPE_UNSPECIFIED".freeze
     SECOND_FACTOR_TYPE_OTP = "SECOND_FACTOR_TYPE_OTP".freeze
     SECOND_FACTOR_TYPE_U2_F = "SECOND_FACTOR_TYPE_U2F".freeze
@@ -42,5 +41,4 @@ module ZitadelClient
     end
   end
 
-  end
 end

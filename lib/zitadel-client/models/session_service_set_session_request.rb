@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SessionServiceSetSessionRequest
+module ZitadelClient::Models
+  class SessionServiceSetSessionRequest
     # \"DEPRECATED: this field is ignored.\"
     attr_accessor :session_token
 
@@ -297,5 +296,4 @@ end
 
   end
 
-  end
 end

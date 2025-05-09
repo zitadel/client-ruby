@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-          class SessionServiceTimestampQueryMethod
+module ZitadelClient::Models
+  class SessionServiceTimestampQueryMethod
     TIMESTAMP_QUERY_METHOD_EQUALS = "TIMESTAMP_QUERY_METHOD_EQUALS".freeze
     TIMESTAMP_QUERY_METHOD_GREATER = "TIMESTAMP_QUERY_METHOD_GREATER".freeze
     TIMESTAMP_QUERY_METHOD_GREATER_OR_EQUALS = "TIMESTAMP_QUERY_METHOD_GREATER_OR_EQUALS".freeze
@@ -42,5 +41,4 @@ module ZitadelClient
     end
   end
 
-  end
 end

@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class OIDCServiceAuthorizationError
+module ZitadelClient::Models
+  class OIDCServiceAuthorizationError
     attr_accessor :error
 
     attr_accessor :error_description
@@ -270,5 +269,4 @@ end
 
   end
 
-  end
 end

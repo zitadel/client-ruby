@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-          class OIDCServiceErrorReason
+module ZitadelClient::Models
+  class OIDCServiceErrorReason
     ERROR_REASON_UNSPECIFIED = "ERROR_REASON_UNSPECIFIED".freeze
     ERROR_REASON_INVALID_REQUEST = "ERROR_REASON_INVALID_REQUEST".freeze
     ERROR_REASON_UNAUTHORIZED_CLIENT = "ERROR_REASON_UNAUTHORIZED_CLIENT".freeze
@@ -54,5 +53,4 @@ module ZitadelClient
     end
   end
 
-  end
 end

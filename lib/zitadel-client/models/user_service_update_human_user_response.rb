@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class UserServiceUpdateHumanUserResponse
+module ZitadelClient::Models
+  class UserServiceUpdateHumanUserResponse
     attr_accessor :details
 
     attr_accessor :email_code
@@ -246,5 +245,4 @@ end
 
   end
 
-  end
 end

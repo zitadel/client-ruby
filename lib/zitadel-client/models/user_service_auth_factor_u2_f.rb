@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class UserServiceAuthFactorU2F
+module ZitadelClient::Models
+  class UserServiceAuthFactorU2F
     attr_accessor :id
 
     attr_accessor :name
@@ -237,5 +236,4 @@ end
 
   end
 
-  end
 end

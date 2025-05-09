@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SessionServiceDeleteSessionRequest
+module ZitadelClient::Models
+  class SessionServiceDeleteSessionRequest
     # \"The current token of the session, previously returned on the create / update request. The token is required unless the authenticated user terminates the own session or is granted the `session.delete` permission.\"
     attr_accessor :session_token
 
@@ -229,5 +228,4 @@ end
 
   end
 
-  end
 end

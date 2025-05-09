@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SessionServiceCheckPassword
+module ZitadelClient::Models
+  class SessionServiceCheckPassword
     attr_accessor :password
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -256,5 +255,4 @@ end
 
   end
 
-  end
 end

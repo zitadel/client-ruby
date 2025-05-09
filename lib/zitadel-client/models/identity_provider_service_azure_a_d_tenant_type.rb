@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-          class IdentityProviderServiceAzureADTenantType
+module ZitadelClient::Models
+  class IdentityProviderServiceAzureADTenantType
     AZURE_AD_TENANT_TYPE_COMMON = "AZURE_AD_TENANT_TYPE_COMMON".freeze
     AZURE_AD_TENANT_TYPE_ORGANISATIONS = "AZURE_AD_TENANT_TYPE_ORGANISATIONS".freeze
     AZURE_AD_TENANT_TYPE_CONSUMERS = "AZURE_AD_TENANT_TYPE_CONSUMERS".freeze
@@ -40,5 +39,4 @@ module ZitadelClient
     end
   end
 
-  end
 end

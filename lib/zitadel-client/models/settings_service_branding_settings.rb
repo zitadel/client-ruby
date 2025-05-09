@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SettingsServiceBrandingSettings
+module ZitadelClient::Models
+  class SettingsServiceBrandingSettings
     attr_accessor :light_theme
 
     attr_accessor :dark_theme
@@ -311,5 +310,4 @@ end
 
   end
 
-  end
 end

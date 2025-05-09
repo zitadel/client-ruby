@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class OrganizationServiceSearchQuery
+module ZitadelClient::Models
+  class OrganizationServiceSearchQuery
     attr_accessor :name_query
 
     attr_accessor :domain_query
@@ -264,5 +263,4 @@ end
 
   end
 
-  end
 end

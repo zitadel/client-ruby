@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SessionServiceCheckWebAuthN
+module ZitadelClient::Models
+  class SessionServiceCheckWebAuthN
     # JSON representation of public key credential issued by the webAuthN client
     attr_accessor :credential_assertion_data
 
@@ -246,5 +245,4 @@ end
 
   end
 
-  end
 end

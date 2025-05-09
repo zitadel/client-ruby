@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SessionServiceRpcStatus
+module ZitadelClient::Models
+  class SessionServiceRpcStatus
     attr_accessor :code
 
     attr_accessor :message
@@ -248,5 +247,4 @@ end
 
   end
 
-  end
 end

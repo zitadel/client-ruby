@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-          class SessionServiceSessionFieldName
+module ZitadelClient::Models
+  class SessionServiceSessionFieldName
     SESSION_FIELD_NAME_UNSPECIFIED = "SESSION_FIELD_NAME_UNSPECIFIED".freeze
     SESSION_FIELD_NAME_CREATION_DATE = "SESSION_FIELD_NAME_CREATION_DATE".freeze
 
@@ -39,5 +38,4 @@ module ZitadelClient
     end
   end
 
-  end
 end

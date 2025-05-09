@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              # Query for users with ID in list of IDs.
+module ZitadelClient::Models
+  # Query for users with ID in list of IDs.
   class UserServiceInUserIDQuery
     # the ids of the users to include
     attr_accessor :user_ids
@@ -232,5 +231,4 @@ end
 
   end
 
-  end
 end

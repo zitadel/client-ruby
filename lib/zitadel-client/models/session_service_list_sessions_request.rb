@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class SessionServiceListSessionsRequest
+module ZitadelClient::Models
+  class SessionServiceListSessionsRequest
     attr_accessor :query
 
     attr_accessor :queries
@@ -272,5 +271,4 @@ end
 
   end
 
-  end
 end

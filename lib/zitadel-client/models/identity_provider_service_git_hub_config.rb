@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class IdentityProviderServiceGitHubConfig
+module ZitadelClient::Models
+  class IdentityProviderServiceGitHubConfig
     # The client ID of the GitHub App.
     attr_accessor :client_id
 
@@ -241,5 +240,4 @@ end
 
   end
 
-  end
 end

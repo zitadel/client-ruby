@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class UserServiceLDAPCredentials
+module ZitadelClient::Models
+  class UserServiceLDAPCredentials
     # Username used to login through LDAP
     attr_accessor :username
 
@@ -295,5 +294,4 @@ end
 
   end
 
-  end
 end

@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class UserServiceRetrieveIdentityProviderIntentResponse
+module ZitadelClient::Models
+  class UserServiceRetrieveIdentityProviderIntentResponse
     attr_accessor :details
 
     attr_accessor :idp_information
@@ -256,5 +255,4 @@ end
 
   end
 
-  end
 end

@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              # Query for users with a specific phone.
+module ZitadelClient::Models
+  # Query for users with a specific phone.
   class UserServicePhoneQuery
     # Phone number of the user
     attr_accessor :number
@@ -298,5 +297,4 @@ end
 
   end
 
-  end
 end

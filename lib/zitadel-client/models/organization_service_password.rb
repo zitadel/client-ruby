@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class OrganizationServicePassword
+module ZitadelClient::Models
+  class OrganizationServicePassword
     attr_accessor :password
 
     attr_accessor :change_required
@@ -272,5 +271,4 @@ end
 
   end
 
-  end
 end

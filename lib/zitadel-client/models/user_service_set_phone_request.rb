@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class UserServiceSetPhoneRequest
+module ZitadelClient::Models
+  class UserServiceSetPhoneRequest
     attr_accessor :phone
 
     attr_accessor :send_code
@@ -290,5 +289,4 @@ end
 
   end
 
-  end
 end

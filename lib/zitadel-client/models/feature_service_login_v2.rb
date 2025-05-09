@@ -13,9 +13,8 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
-  module Models # Added Models module
-              class FeatureServiceLoginV2
+module ZitadelClient::Models
+  class FeatureServiceLoginV2
     # Require that all users must use the new login UI. If enabled, all users will be redirected to the login V2 regardless of the application's preference.
     attr_accessor :required
 
@@ -239,5 +238,4 @@ end
 
   end
 
-  end
 end
