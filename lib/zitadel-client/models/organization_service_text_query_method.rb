@@ -14,7 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-  class OrganizationServiceTextQueryMethod
+module Model # Added Model module
+        class OrganizationServiceTextQueryMethod
     TEXT_QUERY_METHOD_EQUALS = "TEXT_QUERY_METHOD_EQUALS".freeze
     TEXT_QUERY_METHOD_EQUALS_IGNORE_CASE = "TEXT_QUERY_METHOD_EQUALS_IGNORE_CASE".freeze
     TEXT_QUERY_METHOD_STARTS_WITH = "TEXT_QUERY_METHOD_STARTS_WITH".freeze
@@ -40,7 +41,9 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if OrganizationServiceTextQueryMethod.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #OrganizationServiceTextQueryMethod"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Model::OrganizationServiceTextQueryMethod"
     end
   end
+
+end # End of Model module
 end

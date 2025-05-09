@@ -14,7 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-  class SettingsServiceMultiFactorType
+module Model # Added Model module
+        class SettingsServiceMultiFactorType
     MULTI_FACTOR_TYPE_UNSPECIFIED = "MULTI_FACTOR_TYPE_UNSPECIFIED".freeze
     MULTI_FACTOR_TYPE_U2_F_WITH_VERIFICATION = "MULTI_FACTOR_TYPE_U2F_WITH_VERIFICATION".freeze
 
@@ -34,7 +35,9 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if SettingsServiceMultiFactorType.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #SettingsServiceMultiFactorType"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Model::SettingsServiceMultiFactorType"
     end
   end
+
+end # End of Model module
 end

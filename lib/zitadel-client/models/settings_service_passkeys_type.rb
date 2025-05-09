@@ -14,7 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-  class SettingsServicePasskeysType
+module Model # Added Model module
+        class SettingsServicePasskeysType
     PASSKEYS_TYPE_NOT_ALLOWED = "PASSKEYS_TYPE_NOT_ALLOWED".freeze
     PASSKEYS_TYPE_ALLOWED = "PASSKEYS_TYPE_ALLOWED".freeze
 
@@ -34,7 +35,9 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if SettingsServicePasskeysType.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #SettingsServicePasskeysType"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Model::SettingsServicePasskeysType"
     end
   end
+
+end # End of Model module
 end

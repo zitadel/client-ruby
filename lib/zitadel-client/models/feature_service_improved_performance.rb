@@ -14,7 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-  class FeatureServiceImprovedPerformance
+module Model # Added Model module
+        class FeatureServiceImprovedPerformance
     IMPROVED_PERFORMANCE_UNSPECIFIED = "IMPROVED_PERFORMANCE_UNSPECIFIED".freeze
     IMPROVED_PERFORMANCE_ORG_BY_ID = "IMPROVED_PERFORMANCE_ORG_BY_ID".freeze
     IMPROVED_PERFORMANCE_PROJECT_GRANT = "IMPROVED_PERFORMANCE_PROJECT_GRANT".freeze
@@ -38,7 +39,9 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if FeatureServiceImprovedPerformance.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #FeatureServiceImprovedPerformance"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Model::FeatureServiceImprovedPerformance"
     end
   end
+
+end # End of Model module
 end

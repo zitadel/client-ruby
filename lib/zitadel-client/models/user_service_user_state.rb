@@ -14,7 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-  class UserServiceUserState
+module Model # Added Model module
+        class UserServiceUserState
     USER_STATE_UNSPECIFIED = "USER_STATE_UNSPECIFIED".freeze
     USER_STATE_ACTIVE = "USER_STATE_ACTIVE".freeze
     USER_STATE_INACTIVE = "USER_STATE_INACTIVE".freeze
@@ -38,7 +39,9 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if UserServiceUserState.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #UserServiceUserState"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Model::UserServiceUserState"
     end
   end
+
+end # End of Model module
 end

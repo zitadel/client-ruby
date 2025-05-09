@@ -14,7 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-  class SettingsServiceIdentityProviderType
+module Model # Added Model module
+        class SettingsServiceIdentityProviderType
     IDENTITY_PROVIDER_TYPE_UNSPECIFIED = "IDENTITY_PROVIDER_TYPE_UNSPECIFIED".freeze
     IDENTITY_PROVIDER_TYPE_OIDC = "IDENTITY_PROVIDER_TYPE_OIDC".freeze
     IDENTITY_PROVIDER_TYPE_JWT = "IDENTITY_PROVIDER_TYPE_JWT".freeze
@@ -45,7 +46,9 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if SettingsServiceIdentityProviderType.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #SettingsServiceIdentityProviderType"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Model::SettingsServiceIdentityProviderType"
     end
   end
+
+end # End of Model module
 end

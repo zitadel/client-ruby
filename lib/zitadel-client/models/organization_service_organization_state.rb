@@ -14,7 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-  class OrganizationServiceOrganizationState
+module Model # Added Model module
+        class OrganizationServiceOrganizationState
     ORGANIZATION_STATE_UNSPECIFIED = "ORGANIZATION_STATE_UNSPECIFIED".freeze
     ORGANIZATION_STATE_ACTIVE = "ORGANIZATION_STATE_ACTIVE".freeze
     ORGANIZATION_STATE_INACTIVE = "ORGANIZATION_STATE_INACTIVE".freeze
@@ -36,7 +37,9 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if OrganizationServiceOrganizationState.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #OrganizationServiceOrganizationState"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Model::OrganizationServiceOrganizationState"
     end
   end
+
+end # End of Model module
 end

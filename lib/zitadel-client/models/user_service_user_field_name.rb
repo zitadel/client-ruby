@@ -14,7 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-  class UserServiceUserFieldName
+module Model # Added Model module
+        class UserServiceUserFieldName
     USER_FIELD_NAME_UNSPECIFIED = "USER_FIELD_NAME_UNSPECIFIED".freeze
     USER_FIELD_NAME_USER_NAME = "USER_FIELD_NAME_USER_NAME".freeze
     USER_FIELD_NAME_FIRST_NAME = "USER_FIELD_NAME_FIRST_NAME".freeze
@@ -42,7 +43,9 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if UserServiceUserFieldName.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #UserServiceUserFieldName"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Model::UserServiceUserFieldName"
     end
   end
+
+end # End of Model module
 end

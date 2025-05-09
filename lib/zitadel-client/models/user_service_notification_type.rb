@@ -14,7 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-  class UserServiceNotificationType
+module Model # Added Model module
+        class UserServiceNotificationType
     NOTIFICATION_TYPE_UNSPECIFIED = "NOTIFICATION_TYPE_Unspecified".freeze
     NOTIFICATION_TYPE_EMAIL = "NOTIFICATION_TYPE_Email".freeze
     NOTIFICATION_TYPE_SMS = "NOTIFICATION_TYPE_SMS".freeze
@@ -35,7 +36,9 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if UserServiceNotificationType.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #UserServiceNotificationType"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Model::UserServiceNotificationType"
     end
   end
+
+end # End of Model module
 end

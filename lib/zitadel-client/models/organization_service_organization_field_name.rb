@@ -14,7 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-  class OrganizationServiceOrganizationFieldName
+module Model # Added Model module
+        class OrganizationServiceOrganizationFieldName
     ORGANIZATION_FIELD_NAME_UNSPECIFIED = "ORGANIZATION_FIELD_NAME_UNSPECIFIED".freeze
     ORGANIZATION_FIELD_NAME_NAME = "ORGANIZATION_FIELD_NAME_NAME".freeze
 
@@ -34,7 +35,9 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if OrganizationServiceOrganizationFieldName.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #OrganizationServiceOrganizationFieldName"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Model::OrganizationServiceOrganizationFieldName"
     end
   end
+
+end # End of Model module
 end

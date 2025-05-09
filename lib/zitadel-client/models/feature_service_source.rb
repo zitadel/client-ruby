@@ -14,7 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-  class FeatureServiceSource
+module Model # Added Model module
+        class FeatureServiceSource
     SOURCE_UNSPECIFIED = "SOURCE_UNSPECIFIED".freeze
     SOURCE_SYSTEM = "SOURCE_SYSTEM".freeze
     SOURCE_INSTANCE = "SOURCE_INSTANCE".freeze
@@ -39,7 +40,9 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if FeatureServiceSource.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #FeatureServiceSource"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Model::FeatureServiceSource"
     end
   end
+
+end # End of Model module
 end
