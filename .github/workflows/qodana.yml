@@ -48,7 +48,8 @@ jobs:
 
       - name: Run Qodana
         uses: JetBrains/qodana-action@v2025.1
-        #with:
+        with:
+          push-fixes: true
         #  args: --baseline,.qodana/qodana.sarif.json
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
