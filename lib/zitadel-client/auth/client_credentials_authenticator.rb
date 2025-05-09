@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'oauth2'
-
 module ZitadelClient
   module Auth
     # ClientCredentialsAuthenticator implements the client credentials flow.

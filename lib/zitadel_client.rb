@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'zeitwerk'
-require 'oauth2'
 require 'warning'
 require_relative 'patch'
 

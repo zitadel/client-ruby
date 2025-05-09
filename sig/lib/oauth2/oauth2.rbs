@@ -1,4 +1,7 @@
 module OAuth2
+
+  def self.configure: () { (untyped) -> untyped } -> untyped
+
   class AccessToken
 
     # Attributes

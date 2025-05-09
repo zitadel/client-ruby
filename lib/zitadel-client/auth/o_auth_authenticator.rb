@@ -3,6 +3,11 @@
 require 'time'
 require 'oauth2'
 
+OAuth2.configure do |config|
+  # noinspection RubyResolve
+  config.silence_extra_tokens_warning = true
+end
+
 module ZitadelClient
   module Auth
     ##
