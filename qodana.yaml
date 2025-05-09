@@ -7,6 +7,6 @@ exclude:
   - name: All
     paths:
       - lib/zitadel-client/api
-      - lib/zitadel-client/model
+      - lib/zitadel-client/models
 
 linter: jetbrains/qodana-php:2025.1

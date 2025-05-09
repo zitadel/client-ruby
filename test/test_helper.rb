@@ -38,7 +38,7 @@ SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new(
 SimpleCov.coverage_dir('build/coverage')
 SimpleCov.start do
   add_filter '/api/'
-  add_filter '/model/'
+  add_filter '/models/'
   add_filter '/test/'
   add_filter '/spec/'
 end

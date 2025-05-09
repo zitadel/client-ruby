@@ -2,7 +2,7 @@ module ZitadelClient
 
   VERSION: String
 
-  module Model
+  module Models
 
   end
 

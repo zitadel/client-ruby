@@ -29,13 +29,13 @@ describe 'Zitadel UserService' do
   end
 
   before do
-    request = ZitadelClient::Model::UserServiceAddHumanUserRequest.new(
+    request = ZitadelClient::Models::UserServiceAddHumanUserRequest.new(
       username: SecureRandom.hex,
-      profile: ZitadelClient::Model::UserServiceSetHumanProfile.new(
+      profile: ZitadelClient::Models::UserServiceSetHumanProfile.new(
         given_name: 'John',
         family_name: 'Doe'
       ),
-      email: ZitadelClient::Model::UserServiceSetHumanEmail.new(
+      email: ZitadelClient::Models::UserServiceSetHumanEmail.new(
         email: "johndoe#{SecureRandom.hex}@example.com"
       )
     )
@@ -61,15 +61,15 @@ describe 'Zitadel UserService' do
   end
 
   it 'includes the created user when listing all users' do
-    request = ZitadelClient::Model::UserServiceListUsersRequest.new(queries: [])
+    request = ZitadelClient::Models::UserServiceListUsersRequest.new(queries: [])
     response = client.users.user_service_list_users(request)
     _(response.result.map(&:user_id)).must_include @user.user_id
   end
 
   it "updates the user's email and reflects the change" do
     new_email = "updated#{SecureRandom.hex}@example.com"
-    update_req = ZitadelClient::Model::UserServiceUpdateHumanUserRequest.new(
-      email: ZitadelClient::Model::UserServiceSetHumanEmail.new(email: new_email)
+    update_req = ZitadelClient::Models::UserServiceUpdateHumanUserRequest.new(
+      email: ZitadelClient::Models::UserServiceSetHumanEmail.new(email: new_email)
     )
     client.users.user_service_update_human_user(@user.user_id, update_req)
 
