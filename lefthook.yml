@@ -4,8 +4,8 @@ pre-commit:
   commands:
     format:
       glob: "*.rb"
-      run: bundle exec rubocop --autocorrect-all
+      run: bundle exec rake rubocop:autocorrect
 
     check:
       glob: "*.rb"
-      run: bundle exec steep check
+      run: bundle exec rake steep

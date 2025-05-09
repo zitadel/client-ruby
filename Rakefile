@@ -4,6 +4,13 @@ require 'bundler/gem_tasks'
 require 'rake/testtask'
 require 'rdoc/task'
 require 'steep/rake_task'
+require 'rubocop/rake_task'
+
+RuboCop::RakeTask.new(:rubocop) do |task|
+  task.plugins << 'rubocop-minitest'
+  task.plugins << 'rubocop-rake'
+  task.verbose = true
+end
 
 Steep::RakeTask.new(:steep) do |task|
   task.check.severity_level = :error
