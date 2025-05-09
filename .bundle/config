@@ -1,0 +1,4 @@
+---
+BUNDLE_PATH: "vendor/bundle"
+BUNDLE_IGNORE_FUNDING_REQUESTS: "true"
+BUNDLE_WITH: "development:test"
