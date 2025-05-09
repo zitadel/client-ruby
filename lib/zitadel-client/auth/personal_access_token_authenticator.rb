@@ -15,7 +15,7 @@ module ZitadelClient
     #
     def initialize(host, token)
       # noinspection RubyArgCount
-      super(ZitadelClient::UrlUtil.build_hostname(host))
+      super(ZitadelClient::Utils::UrlUtil.build_hostname(host))
       @token = token
     end
 
