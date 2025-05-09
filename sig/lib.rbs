@@ -2,48 +2,57 @@ module ZitadelClient
 
   VERSION: String
 
-  class FeatureServiceApi
+  module Model
 
-    def initialize: (ApiClient) -> void
   end
 
-  class IdentityProviderServiceApi
+  module Utils
+    class UrlUtil
 
-    def initialize: (ApiClient) -> void
+      def self.build_hostname: (String) -> String
+    end
   end
 
-  class OIDCServiceApi
+  module Api
+    class FeatureServiceApi
 
-    def initialize: (ApiClient) -> void
-  end
+      def initialize: (ApiClient) -> void
+    end
 
-  class OrganizationServiceApi
+    class IdentityProviderServiceApi
 
-    def initialize: (ApiClient) -> void
-  end
+      def initialize: (ApiClient) -> void
+    end
 
-  class SessionServiceApi
+    class OIDCServiceApi
 
-    def initialize: (ApiClient) -> void
-  end
+      def initialize: (ApiClient) -> void
+    end
 
-  class SettingsServiceApi
+    class OrganizationServiceApi
 
-    def initialize: (ApiClient) -> void
-  end
+      def initialize: (ApiClient) -> void
+    end
 
-  class UserServiceApi
+    class SessionServiceApi
 
-    def initialize: (ApiClient) -> void
-  end
+      def initialize: (ApiClient) -> void
+    end
 
-  class SAMLServiceApi
+    class SettingsServiceApi
 
-    def initialize: (ApiClient) -> void
-  end
+      def initialize: (ApiClient) -> void
+    end
 
-  class UrlUtil
-    def self.build_hostname: (String) -> String
+    class UserServiceApi
+
+      def initialize: (ApiClient) -> void
+    end
+
+    class SAMLServiceApi
+
+      def initialize: (ApiClient) -> void
+    end
   end
 
   class Configuration
@@ -220,11 +229,6 @@ module ZitadelClient
       def initialize: (String, String) -> void
 
       def auth_headers: -> Hash[String, String]
-    end
-
-    module URLUtil
-
-      def self.build_hostname: (String) -> String
     end
 
     class WebTokenAuthenticator < OAuthAuthenticator

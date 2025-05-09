@@ -4,7 +4,7 @@ plugins:
 
 AllCops:
   Exclude:
-    - 'lib/zitadel-client/models/**/*'
+    - 'lib/zitadel-client/model/**/*'
     - 'lib/zitadel-client/api/**/*'
     - 'vendor/**/*'
   NewCops: enable

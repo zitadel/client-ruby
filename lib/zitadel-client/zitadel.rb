@@ -26,14 +26,14 @@ module ZitadelClient
 
       client = ApiClient.new(@configuration)
 
-      @features = ZitadelClient::FeatureServiceApi.new(client)
-      @idps = ZitadelClient::IdentityProviderServiceApi.new(client)
-      @oidc = ZitadelClient::OIDCServiceApi.new(client)
-      @organizations = ZitadelClient::OrganizationServiceApi.new(client)
-      @sessions = ZitadelClient::SessionServiceApi.new(client)
-      @settings = ZitadelClient::SettingsServiceApi.new(client)
-      @users = ZitadelClient::UserServiceApi.new(client)
-      @saml = ZitadelClient::SAMLServiceApi.new(client)
+      @features = ZitadelClient::Api::FeatureServiceApi.new(client)
+      @idps = ZitadelClient::Api::IdentityProviderServiceApi.new(client)
+      @oidc = ZitadelClient::Api::OIDCServiceApi.new(client)
+      @organizations = ZitadelClient::Api::OrganizationServiceApi.new(client)
+      @sessions = ZitadelClient::Api::SessionServiceApi.new(client)
+      @settings = ZitadelClient::Api::SettingsServiceApi.new(client)
+      @users = ZitadelClient::Api::UserServiceApi.new(client)
+      @saml = ZitadelClient::Api::SAMLServiceApi.new(client)
     end
 
     # rubocop:enable Metrics/MethodLength

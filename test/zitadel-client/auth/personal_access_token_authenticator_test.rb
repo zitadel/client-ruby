@@ -29,8 +29,8 @@ module ZitadelClient
       #
       # @return [void]
       def test_returns_expected_headers_and_host
-        auth = ZitadelClient::PersonalAccessTokenAuthenticator.new('https://api.example.com',
-                                                                   'my-secret-token')
+        auth = ZitadelClient::Auth::PersonalAccessTokenAuthenticator.new('https://api.example.com',
+                                                                         'my-secret-token')
 
         assert_equal({ 'Authorization' => 'Bearer my-secret-token' }, auth.send(:auth_headers))
         assert_equal('https://api.example.com', auth.send(:host))

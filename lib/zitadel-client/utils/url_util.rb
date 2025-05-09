@@ -5,7 +5,7 @@ require 'uri'
 module ZitadelClient
   module Utils
     # Utility module for URL related operations.
-    # This is a placeholder for URLUtil, which provides URL utility methods.
+    # This is a placeholder for UrlUtil, which provides URL utility methods.
     class UrlUtil
       ##
       # Builds the hostname for the provided host.
