@@ -13,7 +13,7 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
+module ZitadelClient::Models
   class UserServicePasskeyAuthenticator
     PASSKEY_AUTHENTICATOR_UNSPECIFIED = "PASSKEY_AUTHENTICATOR_UNSPECIFIED".freeze
     PASSKEY_AUTHENTICATOR_PLATFORM = "PASSKEY_AUTHENTICATOR_PLATFORM".freeze
@@ -35,7 +35,8 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if UserServicePasskeyAuthenticator.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #UserServicePasskeyAuthenticator"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Models::UserServicePasskeyAuthenticator"
     end
   end
+
 end

@@ -13,7 +13,7 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
+module ZitadelClient::Models
   class OrganizationServiceGender
     GENDER_UNSPECIFIED = "GENDER_UNSPECIFIED".freeze
     GENDER_FEMALE = "GENDER_FEMALE".freeze
@@ -36,7 +36,8 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if OrganizationServiceGender.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #OrganizationServiceGender"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Models::OrganizationServiceGender"
     end
   end
+
 end

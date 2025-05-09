@@ -13,7 +13,7 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
+module ZitadelClient::Models
   class UserServiceAuthenticationMethodType
     AUTHENTICATION_METHOD_TYPE_UNSPECIFIED = "AUTHENTICATION_METHOD_TYPE_UNSPECIFIED".freeze
     AUTHENTICATION_METHOD_TYPE_PASSWORD = "AUTHENTICATION_METHOD_TYPE_PASSWORD".freeze
@@ -40,7 +40,8 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if UserServiceAuthenticationMethodType.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #UserServiceAuthenticationMethodType"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Models::UserServiceAuthenticationMethodType"
     end
   end
+
 end

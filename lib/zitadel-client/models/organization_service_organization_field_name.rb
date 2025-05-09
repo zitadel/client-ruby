@@ -13,7 +13,7 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
+module ZitadelClient::Models
   class OrganizationServiceOrganizationFieldName
     ORGANIZATION_FIELD_NAME_UNSPECIFIED = "ORGANIZATION_FIELD_NAME_UNSPECIFIED".freeze
     ORGANIZATION_FIELD_NAME_NAME = "ORGANIZATION_FIELD_NAME_NAME".freeze
@@ -34,7 +34,8 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if OrganizationServiceOrganizationFieldName.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #OrganizationServiceOrganizationFieldName"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Models::OrganizationServiceOrganizationFieldName"
     end
   end
+
 end

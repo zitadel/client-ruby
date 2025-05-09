@@ -13,7 +13,7 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
+module ZitadelClient::Models
   class SettingsServiceAutoLinkingOption
     AUTO_LINKING_OPTION_UNSPECIFIED = "AUTO_LINKING_OPTION_UNSPECIFIED".freeze
     AUTO_LINKING_OPTION_USERNAME = "AUTO_LINKING_OPTION_USERNAME".freeze
@@ -35,7 +35,8 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if SettingsServiceAutoLinkingOption.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #SettingsServiceAutoLinkingOption"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Models::SettingsServiceAutoLinkingOption"
     end
   end
+
 end

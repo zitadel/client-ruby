@@ -13,7 +13,7 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
+module ZitadelClient::Models
   class OrganizationServiceTextQueryMethod
     TEXT_QUERY_METHOD_EQUALS = "TEXT_QUERY_METHOD_EQUALS".freeze
     TEXT_QUERY_METHOD_EQUALS_IGNORE_CASE = "TEXT_QUERY_METHOD_EQUALS_IGNORE_CASE".freeze
@@ -40,7 +40,8 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if OrganizationServiceTextQueryMethod.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #OrganizationServiceTextQueryMethod"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Models::OrganizationServiceTextQueryMethod"
     end
   end
+
 end

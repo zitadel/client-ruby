@@ -13,7 +13,7 @@ Generator version: 7.12.0
 require 'date'
 require 'time'
 
-module ZitadelClient
+module ZitadelClient::Models
   class SessionServiceTimestampQueryMethod
     TIMESTAMP_QUERY_METHOD_EQUALS = "TIMESTAMP_QUERY_METHOD_EQUALS".freeze
     TIMESTAMP_QUERY_METHOD_GREATER = "TIMESTAMP_QUERY_METHOD_GREATER".freeze
@@ -37,7 +37,8 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if SessionServiceTimestampQueryMethod.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #SessionServiceTimestampQueryMethod"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Models::SessionServiceTimestampQueryMethod"
     end
   end
+
 end
