@@ -14,8 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-module Models # Added Model module
-        class OrganizationServiceOrganizationState
+  module Models # Added Models module
+          class OrganizationServiceOrganizationState
     ORGANIZATION_STATE_UNSPECIFIED = "ORGANIZATION_STATE_UNSPECIFIED".freeze
     ORGANIZATION_STATE_ACTIVE = "ORGANIZATION_STATE_ACTIVE".freeze
     ORGANIZATION_STATE_INACTIVE = "ORGANIZATION_STATE_INACTIVE".freeze
@@ -41,5 +41,5 @@ module Models # Added Model module
     end
   end
 
-end # End of Model module
+  end
 end

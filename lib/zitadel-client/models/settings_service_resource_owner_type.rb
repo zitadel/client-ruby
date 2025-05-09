@@ -14,8 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-module Models # Added Model module
-        class SettingsServiceResourceOwnerType
+  module Models # Added Models module
+          class SettingsServiceResourceOwnerType
     RESOURCE_OWNER_TYPE_UNSPECIFIED = "RESOURCE_OWNER_TYPE_UNSPECIFIED".freeze
     RESOURCE_OWNER_TYPE_INSTANCE = "RESOURCE_OWNER_TYPE_INSTANCE".freeze
     RESOURCE_OWNER_TYPE_ORG = "RESOURCE_OWNER_TYPE_ORG".freeze
@@ -40,5 +40,5 @@ module Models # Added Model module
     end
   end
 
-end # End of Model module
+  end
 end

@@ -14,8 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-module Models # Added Model module
-            class SettingsServiceDomainSettings
+  module Models # Added Models module
+              class SettingsServiceDomainSettings
     # the username has to end with the domain of its organization
     attr_accessor :login_name_includes_domain
 
@@ -86,7 +86,7 @@ module Models # Added Model module
     end
 
     # Initializes the object
-    # @param [Hash] attributes Model attributes in the form of hash
+    # @param [Hash] attributes Models attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
         # MODIFIED: Updated class name in error message
@@ -161,7 +161,7 @@ module Models # Added Model module
     end
 
 # Builds the object from hash
-# @param [Hash] attributes Model attributes in the form of hash
+# @param [Hash] attributes Models attributes in the form of hash
 # @return [Object] Returns the model itself
 def self.build_from_hash(attributes)
   return nil unless attributes.is_a?(Hash)
@@ -221,7 +221,7 @@ def self._deserialize(type, value)
     end
   else # model
     # models (e.g. Pet) or oneOf/anyOf constructs that resolve to a model name
-    # MODIFIED: Ensure model is looked up in the Model namespace
+    # MODIFIED: Ensure model is looked up in the Models namespace
     # 'type' here is expected to be the simple class name (e.g., "User", "OrderDetails")
     klass = ZitadelClient::Models.const_get(type)
     # The `klass.build` method is for oneOf/anyOf types (defined in partial_oneof_module.mustache / partial_anyof_module.mustache)
@@ -282,5 +282,5 @@ end
 
   end
 
-end # End of Model module
+  end
 end

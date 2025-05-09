@@ -14,8 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-module Models # Added Model module
-        class UserServiceNotificationType
+  module Models # Added Models module
+          class UserServiceNotificationType
     NOTIFICATION_TYPE_UNSPECIFIED = "NOTIFICATION_TYPE_Unspecified".freeze
     NOTIFICATION_TYPE_EMAIL = "NOTIFICATION_TYPE_Email".freeze
     NOTIFICATION_TYPE_SMS = "NOTIFICATION_TYPE_SMS".freeze
@@ -40,5 +40,5 @@ module Models # Added Model module
     end
   end
 
-end # End of Model module
+  end
 end

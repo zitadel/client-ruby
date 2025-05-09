@@ -14,8 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-module Models # Added Model module
-        class UserServiceAuthenticationMethodType
+  module Models # Added Models module
+          class UserServiceAuthenticationMethodType
     AUTHENTICATION_METHOD_TYPE_UNSPECIFIED = "AUTHENTICATION_METHOD_TYPE_UNSPECIFIED".freeze
     AUTHENTICATION_METHOD_TYPE_PASSWORD = "AUTHENTICATION_METHOD_TYPE_PASSWORD".freeze
     AUTHENTICATION_METHOD_TYPE_PASSKEY = "AUTHENTICATION_METHOD_TYPE_PASSKEY".freeze
@@ -45,5 +45,5 @@ module Models # Added Model module
     end
   end
 
-end # End of Model module
+  end
 end

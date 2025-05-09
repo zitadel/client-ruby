@@ -14,8 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-module Models # Added Model module
-        class UserServicePasskeyAuthenticator
+  module Models # Added Models module
+          class UserServicePasskeyAuthenticator
     PASSKEY_AUTHENTICATOR_UNSPECIFIED = "PASSKEY_AUTHENTICATOR_UNSPECIFIED".freeze
     PASSKEY_AUTHENTICATOR_PLATFORM = "PASSKEY_AUTHENTICATOR_PLATFORM".freeze
     PASSKEY_AUTHENTICATOR_CROSS_PLATFORM = "PASSKEY_AUTHENTICATOR_CROSS_PLATFORM".freeze
@@ -40,5 +40,5 @@ module Models # Added Model module
     end
   end
 
-end # End of Model module
+  end
 end

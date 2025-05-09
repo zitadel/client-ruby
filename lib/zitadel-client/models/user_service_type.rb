@@ -14,8 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-module Models # Added Model module
-        class UserServiceType
+  module Models # Added Models module
+          class UserServiceType
     TYPE_UNSPECIFIED = "TYPE_UNSPECIFIED".freeze
     TYPE_HUMAN = "TYPE_HUMAN".freeze
     TYPE_MACHINE = "TYPE_MACHINE".freeze
@@ -40,5 +40,5 @@ module Models # Added Model module
     end
   end
 
-end # End of Model module
+  end
 end

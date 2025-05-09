@@ -14,8 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-module Models # Added Model module
-        class SettingsServicePasskeysType
+  module Models # Added Models module
+          class SettingsServicePasskeysType
     PASSKEYS_TYPE_NOT_ALLOWED = "PASSKEYS_TYPE_NOT_ALLOWED".freeze
     PASSKEYS_TYPE_ALLOWED = "PASSKEYS_TYPE_ALLOWED".freeze
 
@@ -39,5 +39,5 @@ module Models # Added Model module
     end
   end
 
-end # End of Model module
+  end
 end

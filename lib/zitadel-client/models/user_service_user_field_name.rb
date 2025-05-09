@@ -14,8 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-module Models # Added Model module
-        class UserServiceUserFieldName
+  module Models # Added Models module
+          class UserServiceUserFieldName
     USER_FIELD_NAME_UNSPECIFIED = "USER_FIELD_NAME_UNSPECIFIED".freeze
     USER_FIELD_NAME_USER_NAME = "USER_FIELD_NAME_USER_NAME".freeze
     USER_FIELD_NAME_FIRST_NAME = "USER_FIELD_NAME_FIRST_NAME".freeze
@@ -47,5 +47,5 @@ module Models # Added Model module
     end
   end
 
-end # End of Model module
+  end
 end

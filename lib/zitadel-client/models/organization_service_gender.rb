@@ -14,8 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-module Models # Added Model module
-        class OrganizationServiceGender
+  module Models # Added Models module
+          class OrganizationServiceGender
     GENDER_UNSPECIFIED = "GENDER_UNSPECIFIED".freeze
     GENDER_FEMALE = "GENDER_FEMALE".freeze
     GENDER_MALE = "GENDER_MALE".freeze
@@ -41,5 +41,5 @@ module Models # Added Model module
     end
   end
 
-end # End of Model module
+  end
 end

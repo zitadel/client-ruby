@@ -14,8 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-module Models # Added Model module
-        class SettingsServiceAutoLinkingOption
+  module Models # Added Models module
+          class SettingsServiceAutoLinkingOption
     AUTO_LINKING_OPTION_UNSPECIFIED = "AUTO_LINKING_OPTION_UNSPECIFIED".freeze
     AUTO_LINKING_OPTION_USERNAME = "AUTO_LINKING_OPTION_USERNAME".freeze
     AUTO_LINKING_OPTION_EMAIL = "AUTO_LINKING_OPTION_EMAIL".freeze
@@ -40,5 +40,5 @@ module Models # Added Model module
     end
   end
 
-end # End of Model module
+  end
 end

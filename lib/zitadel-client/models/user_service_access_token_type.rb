@@ -14,8 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-module Models # Added Model module
-        class UserServiceAccessTokenType
+  module Models # Added Models module
+          class UserServiceAccessTokenType
     ACCESS_TOKEN_TYPE_BEARER = "ACCESS_TOKEN_TYPE_BEARER".freeze
     ACCESS_TOKEN_TYPE_JWT = "ACCESS_TOKEN_TYPE_JWT".freeze
 
@@ -39,5 +39,5 @@ module Models # Added Model module
     end
   end
 
-end # End of Model module
+  end
 end
