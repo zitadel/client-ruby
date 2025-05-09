@@ -14,7 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-  class SettingsServiceThemeMode
+  module Models # Added Models module
+          class SettingsServiceThemeMode
     THEME_MODE_UNSPECIFIED = "THEME_MODE_UNSPECIFIED".freeze
     THEME_MODE_AUTO = "THEME_MODE_AUTO".freeze
     THEME_MODE_LIGHT = "THEME_MODE_LIGHT".freeze
@@ -36,7 +37,9 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if SettingsServiceThemeMode.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #SettingsServiceThemeMode"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Models::SettingsServiceThemeMode"
     end
+  end
+
   end
 end

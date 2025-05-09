@@ -14,7 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-  class UserServiceAuthFactorState
+  module Models # Added Models module
+          class UserServiceAuthFactorState
     AUTH_FACTOR_STATE_UNSPECIFIED = "AUTH_FACTOR_STATE_UNSPECIFIED".freeze
     AUTH_FACTOR_STATE_NOT_READY = "AUTH_FACTOR_STATE_NOT_READY".freeze
     AUTH_FACTOR_STATE_READY = "AUTH_FACTOR_STATE_READY".freeze
@@ -36,7 +37,9 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if UserServiceAuthFactorState.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #UserServiceAuthFactorState"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Models::UserServiceAuthFactorState"
     end
+  end
+
   end
 end

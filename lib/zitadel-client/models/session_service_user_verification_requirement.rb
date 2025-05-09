@@ -14,7 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-  class SessionServiceUserVerificationRequirement
+  module Models # Added Models module
+          class SessionServiceUserVerificationRequirement
     USER_VERIFICATION_REQUIREMENT_UNSPECIFIED = "USER_VERIFICATION_REQUIREMENT_UNSPECIFIED".freeze
     USER_VERIFICATION_REQUIREMENT_REQUIRED = "USER_VERIFICATION_REQUIREMENT_REQUIRED".freeze
     USER_VERIFICATION_REQUIREMENT_PREFERRED = "USER_VERIFICATION_REQUIREMENT_PREFERRED".freeze
@@ -36,7 +37,9 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if SessionServiceUserVerificationRequirement.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #SessionServiceUserVerificationRequirement"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Models::SessionServiceUserVerificationRequirement"
     end
+  end
+
   end
 end

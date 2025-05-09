@@ -14,7 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-  class SettingsServiceResourceOwnerType
+  module Models # Added Models module
+          class SettingsServiceResourceOwnerType
     RESOURCE_OWNER_TYPE_UNSPECIFIED = "RESOURCE_OWNER_TYPE_UNSPECIFIED".freeze
     RESOURCE_OWNER_TYPE_INSTANCE = "RESOURCE_OWNER_TYPE_INSTANCE".freeze
     RESOURCE_OWNER_TYPE_ORG = "RESOURCE_OWNER_TYPE_ORG".freeze
@@ -35,7 +36,9 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if SettingsServiceResourceOwnerType.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #SettingsServiceResourceOwnerType"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Models::SettingsServiceResourceOwnerType"
     end
+  end
+
   end
 end

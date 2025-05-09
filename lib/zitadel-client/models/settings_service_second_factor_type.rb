@@ -14,7 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-  class SettingsServiceSecondFactorType
+  module Models # Added Models module
+          class SettingsServiceSecondFactorType
     SECOND_FACTOR_TYPE_UNSPECIFIED = "SECOND_FACTOR_TYPE_UNSPECIFIED".freeze
     SECOND_FACTOR_TYPE_OTP = "SECOND_FACTOR_TYPE_OTP".freeze
     SECOND_FACTOR_TYPE_U2_F = "SECOND_FACTOR_TYPE_U2F".freeze
@@ -37,7 +38,9 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if SettingsServiceSecondFactorType.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #SettingsServiceSecondFactorType"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Models::SettingsServiceSecondFactorType"
     end
+  end
+
   end
 end

@@ -14,7 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-  class UserServiceType
+  module Models # Added Models module
+          class UserServiceType
     TYPE_UNSPECIFIED = "TYPE_UNSPECIFIED".freeze
     TYPE_HUMAN = "TYPE_HUMAN".freeze
     TYPE_MACHINE = "TYPE_MACHINE".freeze
@@ -35,7 +36,9 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if UserServiceType.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #UserServiceType"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Models::UserServiceType"
     end
+  end
+
   end
 end

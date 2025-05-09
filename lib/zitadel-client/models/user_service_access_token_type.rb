@@ -14,7 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-  class UserServiceAccessTokenType
+  module Models # Added Models module
+          class UserServiceAccessTokenType
     ACCESS_TOKEN_TYPE_BEARER = "ACCESS_TOKEN_TYPE_BEARER".freeze
     ACCESS_TOKEN_TYPE_JWT = "ACCESS_TOKEN_TYPE_JWT".freeze
 
@@ -34,7 +35,9 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if UserServiceAccessTokenType.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #UserServiceAccessTokenType"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Models::UserServiceAccessTokenType"
     end
+  end
+
   end
 end

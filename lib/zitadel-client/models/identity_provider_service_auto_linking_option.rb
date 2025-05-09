@@ -14,7 +14,8 @@ require 'date'
 require 'time'
 
 module ZitadelClient
-  class IdentityProviderServiceAutoLinkingOption
+  module Models # Added Models module
+          class IdentityProviderServiceAutoLinkingOption
     AUTO_LINKING_OPTION_UNSPECIFIED = "AUTO_LINKING_OPTION_UNSPECIFIED".freeze
     AUTO_LINKING_OPTION_USERNAME = "AUTO_LINKING_OPTION_USERNAME".freeze
     AUTO_LINKING_OPTION_EMAIL = "AUTO_LINKING_OPTION_EMAIL".freeze
@@ -35,7 +36,9 @@ module ZitadelClient
     # @return [String] The enum value
     def build_from_hash(value)
       return value if IdentityProviderServiceAutoLinkingOption.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #IdentityProviderServiceAutoLinkingOption"
+      raise "Invalid ENUM value #{value} for class #ZitadelClient::Models::IdentityProviderServiceAutoLinkingOption"
     end
+  end
+
   end
 end
