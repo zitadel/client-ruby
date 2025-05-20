@@ -12,8 +12,7 @@ Generator version: 7.12.0
 
 require 'cgi'
 
-module Zitadel::Client
-module Api # Added Api module
+module Zitadel::Client::Api
   class SettingsServiceApi
   attr_accessor :api_client
 
@@ -23,12 +22,12 @@ module Api # Added Api module
       # Get the current active identity providers
       # Return the current active identity providers for the requested context
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id
-        # @option opts [Boolean] :ctx_instance
-        # @option opts [Boolean] :creation_allowed
-        # @option opts [Boolean] :linking_allowed
-        # @option opts [Boolean] :auto_creation
-        # @option opts [Boolean] :auto_linking
+        # @option opts [String] :ctx_org_id 
+        # @option opts [Boolean] :ctx_instance 
+        # @option opts [Boolean] :creation_allowed 
+        # @option opts [Boolean] :linking_allowed 
+        # @option opts [Boolean] :auto_creation 
+        # @option opts [Boolean] :auto_linking 
     # @return [SettingsServiceGetActiveIdentityProvidersResponse]
     def settings_service_get_active_identity_providers(opts = {})
     data, _status_code, _headers = settings_service_get_active_identity_providers_with_http_info(opts)
@@ -38,12 +37,12 @@ module Api # Added Api module
       # Get the current active identity providers
       # Return the current active identity providers for the requested context
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id
-        # @option opts [Boolean] :ctx_instance
-        # @option opts [Boolean] :creation_allowed
-        # @option opts [Boolean] :linking_allowed
-        # @option opts [Boolean] :auto_creation
-        # @option opts [Boolean] :auto_linking
+        # @option opts [String] :ctx_org_id 
+        # @option opts [Boolean] :ctx_instance 
+        # @option opts [Boolean] :creation_allowed 
+        # @option opts [Boolean] :linking_allowed 
+        # @option opts [Boolean] :auto_creation 
+        # @option opts [Boolean] :auto_linking 
     # @return [Array<(SettingsServiceGetActiveIdentityProvidersResponse, Integer, Hash)>] SettingsServiceGetActiveIdentityProvidersResponse data, response status code and response headers
     def settings_service_get_active_identity_providers_with_http_info(opts = {})
     if @api_client.config.debugging
@@ -98,8 +97,8 @@ module Api # Added Api module
       # Get the current active branding settings
       # Return the current active branding settings for the requested context
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id
-        # @option opts [Boolean] :ctx_instance
+        # @option opts [String] :ctx_org_id 
+        # @option opts [Boolean] :ctx_instance 
     # @return [SettingsServiceGetBrandingSettingsResponse]
     def settings_service_get_branding_settings(opts = {})
     data, _status_code, _headers = settings_service_get_branding_settings_with_http_info(opts)
@@ -109,8 +108,8 @@ module Api # Added Api module
       # Get the current active branding settings
       # Return the current active branding settings for the requested context
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id
-        # @option opts [Boolean] :ctx_instance
+        # @option opts [String] :ctx_org_id 
+        # @option opts [Boolean] :ctx_instance 
     # @return [Array<(SettingsServiceGetBrandingSettingsResponse, Integer, Hash)>] SettingsServiceGetBrandingSettingsResponse data, response status code and response headers
     def settings_service_get_branding_settings_with_http_info(opts = {})
     if @api_client.config.debugging
@@ -161,8 +160,8 @@ module Api # Added Api module
       # Get the domain settings
       # Return the domain settings for the requested context
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id
-        # @option opts [Boolean] :ctx_instance
+        # @option opts [String] :ctx_org_id 
+        # @option opts [Boolean] :ctx_instance 
     # @return [SettingsServiceGetDomainSettingsResponse]
     def settings_service_get_domain_settings(opts = {})
     data, _status_code, _headers = settings_service_get_domain_settings_with_http_info(opts)
@@ -172,8 +171,8 @@ module Api # Added Api module
       # Get the domain settings
       # Return the domain settings for the requested context
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id
-        # @option opts [Boolean] :ctx_instance
+        # @option opts [String] :ctx_org_id 
+        # @option opts [Boolean] :ctx_instance 
     # @return [Array<(SettingsServiceGetDomainSettingsResponse, Integer, Hash)>] SettingsServiceGetDomainSettingsResponse data, response status code and response headers
     def settings_service_get_domain_settings_with_http_info(opts = {})
     if @api_client.config.debugging
@@ -281,8 +280,8 @@ module Api # Added Api module
       # Get the legal and support settings
       # Return the legal settings for the requested context
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id
-        # @option opts [Boolean] :ctx_instance
+        # @option opts [String] :ctx_org_id 
+        # @option opts [Boolean] :ctx_instance 
     # @return [SettingsServiceGetLegalAndSupportSettingsResponse]
     def settings_service_get_legal_and_support_settings(opts = {})
     data, _status_code, _headers = settings_service_get_legal_and_support_settings_with_http_info(opts)
@@ -292,8 +291,8 @@ module Api # Added Api module
       # Get the legal and support settings
       # Return the legal settings for the requested context
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id
-        # @option opts [Boolean] :ctx_instance
+        # @option opts [String] :ctx_org_id 
+        # @option opts [Boolean] :ctx_instance 
     # @return [Array<(SettingsServiceGetLegalAndSupportSettingsResponse, Integer, Hash)>] SettingsServiceGetLegalAndSupportSettingsResponse data, response status code and response headers
     def settings_service_get_legal_and_support_settings_with_http_info(opts = {})
     if @api_client.config.debugging
@@ -344,8 +343,8 @@ module Api # Added Api module
       # Get the lockout settings
       # Return the lockout settings for the requested context, which define when a user will be locked
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id
-        # @option opts [Boolean] :ctx_instance
+        # @option opts [String] :ctx_org_id 
+        # @option opts [Boolean] :ctx_instance 
     # @return [SettingsServiceGetLockoutSettingsResponse]
     def settings_service_get_lockout_settings(opts = {})
     data, _status_code, _headers = settings_service_get_lockout_settings_with_http_info(opts)
@@ -355,8 +354,8 @@ module Api # Added Api module
       # Get the lockout settings
       # Return the lockout settings for the requested context, which define when a user will be locked
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id
-        # @option opts [Boolean] :ctx_instance
+        # @option opts [String] :ctx_org_id 
+        # @option opts [Boolean] :ctx_instance 
     # @return [Array<(SettingsServiceGetLockoutSettingsResponse, Integer, Hash)>] SettingsServiceGetLockoutSettingsResponse data, response status code and response headers
     def settings_service_get_lockout_settings_with_http_info(opts = {})
     if @api_client.config.debugging
@@ -407,8 +406,8 @@ module Api # Added Api module
       # Get the login settings
       # Return the settings for the requested context
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id
-        # @option opts [Boolean] :ctx_instance
+        # @option opts [String] :ctx_org_id 
+        # @option opts [Boolean] :ctx_instance 
     # @return [SettingsServiceGetLoginSettingsResponse]
     def settings_service_get_login_settings(opts = {})
     data, _status_code, _headers = settings_service_get_login_settings_with_http_info(opts)
@@ -418,8 +417,8 @@ module Api # Added Api module
       # Get the login settings
       # Return the settings for the requested context
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id
-        # @option opts [Boolean] :ctx_instance
+        # @option opts [String] :ctx_org_id 
+        # @option opts [Boolean] :ctx_instance 
     # @return [Array<(SettingsServiceGetLoginSettingsResponse, Integer, Hash)>] SettingsServiceGetLoginSettingsResponse data, response status code and response headers
     def settings_service_get_login_settings_with_http_info(opts = {})
     if @api_client.config.debugging
@@ -470,8 +469,8 @@ module Api # Added Api module
       # Get the password complexity settings
       # Return the password complexity settings for the requested context
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id
-        # @option opts [Boolean] :ctx_instance
+        # @option opts [String] :ctx_org_id 
+        # @option opts [Boolean] :ctx_instance 
     # @return [SettingsServiceGetPasswordComplexitySettingsResponse]
     def settings_service_get_password_complexity_settings(opts = {})
     data, _status_code, _headers = settings_service_get_password_complexity_settings_with_http_info(opts)
@@ -481,8 +480,8 @@ module Api # Added Api module
       # Get the password complexity settings
       # Return the password complexity settings for the requested context
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id
-        # @option opts [Boolean] :ctx_instance
+        # @option opts [String] :ctx_org_id 
+        # @option opts [Boolean] :ctx_instance 
     # @return [Array<(SettingsServiceGetPasswordComplexitySettingsResponse, Integer, Hash)>] SettingsServiceGetPasswordComplexitySettingsResponse data, response status code and response headers
     def settings_service_get_password_complexity_settings_with_http_info(opts = {})
     if @api_client.config.debugging
@@ -533,8 +532,8 @@ module Api # Added Api module
       # Get the password expiry settings
       # Return the password expiry settings for the requested context
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id
-        # @option opts [Boolean] :ctx_instance
+        # @option opts [String] :ctx_org_id 
+        # @option opts [Boolean] :ctx_instance 
     # @return [SettingsServiceGetPasswordExpirySettingsResponse]
     def settings_service_get_password_expiry_settings(opts = {})
     data, _status_code, _headers = settings_service_get_password_expiry_settings_with_http_info(opts)
@@ -544,8 +543,8 @@ module Api # Added Api module
       # Get the password expiry settings
       # Return the password expiry settings for the requested context
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id
-        # @option opts [Boolean] :ctx_instance
+        # @option opts [String] :ctx_org_id 
+        # @option opts [Boolean] :ctx_instance 
     # @return [Array<(SettingsServiceGetPasswordExpirySettingsResponse, Integer, Hash)>] SettingsServiceGetPasswordExpirySettingsResponse data, response status code and response headers
     def settings_service_get_password_expiry_settings_with_http_info(opts = {})
     if @api_client.config.debugging
@@ -593,5 +592,4 @@ module Api # Added Api module
     return data, status_code, headers
     end
   end
-end # End of Api module
 end

@@ -12,8 +12,7 @@ Generator version: 7.12.0
 
 require 'cgi'
 
-module Zitadel::Client
-module Api # Added Api module
+module Zitadel::Client::Api
   class IdentityProviderServiceApi
   attr_accessor :api_client
 
@@ -22,7 +21,7 @@ module Api # Added Api module
   end
       # Get identity provider (IdP) by ID
       # Returns an identity provider (social/enterprise login) by its ID, which can be of the type Google, AzureAD, etc.
-          # @param id [String]
+          # @param id [String] 
       # @param [Hash] opts the optional parameters
     # @return [IdentityProviderServiceGetIDPByIDResponse]
     def identity_provider_service_get_idpby_id(id, opts = {})
@@ -32,7 +31,7 @@ module Api # Added Api module
 
       # Get identity provider (IdP) by ID
       # Returns an identity provider (social/enterprise login) by its ID, which can be of the type Google, AzureAD, etc.
-          # @param id [String]
+          # @param id [String] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(IdentityProviderServiceGetIDPByIDResponse, Integer, Hash)>] IdentityProviderServiceGetIDPByIDResponse data, response status code and response headers
     def identity_provider_service_get_idpby_id_with_http_info(id, opts = {})
@@ -83,5 +82,4 @@ module Api # Added Api module
     return data, status_code, headers
     end
   end
-end # End of Api module
 end

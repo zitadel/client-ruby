@@ -12,8 +12,7 @@ Generator version: 7.12.0
 
 require 'cgi'
 
-module Zitadel::Client
-module Api # Added Api module
+module Zitadel::Client::Api
   class UserServiceApi
   attr_accessor :api_client
 
@@ -22,7 +21,7 @@ module Api # Added Api module
   end
       # Create a new human user
       # Create/import a new user with the type human. The newly created user will get a verification email if either the email address is not marked as verified and you did not request the verification to be returned.
-          # @param user_service_add_human_user_request [UserServiceAddHumanUserRequest]
+          # @param user_service_add_human_user_request [UserServiceAddHumanUserRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceAddHumanUserResponse]
     def user_service_add_human_user(user_service_add_human_user_request, opts = {})
@@ -32,7 +31,7 @@ module Api # Added Api module
 
       # Create a new human user
       # Create/import a new user with the type human. The newly created user will get a verification email if either the email address is not marked as verified and you did not request the verification to be returned.
-          # @param user_service_add_human_user_request [UserServiceAddHumanUserRequest]
+          # @param user_service_add_human_user_request [UserServiceAddHumanUserRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceAddHumanUserResponse, Integer, Hash)>] UserServiceAddHumanUserResponse data, response status code and response headers
     def user_service_add_human_user_with_http_info(user_service_add_human_user_request, opts = {})
@@ -90,8 +89,8 @@ module Api # Added Api module
 
       # Add link to an identity provider to an user
       # Add link to an identity provider to an user..
-          # @param user_id [String]
-          # @param user_service_add_idp_link_request [UserServiceAddIDPLinkRequest]
+          # @param user_id [String] 
+          # @param user_service_add_idp_link_request [UserServiceAddIDPLinkRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceAddIDPLinkResponse]
     def user_service_add_idp_link(user_id, user_service_add_idp_link_request, opts = {})
@@ -101,8 +100,8 @@ module Api # Added Api module
 
       # Add link to an identity provider to an user
       # Add link to an identity provider to an user..
-          # @param user_id [String]
-          # @param user_service_add_idp_link_request [UserServiceAddIDPLinkRequest]
+          # @param user_id [String] 
+          # @param user_service_add_idp_link_request [UserServiceAddIDPLinkRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceAddIDPLinkResponse, Integer, Hash)>] UserServiceAddIDPLinkResponse data, response status code and response headers
     def user_service_add_idp_link_with_http_info(user_id, user_service_add_idp_link_request, opts = {})
@@ -164,7 +163,7 @@ module Api # Added Api module
 
       # Add OTP Email for a user
       # Add a new One-Time Password (OTP) Email factor to the authenticated user. OTP Email will enable the user to verify a OTP with the latest verified email. The email has to be verified to add the second factor..
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceAddOTPEmailResponse]
     def user_service_add_otp_email(user_id, opts = {})
@@ -174,7 +173,7 @@ module Api # Added Api module
 
       # Add OTP Email for a user
       # Add a new One-Time Password (OTP) Email factor to the authenticated user. OTP Email will enable the user to verify a OTP with the latest verified email. The email has to be verified to add the second factor..
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceAddOTPEmailResponse, Integer, Hash)>] UserServiceAddOTPEmailResponse data, response status code and response headers
     def user_service_add_otp_email_with_http_info(user_id, opts = {})
@@ -232,7 +231,7 @@ module Api # Added Api module
 
       # Add OTP SMS for a user
       # Add a new One-Time Password (OTP) SMS factor to the authenticated user. OTP SMS will enable the user to verify a OTP with the latest verified phone number. The phone number has to be verified to add the second factor..
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceAddOTPSMSResponse]
     def user_service_add_otpsms(user_id, opts = {})
@@ -242,7 +241,7 @@ module Api # Added Api module
 
       # Add OTP SMS for a user
       # Add a new One-Time Password (OTP) SMS factor to the authenticated user. OTP SMS will enable the user to verify a OTP with the latest verified phone number. The phone number has to be verified to add the second factor..
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceAddOTPSMSResponse, Integer, Hash)>] UserServiceAddOTPSMSResponse data, response status code and response headers
     def user_service_add_otpsms_with_http_info(user_id, opts = {})
@@ -300,8 +299,8 @@ module Api # Added Api module
 
       # Create an invite code for a user
       # Create an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization's available methods.
-          # @param user_id [String]
-          # @param user_service_create_invite_code_request [UserServiceCreateInviteCodeRequest]
+          # @param user_id [String] 
+          # @param user_service_create_invite_code_request [UserServiceCreateInviteCodeRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceCreateInviteCodeResponse]
     def user_service_create_invite_code(user_id, user_service_create_invite_code_request, opts = {})
@@ -311,8 +310,8 @@ module Api # Added Api module
 
       # Create an invite code for a user
       # Create an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization&#39;s available methods.
-          # @param user_id [String]
-          # @param user_service_create_invite_code_request [UserServiceCreateInviteCodeRequest]
+          # @param user_id [String] 
+          # @param user_service_create_invite_code_request [UserServiceCreateInviteCodeRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceCreateInviteCodeResponse, Integer, Hash)>] UserServiceCreateInviteCodeResponse data, response status code and response headers
     def user_service_create_invite_code_with_http_info(user_id, user_service_create_invite_code_request, opts = {})
@@ -374,8 +373,8 @@ module Api # Added Api module
 
       # Create a passkey registration link for a user
       # Create a passkey registration link which includes a code and either return it or send it to the user..
-          # @param user_id [String]
-          # @param user_service_create_passkey_registration_link_request [UserServiceCreatePasskeyRegistrationLinkRequest]
+          # @param user_id [String] 
+          # @param user_service_create_passkey_registration_link_request [UserServiceCreatePasskeyRegistrationLinkRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceCreatePasskeyRegistrationLinkResponse]
     def user_service_create_passkey_registration_link(user_id, user_service_create_passkey_registration_link_request, opts = {})
@@ -385,8 +384,8 @@ module Api # Added Api module
 
       # Create a passkey registration link for a user
       # Create a passkey registration link which includes a code and either return it or send it to the user..
-          # @param user_id [String]
-          # @param user_service_create_passkey_registration_link_request [UserServiceCreatePasskeyRegistrationLinkRequest]
+          # @param user_id [String] 
+          # @param user_service_create_passkey_registration_link_request [UserServiceCreatePasskeyRegistrationLinkRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceCreatePasskeyRegistrationLinkResponse, Integer, Hash)>] UserServiceCreatePasskeyRegistrationLinkResponse data, response status code and response headers
     def user_service_create_passkey_registration_link_with_http_info(user_id, user_service_create_passkey_registration_link_request, opts = {})
@@ -448,7 +447,7 @@ module Api # Added Api module
 
       # Deactivate user
       # The state of the user will be changed to 'deactivated'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state 'deactivated'. Use deactivate user when the user should not be able to use the account anymore, but you still need access to the user data..
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceDeactivateUserResponse]
     def user_service_deactivate_user(user_id, opts = {})
@@ -458,7 +457,7 @@ module Api # Added Api module
 
       # Deactivate user
       # The state of the user will be changed to &#39;deactivated&#39;. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state &#39;deactivated&#39;. Use deactivate user when the user should not be able to use the account anymore, but you still need access to the user data..
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceDeactivateUserResponse, Integer, Hash)>] UserServiceDeactivateUserResponse data, response status code and response headers
     def user_service_deactivate_user_with_http_info(user_id, opts = {})
@@ -516,7 +515,7 @@ module Api # Added Api module
 
       # Delete user
       # The state of the user will be changed to 'deleted'. The user will not be able to log in anymore. Endpoints requesting this user will return an error 'User not found..
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceDeleteUserResponse]
     def user_service_delete_user(user_id, opts = {})
@@ -526,7 +525,7 @@ module Api # Added Api module
 
       # Delete user
       # The state of the user will be changed to &#39;deleted&#39;. The user will not be able to log in anymore. Endpoints requesting this user will return an error &#39;User not found..
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceDeleteUserResponse, Integer, Hash)>] UserServiceDeleteUserResponse data, response status code and response headers
     def user_service_delete_user_with_http_info(user_id, opts = {})
@@ -642,7 +641,7 @@ module Api # Added Api module
 
       # MFA Init Skipped
       # Update the last time the user has skipped MFA initialization. The server timestamp is used.
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceHumanMFAInitSkippedResponse]
     def user_service_human_mfa_init_skipped(user_id, opts = {})
@@ -652,7 +651,7 @@ module Api # Added Api module
 
       # MFA Init Skipped
       # Update the last time the user has skipped MFA initialization. The server timestamp is used.
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceHumanMFAInitSkippedResponse, Integer, Hash)>] UserServiceHumanMFAInitSkippedResponse data, response status code and response headers
     def user_service_human_mfa_init_skipped_with_http_info(user_id, opts = {})
@@ -708,7 +707,7 @@ module Api # Added Api module
     return data, status_code, headers
     end
 
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
         # @option opts [Array<String>] :auth_factors Specify the Auth Factors you are interested in
         # @option opts [Array<String>] :states Specify the state of the Auth Factors
@@ -718,7 +717,7 @@ module Api # Added Api module
     data
     end
 
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
         # @option opts [Array<String>] :auth_factors Specify the Auth Factors you are interested in
         # @option opts [Array<String>] :states Specify the state of the Auth Factors
@@ -783,7 +782,7 @@ module Api # Added Api module
 
       # List all possible authentication methods of a user
       # List all possible authentication methods of a user like password, passwordless, (T)OTP and more..
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
         # @option opts [Boolean] :domain_query_include_without_domain List also auth method types without domain information like passkey and U2F added through V1 APIs / Login UI.
         # @option opts [String] :domain_query_domain List only auth methods with specific domain.
@@ -795,7 +794,7 @@ module Api # Added Api module
 
       # List all possible authentication methods of a user
       # List all possible authentication methods of a user like password, passwordless, (T)OTP and more..
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
         # @option opts [Boolean] :domain_query_include_without_domain List also auth method types without domain information like passkey and U2F added through V1 APIs / Login UI.
         # @option opts [String] :domain_query_domain List only auth methods with specific domain.
@@ -852,8 +851,8 @@ module Api # Added Api module
 
       # List links to an identity provider of an user
       # List links to an identity provider of an user.
-          # @param user_id [String]
-          # @param user_service_list_idp_links_request [UserServiceListIDPLinksRequest]
+          # @param user_id [String] 
+          # @param user_service_list_idp_links_request [UserServiceListIDPLinksRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceListIDPLinksResponse]
     def user_service_list_idp_links(user_id, user_service_list_idp_links_request, opts = {})
@@ -863,8 +862,8 @@ module Api # Added Api module
 
       # List links to an identity provider of an user
       # List links to an identity provider of an user.
-          # @param user_id [String]
-          # @param user_service_list_idp_links_request [UserServiceListIDPLinksRequest]
+          # @param user_id [String] 
+          # @param user_service_list_idp_links_request [UserServiceListIDPLinksRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceListIDPLinksResponse, Integer, Hash)>] UserServiceListIDPLinksResponse data, response status code and response headers
     def user_service_list_idp_links_with_http_info(user_id, user_service_list_idp_links_request, opts = {})
@@ -926,7 +925,7 @@ module Api # Added Api module
 
       # List passkeys of an user
       # List passkeys of an user
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceListPasskeysResponse]
     def user_service_list_passkeys(user_id, opts = {})
@@ -936,7 +935,7 @@ module Api # Added Api module
 
       # List passkeys of an user
       # List passkeys of an user
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceListPasskeysResponse, Integer, Hash)>] UserServiceListPasskeysResponse data, response status code and response headers
     def user_service_list_passkeys_with_http_info(user_id, opts = {})
@@ -994,7 +993,7 @@ module Api # Added Api module
 
       # Search Users
       # Search for users. By default, we will return all users of your instance that you have permission to read. Make sure to include a limit and sorting for pagination.
-          # @param user_service_list_users_request [UserServiceListUsersRequest]
+          # @param user_service_list_users_request [UserServiceListUsersRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceListUsersResponse]
     def user_service_list_users(user_service_list_users_request, opts = {})
@@ -1004,7 +1003,7 @@ module Api # Added Api module
 
       # Search Users
       # Search for users. By default, we will return all users of your instance that you have permission to read. Make sure to include a limit and sorting for pagination.
-          # @param user_service_list_users_request [UserServiceListUsersRequest]
+          # @param user_service_list_users_request [UserServiceListUsersRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceListUsersResponse, Integer, Hash)>] UserServiceListUsersResponse data, response status code and response headers
     def user_service_list_users_with_http_info(user_service_list_users_request, opts = {})
@@ -1062,7 +1061,7 @@ module Api # Added Api module
 
       # Lock user
       # The state of the user will be changed to 'locked'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state 'locked'. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.)..
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceLockUserResponse]
     def user_service_lock_user(user_id, opts = {})
@@ -1072,7 +1071,7 @@ module Api # Added Api module
 
       # Lock user
       # The state of the user will be changed to &#39;locked&#39;. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state &#39;locked&#39;. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.)..
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceLockUserResponse, Integer, Hash)>] UserServiceLockUserResponse data, response status code and response headers
     def user_service_lock_user_with_http_info(user_id, opts = {})
@@ -1130,8 +1129,8 @@ module Api # Added Api module
 
       # Request a code to reset a password
       # Request a code to reset a password..
-          # @param user_id [String]
-          # @param user_service_password_reset_request [UserServicePasswordResetRequest]
+          # @param user_id [String] 
+          # @param user_service_password_reset_request [UserServicePasswordResetRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServicePasswordResetResponse]
     def user_service_password_reset(user_id, user_service_password_reset_request, opts = {})
@@ -1141,8 +1140,8 @@ module Api # Added Api module
 
       # Request a code to reset a password
       # Request a code to reset a password..
-          # @param user_id [String]
-          # @param user_service_password_reset_request [UserServicePasswordResetRequest]
+          # @param user_id [String] 
+          # @param user_service_password_reset_request [UserServicePasswordResetRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServicePasswordResetResponse, Integer, Hash)>] UserServicePasswordResetResponse data, response status code and response headers
     def user_service_password_reset_with_http_info(user_id, user_service_password_reset_request, opts = {})
@@ -1204,7 +1203,7 @@ module Api # Added Api module
 
       # Reactivate user
       # Reactivate a user with the state 'deactivated'. The user will be able to log in again afterward. The endpoint returns an error if the user is not in the state 'deactivated'..
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceReactivateUserResponse]
     def user_service_reactivate_user(user_id, opts = {})
@@ -1214,7 +1213,7 @@ module Api # Added Api module
 
       # Reactivate user
       # Reactivate a user with the state &#39;deactivated&#39;. The user will be able to log in again afterward. The endpoint returns an error if the user is not in the state &#39;deactivated&#39;..
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceReactivateUserResponse, Integer, Hash)>] UserServiceReactivateUserResponse data, response status code and response headers
     def user_service_reactivate_user_with_http_info(user_id, opts = {})
@@ -1272,8 +1271,8 @@ module Api # Added Api module
 
       # Start the registration of passkey for a user
       # Start the registration of a passkey for a user, as a response the public key credential creation options are returned, which are used to verify the passkey..
-          # @param user_id [String]
-          # @param user_service_register_passkey_request [UserServiceRegisterPasskeyRequest]
+          # @param user_id [String] 
+          # @param user_service_register_passkey_request [UserServiceRegisterPasskeyRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceRegisterPasskeyResponse]
     def user_service_register_passkey(user_id, user_service_register_passkey_request, opts = {})
@@ -1283,8 +1282,8 @@ module Api # Added Api module
 
       # Start the registration of passkey for a user
       # Start the registration of a passkey for a user, as a response the public key credential creation options are returned, which are used to verify the passkey..
-          # @param user_id [String]
-          # @param user_service_register_passkey_request [UserServiceRegisterPasskeyRequest]
+          # @param user_id [String] 
+          # @param user_service_register_passkey_request [UserServiceRegisterPasskeyRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceRegisterPasskeyResponse, Integer, Hash)>] UserServiceRegisterPasskeyResponse data, response status code and response headers
     def user_service_register_passkey_with_http_info(user_id, user_service_register_passkey_request, opts = {})
@@ -1346,7 +1345,7 @@ module Api # Added Api module
 
       # Start the registration of a TOTP generator for a user
       # Start the registration of a TOTP generator for a user, as a response a secret returned, which is used to initialize a TOTP app or device..
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceRegisterTOTPResponse]
     def user_service_register_totp(user_id, opts = {})
@@ -1356,7 +1355,7 @@ module Api # Added Api module
 
       # Start the registration of a TOTP generator for a user
       # Start the registration of a TOTP generator for a user, as a response a secret returned, which is used to initialize a TOTP app or device..
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceRegisterTOTPResponse, Integer, Hash)>] UserServiceRegisterTOTPResponse data, response status code and response headers
     def user_service_register_totp_with_http_info(user_id, opts = {})
@@ -1414,8 +1413,8 @@ module Api # Added Api module
 
       # Start the registration of a u2f token for a user
       # Start the registration of a u2f token for a user, as a response the public key credential creation options are returned, which are used to verify the u2f token..
-          # @param user_id [String]
-          # @param user_service_register_u2_f_request [UserServiceRegisterU2FRequest]
+          # @param user_id [String] 
+          # @param user_service_register_u2_f_request [UserServiceRegisterU2FRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceRegisterU2FResponse]
     def user_service_register_u2_f(user_id, user_service_register_u2_f_request, opts = {})
@@ -1425,8 +1424,8 @@ module Api # Added Api module
 
       # Start the registration of a u2f token for a user
       # Start the registration of a u2f token for a user, as a response the public key credential creation options are returned, which are used to verify the u2f token..
-          # @param user_id [String]
-          # @param user_service_register_u2_f_request [UserServiceRegisterU2FRequest]
+          # @param user_id [String] 
+          # @param user_service_register_u2_f_request [UserServiceRegisterU2FRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceRegisterU2FResponse, Integer, Hash)>] UserServiceRegisterU2FResponse data, response status code and response headers
     def user_service_register_u2_f_with_http_info(user_id, user_service_register_u2_f_request, opts = {})
@@ -1488,9 +1487,9 @@ module Api # Added Api module
 
       # Remove link of an identity provider to an user
       # Remove link of an identity provider to an user.
-          # @param user_id [String]
-          # @param idp_id [String]
-          # @param linked_user_id [String]
+          # @param user_id [String] 
+          # @param idp_id [String] 
+          # @param linked_user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceRemoveIDPLinkResponse]
     def user_service_remove_idp_link(user_id, idp_id, linked_user_id, opts = {})
@@ -1500,9 +1499,9 @@ module Api # Added Api module
 
       # Remove link of an identity provider to an user
       # Remove link of an identity provider to an user.
-          # @param user_id [String]
-          # @param idp_id [String]
-          # @param linked_user_id [String]
+          # @param user_id [String] 
+          # @param idp_id [String] 
+          # @param linked_user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceRemoveIDPLinkResponse, Integer, Hash)>] UserServiceRemoveIDPLinkResponse data, response status code and response headers
     def user_service_remove_idp_link_with_http_info(user_id, idp_id, linked_user_id, opts = {})
@@ -1568,7 +1567,7 @@ module Api # Added Api module
 
       # Remove One-Time Password (OTP) Email from a user
       # Remove the configured One-Time Password (OTP) Email factor of a user. As only one OTP Email per user is allowed, the user will not have OTP Email as a second factor afterward.
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceRemoveOTPEmailResponse]
     def user_service_remove_otp_email(user_id, opts = {})
@@ -1578,7 +1577,7 @@ module Api # Added Api module
 
       # Remove One-Time Password (OTP) Email from a user
       # Remove the configured One-Time Password (OTP) Email factor of a user. As only one OTP Email per user is allowed, the user will not have OTP Email as a second factor afterward.
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceRemoveOTPEmailResponse, Integer, Hash)>] UserServiceRemoveOTPEmailResponse data, response status code and response headers
     def user_service_remove_otp_email_with_http_info(user_id, opts = {})
@@ -1631,7 +1630,7 @@ module Api # Added Api module
 
       # Remove One-Time Password (OTP) SMS from a user
       # Remove the configured One-Time Password (OTP) SMS factor of a user. As only one OTP SMS per user is allowed, the user will not have OTP SMS as a second factor afterward.
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceRemoveOTPSMSResponse]
     def user_service_remove_otpsms(user_id, opts = {})
@@ -1641,7 +1640,7 @@ module Api # Added Api module
 
       # Remove One-Time Password (OTP) SMS from a user
       # Remove the configured One-Time Password (OTP) SMS factor of a user. As only one OTP SMS per user is allowed, the user will not have OTP SMS as a second factor afterward.
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceRemoveOTPSMSResponse, Integer, Hash)>] UserServiceRemoveOTPSMSResponse data, response status code and response headers
     def user_service_remove_otpsms_with_http_info(user_id, opts = {})
@@ -1694,8 +1693,8 @@ module Api # Added Api module
 
       # Remove passkey from a user
       # Remove passkey from a user.
-          # @param user_id [String]
-          # @param passkey_id [String]
+          # @param user_id [String] 
+          # @param passkey_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceRemovePasskeyResponse]
     def user_service_remove_passkey(user_id, passkey_id, opts = {})
@@ -1705,8 +1704,8 @@ module Api # Added Api module
 
       # Remove passkey from a user
       # Remove passkey from a user.
-          # @param user_id [String]
-          # @param passkey_id [String]
+          # @param user_id [String] 
+          # @param passkey_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceRemovePasskeyResponse, Integer, Hash)>] UserServiceRemovePasskeyResponse data, response status code and response headers
     def user_service_remove_passkey_with_http_info(user_id, passkey_id, opts = {})
@@ -1763,7 +1762,7 @@ module Api # Added Api module
 
       # Delete the user phone
       # Delete the phone number of a user.
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceRemovePhoneResponse]
     def user_service_remove_phone(user_id, opts = {})
@@ -1773,7 +1772,7 @@ module Api # Added Api module
 
       # Delete the user phone
       # Delete the phone number of a user.
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceRemovePhoneResponse, Integer, Hash)>] UserServiceRemovePhoneResponse data, response status code and response headers
     def user_service_remove_phone_with_http_info(user_id, opts = {})
@@ -1831,7 +1830,7 @@ module Api # Added Api module
 
       # Remove TOTP generator from a user
       # Remove the configured TOTP generator of a user. As only one TOTP generator per user is allowed, the user will not have TOTP as a second factor afterward.
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceRemoveTOTPResponse]
     def user_service_remove_totp(user_id, opts = {})
@@ -1841,7 +1840,7 @@ module Api # Added Api module
 
       # Remove TOTP generator from a user
       # Remove the configured TOTP generator of a user. As only one TOTP generator per user is allowed, the user will not have TOTP as a second factor afterward.
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceRemoveTOTPResponse, Integer, Hash)>] UserServiceRemoveTOTPResponse data, response status code and response headers
     def user_service_remove_totp_with_http_info(user_id, opts = {})
@@ -1894,8 +1893,8 @@ module Api # Added Api module
 
       # Remove u2f token from a user
       # Remove u2f token from a user
-          # @param user_id [String]
-          # @param u2f_id [String]
+          # @param user_id [String] 
+          # @param u2f_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceRemoveU2FResponse]
     def user_service_remove_u2_f(user_id, u2f_id, opts = {})
@@ -1905,8 +1904,8 @@ module Api # Added Api module
 
       # Remove u2f token from a user
       # Remove u2f token from a user
-          # @param user_id [String]
-          # @param u2f_id [String]
+          # @param user_id [String] 
+          # @param u2f_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceRemoveU2FResponse, Integer, Hash)>] UserServiceRemoveU2FResponse data, response status code and response headers
     def user_service_remove_u2_f_with_http_info(user_id, u2f_id, opts = {})
@@ -1963,8 +1962,8 @@ module Api # Added Api module
 
       # Resend code to verify user email
       # Resend code to verify user email.
-          # @param user_id [String]
-          # @param user_service_resend_email_code_request [UserServiceResendEmailCodeRequest]
+          # @param user_id [String] 
+          # @param user_service_resend_email_code_request [UserServiceResendEmailCodeRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceResendEmailCodeResponse]
     def user_service_resend_email_code(user_id, user_service_resend_email_code_request, opts = {})
@@ -1974,8 +1973,8 @@ module Api # Added Api module
 
       # Resend code to verify user email
       # Resend code to verify user email.
-          # @param user_id [String]
-          # @param user_service_resend_email_code_request [UserServiceResendEmailCodeRequest]
+          # @param user_id [String] 
+          # @param user_service_resend_email_code_request [UserServiceResendEmailCodeRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceResendEmailCodeResponse, Integer, Hash)>] UserServiceResendEmailCodeResponse data, response status code and response headers
     def user_service_resend_email_code_with_http_info(user_id, user_service_resend_email_code_request, opts = {})
@@ -2037,7 +2036,7 @@ module Api # Added Api module
 
       # Resend an invite code for a user
       # Resend an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization's available methods. A resend is only possible if a code has been created previously and sent to the user. If there is no code or it was directly returned, an error will be returned.
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceResendInviteCodeResponse]
     def user_service_resend_invite_code(user_id, opts = {})
@@ -2047,7 +2046,7 @@ module Api # Added Api module
 
       # Resend an invite code for a user
       # Resend an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization&#39;s available methods. A resend is only possible if a code has been created previously and sent to the user. If there is no code or it was directly returned, an error will be returned.
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceResendInviteCodeResponse, Integer, Hash)>] UserServiceResendInviteCodeResponse data, response status code and response headers
     def user_service_resend_invite_code_with_http_info(user_id, opts = {})
@@ -2100,8 +2099,8 @@ module Api # Added Api module
 
       # Resend code to verify user phone
       # Resend code to verify user phone.
-          # @param user_id [String]
-          # @param user_service_resend_phone_code_request [UserServiceResendPhoneCodeRequest]
+          # @param user_id [String] 
+          # @param user_service_resend_phone_code_request [UserServiceResendPhoneCodeRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceResendPhoneCodeResponse]
     def user_service_resend_phone_code(user_id, user_service_resend_phone_code_request, opts = {})
@@ -2111,8 +2110,8 @@ module Api # Added Api module
 
       # Resend code to verify user phone
       # Resend code to verify user phone.
-          # @param user_id [String]
-          # @param user_service_resend_phone_code_request [UserServiceResendPhoneCodeRequest]
+          # @param user_id [String] 
+          # @param user_service_resend_phone_code_request [UserServiceResendPhoneCodeRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceResendPhoneCodeResponse, Integer, Hash)>] UserServiceResendPhoneCodeResponse data, response status code and response headers
     def user_service_resend_phone_code_with_http_info(user_id, user_service_resend_phone_code_request, opts = {})
@@ -2175,7 +2174,7 @@ module Api # Added Api module
       # Retrieve the information returned by the identity provider
       # Retrieve the information returned by the identity provider for registration or updating an existing user with new information..
           # @param idp_intent_id [String] ID of the idp intent, previously returned on the success response of the IDP callback
-          # @param user_service_retrieve_identity_provider_intent_request [UserServiceRetrieveIdentityProviderIntentRequest]
+          # @param user_service_retrieve_identity_provider_intent_request [UserServiceRetrieveIdentityProviderIntentRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceRetrieveIdentityProviderIntentResponse]
     def user_service_retrieve_identity_provider_intent(idp_intent_id, user_service_retrieve_identity_provider_intent_request, opts = {})
@@ -2186,7 +2185,7 @@ module Api # Added Api module
       # Retrieve the information returned by the identity provider
       # Retrieve the information returned by the identity provider for registration or updating an existing user with new information..
           # @param idp_intent_id [String] ID of the idp intent, previously returned on the success response of the IDP callback
-          # @param user_service_retrieve_identity_provider_intent_request [UserServiceRetrieveIdentityProviderIntentRequest]
+          # @param user_service_retrieve_identity_provider_intent_request [UserServiceRetrieveIdentityProviderIntentRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceRetrieveIdentityProviderIntentResponse, Integer, Hash)>] UserServiceRetrieveIdentityProviderIntentResponse data, response status code and response headers
     def user_service_retrieve_identity_provider_intent_with_http_info(idp_intent_id, user_service_retrieve_identity_provider_intent_request, opts = {})
@@ -2248,8 +2247,8 @@ module Api # Added Api module
 
       # Send code to verify user email
       # Send code to verify user email.
-          # @param user_id [String]
-          # @param user_service_send_email_code_request [UserServiceSendEmailCodeRequest]
+          # @param user_id [String] 
+          # @param user_service_send_email_code_request [UserServiceSendEmailCodeRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceSendEmailCodeResponse]
     def user_service_send_email_code(user_id, user_service_send_email_code_request, opts = {})
@@ -2259,8 +2258,8 @@ module Api # Added Api module
 
       # Send code to verify user email
       # Send code to verify user email.
-          # @param user_id [String]
-          # @param user_service_send_email_code_request [UserServiceSendEmailCodeRequest]
+          # @param user_id [String] 
+          # @param user_service_send_email_code_request [UserServiceSendEmailCodeRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceSendEmailCodeResponse, Integer, Hash)>] UserServiceSendEmailCodeResponse data, response status code and response headers
     def user_service_send_email_code_with_http_info(user_id, user_service_send_email_code_request, opts = {})
@@ -2322,8 +2321,8 @@ module Api # Added Api module
 
       # Change the user email
       # Change the email address of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by email..
-          # @param user_id [String]
-          # @param user_service_set_email_request [UserServiceSetEmailRequest]
+          # @param user_id [String] 
+          # @param user_service_set_email_request [UserServiceSetEmailRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceSetEmailResponse]
     def user_service_set_email(user_id, user_service_set_email_request, opts = {})
@@ -2333,8 +2332,8 @@ module Api # Added Api module
 
       # Change the user email
       # Change the email address of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by email..
-          # @param user_id [String]
-          # @param user_service_set_email_request [UserServiceSetEmailRequest]
+          # @param user_id [String] 
+          # @param user_service_set_email_request [UserServiceSetEmailRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceSetEmailResponse, Integer, Hash)>] UserServiceSetEmailResponse data, response status code and response headers
     def user_service_set_email_with_http_info(user_id, user_service_set_email_request, opts = {})
@@ -2396,8 +2395,8 @@ module Api # Added Api module
 
       # Change password
       # Change the password of a user with either a verification code or the current password..
-          # @param user_id [String]
-          # @param user_service_set_password_request [UserServiceSetPasswordRequest]
+          # @param user_id [String] 
+          # @param user_service_set_password_request [UserServiceSetPasswordRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceSetPasswordResponse]
     def user_service_set_password(user_id, user_service_set_password_request, opts = {})
@@ -2407,8 +2406,8 @@ module Api # Added Api module
 
       # Change password
       # Change the password of a user with either a verification code or the current password..
-          # @param user_id [String]
-          # @param user_service_set_password_request [UserServiceSetPasswordRequest]
+          # @param user_id [String] 
+          # @param user_service_set_password_request [UserServiceSetPasswordRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceSetPasswordResponse, Integer, Hash)>] UserServiceSetPasswordResponse data, response status code and response headers
     def user_service_set_password_with_http_info(user_id, user_service_set_password_request, opts = {})
@@ -2470,8 +2469,8 @@ module Api # Added Api module
 
       # Set the user phone
       # Set the phone number of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by sms..
-          # @param user_id [String]
-          # @param user_service_set_phone_request [UserServiceSetPhoneRequest]
+          # @param user_id [String] 
+          # @param user_service_set_phone_request [UserServiceSetPhoneRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceSetPhoneResponse]
     def user_service_set_phone(user_id, user_service_set_phone_request, opts = {})
@@ -2481,8 +2480,8 @@ module Api # Added Api module
 
       # Set the user phone
       # Set the phone number of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by sms..
-          # @param user_id [String]
-          # @param user_service_set_phone_request [UserServiceSetPhoneRequest]
+          # @param user_id [String] 
+          # @param user_service_set_phone_request [UserServiceSetPhoneRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceSetPhoneResponse, Integer, Hash)>] UserServiceSetPhoneResponse data, response status code and response headers
     def user_service_set_phone_with_http_info(user_id, user_service_set_phone_request, opts = {})
@@ -2544,7 +2543,7 @@ module Api # Added Api module
 
       # Start flow with an identity provider
       # Start a flow with an identity provider, for external login, registration or linking..
-          # @param user_service_start_identity_provider_intent_request [UserServiceStartIdentityProviderIntentRequest]
+          # @param user_service_start_identity_provider_intent_request [UserServiceStartIdentityProviderIntentRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceStartIdentityProviderIntentResponse]
     def user_service_start_identity_provider_intent(user_service_start_identity_provider_intent_request, opts = {})
@@ -2554,7 +2553,7 @@ module Api # Added Api module
 
       # Start flow with an identity provider
       # Start a flow with an identity provider, for external login, registration or linking..
-          # @param user_service_start_identity_provider_intent_request [UserServiceStartIdentityProviderIntentRequest]
+          # @param user_service_start_identity_provider_intent_request [UserServiceStartIdentityProviderIntentRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceStartIdentityProviderIntentResponse, Integer, Hash)>] UserServiceStartIdentityProviderIntentResponse data, response status code and response headers
     def user_service_start_identity_provider_intent_with_http_info(user_service_start_identity_provider_intent_request, opts = {})
@@ -2612,7 +2611,7 @@ module Api # Added Api module
 
       # Unlock user
       # The state of the user will be changed to 'locked'. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state 'locked'. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.)..
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceUnlockUserResponse]
     def user_service_unlock_user(user_id, opts = {})
@@ -2622,7 +2621,7 @@ module Api # Added Api module
 
       # Unlock user
       # The state of the user will be changed to &#39;locked&#39;. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state &#39;locked&#39;. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.)..
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceUnlockUserResponse, Integer, Hash)>] UserServiceUnlockUserResponse data, response status code and response headers
     def user_service_unlock_user_with_http_info(user_id, opts = {})
@@ -2680,8 +2679,8 @@ module Api # Added Api module
 
       # Update User
       # Update all information from a user..
-          # @param user_id [String]
-          # @param user_service_update_human_user_request [UserServiceUpdateHumanUserRequest]
+          # @param user_id [String] 
+          # @param user_service_update_human_user_request [UserServiceUpdateHumanUserRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceUpdateHumanUserResponse]
     def user_service_update_human_user(user_id, user_service_update_human_user_request, opts = {})
@@ -2691,8 +2690,8 @@ module Api # Added Api module
 
       # Update User
       # Update all information from a user..
-          # @param user_id [String]
-          # @param user_service_update_human_user_request [UserServiceUpdateHumanUserRequest]
+          # @param user_id [String] 
+          # @param user_service_update_human_user_request [UserServiceUpdateHumanUserRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceUpdateHumanUserResponse, Integer, Hash)>] UserServiceUpdateHumanUserResponse data, response status code and response headers
     def user_service_update_human_user_with_http_info(user_id, user_service_update_human_user_request, opts = {})
@@ -2754,8 +2753,8 @@ module Api # Added Api module
 
       # Verify the email
       # Verify the email with the generated code.
-          # @param user_id [String]
-          # @param user_service_verify_email_request [UserServiceVerifyEmailRequest]
+          # @param user_id [String] 
+          # @param user_service_verify_email_request [UserServiceVerifyEmailRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceVerifyEmailResponse]
     def user_service_verify_email(user_id, user_service_verify_email_request, opts = {})
@@ -2765,8 +2764,8 @@ module Api # Added Api module
 
       # Verify the email
       # Verify the email with the generated code.
-          # @param user_id [String]
-          # @param user_service_verify_email_request [UserServiceVerifyEmailRequest]
+          # @param user_id [String] 
+          # @param user_service_verify_email_request [UserServiceVerifyEmailRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceVerifyEmailResponse, Integer, Hash)>] UserServiceVerifyEmailResponse data, response status code and response headers
     def user_service_verify_email_with_http_info(user_id, user_service_verify_email_request, opts = {})
@@ -2828,8 +2827,8 @@ module Api # Added Api module
 
       # Verify an invite code for a user
       # Verify the invite code of a user previously issued. This will set their email to a verified state and allow the user to set up their first authentication method (password, passkeys, IdP) depending on the organization's available methods.
-          # @param user_id [String]
-          # @param user_service_verify_invite_code_request [UserServiceVerifyInviteCodeRequest]
+          # @param user_id [String] 
+          # @param user_service_verify_invite_code_request [UserServiceVerifyInviteCodeRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceVerifyInviteCodeResponse]
     def user_service_verify_invite_code(user_id, user_service_verify_invite_code_request, opts = {})
@@ -2839,8 +2838,8 @@ module Api # Added Api module
 
       # Verify an invite code for a user
       # Verify the invite code of a user previously issued. This will set their email to a verified state and allow the user to set up their first authentication method (password, passkeys, IdP) depending on the organization&#39;s available methods.
-          # @param user_id [String]
-          # @param user_service_verify_invite_code_request [UserServiceVerifyInviteCodeRequest]
+          # @param user_id [String] 
+          # @param user_service_verify_invite_code_request [UserServiceVerifyInviteCodeRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceVerifyInviteCodeResponse, Integer, Hash)>] UserServiceVerifyInviteCodeResponse data, response status code and response headers
     def user_service_verify_invite_code_with_http_info(user_id, user_service_verify_invite_code_request, opts = {})
@@ -2902,9 +2901,9 @@ module Api # Added Api module
 
       # Verify a passkey for a user
       # Verify the passkey registration with the public key credential..
-          # @param user_id [String]
-          # @param passkey_id [String]
-          # @param user_service_verify_passkey_registration_request [UserServiceVerifyPasskeyRegistrationRequest]
+          # @param user_id [String] 
+          # @param passkey_id [String] 
+          # @param user_service_verify_passkey_registration_request [UserServiceVerifyPasskeyRegistrationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceVerifyPasskeyRegistrationResponse]
     def user_service_verify_passkey_registration(user_id, passkey_id, user_service_verify_passkey_registration_request, opts = {})
@@ -2914,9 +2913,9 @@ module Api # Added Api module
 
       # Verify a passkey for a user
       # Verify the passkey registration with the public key credential..
-          # @param user_id [String]
-          # @param passkey_id [String]
-          # @param user_service_verify_passkey_registration_request [UserServiceVerifyPasskeyRegistrationRequest]
+          # @param user_id [String] 
+          # @param passkey_id [String] 
+          # @param user_service_verify_passkey_registration_request [UserServiceVerifyPasskeyRegistrationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceVerifyPasskeyRegistrationResponse, Integer, Hash)>] UserServiceVerifyPasskeyRegistrationResponse data, response status code and response headers
     def user_service_verify_passkey_registration_with_http_info(user_id, passkey_id, user_service_verify_passkey_registration_request, opts = {})
@@ -2982,8 +2981,8 @@ module Api # Added Api module
 
       # Verify the phone
       # Verify the phone with the generated code..
-          # @param user_id [String]
-          # @param user_service_verify_phone_request [UserServiceVerifyPhoneRequest]
+          # @param user_id [String] 
+          # @param user_service_verify_phone_request [UserServiceVerifyPhoneRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceVerifyPhoneResponse]
     def user_service_verify_phone(user_id, user_service_verify_phone_request, opts = {})
@@ -2993,8 +2992,8 @@ module Api # Added Api module
 
       # Verify the phone
       # Verify the phone with the generated code..
-          # @param user_id [String]
-          # @param user_service_verify_phone_request [UserServiceVerifyPhoneRequest]
+          # @param user_id [String] 
+          # @param user_service_verify_phone_request [UserServiceVerifyPhoneRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceVerifyPhoneResponse, Integer, Hash)>] UserServiceVerifyPhoneResponse data, response status code and response headers
     def user_service_verify_phone_with_http_info(user_id, user_service_verify_phone_request, opts = {})
@@ -3056,8 +3055,8 @@ module Api # Added Api module
 
       # Verify a TOTP generator for a user
       # Verify the TOTP registration with a generated code..
-          # @param user_id [String]
-          # @param user_service_verify_totp_registration_request [UserServiceVerifyTOTPRegistrationRequest]
+          # @param user_id [String] 
+          # @param user_service_verify_totp_registration_request [UserServiceVerifyTOTPRegistrationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceVerifyTOTPRegistrationResponse]
     def user_service_verify_totp_registration(user_id, user_service_verify_totp_registration_request, opts = {})
@@ -3067,8 +3066,8 @@ module Api # Added Api module
 
       # Verify a TOTP generator for a user
       # Verify the TOTP registration with a generated code..
-          # @param user_id [String]
-          # @param user_service_verify_totp_registration_request [UserServiceVerifyTOTPRegistrationRequest]
+          # @param user_id [String] 
+          # @param user_service_verify_totp_registration_request [UserServiceVerifyTOTPRegistrationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceVerifyTOTPRegistrationResponse, Integer, Hash)>] UserServiceVerifyTOTPRegistrationResponse data, response status code and response headers
     def user_service_verify_totp_registration_with_http_info(user_id, user_service_verify_totp_registration_request, opts = {})
@@ -3130,9 +3129,9 @@ module Api # Added Api module
 
       # Verify a u2f token for a user
       # Verify the u2f token registration with the public key credential..
-          # @param user_id [String]
-          # @param u2f_id [String]
-          # @param user_service_verify_u2_f_registration_request [UserServiceVerifyU2FRegistrationRequest]
+          # @param user_id [String] 
+          # @param u2f_id [String] 
+          # @param user_service_verify_u2_f_registration_request [UserServiceVerifyU2FRegistrationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceVerifyU2FRegistrationResponse]
     def user_service_verify_u2_f_registration(user_id, u2f_id, user_service_verify_u2_f_registration_request, opts = {})
@@ -3142,9 +3141,9 @@ module Api # Added Api module
 
       # Verify a u2f token for a user
       # Verify the u2f token registration with the public key credential..
-          # @param user_id [String]
-          # @param u2f_id [String]
-          # @param user_service_verify_u2_f_registration_request [UserServiceVerifyU2FRegistrationRequest]
+          # @param user_id [String] 
+          # @param u2f_id [String] 
+          # @param user_service_verify_u2_f_registration_request [UserServiceVerifyU2FRegistrationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(UserServiceVerifyU2FRegistrationResponse, Integer, Hash)>] UserServiceVerifyU2FRegistrationResponse data, response status code and response headers
     def user_service_verify_u2_f_registration_with_http_info(user_id, u2f_id, user_service_verify_u2_f_registration_request, opts = {})
@@ -3208,5 +3207,4 @@ module Api # Added Api module
     return data, status_code, headers
     end
   end
-end # End of Api module
 end

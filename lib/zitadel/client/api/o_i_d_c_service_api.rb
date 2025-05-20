@@ -12,8 +12,7 @@ Generator version: 7.12.0
 
 require 'cgi'
 
-module Zitadel::Client
-module Api # Added Api module
+module Zitadel::Client::Api
   class OIDCServiceApi
   attr_accessor :api_client
 
@@ -23,7 +22,7 @@ module Api # Added Api module
       # Authorize or deny device authorization
       # Authorize or deny the device authorization request based on the provided device authorization id.
           # @param device_authorization_id [String] The device authorization id returned when submitting the user code.
-          # @param oidc_service_authorize_or_deny_device_authorization_request [OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest]
+          # @param oidc_service_authorize_or_deny_device_authorization_request [OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Object]
     def o_idc_service_authorize_or_deny_device_authorization(device_authorization_id, oidc_service_authorize_or_deny_device_authorization_request, opts = {})
@@ -34,7 +33,7 @@ module Api # Added Api module
       # Authorize or deny device authorization
       # Authorize or deny the device authorization request based on the provided device authorization id.
           # @param device_authorization_id [String] The device authorization id returned when submitting the user code.
-          # @param oidc_service_authorize_or_deny_device_authorization_request [OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest]
+          # @param oidc_service_authorize_or_deny_device_authorization_request [OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(Object, Integer, Hash)>] Object data, response status code and response headers
     def o_idc_service_authorize_or_deny_device_authorization_with_http_info(device_authorization_id, oidc_service_authorize_or_deny_device_authorization_request, opts = {})
@@ -97,7 +96,7 @@ module Api # Added Api module
       # Finalize an Auth Request and get the callback URL.
       # Finalize an Auth Request and get the callback URL for success or failure. The user must be redirected to the URL in order to inform the application about the success or failure. On success, the URL contains details for the application to obtain the tokens. This method can only be called once for an Auth request.
           # @param auth_request_id [String] ID of the Auth Request.
-          # @param oidc_service_create_callback_request [OIDCServiceCreateCallbackRequest]
+          # @param oidc_service_create_callback_request [OIDCServiceCreateCallbackRequest] 
       # @param [Hash] opts the optional parameters
     # @return [OIDCServiceCreateCallbackResponse]
     def o_idc_service_create_callback(auth_request_id, oidc_service_create_callback_request, opts = {})
@@ -108,7 +107,7 @@ module Api # Added Api module
       # Finalize an Auth Request and get the callback URL.
       # Finalize an Auth Request and get the callback URL for success or failure. The user must be redirected to the URL in order to inform the application about the success or failure. On success, the URL contains details for the application to obtain the tokens. This method can only be called once for an Auth request.
           # @param auth_request_id [String] ID of the Auth Request.
-          # @param oidc_service_create_callback_request [OIDCServiceCreateCallbackRequest]
+          # @param oidc_service_create_callback_request [OIDCServiceCreateCallbackRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(OIDCServiceCreateCallbackResponse, Integer, Hash)>] OIDCServiceCreateCallbackResponse data, response status code and response headers
     def o_idc_service_create_callback_with_http_info(auth_request_id, oidc_service_create_callback_request, opts = {})
@@ -294,5 +293,4 @@ module Api # Added Api module
     return data, status_code, headers
     end
   end
-end # End of Api module
 end

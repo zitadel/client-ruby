@@ -12,8 +12,7 @@ Generator version: 7.12.0
 
 require 'cgi'
 
-module Zitadel::Client
-module Api # Added Api module
+module Zitadel::Client::Api
   class SessionServiceApi
   attr_accessor :api_client
 
@@ -22,7 +21,7 @@ module Api # Added Api module
   end
       # Create a new session
       # Create a new session. A token will be returned, which is required for further updates of the session.
-          # @param session_service_create_session_request [SessionServiceCreateSessionRequest]
+          # @param session_service_create_session_request [SessionServiceCreateSessionRequest] 
       # @param [Hash] opts the optional parameters
     # @return [SessionServiceCreateSessionResponse]
     def session_service_create_session(session_service_create_session_request, opts = {})
@@ -32,7 +31,7 @@ module Api # Added Api module
 
       # Create a new session
       # Create a new session. A token will be returned, which is required for further updates of the session.
-          # @param session_service_create_session_request [SessionServiceCreateSessionRequest]
+          # @param session_service_create_session_request [SessionServiceCreateSessionRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(SessionServiceCreateSessionResponse, Integer, Hash)>] SessionServiceCreateSessionResponse data, response status code and response headers
     def session_service_create_session_with_http_info(session_service_create_session_request, opts = {})
@@ -91,7 +90,7 @@ module Api # Added Api module
       # Terminate an existing session
       # Terminate your own session or if granted any other session.
           # @param session_id [String] \&quot;id of the session to terminate\&quot;
-          # @param session_service_delete_session_request [SessionServiceDeleteSessionRequest]
+          # @param session_service_delete_session_request [SessionServiceDeleteSessionRequest] 
       # @param [Hash] opts the optional parameters
     # @return [SessionServiceDeleteSessionResponse]
     def session_service_delete_session(session_id, session_service_delete_session_request, opts = {})
@@ -102,7 +101,7 @@ module Api # Added Api module
       # Terminate an existing session
       # Terminate your own session or if granted any other session.
           # @param session_id [String] \&quot;id of the session to terminate\&quot;
-          # @param session_service_delete_session_request [SessionServiceDeleteSessionRequest]
+          # @param session_service_delete_session_request [SessionServiceDeleteSessionRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(SessionServiceDeleteSessionResponse, Integer, Hash)>] SessionServiceDeleteSessionResponse data, response status code and response headers
     def session_service_delete_session_with_http_info(session_id, session_service_delete_session_request, opts = {})
@@ -164,9 +163,9 @@ module Api # Added Api module
 
       # Get a session
       # Get a session and all its information like the time of the user or password verification
-          # @param session_id [String]
+          # @param session_id [String] 
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :session_token
+        # @option opts [String] :session_token 
     # @return [SessionServiceGetSessionResponse]
     def session_service_get_session(session_id, opts = {})
     data, _status_code, _headers = session_service_get_session_with_http_info(session_id, opts)
@@ -175,9 +174,9 @@ module Api # Added Api module
 
       # Get a session
       # Get a session and all its information like the time of the user or password verification
-          # @param session_id [String]
+          # @param session_id [String] 
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :session_token
+        # @option opts [String] :session_token 
     # @return [Array<(SessionServiceGetSessionResponse, Integer, Hash)>] SessionServiceGetSessionResponse data, response status code and response headers
     def session_service_get_session_with_http_info(session_id, opts = {})
     if @api_client.config.debugging
@@ -230,7 +229,7 @@ module Api # Added Api module
 
       # Search sessions
       # Search for sessions
-          # @param session_service_list_sessions_request [SessionServiceListSessionsRequest]
+          # @param session_service_list_sessions_request [SessionServiceListSessionsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [SessionServiceListSessionsResponse]
     def session_service_list_sessions(session_service_list_sessions_request, opts = {})
@@ -240,7 +239,7 @@ module Api # Added Api module
 
       # Search sessions
       # Search for sessions
-          # @param session_service_list_sessions_request [SessionServiceListSessionsRequest]
+          # @param session_service_list_sessions_request [SessionServiceListSessionsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(SessionServiceListSessionsResponse, Integer, Hash)>] SessionServiceListSessionsResponse data, response status code and response headers
     def session_service_list_sessions_with_http_info(session_service_list_sessions_request, opts = {})
@@ -299,7 +298,7 @@ module Api # Added Api module
       # Update an existing session
       # Update an existing session with new information.
           # @param session_id [String] \&quot;id of the session to update\&quot;
-          # @param session_service_set_session_request [SessionServiceSetSessionRequest]
+          # @param session_service_set_session_request [SessionServiceSetSessionRequest] 
       # @param [Hash] opts the optional parameters
     # @return [SessionServiceSetSessionResponse]
     def session_service_set_session(session_id, session_service_set_session_request, opts = {})
@@ -310,7 +309,7 @@ module Api # Added Api module
       # Update an existing session
       # Update an existing session with new information.
           # @param session_id [String] \&quot;id of the session to update\&quot;
-          # @param session_service_set_session_request [SessionServiceSetSessionRequest]
+          # @param session_service_set_session_request [SessionServiceSetSessionRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(SessionServiceSetSessionResponse, Integer, Hash)>] SessionServiceSetSessionResponse data, response status code and response headers
     def session_service_set_session_with_http_info(session_id, session_service_set_session_request, opts = {})
@@ -370,5 +369,4 @@ module Api # Added Api module
     return data, status_code, headers
     end
   end
-end # End of Api module
 end

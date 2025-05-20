@@ -12,8 +12,7 @@ Generator version: 7.12.0
 
 require 'cgi'
 
-module Zitadel::Client
-module Api # Added Api module
+module Zitadel::Client::Api
   class FeatureServiceApi
   attr_accessor :api_client
 
@@ -82,7 +81,7 @@ module Api # Added Api module
 
       # Get Organization Features
       # Returns all configured features for an organization. Unset fields mean the feature is the current instance default.  Required permissions:  - org.feature.read  - no permission required for the organization the user belongs to
-          # @param organization_id [String]
+          # @param organization_id [String] 
       # @param [Hash] opts the optional parameters
         # @option opts [Boolean] :inheritance Inherit unset features from the resource owners. This option is recursive: if the flag is set, the resource&#39;s ancestors are consulted up to system defaults. If this option is disabled and the feature is not set on the organization, it will be omitted from the response or Not Found is returned when the organization has no features flags at all.
     # @return [FeatureServiceGetOrganizationFeaturesResponse]
@@ -93,7 +92,7 @@ module Api # Added Api module
 
       # Get Organization Features
       # Returns all configured features for an organization. Unset fields mean the feature is the current instance default.  Required permissions:  - org.feature.read  - no permission required for the organization the user belongs to
-          # @param organization_id [String]
+          # @param organization_id [String] 
       # @param [Hash] opts the optional parameters
         # @option opts [Boolean] :inheritance Inherit unset features from the resource owners. This option is recursive: if the flag is set, the resource&#39;s ancestors are consulted up to system defaults. If this option is disabled and the feature is not set on the organization, it will be omitted from the response or Not Found is returned when the organization has no features flags at all.
     # @return [Array<(FeatureServiceGetOrganizationFeaturesResponse, Integer, Hash)>] FeatureServiceGetOrganizationFeaturesResponse data, response status code and response headers
@@ -205,7 +204,7 @@ module Api # Added Api module
 
       # Get User Features
       # Returns all configured features for a user. Unset fields mean the feature is the current organization default.  Required permissions:  - user.feature.read  - no permission required for the own user
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
         # @option opts [Boolean] :inheritance Inherit unset features from the resource owners. This option is recursive: if the flag is set, the resource&#39;s ancestors are consulted up to system defaults. If this option is disabled and the feature is not set on the user, it will be ommitted from the response or Not Found is returned when the user has no features flags at all.
     # @return [FeatureServiceGetUserFeaturesResponse]
@@ -216,7 +215,7 @@ module Api # Added Api module
 
       # Get User Features
       # Returns all configured features for a user. Unset fields mean the feature is the current organization default.  Required permissions:  - user.feature.read  - no permission required for the own user
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
         # @option opts [Boolean] :inheritance Inherit unset features from the resource owners. This option is recursive: if the flag is set, the resource&#39;s ancestors are consulted up to system defaults. If this option is disabled and the feature is not set on the user, it will be ommitted from the response or Not Found is returned when the user has no features flags at all.
     # @return [Array<(FeatureServiceGetUserFeaturesResponse, Integer, Hash)>] FeatureServiceGetUserFeaturesResponse data, response status code and response headers
@@ -328,7 +327,7 @@ module Api # Added Api module
 
       # Reset Organization Features
       # Deletes ALL configured features for an organization, reverting the behaviors to instance defaults.  Required permissions:  - org.feature.delete
-          # @param organization_id [String]
+          # @param organization_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [FeatureServiceResetOrganizationFeaturesResponse]
     def feature_service_reset_organization_features(organization_id, opts = {})
@@ -338,7 +337,7 @@ module Api # Added Api module
 
       # Reset Organization Features
       # Deletes ALL configured features for an organization, reverting the behaviors to instance defaults.  Required permissions:  - org.feature.delete
-          # @param organization_id [String]
+          # @param organization_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(FeatureServiceResetOrganizationFeaturesResponse, Integer, Hash)>] FeatureServiceResetOrganizationFeaturesResponse data, response status code and response headers
     def feature_service_reset_organization_features_with_http_info(organization_id, opts = {})
@@ -448,7 +447,7 @@ module Api # Added Api module
 
       # Reset User Features
       # Deletes ALL configured features for a user, reverting the behaviors to organization defaults.  Required permissions:  - user.feature.delete
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [FeatureServiceResetUserFeaturesResponse]
     def feature_service_reset_user_features(user_id, opts = {})
@@ -458,7 +457,7 @@ module Api # Added Api module
 
       # Reset User Features
       # Deletes ALL configured features for a user, reverting the behaviors to organization defaults.  Required permissions:  - user.feature.delete
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(FeatureServiceResetUserFeaturesResponse, Integer, Hash)>] FeatureServiceResetUserFeaturesResponse data, response status code and response headers
     def feature_service_reset_user_features_with_http_info(user_id, opts = {})
@@ -511,7 +510,7 @@ module Api # Added Api module
 
       # Set Instance Features
       # Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.  Required permissions:  - iam.feature.write
-          # @param feature_service_set_instance_features_request [FeatureServiceSetInstanceFeaturesRequest]
+          # @param feature_service_set_instance_features_request [FeatureServiceSetInstanceFeaturesRequest] 
       # @param [Hash] opts the optional parameters
     # @return [FeatureServiceSetInstanceFeaturesResponse]
     def feature_service_set_instance_features(feature_service_set_instance_features_request, opts = {})
@@ -521,7 +520,7 @@ module Api # Added Api module
 
       # Set Instance Features
       # Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.  Required permissions:  - iam.feature.write
-          # @param feature_service_set_instance_features_request [FeatureServiceSetInstanceFeaturesRequest]
+          # @param feature_service_set_instance_features_request [FeatureServiceSetInstanceFeaturesRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(FeatureServiceSetInstanceFeaturesResponse, Integer, Hash)>] FeatureServiceSetInstanceFeaturesResponse data, response status code and response headers
     def feature_service_set_instance_features_with_http_info(feature_service_set_instance_features_request, opts = {})
@@ -579,7 +578,7 @@ module Api # Added Api module
 
       # Set Organization Features
       # Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.  Required permissions:  - org.feature.write
-          # @param organization_id [String]
+          # @param organization_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [FeatureServiceSetOrganizationFeaturesResponse]
     def feature_service_set_organization_features(organization_id, opts = {})
@@ -589,7 +588,7 @@ module Api # Added Api module
 
       # Set Organization Features
       # Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.  Required permissions:  - org.feature.write
-          # @param organization_id [String]
+          # @param organization_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(FeatureServiceSetOrganizationFeaturesResponse, Integer, Hash)>] FeatureServiceSetOrganizationFeaturesResponse data, response status code and response headers
     def feature_service_set_organization_features_with_http_info(organization_id, opts = {})
@@ -647,7 +646,7 @@ module Api # Added Api module
 
       # Set System Features
       # Configure and set features that apply to the complete system. Only fields present in the request are set or unset.  Required permissions:  - system.feature.write
-          # @param feature_service_set_system_features_request [FeatureServiceSetSystemFeaturesRequest]
+          # @param feature_service_set_system_features_request [FeatureServiceSetSystemFeaturesRequest] 
       # @param [Hash] opts the optional parameters
     # @return [FeatureServiceSetSystemFeaturesResponse]
     def feature_service_set_system_features(feature_service_set_system_features_request, opts = {})
@@ -657,7 +656,7 @@ module Api # Added Api module
 
       # Set System Features
       # Configure and set features that apply to the complete system. Only fields present in the request are set or unset.  Required permissions:  - system.feature.write
-          # @param feature_service_set_system_features_request [FeatureServiceSetSystemFeaturesRequest]
+          # @param feature_service_set_system_features_request [FeatureServiceSetSystemFeaturesRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(FeatureServiceSetSystemFeaturesResponse, Integer, Hash)>] FeatureServiceSetSystemFeaturesResponse data, response status code and response headers
     def feature_service_set_system_features_with_http_info(feature_service_set_system_features_request, opts = {})
@@ -715,7 +714,7 @@ module Api # Added Api module
 
       # Set User Features
       # Configure and set features that apply to an user. Only fields present in the request are set or unset.  Required permissions:  - user.feature.write
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [FeatureServiceSetUserFeaturesResponse]
     def feature_service_set_user_features(user_id, opts = {})
@@ -725,7 +724,7 @@ module Api # Added Api module
 
       # Set User Features
       # Configure and set features that apply to an user. Only fields present in the request are set or unset.  Required permissions:  - user.feature.write
-          # @param user_id [String]
+          # @param user_id [String] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(FeatureServiceSetUserFeaturesResponse, Integer, Hash)>] FeatureServiceSetUserFeaturesResponse data, response status code and response headers
     def feature_service_set_user_features_with_http_info(user_id, opts = {})
@@ -781,5 +780,4 @@ module Api # Added Api module
     return data, status_code, headers
     end
   end
-end # End of Api module
 end

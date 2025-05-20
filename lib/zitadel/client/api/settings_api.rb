@@ -12,8 +12,7 @@ Generator version: 7.12.0
 
 require 'cgi'
 
-module Zitadel::Client
-module Api # Added Api module
+module Zitadel::Client::Api
   class SettingsApi
   attr_accessor :api_client
 
@@ -79,7 +78,7 @@ module Api # Added Api module
 
       # Set Security Settings
       # Set the security settings of the ZITADEL instance.
-          # @param settings_service_set_security_settings_request [SettingsServiceSetSecuritySettingsRequest]
+          # @param settings_service_set_security_settings_request [SettingsServiceSetSecuritySettingsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceSetSecuritySettingsResponse]
     def settings_service_set_security_settings(settings_service_set_security_settings_request, opts = {})
@@ -89,7 +88,7 @@ module Api # Added Api module
 
       # Set Security Settings
       # Set the security settings of the ZITADEL instance.
-          # @param settings_service_set_security_settings_request [SettingsServiceSetSecuritySettingsRequest]
+          # @param settings_service_set_security_settings_request [SettingsServiceSetSecuritySettingsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(SettingsServiceSetSecuritySettingsResponse, Integer, Hash)>] SettingsServiceSetSecuritySettingsResponse data, response status code and response headers
     def settings_service_set_security_settings_with_http_info(settings_service_set_security_settings_request, opts = {})
@@ -145,5 +144,4 @@ module Api # Added Api module
     return data, status_code, headers
     end
   end
-end # End of Api module
 end

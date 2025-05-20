@@ -12,8 +12,7 @@ Generator version: 7.12.0
 
 require 'cgi'
 
-module Zitadel::Client
-module Api # Added Api module
+module Zitadel::Client::Api
   class SAMLServiceApi
   attr_accessor :api_client
 
@@ -23,7 +22,7 @@ module Api # Added Api module
       # Finalize a SAML Request and get the response.
       # Finalize a SAML Request and get the response definition for success or failure. The response must be handled as per the SAML definition to inform the application about the success or failure. On success, the response contains details for the application to obtain the SAMLResponse. This method can only be called once for an SAML request.
           # @param saml_request_id [String] ID of the SAML Request.
-          # @param saml_service_create_response_request [SAMLServiceCreateResponseRequest]
+          # @param saml_service_create_response_request [SAMLServiceCreateResponseRequest] 
       # @param [Hash] opts the optional parameters
     # @return [SAMLServiceCreateResponseResponse]
     def s_aml_service_create_response(saml_request_id, saml_service_create_response_request, opts = {})
@@ -34,7 +33,7 @@ module Api # Added Api module
       # Finalize a SAML Request and get the response.
       # Finalize a SAML Request and get the response definition for success or failure. The response must be handled as per the SAML definition to inform the application about the success or failure. On success, the response contains details for the application to obtain the SAMLResponse. This method can only be called once for an SAML request.
           # @param saml_request_id [String] ID of the SAML Request.
-          # @param saml_service_create_response_request [SAMLServiceCreateResponseRequest]
+          # @param saml_service_create_response_request [SAMLServiceCreateResponseRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(SAMLServiceCreateResponseResponse, Integer, Hash)>] SAMLServiceCreateResponseResponse data, response status code and response headers
     def s_aml_service_create_response_with_http_info(saml_request_id, saml_service_create_response_request, opts = {})
@@ -157,5 +156,4 @@ module Api # Added Api module
     return data, status_code, headers
     end
   end
-end # End of Api module
 end

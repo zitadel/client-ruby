@@ -12,8 +12,7 @@ Generator version: 7.12.0
 
 require 'cgi'
 
-module Zitadel::Client
-module Api # Added Api module
+module Zitadel::Client::Api
   class OrganizationServiceApi
   attr_accessor :api_client
 
@@ -22,7 +21,7 @@ module Api # Added Api module
   end
       # Create an Organization
       # Create a new organization with an administrative user. If no specific roles are sent for the users, they will be granted the role ORG_OWNER.
-          # @param organization_service_add_organization_request [OrganizationServiceAddOrganizationRequest]
+          # @param organization_service_add_organization_request [OrganizationServiceAddOrganizationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [OrganizationServiceAddOrganizationResponse]
     def organization_service_add_organization(organization_service_add_organization_request, opts = {})
@@ -32,7 +31,7 @@ module Api # Added Api module
 
       # Create an Organization
       # Create a new organization with an administrative user. If no specific roles are sent for the users, they will be granted the role ORG_OWNER.
-          # @param organization_service_add_organization_request [OrganizationServiceAddOrganizationRequest]
+          # @param organization_service_add_organization_request [OrganizationServiceAddOrganizationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(OrganizationServiceAddOrganizationResponse, Integer, Hash)>] OrganizationServiceAddOrganizationResponse data, response status code and response headers
     def organization_service_add_organization_with_http_info(organization_service_add_organization_request, opts = {})
@@ -90,7 +89,7 @@ module Api # Added Api module
 
       # Search Organizations
       # Search for Organizations. By default, we will return all organization of the instance. Make sure to include a limit and sorting for pagination..
-          # @param organization_service_list_organizations_request [OrganizationServiceListOrganizationsRequest]
+          # @param organization_service_list_organizations_request [OrganizationServiceListOrganizationsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [OrganizationServiceListOrganizationsResponse]
     def organization_service_list_organizations(organization_service_list_organizations_request, opts = {})
@@ -100,7 +99,7 @@ module Api # Added Api module
 
       # Search Organizations
       # Search for Organizations. By default, we will return all organization of the instance. Make sure to include a limit and sorting for pagination..
-          # @param organization_service_list_organizations_request [OrganizationServiceListOrganizationsRequest]
+          # @param organization_service_list_organizations_request [OrganizationServiceListOrganizationsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(OrganizationServiceListOrganizationsResponse, Integer, Hash)>] OrganizationServiceListOrganizationsResponse data, response status code and response headers
     def organization_service_list_organizations_with_http_info(organization_service_list_organizations_request, opts = {})
@@ -156,5 +155,4 @@ module Api # Added Api module
     return data, status_code, headers
     end
   end
-end # End of Api module
 end
