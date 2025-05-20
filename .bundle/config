@@ -1,6 +1,3 @@
----
-BUNDLE_PATH: "/home/runner/work/client-ruby/client-ruby/vendor/bundle"
+BUNDLE_PATH: "./vendor"
 BUNDLE_IGNORE_FUNDING_REQUESTS: "true"
-BUNDLE_DEPLOYMENT: "true"
 BUNDLE_JOBS: "4"
-BUNDLE_WITH: "development:test"

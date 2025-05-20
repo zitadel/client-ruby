@@ -22,20 +22,20 @@ describe 'Zitadel UserService' do
   let(:base_url) { ENV.fetch('BASE_URL') { raise 'BASE_URL not set' } }
   let(:valid_token) { ENV.fetch('AUTH_TOKEN') { raise 'AUTH_TOKEN not set' } }
   let(:client) do
-    ZitadelClient::Zitadel.with_access_token(
+    Zitadel::Client::Zitadel.with_access_token(
       base_url,
       valid_token
     )
   end
 
   before do
-    request = ZitadelClient::Models::UserServiceAddHumanUserRequest.new(
+    request = Zitadel::Client::Models::UserServiceAddHumanUserRequest.new(
       username: SecureRandom.hex,
-      profile: ZitadelClient::Models::UserServiceSetHumanProfile.new(
+      profile: Zitadel::Client::Models::UserServiceSetHumanProfile.new(
         given_name: 'John',
         family_name: 'Doe'
       ),
-      email: ZitadelClient::Models::UserServiceSetHumanEmail.new(
+      email: Zitadel::Client::Models::UserServiceSetHumanEmail.new(
         email: "johndoe#{SecureRandom.hex}@example.com"
       )
     )
@@ -55,21 +55,21 @@ describe 'Zitadel UserService' do
   end
 
   it 'raises an error when retrieving a non-existent user' do
-    assert_raises(ZitadelClient::ApiError) do
+    assert_raises(Zitadel::Client::ApiError) do
       client.users.user_service_get_user_by_id(SecureRandom.uuid)
     end
   end
 
   it 'includes the created user when listing all users' do
-    request = ZitadelClient::Models::UserServiceListUsersRequest.new(queries: [])
+    request = Zitadel::Client::Models::UserServiceListUsersRequest.new(queries: [])
     response = client.users.user_service_list_users(request)
     _(response.result.map(&:user_id)).must_include @user.user_id
   end
 
   it "updates the user's email and reflects the change" do
     new_email = "updated#{SecureRandom.hex}@example.com"
-    update_req = ZitadelClient::Models::UserServiceUpdateHumanUserRequest.new(
-      email: ZitadelClient::Models::UserServiceSetHumanEmail.new(email: new_email)
+    update_req = Zitadel::Client::Models::UserServiceUpdateHumanUserRequest.new(
+      email: Zitadel::Client::Models::UserServiceSetHumanEmail.new(email: new_email)
     )
     client.users.user_service_update_human_user(@user.user_id, update_req)
 

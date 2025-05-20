@@ -39,13 +39,13 @@ Ensure you have Ruby 3 or higher installed.
 Install the SDK by running one of the following commands:
 
 ```
-gem install zitadel_client
+gem install zitadel-client
 ```
 
 If you're using Bundler use,
 
 ```
-bundle add zitadel_client
+bundle add zitadel-client
 ```
 
 ## Authentication Methods
@@ -72,20 +72,20 @@ JSON file. This process creates a secure token.
 **Example:**
 
 ```ruby
-require 'zitadel_client'
+require 'zitadel-client'
 require 'securerandom'
 
-client = ZitadelClient::Zitadel.with_private_key("https://example.us1.zitadel.cloud", "path/to/jwt-key.json")
+client = Zitadel::Client::Zitadel.with_private_key("https://example.us1.zitadel.cloud", "path/to/jwt-key.json")
 
 begin
   response = client.users.user_service_add_human_user(
-    ZitadelClient::UserServiceAddHumanUserRequest.new(
+    Zitadel::Client::UserServiceAddHumanUserRequest.new(
       username: SecureRandom.hex,
-      profile: ZitadelClient::UserServiceSetHumanProfile.new(
+      profile: Zitadel::Client::UserServiceSetHumanProfile.new(
         given_name: 'John',
         family_name: 'Doe'
       ),
-      email: ZitadelClient::UserServiceSetHumanEmail.new(
+      email: Zitadel::Client::UserServiceSetHumanEmail.new(
         email: "john.doe@example.com"
       )
     )
@@ -115,20 +115,20 @@ which is then used to authenticate.
 **Example:**
 
 ```ruby
-require 'zitadel_client'
+require 'zitadel-client'
 require 'securerandom'
 
-client = ZitadelClient::Zitadel.with_client_credentials("https://example.us1.zitadel.cloud", "id", "secret")
+client = Zitadel::Client::Zitadel.with_client_credentials("https://example.us1.zitadel.cloud", "id", "secret")
 
 begin
   response = client.users.user_service_add_human_user(
-    ZitadelClient::UserServiceAddHumanUserRequest.new(
+    Zitadel::Client::UserServiceAddHumanUserRequest.new(
       username: SecureRandom.hex,
-      profile: ZitadelClient::UserServiceSetHumanProfile.new(
+      profile: Zitadel::Client::UserServiceSetHumanProfile.new(
         given_name: 'John',
         family_name: 'Doe'
       ),
-      email: ZitadelClient::UserServiceSetHumanEmail.new(
+      email: Zitadel::Client::UserServiceSetHumanEmail.new(
         email: "john.doe@example.com"
       )
     )
@@ -158,20 +158,20 @@ authenticate without exchanging credentials every time.
 **Example:**
 
 ```ruby
-require 'zitadel_client'
+require 'zitadel-client'
 require 'securerandom'
 
-client = ZitadelClient::Zitadel.with_access_token("https://example.us1.zitadel.cloud", "token")
+client = Zitadel::Client::Zitadel.with_access_token("https://example.us1.zitadel.cloud", "token")
 
 begin
   response = client.users.user_service_add_human_user(
-    ZitadelClient::UserServiceAddHumanUserRequest.new(
+    Zitadel::Client::UserServiceAddHumanUserRequest.new(
       username: SecureRandom.hex,
-      profile: ZitadelClient::UserServiceSetHumanProfile.new(
+      profile: Zitadel::Client::UserServiceSetHumanProfile.new(
         given_name: 'John',
         family_name: 'Doe'
       ),
-      email: ZitadelClient::UserServiceSetHumanEmail.new(
+      email: Zitadel::Client::UserServiceSetHumanEmail.new(
         email: "john.doe@example.com"
       )
     )

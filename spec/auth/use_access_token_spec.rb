@@ -17,7 +17,7 @@ describe 'Zitadel SettingsService (Personal Access Token)' do
   let(:base_url) { ENV.fetch('BASE_URL') { raise 'BASE_URL not set' } }
   let(:valid_token) { ENV.fetch('AUTH_TOKEN') { raise 'AUTH_TOKEN not set' } }
   let(:zitadel_client) do
-    ZitadelClient::Zitadel.with_access_token(
+    Zitadel::Client::Zitadel.with_access_token(
       base_url,
       valid_token
     )
@@ -29,11 +29,11 @@ describe 'Zitadel SettingsService (Personal Access Token)' do
   end
 
   it 'raises an ApiError with invalid token' do
-    client = ZitadelClient::Zitadel.with_access_token(
+    client = Zitadel::Client::Zitadel.with_access_token(
       base_url,
       'invalid'
     )
-    assert_raises(ZitadelClient::ZitadelError) do
+    assert_raises(Zitadel::Client::ZitadelError) do
       client.settings.settings_service_get_general_settings
     end
   end

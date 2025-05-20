@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
-$LOAD_PATH.push File.expand_path('lib', __dir__)
-require 'zitadel-client/version'
+require_relative 'lib/zitadel/client/version'
 
 # noinspection RubyArgCount
 Gem::Specification.new do |gemspec|
   gemspec.name = 'zitadel-client'
-  gemspec.version = ZitadelClient::VERSION
+  gemspec.version = Zitadel::Client::VERSION
   gemspec.platform = Gem::Platform::RUBY
   gemspec.authors = ['Zitadel']
   gemspec.email = ['hi@zitadel.com']
