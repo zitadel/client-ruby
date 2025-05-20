@@ -6,7 +6,7 @@ require_relative 'patch'
 
 Warning.ignore(:method_redefined, __dir__)
 
-# Main entrypoint for the ZitadelClient Ruby SDK.
+# Main entrypoint for the Zitadel::Client Ruby SDK.
 #
 # This module encapsulates all functionality for authenticating with and accessing
 # Zitadel's identity and access management APIs.
@@ -14,15 +14,29 @@ Warning.ignore(:method_redefined, __dir__)
 # Usage:
 #   require 'zitadel-client'
 #
-#   client = ZitadelClient::SomeService.new(...)
+#   client = Zitadel::Client::SomeService.new(...)
 #
-# For more details, see: https://github.com/zitadel/zitadel-client-ruby
+# For more details, see: https://github.com/zitadel/zitadel-ruby
 #
-module ZitadelClient
+module Zitadel
+  # Main entrypoint for the Zitadel::Client Ruby SDK.
+  #
+  # This module encapsulates all functionality for authenticating with and accessing
+  # Zitadel's identity and access management APIs.
+  #
+  # Usage:
+  #   require 'zitadel-client'
+  #
+  #   client = Zitadel::Client::SomeService.new(...)
+  #
+  # For more details, see: https://github.com/zitadel/zitadel-ruby
+  #
+  module Client
+  end
 end
 
 loader = Zeitwerk::Loader.new
-loader.inflector.inflect('version' => 'VERSION')
 loader.tag = File.basename(__FILE__, '.rb')
-loader.push_dir("#{__dir__}/zitadel-client", namespace: ZitadelClient)
+loader.push_dir("#{__dir__}/zitadel", namespace: Zitadel)
+loader.inflector.inflect('version' => 'VERSION')
 loader.setup

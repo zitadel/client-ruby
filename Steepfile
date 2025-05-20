@@ -6,8 +6,8 @@ target :app do
 
   library 'json', 'time', 'date', 'uri', 'pathname', 'net-http', 'tempfile'
 
-  ignore 'lib/zitadel-client/models'
-  ignore 'lib/zitadel-client/api'
+  ignore 'lib/zitadel/client/models'
+  ignore 'lib/zitadel/client/api'
   ignore 'lib/patch.rb'
 
   Steep.logger.level = Logger::FATAL

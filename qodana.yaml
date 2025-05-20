@@ -6,7 +6,7 @@ profile:
 exclude:
   - name: All
     paths:
-      - lib/zitadel-client/api
-      - lib/zitadel-client/models
+      - lib/zitadel/client/api
+      - lib/zitadel/client/models
 
 linter: jetbrains/qodana-php:2025.1

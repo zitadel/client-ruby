@@ -24,7 +24,7 @@ describe 'Zitadel SettingsService (Private Key Assertion)' do
     file
   end
   let(:zitadel_client) do
-    ZitadelClient::Zitadel.with_private_key(
+    Zitadel::Client::Zitadel.with_private_key(
       base_url,
       jwt_file.path
     )
@@ -36,11 +36,11 @@ describe 'Zitadel SettingsService (Private Key Assertion)' do
   end
 
   it 'raises an ApiError with invalid private key' do
-    client = ZitadelClient::Zitadel.with_private_key(
+    client = Zitadel::Client::Zitadel.with_private_key(
       'https://zitadel.cloud',
       jwt_file.path
     )
-    assert_raises(ZitadelClient::ZitadelError) do
+    assert_raises(Zitadel::Client::ZitadelError) do
       client.settings.settings_service_get_general_settings
     end
   end

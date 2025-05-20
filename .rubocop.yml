@@ -4,8 +4,8 @@ plugins:
 
 AllCops:
   Exclude:
-    - 'lib/zitadel-client/models/**/*'
-    - 'lib/zitadel-client/api/**/*'
+    - 'lib/zitadel/client/models/**/*'
+    - 'lib/zitadel/client/api/**/*'
     - 'vendor/**/*'
   NewCops: enable
   TargetRubyVersion: 3.0

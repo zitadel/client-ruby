@@ -18,7 +18,7 @@ describe 'Zitadel SettingsService (Client Credentials)' do
   let(:client_id) { ENV.fetch('CLIENT_ID') { raise 'CLIENT_ID not set' } }
   let(:client_secret) { ENV.fetch('CLIENT_SECRET') { raise 'CLIENT_SECRET not set' } }
   let(:zitadel_client) do
-    ZitadelClient::Zitadel.with_client_credentials(
+    Zitadel::Client::Zitadel.with_client_credentials(
       base_url,
       client_id,
       client_secret
@@ -31,12 +31,12 @@ describe 'Zitadel SettingsService (Client Credentials)' do
   end
 
   it 'raises an ApiError with invalid credentials' do
-    client = ZitadelClient::Zitadel.with_client_credentials(
+    client = Zitadel::Client::Zitadel.with_client_credentials(
       base_url,
       'invalid',
       'invalid'
     )
-    assert_raises(ZitadelClient::ZitadelError) do
+    assert_raises(Zitadel::Client::ZitadelError) do
       client.settings.settings_service_get_general_settings
     end
   end
