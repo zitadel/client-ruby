@@ -7,19 +7,21 @@ module Zitadel
     # Initializes and configures the SDK with the provided authentication strategy.
     # Sets up service APIs for interacting with various Zitadel features.
     class Zitadel
-      attr_reader :features,
+      attr_reader :actions,
+                  :features,
                   :idps,
                   :oidc,
                   :organizations,
+                  :saml,
                   :sessions,
                   :settings,
                   :users,
-                  :saml
+                  :webkeys
 
       # Initialize the Zitadel SDK.
       #
       # @param authenticator [Authenticator] the authentication strategy to use
-      # rubocop:disable Metrics/MethodLength
+      # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
       def initialize(authenticator)
         # noinspection RubyArgCount
         @configuration = Configuration.new(authenticator)
@@ -27,17 +29,19 @@ module Zitadel
 
         client = ApiClient.new(@configuration)
 
+        @actions = Api::ActionServiceApi.new(client)
         @features = Api::FeatureServiceApi.new(client)
         @idps = Api::IdentityProviderServiceApi.new(client)
         @oidc = Api::OIDCServiceApi.new(client)
         @organizations = Api::OrganizationServiceApi.new(client)
+        @saml = Api::SAMLServiceApi.new(client)
         @sessions = Api::SessionServiceApi.new(client)
         @settings = Api::SettingsServiceApi.new(client)
         @users = Api::UserServiceApi.new(client)
-        @saml = Api::SAMLServiceApi.new(client)
+        @webkeys = Api::WebKeyServiceApi.new(client)
       end
 
-      # rubocop:enable Metrics/MethodLength
+      # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
       class << self
         # @!group Authentication Entry Points
