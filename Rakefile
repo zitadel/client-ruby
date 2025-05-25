@@ -5,6 +5,7 @@ require 'rake/testtask'
 require 'rdoc/task'
 require 'steep/rake_task'
 require 'rubocop/rake_task'
+require 'reek/rake/task'
 
 RuboCop::RakeTask.new(:rubocop) do |task|
   task.plugins << 'rubocop-minitest'
@@ -30,5 +31,7 @@ Rake::TestTask.new(:test) do |task|
   task.pattern = %w[test/**/*_test.rb spec/**/*_spec.rb]
   task.verbose = true
 end
+
+Reek::Rake::Task.new
 
 task default: :test

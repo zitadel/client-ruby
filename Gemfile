@@ -11,6 +11,7 @@ gem 'zeitwerk'
 
 group :development do
   gem 'rbs'
+  gem 'reek', require: false
   gem 'rubocop', require: false
   gem 'rubocop-minitest', require: false
   gem 'rubocop-rake', require: false

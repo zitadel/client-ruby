@@ -38,6 +38,34 @@ GEM
       multi_json
     dotenv (3.1.8)
     drb (2.2.1)
+    dry-configurable (1.2.0)
+      dry-core (~> 1.0, < 2)
+      zeitwerk (~> 2.6)
+    dry-core (1.0.2)
+      concurrent-ruby (~> 1.0)
+      logger
+      zeitwerk (~> 2.6)
+    dry-inflector (1.1.0)
+    dry-initializer (3.1.1)
+    dry-logic (1.5.0)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 1.0, < 2)
+      zeitwerk (~> 2.6)
+    dry-schema (1.13.4)
+      concurrent-ruby (~> 1.0)
+      dry-configurable (~> 1.0, >= 1.0.1)
+      dry-core (~> 1.0, < 2)
+      dry-initializer (~> 3.0)
+      dry-logic (>= 1.4, < 2)
+      dry-types (>= 1.7, < 2)
+      zeitwerk (~> 2.6)
+    dry-types (1.7.2)
+      bigdecimal (~> 3.0)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 1.0)
+      dry-inflector (~> 1.0)
+      dry-logic (~> 1.4)
+      zeitwerk (~> 2.6)
     ethon (0.16.0)
       ffi (>= 1.15.0)
     excon (1.2.5)
@@ -48,7 +76,8 @@ GEM
       logger
     faraday-net_http (3.4.0)
       net-http (>= 0.5.0)
-    ffi (1.17.1)
+    ffi (1.17.1-arm64-darwin)
+    ffi (1.17.1-x86_64-linux-gnu)
     fileutils (1.7.3)
     hashie (5.0.0)
     i18n (1.14.7)
@@ -96,6 +125,12 @@ GEM
       ffi (~> 1.0)
     rbs (3.6.1)
       logger
+    reek (6.4.0)
+      dry-schema (~> 1.13.0)
+      logger (~> 1.6)
+      parser (~> 3.3.0)
+      rainbow (>= 2.0, < 4.0)
+      rexml (~> 3.1)
     regexp_parser (2.10.0)
     rexml (3.4.1)
     rubocop (1.75.5)
@@ -177,6 +212,7 @@ DEPENDENCIES
   oauth2
   rake
   rbs
+  reek
   rubocop
   rubocop-minitest
   rubocop-rake

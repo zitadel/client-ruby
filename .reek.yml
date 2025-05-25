@@ -1,0 +1,3 @@
+exclude_paths:
+  - lib/zitadel/client/models/**/*.rb
+  - lib/zitadel/client/api/**/*.rb
