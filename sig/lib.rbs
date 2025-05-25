@@ -276,6 +276,7 @@ module Zitadel
 
       def self.with_private_key: (String, String) -> Zitadel
 
+      attr_reader actions: untyped
       attr_reader configuration: Configuration
       attr_reader features: untyped
       attr_reader idps: untyped
@@ -285,6 +286,7 @@ module Zitadel
       attr_reader sessions: untyped
       attr_reader settings: untyped
       attr_reader users: untyped
+      attr_reader webkeys: untyped
 
       def initialize: (Auth::Authenticator) ?{ (Configuration) -> void } -> void
 
