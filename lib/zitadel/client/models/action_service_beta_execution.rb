@@ -23,7 +23,7 @@ module Zitadel::Client::Models
     # The timestamp of the last change to the execution.
     attr_accessor :change_date
 
-    # Ordered list of targets/includes called during the execution.
+    # Ordered list of targets called during the execution.
     attr_accessor :targets
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -52,7 +52,7 @@ module Zitadel::Client::Models
         :'condition' => :'ActionServiceBetaCondition',
         :'creation_date' => :'Time',
         :'change_date' => :'Time',
-        :'targets' => :'Array<ActionServiceBetaExecutionTargetType>'
+        :'targets' => :'Array<String>'
       }
     end
 

@@ -30,9 +30,6 @@ module Zitadel::Client::Models
     # Enable the experimental `urn:ietf:params:oauth:grant-type:token-exchange` grant type for the OIDC token endpoint. Token exchange can be used to request tokens with a lesser scope or impersonate other users. See the security policy to allow impersonation on an instance.
     attr_accessor :oidc_token_exchange
 
-    # Actions allow to manage data executions and targets. If the flag is enabled, you'll be able to use the new API and its features. Note that it is still in an early stage.
-    attr_accessor :actions
-
     # Improves performance of specified execution paths.
     attr_accessor :improved_performance
 
@@ -67,7 +64,6 @@ module Zitadel::Client::Models
         :'oidc_legacy_introspection' => :'oidcLegacyIntrospection',
         :'user_schema' => :'userSchema',
         :'oidc_token_exchange' => :'oidcTokenExchange',
-        :'actions' => :'actions',
         :'improved_performance' => :'improvedPerformance',
         :'web_key' => :'webKey',
         :'debug_oidc_parent_error' => :'debugOidcParentError',
@@ -98,7 +94,6 @@ module Zitadel::Client::Models
         :'oidc_legacy_introspection' => :'Boolean',
         :'user_schema' => :'Boolean',
         :'oidc_token_exchange' => :'Boolean',
-        :'actions' => :'Boolean',
         :'improved_performance' => :'Array<FeatureServiceImprovedPerformance>',
         :'web_key' => :'Boolean',
         :'debug_oidc_parent_error' => :'Boolean',
@@ -153,10 +148,6 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'oidc_token_exchange')
         self.oidc_token_exchange = attributes[:'oidc_token_exchange']
-      end
-
-      if attributes.key?(:'actions')
-        self.actions = attributes[:'actions']
       end
 
       if attributes.key?(:'improved_performance')
@@ -223,7 +214,6 @@ module Zitadel::Client::Models
           oidc_legacy_introspection == o.oidc_legacy_introspection &&
           user_schema == o.user_schema &&
           oidc_token_exchange == o.oidc_token_exchange &&
-          actions == o.actions &&
           improved_performance == o.improved_performance &&
           web_key == o.web_key &&
           debug_oidc_parent_error == o.debug_oidc_parent_error &&
@@ -244,7 +234,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [login_default_org, oidc_trigger_introspection_projections, oidc_legacy_introspection, user_schema, oidc_token_exchange, actions, improved_performance, web_key, debug_oidc_parent_error, oidc_single_v1_session_termination, disable_user_token_event, enable_back_channel_logout, login_v2, permission_check_v2, console_use_v2_user_api].hash
+      [login_default_org, oidc_trigger_introspection_projections, oidc_legacy_introspection, user_schema, oidc_token_exchange, improved_performance, web_key, debug_oidc_parent_error, oidc_single_v1_session_termination, disable_user_token_event, enable_back_channel_logout, login_v2, permission_check_v2, console_use_v2_user_api].hash
     end
 
 # Builds the object from hash

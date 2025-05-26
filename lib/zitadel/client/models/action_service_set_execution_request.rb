@@ -17,7 +17,7 @@ module Zitadel::Client::Models
   class ActionServiceSetExecutionRequest
     attr_accessor :condition
 
-    # Ordered list of targets/includes called during the execution.
+    # Ordered list of targets called during the execution.
     attr_accessor :targets
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -42,7 +42,7 @@ module Zitadel::Client::Models
     def self.openapi_types
       {
         :'condition' => :'ActionServiceBetaCondition',
-        :'targets' => :'Array<ActionServiceBetaExecutionTargetType>'
+        :'targets' => :'Array<String>'
       }
     end
 
