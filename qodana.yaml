@@ -8,5 +8,12 @@ exclude:
     paths:
       - lib/zitadel/client/api
       - lib/zitadel/client/models
+  - name: RbsMissingTypeSignature
+    paths:
+      - test
+      - spec
 
-linter: jetbrains/qodana-php:2025.1
+bootstrap: |
+  bundle install
+
+linter: jetbrains/qodana-ruby:2025.2-eap-ruby3.4-privileged
