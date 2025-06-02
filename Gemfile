@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'oauth2'
+gem 'oauth2', '>= 2.0.12'
 gem 'typhoeus'
 gem 'warning'
 gem 'zeitwerk'
