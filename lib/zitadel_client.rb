@@ -2,7 +2,6 @@
 
 require 'zeitwerk'
 require 'warning'
-require_relative 'patch'
 
 Warning.ignore(:method_redefined, __dir__)
 
