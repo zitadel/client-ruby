@@ -9,4 +9,7 @@ exclude:
       - lib/zitadel/client/api
       - lib/zitadel/client/models
 
+bootstrap: |
+  bundle install
+
 linter: jetbrains/qodana-ruby:2025.1-eap
