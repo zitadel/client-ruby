@@ -9,9 +9,6 @@ exclude:
       - lib/zitadel/client/api
       - lib/zitadel/client/models
 
-ruby:
-  version: '3.0'
-
 bootstrap: |
   sed -i '/^BUNDLED WITH$/,+1d' Gemfile.lock
   bundle install
