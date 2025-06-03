@@ -13,7 +13,7 @@ ruby:
   version: '3.0'
 
 bootstrap: |
-  sed -i '' '/^BUNDLED WITH$/,+1d' Gemfile.lock
+  sed -i '/^BUNDLED WITH$/,+1d' Gemfile.lock
   bundle install
 
 linter: jetbrains/qodana-ruby:2025.1-eap
