@@ -32,7 +32,7 @@ describe 'Zitadel SettingsService (Private Key Assertion)' do
 
   it 'retrieves general settings with valid private key' do
     client = zitadel_client
-    client.settings.settings_service_get_general_settings
+    client.settings.get_general_settings({})
   end
 
   it 'raises an ApiError with invalid private key' do
@@ -41,7 +41,7 @@ describe 'Zitadel SettingsService (Private Key Assertion)' do
       jwt_file.path
     )
     assert_raises(Zitadel::Client::ZitadelError) do
-      client.settings.settings_service_get_general_settings
+      client.settings.get_general_settings({})
     end
   end
 end

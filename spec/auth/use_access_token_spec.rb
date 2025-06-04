@@ -25,7 +25,7 @@ describe 'Zitadel SettingsService (Personal Access Token)' do
 
   it 'retrieves general settings with valid token' do
     client = zitadel_client
-    client.settings.settings_service_get_general_settings
+    client.settings.get_general_settings({})
   end
 
   it 'raises an ApiError with invalid token' do
@@ -34,7 +34,7 @@ describe 'Zitadel SettingsService (Personal Access Token)' do
       'invalid'
     )
     assert_raises(Zitadel::Client::ZitadelError) do
-      client.settings.settings_service_get_general_settings
+      client.settings.get_general_settings({})
     end
   end
 end

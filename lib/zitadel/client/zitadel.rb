@@ -6,6 +6,7 @@ module Zitadel
     #
     # Initializes and configures the SDK with the provided authentication strategy.
     # Sets up service APIs for interacting with various Zitadel features.
+    # noinspection RubyTooManyInstanceVariablesInspection
     class Zitadel
       attr_reader :actions,
                   :features,
@@ -29,7 +30,7 @@ module Zitadel
 
         client = ApiClient.new(@configuration)
 
-        @actions = Api::ActionServiceApi.new(client)
+        @actions = Api::BetaActionServiceApi.new(client)
         @features = Api::FeatureServiceApi.new(client)
         @idps = Api::IdentityProviderServiceApi.new(client)
         @oidc = Api::OIDCServiceApi.new(client)
@@ -38,7 +39,7 @@ module Zitadel
         @sessions = Api::SessionServiceApi.new(client)
         @settings = Api::SettingsServiceApi.new(client)
         @users = Api::UserServiceApi.new(client)
-        @webkeys = Api::WebKeyServiceApi.new(client)
+        @webkeys = Api::BetaWebKeyServiceApi.new(client)
       end
 
       # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
