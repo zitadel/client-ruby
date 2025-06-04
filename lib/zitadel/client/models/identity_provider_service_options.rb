@@ -15,16 +15,16 @@ require 'time'
 
 module Zitadel::Client::Models
   class IdentityProviderServiceOptions
-    # Enable if users should be able to link an existing ZITADEL user with an external account.
+    # Enable if users should be able to link an existing ZITADEL user with an  external account.
     attr_accessor :is_linking_allowed
 
-    # Enable if users should be able to create a new account in ZITADEL when using an external account.
+    # Enable if users should be able to create a new account in ZITADEL when  using an external account.
     attr_accessor :is_creation_allowed
 
-    # Enable if a new account in ZITADEL should be created automatically when login with an external account.
+    # Enable if a new account in ZITADEL should be created automatically when  login with an external account.
     attr_accessor :is_auto_creation
 
-    # Enable if a the ZITADEL account fields should be updated automatically on each login.
+    # Enable if a the ZITADEL account fields should be updated automatically on  each login.
     attr_accessor :is_auto_update
 
     attr_accessor :auto_linking
@@ -125,8 +125,6 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'auto_linking')
         self.auto_linking = attributes[:'auto_linking']
-      else
-        self.auto_linking = 'AUTO_LINKING_OPTION_UNSPECIFIED'
       end
     end
 

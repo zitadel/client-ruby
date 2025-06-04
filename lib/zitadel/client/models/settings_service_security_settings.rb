@@ -17,7 +17,6 @@ module Zitadel::Client::Models
   class SettingsServiceSecuritySettings
     attr_accessor :embedded_iframe
 
-    # default language for the current context
     attr_accessor :enable_impersonation
 
     # Attribute mapping from ruby-style variable name to JSON key.

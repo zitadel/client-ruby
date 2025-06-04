@@ -14,14 +14,11 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  # Object unspecific list filters like offset, limit and asc/desc.
   class UserServiceListQuery
     attr_accessor :offset
 
-    # Maximum amount of events returned. The default is set to 1000 in https://github.com/zitadel/zitadel/blob/new-eventstore/cmd/zitadel/startup.yaml. If the limit exceeds the maximum configured ZITADEL will throw an error. If no limit is present the default is taken.
     attr_accessor :limit
 
-    # default is descending
     attr_accessor :asc
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -46,7 +43,7 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'offset' => :'String',
+        :'offset' => :'Object',
         :'limit' => :'Integer',
         :'asc' => :'Boolean'
       }
@@ -55,6 +52,7 @@ module Zitadel::Client::Models
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'offset',
       ])
     end
 

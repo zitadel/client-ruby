@@ -109,8 +109,6 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'type')
         self.type = attributes[:'type']
-      else
-        self.type = 'IDENTITY_PROVIDER_TYPE_UNSPECIFIED'
       end
 
       if attributes.key?(:'options')

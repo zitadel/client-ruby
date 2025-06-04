@@ -49,13 +49,16 @@ module Zitadel::Client::Models
         :'fingerprint_id' => :'String',
         :'ip' => :'String',
         :'description' => :'String',
-        :'header' => :'Hash<String, SessionServiceUserAgentHeaderValues>'
+        :'header' => :'Hash<String, SessionServiceHeaderValues>'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'fingerprint_id',
+        :'ip',
+        :'description',
       ])
     end
 

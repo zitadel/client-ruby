@@ -21,16 +21,16 @@ module Zitadel::Client::Models
     # hex value for background color
     attr_accessor :background_color
 
-    # hex value for warn color
+    # hex value for warning color
     attr_accessor :warn_color
 
     # hex value for font color
     attr_accessor :font_color
 
-    # url to the logo
+    # url where the logo is served
     attr_accessor :logo_url
 
-    # url to the icon
+    # url where the icon is served
     attr_accessor :icon_url
 
     # Attribute mapping from ruby-style variable name to JSON key.

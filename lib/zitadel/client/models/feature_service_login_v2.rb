@@ -50,6 +50,7 @@ module Zitadel::Client::Models
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'base_uri'
       ])
     end
 

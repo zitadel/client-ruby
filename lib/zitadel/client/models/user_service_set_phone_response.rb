@@ -17,6 +17,7 @@ module Zitadel::Client::Models
   class UserServiceSetPhoneResponse
     attr_accessor :details
 
+    # in case the verification was set to return_code, the code will be returned
     attr_accessor :verification_code
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -48,6 +49,7 @@ module Zitadel::Client::Models
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'verification_code'
       ])
     end
 

@@ -17,7 +17,6 @@ module Zitadel::Client::Models
   class UserServiceSetMetadataEntry
     attr_accessor :key
 
-    # The value has to be base64 encoded.
     attr_accessor :value
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -92,24 +91,8 @@ module Zitadel::Client::Models
         invalid_properties.push('invalid value for "key", key cannot be nil.')
       end
 
-      if @key.to_s.length > 200
-        invalid_properties.push('invalid value for "key", the character length must be smaller than or equal to 200.')
-      end
-
-      if @key.to_s.length < 1
-        invalid_properties.push('invalid value for "key", the character length must be great than or equal to 1.')
-      end
-
       if @value.nil?
         invalid_properties.push('invalid value for "value", value cannot be nil.')
-      end
-
-      if @value.to_s.length > 500000
-        invalid_properties.push('invalid value for "value", the character length must be smaller than or equal to 500000.')
-      end
-
-      if @value.to_s.length < 1
-        invalid_properties.push('invalid value for "value", the character length must be great than or equal to 1.')
       end
 
       invalid_properties
@@ -120,45 +103,25 @@ module Zitadel::Client::Models
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @key.nil?
-      return false if @key.to_s.length > 200
-      return false if @key.to_s.length < 1
       return false if @value.nil?
-      return false if @value.to_s.length > 500000
-      return false if @value.to_s.length < 1
       true
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] key Value to be assigned
+    # @param [String] key Value to be assigned
     def key=(key)
       if key.nil?
         fail ArgumentError, 'key cannot be nil'
-      end
-
-      if key.to_s.length > 200
-        fail ArgumentError, 'invalid value for "key", the character length must be smaller than or equal to 200.'
-      end
-
-      if key.to_s.length < 1
-        fail ArgumentError, 'invalid value for "key", the character length must be great than or equal to 1.'
       end
 
       @key = key
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] value Value to be assigned
+    # @param [String] value Value to be assigned
     def value=(value)
       if value.nil?
         fail ArgumentError, 'value cannot be nil'
-      end
-
-      if value.to_s.length > 500000
-        fail ArgumentError, 'invalid value for "value", the character length must be smaller than or equal to 500000.'
-      end
-
-      if value.to_s.length < 1
-        fail ArgumentError, 'invalid value for "value", the character length must be great than or equal to 1.'
       end
 
       @value = value

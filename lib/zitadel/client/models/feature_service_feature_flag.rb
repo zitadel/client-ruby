@@ -16,7 +16,6 @@ require 'time'
 module Zitadel::Client::Models
   # FeatureFlag is a simple boolean Feature setting, without further payload.
   class FeatureServiceFeatureFlag
-    # Whether a feature is enabled.
     attr_accessor :enabled
 
     attr_accessor :source
@@ -99,8 +98,6 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'source')
         self.source = attributes[:'source']
-      else
-        self.source = 'SOURCE_UNSPECIFIED'
       end
     end
 

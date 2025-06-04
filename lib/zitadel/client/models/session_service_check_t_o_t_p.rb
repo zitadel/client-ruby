@@ -75,14 +75,6 @@ module Zitadel::Client::Models
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if !@code.nil? && @code.to_s.length > 6
-        invalid_properties.push('invalid value for "code", the character length must be smaller than or equal to 6.')
-      end
-
-      if !@code.nil? && @code.to_s.length < 6
-        invalid_properties.push('invalid value for "code", the character length must be great than or equal to 6.')
-      end
-
       invalid_properties
     end
 
@@ -90,27 +82,7 @@ module Zitadel::Client::Models
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@code.nil? && @code.to_s.length > 6
-      return false if !@code.nil? && @code.to_s.length < 6
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] code Value to be assigned
-    def code=(code)
-      if code.nil?
-        fail ArgumentError, 'code cannot be nil'
-      end
-
-      if code.to_s.length > 6
-        fail ArgumentError, 'invalid value for "code", the character length must be smaller than or equal to 6.'
-      end
-
-      if code.to_s.length < 6
-        fail ArgumentError, 'invalid value for "code", the character length must be great than or equal to 6.'
-      end
-
-      @code = code
     end
 
     # Checks equality by comparing each attribute.
