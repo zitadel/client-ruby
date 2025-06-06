@@ -1,10 +1,15 @@
 name: Release
 
 on:
-  workflow_call:
-    secrets:
-      RUBYGEMS_TOKEN:
-        required: true
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  packages: write
+  id-token: write
+  checks: read
 
 defaults:
   run:
@@ -32,19 +37,12 @@ jobs:
           ruby-version: '3.0'
           bundler-cache: true
 
-      - name: Setup Node.js
-        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
-        with:
-          node-version: 'lts/*'
-
-      - name: Install Semantic Release
-        run: |
-          npm install --global semantic-release $(jq -r '.plugins[] | if type == "string" then . else .[0] end' .releaserc.json)
-
       - name: Run semantic-release
+        uses: mridang/action-semantic-release@v1.2.3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          allow-force-install: 'true'
         env:
           DOCKER_REGISTRY_USER: ${{ github.actor }}
           DOCKER_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GEM_HOST_API_KEY: ${{ secrets.RUBYGEMS_TOKEN }}
-        run: npx semantic-release
