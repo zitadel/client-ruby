@@ -7,7 +7,7 @@
   "shell": {
     "init_hook": [
       "lefthook install",
-      "bundle install"
+      "bundle install --quiet"
     ],
     "scripts": {
       "format": [

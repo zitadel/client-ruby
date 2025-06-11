@@ -3,6 +3,7 @@
 require 'minitest/autorun'
 require_relative '../spec_helper'
 require 'tempfile'
+require_relative '../base_spec'
 
 # SettingsService Integration Tests (Private Key Assertion)
 #
@@ -14,31 +15,16 @@ require 'tempfile'
 #
 # Each test runs in isolation: the client is instantiated in each example to
 # guarantee a clean, stateless call.
-describe 'Zitadel SettingsService (Private Key Assertion)' do
-  let(:base_url) { ENV.fetch('BASE_URL') { raise 'BASE_URL not set' } }
-  let(:jwt_file) do
-    file = Tempfile.new(%w[jwt .json])
-    file.write(ENV.fetch('JWT_KEY') { raise 'JWT_KEY not set' })
-    file.flush
-    file.close
-    file
-  end
-  let(:zitadel_client) do
-    Zitadel::Client::Zitadel.with_private_key(
-      base_url,
-      jwt_file.path
-    )
-  end
-
+class UsePrivateKeySpec < BaseSpec
   it 'retrieves general settings with valid private key' do
-    client = zitadel_client
+    client = Zitadel::Client::Zitadel.with_private_key(@base_url, @jwt_key)
     client.settings.settings_service_get_general_settings
   end
 
   it 'raises an ApiError with invalid private key' do
     client = Zitadel::Client::Zitadel.with_private_key(
       'https://zitadel.cloud',
-      jwt_file.path
+      @jwt_key
     )
     assert_raises(Zitadel::Client::ZitadelError) do
       client.settings.settings_service_get_general_settings

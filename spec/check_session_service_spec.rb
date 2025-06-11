@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'minitest/autorun'
+require_relative 'base_spec'
 
 # SessionService Integration Tests
 #
@@ -18,24 +19,34 @@ require 'minitest/autorun'
 require_relative 'spec_helper'
 require 'securerandom'
 
-describe 'Zitadel SessionService' do
-  let(:base_url) { ENV.fetch('BASE_URL') { raise 'BASE_URL not set' } }
-  let(:valid_token) { ENV.fetch('AUTH_TOKEN') { raise 'AUTH_TOKEN not set' } }
-  let(:client) do
-    Zitadel::Client::Zitadel.with_access_token(
-      base_url,
-      valid_token
-    )
+class SessionServiceSanityCheckSpec < BaseSpec
+  def client
+    Zitadel::Client::Zitadel.with_access_token(@base_url, @auth_token)
   end
 
   before do
-    req = Zitadel::Client::Models::SessionServiceCreateSessionRequest.new(
+    username = SecureRandom.hex
+    request = Zitadel::Client::Models::UserServiceAddHumanUserRequest.new(
+      username: username,
+      profile: Zitadel::Client::Models::UserServiceSetHumanProfile.new(
+        given_name: 'John',
+        family_name: 'Doe'
+      ),
+      email: Zitadel::Client::Models::UserServiceSetHumanEmail.new(
+        email: "johndoe#{SecureRandom.hex}@example.com"
+      )
+    )
+
+    @user = client.users.user_service_add_human_user(request)
+    request = Zitadel::Client::Models::SessionServiceCreateSessionRequest.new(
       checks: Zitadel::Client::Models::SessionServiceChecks.new(
-        user: Zitadel::Client::Models::SessionServiceCheckUser.new(login_name: 'johndoe')
+        user: Zitadel::Client::Models::SessionServiceCheckUser.new(
+          login_name: username
+        )
       ),
       lifetime: '18000s'
     )
-    resp = client.sessions.session_service_create_session(req)
+    resp = client.sessions.session_service_create_session(request)
     @session_id = resp.session_id
     @session_token = resp.session_token
   end

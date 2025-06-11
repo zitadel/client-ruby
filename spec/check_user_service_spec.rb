@@ -3,6 +3,7 @@
 require 'minitest/autorun'
 require_relative 'spec_helper'
 require 'securerandom'
+require_relative 'base_spec'
 
 # UserService Integration Tests
 #
@@ -18,14 +19,9 @@ require 'securerandom'
 # Each test runs in isolation: a new user is created in `before` and deleted in
 # `after` to ensure a clean state.
 
-describe 'Zitadel UserService' do
-  let(:base_url) { ENV.fetch('BASE_URL') { raise 'BASE_URL not set' } }
-  let(:valid_token) { ENV.fetch('AUTH_TOKEN') { raise 'AUTH_TOKEN not set' } }
-  let(:client) do
-    Zitadel::Client::Zitadel.with_access_token(
-      base_url,
-      valid_token
-    )
+class UserServiceSanityCheckSpec < BaseSpec
+  def client
+    Zitadel::Client::Zitadel.with_access_token(@base_url, @auth_token)
   end
 
   before do
