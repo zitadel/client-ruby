@@ -2,6 +2,7 @@
 
 require 'minitest/autorun'
 require_relative '../spec_helper'
+require_relative '../base_spec'
 
 # SettingsService Integration Tests (Personal Access Token)
 #
@@ -13,24 +14,15 @@ require_relative '../spec_helper'
 #
 # Each test runs in isolation: the client is instantiated in each example to
 # guarantee a clean, stateless call.
-describe 'Zitadel SettingsService (Personal Access Token)' do
-  let(:base_url) { ENV.fetch('BASE_URL') { raise 'BASE_URL not set' } }
-  let(:valid_token) { ENV.fetch('AUTH_TOKEN') { raise 'AUTH_TOKEN not set' } }
-  let(:zitadel_client) do
-    Zitadel::Client::Zitadel.with_access_token(
-      base_url,
-      valid_token
-    )
-  end
-
+class UseAccessTokenSpec < BaseSpec
   it 'retrieves general settings with valid token' do
-    client = zitadel_client
+    client = Zitadel::Client::Zitadel.with_access_token(@base_url, @auth_token)
     client.settings.settings_service_get_general_settings
   end
 
   it 'raises an ApiError with invalid token' do
     client = Zitadel::Client::Zitadel.with_access_token(
-      base_url,
+      @base_url,
       'invalid'
     )
     assert_raises(Zitadel::Client::ZitadelError) do
