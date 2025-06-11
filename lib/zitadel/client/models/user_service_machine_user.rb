@@ -113,8 +113,6 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'access_token_type')
         self.access_token_type = attributes[:'access_token_type']
-      else
-        self.access_token_type = 'ACCESS_TOKEN_TYPE_BEARER'
       end
     end
 

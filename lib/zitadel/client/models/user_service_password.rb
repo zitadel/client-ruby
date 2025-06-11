@@ -89,14 +89,6 @@ module Zitadel::Client::Models
         invalid_properties.push('invalid value for "password", password cannot be nil.')
       end
 
-      if @password.to_s.length > 200
-        invalid_properties.push('invalid value for "password", the character length must be smaller than or equal to 200.')
-      end
-
-      if @password.to_s.length < 1
-        invalid_properties.push('invalid value for "password", the character length must be great than or equal to 1.')
-      end
-
       invalid_properties
     end
 
@@ -105,24 +97,14 @@ module Zitadel::Client::Models
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @password.nil?
-      return false if @password.to_s.length > 200
-      return false if @password.to_s.length < 1
       true
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] password Value to be assigned
+    # @param [String] password Value to be assigned
     def password=(password)
       if password.nil?
         fail ArgumentError, 'password cannot be nil'
-      end
-
-      if password.to_s.length > 200
-        fail ArgumentError, 'invalid value for "password", the character length must be smaller than or equal to 200.'
-      end
-
-      if password.to_s.length < 1
-        fail ArgumentError, 'invalid value for "password", the character length must be great than or equal to 1.'
       end
 
       @password = password

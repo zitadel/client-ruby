@@ -15,7 +15,7 @@ require 'time'
 
 module Zitadel::Client::Models
   class SessionServiceCheckWebAuthN
-    # JSON representation of public key credential issued by the webAuthN client
+    # `Struct` represents a structured data value, consisting of fields  which map to dynamically typed values. In some languages, `Struct`  might be supported by a native representation. For example, in  scripting languages like JS a struct is represented as an  object. The details of that representation are described together  with the proto support for the language.   The JSON representation for `Struct` is JSON object.
     attr_accessor :credential_assertion_data
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -38,7 +38,7 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'credential_assertion_data' => :'Object'
+        :'credential_assertion_data' => :'Hash<String, SessionServiceValue>'
       }
     end
 
@@ -67,7 +67,9 @@ module Zitadel::Client::Models
       }
 
       if attributes.key?(:'credential_assertion_data')
-        self.credential_assertion_data = attributes[:'credential_assertion_data']
+        if (value = attributes[:'credential_assertion_data']).is_a?(Hash)
+          self.credential_assertion_data = value
+        end
       else
         self.credential_assertion_data = nil
       end
@@ -94,7 +96,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] credential_assertion_data Value to be assigned
+    # @param [Hash<String, SessionServiceValue>] credential_assertion_data Value to be assigned
     def credential_assertion_data=(credential_assertion_data)
       if credential_assertion_data.nil?
         fail ArgumentError, 'credential_assertion_data cannot be nil'

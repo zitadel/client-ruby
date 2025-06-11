@@ -15,19 +15,14 @@ require 'time'
 
 module Zitadel::Client::Models
   class SettingsServicePasswordComplexitySettings
-    # Defines the minimum length of a password.
     attr_accessor :min_length
 
-    # defines if the password MUST contain an upper case letter
     attr_accessor :requires_uppercase
 
-    # defines if the password MUST contain a lowercase letter
     attr_accessor :requires_lowercase
 
-    # defines if the password MUST contain a number
     attr_accessor :requires_number
 
-    # defines if the password MUST contain a symbol. E.g. \"$\"
     attr_accessor :requires_symbol
 
     attr_accessor :resource_owner_type
@@ -79,7 +74,7 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'min_length' => :'String',
+        :'min_length' => :'Object',
         :'requires_uppercase' => :'Boolean',
         :'requires_lowercase' => :'Boolean',
         :'requires_number' => :'Boolean',
@@ -91,6 +86,7 @@ module Zitadel::Client::Models
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'min_length',
       ])
     end
 
@@ -134,8 +130,6 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'resource_owner_type')
         self.resource_owner_type = attributes[:'resource_owner_type']
-      else
-        self.resource_owner_type = 'RESOURCE_OWNER_TYPE_UNSPECIFIED'
       end
     end
 

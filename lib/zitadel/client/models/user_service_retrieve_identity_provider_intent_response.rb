@@ -19,7 +19,6 @@ module Zitadel::Client::Models
 
     attr_accessor :idp_information
 
-    # ID of the user in ZITADEL if external user is linked
     attr_accessor :user_id
 
     attr_accessor :add_human_user

@@ -43,7 +43,7 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'web_auth_n' => :'SessionServiceChallengesWebAuthN',
+        :'web_auth_n' => :'SessionServiceWebAuthN',
         :'otp_sms' => :'String',
         :'otp_email' => :'String'
       }
@@ -52,6 +52,8 @@ module Zitadel::Client::Models
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'otp_sms',
+        :'otp_email'
       ])
     end
 

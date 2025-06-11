@@ -43,9 +43,9 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'web_auth_n' => :'SessionServiceRequestChallengesWebAuthN',
-        :'otp_sms' => :'SessionServiceRequestChallengesOTPSMS',
-        :'otp_email' => :'SessionServiceRequestChallengesOTPEmail'
+        :'web_auth_n' => :'SessionServiceWebAuthN',
+        :'otp_sms' => :'SessionServiceOTPSMS',
+        :'otp_email' => :'SessionServiceOTPEmail'
       }
     end
 

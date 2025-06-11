@@ -31,6 +31,28 @@ module Zitadel::Client::Models
 
     attr_accessor :machine
 
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -64,7 +86,7 @@ module Zitadel::Client::Models
         :'username' => :'String',
         :'login_names' => :'Array<String>',
         :'preferred_login_name' => :'String',
-        :'human' => :'UserServiceHumanUser',
+        :'human' => :'Null',
         :'machine' => :'UserServiceMachineUser'
       }
     end
@@ -103,8 +125,6 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'state')
         self.state = attributes[:'state']
-      else
-        self.state = 'USER_STATE_UNSPECIFIED'
       end
 
       if attributes.key?(:'username')
@@ -123,10 +143,14 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'human')
         self.human = attributes[:'human']
+      else
+        self.human = nil
       end
 
       if attributes.key?(:'machine')
         self.machine = attributes[:'machine']
+      else
+        self.machine = nil
       end
     end
 
@@ -135,6 +159,14 @@ module Zitadel::Client::Models
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @human.nil?
+        invalid_properties.push('invalid value for "human", human cannot be nil.')
+      end
+
+      if @machine.nil?
+        invalid_properties.push('invalid value for "machine", machine cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -142,7 +174,29 @@ module Zitadel::Client::Models
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if @human.nil?
+      return false if @machine.nil?
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Null] human Value to be assigned
+    def human=(human)
+      if human.nil?
+        fail ArgumentError, 'human cannot be nil'
+      end
+
+      @human = human
+    end
+
+    # Custom attribute writer method with validation
+    # @param [UserServiceMachineUser] machine Value to be assigned
+    def machine=(machine)
+      if machine.nil?
+        fail ArgumentError, 'machine cannot be nil'
+      end
+
+      @machine = machine
     end
 
     # Checks equality by comparing each attribute.

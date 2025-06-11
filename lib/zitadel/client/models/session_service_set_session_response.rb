@@ -17,7 +17,6 @@ module Zitadel::Client::Models
   class SessionServiceSetSessionResponse
     attr_accessor :details
 
-    # \"The current token of the session, which is required for delete session, get session or the request of other resources.\"
     attr_accessor :session_token
 
     attr_accessor :challenges

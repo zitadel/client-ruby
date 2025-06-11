@@ -83,10 +83,6 @@ module Zitadel::Client::Models
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if !@phone.nil? && @phone.to_s.length > 200
-        invalid_properties.push('invalid value for "phone", the character length must be smaller than or equal to 200.')
-      end
-
       invalid_properties
     end
 
@@ -94,22 +90,7 @@ module Zitadel::Client::Models
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@phone.nil? && @phone.to_s.length > 200
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] phone Value to be assigned
-    def phone=(phone)
-      if phone.nil?
-        fail ArgumentError, 'phone cannot be nil'
-      end
-
-      if phone.to_s.length > 200
-        fail ArgumentError, 'invalid value for "phone", the character length must be smaller than or equal to 200.'
-      end
-
-      @phone = phone
     end
 
     # Checks equality by comparing each attribute.

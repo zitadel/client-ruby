@@ -15,11 +15,14 @@ require 'time'
 
 module Zitadel::Client::Models
   class UserServiceListIDPLinksRequest
+    attr_accessor :user_id
+
     attr_accessor :query
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'user_id' => :'userId',
         :'query' => :'query'
       }
     end
@@ -37,6 +40,7 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'user_id' => :'String',
         :'query' => :'UserServiceListQuery'
       }
     end
@@ -65,6 +69,10 @@ module Zitadel::Client::Models
         h[k.to_sym] = v
       }
 
+      if attributes.key?(:'user_id')
+        self.user_id = attributes[:'user_id']
+      end
+
       if attributes.key?(:'query')
         self.query = attributes[:'query']
       end
@@ -90,6 +98,7 @@ module Zitadel::Client::Models
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          user_id == o.user_id &&
           query == o.query
     end
 
@@ -102,7 +111,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [query].hash
+      [user_id, query].hash
     end
 
 # Builds the object from hash

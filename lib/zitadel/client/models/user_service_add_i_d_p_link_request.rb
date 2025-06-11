@@ -15,11 +15,14 @@ require 'time'
 
 module Zitadel::Client::Models
   class UserServiceAddIDPLinkRequest
+    attr_accessor :user_id
+
     attr_accessor :idp_link
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'user_id' => :'userId',
         :'idp_link' => :'idpLink'
       }
     end
@@ -37,6 +40,7 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'user_id' => :'String',
         :'idp_link' => :'UserServiceIDPLink'
       }
     end
@@ -65,6 +69,12 @@ module Zitadel::Client::Models
         h[k.to_sym] = v
       }
 
+      if attributes.key?(:'user_id')
+        self.user_id = attributes[:'user_id']
+      else
+        self.user_id = nil
+      end
+
       if attributes.key?(:'idp_link')
         self.idp_link = attributes[:'idp_link']
       end
@@ -75,6 +85,10 @@ module Zitadel::Client::Models
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @user_id.nil?
+        invalid_properties.push('invalid value for "user_id", user_id cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -82,7 +96,18 @@ module Zitadel::Client::Models
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if @user_id.nil?
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [String] user_id Value to be assigned
+    def user_id=(user_id)
+      if user_id.nil?
+        fail ArgumentError, 'user_id cannot be nil'
+      end
+
+      @user_id = user_id
     end
 
     # Checks equality by comparing each attribute.
@@ -90,6 +115,7 @@ module Zitadel::Client::Models
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          user_id == o.user_id &&
           idp_link == o.idp_link
     end
 
@@ -102,7 +128,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [idp_link].hash
+      [user_id, idp_link].hash
     end
 
 # Builds the object from hash

@@ -19,6 +19,7 @@ module Zitadel::Client::Models
 
     attr_accessor :sorting_column
 
+    # criteria the client is looking for
     attr_accessor :queries
 
     class EnumAttributeValidator
@@ -101,8 +102,6 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'sorting_column')
         self.sorting_column = attributes[:'sorting_column']
-      else
-        self.sorting_column = 'USER_FIELD_NAME_UNSPECIFIED'
       end
 
       if attributes.key?(:'queries')

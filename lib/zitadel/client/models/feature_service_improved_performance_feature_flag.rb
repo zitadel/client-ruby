@@ -15,7 +15,6 @@ require 'time'
 
 module Zitadel::Client::Models
   class FeatureServiceImprovedPerformanceFeatureFlag
-    # Which of the performance improvements is enabled
     attr_accessor :execution_paths
 
     attr_accessor :source
@@ -100,8 +99,6 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'source')
         self.source = attributes[:'source']
-      else
-        self.source = 'SOURCE_UNSPECIFIED'
       end
     end
 

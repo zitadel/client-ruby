@@ -15,12 +15,14 @@ require 'time'
 
 module Zitadel::Client::Models
   class UserServiceVerifyInviteCodeRequest
-    # \"the verification code generated during the invite code request\"
+    attr_accessor :user_id
+
     attr_accessor :verification_code
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'user_id' => :'userId',
         :'verification_code' => :'verificationCode'
       }
     end
@@ -38,6 +40,7 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'user_id' => :'String',
         :'verification_code' => :'String'
       }
     end
@@ -66,6 +69,12 @@ module Zitadel::Client::Models
         h[k.to_sym] = v
       }
 
+      if attributes.key?(:'user_id')
+        self.user_id = attributes[:'user_id']
+      else
+        self.user_id = nil
+      end
+
       if attributes.key?(:'verification_code')
         self.verification_code = attributes[:'verification_code']
       else
@@ -78,16 +87,12 @@ module Zitadel::Client::Models
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @user_id.nil?
+        invalid_properties.push('invalid value for "user_id", user_id cannot be nil.')
+      end
+
       if @verification_code.nil?
         invalid_properties.push('invalid value for "verification_code", verification_code cannot be nil.')
-      end
-
-      if @verification_code.to_s.length > 20
-        invalid_properties.push('invalid value for "verification_code", the character length must be smaller than or equal to 20.')
-      end
-
-      if @verification_code.to_s.length < 1
-        invalid_properties.push('invalid value for "verification_code", the character length must be great than or equal to 1.')
       end
 
       invalid_properties
@@ -97,25 +102,26 @@ module Zitadel::Client::Models
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if @user_id.nil?
       return false if @verification_code.nil?
-      return false if @verification_code.to_s.length > 20
-      return false if @verification_code.to_s.length < 1
       true
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] verification_code Value to be assigned
+    # @param [String] user_id Value to be assigned
+    def user_id=(user_id)
+      if user_id.nil?
+        fail ArgumentError, 'user_id cannot be nil'
+      end
+
+      @user_id = user_id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [String] verification_code Value to be assigned
     def verification_code=(verification_code)
       if verification_code.nil?
         fail ArgumentError, 'verification_code cannot be nil'
-      end
-
-      if verification_code.to_s.length > 20
-        fail ArgumentError, 'invalid value for "verification_code", the character length must be smaller than or equal to 20.'
-      end
-
-      if verification_code.to_s.length < 1
-        fail ArgumentError, 'invalid value for "verification_code", the character length must be great than or equal to 1.'
       end
 
       @verification_code = verification_code
@@ -126,6 +132,7 @@ module Zitadel::Client::Models
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          user_id == o.user_id &&
           verification_code == o.verification_code
     end
 
@@ -138,7 +145,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [verification_code].hash
+      [user_id, verification_code].hash
     end
 
 # Builds the object from hash

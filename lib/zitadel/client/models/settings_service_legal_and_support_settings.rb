@@ -21,18 +21,14 @@ module Zitadel::Client::Models
 
     attr_accessor :help_link
 
-    # help / support email address.
     attr_accessor :support_email
 
     attr_accessor :resource_owner_type
 
-    # Link to documentation to be shown in the console.
     attr_accessor :docs_link
 
-    # Link to an external resource that will be available to users in the console.
     attr_accessor :custom_link
 
-    # The button text that would be shown in console pointing to custom link.
     attr_accessor :custom_link_text
 
     class EnumAttributeValidator
@@ -137,8 +133,6 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'resource_owner_type')
         self.resource_owner_type = attributes[:'resource_owner_type']
-      else
-        self.resource_owner_type = 'RESOURCE_OWNER_TYPE_UNSPECIFIED'
       end
 
       if attributes.key?(:'docs_link')

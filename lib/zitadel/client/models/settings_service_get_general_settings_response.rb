@@ -15,10 +15,8 @@ require 'time'
 
 module Zitadel::Client::Models
   class SettingsServiceGetGeneralSettingsResponse
-    # default organization for the current context
     attr_accessor :default_org_id
 
-    # default language for the current context
     attr_accessor :default_language
 
     attr_accessor :supported_languages

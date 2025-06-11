@@ -45,7 +45,7 @@ module Zitadel::Client::Models
       {
         :'details' => :'OrganizationServiceDetails',
         :'organization_id' => :'String',
-        :'created_admins' => :'Array<OrganizationServiceAddOrganizationResponseCreatedAdmin>'
+        :'created_admins' => :'Array<OrganizationServiceCreatedAdmin>'
       }
     end
 

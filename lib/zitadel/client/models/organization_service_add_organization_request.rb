@@ -41,7 +41,7 @@ module Zitadel::Client::Models
     def self.openapi_types
       {
         :'name' => :'String',
-        :'admins' => :'Array<OrganizationServiceAddOrganizationRequestAdmin>'
+        :'admins' => :'Array<OrganizationServiceAdmin>'
       }
     end
 
@@ -91,14 +91,6 @@ module Zitadel::Client::Models
         invalid_properties.push('invalid value for "name", name cannot be nil.')
       end
 
-      if @name.to_s.length > 200
-        invalid_properties.push('invalid value for "name", the character length must be smaller than or equal to 200.')
-      end
-
-      if @name.to_s.length < 1
-        invalid_properties.push('invalid value for "name", the character length must be great than or equal to 1.')
-      end
-
       invalid_properties
     end
 
@@ -107,24 +99,14 @@ module Zitadel::Client::Models
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @name.nil?
-      return false if @name.to_s.length > 200
-      return false if @name.to_s.length < 1
       true
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] name Value to be assigned
+    # @param [String] name Value to be assigned
     def name=(name)
       if name.nil?
         fail ArgumentError, 'name cannot be nil'
-      end
-
-      if name.to_s.length > 200
-        fail ArgumentError, 'invalid value for "name", the character length must be smaller than or equal to 200.'
-      end
-
-      if name.to_s.length < 1
-        fail ArgumentError, 'invalid value for "name", the character length must be great than or equal to 1.'
       end
 
       @name = name

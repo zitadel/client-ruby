@@ -19,57 +19,50 @@ module Zitadel::Client::Api
   def initialize(api_client = ApiClient.default)
   @api_client = api_client
   end
+      # GetActiveIdentityProviders
       # Get the current active identity providers
-      # Return the current active identity providers for the requested context
+          # @param settings_service_get_active_identity_providers_request [SettingsServiceGetActiveIdentityProvidersRequest] 
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id 
-        # @option opts [Boolean] :ctx_instance 
-        # @option opts [Boolean] :creation_allowed 
-        # @option opts [Boolean] :linking_allowed 
-        # @option opts [Boolean] :auto_creation 
-        # @option opts [Boolean] :auto_linking 
     # @return [SettingsServiceGetActiveIdentityProvidersResponse]
-    def settings_service_get_active_identity_providers(opts = {})
-    data, _status_code, _headers = settings_service_get_active_identity_providers_with_http_info(opts)
+    def get_active_identity_providers(settings_service_get_active_identity_providers_request, opts = {})
+    data, _status_code, _headers = get_active_identity_providers_with_http_info(settings_service_get_active_identity_providers_request, opts)
     data
     end
 
+      # GetActiveIdentityProviders
       # Get the current active identity providers
-      # Return the current active identity providers for the requested context
+          # @param settings_service_get_active_identity_providers_request [SettingsServiceGetActiveIdentityProvidersRequest] 
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id 
-        # @option opts [Boolean] :ctx_instance 
-        # @option opts [Boolean] :creation_allowed 
-        # @option opts [Boolean] :linking_allowed 
-        # @option opts [Boolean] :auto_creation 
-        # @option opts [Boolean] :auto_linking 
     # @return [Array<(SettingsServiceGetActiveIdentityProvidersResponse, Integer, Hash)>] SettingsServiceGetActiveIdentityProvidersResponse data, response status code and response headers
-    def settings_service_get_active_identity_providers_with_http_info(opts = {})
+    def get_active_identity_providers_with_http_info(settings_service_get_active_identity_providers_request, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.settings_service_get_active_identity_providers ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.get_active_identity_providers ...' # MODIFIED
     end
+          # verify the required parameter 'settings_service_get_active_identity_providers_request' is set
+          if @api_client.config.client_side_validation && settings_service_get_active_identity_providers_request.nil?
+          fail ArgumentError, "Missing the required parameter 'settings_service_get_active_identity_providers_request' when calling Api::SettingsServiceApi.get_active_identity_providers" # MODIFIED
+          end
     # resource path
-    local_var_path = '/v2/settings/login/idps'
+    local_var_path = '/zitadel.settings.v2.SettingsService/GetActiveIdentityProviders'
 
     # query parameters
     query_params = opts[:query_params] || {}
-        query_params[:'ctx.orgId'] = opts[:'ctx_org_id'] if !opts[:'ctx_org_id'].nil?
-        query_params[:'ctx.instance'] = opts[:'ctx_instance'] if !opts[:'ctx_instance'].nil?
-        query_params[:'creationAllowed'] = opts[:'creation_allowed'] if !opts[:'creation_allowed'].nil?
-        query_params[:'linkingAllowed'] = opts[:'linking_allowed'] if !opts[:'linking_allowed'].nil?
-        query_params[:'autoCreation'] = opts[:'auto_creation'] if !opts[:'auto_creation'].nil?
-        query_params[:'autoLinking'] = opts[:'auto_linking'] if !opts[:'auto_linking'].nil?
 
     # header parameters
     header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
 
     # form parameters
     form_params = opts[:form_params] || {}
 
     # http body (model)
-    post_body = opts[:debug_body]
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(settings_service_get_active_identity_providers_request)
 
     # return_type
     return_type = opts[:debug_return_type] || 'SettingsServiceGetActiveIdentityProvidersResponse'
@@ -78,7 +71,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::SettingsServiceApi.settings_service_get_active_identity_providers", # MODIFIED
+    :operation => :"Api::SettingsServiceApi.get_active_identity_providers", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -87,52 +80,57 @@ module Zitadel::Client::Api
     :return_type => return_type
     )
 
-    data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#settings_service_get_active_identity_providers\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#get_active_identity_providers\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data, status_code, headers
     end
 
+      # GetBrandingSettings
       # Get the current active branding settings
-      # Return the current active branding settings for the requested context
+          # @param settings_service_get_branding_settings_request [SettingsServiceGetBrandingSettingsRequest] 
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id 
-        # @option opts [Boolean] :ctx_instance 
     # @return [SettingsServiceGetBrandingSettingsResponse]
-    def settings_service_get_branding_settings(opts = {})
-    data, _status_code, _headers = settings_service_get_branding_settings_with_http_info(opts)
+    def get_branding_settings(settings_service_get_branding_settings_request, opts = {})
+    data, _status_code, _headers = get_branding_settings_with_http_info(settings_service_get_branding_settings_request, opts)
     data
     end
 
+      # GetBrandingSettings
       # Get the current active branding settings
-      # Return the current active branding settings for the requested context
+          # @param settings_service_get_branding_settings_request [SettingsServiceGetBrandingSettingsRequest] 
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id 
-        # @option opts [Boolean] :ctx_instance 
     # @return [Array<(SettingsServiceGetBrandingSettingsResponse, Integer, Hash)>] SettingsServiceGetBrandingSettingsResponse data, response status code and response headers
-    def settings_service_get_branding_settings_with_http_info(opts = {})
+    def get_branding_settings_with_http_info(settings_service_get_branding_settings_request, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.settings_service_get_branding_settings ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.get_branding_settings ...' # MODIFIED
     end
+          # verify the required parameter 'settings_service_get_branding_settings_request' is set
+          if @api_client.config.client_side_validation && settings_service_get_branding_settings_request.nil?
+          fail ArgumentError, "Missing the required parameter 'settings_service_get_branding_settings_request' when calling Api::SettingsServiceApi.get_branding_settings" # MODIFIED
+          end
     # resource path
-    local_var_path = '/v2/settings/branding'
+    local_var_path = '/zitadel.settings.v2.SettingsService/GetBrandingSettings'
 
     # query parameters
     query_params = opts[:query_params] || {}
-        query_params[:'ctx.orgId'] = opts[:'ctx_org_id'] if !opts[:'ctx_org_id'].nil?
-        query_params[:'ctx.instance'] = opts[:'ctx_instance'] if !opts[:'ctx_instance'].nil?
 
     # header parameters
     header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
 
     # form parameters
     form_params = opts[:form_params] || {}
 
     # http body (model)
-    post_body = opts[:debug_body]
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(settings_service_get_branding_settings_request)
 
     # return_type
     return_type = opts[:debug_return_type] || 'SettingsServiceGetBrandingSettingsResponse'
@@ -141,7 +139,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::SettingsServiceApi.settings_service_get_branding_settings", # MODIFIED
+    :operation => :"Api::SettingsServiceApi.get_branding_settings", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -150,52 +148,57 @@ module Zitadel::Client::Api
     :return_type => return_type
     )
 
-    data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#settings_service_get_branding_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#get_branding_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data, status_code, headers
     end
 
+      # GetDomainSettings
       # Get the domain settings
-      # Return the domain settings for the requested context
+          # @param settings_service_get_domain_settings_request [SettingsServiceGetDomainSettingsRequest] 
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id 
-        # @option opts [Boolean] :ctx_instance 
     # @return [SettingsServiceGetDomainSettingsResponse]
-    def settings_service_get_domain_settings(opts = {})
-    data, _status_code, _headers = settings_service_get_domain_settings_with_http_info(opts)
+    def get_domain_settings(settings_service_get_domain_settings_request, opts = {})
+    data, _status_code, _headers = get_domain_settings_with_http_info(settings_service_get_domain_settings_request, opts)
     data
     end
 
+      # GetDomainSettings
       # Get the domain settings
-      # Return the domain settings for the requested context
+          # @param settings_service_get_domain_settings_request [SettingsServiceGetDomainSettingsRequest] 
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id 
-        # @option opts [Boolean] :ctx_instance 
     # @return [Array<(SettingsServiceGetDomainSettingsResponse, Integer, Hash)>] SettingsServiceGetDomainSettingsResponse data, response status code and response headers
-    def settings_service_get_domain_settings_with_http_info(opts = {})
+    def get_domain_settings_with_http_info(settings_service_get_domain_settings_request, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.settings_service_get_domain_settings ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.get_domain_settings ...' # MODIFIED
     end
+          # verify the required parameter 'settings_service_get_domain_settings_request' is set
+          if @api_client.config.client_side_validation && settings_service_get_domain_settings_request.nil?
+          fail ArgumentError, "Missing the required parameter 'settings_service_get_domain_settings_request' when calling Api::SettingsServiceApi.get_domain_settings" # MODIFIED
+          end
     # resource path
-    local_var_path = '/v2/settings/domain'
+    local_var_path = '/zitadel.settings.v2.SettingsService/GetDomainSettings'
 
     # query parameters
     query_params = opts[:query_params] || {}
-        query_params[:'ctx.orgId'] = opts[:'ctx_org_id'] if !opts[:'ctx_org_id'].nil?
-        query_params[:'ctx.instance'] = opts[:'ctx_instance'] if !opts[:'ctx_instance'].nil?
 
     # header parameters
     header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
 
     # form parameters
     form_params = opts[:form_params] || {}
 
     # http body (model)
-    post_body = opts[:debug_body]
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(settings_service_get_domain_settings_request)
 
     # return_type
     return_type = opts[:debug_return_type] || 'SettingsServiceGetDomainSettingsResponse'
@@ -204,7 +207,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::SettingsServiceApi.settings_service_get_domain_settings", # MODIFIED
+    :operation => :"Api::SettingsServiceApi.get_domain_settings", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -213,32 +216,38 @@ module Zitadel::Client::Api
     :return_type => return_type
     )
 
-    data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#settings_service_get_domain_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#get_domain_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data, status_code, headers
     end
 
+      # GetGeneralSettings
       # Get basic information over the instance
-      # Return the basic information of the instance for the requested context
+          # @param body [Object] 
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceGetGeneralSettingsResponse]
-    def settings_service_get_general_settings(opts = {})
-    data, _status_code, _headers = settings_service_get_general_settings_with_http_info(opts)
+    def get_general_settings(body, opts = {})
+    data, _status_code, _headers = get_general_settings_with_http_info(body, opts)
     data
     end
 
+      # GetGeneralSettings
       # Get basic information over the instance
-      # Return the basic information of the instance for the requested context
+          # @param body [Object] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(SettingsServiceGetGeneralSettingsResponse, Integer, Hash)>] SettingsServiceGetGeneralSettingsResponse data, response status code and response headers
-    def settings_service_get_general_settings_with_http_info(opts = {})
+    def get_general_settings_with_http_info(body, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.settings_service_get_general_settings ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.get_general_settings ...' # MODIFIED
     end
+          # verify the required parameter 'body' is set
+          if @api_client.config.client_side_validation && body.nil?
+          fail ArgumentError, "Missing the required parameter 'body' when calling Api::SettingsServiceApi.get_general_settings" # MODIFIED
+          end
     # resource path
-    local_var_path = '/v2/settings'
+    local_var_path = '/zitadel.settings.v2.SettingsService/GetGeneralSettings'
 
     # query parameters
     query_params = opts[:query_params] || {}
@@ -247,12 +256,17 @@ module Zitadel::Client::Api
     header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
 
     # form parameters
     form_params = opts[:form_params] || {}
 
     # http body (model)
-    post_body = opts[:debug_body]
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(body)
 
     # return_type
     return_type = opts[:debug_return_type] || 'SettingsServiceGetGeneralSettingsResponse'
@@ -261,7 +275,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::SettingsServiceApi.settings_service_get_general_settings", # MODIFIED
+    :operation => :"Api::SettingsServiceApi.get_general_settings", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -270,52 +284,57 @@ module Zitadel::Client::Api
     :return_type => return_type
     )
 
-    data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#settings_service_get_general_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#get_general_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data, status_code, headers
     end
 
+      # GetLegalAndSupportSettings
       # Get the legal and support settings
-      # Return the legal settings for the requested context
+          # @param settings_service_get_legal_and_support_settings_request [SettingsServiceGetLegalAndSupportSettingsRequest] 
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id 
-        # @option opts [Boolean] :ctx_instance 
     # @return [SettingsServiceGetLegalAndSupportSettingsResponse]
-    def settings_service_get_legal_and_support_settings(opts = {})
-    data, _status_code, _headers = settings_service_get_legal_and_support_settings_with_http_info(opts)
+    def get_legal_and_support_settings(settings_service_get_legal_and_support_settings_request, opts = {})
+    data, _status_code, _headers = get_legal_and_support_settings_with_http_info(settings_service_get_legal_and_support_settings_request, opts)
     data
     end
 
+      # GetLegalAndSupportSettings
       # Get the legal and support settings
-      # Return the legal settings for the requested context
+          # @param settings_service_get_legal_and_support_settings_request [SettingsServiceGetLegalAndSupportSettingsRequest] 
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id 
-        # @option opts [Boolean] :ctx_instance 
     # @return [Array<(SettingsServiceGetLegalAndSupportSettingsResponse, Integer, Hash)>] SettingsServiceGetLegalAndSupportSettingsResponse data, response status code and response headers
-    def settings_service_get_legal_and_support_settings_with_http_info(opts = {})
+    def get_legal_and_support_settings_with_http_info(settings_service_get_legal_and_support_settings_request, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.settings_service_get_legal_and_support_settings ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.get_legal_and_support_settings ...' # MODIFIED
     end
+          # verify the required parameter 'settings_service_get_legal_and_support_settings_request' is set
+          if @api_client.config.client_side_validation && settings_service_get_legal_and_support_settings_request.nil?
+          fail ArgumentError, "Missing the required parameter 'settings_service_get_legal_and_support_settings_request' when calling Api::SettingsServiceApi.get_legal_and_support_settings" # MODIFIED
+          end
     # resource path
-    local_var_path = '/v2/settings/legal_support'
+    local_var_path = '/zitadel.settings.v2.SettingsService/GetLegalAndSupportSettings'
 
     # query parameters
     query_params = opts[:query_params] || {}
-        query_params[:'ctx.orgId'] = opts[:'ctx_org_id'] if !opts[:'ctx_org_id'].nil?
-        query_params[:'ctx.instance'] = opts[:'ctx_instance'] if !opts[:'ctx_instance'].nil?
 
     # header parameters
     header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
 
     # form parameters
     form_params = opts[:form_params] || {}
 
     # http body (model)
-    post_body = opts[:debug_body]
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(settings_service_get_legal_and_support_settings_request)
 
     # return_type
     return_type = opts[:debug_return_type] || 'SettingsServiceGetLegalAndSupportSettingsResponse'
@@ -324,7 +343,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::SettingsServiceApi.settings_service_get_legal_and_support_settings", # MODIFIED
+    :operation => :"Api::SettingsServiceApi.get_legal_and_support_settings", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -333,52 +352,57 @@ module Zitadel::Client::Api
     :return_type => return_type
     )
 
-    data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#settings_service_get_legal_and_support_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#get_legal_and_support_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data, status_code, headers
     end
 
+      # GetLockoutSettings
       # Get the lockout settings
-      # Return the lockout settings for the requested context, which define when a user will be locked
+          # @param settings_service_get_lockout_settings_request [SettingsServiceGetLockoutSettingsRequest] 
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id 
-        # @option opts [Boolean] :ctx_instance 
     # @return [SettingsServiceGetLockoutSettingsResponse]
-    def settings_service_get_lockout_settings(opts = {})
-    data, _status_code, _headers = settings_service_get_lockout_settings_with_http_info(opts)
+    def get_lockout_settings(settings_service_get_lockout_settings_request, opts = {})
+    data, _status_code, _headers = get_lockout_settings_with_http_info(settings_service_get_lockout_settings_request, opts)
     data
     end
 
+      # GetLockoutSettings
       # Get the lockout settings
-      # Return the lockout settings for the requested context, which define when a user will be locked
+          # @param settings_service_get_lockout_settings_request [SettingsServiceGetLockoutSettingsRequest] 
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id 
-        # @option opts [Boolean] :ctx_instance 
     # @return [Array<(SettingsServiceGetLockoutSettingsResponse, Integer, Hash)>] SettingsServiceGetLockoutSettingsResponse data, response status code and response headers
-    def settings_service_get_lockout_settings_with_http_info(opts = {})
+    def get_lockout_settings_with_http_info(settings_service_get_lockout_settings_request, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.settings_service_get_lockout_settings ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.get_lockout_settings ...' # MODIFIED
     end
+          # verify the required parameter 'settings_service_get_lockout_settings_request' is set
+          if @api_client.config.client_side_validation && settings_service_get_lockout_settings_request.nil?
+          fail ArgumentError, "Missing the required parameter 'settings_service_get_lockout_settings_request' when calling Api::SettingsServiceApi.get_lockout_settings" # MODIFIED
+          end
     # resource path
-    local_var_path = '/v2/settings/lockout'
+    local_var_path = '/zitadel.settings.v2.SettingsService/GetLockoutSettings'
 
     # query parameters
     query_params = opts[:query_params] || {}
-        query_params[:'ctx.orgId'] = opts[:'ctx_org_id'] if !opts[:'ctx_org_id'].nil?
-        query_params[:'ctx.instance'] = opts[:'ctx_instance'] if !opts[:'ctx_instance'].nil?
 
     # header parameters
     header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
 
     # form parameters
     form_params = opts[:form_params] || {}
 
     # http body (model)
-    post_body = opts[:debug_body]
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(settings_service_get_lockout_settings_request)
 
     # return_type
     return_type = opts[:debug_return_type] || 'SettingsServiceGetLockoutSettingsResponse'
@@ -387,7 +411,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::SettingsServiceApi.settings_service_get_lockout_settings", # MODIFIED
+    :operation => :"Api::SettingsServiceApi.get_lockout_settings", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -396,52 +420,57 @@ module Zitadel::Client::Api
     :return_type => return_type
     )
 
-    data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#settings_service_get_lockout_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#get_lockout_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data, status_code, headers
     end
 
+      # GetLoginSettings
       # Get the login settings
-      # Return the settings for the requested context
+          # @param settings_service_get_login_settings_request [SettingsServiceGetLoginSettingsRequest] 
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id 
-        # @option opts [Boolean] :ctx_instance 
     # @return [SettingsServiceGetLoginSettingsResponse]
-    def settings_service_get_login_settings(opts = {})
-    data, _status_code, _headers = settings_service_get_login_settings_with_http_info(opts)
+    def get_login_settings(settings_service_get_login_settings_request, opts = {})
+    data, _status_code, _headers = get_login_settings_with_http_info(settings_service_get_login_settings_request, opts)
     data
     end
 
+      # GetLoginSettings
       # Get the login settings
-      # Return the settings for the requested context
+          # @param settings_service_get_login_settings_request [SettingsServiceGetLoginSettingsRequest] 
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id 
-        # @option opts [Boolean] :ctx_instance 
     # @return [Array<(SettingsServiceGetLoginSettingsResponse, Integer, Hash)>] SettingsServiceGetLoginSettingsResponse data, response status code and response headers
-    def settings_service_get_login_settings_with_http_info(opts = {})
+    def get_login_settings_with_http_info(settings_service_get_login_settings_request, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.settings_service_get_login_settings ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.get_login_settings ...' # MODIFIED
     end
+          # verify the required parameter 'settings_service_get_login_settings_request' is set
+          if @api_client.config.client_side_validation && settings_service_get_login_settings_request.nil?
+          fail ArgumentError, "Missing the required parameter 'settings_service_get_login_settings_request' when calling Api::SettingsServiceApi.get_login_settings" # MODIFIED
+          end
     # resource path
-    local_var_path = '/v2/settings/login'
+    local_var_path = '/zitadel.settings.v2.SettingsService/GetLoginSettings'
 
     # query parameters
     query_params = opts[:query_params] || {}
-        query_params[:'ctx.orgId'] = opts[:'ctx_org_id'] if !opts[:'ctx_org_id'].nil?
-        query_params[:'ctx.instance'] = opts[:'ctx_instance'] if !opts[:'ctx_instance'].nil?
 
     # header parameters
     header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
 
     # form parameters
     form_params = opts[:form_params] || {}
 
     # http body (model)
-    post_body = opts[:debug_body]
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(settings_service_get_login_settings_request)
 
     # return_type
     return_type = opts[:debug_return_type] || 'SettingsServiceGetLoginSettingsResponse'
@@ -450,7 +479,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::SettingsServiceApi.settings_service_get_login_settings", # MODIFIED
+    :operation => :"Api::SettingsServiceApi.get_login_settings", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -459,52 +488,57 @@ module Zitadel::Client::Api
     :return_type => return_type
     )
 
-    data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#settings_service_get_login_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#get_login_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data, status_code, headers
     end
 
+      # GetPasswordComplexitySettings
       # Get the password complexity settings
-      # Return the password complexity settings for the requested context
+          # @param settings_service_get_password_complexity_settings_request [SettingsServiceGetPasswordComplexitySettingsRequest] 
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id 
-        # @option opts [Boolean] :ctx_instance 
     # @return [SettingsServiceGetPasswordComplexitySettingsResponse]
-    def settings_service_get_password_complexity_settings(opts = {})
-    data, _status_code, _headers = settings_service_get_password_complexity_settings_with_http_info(opts)
+    def get_password_complexity_settings(settings_service_get_password_complexity_settings_request, opts = {})
+    data, _status_code, _headers = get_password_complexity_settings_with_http_info(settings_service_get_password_complexity_settings_request, opts)
     data
     end
 
+      # GetPasswordComplexitySettings
       # Get the password complexity settings
-      # Return the password complexity settings for the requested context
+          # @param settings_service_get_password_complexity_settings_request [SettingsServiceGetPasswordComplexitySettingsRequest] 
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id 
-        # @option opts [Boolean] :ctx_instance 
     # @return [Array<(SettingsServiceGetPasswordComplexitySettingsResponse, Integer, Hash)>] SettingsServiceGetPasswordComplexitySettingsResponse data, response status code and response headers
-    def settings_service_get_password_complexity_settings_with_http_info(opts = {})
+    def get_password_complexity_settings_with_http_info(settings_service_get_password_complexity_settings_request, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.settings_service_get_password_complexity_settings ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.get_password_complexity_settings ...' # MODIFIED
     end
+          # verify the required parameter 'settings_service_get_password_complexity_settings_request' is set
+          if @api_client.config.client_side_validation && settings_service_get_password_complexity_settings_request.nil?
+          fail ArgumentError, "Missing the required parameter 'settings_service_get_password_complexity_settings_request' when calling Api::SettingsServiceApi.get_password_complexity_settings" # MODIFIED
+          end
     # resource path
-    local_var_path = '/v2/settings/password/complexity'
+    local_var_path = '/zitadel.settings.v2.SettingsService/GetPasswordComplexitySettings'
 
     # query parameters
     query_params = opts[:query_params] || {}
-        query_params[:'ctx.orgId'] = opts[:'ctx_org_id'] if !opts[:'ctx_org_id'].nil?
-        query_params[:'ctx.instance'] = opts[:'ctx_instance'] if !opts[:'ctx_instance'].nil?
 
     # header parameters
     header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
 
     # form parameters
     form_params = opts[:form_params] || {}
 
     # http body (model)
-    post_body = opts[:debug_body]
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(settings_service_get_password_complexity_settings_request)
 
     # return_type
     return_type = opts[:debug_return_type] || 'SettingsServiceGetPasswordComplexitySettingsResponse'
@@ -513,7 +547,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::SettingsServiceApi.settings_service_get_password_complexity_settings", # MODIFIED
+    :operation => :"Api::SettingsServiceApi.get_password_complexity_settings", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -522,52 +556,57 @@ module Zitadel::Client::Api
     :return_type => return_type
     )
 
-    data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#settings_service_get_password_complexity_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#get_password_complexity_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data, status_code, headers
     end
 
+      # GetPasswordExpirySettings
       # Get the password expiry settings
-      # Return the password expiry settings for the requested context
+          # @param settings_service_get_password_expiry_settings_request [SettingsServiceGetPasswordExpirySettingsRequest] 
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id 
-        # @option opts [Boolean] :ctx_instance 
     # @return [SettingsServiceGetPasswordExpirySettingsResponse]
-    def settings_service_get_password_expiry_settings(opts = {})
-    data, _status_code, _headers = settings_service_get_password_expiry_settings_with_http_info(opts)
+    def get_password_expiry_settings(settings_service_get_password_expiry_settings_request, opts = {})
+    data, _status_code, _headers = get_password_expiry_settings_with_http_info(settings_service_get_password_expiry_settings_request, opts)
     data
     end
 
+      # GetPasswordExpirySettings
       # Get the password expiry settings
-      # Return the password expiry settings for the requested context
+          # @param settings_service_get_password_expiry_settings_request [SettingsServiceGetPasswordExpirySettingsRequest] 
       # @param [Hash] opts the optional parameters
-        # @option opts [String] :ctx_org_id 
-        # @option opts [Boolean] :ctx_instance 
     # @return [Array<(SettingsServiceGetPasswordExpirySettingsResponse, Integer, Hash)>] SettingsServiceGetPasswordExpirySettingsResponse data, response status code and response headers
-    def settings_service_get_password_expiry_settings_with_http_info(opts = {})
+    def get_password_expiry_settings_with_http_info(settings_service_get_password_expiry_settings_request, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.settings_service_get_password_expiry_settings ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.get_password_expiry_settings ...' # MODIFIED
     end
+          # verify the required parameter 'settings_service_get_password_expiry_settings_request' is set
+          if @api_client.config.client_side_validation && settings_service_get_password_expiry_settings_request.nil?
+          fail ArgumentError, "Missing the required parameter 'settings_service_get_password_expiry_settings_request' when calling Api::SettingsServiceApi.get_password_expiry_settings" # MODIFIED
+          end
     # resource path
-    local_var_path = '/v2/settings/password/expiry'
+    local_var_path = '/zitadel.settings.v2.SettingsService/GetPasswordExpirySettings'
 
     # query parameters
     query_params = opts[:query_params] || {}
-        query_params[:'ctx.orgId'] = opts[:'ctx_org_id'] if !opts[:'ctx_org_id'].nil?
-        query_params[:'ctx.instance'] = opts[:'ctx_instance'] if !opts[:'ctx_instance'].nil?
 
     # header parameters
     header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
 
     # form parameters
     form_params = opts[:form_params] || {}
 
     # http body (model)
-    post_body = opts[:debug_body]
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(settings_service_get_password_expiry_settings_request)
 
     # return_type
     return_type = opts[:debug_return_type] || 'SettingsServiceGetPasswordExpirySettingsResponse'
@@ -576,7 +615,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::SettingsServiceApi.settings_service_get_password_expiry_settings", # MODIFIED
+    :operation => :"Api::SettingsServiceApi.get_password_expiry_settings", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -585,32 +624,38 @@ module Zitadel::Client::Api
     :return_type => return_type
     )
 
-    data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#settings_service_get_password_expiry_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#get_password_expiry_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data, status_code, headers
     end
 
-      # Get Security Settings
-      # Returns the security settings of the ZITADEL instance.
+      # GetSecuritySettings
+      # Get the security settings
+          # @param body [Object] 
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceGetSecuritySettingsResponse]
-    def settings_service_get_security_settings(opts = {})
-    data, _status_code, _headers = settings_service_get_security_settings_with_http_info(opts)
+    def get_security_settings(body, opts = {})
+    data, _status_code, _headers = get_security_settings_with_http_info(body, opts)
     data
     end
 
-      # Get Security Settings
-      # Returns the security settings of the ZITADEL instance.
+      # GetSecuritySettings
+      # Get the security settings
+          # @param body [Object] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(SettingsServiceGetSecuritySettingsResponse, Integer, Hash)>] SettingsServiceGetSecuritySettingsResponse data, response status code and response headers
-    def settings_service_get_security_settings_with_http_info(opts = {})
+    def get_security_settings_with_http_info(body, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.settings_service_get_security_settings ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.get_security_settings ...' # MODIFIED
     end
+          # verify the required parameter 'body' is set
+          if @api_client.config.client_side_validation && body.nil?
+          fail ArgumentError, "Missing the required parameter 'body' when calling Api::SettingsServiceApi.get_security_settings" # MODIFIED
+          end
     # resource path
-    local_var_path = '/v2/settings/security'
+    local_var_path = '/zitadel.settings.v2.SettingsService/GetSecuritySettings'
 
     # query parameters
     query_params = opts[:query_params] || {}
@@ -619,12 +664,17 @@ module Zitadel::Client::Api
     header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
 
     # form parameters
     form_params = opts[:form_params] || {}
 
     # http body (model)
-    post_body = opts[:debug_body]
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(body)
 
     # return_type
     return_type = opts[:debug_return_type] || 'SettingsServiceGetSecuritySettingsResponse'
@@ -633,7 +683,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::SettingsServiceApi.settings_service_get_security_settings", # MODIFIED
+    :operation => :"Api::SettingsServiceApi.get_security_settings", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -642,38 +692,38 @@ module Zitadel::Client::Api
     :return_type => return_type
     )
 
-    data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#settings_service_get_security_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#get_security_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data, status_code, headers
     end
 
-      # Set Security Settings
-      # Set the security settings of the ZITADEL instance.
+      # SetSecuritySettings
+      # Set the security settings
           # @param settings_service_set_security_settings_request [SettingsServiceSetSecuritySettingsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceSetSecuritySettingsResponse]
-    def settings_service_set_security_settings(settings_service_set_security_settings_request, opts = {})
-    data, _status_code, _headers = settings_service_set_security_settings_with_http_info(settings_service_set_security_settings_request, opts)
+    def set_security_settings(settings_service_set_security_settings_request, opts = {})
+    data, _status_code, _headers = set_security_settings_with_http_info(settings_service_set_security_settings_request, opts)
     data
     end
 
-      # Set Security Settings
-      # Set the security settings of the ZITADEL instance.
+      # SetSecuritySettings
+      # Set the security settings
           # @param settings_service_set_security_settings_request [SettingsServiceSetSecuritySettingsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Array<(SettingsServiceSetSecuritySettingsResponse, Integer, Hash)>] SettingsServiceSetSecuritySettingsResponse data, response status code and response headers
-    def settings_service_set_security_settings_with_http_info(settings_service_set_security_settings_request, opts = {})
+    def set_security_settings_with_http_info(settings_service_set_security_settings_request, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.settings_service_set_security_settings ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.set_security_settings ...' # MODIFIED
     end
           # verify the required parameter 'settings_service_set_security_settings_request' is set
           if @api_client.config.client_side_validation && settings_service_set_security_settings_request.nil?
-          fail ArgumentError, "Missing the required parameter 'settings_service_set_security_settings_request' when calling Api::SettingsServiceApi.settings_service_set_security_settings" # MODIFIED
+          fail ArgumentError, "Missing the required parameter 'settings_service_set_security_settings_request' when calling Api::SettingsServiceApi.set_security_settings" # MODIFIED
           end
     # resource path
-    local_var_path = '/v2/policies/security'
+    local_var_path = '/zitadel.settings.v2.SettingsService/SetSecuritySettings'
 
     # query parameters
     query_params = opts[:query_params] || {}
@@ -701,7 +751,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::SettingsServiceApi.settings_service_set_security_settings", # MODIFIED
+    :operation => :"Api::SettingsServiceApi.set_security_settings", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -710,9 +760,9 @@ module Zitadel::Client::Api
     :return_type => return_type
     )
 
-    data, status_code, headers = @api_client.call_api(:PUT, local_var_path, new_options)
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#settings_service_set_security_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#set_security_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data, status_code, headers
     end

@@ -101,8 +101,6 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'sorting_column')
         self.sorting_column = attributes[:'sorting_column']
-      else
-        self.sorting_column = 'USER_FIELD_NAME_UNSPECIFIED'
       end
 
       if attributes.key?(:'result')

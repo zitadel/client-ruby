@@ -67,8 +67,8 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'max_age_days' => :'String',
-        :'expire_warn_days' => :'String',
+        :'max_age_days' => :'Object',
+        :'expire_warn_days' => :'Object',
         :'resource_owner_type' => :'SettingsServiceResourceOwnerType'
       }
     end
@@ -76,6 +76,8 @@ module Zitadel::Client::Models
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'max_age_days',
+        :'expire_warn_days',
       ])
     end
 
@@ -107,8 +109,6 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'resource_owner_type')
         self.resource_owner_type = attributes[:'resource_owner_type']
-      else
-        self.resource_owner_type = 'RESOURCE_OWNER_TYPE_UNSPECIFIED'
       end
     end
 

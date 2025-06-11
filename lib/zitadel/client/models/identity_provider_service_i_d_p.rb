@@ -118,8 +118,6 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'state')
         self.state = attributes[:'state']
-      else
-        self.state = 'IDP_STATE_UNSPECIFIED'
       end
 
       if attributes.key?(:'name')
@@ -128,8 +126,6 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'type')
         self.type = attributes[:'type']
-      else
-        self.type = 'IDP_TYPE_UNSPECIFIED'
       end
 
       if attributes.key?(:'config')
