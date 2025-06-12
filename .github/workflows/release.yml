@@ -38,7 +38,7 @@ jobs:
           bundler-cache: true
 
       - name: Run semantic-release
-        uses: mridang/action-semantic-release@v1.2.3
+        uses: mridang/action-semantic-release@v1.2.4
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           allow-force-install: 'true'
