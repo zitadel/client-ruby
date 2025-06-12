@@ -5,7 +5,7 @@
     "lefthook@latest"
   ],
   "env": {
-    "XDEBUG_MODE": "coverage"
+    "BUNDLE_PATH": "./vendor/bundle"
   },
   "shell": {
     "init_hook": [
