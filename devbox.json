@@ -4,6 +4,9 @@
     "ruby@3.0",
     "lefthook@latest"
   ],
+  "env": {
+    "BUNDLE_PATH": "./vendor/bundle"
+  },
   "shell": {
     "init_hook": [
       "lefthook install",
