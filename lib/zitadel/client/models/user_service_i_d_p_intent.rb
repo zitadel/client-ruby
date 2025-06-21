@@ -130,7 +130,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] idp_intent_id Value to be assigned
+    # @param [String] idp_intent_id Value to be assigned
     def idp_intent_id=(idp_intent_id)
       if idp_intent_id.nil?
         fail ArgumentError, 'idp_intent_id cannot be nil'
@@ -148,7 +148,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] idp_intent_token Value to be assigned
+    # @param [String] idp_intent_token Value to be assigned
     def idp_intent_token=(idp_intent_token)
       if idp_intent_token.nil?
         fail ArgumentError, 'idp_intent_token cannot be nil'
@@ -166,7 +166,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] user_id Value to be assigned
+    # @param [String] user_id Value to be assigned
     def user_id=(user_id)
       if user_id.nil?
         fail ArgumentError, 'user_id cannot be nil'

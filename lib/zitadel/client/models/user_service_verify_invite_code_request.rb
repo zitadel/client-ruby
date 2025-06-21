@@ -104,7 +104,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] verification_code Value to be assigned
+    # @param [String] verification_code Value to be assigned
     def verification_code=(verification_code)
       if verification_code.nil?
         fail ArgumentError, 'verification_code cannot be nil'

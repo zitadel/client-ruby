@@ -116,7 +116,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] success_url Value to be assigned
+    # @param [String] success_url Value to be assigned
     def success_url=(success_url)
       if success_url.nil?
         fail ArgumentError, 'success_url cannot be nil'
@@ -134,7 +134,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] failure_url Value to be assigned
+    # @param [String] failure_url Value to be assigned
     def failure_url=(failure_url)
       if failure_url.nil?
         fail ArgumentError, 'failure_url cannot be nil'

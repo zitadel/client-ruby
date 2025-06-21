@@ -92,7 +92,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] fingerprint_id Value to be assigned
+    # @param [String] fingerprint_id Value to be assigned
     def fingerprint_id=(fingerprint_id)
       if fingerprint_id.nil?
         fail ArgumentError, 'fingerprint_id cannot be nil'

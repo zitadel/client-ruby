@@ -116,7 +116,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] url_template Value to be assigned
+    # @param [String] url_template Value to be assigned
     def url_template=(url_template)
       if url_template.nil?
         fail ArgumentError, 'url_template cannot be nil'
@@ -134,7 +134,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] application_name Value to be assigned
+    # @param [String] application_name Value to be assigned
     def application_name=(application_name)
       if application_name.nil?
         fail ArgumentError, 'application_name cannot be nil'

@@ -116,7 +116,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] session_id Value to be assigned
+    # @param [String] session_id Value to be assigned
     def session_id=(session_id)
       if session_id.nil?
         fail ArgumentError, 'session_id cannot be nil'
@@ -134,7 +134,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] session_token Value to be assigned
+    # @param [String] session_token Value to be assigned
     def session_token=(session_token)
       if session_token.nil?
         fail ArgumentError, 'session_token cannot be nil'

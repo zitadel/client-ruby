@@ -217,7 +217,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] user_id Value to be assigned
+    # @param [String] user_id Value to be assigned
     def user_id=(user_id)
       if user_id.nil?
         fail ArgumentError, 'user_id cannot be nil'
@@ -235,7 +235,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] username Value to be assigned
+    # @param [String] username Value to be assigned
     def username=(username)
       if username.nil?
         fail ArgumentError, 'username cannot be nil'
@@ -253,7 +253,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] profile Value to be assigned
+    # @param [UserServiceSetHumanProfile] profile Value to be assigned
     def profile=(profile)
       if profile.nil?
         fail ArgumentError, 'profile cannot be nil'
@@ -263,7 +263,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] email Value to be assigned
+    # @param [UserServiceSetHumanEmail] email Value to be assigned
     def email=(email)
       if email.nil?
         fail ArgumentError, 'email cannot be nil'
@@ -273,7 +273,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] totp_secret Value to be assigned
+    # @param [String] totp_secret Value to be assigned
     def totp_secret=(totp_secret)
       if totp_secret.nil?
         fail ArgumentError, 'totp_secret cannot be nil'

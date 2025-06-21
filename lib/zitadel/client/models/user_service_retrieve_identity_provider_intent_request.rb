@@ -97,7 +97,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] idp_intent_token Value to be assigned
+    # @param [String] idp_intent_token Value to be assigned
     def idp_intent_token=(idp_intent_token)
       if idp_intent_token.nil?
         fail ArgumentError, 'idp_intent_token cannot be nil'

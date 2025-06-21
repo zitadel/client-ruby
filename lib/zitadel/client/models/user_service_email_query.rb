@@ -132,7 +132,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] email_address Value to be assigned
+    # @param [String] email_address Value to be assigned
     def email_address=(email_address)
       if email_address.nil?
         fail ArgumentError, 'email_address cannot be nil'

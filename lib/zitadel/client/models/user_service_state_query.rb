@@ -116,7 +116,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] state Value to be assigned
+    # @param [UserServiceUserState] state Value to be assigned
     def state=(state)
       if state.nil?
         fail ArgumentError, 'state cannot be nil'

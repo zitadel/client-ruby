@@ -92,7 +92,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] id Value to be assigned
+    # @param [String] id Value to be assigned
     def id=(id)
       if id.nil?
         fail ArgumentError, 'id cannot be nil'
