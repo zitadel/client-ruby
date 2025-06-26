@@ -71,9 +71,11 @@ begin
           }
           testsuite_attributes[:timestamp] = suite_result[:timestamp] if @timestamp_report
 
+          # noinspection RubyResolve
           xml.testsuite(testsuite_attributes) do
             tests.each do |test|
               line = get_source_location(test).last
+              # noinspection RubyResolve
               xml.testcase(
                 name: test.name,
                 line: line,

@@ -193,13 +193,14 @@ module Zitadel
 
         def initialize: (String) -> void
 
-        def scopes: -> untyped
+        def scopes: (*String) -> self
       end
 
       class OAuthAuthenticator < Authenticator
         @auth_session: OAuth2::Client
+        @mutex: Thread::Mutex
         @open_id: OpenId
-        @token: OAuth2::AccessToken | nil
+        @token: OAuth2::AccessToken
         @auth_scopes: String
 
         def initialize: (OpenId, Set[String], OAuth2::Client) -> void
@@ -240,7 +241,7 @@ module Zitadel
         @jwt_lifetime: Integer
         @jwt_subject: String
         @key_id: String?
-        @private_key: String
+        @private_key: OpenSSL::PKey::RSA
 
         def self.builder: (String, String, String) -> WebTokenAuthenticatorBuilder
 
@@ -248,7 +249,7 @@ module Zitadel
 
         def get_grant: (OAuth2::Client, String) -> OAuth2::AccessToken
 
-        def initialize: (OpenId, Set[String], String, String, String, String | OpenSSL::PKey::PKey, ?jwt_lifetime: Integer, ?jwt_algorithm: String, ?key_id: String?) -> void
+        def initialize: (OpenId, Set[String], String, String, String, (String | OpenSSL::PKey::PKey), ?jwt_lifetime: Integer, ?jwt_algorithm: String, ?key_id: String?) -> void
 
         class WebTokenAuthenticatorBuilder < OAuthAuthenticatorBuilder
           @jwt_audience: String

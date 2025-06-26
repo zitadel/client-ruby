@@ -33,6 +33,7 @@ module Zitadel
           @token = nil
           @auth_session = auth_session
           @auth_scopes = auth_scopes.to_a.join(' ')
+          @mutex = Thread::Mutex.new
         end
 
         ##
@@ -41,15 +42,13 @@ module Zitadel
         # @return [String] The current access token.
         #
         def auth_token
-          token = @token
-          if token.nil? || token.expired?
-            refresh_token
-            token = @token
+          @mutex.synchronize do
+            refresh_token if @token.nil? || @token.expired?
+
+            raise 'Token is nil after refresh' if @token.nil?
+
+            return @token.token
           end
-
-          raise 'Token is nil after refresh' if token.nil?
-
-          token.token
         end
 
         ##

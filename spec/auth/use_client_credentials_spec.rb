@@ -22,6 +22,7 @@ class UseClientCredentialsSpec < BaseSpec
   def generate_user_secret(token, login_name = 'api-user')
     user_id_uri = URI("http://localhost:8099/management/v1/global/users/_by_login_name?loginName=#{URI.encode_www_form_component(login_name)}")
 
+    # noinspection RubyMismatchedArgumentType
     user_id_http = Net::HTTP.new(user_id_uri.host, user_id_uri.port)
     user_id_request = Net::HTTP::Get.new(user_id_uri)
     user_id_request['Authorization'] = "Bearer #{token}"
@@ -39,6 +40,7 @@ class UseClientCredentialsSpec < BaseSpec
     if user_id && !user_id.empty?
       secret_uri = URI("http://localhost:8099/management/v1/users/#{user_id}/secret")
 
+      # noinspection RubyMismatchedArgumentType
       secret_http = Net::HTTP.new(secret_uri.host, secret_uri.port)
       secret_request = Net::HTTP::Put.new(secret_uri)
       secret_request['Authorization'] = "Bearer #{token}"

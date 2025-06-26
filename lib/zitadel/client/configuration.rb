@@ -160,7 +160,7 @@ module Zitadel
         @timeout = 0
         @params_encoding = nil
         @debugging = false
-        @logger = nil?
+        @logger = nil
         @user_agent = USER_AGENT
 
         yield(self) if block_given?

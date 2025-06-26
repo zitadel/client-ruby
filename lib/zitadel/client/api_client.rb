@@ -132,8 +132,7 @@ module Zitadel
       # noinspection RubyMismatchedReturnType,RubyArgCount,RbsMissingTypeSignature
       def build_request_body(header_params, form_params, body)
         # http form
-        if ['application/x-www-form-urlencoded',
-            'multipart/form-data'].include?(header_params['Content-Type'])
+        if %w[application/x-www-form-urlencoded multipart/form-data].include?(header_params['Content-Type'])
           data = {}
           form_params.each do |key, value|
             data[key] = case value
@@ -187,6 +186,7 @@ module Zitadel
         request.on_complete do
           t = ensure_tempfile(tempfile)
           t.close
+          # noinspection RubyNilAnalysis
           @config.logger.info "Temp file written to #{t.path}, please copy the file to a proper folder " \
                               "with e.g. `FileUtils.cp(t.path, '/new/file/path')` otherwise the temp file " \
                               "will be deleted automatically with GC. It's also recommended to delete the temp file " \

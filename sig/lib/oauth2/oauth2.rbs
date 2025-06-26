@@ -87,7 +87,7 @@ module OAuth2
   class Client
     def initialize: (String | nil, String | nil, Hash[Symbol, String]) -> void
 
-    def fetch_token: (url: String, **untyped) -> OAuth2::AccessToken
+    def fetch_token: (url: String, **untyped) -> AccessToken
 
     def auth_code: () -> Strategy::AuthCode
 

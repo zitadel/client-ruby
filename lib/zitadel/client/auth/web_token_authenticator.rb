@@ -36,10 +36,15 @@ module Zitadel
           @jwt_issuer = jwt_issuer
           @jwt_subject = jwt_subject
           @jwt_audience = jwt_audience
-          @private_key = private_key
           @jwt_lifetime = jwt_lifetime
           @jwt_algorithm = jwt_algorithm
           @key_id = key_id
+          # noinspection RubyMismatchedVariableType
+          @private_key = if private_key.is_a?(String)
+                           OpenSSL::PKey::RSA.new(private_key)
+                         else
+                           private_key
+                         end
         end
 
         # rubocop:enable Metrics/ParameterLists,Metrics/MethodLength
@@ -99,7 +104,7 @@ module Zitadel
               exp: (Time.now.utc + @jwt_lifetime).to_i },
             {
               algorithm: @jwt_algorithm,
-              key: OpenSSL::PKey::RSA.new(@private_key),
+              key: @private_key,
               kid: @key_id
             },
             {
