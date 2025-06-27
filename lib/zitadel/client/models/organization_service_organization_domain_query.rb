@@ -136,7 +136,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] domain Value to be assigned
+    # @param [String] domain Value to be assigned
     def domain=(domain)
       if domain.nil?
         fail ArgumentError, 'domain cannot be nil'

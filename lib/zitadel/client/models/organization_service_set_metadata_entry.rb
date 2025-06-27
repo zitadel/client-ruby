@@ -129,7 +129,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] key Value to be assigned
+    # @param [String] key Value to be assigned
     def key=(key)
       if key.nil?
         fail ArgumentError, 'key cannot be nil'
@@ -147,7 +147,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] value Value to be assigned
+    # @param [String] value Value to be assigned
     def value=(value)
       if value.nil?
         fail ArgumentError, 'value cannot be nil'

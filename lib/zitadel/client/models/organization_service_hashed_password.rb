@@ -112,7 +112,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] hash Value to be assigned
+    # @param [String] hash Value to be assigned
     def hash=(hash)
       if hash.nil?
         fail ArgumentError, 'hash cannot be nil'

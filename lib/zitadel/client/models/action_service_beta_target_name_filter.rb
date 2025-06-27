@@ -124,7 +124,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] target_name Value to be assigned
+    # @param [String] target_name Value to be assigned
     def target_name=(target_name)
       if target_name.nil?
         fail ArgumentError, 'target_name cannot be nil'

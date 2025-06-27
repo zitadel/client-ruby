@@ -99,7 +99,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] phone Value to be assigned
+    # @param [String] phone Value to be assigned
     def phone=(phone)
       if phone.nil?
         fail ArgumentError, 'phone cannot be nil'

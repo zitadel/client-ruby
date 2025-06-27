@@ -136,7 +136,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] user_name Value to be assigned
+    # @param [String] user_name Value to be assigned
     def user_name=(user_name)
       if user_name.nil?
         fail ArgumentError, 'user_name cannot be nil'

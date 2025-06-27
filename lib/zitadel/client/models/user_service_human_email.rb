@@ -104,7 +104,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] email Value to be assigned
+    # @param [String] email Value to be assigned
     def email=(email)
       if email.nil?
         fail ArgumentError, 'email cannot be nil'

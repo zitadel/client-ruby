@@ -129,7 +129,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] passkey_name Value to be assigned
+    # @param [String] passkey_name Value to be assigned
     def passkey_name=(passkey_name)
       if passkey_name.nil?
         fail ArgumentError, 'passkey_name cannot be nil'

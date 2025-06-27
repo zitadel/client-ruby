@@ -137,7 +137,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] number Value to be assigned
+    # @param [String] number Value to be assigned
     def number=(number)
       if number.nil?
         fail ArgumentError, 'number cannot be nil'

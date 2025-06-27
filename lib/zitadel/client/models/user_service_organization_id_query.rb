@@ -104,7 +104,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] organization_id Value to be assigned
+    # @param [String] organization_id Value to be assigned
     def organization_id=(organization_id)
       if organization_id.nil?
         fail ArgumentError, 'organization_id cannot be nil'

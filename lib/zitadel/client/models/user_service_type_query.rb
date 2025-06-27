@@ -116,7 +116,7 @@ module Zitadel::Client::Models
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] type Value to be assigned
+    # @param [UserServiceType] type Value to be assigned
     def type=(type)
       if type.nil?
         fail ArgumentError, 'type cannot be nil'
