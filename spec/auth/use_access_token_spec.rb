@@ -17,7 +17,7 @@ require_relative '../base_spec'
 class UseAccessTokenSpec < BaseSpec
   it 'retrieves general settings with valid token' do
     client = Zitadel::Client::Zitadel.with_access_token(@base_url, @auth_token)
-    client.settings.settings_service_get_general_settings
+    client.settings.get_general_settings
   end
 
   it 'raises an ApiError with invalid token' do
@@ -26,7 +26,7 @@ class UseAccessTokenSpec < BaseSpec
       'invalid'
     )
     assert_raises(Zitadel::Client::ZitadelError) do
-      client.settings.settings_service_get_general_settings
+      client.settings.get_general_settings
     end
   end
 end

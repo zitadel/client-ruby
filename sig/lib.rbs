@@ -17,42 +17,95 @@ module Zitadel
 
     module Api
       class FeatureServiceApi
-
         def initialize: (ApiClient) -> void
       end
 
       class IdentityProviderServiceApi
-
         def initialize: (ApiClient) -> void
       end
 
       class OIDCServiceApi
-
         def initialize: (ApiClient) -> void
       end
 
       class OrganizationServiceApi
-
         def initialize: (ApiClient) -> void
       end
 
       class SessionServiceApi
-
         def initialize: (ApiClient) -> void
       end
 
       class SettingsServiceApi
-
         def initialize: (ApiClient) -> void
       end
 
       class UserServiceApi
+        def initialize: (ApiClient) -> void
+      end
 
+      class WebKeyServiceApi
         def initialize: (ApiClient) -> void
       end
 
       class SAMLServiceApi
+        def initialize: (ApiClient) -> void
+      end
 
+      # Beta Service APIs
+      class BetaProjectServiceApi
+        def initialize: (ApiClient) -> void
+      end
+
+      class BetaAppServiceApi
+        def initialize: (ApiClient) -> void
+      end
+
+      class BetaOIDCServiceApi
+        def initialize: (ApiClient) -> void
+      end
+
+      class BetaUserServiceApi
+        def initialize: (ApiClient) -> void
+      end
+
+      class BetaOrganizationServiceApi
+        def initialize: (ApiClient) -> void
+      end
+
+      class BetaSettingsServiceApi
+        def initialize: (ApiClient) -> void
+      end
+
+      class BetaInternalPermissionServiceApi
+        def initialize: (ApiClient) -> void
+      end
+
+      class BetaAuthorizationServiceApi
+        def initialize: (ApiClient) -> void
+      end
+
+      class BetaSessionServiceApi
+        def initialize: (ApiClient) -> void
+      end
+
+      class BetaInstanceServiceApi
+        def initialize: (ApiClient) -> void
+      end
+
+      class BetaTelemetryServiceApi
+        def initialize: (ApiClient) -> void
+      end
+
+      class BetaFeatureServiceApi
+        def initialize: (ApiClient) -> void
+      end
+
+      class BetaWebKeyServiceApi
+        def initialize: (ApiClient) -> void
+      end
+
+      class BetaActionServiceApi
         def initialize: (ApiClient) -> void
       end
     end
@@ -277,17 +330,29 @@ module Zitadel
 
       def self.with_private_key: (String, String) -> Zitadel
 
-      attr_reader actions: untyped
-      attr_reader configuration: Configuration
-      attr_reader features: untyped
-      attr_reader idps: untyped
-      attr_reader oidc: untyped
-      attr_reader organizations: untyped
-      attr_reader saml: untyped
-      attr_reader sessions: untyped
-      attr_reader settings: untyped
-      attr_reader users: untyped
-      attr_reader webkeys: untyped
+      attr_reader features: Api::FeatureServiceApi
+      attr_reader idps: Api::IdentityProviderServiceApi
+      attr_reader oidc: Api::OIDCServiceApi
+      attr_reader organizations: Api::OrganizationServiceApi
+      attr_reader saml: Api::SAMLServiceApi
+      attr_reader sessions: Api::SessionServiceApi
+      attr_reader settings: Api::SettingsServiceApi
+      attr_reader users: Api::UserServiceApi
+      attr_reader webkeys: Api::WebKeyServiceApi
+      attr_reader beta_projects: Api::BetaProjectServiceApi
+      attr_reader beta_apps: Api::BetaAppServiceApi
+      attr_reader beta_oidc: Api::BetaOIDCServiceApi
+      attr_reader beta_users: Api::BetaUserServiceApi
+      attr_reader beta_organizations: Api::BetaOrganizationServiceApi
+      attr_reader beta_settings: Api::BetaSettingsServiceApi
+      attr_reader beta_permissions: Api::BetaInternalPermissionServiceApi
+      attr_reader beta_authorizations: Api::BetaAuthorizationServiceApi
+      attr_reader beta_sessions: Api::BetaSessionServiceApi
+      attr_reader beta_instance: Api::BetaInstanceServiceApi
+      attr_reader beta_telemetry: Api::BetaTelemetryServiceApi
+      attr_reader beta_features: Api::BetaFeatureServiceApi
+      attr_reader beta_webkeys: Api::BetaWebKeyServiceApi
+      attr_reader beta_actions: Api::BetaActionServiceApi
 
       def initialize: (Auth::Authenticator) ?{ (Configuration) -> void } -> void
 
