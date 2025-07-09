@@ -8,8 +8,7 @@ module Zitadel
     # Sets up service APIs for interacting with various Zitadel features.
     # noinspection RubyTooManyInstanceVariablesInspection
     class Zitadel
-      attr_reader :actions,
-                  :features,
+      attr_reader :features,
                   :idps,
                   :oidc,
                   :organizations,
