@@ -19,26 +19,20 @@ module Zitadel::Client::Api
   def initialize(api_client = ApiClient.default)
   @api_client = api_client
   end
-      # Finalize a SAML Request and get the response.
-      # Finalize a SAML Request and get the response definition for success or failure. The response must be handled as per the SAML definition to inform the application about the success or failure. On success, the response contains details for the application to obtain the SAMLResponse. This method can only be called once for an SAML request.
-          # @param saml_request_id [String] ID of the SAML Request.
+      # CreateResponse
           # @param saml_service_create_response_request [SAMLServiceCreateResponseRequest] 
       # @param [Hash] opts the optional parameters
     # @return [SAMLServiceCreateResponseResponse]
-    def s_aml_service_create_response(saml_request_id, saml_service_create_response_request, opts = {})
+    def create_response(saml_service_create_response_request, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::SAMLServiceApi.s_aml_service_create_response ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::SAMLServiceApi.create_response ...' # MODIFIED
     end
-          # verify the required parameter 'saml_request_id' is set
-          if @api_client.config.client_side_validation && saml_request_id.nil?
-          fail ArgumentError, "Missing the required parameter 'saml_request_id' when calling Api::SAMLServiceApi.s_aml_service_create_response" # MODIFIED
-          end
           # verify the required parameter 'saml_service_create_response_request' is set
           if @api_client.config.client_side_validation && saml_service_create_response_request.nil?
-          fail ArgumentError, "Missing the required parameter 'saml_service_create_response_request' when calling Api::SAMLServiceApi.s_aml_service_create_response" # MODIFIED
+          fail ArgumentError, "Missing the required parameter 'saml_service_create_response_request' when calling Api::SAMLServiceApi.create_response" # MODIFIED
           end
     # resource path
-    local_var_path = '/v2/saml/saml_requests/{samlRequestId}'.sub('{' + 'samlRequestId' + '}', CGI.escape(saml_request_id.to_s))
+    local_var_path = '/zitadel.saml.v2.SAMLService/CreateResponse'
 
     # query parameters
     query_params = opts[:query_params] || {}
@@ -66,7 +60,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::SAMLServiceApi.s_aml_service_create_response", # MODIFIED
+    :operation => :"Api::SAMLServiceApi.create_response", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -77,26 +71,25 @@ module Zitadel::Client::Api
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::SAMLServiceApi#s_aml_service_create_response\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::SAMLServiceApi#create_response\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data
     end
 
-      # Get SAML Request details
-      # Get SAML Request details by ID. Returns details that are parsed from the application&#39;s SAML Request.
-          # @param saml_request_id [String] ID of the SAML Request, as obtained from the redirect URL.
+      # GetSAMLRequest
+          # @param saml_service_get_saml_request_request [SAMLServiceGetSAMLRequestRequest] 
       # @param [Hash] opts the optional parameters
     # @return [SAMLServiceGetSAMLRequestResponse]
-    def s_aml_service_get_saml_request(saml_request_id, opts = {})
+    def get_saml_request(saml_service_get_saml_request_request, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::SAMLServiceApi.s_aml_service_get_saml_request ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::SAMLServiceApi.get_saml_request ...' # MODIFIED
     end
-          # verify the required parameter 'saml_request_id' is set
-          if @api_client.config.client_side_validation && saml_request_id.nil?
-          fail ArgumentError, "Missing the required parameter 'saml_request_id' when calling Api::SAMLServiceApi.s_aml_service_get_saml_request" # MODIFIED
+          # verify the required parameter 'saml_service_get_saml_request_request' is set
+          if @api_client.config.client_side_validation && saml_service_get_saml_request_request.nil?
+          fail ArgumentError, "Missing the required parameter 'saml_service_get_saml_request_request' when calling Api::SAMLServiceApi.get_saml_request" # MODIFIED
           end
     # resource path
-    local_var_path = '/v2/saml/saml_requests/{samlRequestId}'.sub('{' + 'samlRequestId' + '}', CGI.escape(saml_request_id.to_s))
+    local_var_path = '/zitadel.saml.v2.SAMLService/GetSAMLRequest'
 
     # query parameters
     query_params = opts[:query_params] || {}
@@ -105,12 +98,17 @@ module Zitadel::Client::Api
     header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
 
     # form parameters
     form_params = opts[:form_params] || {}
 
     # http body (model)
-    post_body = opts[:debug_body]
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(saml_service_get_saml_request_request)
 
     # return_type
     return_type = opts[:debug_return_type] || 'SAMLServiceGetSAMLRequestResponse'
@@ -119,7 +117,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::SAMLServiceApi.s_aml_service_get_saml_request", # MODIFIED
+    :operation => :"Api::SAMLServiceApi.get_saml_request", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -128,9 +126,9 @@ module Zitadel::Client::Api
     :return_type => return_type
     )
 
-    data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::SAMLServiceApi#s_aml_service_get_saml_request\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::SAMLServiceApi#get_saml_request\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data
     end

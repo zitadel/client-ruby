@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class SessionServiceUserVerificationRequirement
+          class SessionServiceUserVerificationRequirement
     USER_VERIFICATION_REQUIREMENT_UNSPECIFIED = "USER_VERIFICATION_REQUIREMENT_UNSPECIFIED".freeze
     USER_VERIFICATION_REQUIREMENT_REQUIRED = "USER_VERIFICATION_REQUIREMENT_REQUIRED".freeze
     USER_VERIFICATION_REQUIREMENT_PREFERRED = "USER_VERIFICATION_REQUIREMENT_PREFERRED".freeze

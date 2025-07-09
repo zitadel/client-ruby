@@ -14,11 +14,11 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceSendInviteCode
-    # Optionally set a url_template, which will be used in the invite mail sent by ZITADEL to guide the user to your invitation page. If no template is set and no previous code was created, the default ZITADEL url will be used.  The following placeholders can be used: UserID, OrgID, Code
+        class UserServiceSendInviteCode
+    # Optionally set a url_template, which will be used in the invite mail sent by ZITADEL to guide the user to your invitation page.  If no template is set and no previous code was created, the default ZITADEL url will be used.   The following placeholders can be used: UserID, OrgID, Code
     attr_accessor :url_template
 
-    # Optionally set an application name, which will be used in the invite mail sent by ZITADEL. If no application name is set and no previous code was created, ZITADEL will be used as default.
+    # Optionally set an application name, which will be used in the invite mail sent by ZITADEL.  If no application name is set and no previous code was created, ZITADEL will be used as default.
     attr_accessor :application_name
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -50,6 +50,8 @@ module Zitadel::Client::Models
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'url_template',
+        :'application_name'
       ])
     end
 
@@ -78,77 +80,6 @@ module Zitadel::Client::Models
       if attributes.key?(:'application_name')
         self.application_name = attributes[:'application_name']
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      if !@url_template.nil? && @url_template.to_s.length > 200
-        invalid_properties.push('invalid value for "url_template", the character length must be smaller than or equal to 200.')
-      end
-
-      if !@url_template.nil? && @url_template.to_s.length < 1
-        invalid_properties.push('invalid value for "url_template", the character length must be great than or equal to 1.')
-      end
-
-      if !@application_name.nil? && @application_name.to_s.length > 200
-        invalid_properties.push('invalid value for "application_name", the character length must be smaller than or equal to 200.')
-      end
-
-      if !@application_name.nil? && @application_name.to_s.length < 1
-        invalid_properties.push('invalid value for "application_name", the character length must be great than or equal to 1.')
-      end
-
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@url_template.nil? && @url_template.to_s.length > 200
-      return false if !@url_template.nil? && @url_template.to_s.length < 1
-      return false if !@application_name.nil? && @application_name.to_s.length > 200
-      return false if !@application_name.nil? && @application_name.to_s.length < 1
-      true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] url_template Value to be assigned
-    def url_template=(url_template)
-      if url_template.nil?
-        fail ArgumentError, 'url_template cannot be nil'
-      end
-
-      if url_template.to_s.length > 200
-        fail ArgumentError, 'invalid value for "url_template", the character length must be smaller than or equal to 200.'
-      end
-
-      if url_template.to_s.length < 1
-        fail ArgumentError, 'invalid value for "url_template", the character length must be great than or equal to 1.'
-      end
-
-      @url_template = url_template
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] application_name Value to be assigned
-    def application_name=(application_name)
-      if application_name.nil?
-        fail ArgumentError, 'application_name cannot be nil'
-      end
-
-      if application_name.to_s.length > 200
-        fail ArgumentError, 'invalid value for "application_name", the character length must be smaller than or equal to 200.'
-      end
-
-      if application_name.to_s.length < 1
-        fail ArgumentError, 'invalid value for "application_name", the character length must be great than or equal to 1.'
-      end
-
-      @application_name = application_name
     end
 
     # Checks equality by comparing each attribute.

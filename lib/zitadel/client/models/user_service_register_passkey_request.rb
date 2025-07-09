@@ -14,12 +14,13 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceRegisterPasskeyRequest
+        class UserServiceRegisterPasskeyRequest
+    attr_accessor :user_id
+
     attr_accessor :code
 
     attr_accessor :authenticator
 
-    # \"Domain on which the user is authenticated.\"
     attr_accessor :domain
 
     class EnumAttributeValidator
@@ -47,6 +48,7 @@ module Zitadel::Client::Models
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'user_id' => :'userId',
         :'code' => :'code',
         :'authenticator' => :'authenticator',
         :'domain' => :'domain'
@@ -66,6 +68,7 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'user_id' => :'String',
         :'code' => :'UserServicePasskeyRegistrationCode',
         :'authenticator' => :'UserServicePasskeyAuthenticator',
         :'domain' => :'String'
@@ -96,14 +99,18 @@ module Zitadel::Client::Models
         h[k.to_sym] = v
       }
 
+      if attributes.key?(:'user_id')
+        self.user_id = attributes[:'user_id']
+      else
+        self.user_id = nil
+      end
+
       if attributes.key?(:'code')
         self.code = attributes[:'code']
       end
 
       if attributes.key?(:'authenticator')
         self.authenticator = attributes[:'authenticator']
-      else
-        self.authenticator = 'PASSKEY_AUTHENTICATOR_UNSPECIFIED'
       end
 
       if attributes.key?(:'domain')
@@ -111,19 +118,14 @@ module Zitadel::Client::Models
       end
     end
 
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
+    # Custom attribute writer method with validation
+    # @param [String] user_id Value to be assigned
+    def user_id=(user_id)
+      if user_id.nil?
+        fail ArgumentError, 'user_id cannot be nil'
+      end
 
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
+      @user_id = user_id
     end
 
     # Checks equality by comparing each attribute.
@@ -131,6 +133,7 @@ module Zitadel::Client::Models
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          user_id == o.user_id &&
           code == o.code &&
           authenticator == o.authenticator &&
           domain == o.domain
@@ -145,7 +148,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [code, authenticator, domain].hash
+      [user_id, code, authenticator, domain].hash
     end
 
 # Builds the object from hash

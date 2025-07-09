@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceAuthenticationMethodType
+          class UserServiceAuthenticationMethodType
     AUTHENTICATION_METHOD_TYPE_UNSPECIFIED = "AUTHENTICATION_METHOD_TYPE_UNSPECIFIED".freeze
     AUTHENTICATION_METHOD_TYPE_PASSWORD = "AUTHENTICATION_METHOD_TYPE_PASSWORD".freeze
     AUTHENTICATION_METHOD_TYPE_PASSKEY = "AUTHENTICATION_METHOD_TYPE_PASSKEY".freeze

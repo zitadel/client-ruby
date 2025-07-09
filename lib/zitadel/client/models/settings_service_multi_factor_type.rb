@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class SettingsServiceMultiFactorType
+          class SettingsServiceMultiFactorType
     MULTI_FACTOR_TYPE_UNSPECIFIED = "MULTI_FACTOR_TYPE_UNSPECIFIED".freeze
     MULTI_FACTOR_TYPE_U2_F_WITH_VERIFICATION = "MULTI_FACTOR_TYPE_U2F_WITH_VERIFICATION".freeze
 

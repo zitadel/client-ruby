@@ -14,13 +14,11 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class SessionServiceCreateSessionResponse
+        class SessionServiceCreateSessionResponse
     attr_accessor :details
 
-    # \"id of the session\"
     attr_accessor :session_id
 
-    # \"The current token of the session, which is required for delete session, get session or the request of other resources.\"
     attr_accessor :session_token
 
     attr_accessor :challenges
@@ -94,21 +92,6 @@ module Zitadel::Client::Models
       if attributes.key?(:'challenges')
         self.challenges = attributes[:'challenges']
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
     end
 
     # Checks equality by comparing each attribute.

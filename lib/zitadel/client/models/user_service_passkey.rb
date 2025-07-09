@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServicePasskey
+        class UserServicePasskey
     attr_accessor :id
 
     attr_accessor :state
@@ -101,56 +101,11 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'state')
         self.state = attributes[:'state']
-      else
-        self.state = 'AUTH_FACTOR_STATE_UNSPECIFIED'
       end
 
       if attributes.key?(:'name')
         self.name = attributes[:'name']
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      if !@name.nil? && @name.to_s.length > 200
-        invalid_properties.push('invalid value for "name", the character length must be smaller than or equal to 200.')
-      end
-
-      if !@name.nil? && @name.to_s.length < 1
-        invalid_properties.push('invalid value for "name", the character length must be great than or equal to 1.')
-      end
-
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@name.nil? && @name.to_s.length > 200
-      return false if !@name.nil? && @name.to_s.length < 1
-      true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] name Value to be assigned
-    def name=(name)
-      if name.nil?
-        fail ArgumentError, 'name cannot be nil'
-      end
-
-      if name.to_s.length > 200
-        fail ArgumentError, 'invalid value for "name", the character length must be smaller than or equal to 200.'
-      end
-
-      if name.to_s.length < 1
-        fail ArgumentError, 'invalid value for "name", the character length must be great than or equal to 1.'
-      end
-
-      @name = name
     end
 
     # Checks equality by comparing each attribute.

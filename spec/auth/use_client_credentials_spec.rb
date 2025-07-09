@@ -79,7 +79,7 @@ class UseClientCredentialsSpec < BaseSpec
       credentials[:clientId],
       credentials[:clientSecret]
     )
-    client.settings.settings_service_get_general_settings
+    client.settings.get_general_settings
   end
 
   it 'raises an ApiError with invalid credentials' do
@@ -89,7 +89,7 @@ class UseClientCredentialsSpec < BaseSpec
       'invalid'
     )
     assert_raises(Zitadel::Client::ZitadelError) do
-      client.settings.settings_service_get_general_settings
+      client.settings.get_general_settings
     end
   end
 end

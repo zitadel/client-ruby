@@ -19,21 +19,21 @@ module Zitadel::Client::Api
   def initialize(api_client = ApiClient.default)
   @api_client = api_client
   end
-      # Create an Organization
-      # Create a new organization with an administrative user. If no specific roles are sent for the users, they will be granted the role ORG_OWNER.
+      # AddOrganization
+      # Create an Organization   Create a new organization with an administrative user. If no specific roles are sent for the users, they will be granted the role ORG_OWNER.
           # @param organization_service_add_organization_request [OrganizationServiceAddOrganizationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [OrganizationServiceAddOrganizationResponse]
-    def organization_service_add_organization(organization_service_add_organization_request, opts = {})
+    def add_organization(organization_service_add_organization_request, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::OrganizationServiceApi.organization_service_add_organization ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::OrganizationServiceApi.add_organization ...' # MODIFIED
     end
           # verify the required parameter 'organization_service_add_organization_request' is set
           if @api_client.config.client_side_validation && organization_service_add_organization_request.nil?
-          fail ArgumentError, "Missing the required parameter 'organization_service_add_organization_request' when calling Api::OrganizationServiceApi.organization_service_add_organization" # MODIFIED
+          fail ArgumentError, "Missing the required parameter 'organization_service_add_organization_request' when calling Api::OrganizationServiceApi.add_organization" # MODIFIED
           end
     # resource path
-    local_var_path = '/v2/organizations'
+    local_var_path = '/zitadel.org.v2.OrganizationService/AddOrganization'
 
     # query parameters
     query_params = opts[:query_params] || {}
@@ -61,7 +61,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::OrganizationServiceApi.organization_service_add_organization", # MODIFIED
+    :operation => :"Api::OrganizationServiceApi.add_organization", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -72,26 +72,26 @@ module Zitadel::Client::Api
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::OrganizationServiceApi#organization_service_add_organization\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::OrganizationServiceApi#add_organization\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data
     end
 
-      # Search Organizations
-      # Search for Organizations. By default, we will return all organization of the instance. Make sure to include a limit and sorting for pagination..
+      # ListOrganizations
+      # Search Organizations   Search for Organizations. By default, we will return all organization of the instance. Make sure to include a limit and sorting for pagination..
           # @param organization_service_list_organizations_request [OrganizationServiceListOrganizationsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [OrganizationServiceListOrganizationsResponse]
-    def organization_service_list_organizations(organization_service_list_organizations_request, opts = {})
+    def list_organizations(organization_service_list_organizations_request, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::OrganizationServiceApi.organization_service_list_organizations ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::OrganizationServiceApi.list_organizations ...' # MODIFIED
     end
           # verify the required parameter 'organization_service_list_organizations_request' is set
           if @api_client.config.client_side_validation && organization_service_list_organizations_request.nil?
-          fail ArgumentError, "Missing the required parameter 'organization_service_list_organizations_request' when calling Api::OrganizationServiceApi.organization_service_list_organizations" # MODIFIED
+          fail ArgumentError, "Missing the required parameter 'organization_service_list_organizations_request' when calling Api::OrganizationServiceApi.list_organizations" # MODIFIED
           end
     # resource path
-    local_var_path = '/v2/organizations/_search'
+    local_var_path = '/zitadel.org.v2.OrganizationService/ListOrganizations'
 
     # query parameters
     query_params = opts[:query_params] || {}
@@ -119,7 +119,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::OrganizationServiceApi.organization_service_list_organizations", # MODIFIED
+    :operation => :"Api::OrganizationServiceApi.list_organizations", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -130,7 +130,7 @@ module Zitadel::Client::Api
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::OrganizationServiceApi#organization_service_list_organizations\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::OrganizationServiceApi#list_organizations\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data
     end

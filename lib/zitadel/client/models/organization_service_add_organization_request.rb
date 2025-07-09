@@ -14,16 +14,20 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class OrganizationServiceAddOrganizationRequest
+        class OrganizationServiceAddOrganizationRequest
     attr_accessor :name
 
     attr_accessor :admins
+
+    # optionally set your own id unique for the organization.
+    attr_accessor :org_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'name' => :'name',
-        :'admins' => :'admins'
+        :'admins' => :'admins',
+        :'org_id' => :'orgId'
       }
     end
 
@@ -41,13 +45,15 @@ module Zitadel::Client::Models
     def self.openapi_types
       {
         :'name' => :'String',
-        :'admins' => :'Array<OrganizationServiceAddOrganizationRequestAdmin>'
+        :'admins' => :'Array<OrganizationServiceAdmin>',
+        :'org_id' => :'String'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'org_id'
       ])
     end
 
@@ -80,36 +86,10 @@ module Zitadel::Client::Models
           self.admins = value
         end
       end
-    end
 
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      if @name.nil?
-        invalid_properties.push('invalid value for "name", name cannot be nil.')
+      if attributes.key?(:'org_id')
+        self.org_id = attributes[:'org_id']
       end
-
-      if @name.to_s.length > 200
-        invalid_properties.push('invalid value for "name", the character length must be smaller than or equal to 200.')
-      end
-
-      if @name.to_s.length < 1
-        invalid_properties.push('invalid value for "name", the character length must be great than or equal to 1.')
-      end
-
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @name.nil?
-      return false if @name.to_s.length > 200
-      return false if @name.to_s.length < 1
-      true
     end
 
     # Custom attribute writer method with validation
@@ -117,14 +97,6 @@ module Zitadel::Client::Models
     def name=(name)
       if name.nil?
         fail ArgumentError, 'name cannot be nil'
-      end
-
-      if name.to_s.length > 200
-        fail ArgumentError, 'invalid value for "name", the character length must be smaller than or equal to 200.'
-      end
-
-      if name.to_s.length < 1
-        fail ArgumentError, 'invalid value for "name", the character length must be great than or equal to 1.'
       end
 
       @name = name
@@ -136,7 +108,8 @@ module Zitadel::Client::Models
       return true if self.equal?(o)
       self.class == o.class &&
           name == o.name &&
-          admins == o.admins
+          admins == o.admins &&
+          org_id == o.org_id
     end
 
     # @see the `==` method
@@ -148,7 +121,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [name, admins].hash
+      [name, admins, org_id].hash
     end
 
 # Builds the object from hash

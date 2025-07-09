@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class SessionServiceSessionFieldName
+          class SessionServiceSessionFieldName
     SESSION_FIELD_NAME_UNSPECIFIED = "SESSION_FIELD_NAME_UNSPECIFIED".freeze
     SESSION_FIELD_NAME_CREATION_DATE = "SESSION_FIELD_NAME_CREATION_DATE".freeze
 

@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class OrganizationServiceSetHumanProfile
+        class OrganizationServiceSetHumanProfile
     attr_accessor :given_name
 
     attr_accessor :family_name
@@ -86,6 +86,9 @@ module Zitadel::Client::Models
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'nick_name',
+        :'display_name',
+        :'preferred_language',
       ])
     end
 
@@ -133,69 +136,7 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'gender')
         self.gender = attributes[:'gender']
-      else
-        self.gender = 'GENDER_UNSPECIFIED'
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      if @given_name.nil?
-        invalid_properties.push('invalid value for "given_name", given_name cannot be nil.')
-      end
-
-      if @given_name.to_s.length > 200
-        invalid_properties.push('invalid value for "given_name", the character length must be smaller than or equal to 200.')
-      end
-
-      if @given_name.to_s.length < 1
-        invalid_properties.push('invalid value for "given_name", the character length must be great than or equal to 1.')
-      end
-
-      if @family_name.nil?
-        invalid_properties.push('invalid value for "family_name", family_name cannot be nil.')
-      end
-
-      if @family_name.to_s.length > 200
-        invalid_properties.push('invalid value for "family_name", the character length must be smaller than or equal to 200.')
-      end
-
-      if @family_name.to_s.length < 1
-        invalid_properties.push('invalid value for "family_name", the character length must be great than or equal to 1.')
-      end
-
-      if !@nick_name.nil? && @nick_name.to_s.length > 200
-        invalid_properties.push('invalid value for "nick_name", the character length must be smaller than or equal to 200.')
-      end
-
-      if !@display_name.nil? && @display_name.to_s.length > 200
-        invalid_properties.push('invalid value for "display_name", the character length must be smaller than or equal to 200.')
-      end
-
-      if !@preferred_language.nil? && @preferred_language.to_s.length > 10
-        invalid_properties.push('invalid value for "preferred_language", the character length must be smaller than or equal to 10.')
-      end
-
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @given_name.nil?
-      return false if @given_name.to_s.length > 200
-      return false if @given_name.to_s.length < 1
-      return false if @family_name.nil?
-      return false if @family_name.to_s.length > 200
-      return false if @family_name.to_s.length < 1
-      return false if !@nick_name.nil? && @nick_name.to_s.length > 200
-      return false if !@display_name.nil? && @display_name.to_s.length > 200
-      return false if !@preferred_language.nil? && @preferred_language.to_s.length > 10
-      true
     end
 
     # Custom attribute writer method with validation
@@ -203,14 +144,6 @@ module Zitadel::Client::Models
     def given_name=(given_name)
       if given_name.nil?
         fail ArgumentError, 'given_name cannot be nil'
-      end
-
-      if given_name.to_s.length > 200
-        fail ArgumentError, 'invalid value for "given_name", the character length must be smaller than or equal to 200.'
-      end
-
-      if given_name.to_s.length < 1
-        fail ArgumentError, 'invalid value for "given_name", the character length must be great than or equal to 1.'
       end
 
       @given_name = given_name
@@ -223,57 +156,7 @@ module Zitadel::Client::Models
         fail ArgumentError, 'family_name cannot be nil'
       end
 
-      if family_name.to_s.length > 200
-        fail ArgumentError, 'invalid value for "family_name", the character length must be smaller than or equal to 200.'
-      end
-
-      if family_name.to_s.length < 1
-        fail ArgumentError, 'invalid value for "family_name", the character length must be great than or equal to 1.'
-      end
-
       @family_name = family_name
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] nick_name Value to be assigned
-    def nick_name=(nick_name)
-      if nick_name.nil?
-        fail ArgumentError, 'nick_name cannot be nil'
-      end
-
-      if nick_name.to_s.length > 200
-        fail ArgumentError, 'invalid value for "nick_name", the character length must be smaller than or equal to 200.'
-      end
-
-      @nick_name = nick_name
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] display_name Value to be assigned
-    def display_name=(display_name)
-      if display_name.nil?
-        fail ArgumentError, 'display_name cannot be nil'
-      end
-
-      if display_name.to_s.length > 200
-        fail ArgumentError, 'invalid value for "display_name", the character length must be smaller than or equal to 200.'
-      end
-
-      @display_name = display_name
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] preferred_language Value to be assigned
-    def preferred_language=(preferred_language)
-      if preferred_language.nil?
-        fail ArgumentError, 'preferred_language cannot be nil'
-      end
-
-      if preferred_language.to_s.length > 10
-        fail ArgumentError, 'invalid value for "preferred_language", the character length must be smaller than or equal to 10.'
-      end
-
-      @preferred_language = preferred_language
     end
 
     # Checks equality by comparing each attribute.

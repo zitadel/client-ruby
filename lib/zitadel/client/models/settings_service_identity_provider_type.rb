@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class SettingsServiceIdentityProviderType
+          class SettingsServiceIdentityProviderType
     IDENTITY_PROVIDER_TYPE_UNSPECIFIED = "IDENTITY_PROVIDER_TYPE_UNSPECIFIED".freeze
     IDENTITY_PROVIDER_TYPE_OIDC = "IDENTITY_PROVIDER_TYPE_OIDC".freeze
     IDENTITY_PROVIDER_TYPE_JWT = "IDENTITY_PROVIDER_TYPE_JWT".freeze

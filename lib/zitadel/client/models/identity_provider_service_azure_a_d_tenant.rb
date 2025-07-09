@@ -14,16 +14,38 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class IdentityProviderServiceAzureADTenant
+        class IdentityProviderServiceAzureADTenant
+    attr_accessor :tenant_id
+
     attr_accessor :tenant_type
 
-    attr_accessor :tenant_id
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'tenant_type' => :'tenantType',
-        :'tenant_id' => :'tenantId'
+        :'tenant_id' => :'tenantId',
+        :'tenant_type' => :'tenantType'
       }
     end
 
@@ -40,8 +62,8 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'tenant_type' => :'IdentityProviderServiceAzureADTenantType',
-        :'tenant_id' => :'String'
+        :'tenant_id' => :'String',
+        :'tenant_type' => :'IdentityProviderServiceAzureADTenantType'
       }
     end
 
@@ -69,30 +91,13 @@ module Zitadel::Client::Models
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'tenant_type')
-        self.tenant_type = attributes[:'tenant_type']
-      else
-        self.tenant_type = 'AZURE_AD_TENANT_TYPE_COMMON'
-      end
-
       if attributes.key?(:'tenant_id')
         self.tenant_id = attributes[:'tenant_id']
       end
-    end
 
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
+      if attributes.key?(:'tenant_type')
+        self.tenant_type = attributes[:'tenant_type']
+      end
     end
 
     # Checks equality by comparing each attribute.
@@ -100,8 +105,8 @@ module Zitadel::Client::Models
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          tenant_type == o.tenant_type &&
-          tenant_id == o.tenant_id
+          tenant_id == o.tenant_id &&
+          tenant_type == o.tenant_type
     end
 
     # @see the `==` method
@@ -113,7 +118,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [tenant_type, tenant_id].hash
+      [tenant_id, tenant_type].hash
     end
 
 # Builds the object from hash

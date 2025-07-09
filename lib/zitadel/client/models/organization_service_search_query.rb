@@ -14,25 +14,25 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class OrganizationServiceSearchQuery
-    attr_accessor :name_query
+        class OrganizationServiceSearchQuery
+    attr_accessor :default_query
 
     attr_accessor :domain_query
 
-    attr_accessor :state_query
-
     attr_accessor :id_query
 
-    attr_accessor :default_query
+    attr_accessor :name_query
+
+    attr_accessor :state_query
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'name_query' => :'nameQuery',
+        :'default_query' => :'defaultQuery',
         :'domain_query' => :'domainQuery',
-        :'state_query' => :'stateQuery',
         :'id_query' => :'idQuery',
-        :'default_query' => :'defaultQuery'
+        :'name_query' => :'nameQuery',
+        :'state_query' => :'stateQuery'
       }
     end
 
@@ -49,11 +49,11 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'name_query' => :'OrganizationServiceOrganizationNameQuery',
+        :'default_query' => :'Object',
         :'domain_query' => :'OrganizationServiceOrganizationDomainQuery',
-        :'state_query' => :'OrganizationServiceOrganizationStateQuery',
         :'id_query' => :'OrganizationServiceOrganizationIDQuery',
-        :'default_query' => :'Object'
+        :'name_query' => :'OrganizationServiceOrganizationNameQuery',
+        :'state_query' => :'OrganizationServiceOrganizationStateQuery'
       }
     end
 
@@ -81,40 +81,25 @@ module Zitadel::Client::Models
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'name_query')
-        self.name_query = attributes[:'name_query']
+      if attributes.key?(:'default_query')
+        self.default_query = attributes[:'default_query']
       end
 
       if attributes.key?(:'domain_query')
         self.domain_query = attributes[:'domain_query']
       end
 
-      if attributes.key?(:'state_query')
-        self.state_query = attributes[:'state_query']
-      end
-
       if attributes.key?(:'id_query')
         self.id_query = attributes[:'id_query']
       end
 
-      if attributes.key?(:'default_query')
-        self.default_query = attributes[:'default_query']
+      if attributes.key?(:'name_query')
+        self.name_query = attributes[:'name_query']
       end
-    end
 
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
+      if attributes.key?(:'state_query')
+        self.state_query = attributes[:'state_query']
+      end
     end
 
     # Checks equality by comparing each attribute.
@@ -122,11 +107,11 @@ module Zitadel::Client::Models
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          name_query == o.name_query &&
+          default_query == o.default_query &&
           domain_query == o.domain_query &&
-          state_query == o.state_query &&
           id_query == o.id_query &&
-          default_query == o.default_query
+          name_query == o.name_query &&
+          state_query == o.state_query
     end
 
     # @see the `==` method
@@ -138,7 +123,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [name_query, domain_query, state_query, id_query, default_query].hash
+      [default_query, domain_query, id_query, name_query, state_query].hash
     end
 
 # Builds the object from hash

@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceGender
+          class UserServiceGender
     GENDER_UNSPECIFIED = "GENDER_UNSPECIFIED".freeze
     GENDER_FEMALE = "GENDER_FEMALE".freeze
     GENDER_MALE = "GENDER_MALE".freeze

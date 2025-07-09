@@ -14,10 +14,10 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceSendPasswordResetLink
+        class UserServiceSendPasswordResetLink
     attr_accessor :notification_type
 
-    # Optionally set a url_template, which will be used in the password reset mail sent by ZITADEL to guide the user to your password change page. If no template is set, the default ZITADEL url will be used.  The following placeholders can be used: UserID, OrgID, Code
+    # Optionally set a url_template, which will be used in the password reset mail sent by ZITADEL to guide the user to your password change page.  If no template is set, the default ZITADEL url will be used.   The following placeholders can be used: UserID, OrgID, Code
     attr_accessor :url_template
 
     class EnumAttributeValidator
@@ -71,6 +71,7 @@ module Zitadel::Client::Models
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'url_template'
       ])
     end
 
@@ -94,56 +95,11 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'notification_type')
         self.notification_type = attributes[:'notification_type']
-      else
-        self.notification_type = 'NOTIFICATION_TYPE_Unspecified'
       end
 
       if attributes.key?(:'url_template')
         self.url_template = attributes[:'url_template']
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      if !@url_template.nil? && @url_template.to_s.length > 200
-        invalid_properties.push('invalid value for "url_template", the character length must be smaller than or equal to 200.')
-      end
-
-      if !@url_template.nil? && @url_template.to_s.length < 1
-        invalid_properties.push('invalid value for "url_template", the character length must be great than or equal to 1.')
-      end
-
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@url_template.nil? && @url_template.to_s.length > 200
-      return false if !@url_template.nil? && @url_template.to_s.length < 1
-      true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] url_template Value to be assigned
-    def url_template=(url_template)
-      if url_template.nil?
-        fail ArgumentError, 'url_template cannot be nil'
-      end
-
-      if url_template.to_s.length > 200
-        fail ArgumentError, 'invalid value for "url_template", the character length must be smaller than or equal to 200.'
-      end
-
-      if url_template.to_s.length < 1
-        fail ArgumentError, 'invalid value for "url_template", the character length must be great than or equal to 1.'
-      end
-
-      @url_template = url_template
     end
 
     # Checks equality by comparing each attribute.

@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceCreateInviteCodeResponse
+        class UserServiceCreateInviteCodeResponse
     attr_accessor :details
 
     # The invite code is returned if the verification was set to return_code.
@@ -49,6 +49,7 @@ module Zitadel::Client::Models
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'invite_code'
       ])
     end
 
@@ -77,21 +78,6 @@ module Zitadel::Client::Models
       if attributes.key?(:'invite_code')
         self.invite_code = attributes[:'invite_code']
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
     end
 
     # Checks equality by comparing each attribute.

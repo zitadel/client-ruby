@@ -14,12 +14,12 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceRegisterPasskeyResponse
+        class UserServiceRegisterPasskeyResponse
     attr_accessor :details
 
     attr_accessor :passkey_id
 
-    # Options for Credential Creation (dictionary PublicKeyCredentialCreationOptions). Generated helper methods transform the field to JSON, for use in a WebauthN client. See also:  https://www.w3.org/TR/webauthn/#dictdef-publickeycredentialcreationoptions
+    # `Struct` represents a structured data value, consisting of fields  which map to dynamically typed values. In some languages, `Struct`  might be supported by a native representation. For example, in  scripting languages like JS a struct is represented as an  object. The details of that representation are described together  with the proto support for the language.   The JSON representation for `Struct` is JSON object.
     attr_accessor :public_key_credential_creation_options
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -46,7 +46,7 @@ module Zitadel::Client::Models
       {
         :'details' => :'UserServiceDetails',
         :'passkey_id' => :'String',
-        :'public_key_credential_creation_options' => :'Object'
+        :'public_key_credential_creation_options' => :'Hash<String, Object>'
       }
     end
 
@@ -83,23 +83,10 @@ module Zitadel::Client::Models
       end
 
       if attributes.key?(:'public_key_credential_creation_options')
-        self.public_key_credential_creation_options = attributes[:'public_key_credential_creation_options']
+        if (value = attributes[:'public_key_credential_creation_options']).is_a?(Hash)
+          self.public_key_credential_creation_options = value
+        end
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
     end
 
     # Checks equality by comparing each attribute.

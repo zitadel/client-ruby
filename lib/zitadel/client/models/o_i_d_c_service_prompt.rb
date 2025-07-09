@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class OIDCServicePrompt
+          class OIDCServicePrompt
     PROMPT_UNSPECIFIED = "PROMPT_UNSPECIFIED".freeze
     PROMPT_NONE = "PROMPT_NONE".freeze
     PROMPT_LOGIN = "PROMPT_LOGIN".freeze

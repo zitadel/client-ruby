@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class SessionServiceCheckPassword
+        class SessionServiceCheckPassword
     attr_accessor :password
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -68,49 +68,6 @@ module Zitadel::Client::Models
       if attributes.key?(:'password')
         self.password = attributes[:'password']
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      if !@password.nil? && @password.to_s.length > 200
-        invalid_properties.push('invalid value for "password", the character length must be smaller than or equal to 200.')
-      end
-
-      if !@password.nil? && @password.to_s.length < 1
-        invalid_properties.push('invalid value for "password", the character length must be great than or equal to 1.')
-      end
-
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@password.nil? && @password.to_s.length > 200
-      return false if !@password.nil? && @password.to_s.length < 1
-      true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] password Value to be assigned
-    def password=(password)
-      if password.nil?
-        fail ArgumentError, 'password cannot be nil'
-      end
-
-      if password.to_s.length > 200
-        fail ArgumentError, 'invalid value for "password", the character length must be smaller than or equal to 200.'
-      end
-
-      if password.to_s.length < 1
-        fail ArgumentError, 'invalid value for "password", the character length must be great than or equal to 1.'
-      end
-
-      @password = password
     end
 
     # Checks equality by comparing each attribute.

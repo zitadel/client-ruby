@@ -14,10 +14,9 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class OIDCServiceCreateCallbackResponse
+        class OIDCServiceCreateCallbackResponse
     attr_accessor :details
 
-    # Callback URL where the user should be redirected, using a \"302 FOUND\" status. Contains details for the application to obtain the tokens on success, or error details on failure. Note that this field must be treated as credentials, as the contained code can be used to obtain tokens on behalve of the user.
     attr_accessor :callback_url
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -77,21 +76,6 @@ module Zitadel::Client::Models
       if attributes.key?(:'callback_url')
         self.callback_url = attributes[:'callback_url']
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
     end
 
     # Checks equality by comparing each attribute.

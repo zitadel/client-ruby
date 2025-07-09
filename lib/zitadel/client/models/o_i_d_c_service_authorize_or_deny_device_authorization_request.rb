@@ -14,16 +14,20 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest
-    attr_accessor :session
+        class OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest
+    # The device authorization id returned when submitting the user code.
+    attr_accessor :device_authorization_id
 
     attr_accessor :deny
+
+    attr_accessor :session
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'session' => :'session',
-        :'deny' => :'deny'
+        :'device_authorization_id' => :'deviceAuthorizationId',
+        :'deny' => :'deny',
+        :'session' => :'session'
       }
     end
 
@@ -40,8 +44,9 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'session' => :'OIDCServiceSession',
-        :'deny' => :'Object'
+        :'device_authorization_id' => :'String',
+        :'deny' => :'Object',
+        :'session' => :'OIDCServiceSession'
       }
     end
 
@@ -69,28 +74,17 @@ module Zitadel::Client::Models
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'session')
-        self.session = attributes[:'session']
+      if attributes.key?(:'device_authorization_id')
+        self.device_authorization_id = attributes[:'device_authorization_id']
       end
 
       if attributes.key?(:'deny')
         self.deny = attributes[:'deny']
       end
-    end
 
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
+      if attributes.key?(:'session')
+        self.session = attributes[:'session']
+      end
     end
 
     # Checks equality by comparing each attribute.
@@ -98,8 +92,9 @@ module Zitadel::Client::Models
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          session == o.session &&
-          deny == o.deny
+          device_authorization_id == o.device_authorization_id &&
+          deny == o.deny &&
+          session == o.session
     end
 
     # @see the `==` method
@@ -111,7 +106,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [session, deny].hash
+      [device_authorization_id, deny, session].hash
     end
 
 # Builds the object from hash

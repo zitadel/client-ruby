@@ -14,22 +14,22 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceSetHumanEmail
+        class UserServiceSetHumanEmail
     attr_accessor :email
 
-    attr_accessor :send_code
+    attr_accessor :is_verified
 
     attr_accessor :return_code
 
-    attr_accessor :is_verified
+    attr_accessor :send_code
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'email' => :'email',
-        :'send_code' => :'sendCode',
+        :'is_verified' => :'isVerified',
         :'return_code' => :'returnCode',
-        :'is_verified' => :'isVerified'
+        :'send_code' => :'sendCode'
       }
     end
 
@@ -47,9 +47,9 @@ module Zitadel::Client::Models
     def self.openapi_types
       {
         :'email' => :'String',
-        :'send_code' => :'UserServiceSendEmailVerificationCode',
+        :'is_verified' => :'Boolean',
         :'return_code' => :'Object',
-        :'is_verified' => :'Boolean'
+        :'send_code' => :'UserServiceSendEmailVerificationCode'
       }
     end
 
@@ -83,47 +83,17 @@ module Zitadel::Client::Models
         self.email = nil
       end
 
-      if attributes.key?(:'send_code')
-        self.send_code = attributes[:'send_code']
+      if attributes.key?(:'is_verified')
+        self.is_verified = attributes[:'is_verified']
       end
 
       if attributes.key?(:'return_code')
         self.return_code = attributes[:'return_code']
       end
 
-      if attributes.key?(:'is_verified')
-        self.is_verified = attributes[:'is_verified']
+      if attributes.key?(:'send_code')
+        self.send_code = attributes[:'send_code']
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      if @email.nil?
-        invalid_properties.push('invalid value for "email", email cannot be nil.')
-      end
-
-      if @email.to_s.length > 200
-        invalid_properties.push('invalid value for "email", the character length must be smaller than or equal to 200.')
-      end
-
-      if @email.to_s.length < 1
-        invalid_properties.push('invalid value for "email", the character length must be great than or equal to 1.')
-      end
-
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @email.nil?
-      return false if @email.to_s.length > 200
-      return false if @email.to_s.length < 1
-      true
     end
 
     # Custom attribute writer method with validation
@@ -131,14 +101,6 @@ module Zitadel::Client::Models
     def email=(email)
       if email.nil?
         fail ArgumentError, 'email cannot be nil'
-      end
-
-      if email.to_s.length > 200
-        fail ArgumentError, 'invalid value for "email", the character length must be smaller than or equal to 200.'
-      end
-
-      if email.to_s.length < 1
-        fail ArgumentError, 'invalid value for "email", the character length must be great than or equal to 1.'
       end
 
       @email = email
@@ -150,9 +112,9 @@ module Zitadel::Client::Models
       return true if self.equal?(o)
       self.class == o.class &&
           email == o.email &&
-          send_code == o.send_code &&
+          is_verified == o.is_verified &&
           return_code == o.return_code &&
-          is_verified == o.is_verified
+          send_code == o.send_code
     end
 
     # @see the `==` method
@@ -164,7 +126,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [email, send_code, return_code, is_verified].hash
+      [email, is_verified, return_code, send_code].hash
     end
 
 # Builds the object from hash

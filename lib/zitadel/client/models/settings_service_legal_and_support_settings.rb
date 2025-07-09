@@ -14,25 +14,21 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class SettingsServiceLegalAndSupportSettings
+        class SettingsServiceLegalAndSupportSettings
     attr_accessor :tos_link
 
     attr_accessor :privacy_policy_link
 
     attr_accessor :help_link
 
-    # help / support email address.
     attr_accessor :support_email
 
     attr_accessor :resource_owner_type
 
-    # Link to documentation to be shown in the console.
     attr_accessor :docs_link
 
-    # Link to an external resource that will be available to users in the console.
     attr_accessor :custom_link
 
-    # The button text that would be shown in console pointing to custom link.
     attr_accessor :custom_link_text
 
     class EnumAttributeValidator
@@ -137,8 +133,6 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'resource_owner_type')
         self.resource_owner_type = attributes[:'resource_owner_type']
-      else
-        self.resource_owner_type = 'RESOURCE_OWNER_TYPE_UNSPECIFIED'
       end
 
       if attributes.key?(:'docs_link')
@@ -152,21 +146,6 @@ module Zitadel::Client::Models
       if attributes.key?(:'custom_link_text')
         self.custom_link_text = attributes[:'custom_link_text']
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
     end
 
     # Checks equality by comparing each attribute.

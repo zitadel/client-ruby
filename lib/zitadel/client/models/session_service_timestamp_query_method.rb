@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class SessionServiceTimestampQueryMethod
+          class SessionServiceTimestampQueryMethod
     TIMESTAMP_QUERY_METHOD_EQUALS = "TIMESTAMP_QUERY_METHOD_EQUALS".freeze
     TIMESTAMP_QUERY_METHOD_GREATER = "TIMESTAMP_QUERY_METHOD_GREATER".freeze
     TIMESTAMP_QUERY_METHOD_GREATER_OR_EQUALS = "TIMESTAMP_QUERY_METHOD_GREATER_OR_EQUALS".freeze

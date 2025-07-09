@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class IdentityProviderServiceSAMLNameIDFormat
+          class IdentityProviderServiceSAMLNameIDFormat
     SAML_NAME_ID_FORMAT_UNSPECIFIED = "SAML_NAME_ID_FORMAT_UNSPECIFIED".freeze
     SAML_NAME_ID_FORMAT_EMAIL_ADDRESS = "SAML_NAME_ID_FORMAT_EMAIL_ADDRESS".freeze
     SAML_NAME_ID_FORMAT_PERSISTENT = "SAML_NAME_ID_FORMAT_PERSISTENT".freeze

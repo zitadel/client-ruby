@@ -14,10 +14,9 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceSetMetadataEntry
+        class UserServiceSetMetadataEntry
     attr_accessor :key
 
-    # The value has to be base64 encoded.
     attr_accessor :value
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -83,64 +82,11 @@ module Zitadel::Client::Models
       end
     end
 
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      if @key.nil?
-        invalid_properties.push('invalid value for "key", key cannot be nil.')
-      end
-
-      if @key.to_s.length > 200
-        invalid_properties.push('invalid value for "key", the character length must be smaller than or equal to 200.')
-      end
-
-      if @key.to_s.length < 1
-        invalid_properties.push('invalid value for "key", the character length must be great than or equal to 1.')
-      end
-
-      if @value.nil?
-        invalid_properties.push('invalid value for "value", value cannot be nil.')
-      end
-
-      if @value.to_s.length > 500000
-        invalid_properties.push('invalid value for "value", the character length must be smaller than or equal to 500000.')
-      end
-
-      if @value.to_s.length < 1
-        invalid_properties.push('invalid value for "value", the character length must be great than or equal to 1.')
-      end
-
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @key.nil?
-      return false if @key.to_s.length > 200
-      return false if @key.to_s.length < 1
-      return false if @value.nil?
-      return false if @value.to_s.length > 500000
-      return false if @value.to_s.length < 1
-      true
-    end
-
     # Custom attribute writer method with validation
     # @param [String] key Value to be assigned
     def key=(key)
       if key.nil?
         fail ArgumentError, 'key cannot be nil'
-      end
-
-      if key.to_s.length > 200
-        fail ArgumentError, 'invalid value for "key", the character length must be smaller than or equal to 200.'
-      end
-
-      if key.to_s.length < 1
-        fail ArgumentError, 'invalid value for "key", the character length must be great than or equal to 1.'
       end
 
       @key = key
@@ -151,14 +97,6 @@ module Zitadel::Client::Models
     def value=(value)
       if value.nil?
         fail ArgumentError, 'value cannot be nil'
-      end
-
-      if value.to_s.length > 500000
-        fail ArgumentError, 'invalid value for "value", the character length must be smaller than or equal to 500000.'
-      end
-
-      if value.to_s.length < 1
-        fail ArgumentError, 'invalid value for "value", the character length must be great than or equal to 1.'
       end
 
       @value = value

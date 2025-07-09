@@ -14,14 +14,11 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class SettingsServiceDomainSettings
-    # the username has to end with the domain of its organization
+        class SettingsServiceDomainSettings
     attr_accessor :login_name_includes_domain
 
-    # defines if organization domains should be verified upon creation, otherwise will be created already verified
     attr_accessor :require_org_domain_verification
 
-    # defines if the SMTP sender address domain should match an existing domain on the instance
     attr_accessor :smtp_sender_address_matches_instance_domain
 
     attr_accessor :resource_owner_type
@@ -116,24 +113,7 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'resource_owner_type')
         self.resource_owner_type = attributes[:'resource_owner_type']
-      else
-        self.resource_owner_type = 'RESOURCE_OWNER_TYPE_UNSPECIFIED'
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
     end
 
     # Checks equality by comparing each attribute.

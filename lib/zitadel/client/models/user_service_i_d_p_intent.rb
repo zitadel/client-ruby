@@ -14,14 +14,11 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceIDPIntent
-    # ID of the IDP intent
+        class UserServiceIDPIntent
     attr_accessor :idp_intent_id
 
-    # token of the IDP intent
     attr_accessor :idp_intent_token
 
-    # ID of the ZITADEL user if external user already linked
     attr_accessor :user_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -87,96 +84,6 @@ module Zitadel::Client::Models
       if attributes.key?(:'user_id')
         self.user_id = attributes[:'user_id']
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      if !@idp_intent_id.nil? && @idp_intent_id.to_s.length > 200
-        invalid_properties.push('invalid value for "idp_intent_id", the character length must be smaller than or equal to 200.')
-      end
-
-      if !@idp_intent_id.nil? && @idp_intent_id.to_s.length < 1
-        invalid_properties.push('invalid value for "idp_intent_id", the character length must be great than or equal to 1.')
-      end
-
-      if !@idp_intent_token.nil? && @idp_intent_token.to_s.length > 200
-        invalid_properties.push('invalid value for "idp_intent_token", the character length must be smaller than or equal to 200.')
-      end
-
-      if !@idp_intent_token.nil? && @idp_intent_token.to_s.length < 1
-        invalid_properties.push('invalid value for "idp_intent_token", the character length must be great than or equal to 1.')
-      end
-
-      if !@user_id.nil? && @user_id.to_s.length > 200
-        invalid_properties.push('invalid value for "user_id", the character length must be smaller than or equal to 200.')
-      end
-
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@idp_intent_id.nil? && @idp_intent_id.to_s.length > 200
-      return false if !@idp_intent_id.nil? && @idp_intent_id.to_s.length < 1
-      return false if !@idp_intent_token.nil? && @idp_intent_token.to_s.length > 200
-      return false if !@idp_intent_token.nil? && @idp_intent_token.to_s.length < 1
-      return false if !@user_id.nil? && @user_id.to_s.length > 200
-      true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] idp_intent_id Value to be assigned
-    def idp_intent_id=(idp_intent_id)
-      if idp_intent_id.nil?
-        fail ArgumentError, 'idp_intent_id cannot be nil'
-      end
-
-      if idp_intent_id.to_s.length > 200
-        fail ArgumentError, 'invalid value for "idp_intent_id", the character length must be smaller than or equal to 200.'
-      end
-
-      if idp_intent_id.to_s.length < 1
-        fail ArgumentError, 'invalid value for "idp_intent_id", the character length must be great than or equal to 1.'
-      end
-
-      @idp_intent_id = idp_intent_id
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] idp_intent_token Value to be assigned
-    def idp_intent_token=(idp_intent_token)
-      if idp_intent_token.nil?
-        fail ArgumentError, 'idp_intent_token cannot be nil'
-      end
-
-      if idp_intent_token.to_s.length > 200
-        fail ArgumentError, 'invalid value for "idp_intent_token", the character length must be smaller than or equal to 200.'
-      end
-
-      if idp_intent_token.to_s.length < 1
-        fail ArgumentError, 'invalid value for "idp_intent_token", the character length must be great than or equal to 1.'
-      end
-
-      @idp_intent_token = idp_intent_token
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] user_id Value to be assigned
-    def user_id=(user_id)
-      if user_id.nil?
-        fail ArgumentError, 'user_id cannot be nil'
-      end
-
-      if user_id.to_s.length > 200
-        fail ArgumentError, 'invalid value for "user_id", the character length must be smaller than or equal to 200.'
-      end
-
-      @user_id = user_id
     end
 
     # Checks equality by comparing each attribute.

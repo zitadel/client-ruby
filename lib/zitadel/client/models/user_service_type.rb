@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceType
+          class UserServiceType
     TYPE_UNSPECIFIED = "TYPE_UNSPECIFIED".freeze
     TYPE_HUMAN = "TYPE_HUMAN".freeze
     TYPE_MACHINE = "TYPE_MACHINE".freeze

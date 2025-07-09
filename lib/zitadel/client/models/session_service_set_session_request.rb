@@ -14,23 +14,24 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class SessionServiceSetSessionRequest
-    # \"DEPRECATED: this field is ignored.\"
+        class SessionServiceSetSessionRequest
+    attr_accessor :session_id
+
     attr_accessor :session_token
 
     attr_accessor :checks
 
-    # \"custom key value list to be stored on the session\"
     attr_accessor :metadata
 
     attr_accessor :challenges
 
-    # \"duration (in seconds) after which the session will be automatically invalidated\"
+    # A Duration represents a signed, fixed-length span of time represented  as a count of seconds and fractions of seconds at nanosecond  resolution. It is independent of any calendar and concepts like \"day\"  or \"month\". It is related to Timestamp in that the difference between  two Timestamp values is a Duration and it can be added or subtracted  from a Timestamp. Range is approximately +-10,000 years.   # Examples   Example 1: Compute Duration from two Timestamps in pseudo code.       Timestamp start = ...;      Timestamp end = ...;      Duration duration = ...;       duration.seconds = end.seconds - start.seconds;      duration.nanos = end.nanos - start.nanos;       if (duration.seconds < 0 && duration.nanos > 0) {        duration.seconds += 1;        duration.nanos -= 1000000000;      } else if (duration.seconds > 0 && duration.nanos < 0) {        duration.seconds -= 1;        duration.nanos += 1000000000;      }   Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.       Timestamp start = ...;      Duration duration = ...;      Timestamp end = ...;       end.seconds = start.seconds + duration.seconds;      end.nanos = start.nanos + duration.nanos;       if (end.nanos < 0) {        end.seconds -= 1;        end.nanos += 1000000000;      } else if (end.nanos >= 1000000000) {        end.seconds += 1;        end.nanos -= 1000000000;      }   Example 3: Compute Duration from datetime.timedelta in Python.       td = datetime.timedelta(days=3, minutes=10)      duration = Duration()      duration.FromTimedelta(td)   # JSON Mapping   In JSON format, the Duration type is encoded as a string rather than an  object, where the string ends in the suffix \"s\" (indicating seconds) and  is preceded by the number of seconds, with nanoseconds expressed as  fractional seconds. For example, 3 seconds with 0 nanoseconds should be  encoded in JSON format as \"3s\", while 3 seconds and 1 nanosecond should  be expressed in JSON format as \"3.000000001s\", and 3 seconds and 1  microsecond should be expressed in JSON format as \"3.000001s\".
     attr_accessor :lifetime
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'session_id' => :'sessionId',
         :'session_token' => :'sessionToken',
         :'checks' => :'checks',
         :'metadata' => :'metadata',
@@ -52,6 +53,7 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'session_id' => :'String',
         :'session_token' => :'String',
         :'checks' => :'SessionServiceChecks',
         :'metadata' => :'Hash<String, String>',
@@ -84,6 +86,10 @@ module Zitadel::Client::Models
         h[k.to_sym] = v
       }
 
+      if attributes.key?(:'session_id')
+        self.session_id = attributes[:'session_id']
+      end
+
       if attributes.key?(:'session_token')
         self.session_token = attributes[:'session_token']
       end
@@ -107,54 +113,12 @@ module Zitadel::Client::Models
       end
     end
 
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      if !@session_token.nil? && @session_token.to_s.length > 200
-        invalid_properties.push('invalid value for "session_token", the character length must be smaller than or equal to 200.')
-      end
-
-      if !@session_token.nil? && @session_token.to_s.length < 1
-        invalid_properties.push('invalid value for "session_token", the character length must be great than or equal to 1.')
-      end
-
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@session_token.nil? && @session_token.to_s.length > 200
-      return false if !@session_token.nil? && @session_token.to_s.length < 1
-      true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] session_token Value to be assigned
-    def session_token=(session_token)
-      if session_token.nil?
-        fail ArgumentError, 'session_token cannot be nil'
-      end
-
-      if session_token.to_s.length > 200
-        fail ArgumentError, 'invalid value for "session_token", the character length must be smaller than or equal to 200.'
-      end
-
-      if session_token.to_s.length < 1
-        fail ArgumentError, 'invalid value for "session_token", the character length must be great than or equal to 1.'
-      end
-
-      @session_token = session_token
-    end
-
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          session_id == o.session_id &&
           session_token == o.session_token &&
           checks == o.checks &&
           metadata == o.metadata &&
@@ -171,7 +135,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [session_token, checks, metadata, challenges, lifetime].hash
+      [session_id, session_token, checks, metadata, challenges, lifetime].hash
     end
 
 # Builds the object from hash

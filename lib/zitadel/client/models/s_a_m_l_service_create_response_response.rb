@@ -14,23 +14,23 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class SAMLServiceCreateResponseResponse
+        class SAMLServiceCreateResponseResponse
     attr_accessor :details
 
     # URL including the Assertion Consumer Service where the user should be redirected or has to call per POST, depending on the binding. Contains details for the application to obtain the response on success, or error details on failure. Note that this field must be treated as credentials, as the contained SAMLResponse or code can be used on behalve of the user.
     attr_accessor :url
 
-    attr_accessor :redirect
-
     attr_accessor :post
+
+    attr_accessor :redirect
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'details' => :'details',
         :'url' => :'url',
-        :'redirect' => :'redirect',
-        :'post' => :'post'
+        :'post' => :'post',
+        :'redirect' => :'redirect'
       }
     end
 
@@ -49,8 +49,8 @@ module Zitadel::Client::Models
       {
         :'details' => :'SAMLServiceDetails',
         :'url' => :'String',
-        :'redirect' => :'Object',
-        :'post' => :'SAMLServicePostResponse'
+        :'post' => :'SAMLServicePostResponse',
+        :'redirect' => :'Object'
       }
     end
 
@@ -86,28 +86,13 @@ module Zitadel::Client::Models
         self.url = attributes[:'url']
       end
 
-      if attributes.key?(:'redirect')
-        self.redirect = attributes[:'redirect']
-      end
-
       if attributes.key?(:'post')
         self.post = attributes[:'post']
       end
-    end
 
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
+      if attributes.key?(:'redirect')
+        self.redirect = attributes[:'redirect']
+      end
     end
 
     # Checks equality by comparing each attribute.
@@ -117,8 +102,8 @@ module Zitadel::Client::Models
       self.class == o.class &&
           details == o.details &&
           url == o.url &&
-          redirect == o.redirect &&
-          post == o.post
+          post == o.post &&
+          redirect == o.redirect
     end
 
     # @see the `==` method
@@ -130,7 +115,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [details, url, redirect, post].hash
+      [details, url, post, redirect].hash
     end
 
 # Builds the object from hash

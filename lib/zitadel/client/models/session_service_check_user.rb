@@ -14,16 +14,16 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class SessionServiceCheckUser
-    attr_accessor :user_id
-
+        class SessionServiceCheckUser
     attr_accessor :login_name
+
+    attr_accessor :user_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'user_id' => :'userId',
-        :'login_name' => :'loginName'
+        :'login_name' => :'loginName',
+        :'user_id' => :'userId'
       }
     end
 
@@ -40,8 +40,8 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'user_id' => :'String',
-        :'login_name' => :'String'
+        :'login_name' => :'String',
+        :'user_id' => :'String'
       }
     end
 
@@ -69,84 +69,13 @@ module Zitadel::Client::Models
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'user_id')
-        self.user_id = attributes[:'user_id']
-      end
-
       if attributes.key?(:'login_name')
         self.login_name = attributes[:'login_name']
       end
-    end
 
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      if !@user_id.nil? && @user_id.to_s.length > 200
-        invalid_properties.push('invalid value for "user_id", the character length must be smaller than or equal to 200.')
+      if attributes.key?(:'user_id')
+        self.user_id = attributes[:'user_id']
       end
-
-      if !@user_id.nil? && @user_id.to_s.length < 1
-        invalid_properties.push('invalid value for "user_id", the character length must be great than or equal to 1.')
-      end
-
-      if !@login_name.nil? && @login_name.to_s.length > 200
-        invalid_properties.push('invalid value for "login_name", the character length must be smaller than or equal to 200.')
-      end
-
-      if !@login_name.nil? && @login_name.to_s.length < 1
-        invalid_properties.push('invalid value for "login_name", the character length must be great than or equal to 1.')
-      end
-
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@user_id.nil? && @user_id.to_s.length > 200
-      return false if !@user_id.nil? && @user_id.to_s.length < 1
-      return false if !@login_name.nil? && @login_name.to_s.length > 200
-      return false if !@login_name.nil? && @login_name.to_s.length < 1
-      true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] user_id Value to be assigned
-    def user_id=(user_id)
-      if user_id.nil?
-        fail ArgumentError, 'user_id cannot be nil'
-      end
-
-      if user_id.to_s.length > 200
-        fail ArgumentError, 'invalid value for "user_id", the character length must be smaller than or equal to 200.'
-      end
-
-      if user_id.to_s.length < 1
-        fail ArgumentError, 'invalid value for "user_id", the character length must be great than or equal to 1.'
-      end
-
-      @user_id = user_id
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] login_name Value to be assigned
-    def login_name=(login_name)
-      if login_name.nil?
-        fail ArgumentError, 'login_name cannot be nil'
-      end
-
-      if login_name.to_s.length > 200
-        fail ArgumentError, 'invalid value for "login_name", the character length must be smaller than or equal to 200.'
-      end
-
-      if login_name.to_s.length < 1
-        fail ArgumentError, 'invalid value for "login_name", the character length must be great than or equal to 1.'
-      end
-
-      @login_name = login_name
     end
 
     # Checks equality by comparing each attribute.
@@ -154,8 +83,8 @@ module Zitadel::Client::Models
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          user_id == o.user_id &&
-          login_name == o.login_name
+          login_name == o.login_name &&
+          user_id == o.user_id
     end
 
     # @see the `==` method
@@ -167,7 +96,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [user_id, login_name].hash
+      [login_name, user_id].hash
     end
 
 # Builds the object from hash

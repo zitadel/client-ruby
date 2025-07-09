@@ -14,25 +14,47 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceAuthFactor
+        class UserServiceAuthFactor
     attr_accessor :state
 
     attr_accessor :otp
 
-    attr_accessor :u2f
+    attr_accessor :otp_email
 
     attr_accessor :otp_sms
 
-    attr_accessor :otp_email
+    attr_accessor :u2f
+
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'state' => :'state',
         :'otp' => :'otp',
-        :'u2f' => :'u2f',
+        :'otp_email' => :'otpEmail',
         :'otp_sms' => :'otpSms',
-        :'otp_email' => :'otpEmail'
+        :'u2f' => :'u2f'
       }
     end
 
@@ -51,9 +73,9 @@ module Zitadel::Client::Models
       {
         :'state' => :'UserServiceAuthFactorState',
         :'otp' => :'Object',
-        :'u2f' => :'UserServiceAuthFactorU2F',
+        :'otp_email' => :'Object',
         :'otp_sms' => :'Object',
-        :'otp_email' => :'Object'
+        :'u2f' => :'UserServiceAuthFactorU2F'
       }
     end
 
@@ -83,40 +105,23 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'state')
         self.state = attributes[:'state']
-      else
-        self.state = 'AUTH_FACTOR_STATE_UNSPECIFIED'
       end
 
       if attributes.key?(:'otp')
         self.otp = attributes[:'otp']
       end
 
-      if attributes.key?(:'u2f')
-        self.u2f = attributes[:'u2f']
+      if attributes.key?(:'otp_email')
+        self.otp_email = attributes[:'otp_email']
       end
 
       if attributes.key?(:'otp_sms')
         self.otp_sms = attributes[:'otp_sms']
       end
 
-      if attributes.key?(:'otp_email')
-        self.otp_email = attributes[:'otp_email']
+      if attributes.key?(:'u2f')
+        self.u2f = attributes[:'u2f']
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
     end
 
     # Checks equality by comparing each attribute.
@@ -126,9 +131,9 @@ module Zitadel::Client::Models
       self.class == o.class &&
           state == o.state &&
           otp == o.otp &&
-          u2f == o.u2f &&
+          otp_email == o.otp_email &&
           otp_sms == o.otp_sms &&
-          otp_email == o.otp_email
+          u2f == o.u2f
     end
 
     # @see the `==` method
@@ -140,7 +145,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [state, otp, u2f, otp_sms, otp_email].hash
+      [state, otp, otp_email, otp_sms, u2f].hash
     end
 
 # Builds the object from hash

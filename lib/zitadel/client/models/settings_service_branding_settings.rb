@@ -14,18 +14,16 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class SettingsServiceBrandingSettings
+        class SettingsServiceBrandingSettings
     attr_accessor :light_theme
 
     attr_accessor :dark_theme
 
-    # url to the font used
     attr_accessor :font_url
 
-    # hides the org suffix on the login form if the scope \"urn:zitadel:iam:org:domain:primary:{domainname}\" is set
+    # hides the org suffix on the login form if the scope \\\"urn:zitadel:iam:org:domain:primary:{domainname}\\\" is set
     attr_accessor :hide_login_name_suffix
 
-    # boolean to disable the watermark
     attr_accessor :disable_watermark
 
     attr_accessor :resource_owner_type
@@ -136,30 +134,11 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'resource_owner_type')
         self.resource_owner_type = attributes[:'resource_owner_type']
-      else
-        self.resource_owner_type = 'RESOURCE_OWNER_TYPE_UNSPECIFIED'
       end
 
       if attributes.key?(:'theme_mode')
         self.theme_mode = attributes[:'theme_mode']
-      else
-        self.theme_mode = 'THEME_MODE_UNSPECIFIED'
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
     end
 
     # Checks equality by comparing each attribute.

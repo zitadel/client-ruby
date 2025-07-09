@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceAddHumanUserRequest
+        class UserServiceAddHumanUserRequest
     # optionally set your own id unique for the user.
     attr_accessor :user_id
 
@@ -31,14 +31,14 @@ module Zitadel::Client::Models
 
     attr_accessor :metadata
 
-    attr_accessor :password
+    attr_accessor :idp_links
+
+    # An Implementation of RFC 6238 is used, with HMAC-SHA-1 and time-step of 30 seconds.  Currently no other options are supported, and if anything different is used the validation will fail.
+    attr_accessor :totp_secret
 
     attr_accessor :hashed_password
 
-    attr_accessor :idp_links
-
-    # An Implementation of RFC 6238 is used, with HMAC-SHA-1 and time-step of 30 seconds. Currently no other options are supported, and if anything different is used the validation will fail.
-    attr_accessor :totp_secret
+    attr_accessor :password
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -50,10 +50,10 @@ module Zitadel::Client::Models
         :'email' => :'email',
         :'phone' => :'phone',
         :'metadata' => :'metadata',
-        :'password' => :'password',
-        :'hashed_password' => :'hashedPassword',
         :'idp_links' => :'idpLinks',
-        :'totp_secret' => :'totpSecret'
+        :'totp_secret' => :'totpSecret',
+        :'hashed_password' => :'hashedPassword',
+        :'password' => :'password'
       }
     end
 
@@ -77,16 +77,19 @@ module Zitadel::Client::Models
         :'email' => :'UserServiceSetHumanEmail',
         :'phone' => :'UserServiceSetHumanPhone',
         :'metadata' => :'Array<UserServiceSetMetadataEntry>',
-        :'password' => :'UserServicePassword',
-        :'hashed_password' => :'UserServiceHashedPassword',
         :'idp_links' => :'Array<UserServiceIDPLink>',
-        :'totp_secret' => :'String'
+        :'totp_secret' => :'String',
+        :'hashed_password' => :'UserServiceHashedPassword',
+        :'password' => :'UserServicePassword'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'user_id',
+        :'username',
+        :'totp_secret',
       ])
     end
 
@@ -142,14 +145,6 @@ module Zitadel::Client::Models
         end
       end
 
-      if attributes.key?(:'password')
-        self.password = attributes[:'password']
-      end
-
-      if attributes.key?(:'hashed_password')
-        self.hashed_password = attributes[:'hashed_password']
-      end
-
       if attributes.key?(:'idp_links')
         if (value = attributes[:'idp_links']).is_a?(Array)
           self.idp_links = value
@@ -159,97 +154,14 @@ module Zitadel::Client::Models
       if attributes.key?(:'totp_secret')
         self.totp_secret = attributes[:'totp_secret']
       end
-    end
 
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      if !@user_id.nil? && @user_id.to_s.length > 200
-        invalid_properties.push('invalid value for "user_id", the character length must be smaller than or equal to 200.')
+      if attributes.key?(:'hashed_password')
+        self.hashed_password = attributes[:'hashed_password']
       end
 
-      if !@user_id.nil? && @user_id.to_s.length < 1
-        invalid_properties.push('invalid value for "user_id", the character length must be great than or equal to 1.')
+      if attributes.key?(:'password')
+        self.password = attributes[:'password']
       end
-
-      if !@username.nil? && @username.to_s.length > 200
-        invalid_properties.push('invalid value for "username", the character length must be smaller than or equal to 200.')
-      end
-
-      if !@username.nil? && @username.to_s.length < 1
-        invalid_properties.push('invalid value for "username", the character length must be great than or equal to 1.')
-      end
-
-      if @profile.nil?
-        invalid_properties.push('invalid value for "profile", profile cannot be nil.')
-      end
-
-      if @email.nil?
-        invalid_properties.push('invalid value for "email", email cannot be nil.')
-      end
-
-      if !@totp_secret.nil? && @totp_secret.to_s.length > 200
-        invalid_properties.push('invalid value for "totp_secret", the character length must be smaller than or equal to 200.')
-      end
-
-      if !@totp_secret.nil? && @totp_secret.to_s.length < 1
-        invalid_properties.push('invalid value for "totp_secret", the character length must be great than or equal to 1.')
-      end
-
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@user_id.nil? && @user_id.to_s.length > 200
-      return false if !@user_id.nil? && @user_id.to_s.length < 1
-      return false if !@username.nil? && @username.to_s.length > 200
-      return false if !@username.nil? && @username.to_s.length < 1
-      return false if @profile.nil?
-      return false if @email.nil?
-      return false if !@totp_secret.nil? && @totp_secret.to_s.length > 200
-      return false if !@totp_secret.nil? && @totp_secret.to_s.length < 1
-      true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] user_id Value to be assigned
-    def user_id=(user_id)
-      if user_id.nil?
-        fail ArgumentError, 'user_id cannot be nil'
-      end
-
-      if user_id.to_s.length > 200
-        fail ArgumentError, 'invalid value for "user_id", the character length must be smaller than or equal to 200.'
-      end
-
-      if user_id.to_s.length < 1
-        fail ArgumentError, 'invalid value for "user_id", the character length must be great than or equal to 1.'
-      end
-
-      @user_id = user_id
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] username Value to be assigned
-    def username=(username)
-      if username.nil?
-        fail ArgumentError, 'username cannot be nil'
-      end
-
-      if username.to_s.length > 200
-        fail ArgumentError, 'invalid value for "username", the character length must be smaller than or equal to 200.'
-      end
-
-      if username.to_s.length < 1
-        fail ArgumentError, 'invalid value for "username", the character length must be great than or equal to 1.'
-      end
-
-      @username = username
     end
 
     # Custom attribute writer method with validation
@@ -272,24 +184,6 @@ module Zitadel::Client::Models
       @email = email
     end
 
-    # Custom attribute writer method with validation
-    # @param [String] totp_secret Value to be assigned
-    def totp_secret=(totp_secret)
-      if totp_secret.nil?
-        fail ArgumentError, 'totp_secret cannot be nil'
-      end
-
-      if totp_secret.to_s.length > 200
-        fail ArgumentError, 'invalid value for "totp_secret", the character length must be smaller than or equal to 200.'
-      end
-
-      if totp_secret.to_s.length < 1
-        fail ArgumentError, 'invalid value for "totp_secret", the character length must be great than or equal to 1.'
-      end
-
-      @totp_secret = totp_secret
-    end
-
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -302,10 +196,10 @@ module Zitadel::Client::Models
           email == o.email &&
           phone == o.phone &&
           metadata == o.metadata &&
-          password == o.password &&
-          hashed_password == o.hashed_password &&
           idp_links == o.idp_links &&
-          totp_secret == o.totp_secret
+          totp_secret == o.totp_secret &&
+          hashed_password == o.hashed_password &&
+          password == o.password
     end
 
     # @see the `==` method
@@ -317,7 +211,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [user_id, username, organization, profile, email, phone, metadata, password, hashed_password, idp_links, totp_secret].hash
+      [user_id, username, organization, profile, email, phone, metadata, idp_links, totp_secret, hashed_password, password].hash
     end
 
 # Builds the object from hash

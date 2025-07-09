@@ -14,15 +14,16 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceStartIdentityProviderIntentResponse
+        class UserServiceStartIdentityProviderIntentResponse
     attr_accessor :details
 
-    # URL to which the client should redirect
     attr_accessor :auth_url
+
+    attr_accessor :form_data
 
     attr_accessor :idp_intent
 
-    # POST call information
+    # POST call information  Deprecated: Use form_data instead
     attr_accessor :post_form
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -30,6 +31,7 @@ module Zitadel::Client::Models
       {
         :'details' => :'details',
         :'auth_url' => :'authUrl',
+        :'form_data' => :'formData',
         :'idp_intent' => :'idpIntent',
         :'post_form' => :'postForm'
       }
@@ -50,6 +52,7 @@ module Zitadel::Client::Models
       {
         :'details' => :'UserServiceDetails',
         :'auth_url' => :'String',
+        :'form_data' => :'UserServiceFormData',
         :'idp_intent' => :'UserServiceIDPIntent',
         :'post_form' => :'String'
       }
@@ -87,6 +90,10 @@ module Zitadel::Client::Models
         self.auth_url = attributes[:'auth_url']
       end
 
+      if attributes.key?(:'form_data')
+        self.form_data = attributes[:'form_data']
+      end
+
       if attributes.key?(:'idp_intent')
         self.idp_intent = attributes[:'idp_intent']
       end
@@ -96,21 +103,6 @@ module Zitadel::Client::Models
       end
     end
 
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
-    end
-
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -118,6 +110,7 @@ module Zitadel::Client::Models
       self.class == o.class &&
           details == o.details &&
           auth_url == o.auth_url &&
+          form_data == o.form_data &&
           idp_intent == o.idp_intent &&
           post_form == o.post_form
     end
@@ -131,7 +124,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [details, auth_url, idp_intent, post_form].hash
+      [details, auth_url, form_data, idp_intent, post_form].hash
     end
 
 # Builds the object from hash

@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class IdentityProviderServiceSAMLConfig
+        class IdentityProviderServiceSAMLConfig
     # Metadata of the SAML identity provider.
     attr_accessor :metadata_xml
 
@@ -25,10 +25,10 @@ module Zitadel::Client::Models
 
     attr_accessor :name_id_format
 
-    # Optional name of the attribute, which will be used to map the user in case the nameid-format returned is `urn:oasis:names:tc:SAML:2.0:nameid-format:transient`.
+    # Optional name of the attribute, which will be used to map the user  in case the nameid-format returned is  `urn:oasis:names:tc:SAML:2.0:nameid-format:transient`.
     attr_accessor :transient_mapping_attribute_name
 
-    # Boolean weather federated logout is enabled. If enabled, ZITADEL will send a logout request to the identity provider, if the user terminates the session in ZITADEL. Be sure to provide a SLO endpoint as part of the metadata.
+    # Boolean weather federated logout is enabled. If enabled, ZITADEL will send a logout request to the identity provider,  if the user terminates the session in ZITADEL. Be sure to provide a SLO endpoint as part of the metadata.
     attr_accessor :federated_logout_enabled
 
     class EnumAttributeValidator
@@ -90,6 +90,8 @@ module Zitadel::Client::Models
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'transient_mapping_attribute_name',
+        :'federated_logout_enabled'
       ])
     end
 
@@ -117,8 +119,6 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'binding')
         self.binding = attributes[:'binding']
-      else
-        self.binding = 'SAML_BINDING_UNSPECIFIED'
       end
 
       if attributes.key?(:'with_signed_request')
@@ -127,8 +127,6 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'name_id_format')
         self.name_id_format = attributes[:'name_id_format']
-      else
-        self.name_id_format = 'SAML_NAME_ID_FORMAT_UNSPECIFIED'
       end
 
       if attributes.key?(:'transient_mapping_attribute_name')
@@ -138,21 +136,6 @@ module Zitadel::Client::Models
       if attributes.key?(:'federated_logout_enabled')
         self.federated_logout_enabled = attributes[:'federated_logout_enabled']
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
     end
 
     # Checks equality by comparing each attribute.

@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class SettingsServicePasswordExpirySettings
+        class SettingsServicePasswordExpirySettings
     # Amount of days after which a password will expire. The user will be forced to change the password on the following authentication.
     attr_accessor :max_age_days
 
@@ -67,8 +67,8 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'max_age_days' => :'String',
-        :'expire_warn_days' => :'String',
+        :'max_age_days' => :'Object',
+        :'expire_warn_days' => :'Object',
         :'resource_owner_type' => :'SettingsServiceResourceOwnerType'
       }
     end
@@ -76,6 +76,8 @@ module Zitadel::Client::Models
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'max_age_days',
+        :'expire_warn_days',
       ])
     end
 
@@ -107,24 +109,7 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'resource_owner_type')
         self.resource_owner_type = attributes[:'resource_owner_type']
-      else
-        self.resource_owner_type = 'RESOURCE_OWNER_TYPE_UNSPECIFIED'
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
     end
 
     # Checks equality by comparing each attribute.

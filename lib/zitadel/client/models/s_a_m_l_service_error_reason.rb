@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class SAMLServiceErrorReason
+          class SAMLServiceErrorReason
     ERROR_REASON_UNSPECIFIED = "ERROR_REASON_UNSPECIFIED".freeze
     ERROR_REASON_VERSION_MISSMATCH = "ERROR_REASON_VERSION_MISSMATCH".freeze
     ERROR_REASON_AUTH_N_FAILED = "ERROR_REASON_AUTH_N_FAILED".freeze

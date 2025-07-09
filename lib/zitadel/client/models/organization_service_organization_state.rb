@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class OrganizationServiceOrganizationState
+          class OrganizationServiceOrganizationState
     ORGANIZATION_STATE_UNSPECIFIED = "ORGANIZATION_STATE_UNSPECIFIED".freeze
     ORGANIZATION_STATE_ACTIVE = "ORGANIZATION_STATE_ACTIVE".freeze
     ORGANIZATION_STATE_INACTIVE = "ORGANIZATION_STATE_INACTIVE".freeze

@@ -19,21 +19,21 @@ module Zitadel::Client::Api
   def initialize(api_client = ApiClient.default)
   @api_client = api_client
   end
-      # Get identity provider (IdP) by ID
-      # Returns an identity provider (social/enterprise login) by its ID, which can be of the type Google, AzureAD, etc.
-          # @param id [String] 
+      # GetIDPByID
+      # Get identity provider (IdP) by ID   Returns an identity provider (social/enterprise login) by its ID, which can be of the type Google, AzureAD, etc.
+          # @param identity_provider_service_get_idpby_id_request [IdentityProviderServiceGetIDPByIDRequest] 
       # @param [Hash] opts the optional parameters
     # @return [IdentityProviderServiceGetIDPByIDResponse]
-    def identity_provider_service_get_idpby_id(id, opts = {})
+    def get_idpby_id(identity_provider_service_get_idpby_id_request, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::IdentityProviderServiceApi.identity_provider_service_get_idpby_id ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::IdentityProviderServiceApi.get_idpby_id ...' # MODIFIED
     end
-          # verify the required parameter 'id' is set
-          if @api_client.config.client_side_validation && id.nil?
-          fail ArgumentError, "Missing the required parameter 'id' when calling Api::IdentityProviderServiceApi.identity_provider_service_get_idpby_id" # MODIFIED
+          # verify the required parameter 'identity_provider_service_get_idpby_id_request' is set
+          if @api_client.config.client_side_validation && identity_provider_service_get_idpby_id_request.nil?
+          fail ArgumentError, "Missing the required parameter 'identity_provider_service_get_idpby_id_request' when calling Api::IdentityProviderServiceApi.get_idpby_id" # MODIFIED
           end
     # resource path
-    local_var_path = '/v2/idps/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+    local_var_path = '/zitadel.idp.v2.IdentityProviderService/GetIDPByID'
 
     # query parameters
     query_params = opts[:query_params] || {}
@@ -42,12 +42,17 @@ module Zitadel::Client::Api
     header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
 
     # form parameters
     form_params = opts[:form_params] || {}
 
     # http body (model)
-    post_body = opts[:debug_body]
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(identity_provider_service_get_idpby_id_request)
 
     # return_type
     return_type = opts[:debug_return_type] || 'IdentityProviderServiceGetIDPByIDResponse'
@@ -56,7 +61,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::IdentityProviderServiceApi.identity_provider_service_get_idpby_id", # MODIFIED
+    :operation => :"Api::IdentityProviderServiceApi.get_idpby_id", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -65,9 +70,9 @@ module Zitadel::Client::Api
     :return_type => return_type
     )
 
-    data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::IdentityProviderServiceApi#identity_provider_service_get_idpby_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::IdentityProviderServiceApi#get_idpby_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data
     end

@@ -14,12 +14,13 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class IdentityProviderServiceAzureADConfig
+        class IdentityProviderServiceAzureADConfig
+    # Client id of the Azure AD application
     attr_accessor :client_id
 
     attr_accessor :tenant
 
-    # Azure AD doesn't send if the email has been verified. Enable this if the user email should always be added verified in ZITADEL (no verification emails will be sent).
+    # Azure AD doesn't send if the email has been verified. Enable this if the  user email should always be added verified in ZITADEL (no verification  emails will be sent).
     attr_accessor :email_verified
 
     # The scopes requested by ZITADEL during the request to Azure AD.
@@ -96,21 +97,6 @@ module Zitadel::Client::Models
           self.scopes = value
         end
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
     end
 
     # Checks equality by comparing each attribute.

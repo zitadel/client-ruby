@@ -14,9 +14,8 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  # FeatureFlag is a simple boolean Feature setting, without further payload.
+        # FeatureFlag is a simple boolean Feature setting, without further payload.
   class FeatureServiceFeatureFlag
-    # Whether a feature is enabled.
     attr_accessor :enabled
 
     attr_accessor :source
@@ -99,24 +98,7 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'source')
         self.source = attributes[:'source']
-      else
-        self.source = 'SOURCE_UNSPECIFIED'
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
     end
 
     # Checks equality by comparing each attribute.

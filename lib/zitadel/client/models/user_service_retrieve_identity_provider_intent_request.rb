@@ -14,13 +14,15 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceRetrieveIdentityProviderIntentRequest
-    # token of the idp intent, previously returned on the success response of the IDP callback
+        class UserServiceRetrieveIdentityProviderIntentRequest
+    attr_accessor :idp_intent_id
+
     attr_accessor :idp_intent_token
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'idp_intent_id' => :'idpIntentId',
         :'idp_intent_token' => :'idpIntentToken'
       }
     end
@@ -38,6 +40,7 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'idp_intent_id' => :'String',
         :'idp_intent_token' => :'String'
       }
     end
@@ -66,52 +69,13 @@ module Zitadel::Client::Models
         h[k.to_sym] = v
       }
 
+      if attributes.key?(:'idp_intent_id')
+        self.idp_intent_id = attributes[:'idp_intent_id']
+      end
+
       if attributes.key?(:'idp_intent_token')
         self.idp_intent_token = attributes[:'idp_intent_token']
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      if !@idp_intent_token.nil? && @idp_intent_token.to_s.length > 200
-        invalid_properties.push('invalid value for "idp_intent_token", the character length must be smaller than or equal to 200.')
-      end
-
-      if !@idp_intent_token.nil? && @idp_intent_token.to_s.length < 1
-        invalid_properties.push('invalid value for "idp_intent_token", the character length must be great than or equal to 1.')
-      end
-
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@idp_intent_token.nil? && @idp_intent_token.to_s.length > 200
-      return false if !@idp_intent_token.nil? && @idp_intent_token.to_s.length < 1
-      true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] idp_intent_token Value to be assigned
-    def idp_intent_token=(idp_intent_token)
-      if idp_intent_token.nil?
-        fail ArgumentError, 'idp_intent_token cannot be nil'
-      end
-
-      if idp_intent_token.to_s.length > 200
-        fail ArgumentError, 'invalid value for "idp_intent_token", the character length must be smaller than or equal to 200.'
-      end
-
-      if idp_intent_token.to_s.length < 1
-        fail ArgumentError, 'invalid value for "idp_intent_token", the character length must be great than or equal to 1.'
-      end
-
-      @idp_intent_token = idp_intent_token
     end
 
     # Checks equality by comparing each attribute.
@@ -119,6 +83,7 @@ module Zitadel::Client::Models
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          idp_intent_id == o.idp_intent_id &&
           idp_intent_token == o.idp_intent_token
     end
 
@@ -131,7 +96,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [idp_intent_token].hash
+      [idp_intent_id, idp_intent_token].hash
     end
 
 # Builds the object from hash

@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceUser
+        class UserServiceUser
     attr_accessor :user_id
 
     attr_accessor :details
@@ -30,6 +30,28 @@ module Zitadel::Client::Models
     attr_accessor :human
 
     attr_accessor :machine
+
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -103,8 +125,6 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'state')
         self.state = attributes[:'state']
-      else
-        self.state = 'USER_STATE_UNSPECIFIED'
       end
 
       if attributes.key?(:'username')
@@ -128,21 +148,6 @@ module Zitadel::Client::Models
       if attributes.key?(:'machine')
         self.machine = attributes[:'machine']
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
     end
 
     # Checks equality by comparing each attribute.

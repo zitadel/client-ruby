@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class SettingsServicePasskeysType
+          class SettingsServicePasskeysType
     PASSKEYS_TYPE_NOT_ALLOWED = "PASSKEYS_TYPE_NOT_ALLOWED".freeze
     PASSKEYS_TYPE_ALLOWED = "PASSKEYS_TYPE_ALLOWED".freeze
 

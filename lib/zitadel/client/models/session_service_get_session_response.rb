@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class SessionServiceGetSessionResponse
+        class SessionServiceGetSessionResponse
     attr_accessor :session
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -68,21 +68,6 @@ module Zitadel::Client::Models
       if attributes.key?(:'session')
         self.session = attributes[:'session']
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
     end
 
     # Checks equality by comparing each attribute.

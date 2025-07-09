@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceAuthFactorState
+          class UserServiceAuthFactorState
     AUTH_FACTOR_STATE_UNSPECIFIED = "AUTH_FACTOR_STATE_UNSPECIFIED".freeze
     AUTH_FACTOR_STATE_NOT_READY = "AUTH_FACTOR_STATE_NOT_READY".freeze
     AUTH_FACTOR_STATE_READY = "AUTH_FACTOR_STATE_READY".freeze

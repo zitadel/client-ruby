@@ -14,9 +14,8 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  # Query for users with a specific phone.
+        # Query for users with a specific phone.
   class UserServicePhoneQuery
-    # Phone number of the user
     attr_accessor :number
 
     attr_accessor :method
@@ -101,39 +100,7 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'method')
         self.method = attributes[:'method']
-      else
-        self.method = 'TEXT_QUERY_METHOD_EQUALS'
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      if @number.nil?
-        invalid_properties.push('invalid value for "number", number cannot be nil.')
-      end
-
-      if @number.to_s.length > 20
-        invalid_properties.push('invalid value for "number", the character length must be smaller than or equal to 20.')
-      end
-
-      if @number.to_s.length < 1
-        invalid_properties.push('invalid value for "number", the character length must be great than or equal to 1.')
-      end
-
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @number.nil?
-      return false if @number.to_s.length > 20
-      return false if @number.to_s.length < 1
-      true
     end
 
     # Custom attribute writer method with validation
@@ -141,14 +108,6 @@ module Zitadel::Client::Models
     def number=(number)
       if number.nil?
         fail ArgumentError, 'number cannot be nil'
-      end
-
-      if number.to_s.length > 20
-        fail ArgumentError, 'invalid value for "number", the character length must be smaller than or equal to 20.'
-      end
-
-      if number.to_s.length < 1
-        fail ArgumentError, 'invalid value for "number", the character length must be great than or equal to 1.'
       end
 
       @number = number

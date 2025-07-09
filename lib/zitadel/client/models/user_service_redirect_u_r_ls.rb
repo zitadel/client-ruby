@@ -14,11 +14,9 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceRedirectURLs
-    # URL on which the user will be redirected after a successful login
+        class UserServiceRedirectURLs
     attr_accessor :success_url
 
-    # URL on which the user will be redirected after a failed login
     attr_accessor :failure_url
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -78,77 +76,6 @@ module Zitadel::Client::Models
       if attributes.key?(:'failure_url')
         self.failure_url = attributes[:'failure_url']
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      if !@success_url.nil? && @success_url.to_s.length > 2048
-        invalid_properties.push('invalid value for "success_url", the character length must be smaller than or equal to 2048.')
-      end
-
-      if !@success_url.nil? && @success_url.to_s.length < 1
-        invalid_properties.push('invalid value for "success_url", the character length must be great than or equal to 1.')
-      end
-
-      if !@failure_url.nil? && @failure_url.to_s.length > 2048
-        invalid_properties.push('invalid value for "failure_url", the character length must be smaller than or equal to 2048.')
-      end
-
-      if !@failure_url.nil? && @failure_url.to_s.length < 1
-        invalid_properties.push('invalid value for "failure_url", the character length must be great than or equal to 1.')
-      end
-
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@success_url.nil? && @success_url.to_s.length > 2048
-      return false if !@success_url.nil? && @success_url.to_s.length < 1
-      return false if !@failure_url.nil? && @failure_url.to_s.length > 2048
-      return false if !@failure_url.nil? && @failure_url.to_s.length < 1
-      true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] success_url Value to be assigned
-    def success_url=(success_url)
-      if success_url.nil?
-        fail ArgumentError, 'success_url cannot be nil'
-      end
-
-      if success_url.to_s.length > 2048
-        fail ArgumentError, 'invalid value for "success_url", the character length must be smaller than or equal to 2048.'
-      end
-
-      if success_url.to_s.length < 1
-        fail ArgumentError, 'invalid value for "success_url", the character length must be great than or equal to 1.'
-      end
-
-      @success_url = success_url
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] failure_url Value to be assigned
-    def failure_url=(failure_url)
-      if failure_url.nil?
-        fail ArgumentError, 'failure_url cannot be nil'
-      end
-
-      if failure_url.to_s.length > 2048
-        fail ArgumentError, 'invalid value for "failure_url", the character length must be smaller than or equal to 2048.'
-      end
-
-      if failure_url.to_s.length < 1
-        fail ArgumentError, 'invalid value for "failure_url", the character length must be great than or equal to 1.'
-      end
-
-      @failure_url = failure_url
     end
 
     # Checks equality by comparing each attribute.

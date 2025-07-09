@@ -14,8 +14,8 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class SessionServiceUserAgentQuery
-    # Finger print id of the user agent used for the session. Set an empty fingerprint_id to use the user agent from the call. If the user agent is not available from the current token, an error will be returned.
+        class SessionServiceUserAgentQuery
+    # Finger print id of the user agent used for the session.  Set an empty fingerprint_id to use the user agent from the call.  If the user agent is not available from the current token, an error will be returned.
     attr_accessor :fingerprint_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -45,6 +45,7 @@ module Zitadel::Client::Models
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'fingerprint_id'
       ])
     end
 
@@ -69,40 +70,6 @@ module Zitadel::Client::Models
       if attributes.key?(:'fingerprint_id')
         self.fingerprint_id = attributes[:'fingerprint_id']
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      if !@fingerprint_id.nil? && @fingerprint_id.to_s.length > 200
-        invalid_properties.push('invalid value for "fingerprint_id", the character length must be smaller than or equal to 200.')
-      end
-
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@fingerprint_id.nil? && @fingerprint_id.to_s.length > 200
-      true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] fingerprint_id Value to be assigned
-    def fingerprint_id=(fingerprint_id)
-      if fingerprint_id.nil?
-        fail ArgumentError, 'fingerprint_id cannot be nil'
-      end
-
-      if fingerprint_id.to_s.length > 200
-        fail ArgumentError, 'invalid value for "fingerprint_id", the character length must be smaller than or equal to 200.'
-      end
-
-      @fingerprint_id = fingerprint_id
     end
 
     # Checks equality by comparing each attribute.

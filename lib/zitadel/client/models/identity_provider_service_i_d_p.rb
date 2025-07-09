@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class IdentityProviderServiceIDP
+        class IdentityProviderServiceIDP
     # Unique identifier for the identity provider.
     attr_accessor :id
 
@@ -118,8 +118,6 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'state')
         self.state = attributes[:'state']
-      else
-        self.state = 'IDP_STATE_UNSPECIFIED'
       end
 
       if attributes.key?(:'name')
@@ -128,28 +126,11 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'type')
         self.type = attributes[:'type']
-      else
-        self.type = 'IDP_TYPE_UNSPECIFIED'
       end
 
       if attributes.key?(:'config')
         self.config = attributes[:'config']
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
     end
 
     # Checks equality by comparing each attribute.

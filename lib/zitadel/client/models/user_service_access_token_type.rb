@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceAccessTokenType
+          class UserServiceAccessTokenType
     ACCESS_TOKEN_TYPE_BEARER = "ACCESS_TOKEN_TYPE_BEARER".freeze
     ACCESS_TOKEN_TYPE_JWT = "ACCESS_TOKEN_TYPE_JWT".freeze
 

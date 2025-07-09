@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class IdentityProviderServiceAzureADTenantType
+          class IdentityProviderServiceAzureADTenantType
     AZURE_AD_TENANT_TYPE_COMMON = "AZURE_AD_TENANT_TYPE_COMMON".freeze
     AZURE_AD_TENANT_TYPE_ORGANISATIONS = "AZURE_AD_TENANT_TYPE_ORGANISATIONS".freeze
     AZURE_AD_TENANT_TYPE_CONSUMERS = "AZURE_AD_TENANT_TYPE_CONSUMERS".freeze

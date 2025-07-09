@@ -14,12 +14,11 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceRetrieveIdentityProviderIntentResponse
+        class UserServiceRetrieveIdentityProviderIntentResponse
     attr_accessor :details
 
     attr_accessor :idp_information
 
-    # ID of the user in ZITADEL if external user is linked
     attr_accessor :user_id
 
     attr_accessor :add_human_user
@@ -93,21 +92,6 @@ module Zitadel::Client::Models
       if attributes.key?(:'add_human_user')
         self.add_human_user = attributes[:'add_human_user']
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
     end
 
     # Checks equality by comparing each attribute.

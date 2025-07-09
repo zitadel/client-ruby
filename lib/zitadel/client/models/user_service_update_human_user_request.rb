@@ -14,7 +14,9 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceUpdateHumanUserRequest
+        class UserServiceUpdateHumanUserRequest
+    attr_accessor :user_id
+
     attr_accessor :username
 
     attr_accessor :profile
@@ -28,6 +30,7 @@ module Zitadel::Client::Models
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'user_id' => :'userId',
         :'username' => :'username',
         :'profile' => :'profile',
         :'email' => :'email',
@@ -49,6 +52,7 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'user_id' => :'String',
         :'username' => :'String',
         :'profile' => :'UserServiceSetHumanProfile',
         :'email' => :'UserServiceSetHumanEmail',
@@ -60,6 +64,7 @@ module Zitadel::Client::Models
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'username',
       ])
     end
 
@@ -80,6 +85,10 @@ module Zitadel::Client::Models
         end
         h[k.to_sym] = v
       }
+
+      if attributes.key?(:'user_id')
+        self.user_id = attributes[:'user_id']
+      end
 
       if attributes.key?(:'username')
         self.username = attributes[:'username']
@@ -102,54 +111,12 @@ module Zitadel::Client::Models
       end
     end
 
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      if !@username.nil? && @username.to_s.length > 200
-        invalid_properties.push('invalid value for "username", the character length must be smaller than or equal to 200.')
-      end
-
-      if !@username.nil? && @username.to_s.length < 1
-        invalid_properties.push('invalid value for "username", the character length must be great than or equal to 1.')
-      end
-
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@username.nil? && @username.to_s.length > 200
-      return false if !@username.nil? && @username.to_s.length < 1
-      true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] username Value to be assigned
-    def username=(username)
-      if username.nil?
-        fail ArgumentError, 'username cannot be nil'
-      end
-
-      if username.to_s.length > 200
-        fail ArgumentError, 'invalid value for "username", the character length must be smaller than or equal to 200.'
-      end
-
-      if username.to_s.length < 1
-        fail ArgumentError, 'invalid value for "username", the character length must be great than or equal to 1.'
-      end
-
-      @username = username
-    end
-
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          user_id == o.user_id &&
           username == o.username &&
           profile == o.profile &&
           email == o.email &&
@@ -166,7 +133,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [username, profile, email, phone, password].hash
+      [user_id, username, profile, email, phone, password].hash
     end
 
 # Builds the object from hash

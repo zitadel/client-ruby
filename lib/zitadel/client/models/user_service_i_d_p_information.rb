@@ -14,35 +14,32 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceIDPInformation
-    attr_accessor :oauth
+        class UserServiceIDPInformation
+    attr_accessor :idp_id
+
+    attr_accessor :user_id
+
+    attr_accessor :user_name
+
+    # `Struct` represents a structured data value, consisting of fields  which map to dynamically typed values. In some languages, `Struct`  might be supported by a native representation. For example, in  scripting languages like JS a struct is represented as an  object. The details of that representation are described together  with the proto support for the language.   The JSON representation for `Struct` is JSON object.
+    attr_accessor :raw_information
 
     attr_accessor :ldap
 
+    attr_accessor :oauth
+
     attr_accessor :saml
-
-    # ID of the identity provider
-    attr_accessor :idp_id
-
-    # ID of the user of the identity provider
-    attr_accessor :user_id
-
-    # username of the user of the identity provider
-    attr_accessor :user_name
-
-    # complete information returned by the identity provider
-    attr_accessor :raw_information
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'oauth' => :'oauth',
-        :'ldap' => :'ldap',
-        :'saml' => :'saml',
         :'idp_id' => :'idpId',
         :'user_id' => :'userId',
         :'user_name' => :'userName',
-        :'raw_information' => :'rawInformation'
+        :'raw_information' => :'rawInformation',
+        :'ldap' => :'ldap',
+        :'oauth' => :'oauth',
+        :'saml' => :'saml'
       }
     end
 
@@ -59,13 +56,13 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'oauth' => :'UserServiceIDPOAuthAccessInformation',
-        :'ldap' => :'UserServiceIDPLDAPAccessInformation',
-        :'saml' => :'UserServiceIDPSAMLAccessInformation',
         :'idp_id' => :'String',
         :'user_id' => :'String',
         :'user_name' => :'String',
-        :'raw_information' => :'Object'
+        :'raw_information' => :'Hash<String, Object>',
+        :'ldap' => :'UserServiceIDPLDAPAccessInformation',
+        :'oauth' => :'UserServiceIDPOAuthAccessInformation',
+        :'saml' => :'UserServiceIDPSAMLAccessInformation'
       }
     end
 
@@ -93,18 +90,6 @@ module Zitadel::Client::Models
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'oauth')
-        self.oauth = attributes[:'oauth']
-      end
-
-      if attributes.key?(:'ldap')
-        self.ldap = attributes[:'ldap']
-      end
-
-      if attributes.key?(:'saml')
-        self.saml = attributes[:'saml']
-      end
-
       if attributes.key?(:'idp_id')
         self.idp_id = attributes[:'idp_id']
       end
@@ -118,23 +103,22 @@ module Zitadel::Client::Models
       end
 
       if attributes.key?(:'raw_information')
-        self.raw_information = attributes[:'raw_information']
+        if (value = attributes[:'raw_information']).is_a?(Hash)
+          self.raw_information = value
+        end
       end
-    end
 
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
+      if attributes.key?(:'ldap')
+        self.ldap = attributes[:'ldap']
+      end
 
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
+      if attributes.key?(:'oauth')
+        self.oauth = attributes[:'oauth']
+      end
+
+      if attributes.key?(:'saml')
+        self.saml = attributes[:'saml']
+      end
     end
 
     # Checks equality by comparing each attribute.
@@ -142,13 +126,13 @@ module Zitadel::Client::Models
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          oauth == o.oauth &&
-          ldap == o.ldap &&
-          saml == o.saml &&
           idp_id == o.idp_id &&
           user_id == o.user_id &&
           user_name == o.user_name &&
-          raw_information == o.raw_information
+          raw_information == o.raw_information &&
+          ldap == o.ldap &&
+          oauth == o.oauth &&
+          saml == o.saml
     end
 
     # @see the `==` method
@@ -160,7 +144,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [oauth, ldap, saml, idp_id, user_id, user_name, raw_information].hash
+      [idp_id, user_id, user_name, raw_information, ldap, oauth, saml].hash
     end
 
 # Builds the object from hash

@@ -19,26 +19,21 @@ module Zitadel::Client::Api
   def initialize(api_client = ApiClient.default)
   @api_client = api_client
   end
-      # Authorize or deny device authorization
-      # Authorize or deny the device authorization request based on the provided device authorization id.
-          # @param device_authorization_id [String] The device authorization id returned when submitting the user code.
+      # AuthorizeOrDenyDeviceAuthorization
+      # Authorize or deny device authorization   Authorize or deny the device authorization request based on the provided device authorization id.
           # @param oidc_service_authorize_or_deny_device_authorization_request [OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Object]
-    def o_idc_service_authorize_or_deny_device_authorization(device_authorization_id, oidc_service_authorize_or_deny_device_authorization_request, opts = {})
+    def authorize_or_deny_device_authorization(oidc_service_authorize_or_deny_device_authorization_request, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::OIDCServiceApi.o_idc_service_authorize_or_deny_device_authorization ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::OIDCServiceApi.authorize_or_deny_device_authorization ...' # MODIFIED
     end
-          # verify the required parameter 'device_authorization_id' is set
-          if @api_client.config.client_side_validation && device_authorization_id.nil?
-          fail ArgumentError, "Missing the required parameter 'device_authorization_id' when calling Api::OIDCServiceApi.o_idc_service_authorize_or_deny_device_authorization" # MODIFIED
-          end
           # verify the required parameter 'oidc_service_authorize_or_deny_device_authorization_request' is set
           if @api_client.config.client_side_validation && oidc_service_authorize_or_deny_device_authorization_request.nil?
-          fail ArgumentError, "Missing the required parameter 'oidc_service_authorize_or_deny_device_authorization_request' when calling Api::OIDCServiceApi.o_idc_service_authorize_or_deny_device_authorization" # MODIFIED
+          fail ArgumentError, "Missing the required parameter 'oidc_service_authorize_or_deny_device_authorization_request' when calling Api::OIDCServiceApi.authorize_or_deny_device_authorization" # MODIFIED
           end
     # resource path
-    local_var_path = '/v2/oidc/device_authorization/{deviceAuthorizationId}'.sub('{' + 'deviceAuthorizationId' + '}', CGI.escape(device_authorization_id.to_s))
+    local_var_path = '/zitadel.oidc.v2.OIDCService/AuthorizeOrDenyDeviceAuthorization'
 
     # query parameters
     query_params = opts[:query_params] || {}
@@ -66,7 +61,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::OIDCServiceApi.o_idc_service_authorize_or_deny_device_authorization", # MODIFIED
+    :operation => :"Api::OIDCServiceApi.authorize_or_deny_device_authorization", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -77,31 +72,25 @@ module Zitadel::Client::Api
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::OIDCServiceApi#o_idc_service_authorize_or_deny_device_authorization\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::OIDCServiceApi#authorize_or_deny_device_authorization\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data
     end
 
-      # Finalize an Auth Request and get the callback URL.
-      # Finalize an Auth Request and get the callback URL for success or failure. The user must be redirected to the URL in order to inform the application about the success or failure. On success, the URL contains details for the application to obtain the tokens. This method can only be called once for an Auth request.
-          # @param auth_request_id [String] ID of the Auth Request.
+      # CreateCallback
           # @param oidc_service_create_callback_request [OIDCServiceCreateCallbackRequest] 
       # @param [Hash] opts the optional parameters
     # @return [OIDCServiceCreateCallbackResponse]
-    def o_idc_service_create_callback(auth_request_id, oidc_service_create_callback_request, opts = {})
+    def create_callback(oidc_service_create_callback_request, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::OIDCServiceApi.o_idc_service_create_callback ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::OIDCServiceApi.create_callback ...' # MODIFIED
     end
-          # verify the required parameter 'auth_request_id' is set
-          if @api_client.config.client_side_validation && auth_request_id.nil?
-          fail ArgumentError, "Missing the required parameter 'auth_request_id' when calling Api::OIDCServiceApi.o_idc_service_create_callback" # MODIFIED
-          end
           # verify the required parameter 'oidc_service_create_callback_request' is set
           if @api_client.config.client_side_validation && oidc_service_create_callback_request.nil?
-          fail ArgumentError, "Missing the required parameter 'oidc_service_create_callback_request' when calling Api::OIDCServiceApi.o_idc_service_create_callback" # MODIFIED
+          fail ArgumentError, "Missing the required parameter 'oidc_service_create_callback_request' when calling Api::OIDCServiceApi.create_callback" # MODIFIED
           end
     # resource path
-    local_var_path = '/v2/oidc/auth_requests/{authRequestId}'.sub('{' + 'authRequestId' + '}', CGI.escape(auth_request_id.to_s))
+    local_var_path = '/zitadel.oidc.v2.OIDCService/CreateCallback'
 
     # query parameters
     query_params = opts[:query_params] || {}
@@ -129,7 +118,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::OIDCServiceApi.o_idc_service_create_callback", # MODIFIED
+    :operation => :"Api::OIDCServiceApi.create_callback", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -140,26 +129,25 @@ module Zitadel::Client::Api
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::OIDCServiceApi#o_idc_service_create_callback\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::OIDCServiceApi#create_callback\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data
     end
 
-      # Get OIDC Auth Request details
-      # Get OIDC Auth Request details by ID, obtained from the redirect URL. Returns details that are parsed from the application&#39;s Auth Request.
-          # @param auth_request_id [String] ID of the Auth Request, as obtained from the redirect URL.
+      # GetAuthRequest
+          # @param oidc_service_get_auth_request_request [OIDCServiceGetAuthRequestRequest] 
       # @param [Hash] opts the optional parameters
     # @return [OIDCServiceGetAuthRequestResponse]
-    def o_idc_service_get_auth_request(auth_request_id, opts = {})
+    def get_auth_request(oidc_service_get_auth_request_request, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::OIDCServiceApi.o_idc_service_get_auth_request ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::OIDCServiceApi.get_auth_request ...' # MODIFIED
     end
-          # verify the required parameter 'auth_request_id' is set
-          if @api_client.config.client_side_validation && auth_request_id.nil?
-          fail ArgumentError, "Missing the required parameter 'auth_request_id' when calling Api::OIDCServiceApi.o_idc_service_get_auth_request" # MODIFIED
+          # verify the required parameter 'oidc_service_get_auth_request_request' is set
+          if @api_client.config.client_side_validation && oidc_service_get_auth_request_request.nil?
+          fail ArgumentError, "Missing the required parameter 'oidc_service_get_auth_request_request' when calling Api::OIDCServiceApi.get_auth_request" # MODIFIED
           end
     # resource path
-    local_var_path = '/v2/oidc/auth_requests/{authRequestId}'.sub('{' + 'authRequestId' + '}', CGI.escape(auth_request_id.to_s))
+    local_var_path = '/zitadel.oidc.v2.OIDCService/GetAuthRequest'
 
     # query parameters
     query_params = opts[:query_params] || {}
@@ -168,12 +156,17 @@ module Zitadel::Client::Api
     header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
 
     # form parameters
     form_params = opts[:form_params] || {}
 
     # http body (model)
-    post_body = opts[:debug_body]
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(oidc_service_get_auth_request_request)
 
     # return_type
     return_type = opts[:debug_return_type] || 'OIDCServiceGetAuthRequestResponse'
@@ -182,7 +175,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::OIDCServiceApi.o_idc_service_get_auth_request", # MODIFIED
+    :operation => :"Api::OIDCServiceApi.get_auth_request", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -191,28 +184,28 @@ module Zitadel::Client::Api
     :return_type => return_type
     )
 
-    data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::OIDCServiceApi#o_idc_service_get_auth_request\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::OIDCServiceApi#get_auth_request\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data
     end
 
-      # Get device authorization request
-      # Get the device authorization based on the provided \&quot;user code\&quot;. This will return the device authorization request, which contains the device authorization id that is required to authorize the request once the user signed in or to deny it.
-          # @param user_code [String] The user_code returned by the device authorization request and provided to the user by the device.
+      # GetDeviceAuthorizationRequest
+      # Get device authorization request   Get the device authorization based on the provided \&quot;user code\&quot;.  This will return the device authorization request, which contains the device authorization id  that is required to authorize the request once the user signed in or to deny it.
+          # @param oidc_service_get_device_authorization_request_request [OIDCServiceGetDeviceAuthorizationRequestRequest] 
       # @param [Hash] opts the optional parameters
     # @return [OIDCServiceGetDeviceAuthorizationRequestResponse]
-    def o_idc_service_get_device_authorization_request(user_code, opts = {})
+    def get_device_authorization_request(oidc_service_get_device_authorization_request_request, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::OIDCServiceApi.o_idc_service_get_device_authorization_request ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::OIDCServiceApi.get_device_authorization_request ...' # MODIFIED
     end
-          # verify the required parameter 'user_code' is set
-          if @api_client.config.client_side_validation && user_code.nil?
-          fail ArgumentError, "Missing the required parameter 'user_code' when calling Api::OIDCServiceApi.o_idc_service_get_device_authorization_request" # MODIFIED
+          # verify the required parameter 'oidc_service_get_device_authorization_request_request' is set
+          if @api_client.config.client_side_validation && oidc_service_get_device_authorization_request_request.nil?
+          fail ArgumentError, "Missing the required parameter 'oidc_service_get_device_authorization_request_request' when calling Api::OIDCServiceApi.get_device_authorization_request" # MODIFIED
           end
     # resource path
-    local_var_path = '/v2/oidc/device_authorization/{userCode}'.sub('{' + 'userCode' + '}', CGI.escape(user_code.to_s))
+    local_var_path = '/zitadel.oidc.v2.OIDCService/GetDeviceAuthorizationRequest'
 
     # query parameters
     query_params = opts[:query_params] || {}
@@ -221,12 +214,17 @@ module Zitadel::Client::Api
     header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
 
     # form parameters
     form_params = opts[:form_params] || {}
 
     # http body (model)
-    post_body = opts[:debug_body]
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(oidc_service_get_device_authorization_request_request)
 
     # return_type
     return_type = opts[:debug_return_type] || 'OIDCServiceGetDeviceAuthorizationRequestResponse'
@@ -235,7 +233,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::OIDCServiceApi.o_idc_service_get_device_authorization_request", # MODIFIED
+    :operation => :"Api::OIDCServiceApi.get_device_authorization_request", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -244,9 +242,9 @@ module Zitadel::Client::Api
     :return_type => return_type
     )
 
-    data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::OIDCServiceApi#o_idc_service_get_device_authorization_request\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::OIDCServiceApi#get_device_authorization_request\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data
     end

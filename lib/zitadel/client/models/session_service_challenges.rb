@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class SessionServiceChallenges
+        class SessionServiceChallenges
     attr_accessor :web_auth_n
 
     attr_accessor :otp_sms
@@ -43,7 +43,7 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'web_auth_n' => :'SessionServiceChallengesWebAuthN',
+        :'web_auth_n' => :'SessionServiceWebAuthN',
         :'otp_sms' => :'String',
         :'otp_email' => :'String'
       }
@@ -52,6 +52,8 @@ module Zitadel::Client::Models
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'otp_sms',
+        :'otp_email'
       ])
     end
 
@@ -84,21 +86,6 @@ module Zitadel::Client::Models
       if attributes.key?(:'otp_email')
         self.otp_email = attributes[:'otp_email']
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
     end
 
     # Checks equality by comparing each attribute.

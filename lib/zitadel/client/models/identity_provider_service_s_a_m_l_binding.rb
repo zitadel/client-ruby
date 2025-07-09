@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class IdentityProviderServiceSAMLBinding
+          class IdentityProviderServiceSAMLBinding
     SAML_BINDING_UNSPECIFIED = "SAML_BINDING_UNSPECIFIED".freeze
     SAML_BINDING_POST = "SAML_BINDING_POST".freeze
     SAML_BINDING_REDIRECT = "SAML_BINDING_REDIRECT".freeze

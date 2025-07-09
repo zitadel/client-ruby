@@ -14,8 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceHashedPassword
-    # \"Encoded hash of a password in Modular Crypt Format: https://zitadel.com/docs/concepts/architecture/secrets#hashed-secrets\"
+        class UserServiceHashedPassword
     attr_accessor :hash
 
     attr_accessor :change_required
@@ -81,49 +80,11 @@ module Zitadel::Client::Models
       end
     end
 
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      if @hash.nil?
-        invalid_properties.push('invalid value for "hash", hash cannot be nil.')
-      end
-
-      if @hash.to_s.length > 200
-        invalid_properties.push('invalid value for "hash", the character length must be smaller than or equal to 200.')
-      end
-
-      if @hash.to_s.length < 1
-        invalid_properties.push('invalid value for "hash", the character length must be great than or equal to 1.')
-      end
-
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @hash.nil?
-      return false if @hash.to_s.length > 200
-      return false if @hash.to_s.length < 1
-      true
-    end
-
     # Custom attribute writer method with validation
     # @param [String] hash Value to be assigned
     def hash=(hash)
       if hash.nil?
         fail ArgumentError, 'hash cannot be nil'
-      end
-
-      if hash.to_s.length > 200
-        fail ArgumentError, 'invalid value for "hash", the character length must be smaller than or equal to 200.'
-      end
-
-      if hash.to_s.length < 1
-        fail ArgumentError, 'invalid value for "hash", the character length must be great than or equal to 1.'
       end
 
       @hash = hash

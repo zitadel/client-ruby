@@ -14,7 +14,8 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceIDPLDAPAccessInformation
+        class UserServiceIDPLDAPAccessInformation
+    # `Struct` represents a structured data value, consisting of fields  which map to dynamically typed values. In some languages, `Struct`  might be supported by a native representation. For example, in  scripting languages like JS a struct is represented as an  object. The details of that representation are described together  with the proto support for the language.   The JSON representation for `Struct` is JSON object.
     attr_accessor :attributes
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -37,7 +38,7 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'attributes' => :'Object'
+        :'attributes' => :'Hash<String, Object>'
       }
     end
 
@@ -66,23 +67,10 @@ module Zitadel::Client::Models
       }
 
       if attributes.key?(:'attributes')
-        self.attributes = attributes[:'attributes']
+        if (value = attributes[:'attributes']).is_a?(Hash)
+          self.attributes = value
+        end
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
     end
 
     # Checks equality by comparing each attribute.

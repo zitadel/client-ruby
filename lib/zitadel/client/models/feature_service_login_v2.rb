@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class FeatureServiceLoginV2
+        class FeatureServiceLoginV2
     # Require that all users must use the new login UI. If enabled, all users will be redirected to the login V2 regardless of the application's preference.
     attr_accessor :required
 
@@ -50,6 +50,7 @@ module Zitadel::Client::Models
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'base_uri'
       ])
     end
 
@@ -78,21 +79,6 @@ module Zitadel::Client::Models
       if attributes.key?(:'base_uri')
         self.base_uri = attributes[:'base_uri']
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
     end
 
     # Checks equality by comparing each attribute.

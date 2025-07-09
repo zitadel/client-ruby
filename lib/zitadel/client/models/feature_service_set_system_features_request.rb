@@ -14,45 +14,29 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class FeatureServiceSetSystemFeaturesRequest
-    # The login UI will use the settings of the default org (and not from the instance) if no organization context is set
+        class FeatureServiceSetSystemFeaturesRequest
     attr_accessor :login_default_org
 
-    # Enable projection triggers during an introspection request. This can act as workaround if there are noticeable consistency issues in the introspection response but can have an impact on performance. We are planning to remove triggers for introspection requests in the future. Please raise an issue if you needed to enable this feature.
-    attr_accessor :oidc_trigger_introspection_projections
-
-    # We have recently refactored the introspection endpoint for performance reasons. This feature can be used to rollback to the legacy implementation if unexpected bugs arise. Please raise an issue if you needed to enable this feature.
-    attr_accessor :oidc_legacy_introspection
-
-    # User Schemas allow to manage data schemas of user. If the flag is enabled, you'll be able to use the new API and its features. Note that it is still in an early stage.
     attr_accessor :user_schema
 
-    # Enable the experimental `urn:ietf:params:oauth:grant-type:token-exchange` grant type for the OIDC token endpoint. Token exchange can be used to request tokens with a lesser scope or impersonate other users. See the security policy to allow impersonation on an instance.
     attr_accessor :oidc_token_exchange
 
-    # Improves performance of specified execution paths.
     attr_accessor :improved_performance
 
-    # If the flag is enabled, you'll be able to terminate a single session from the login UI by providing an id_token with a `sid` claim as id_token_hint on the end_session endpoint. Note that currently all sessions from the same user agent (browser) are terminated in the login UI. Sessions managed through the Session API already allow the termination of single sessions.
     attr_accessor :oidc_single_v1_session_termination
 
-    # Do not push user token meta-event user.token.v2.added to improve performance on many concurrent single (machine-)user logins
     attr_accessor :disable_user_token_event
 
-    # If the flag is enabled, you'll be able to use the OIDC Back-Channel Logout to be notified in your application about terminated user sessions.
     attr_accessor :enable_back_channel_logout
 
     attr_accessor :login_v2
 
-    # Enable a newer, more performant, permission check used for v2 and v3 resource based APIs.
     attr_accessor :permission_check_v2
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'login_default_org' => :'loginDefaultOrg',
-        :'oidc_trigger_introspection_projections' => :'oidcTriggerIntrospectionProjections',
-        :'oidc_legacy_introspection' => :'oidcLegacyIntrospection',
         :'user_schema' => :'userSchema',
         :'oidc_token_exchange' => :'oidcTokenExchange',
         :'improved_performance' => :'improvedPerformance',
@@ -78,8 +62,6 @@ module Zitadel::Client::Models
     def self.openapi_types
       {
         :'login_default_org' => :'Boolean',
-        :'oidc_trigger_introspection_projections' => :'Boolean',
-        :'oidc_legacy_introspection' => :'Boolean',
         :'user_schema' => :'Boolean',
         :'oidc_token_exchange' => :'Boolean',
         :'improved_performance' => :'Array<FeatureServiceImprovedPerformance>',
@@ -94,6 +76,13 @@ module Zitadel::Client::Models
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'login_default_org',
+        :'user_schema',
+        :'oidc_token_exchange',
+        :'oidc_single_v1_session_termination',
+        :'disable_user_token_event',
+        :'enable_back_channel_logout',
+        :'permission_check_v2'
       ])
     end
 
@@ -117,14 +106,6 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'login_default_org')
         self.login_default_org = attributes[:'login_default_org']
-      end
-
-      if attributes.key?(:'oidc_trigger_introspection_projections')
-        self.oidc_trigger_introspection_projections = attributes[:'oidc_trigger_introspection_projections']
-      end
-
-      if attributes.key?(:'oidc_legacy_introspection')
-        self.oidc_legacy_introspection = attributes[:'oidc_legacy_introspection']
       end
 
       if attributes.key?(:'user_schema')
@@ -162,29 +143,12 @@ module Zitadel::Client::Models
       end
     end
 
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
-    end
-
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
           login_default_org == o.login_default_org &&
-          oidc_trigger_introspection_projections == o.oidc_trigger_introspection_projections &&
-          oidc_legacy_introspection == o.oidc_legacy_introspection &&
           user_schema == o.user_schema &&
           oidc_token_exchange == o.oidc_token_exchange &&
           improved_performance == o.improved_performance &&
@@ -204,7 +168,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [login_default_org, oidc_trigger_introspection_projections, oidc_legacy_introspection, user_schema, oidc_token_exchange, improved_performance, oidc_single_v1_session_termination, disable_user_token_event, enable_back_channel_logout, login_v2, permission_check_v2].hash
+      [login_default_org, user_schema, oidc_token_exchange, improved_performance, oidc_single_v1_session_termination, disable_user_token_event, enable_back_channel_logout, login_v2, permission_check_v2].hash
     end
 
 # Builds the object from hash

@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class OIDCServiceErrorReason
+          class OIDCServiceErrorReason
     ERROR_REASON_UNSPECIFIED = "ERROR_REASON_UNSPECIFIED".freeze
     ERROR_REASON_INVALID_REQUEST = "ERROR_REASON_INVALID_REQUEST".freeze
     ERROR_REASON_UNAUTHORIZED_CLIENT = "ERROR_REASON_UNAUTHORIZED_CLIENT".freeze

@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class SettingsServiceThemeMode
+          class SettingsServiceThemeMode
     THEME_MODE_UNSPECIFIED = "THEME_MODE_UNSPECIFIED".freeze
     THEME_MODE_AUTO = "THEME_MODE_AUTO".freeze
     THEME_MODE_LIGHT = "THEME_MODE_LIGHT".freeze

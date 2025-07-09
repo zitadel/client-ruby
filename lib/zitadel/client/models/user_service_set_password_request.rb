@@ -14,17 +14,19 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceSetPasswordRequest
+        class UserServiceSetPasswordRequest
+    attr_accessor :user_id
+
     attr_accessor :new_password
 
     attr_accessor :current_password
 
-    # \"the verification code generated during password reset request\"
     attr_accessor :verification_code
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'user_id' => :'userId',
         :'new_password' => :'newPassword',
         :'current_password' => :'currentPassword',
         :'verification_code' => :'verificationCode'
@@ -44,6 +46,7 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'user_id' => :'String',
         :'new_password' => :'UserServicePassword',
         :'current_password' => :'String',
         :'verification_code' => :'String'
@@ -74,102 +77,33 @@ module Zitadel::Client::Models
         h[k.to_sym] = v
       }
 
+      if attributes.key?(:'user_id')
+        self.user_id = attributes[:'user_id']
+      else
+        self.user_id = nil
+      end
+
       if attributes.key?(:'new_password')
         self.new_password = attributes[:'new_password']
       end
 
       if attributes.key?(:'current_password')
         self.current_password = attributes[:'current_password']
-      else
-        self.current_password = nil
       end
 
       if attributes.key?(:'verification_code')
         self.verification_code = attributes[:'verification_code']
-      else
-        self.verification_code = nil
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      if @current_password.nil?
-        invalid_properties.push('invalid value for "current_password", current_password cannot be nil.')
-      end
-
-      if @current_password.to_s.length > 200
-        invalid_properties.push('invalid value for "current_password", the character length must be smaller than or equal to 200.')
-      end
-
-      if @current_password.to_s.length < 1
-        invalid_properties.push('invalid value for "current_password", the character length must be great than or equal to 1.')
-      end
-
-      if @verification_code.nil?
-        invalid_properties.push('invalid value for "verification_code", verification_code cannot be nil.')
-      end
-
-      if @verification_code.to_s.length > 20
-        invalid_properties.push('invalid value for "verification_code", the character length must be smaller than or equal to 20.')
-      end
-
-      if @verification_code.to_s.length < 1
-        invalid_properties.push('invalid value for "verification_code", the character length must be great than or equal to 1.')
-      end
-
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @current_password.nil?
-      return false if @current_password.to_s.length > 200
-      return false if @current_password.to_s.length < 1
-      return false if @verification_code.nil?
-      return false if @verification_code.to_s.length > 20
-      return false if @verification_code.to_s.length < 1
-      true
     end
 
     # Custom attribute writer method with validation
-    # @param [String] current_password Value to be assigned
-    def current_password=(current_password)
-      if current_password.nil?
-        fail ArgumentError, 'current_password cannot be nil'
+    # @param [String] user_id Value to be assigned
+    def user_id=(user_id)
+      if user_id.nil?
+        fail ArgumentError, 'user_id cannot be nil'
       end
 
-      if current_password.to_s.length > 200
-        fail ArgumentError, 'invalid value for "current_password", the character length must be smaller than or equal to 200.'
-      end
-
-      if current_password.to_s.length < 1
-        fail ArgumentError, 'invalid value for "current_password", the character length must be great than or equal to 1.'
-      end
-
-      @current_password = current_password
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] verification_code Value to be assigned
-    def verification_code=(verification_code)
-      if verification_code.nil?
-        fail ArgumentError, 'verification_code cannot be nil'
-      end
-
-      if verification_code.to_s.length > 20
-        fail ArgumentError, 'invalid value for "verification_code", the character length must be smaller than or equal to 20.'
-      end
-
-      if verification_code.to_s.length < 1
-        fail ArgumentError, 'invalid value for "verification_code", the character length must be great than or equal to 1.'
-      end
-
-      @verification_code = verification_code
+      @user_id = user_id
     end
 
     # Checks equality by comparing each attribute.
@@ -177,6 +111,7 @@ module Zitadel::Client::Models
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          user_id == o.user_id &&
           new_password == o.new_password &&
           current_password == o.current_password &&
           verification_code == o.verification_code
@@ -191,7 +126,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [new_password, current_password, verification_code].hash
+      [user_id, new_password, current_password, verification_code].hash
     end
 
 # Builds the object from hash

@@ -14,19 +14,19 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class WebKeyServiceCreateWebKeyRequest
-    attr_accessor :rsa
-
+        class WebKeyServiceCreateWebKeyRequest
     attr_accessor :ecdsa
 
     attr_accessor :ed25519
 
+    attr_accessor :rsa
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'rsa' => :'rsa',
         :'ecdsa' => :'ecdsa',
-        :'ed25519' => :'ed25519'
+        :'ed25519' => :'ed25519',
+        :'rsa' => :'rsa'
       }
     end
 
@@ -43,9 +43,9 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'rsa' => :'WebKeyServiceBetaRSA',
-        :'ecdsa' => :'WebKeyServiceBetaECDSA',
-        :'ed25519' => :'Object'
+        :'ecdsa' => :'WebKeyServiceECDSA',
+        :'ed25519' => :'Object',
+        :'rsa' => :'WebKeyServiceRSA'
       }
     end
 
@@ -73,10 +73,6 @@ module Zitadel::Client::Models
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'rsa')
-        self.rsa = attributes[:'rsa']
-      end
-
       if attributes.key?(:'ecdsa')
         self.ecdsa = attributes[:'ecdsa']
       end
@@ -84,21 +80,10 @@ module Zitadel::Client::Models
       if attributes.key?(:'ed25519')
         self.ed25519 = attributes[:'ed25519']
       end
-    end
 
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
+      if attributes.key?(:'rsa')
+        self.rsa = attributes[:'rsa']
+      end
     end
 
     # Checks equality by comparing each attribute.
@@ -106,9 +91,9 @@ module Zitadel::Client::Models
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          rsa == o.rsa &&
           ecdsa == o.ecdsa &&
-          ed25519 == o.ed25519
+          ed25519 == o.ed25519 &&
+          rsa == o.rsa
     end
 
     # @see the `==` method
@@ -120,7 +105,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [rsa, ecdsa, ed25519].hash
+      [ecdsa, ed25519, rsa].hash
     end
 
 # Builds the object from hash

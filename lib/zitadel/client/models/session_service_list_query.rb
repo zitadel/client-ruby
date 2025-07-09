@@ -14,14 +14,11 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  # Object unspecific list filters like offset, limit and asc/desc.
-  class SessionServiceListQuery
+        class SessionServiceListQuery
     attr_accessor :offset
 
-    # Maximum amount of events returned. The default is set to 1000 in https://github.com/zitadel/zitadel/blob/new-eventstore/cmd/zitadel/startup.yaml. If the limit exceeds the maximum configured ZITADEL will throw an error. If no limit is present the default is taken.
     attr_accessor :limit
 
-    # default is descending
     attr_accessor :asc
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -46,7 +43,7 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'offset' => :'String',
+        :'offset' => :'Object',
         :'limit' => :'Integer',
         :'asc' => :'Boolean'
       }
@@ -55,6 +52,7 @@ module Zitadel::Client::Models
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'offset',
       ])
     end
 
@@ -87,21 +85,6 @@ module Zitadel::Client::Models
       if attributes.key?(:'asc')
         self.asc = attributes[:'asc']
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
     end
 
     # Checks equality by comparing each attribute.

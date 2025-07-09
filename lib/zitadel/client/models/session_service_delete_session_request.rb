@@ -14,13 +14,15 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class SessionServiceDeleteSessionRequest
-    # \"The current token of the session, previously returned on the create / update request. The token is required unless the authenticated user terminates the own session or is granted the `session.delete` permission.\"
+        class SessionServiceDeleteSessionRequest
+    attr_accessor :session_id
+
     attr_accessor :session_token
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'session_id' => :'sessionId',
         :'session_token' => :'sessionToken'
       }
     end
@@ -38,6 +40,7 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'session_id' => :'String',
         :'session_token' => :'String'
       }
     end
@@ -45,6 +48,7 @@ module Zitadel::Client::Models
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'session_token'
       ])
     end
 
@@ -66,24 +70,13 @@ module Zitadel::Client::Models
         h[k.to_sym] = v
       }
 
+      if attributes.key?(:'session_id')
+        self.session_id = attributes[:'session_id']
+      end
+
       if attributes.key?(:'session_token')
         self.session_token = attributes[:'session_token']
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
     end
 
     # Checks equality by comparing each attribute.
@@ -91,6 +84,7 @@ module Zitadel::Client::Models
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          session_id == o.session_id &&
           session_token == o.session_token
     end
 
@@ -103,7 +97,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [session_token].hash
+      [session_id, session_token].hash
     end
 
 # Builds the object from hash

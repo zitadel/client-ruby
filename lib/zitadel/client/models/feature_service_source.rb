@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class FeatureServiceSource
+          class FeatureServiceSource
     SOURCE_UNSPECIFIED = "SOURCE_UNSPECIFIED".freeze
     SOURCE_SYSTEM = "SOURCE_SYSTEM".freeze
     SOURCE_INSTANCE = "SOURCE_INSTANCE".freeze

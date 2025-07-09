@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceUserState
+          class UserServiceUserState
     USER_STATE_UNSPECIFIED = "USER_STATE_UNSPECIFIED".freeze
     USER_STATE_ACTIVE = "USER_STATE_ACTIVE".freeze
     USER_STATE_INACTIVE = "USER_STATE_INACTIVE".freeze

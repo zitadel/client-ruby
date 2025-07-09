@@ -14,22 +14,16 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class FeatureServiceGetInstanceFeaturesResponse
+        class FeatureServiceGetInstanceFeaturesResponse
     attr_accessor :details
 
     attr_accessor :login_default_org
-
-    attr_accessor :oidc_trigger_introspection_projections
-
-    attr_accessor :oidc_legacy_introspection
 
     attr_accessor :user_schema
 
     attr_accessor :oidc_token_exchange
 
     attr_accessor :improved_performance
-
-    attr_accessor :web_key
 
     attr_accessor :debug_oidc_parent_error
 
@@ -50,12 +44,9 @@ module Zitadel::Client::Models
       {
         :'details' => :'details',
         :'login_default_org' => :'loginDefaultOrg',
-        :'oidc_trigger_introspection_projections' => :'oidcTriggerIntrospectionProjections',
-        :'oidc_legacy_introspection' => :'oidcLegacyIntrospection',
         :'user_schema' => :'userSchema',
         :'oidc_token_exchange' => :'oidcTokenExchange',
         :'improved_performance' => :'improvedPerformance',
-        :'web_key' => :'webKey',
         :'debug_oidc_parent_error' => :'debugOidcParentError',
         :'oidc_single_v1_session_termination' => :'oidcSingleV1SessionTermination',
         :'disable_user_token_event' => :'disableUserTokenEvent',
@@ -81,12 +72,9 @@ module Zitadel::Client::Models
       {
         :'details' => :'FeatureServiceDetails',
         :'login_default_org' => :'FeatureServiceFeatureFlag',
-        :'oidc_trigger_introspection_projections' => :'FeatureServiceFeatureFlag',
-        :'oidc_legacy_introspection' => :'FeatureServiceFeatureFlag',
         :'user_schema' => :'FeatureServiceFeatureFlag',
         :'oidc_token_exchange' => :'FeatureServiceFeatureFlag',
         :'improved_performance' => :'FeatureServiceImprovedPerformanceFeatureFlag',
-        :'web_key' => :'FeatureServiceFeatureFlag',
         :'debug_oidc_parent_error' => :'FeatureServiceFeatureFlag',
         :'oidc_single_v1_session_termination' => :'FeatureServiceFeatureFlag',
         :'disable_user_token_event' => :'FeatureServiceFeatureFlag',
@@ -129,14 +117,6 @@ module Zitadel::Client::Models
         self.login_default_org = attributes[:'login_default_org']
       end
 
-      if attributes.key?(:'oidc_trigger_introspection_projections')
-        self.oidc_trigger_introspection_projections = attributes[:'oidc_trigger_introspection_projections']
-      end
-
-      if attributes.key?(:'oidc_legacy_introspection')
-        self.oidc_legacy_introspection = attributes[:'oidc_legacy_introspection']
-      end
-
       if attributes.key?(:'user_schema')
         self.user_schema = attributes[:'user_schema']
       end
@@ -147,10 +127,6 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'improved_performance')
         self.improved_performance = attributes[:'improved_performance']
-      end
-
-      if attributes.key?(:'web_key')
-        self.web_key = attributes[:'web_key']
       end
 
       if attributes.key?(:'debug_oidc_parent_error')
@@ -182,21 +158,6 @@ module Zitadel::Client::Models
       end
     end
 
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
-    end
-
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -204,12 +165,9 @@ module Zitadel::Client::Models
       self.class == o.class &&
           details == o.details &&
           login_default_org == o.login_default_org &&
-          oidc_trigger_introspection_projections == o.oidc_trigger_introspection_projections &&
-          oidc_legacy_introspection == o.oidc_legacy_introspection &&
           user_schema == o.user_schema &&
           oidc_token_exchange == o.oidc_token_exchange &&
           improved_performance == o.improved_performance &&
-          web_key == o.web_key &&
           debug_oidc_parent_error == o.debug_oidc_parent_error &&
           oidc_single_v1_session_termination == o.oidc_single_v1_session_termination &&
           disable_user_token_event == o.disable_user_token_event &&
@@ -228,7 +186,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [details, login_default_org, oidc_trigger_introspection_projections, oidc_legacy_introspection, user_schema, oidc_token_exchange, improved_performance, web_key, debug_oidc_parent_error, oidc_single_v1_session_termination, disable_user_token_event, enable_back_channel_logout, login_v2, permission_check_v2, console_use_v2_user_api].hash
+      [details, login_default_org, user_schema, oidc_token_exchange, improved_performance, debug_oidc_parent_error, oidc_single_v1_session_termination, disable_user_token_event, enable_back_channel_logout, login_v2, permission_check_v2, console_use_v2_user_api].hash
     end
 
 # Builds the object from hash

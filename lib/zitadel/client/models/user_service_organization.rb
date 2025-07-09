@@ -14,16 +14,16 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceOrganization
-    attr_accessor :org_id
-
+        class UserServiceOrganization
     attr_accessor :org_domain
+
+    attr_accessor :org_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'org_id' => :'orgId',
-        :'org_domain' => :'orgDomain'
+        :'org_domain' => :'orgDomain',
+        :'org_id' => :'orgId'
       }
     end
 
@@ -40,8 +40,8 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'org_id' => :'String',
-        :'org_domain' => :'String'
+        :'org_domain' => :'String',
+        :'org_id' => :'String'
       }
     end
 
@@ -69,28 +69,13 @@ module Zitadel::Client::Models
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'org_id')
-        self.org_id = attributes[:'org_id']
-      end
-
       if attributes.key?(:'org_domain')
         self.org_domain = attributes[:'org_domain']
       end
-    end
 
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
+      if attributes.key?(:'org_id')
+        self.org_id = attributes[:'org_id']
+      end
     end
 
     # Checks equality by comparing each attribute.
@@ -98,8 +83,8 @@ module Zitadel::Client::Models
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          org_id == o.org_id &&
-          org_domain == o.org_domain
+          org_domain == o.org_domain &&
+          org_id == o.org_id
     end
 
     # @see the `==` method
@@ -111,7 +96,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [org_id, org_domain].hash
+      [org_domain, org_id].hash
     end
 
 # Builds the object from hash

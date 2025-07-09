@@ -14,22 +14,25 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceSetPhoneRequest
+        class UserServiceSetPhoneRequest
+    attr_accessor :user_id
+
     attr_accessor :phone
 
-    attr_accessor :send_code
+    attr_accessor :is_verified
 
     attr_accessor :return_code
 
-    attr_accessor :is_verified
+    attr_accessor :send_code
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'user_id' => :'userId',
         :'phone' => :'phone',
-        :'send_code' => :'sendCode',
+        :'is_verified' => :'isVerified',
         :'return_code' => :'returnCode',
-        :'is_verified' => :'isVerified'
+        :'send_code' => :'sendCode'
       }
     end
 
@@ -46,10 +49,11 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'user_id' => :'String',
         :'phone' => :'String',
-        :'send_code' => :'Object',
+        :'is_verified' => :'Boolean',
         :'return_code' => :'Object',
-        :'is_verified' => :'Boolean'
+        :'send_code' => :'Object'
       }
     end
 
@@ -77,53 +81,39 @@ module Zitadel::Client::Models
         h[k.to_sym] = v
       }
 
+      if attributes.key?(:'user_id')
+        self.user_id = attributes[:'user_id']
+      else
+        self.user_id = nil
+      end
+
       if attributes.key?(:'phone')
         self.phone = attributes[:'phone']
       else
         self.phone = nil
       end
 
-      if attributes.key?(:'send_code')
-        self.send_code = attributes[:'send_code']
+      if attributes.key?(:'is_verified')
+        self.is_verified = attributes[:'is_verified']
       end
 
       if attributes.key?(:'return_code')
         self.return_code = attributes[:'return_code']
       end
 
-      if attributes.key?(:'is_verified')
-        self.is_verified = attributes[:'is_verified']
+      if attributes.key?(:'send_code')
+        self.send_code = attributes[:'send_code']
       end
     end
 
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      if @phone.nil?
-        invalid_properties.push('invalid value for "phone", phone cannot be nil.')
+    # Custom attribute writer method with validation
+    # @param [String] user_id Value to be assigned
+    def user_id=(user_id)
+      if user_id.nil?
+        fail ArgumentError, 'user_id cannot be nil'
       end
 
-      if @phone.to_s.length > 200
-        invalid_properties.push('invalid value for "phone", the character length must be smaller than or equal to 200.')
-      end
-
-      if @phone.to_s.length < 1
-        invalid_properties.push('invalid value for "phone", the character length must be great than or equal to 1.')
-      end
-
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @phone.nil?
-      return false if @phone.to_s.length > 200
-      return false if @phone.to_s.length < 1
-      true
+      @user_id = user_id
     end
 
     # Custom attribute writer method with validation
@@ -131,14 +121,6 @@ module Zitadel::Client::Models
     def phone=(phone)
       if phone.nil?
         fail ArgumentError, 'phone cannot be nil'
-      end
-
-      if phone.to_s.length > 200
-        fail ArgumentError, 'invalid value for "phone", the character length must be smaller than or equal to 200.'
-      end
-
-      if phone.to_s.length < 1
-        fail ArgumentError, 'invalid value for "phone", the character length must be great than or equal to 1.'
       end
 
       @phone = phone
@@ -149,10 +131,11 @@ module Zitadel::Client::Models
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          user_id == o.user_id &&
           phone == o.phone &&
-          send_code == o.send_code &&
+          is_verified == o.is_verified &&
           return_code == o.return_code &&
-          is_verified == o.is_verified
+          send_code == o.send_code
     end
 
     # @see the `==` method
@@ -164,7 +147,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [phone, send_code, return_code, is_verified].hash
+      [user_id, phone, is_verified, return_code, send_code].hash
     end
 
 # Builds the object from hash

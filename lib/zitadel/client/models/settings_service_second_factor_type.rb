@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class SettingsServiceSecondFactorType
+          class SettingsServiceSecondFactorType
     SECOND_FACTOR_TYPE_UNSPECIFIED = "SECOND_FACTOR_TYPE_UNSPECIFIED".freeze
     SECOND_FACTOR_TYPE_OTP = "SECOND_FACTOR_TYPE_OTP".freeze
     SECOND_FACTOR_TYPE_U2_F = "SECOND_FACTOR_TYPE_U2F".freeze

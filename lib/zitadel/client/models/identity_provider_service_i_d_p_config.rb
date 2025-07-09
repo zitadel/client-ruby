@@ -14,18 +14,12 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class IdentityProviderServiceIDPConfig
+        class IdentityProviderServiceIDPConfig
     attr_accessor :options
 
-    attr_accessor :ldap
+    attr_accessor :apple
 
-    attr_accessor :google
-
-    attr_accessor :oauth
-
-    attr_accessor :oidc
-
-    attr_accessor :jwt
+    attr_accessor :azure_ad
 
     attr_accessor :github
 
@@ -35,9 +29,15 @@ module Zitadel::Client::Models
 
     attr_accessor :gitlab_self_hosted
 
-    attr_accessor :azure_ad
+    attr_accessor :google
 
-    attr_accessor :apple
+    attr_accessor :jwt
+
+    attr_accessor :ldap
+
+    attr_accessor :oauth
+
+    attr_accessor :oidc
 
     attr_accessor :saml
 
@@ -45,17 +45,17 @@ module Zitadel::Client::Models
     def self.attribute_map
       {
         :'options' => :'options',
-        :'ldap' => :'ldap',
-        :'google' => :'google',
-        :'oauth' => :'oauth',
-        :'oidc' => :'oidc',
-        :'jwt' => :'jwt',
+        :'apple' => :'apple',
+        :'azure_ad' => :'azureAd',
         :'github' => :'github',
         :'github_es' => :'githubEs',
         :'gitlab' => :'gitlab',
         :'gitlab_self_hosted' => :'gitlabSelfHosted',
-        :'azure_ad' => :'azureAd',
-        :'apple' => :'apple',
+        :'google' => :'google',
+        :'jwt' => :'jwt',
+        :'ldap' => :'ldap',
+        :'oauth' => :'oauth',
+        :'oidc' => :'oidc',
         :'saml' => :'saml'
       }
     end
@@ -74,17 +74,17 @@ module Zitadel::Client::Models
     def self.openapi_types
       {
         :'options' => :'IdentityProviderServiceOptions',
-        :'ldap' => :'IdentityProviderServiceLDAPConfig',
-        :'google' => :'IdentityProviderServiceGoogleConfig',
-        :'oauth' => :'IdentityProviderServiceOAuthConfig',
-        :'oidc' => :'IdentityProviderServiceGenericOIDCConfig',
-        :'jwt' => :'IdentityProviderServiceJWTConfig',
+        :'apple' => :'IdentityProviderServiceAppleConfig',
+        :'azure_ad' => :'IdentityProviderServiceAzureADConfig',
         :'github' => :'IdentityProviderServiceGitHubConfig',
         :'github_es' => :'IdentityProviderServiceGitHubEnterpriseServerConfig',
         :'gitlab' => :'IdentityProviderServiceGitLabConfig',
         :'gitlab_self_hosted' => :'IdentityProviderServiceGitLabSelfHostedConfig',
-        :'azure_ad' => :'IdentityProviderServiceAzureADConfig',
-        :'apple' => :'IdentityProviderServiceAppleConfig',
+        :'google' => :'IdentityProviderServiceGoogleConfig',
+        :'jwt' => :'IdentityProviderServiceJWTConfig',
+        :'ldap' => :'IdentityProviderServiceLDAPConfig',
+        :'oauth' => :'IdentityProviderServiceOAuthConfig',
+        :'oidc' => :'IdentityProviderServiceGenericOIDCConfig',
         :'saml' => :'IdentityProviderServiceSAMLConfig'
       }
     end
@@ -117,24 +117,12 @@ module Zitadel::Client::Models
         self.options = attributes[:'options']
       end
 
-      if attributes.key?(:'ldap')
-        self.ldap = attributes[:'ldap']
+      if attributes.key?(:'apple')
+        self.apple = attributes[:'apple']
       end
 
-      if attributes.key?(:'google')
-        self.google = attributes[:'google']
-      end
-
-      if attributes.key?(:'oauth')
-        self.oauth = attributes[:'oauth']
-      end
-
-      if attributes.key?(:'oidc')
-        self.oidc = attributes[:'oidc']
-      end
-
-      if attributes.key?(:'jwt')
-        self.jwt = attributes[:'jwt']
+      if attributes.key?(:'azure_ad')
+        self.azure_ad = attributes[:'azure_ad']
       end
 
       if attributes.key?(:'github')
@@ -153,32 +141,29 @@ module Zitadel::Client::Models
         self.gitlab_self_hosted = attributes[:'gitlab_self_hosted']
       end
 
-      if attributes.key?(:'azure_ad')
-        self.azure_ad = attributes[:'azure_ad']
+      if attributes.key?(:'google')
+        self.google = attributes[:'google']
       end
 
-      if attributes.key?(:'apple')
-        self.apple = attributes[:'apple']
+      if attributes.key?(:'jwt')
+        self.jwt = attributes[:'jwt']
+      end
+
+      if attributes.key?(:'ldap')
+        self.ldap = attributes[:'ldap']
+      end
+
+      if attributes.key?(:'oauth')
+        self.oauth = attributes[:'oauth']
+      end
+
+      if attributes.key?(:'oidc')
+        self.oidc = attributes[:'oidc']
       end
 
       if attributes.key?(:'saml')
         self.saml = attributes[:'saml']
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
     end
 
     # Checks equality by comparing each attribute.
@@ -187,17 +172,17 @@ module Zitadel::Client::Models
       return true if self.equal?(o)
       self.class == o.class &&
           options == o.options &&
-          ldap == o.ldap &&
-          google == o.google &&
-          oauth == o.oauth &&
-          oidc == o.oidc &&
-          jwt == o.jwt &&
+          apple == o.apple &&
+          azure_ad == o.azure_ad &&
           github == o.github &&
           github_es == o.github_es &&
           gitlab == o.gitlab &&
           gitlab_self_hosted == o.gitlab_self_hosted &&
-          azure_ad == o.azure_ad &&
-          apple == o.apple &&
+          google == o.google &&
+          jwt == o.jwt &&
+          ldap == o.ldap &&
+          oauth == o.oauth &&
+          oidc == o.oidc &&
           saml == o.saml
     end
 
@@ -210,7 +195,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [options, ldap, google, oauth, oidc, jwt, github, github_es, gitlab, gitlab_self_hosted, azure_ad, apple, saml].hash
+      [options, apple, azure_ad, github, github_es, gitlab, gitlab_self_hosted, google, jwt, ldap, oauth, oidc, saml].hash
     end
 
 # Builds the object from hash

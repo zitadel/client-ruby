@@ -14,20 +14,19 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceStartIdentityProviderIntentRequest
-    # ID for existing identity provider
+        class UserServiceStartIdentityProviderIntentRequest
     attr_accessor :idp_id
 
-    attr_accessor :urls
-
     attr_accessor :ldap
+
+    attr_accessor :urls
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'idp_id' => :'idpId',
-        :'urls' => :'urls',
-        :'ldap' => :'ldap'
+        :'ldap' => :'ldap',
+        :'urls' => :'urls'
       }
     end
 
@@ -45,8 +44,8 @@ module Zitadel::Client::Models
     def self.openapi_types
       {
         :'idp_id' => :'String',
-        :'urls' => :'UserServiceRedirectURLs',
-        :'ldap' => :'UserServiceLDAPCredentials'
+        :'ldap' => :'UserServiceLDAPCredentials',
+        :'urls' => :'UserServiceRedirectURLs'
       }
     end
 
@@ -78,56 +77,13 @@ module Zitadel::Client::Models
         self.idp_id = attributes[:'idp_id']
       end
 
-      if attributes.key?(:'urls')
-        self.urls = attributes[:'urls']
-      end
-
       if attributes.key?(:'ldap')
         self.ldap = attributes[:'ldap']
       end
-    end
 
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      if !@idp_id.nil? && @idp_id.to_s.length > 200
-        invalid_properties.push('invalid value for "idp_id", the character length must be smaller than or equal to 200.')
+      if attributes.key?(:'urls')
+        self.urls = attributes[:'urls']
       end
-
-      if !@idp_id.nil? && @idp_id.to_s.length < 1
-        invalid_properties.push('invalid value for "idp_id", the character length must be great than or equal to 1.')
-      end
-
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@idp_id.nil? && @idp_id.to_s.length > 200
-      return false if !@idp_id.nil? && @idp_id.to_s.length < 1
-      true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] idp_id Value to be assigned
-    def idp_id=(idp_id)
-      if idp_id.nil?
-        fail ArgumentError, 'idp_id cannot be nil'
-      end
-
-      if idp_id.to_s.length > 200
-        fail ArgumentError, 'invalid value for "idp_id", the character length must be smaller than or equal to 200.'
-      end
-
-      if idp_id.to_s.length < 1
-        fail ArgumentError, 'invalid value for "idp_id", the character length must be great than or equal to 1.'
-      end
-
-      @idp_id = idp_id
     end
 
     # Checks equality by comparing each attribute.
@@ -136,8 +92,8 @@ module Zitadel::Client::Models
       return true if self.equal?(o)
       self.class == o.class &&
           idp_id == o.idp_id &&
-          urls == o.urls &&
-          ldap == o.ldap
+          ldap == o.ldap &&
+          urls == o.urls
     end
 
     # @see the `==` method
@@ -149,7 +105,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [idp_id, urls, ldap].hash
+      [idp_id, ldap, urls].hash
     end
 
 # Builds the object from hash

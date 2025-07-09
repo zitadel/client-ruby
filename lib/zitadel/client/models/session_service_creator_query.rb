@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class SessionServiceCreatorQuery
+        class SessionServiceCreatorQuery
     # ID of the user who created the session. If empty, the calling user's ID is used.
     attr_accessor :id
 
@@ -45,6 +45,7 @@ module Zitadel::Client::Models
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'id'
       ])
     end
 
@@ -69,40 +70,6 @@ module Zitadel::Client::Models
       if attributes.key?(:'id')
         self.id = attributes[:'id']
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      if !@id.nil? && @id.to_s.length > 200
-        invalid_properties.push('invalid value for "id", the character length must be smaller than or equal to 200.')
-      end
-
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@id.nil? && @id.to_s.length > 200
-      true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] id Value to be assigned
-    def id=(id)
-      if id.nil?
-        fail ArgumentError, 'id cannot be nil'
-      end
-
-      if id.to_s.length > 200
-        fail ArgumentError, 'invalid value for "id", the character length must be smaller than or equal to 200.'
-      end
-
-      @id = id
     end
 
     # Checks equality by comparing each attribute.

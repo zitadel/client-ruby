@@ -14,16 +14,19 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServicePasswordResetRequest
-    attr_accessor :send_link
+        class UserServicePasswordResetRequest
+    attr_accessor :user_id
 
     attr_accessor :return_code
+
+    attr_accessor :send_link
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'send_link' => :'sendLink',
-        :'return_code' => :'returnCode'
+        :'user_id' => :'userId',
+        :'return_code' => :'returnCode',
+        :'send_link' => :'sendLink'
       }
     end
 
@@ -40,8 +43,9 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'send_link' => :'UserServiceSendPasswordResetLink',
-        :'return_code' => :'Object'
+        :'user_id' => :'String',
+        :'return_code' => :'Object',
+        :'send_link' => :'UserServiceSendPasswordResetLink'
       }
     end
 
@@ -69,28 +73,29 @@ module Zitadel::Client::Models
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'send_link')
-        self.send_link = attributes[:'send_link']
+      if attributes.key?(:'user_id')
+        self.user_id = attributes[:'user_id']
+      else
+        self.user_id = nil
       end
 
       if attributes.key?(:'return_code')
         self.return_code = attributes[:'return_code']
       end
+
+      if attributes.key?(:'send_link')
+        self.send_link = attributes[:'send_link']
+      end
     end
 
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
+    # Custom attribute writer method with validation
+    # @param [String] user_id Value to be assigned
+    def user_id=(user_id)
+      if user_id.nil?
+        fail ArgumentError, 'user_id cannot be nil'
+      end
 
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
+      @user_id = user_id
     end
 
     # Checks equality by comparing each attribute.
@@ -98,8 +103,9 @@ module Zitadel::Client::Models
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          send_link == o.send_link &&
-          return_code == o.return_code
+          user_id == o.user_id &&
+          return_code == o.return_code &&
+          send_link == o.send_link
     end
 
     # @see the `==` method
@@ -111,7 +117,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [send_link, return_code].hash
+      [user_id, return_code, send_link].hash
     end
 
 # Builds the object from hash

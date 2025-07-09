@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class OrganizationServiceTextQueryMethod
+          class OrganizationServiceTextQueryMethod
     TEXT_QUERY_METHOD_EQUALS = "TEXT_QUERY_METHOD_EQUALS".freeze
     TEXT_QUERY_METHOD_EQUALS_IGNORE_CASE = "TEXT_QUERY_METHOD_EQUALS_IGNORE_CASE".freeze
     TEXT_QUERY_METHOD_STARTS_WITH = "TEXT_QUERY_METHOD_STARTS_WITH".freeze

@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceListUsersResponse
+        class UserServiceListUsersResponse
     attr_accessor :details
 
     attr_accessor :sorting_column
@@ -101,8 +101,6 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'sorting_column')
         self.sorting_column = attributes[:'sorting_column']
-      else
-        self.sorting_column = 'USER_FIELD_NAME_UNSPECIFIED'
       end
 
       if attributes.key?(:'result')
@@ -110,21 +108,6 @@ module Zitadel::Client::Models
           self.result = value
         end
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
     end
 
     # Checks equality by comparing each attribute.

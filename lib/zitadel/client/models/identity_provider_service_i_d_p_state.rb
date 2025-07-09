@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class IdentityProviderServiceIDPState
+          class IdentityProviderServiceIDPState
     IDP_STATE_UNSPECIFIED = "IDP_STATE_UNSPECIFIED".freeze
     IDP_STATE_ACTIVE = "IDP_STATE_ACTIVE".freeze
     IDP_STATE_INACTIVE = "IDP_STATE_INACTIVE".freeze

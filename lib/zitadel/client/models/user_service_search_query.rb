@@ -14,58 +14,58 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceSearchQuery
-    attr_accessor :user_name_query
-
-    attr_accessor :first_name_query
-
-    attr_accessor :last_name_query
-
-    attr_accessor :nick_name_query
+        class UserServiceSearchQuery
+    attr_accessor :and_query
 
     attr_accessor :display_name_query
 
     attr_accessor :email_query
 
-    attr_accessor :state_query
+    attr_accessor :first_name_query
 
-    attr_accessor :type_query
-
-    attr_accessor :login_name_query
+    attr_accessor :in_user_emails_query
 
     attr_accessor :in_user_ids_query
 
-    attr_accessor :or_query
+    attr_accessor :last_name_query
 
-    attr_accessor :and_query
+    attr_accessor :login_name_query
+
+    attr_accessor :nick_name_query
 
     attr_accessor :not_query
 
-    attr_accessor :in_user_emails_query
+    attr_accessor :or_query
 
     attr_accessor :organization_id_query
 
     attr_accessor :phone_query
 
+    attr_accessor :state_query
+
+    attr_accessor :type_query
+
+    attr_accessor :user_name_query
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'user_name_query' => :'userNameQuery',
-        :'first_name_query' => :'firstNameQuery',
-        :'last_name_query' => :'lastNameQuery',
-        :'nick_name_query' => :'nickNameQuery',
+        :'and_query' => :'andQuery',
         :'display_name_query' => :'displayNameQuery',
         :'email_query' => :'emailQuery',
+        :'first_name_query' => :'firstNameQuery',
+        :'in_user_emails_query' => :'inUserEmailsQuery',
+        :'in_user_ids_query' => :'inUserIdsQuery',
+        :'last_name_query' => :'lastNameQuery',
+        :'login_name_query' => :'loginNameQuery',
+        :'nick_name_query' => :'nickNameQuery',
+        :'not_query' => :'notQuery',
+        :'or_query' => :'orQuery',
+        :'organization_id_query' => :'organizationIdQuery',
+        :'phone_query' => :'phoneQuery',
         :'state_query' => :'stateQuery',
         :'type_query' => :'typeQuery',
-        :'login_name_query' => :'loginNameQuery',
-        :'in_user_ids_query' => :'inUserIdsQuery',
-        :'or_query' => :'orQuery',
-        :'and_query' => :'andQuery',
-        :'not_query' => :'notQuery',
-        :'in_user_emails_query' => :'inUserEmailsQuery',
-        :'organization_id_query' => :'organizationIdQuery',
-        :'phone_query' => :'phoneQuery'
+        :'user_name_query' => :'userNameQuery'
       }
     end
 
@@ -82,22 +82,22 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'user_name_query' => :'UserServiceUserNameQuery',
-        :'first_name_query' => :'UserServiceFirstNameQuery',
-        :'last_name_query' => :'UserServiceLastNameQuery',
-        :'nick_name_query' => :'UserServiceNickNameQuery',
+        :'and_query' => :'UserServiceAndQuery',
         :'display_name_query' => :'UserServiceDisplayNameQuery',
         :'email_query' => :'UserServiceEmailQuery',
+        :'first_name_query' => :'UserServiceFirstNameQuery',
+        :'in_user_emails_query' => :'UserServiceInUserEmailsQuery',
+        :'in_user_ids_query' => :'UserServiceInUserIDQuery',
+        :'last_name_query' => :'UserServiceLastNameQuery',
+        :'login_name_query' => :'UserServiceLoginNameQuery',
+        :'nick_name_query' => :'UserServiceNickNameQuery',
+        :'not_query' => :'UserServiceNotQuery',
+        :'or_query' => :'UserServiceOrQuery',
+        :'organization_id_query' => :'UserServiceOrganizationIdQuery',
+        :'phone_query' => :'UserServicePhoneQuery',
         :'state_query' => :'UserServiceStateQuery',
         :'type_query' => :'UserServiceTypeQuery',
-        :'login_name_query' => :'UserServiceLoginNameQuery',
-        :'in_user_ids_query' => :'UserServiceInUserIDQuery',
-        :'or_query' => :'UserServiceOrQuery',
-        :'and_query' => :'UserServiceAndQuery',
-        :'not_query' => :'UserServiceNotQuery',
-        :'in_user_emails_query' => :'UserServiceInUserEmailsQuery',
-        :'organization_id_query' => :'UserServiceOrganizationIdQuery',
-        :'phone_query' => :'UserServicePhoneQuery'
+        :'user_name_query' => :'UserServiceUserNameQuery'
       }
     end
 
@@ -125,20 +125,8 @@ module Zitadel::Client::Models
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'user_name_query')
-        self.user_name_query = attributes[:'user_name_query']
-      end
-
-      if attributes.key?(:'first_name_query')
-        self.first_name_query = attributes[:'first_name_query']
-      end
-
-      if attributes.key?(:'last_name_query')
-        self.last_name_query = attributes[:'last_name_query']
-      end
-
-      if attributes.key?(:'nick_name_query')
-        self.nick_name_query = attributes[:'nick_name_query']
+      if attributes.key?(:'and_query')
+        self.and_query = attributes[:'and_query']
       end
 
       if attributes.key?(:'display_name_query')
@@ -149,36 +137,36 @@ module Zitadel::Client::Models
         self.email_query = attributes[:'email_query']
       end
 
-      if attributes.key?(:'state_query')
-        self.state_query = attributes[:'state_query']
+      if attributes.key?(:'first_name_query')
+        self.first_name_query = attributes[:'first_name_query']
       end
 
-      if attributes.key?(:'type_query')
-        self.type_query = attributes[:'type_query']
-      end
-
-      if attributes.key?(:'login_name_query')
-        self.login_name_query = attributes[:'login_name_query']
+      if attributes.key?(:'in_user_emails_query')
+        self.in_user_emails_query = attributes[:'in_user_emails_query']
       end
 
       if attributes.key?(:'in_user_ids_query')
         self.in_user_ids_query = attributes[:'in_user_ids_query']
       end
 
-      if attributes.key?(:'or_query')
-        self.or_query = attributes[:'or_query']
+      if attributes.key?(:'last_name_query')
+        self.last_name_query = attributes[:'last_name_query']
       end
 
-      if attributes.key?(:'and_query')
-        self.and_query = attributes[:'and_query']
+      if attributes.key?(:'login_name_query')
+        self.login_name_query = attributes[:'login_name_query']
+      end
+
+      if attributes.key?(:'nick_name_query')
+        self.nick_name_query = attributes[:'nick_name_query']
       end
 
       if attributes.key?(:'not_query')
         self.not_query = attributes[:'not_query']
       end
 
-      if attributes.key?(:'in_user_emails_query')
-        self.in_user_emails_query = attributes[:'in_user_emails_query']
+      if attributes.key?(:'or_query')
+        self.or_query = attributes[:'or_query']
       end
 
       if attributes.key?(:'organization_id_query')
@@ -188,21 +176,18 @@ module Zitadel::Client::Models
       if attributes.key?(:'phone_query')
         self.phone_query = attributes[:'phone_query']
       end
-    end
 
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
+      if attributes.key?(:'state_query')
+        self.state_query = attributes[:'state_query']
+      end
 
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
+      if attributes.key?(:'type_query')
+        self.type_query = attributes[:'type_query']
+      end
+
+      if attributes.key?(:'user_name_query')
+        self.user_name_query = attributes[:'user_name_query']
+      end
     end
 
     # Checks equality by comparing each attribute.
@@ -210,22 +195,22 @@ module Zitadel::Client::Models
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          user_name_query == o.user_name_query &&
-          first_name_query == o.first_name_query &&
-          last_name_query == o.last_name_query &&
-          nick_name_query == o.nick_name_query &&
+          and_query == o.and_query &&
           display_name_query == o.display_name_query &&
           email_query == o.email_query &&
+          first_name_query == o.first_name_query &&
+          in_user_emails_query == o.in_user_emails_query &&
+          in_user_ids_query == o.in_user_ids_query &&
+          last_name_query == o.last_name_query &&
+          login_name_query == o.login_name_query &&
+          nick_name_query == o.nick_name_query &&
+          not_query == o.not_query &&
+          or_query == o.or_query &&
+          organization_id_query == o.organization_id_query &&
+          phone_query == o.phone_query &&
           state_query == o.state_query &&
           type_query == o.type_query &&
-          login_name_query == o.login_name_query &&
-          in_user_ids_query == o.in_user_ids_query &&
-          or_query == o.or_query &&
-          and_query == o.and_query &&
-          not_query == o.not_query &&
-          in_user_emails_query == o.in_user_emails_query &&
-          organization_id_query == o.organization_id_query &&
-          phone_query == o.phone_query
+          user_name_query == o.user_name_query
     end
 
     # @see the `==` method
@@ -237,7 +222,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [user_name_query, first_name_query, last_name_query, nick_name_query, display_name_query, email_query, state_query, type_query, login_name_query, in_user_ids_query, or_query, and_query, not_query, in_user_emails_query, organization_id_query, phone_query].hash
+      [and_query, display_name_query, email_query, first_name_query, in_user_emails_query, in_user_ids_query, last_name_query, login_name_query, nick_name_query, not_query, or_query, organization_id_query, phone_query, state_query, type_query, user_name_query].hash
     end
 
 # Builds the object from hash

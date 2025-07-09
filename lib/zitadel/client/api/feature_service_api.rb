@@ -19,32 +19,40 @@ module Zitadel::Client::Api
   def initialize(api_client = ApiClient.default)
   @api_client = api_client
   end
-      # Get Instance Features
-      # Returns all configured features for an instance. Unset fields mean the feature is the current system default.  Required permissions:  - none
+      # GetInstanceFeatures
+      # Get Instance Features   Returns all configured features for an instance. Unset fields mean the feature is the current system default.   Required permissions:   - none
+          # @param feature_service_get_instance_features_request [FeatureServiceGetInstanceFeaturesRequest] 
       # @param [Hash] opts the optional parameters
-        # @option opts [Boolean] :inheritance Inherit unset features from the resource owners. This option is recursive: if the flag is set, the resource&#39;s ancestors are consulted up to system defaults. If this option is disabled and the feature is not set on the instance, it will be omitted from the response or Not Found is returned when the instance has no features flags at all.
     # @return [FeatureServiceGetInstanceFeaturesResponse]
-    def feature_service_get_instance_features(opts = {})
+    def get_instance_features(feature_service_get_instance_features_request, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::FeatureServiceApi.feature_service_get_instance_features ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::FeatureServiceApi.get_instance_features ...' # MODIFIED
     end
+          # verify the required parameter 'feature_service_get_instance_features_request' is set
+          if @api_client.config.client_side_validation && feature_service_get_instance_features_request.nil?
+          fail ArgumentError, "Missing the required parameter 'feature_service_get_instance_features_request' when calling Api::FeatureServiceApi.get_instance_features" # MODIFIED
+          end
     # resource path
-    local_var_path = '/v2/features/instance'
+    local_var_path = '/zitadel.feature.v2.FeatureService/GetInstanceFeatures'
 
     # query parameters
     query_params = opts[:query_params] || {}
-        query_params[:'inheritance'] = opts[:'inheritance'] if !opts[:'inheritance'].nil?
 
     # header parameters
     header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
 
     # form parameters
     form_params = opts[:form_params] || {}
 
     # http body (model)
-    post_body = opts[:debug_body]
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(feature_service_get_instance_features_request)
 
     # return_type
     return_type = opts[:debug_return_type] || 'FeatureServiceGetInstanceFeaturesResponse'
@@ -53,7 +61,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::FeatureServiceApi.feature_service_get_instance_features", # MODIFIED
+    :operation => :"Api::FeatureServiceApi.get_instance_features", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -62,44 +70,47 @@ module Zitadel::Client::Api
     :return_type => return_type
     )
 
-    data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::FeatureServiceApi#feature_service_get_instance_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::FeatureServiceApi#get_instance_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data
     end
 
-      # Get Organization Features
-      # Returns all configured features for an organization. Unset fields mean the feature is the current instance default.  Required permissions:  - org.feature.read  - no permission required for the organization the user belongs to
-          # @param organization_id [String] 
+      # GetOrganizationFeatures
+      # Get Organization Features   Returns all configured features for an organization. Unset fields mean the feature is the current instance default.   Required permissions:   - org.feature.read   - no permission required for the organization the user belongs to
+          # @param feature_service_get_organization_features_request [FeatureServiceGetOrganizationFeaturesRequest] 
       # @param [Hash] opts the optional parameters
-        # @option opts [Boolean] :inheritance Inherit unset features from the resource owners. This option is recursive: if the flag is set, the resource&#39;s ancestors are consulted up to system defaults. If this option is disabled and the feature is not set on the organization, it will be omitted from the response or Not Found is returned when the organization has no features flags at all.
     # @return [FeatureServiceGetOrganizationFeaturesResponse]
-    def feature_service_get_organization_features(organization_id, opts = {})
+    def get_organization_features(feature_service_get_organization_features_request, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::FeatureServiceApi.feature_service_get_organization_features ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::FeatureServiceApi.get_organization_features ...' # MODIFIED
     end
-          # verify the required parameter 'organization_id' is set
-          if @api_client.config.client_side_validation && organization_id.nil?
-          fail ArgumentError, "Missing the required parameter 'organization_id' when calling Api::FeatureServiceApi.feature_service_get_organization_features" # MODIFIED
+          # verify the required parameter 'feature_service_get_organization_features_request' is set
+          if @api_client.config.client_side_validation && feature_service_get_organization_features_request.nil?
+          fail ArgumentError, "Missing the required parameter 'feature_service_get_organization_features_request' when calling Api::FeatureServiceApi.get_organization_features" # MODIFIED
           end
     # resource path
-    local_var_path = '/v2/features/organization/{organizationId}'.sub('{' + 'organizationId' + '}', CGI.escape(organization_id.to_s))
+    local_var_path = '/zitadel.feature.v2.FeatureService/GetOrganizationFeatures'
 
     # query parameters
     query_params = opts[:query_params] || {}
-        query_params[:'inheritance'] = opts[:'inheritance'] if !opts[:'inheritance'].nil?
 
     # header parameters
     header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
 
     # form parameters
     form_params = opts[:form_params] || {}
 
     # http body (model)
-    post_body = opts[:debug_body]
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(feature_service_get_organization_features_request)
 
     # return_type
     return_type = opts[:debug_return_type] || 'FeatureServiceGetOrganizationFeaturesResponse'
@@ -108,7 +119,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::FeatureServiceApi.feature_service_get_organization_features", # MODIFIED
+    :operation => :"Api::FeatureServiceApi.get_organization_features", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -117,23 +128,28 @@ module Zitadel::Client::Api
     :return_type => return_type
     )
 
-    data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::FeatureServiceApi#feature_service_get_organization_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::FeatureServiceApi#get_organization_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data
     end
 
-      # Get System Features
-      # Returns all configured features for the system. Unset fields mean the feature is the current system default.  Required permissions:  - none
+      # GetSystemFeatures
+      # Get System Features   Returns all configured features for the system. Unset fields mean the feature is the current system default.   Required permissions:   - none
+          # @param body [Object] 
       # @param [Hash] opts the optional parameters
     # @return [FeatureServiceGetSystemFeaturesResponse]
-    def feature_service_get_system_features(opts = {})
+    def get_system_features(body = {}, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::FeatureServiceApi.feature_service_get_system_features ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::FeatureServiceApi.get_system_features ...' # MODIFIED
     end
+          # verify the required parameter 'body' is set
+          if @api_client.config.client_side_validation && body.nil?
+          fail ArgumentError, "Missing the required parameter 'body' when calling Api::FeatureServiceApi.get_system_features" # MODIFIED
+          end
     # resource path
-    local_var_path = '/v2/features/system'
+    local_var_path = '/zitadel.feature.v2.FeatureService/GetSystemFeatures'
 
     # query parameters
     query_params = opts[:query_params] || {}
@@ -142,12 +158,17 @@ module Zitadel::Client::Api
     header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
 
     # form parameters
     form_params = opts[:form_params] || {}
 
     # http body (model)
-    post_body = opts[:debug_body]
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(body)
 
     # return_type
     return_type = opts[:debug_return_type] || 'FeatureServiceGetSystemFeaturesResponse'
@@ -156,7 +177,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::FeatureServiceApi.feature_service_get_system_features", # MODIFIED
+    :operation => :"Api::FeatureServiceApi.get_system_features", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -165,44 +186,47 @@ module Zitadel::Client::Api
     :return_type => return_type
     )
 
-    data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::FeatureServiceApi#feature_service_get_system_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::FeatureServiceApi#get_system_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data
     end
 
-      # Get User Features
-      # Returns all configured features for a user. Unset fields mean the feature is the current organization default.  Required permissions:  - user.feature.read  - no permission required for the own user
-          # @param user_id [String] 
+      # GetUserFeatures
+      # Get User Features   Returns all configured features for a user. Unset fields mean the feature is the current organization default.   Required permissions:   - user.feature.read   - no permission required for the own user
+          # @param feature_service_get_user_features_request [FeatureServiceGetUserFeaturesRequest] 
       # @param [Hash] opts the optional parameters
-        # @option opts [Boolean] :inheritance Inherit unset features from the resource owners. This option is recursive: if the flag is set, the resource&#39;s ancestors are consulted up to system defaults. If this option is disabled and the feature is not set on the user, it will be ommitted from the response or Not Found is returned when the user has no features flags at all.
     # @return [FeatureServiceGetUserFeaturesResponse]
-    def feature_service_get_user_features(user_id, opts = {})
+    def get_user_features(feature_service_get_user_features_request, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::FeatureServiceApi.feature_service_get_user_features ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::FeatureServiceApi.get_user_features ...' # MODIFIED
     end
-          # verify the required parameter 'user_id' is set
-          if @api_client.config.client_side_validation && user_id.nil?
-          fail ArgumentError, "Missing the required parameter 'user_id' when calling Api::FeatureServiceApi.feature_service_get_user_features" # MODIFIED
+          # verify the required parameter 'feature_service_get_user_features_request' is set
+          if @api_client.config.client_side_validation && feature_service_get_user_features_request.nil?
+          fail ArgumentError, "Missing the required parameter 'feature_service_get_user_features_request' when calling Api::FeatureServiceApi.get_user_features" # MODIFIED
           end
     # resource path
-    local_var_path = '/v2/features/user/{userId}'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
+    local_var_path = '/zitadel.feature.v2.FeatureService/GetUserFeatures'
 
     # query parameters
     query_params = opts[:query_params] || {}
-        query_params[:'inheritance'] = opts[:'inheritance'] if !opts[:'inheritance'].nil?
 
     # header parameters
     header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
 
     # form parameters
     form_params = opts[:form_params] || {}
 
     # http body (model)
-    post_body = opts[:debug_body]
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(feature_service_get_user_features_request)
 
     # return_type
     return_type = opts[:debug_return_type] || 'FeatureServiceGetUserFeaturesResponse'
@@ -211,7 +235,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::FeatureServiceApi.feature_service_get_user_features", # MODIFIED
+    :operation => :"Api::FeatureServiceApi.get_user_features", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -220,23 +244,28 @@ module Zitadel::Client::Api
     :return_type => return_type
     )
 
-    data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::FeatureServiceApi#feature_service_get_user_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::FeatureServiceApi#get_user_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data
     end
 
-      # Reset Instance Features
-      # Deletes ALL configured features for an instance, reverting the behaviors to system defaults.  Required permissions:  - iam.feature.delete
+      # ResetInstanceFeatures
+      # Reset Instance Features   Deletes ALL configured features for an instance, reverting the behaviors to system defaults.   Required permissions:   - iam.feature.delete
+          # @param body [Object] 
       # @param [Hash] opts the optional parameters
     # @return [FeatureServiceResetInstanceFeaturesResponse]
-    def feature_service_reset_instance_features(opts = {})
+    def reset_instance_features(body = {}, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::FeatureServiceApi.feature_service_reset_instance_features ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::FeatureServiceApi.reset_instance_features ...' # MODIFIED
     end
+          # verify the required parameter 'body' is set
+          if @api_client.config.client_side_validation && body.nil?
+          fail ArgumentError, "Missing the required parameter 'body' when calling Api::FeatureServiceApi.reset_instance_features" # MODIFIED
+          end
     # resource path
-    local_var_path = '/v2/features/instance'
+    local_var_path = '/zitadel.feature.v2.FeatureService/ResetInstanceFeatures'
 
     # query parameters
     query_params = opts[:query_params] || {}
@@ -245,12 +274,17 @@ module Zitadel::Client::Api
     header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
 
     # form parameters
     form_params = opts[:form_params] || {}
 
     # http body (model)
-    post_body = opts[:debug_body]
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(body)
 
     # return_type
     return_type = opts[:debug_return_type] || 'FeatureServiceResetInstanceFeaturesResponse'
@@ -259,7 +293,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::FeatureServiceApi.feature_service_reset_instance_features", # MODIFIED
+    :operation => :"Api::FeatureServiceApi.reset_instance_features", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -268,28 +302,28 @@ module Zitadel::Client::Api
     :return_type => return_type
     )
 
-    data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::FeatureServiceApi#feature_service_reset_instance_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::FeatureServiceApi#reset_instance_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data
     end
 
-      # Reset Organization Features
-      # Deletes ALL configured features for an organization, reverting the behaviors to instance defaults.  Required permissions:  - org.feature.delete
-          # @param organization_id [String] 
+      # ResetOrganizationFeatures
+      # Reset Organization Features   Deletes ALL configured features for an organization, reverting the behaviors to instance defaults.   Required permissions:   - org.feature.delete
+          # @param feature_service_reset_organization_features_request [FeatureServiceResetOrganizationFeaturesRequest] 
       # @param [Hash] opts the optional parameters
     # @return [FeatureServiceResetOrganizationFeaturesResponse]
-    def feature_service_reset_organization_features(organization_id, opts = {})
+    def reset_organization_features(feature_service_reset_organization_features_request, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::FeatureServiceApi.feature_service_reset_organization_features ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::FeatureServiceApi.reset_organization_features ...' # MODIFIED
     end
-          # verify the required parameter 'organization_id' is set
-          if @api_client.config.client_side_validation && organization_id.nil?
-          fail ArgumentError, "Missing the required parameter 'organization_id' when calling Api::FeatureServiceApi.feature_service_reset_organization_features" # MODIFIED
+          # verify the required parameter 'feature_service_reset_organization_features_request' is set
+          if @api_client.config.client_side_validation && feature_service_reset_organization_features_request.nil?
+          fail ArgumentError, "Missing the required parameter 'feature_service_reset_organization_features_request' when calling Api::FeatureServiceApi.reset_organization_features" # MODIFIED
           end
     # resource path
-    local_var_path = '/v2/features/organization/{organizationId}'.sub('{' + 'organizationId' + '}', CGI.escape(organization_id.to_s))
+    local_var_path = '/zitadel.feature.v2.FeatureService/ResetOrganizationFeatures'
 
     # query parameters
     query_params = opts[:query_params] || {}
@@ -298,12 +332,17 @@ module Zitadel::Client::Api
     header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
 
     # form parameters
     form_params = opts[:form_params] || {}
 
     # http body (model)
-    post_body = opts[:debug_body]
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(feature_service_reset_organization_features_request)
 
     # return_type
     return_type = opts[:debug_return_type] || 'FeatureServiceResetOrganizationFeaturesResponse'
@@ -312,7 +351,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::FeatureServiceApi.feature_service_reset_organization_features", # MODIFIED
+    :operation => :"Api::FeatureServiceApi.reset_organization_features", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -321,23 +360,28 @@ module Zitadel::Client::Api
     :return_type => return_type
     )
 
-    data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::FeatureServiceApi#feature_service_reset_organization_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::FeatureServiceApi#reset_organization_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data
     end
 
-      # Reset System Features
-      # Deletes ALL configured features for the system, reverting the behaviors to system defaults.  Required permissions:  - system.feature.delete
+      # ResetSystemFeatures
+      # Reset System Features   Deletes ALL configured features for the system, reverting the behaviors to system defaults.   Required permissions:   - system.feature.delete
+          # @param body [Object] 
       # @param [Hash] opts the optional parameters
     # @return [FeatureServiceResetSystemFeaturesResponse]
-    def feature_service_reset_system_features(opts = {})
+    def reset_system_features(body = {}, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::FeatureServiceApi.feature_service_reset_system_features ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::FeatureServiceApi.reset_system_features ...' # MODIFIED
     end
+          # verify the required parameter 'body' is set
+          if @api_client.config.client_side_validation && body.nil?
+          fail ArgumentError, "Missing the required parameter 'body' when calling Api::FeatureServiceApi.reset_system_features" # MODIFIED
+          end
     # resource path
-    local_var_path = '/v2/features/system'
+    local_var_path = '/zitadel.feature.v2.FeatureService/ResetSystemFeatures'
 
     # query parameters
     query_params = opts[:query_params] || {}
@@ -346,12 +390,17 @@ module Zitadel::Client::Api
     header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
 
     # form parameters
     form_params = opts[:form_params] || {}
 
     # http body (model)
-    post_body = opts[:debug_body]
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(body)
 
     # return_type
     return_type = opts[:debug_return_type] || 'FeatureServiceResetSystemFeaturesResponse'
@@ -360,7 +409,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::FeatureServiceApi.feature_service_reset_system_features", # MODIFIED
+    :operation => :"Api::FeatureServiceApi.reset_system_features", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -369,28 +418,28 @@ module Zitadel::Client::Api
     :return_type => return_type
     )
 
-    data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::FeatureServiceApi#feature_service_reset_system_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::FeatureServiceApi#reset_system_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data
     end
 
-      # Reset User Features
-      # Deletes ALL configured features for a user, reverting the behaviors to organization defaults.  Required permissions:  - user.feature.delete
-          # @param user_id [String] 
+      # ResetUserFeatures
+      # Reset User Features   Deletes ALL configured features for a user, reverting the behaviors to organization defaults.   Required permissions:   - user.feature.delete
+          # @param feature_service_reset_user_features_request [FeatureServiceResetUserFeaturesRequest] 
       # @param [Hash] opts the optional parameters
     # @return [FeatureServiceResetUserFeaturesResponse]
-    def feature_service_reset_user_features(user_id, opts = {})
+    def reset_user_features(feature_service_reset_user_features_request, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::FeatureServiceApi.feature_service_reset_user_features ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::FeatureServiceApi.reset_user_features ...' # MODIFIED
     end
-          # verify the required parameter 'user_id' is set
-          if @api_client.config.client_side_validation && user_id.nil?
-          fail ArgumentError, "Missing the required parameter 'user_id' when calling Api::FeatureServiceApi.feature_service_reset_user_features" # MODIFIED
+          # verify the required parameter 'feature_service_reset_user_features_request' is set
+          if @api_client.config.client_side_validation && feature_service_reset_user_features_request.nil?
+          fail ArgumentError, "Missing the required parameter 'feature_service_reset_user_features_request' when calling Api::FeatureServiceApi.reset_user_features" # MODIFIED
           end
     # resource path
-    local_var_path = '/v2/features/user/{userId}'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
+    local_var_path = '/zitadel.feature.v2.FeatureService/ResetUserFeatures'
 
     # query parameters
     query_params = opts[:query_params] || {}
@@ -399,12 +448,17 @@ module Zitadel::Client::Api
     header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
 
     # form parameters
     form_params = opts[:form_params] || {}
 
     # http body (model)
-    post_body = opts[:debug_body]
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(feature_service_reset_user_features_request)
 
     # return_type
     return_type = opts[:debug_return_type] || 'FeatureServiceResetUserFeaturesResponse'
@@ -413,7 +467,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::FeatureServiceApi.feature_service_reset_user_features", # MODIFIED
+    :operation => :"Api::FeatureServiceApi.reset_user_features", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -422,28 +476,28 @@ module Zitadel::Client::Api
     :return_type => return_type
     )
 
-    data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::FeatureServiceApi#feature_service_reset_user_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::FeatureServiceApi#reset_user_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data
     end
 
-      # Set Instance Features
-      # Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.  Required permissions:  - iam.feature.write
+      # SetInstanceFeatures
+      # Set Instance Features   Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.   Required permissions:   - iam.feature.write
           # @param feature_service_set_instance_features_request [FeatureServiceSetInstanceFeaturesRequest] 
       # @param [Hash] opts the optional parameters
     # @return [FeatureServiceSetInstanceFeaturesResponse]
-    def feature_service_set_instance_features(feature_service_set_instance_features_request, opts = {})
+    def set_instance_features(feature_service_set_instance_features_request, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::FeatureServiceApi.feature_service_set_instance_features ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::FeatureServiceApi.set_instance_features ...' # MODIFIED
     end
           # verify the required parameter 'feature_service_set_instance_features_request' is set
           if @api_client.config.client_side_validation && feature_service_set_instance_features_request.nil?
-          fail ArgumentError, "Missing the required parameter 'feature_service_set_instance_features_request' when calling Api::FeatureServiceApi.feature_service_set_instance_features" # MODIFIED
+          fail ArgumentError, "Missing the required parameter 'feature_service_set_instance_features_request' when calling Api::FeatureServiceApi.set_instance_features" # MODIFIED
           end
     # resource path
-    local_var_path = '/v2/features/instance'
+    local_var_path = '/zitadel.feature.v2.FeatureService/SetInstanceFeatures'
 
     # query parameters
     query_params = opts[:query_params] || {}
@@ -471,7 +525,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::FeatureServiceApi.feature_service_set_instance_features", # MODIFIED
+    :operation => :"Api::FeatureServiceApi.set_instance_features", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -480,28 +534,28 @@ module Zitadel::Client::Api
     :return_type => return_type
     )
 
-    data, status_code, headers = @api_client.call_api(:PUT, local_var_path, new_options)
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::FeatureServiceApi#feature_service_set_instance_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::FeatureServiceApi#set_instance_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data
     end
 
-      # Set Organization Features
-      # Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.  Required permissions:  - org.feature.write
-          # @param organization_id [String] 
+      # SetOrganizationFeatures
+      # Set Organization Features   Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.   Required permissions:   - org.feature.write
+          # @param feature_service_set_organization_features_request [FeatureServiceSetOrganizationFeaturesRequest] 
       # @param [Hash] opts the optional parameters
     # @return [FeatureServiceSetOrganizationFeaturesResponse]
-    def feature_service_set_organization_features(organization_id, opts = {})
+    def set_organization_features(feature_service_set_organization_features_request, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::FeatureServiceApi.feature_service_set_organization_features ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::FeatureServiceApi.set_organization_features ...' # MODIFIED
     end
-          # verify the required parameter 'organization_id' is set
-          if @api_client.config.client_side_validation && organization_id.nil?
-          fail ArgumentError, "Missing the required parameter 'organization_id' when calling Api::FeatureServiceApi.feature_service_set_organization_features" # MODIFIED
+          # verify the required parameter 'feature_service_set_organization_features_request' is set
+          if @api_client.config.client_side_validation && feature_service_set_organization_features_request.nil?
+          fail ArgumentError, "Missing the required parameter 'feature_service_set_organization_features_request' when calling Api::FeatureServiceApi.set_organization_features" # MODIFIED
           end
     # resource path
-    local_var_path = '/v2/features/organization/{organizationId}'.sub('{' + 'organizationId' + '}', CGI.escape(organization_id.to_s))
+    local_var_path = '/zitadel.feature.v2.FeatureService/SetOrganizationFeatures'
 
     # query parameters
     query_params = opts[:query_params] || {}
@@ -510,12 +564,17 @@ module Zitadel::Client::Api
     header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
 
     # form parameters
     form_params = opts[:form_params] || {}
 
     # http body (model)
-    post_body = opts[:debug_body]
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(feature_service_set_organization_features_request)
 
     # return_type
     return_type = opts[:debug_return_type] || 'FeatureServiceSetOrganizationFeaturesResponse'
@@ -524,7 +583,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::FeatureServiceApi.feature_service_set_organization_features", # MODIFIED
+    :operation => :"Api::FeatureServiceApi.set_organization_features", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -533,28 +592,28 @@ module Zitadel::Client::Api
     :return_type => return_type
     )
 
-    data, status_code, headers = @api_client.call_api(:PUT, local_var_path, new_options)
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::FeatureServiceApi#feature_service_set_organization_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::FeatureServiceApi#set_organization_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data
     end
 
-      # Set System Features
-      # Configure and set features that apply to the complete system. Only fields present in the request are set or unset.  Required permissions:  - system.feature.write
+      # SetSystemFeatures
+      # Set System Features   Configure and set features that apply to the complete system. Only fields present in the request are set or unset.   Required permissions:   - system.feature.write
           # @param feature_service_set_system_features_request [FeatureServiceSetSystemFeaturesRequest] 
       # @param [Hash] opts the optional parameters
     # @return [FeatureServiceSetSystemFeaturesResponse]
-    def feature_service_set_system_features(feature_service_set_system_features_request, opts = {})
+    def set_system_features(feature_service_set_system_features_request, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::FeatureServiceApi.feature_service_set_system_features ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::FeatureServiceApi.set_system_features ...' # MODIFIED
     end
           # verify the required parameter 'feature_service_set_system_features_request' is set
           if @api_client.config.client_side_validation && feature_service_set_system_features_request.nil?
-          fail ArgumentError, "Missing the required parameter 'feature_service_set_system_features_request' when calling Api::FeatureServiceApi.feature_service_set_system_features" # MODIFIED
+          fail ArgumentError, "Missing the required parameter 'feature_service_set_system_features_request' when calling Api::FeatureServiceApi.set_system_features" # MODIFIED
           end
     # resource path
-    local_var_path = '/v2/features/system'
+    local_var_path = '/zitadel.feature.v2.FeatureService/SetSystemFeatures'
 
     # query parameters
     query_params = opts[:query_params] || {}
@@ -582,7 +641,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::FeatureServiceApi.feature_service_set_system_features", # MODIFIED
+    :operation => :"Api::FeatureServiceApi.set_system_features", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -591,28 +650,28 @@ module Zitadel::Client::Api
     :return_type => return_type
     )
 
-    data, status_code, headers = @api_client.call_api(:PUT, local_var_path, new_options)
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::FeatureServiceApi#feature_service_set_system_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::FeatureServiceApi#set_system_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data
     end
 
-      # Set User Features
-      # Configure and set features that apply to an user. Only fields present in the request are set or unset.  Required permissions:  - user.feature.write
-          # @param user_id [String] 
+      # SetUserFeatures
+      # Set User Features   Configure and set features that apply to an user. Only fields present in the request are set or unset.   Required permissions:   - user.feature.write
+          # @param feature_service_set_user_feature_request [FeatureServiceSetUserFeatureRequest] 
       # @param [Hash] opts the optional parameters
     # @return [FeatureServiceSetUserFeaturesResponse]
-    def feature_service_set_user_features(user_id, opts = {})
+    def set_user_features(feature_service_set_user_feature_request, opts = {})
     if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::FeatureServiceApi.feature_service_set_user_features ...' # MODIFIED
+    @api_client.config.logger.debug 'Calling API: Api::FeatureServiceApi.set_user_features ...' # MODIFIED
     end
-          # verify the required parameter 'user_id' is set
-          if @api_client.config.client_side_validation && user_id.nil?
-          fail ArgumentError, "Missing the required parameter 'user_id' when calling Api::FeatureServiceApi.feature_service_set_user_features" # MODIFIED
+          # verify the required parameter 'feature_service_set_user_feature_request' is set
+          if @api_client.config.client_side_validation && feature_service_set_user_feature_request.nil?
+          fail ArgumentError, "Missing the required parameter 'feature_service_set_user_feature_request' when calling Api::FeatureServiceApi.set_user_features" # MODIFIED
           end
     # resource path
-    local_var_path = '/v2/features/user/{userId}'.sub('{' + 'userId' + '}', CGI.escape(user_id.to_s))
+    local_var_path = '/zitadel.feature.v2.FeatureService/SetUserFeatures'
 
     # query parameters
     query_params = opts[:query_params] || {}
@@ -621,12 +680,17 @@ module Zitadel::Client::Api
     header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
 
     # form parameters
     form_params = opts[:form_params] || {}
 
     # http body (model)
-    post_body = opts[:debug_body]
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(feature_service_set_user_feature_request)
 
     # return_type
     return_type = opts[:debug_return_type] || 'FeatureServiceSetUserFeaturesResponse'
@@ -635,7 +699,7 @@ module Zitadel::Client::Api
     auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
 
     new_options = opts.merge(
-    :operation => :"Api::FeatureServiceApi.feature_service_set_user_features", # MODIFIED
+    :operation => :"Api::FeatureServiceApi.set_user_features", # MODIFIED
     :header_params => header_params,
     :query_params => query_params,
     :form_params => form_params,
@@ -644,9 +708,9 @@ module Zitadel::Client::Api
     :return_type => return_type
     )
 
-    data, status_code, headers = @api_client.call_api(:PUT, local_var_path, new_options)
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::FeatureServiceApi#feature_service_set_user_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    @api_client.config.logger.debug "API called: Api::FeatureServiceApi#set_user_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data
     end

@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class OrganizationServiceOrganizationNameQuery
+        class OrganizationServiceOrganizationNameQuery
     # Name of the organization.
     attr_accessor :name
 
@@ -100,39 +100,7 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'method')
         self.method = attributes[:'method']
-      else
-        self.method = 'TEXT_QUERY_METHOD_EQUALS'
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      if @name.nil?
-        invalid_properties.push('invalid value for "name", name cannot be nil.')
-      end
-
-      if @name.to_s.length > 200
-        invalid_properties.push('invalid value for "name", the character length must be smaller than or equal to 200.')
-      end
-
-      if @name.to_s.length < 1
-        invalid_properties.push('invalid value for "name", the character length must be great than or equal to 1.')
-      end
-
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @name.nil?
-      return false if @name.to_s.length > 200
-      return false if @name.to_s.length < 1
-      true
     end
 
     # Custom attribute writer method with validation
@@ -140,14 +108,6 @@ module Zitadel::Client::Models
     def name=(name)
       if name.nil?
         fail ArgumentError, 'name cannot be nil'
-      end
-
-      if name.to_s.length > 200
-        fail ArgumentError, 'invalid value for "name", the character length must be smaller than or equal to 200.'
-      end
-
-      if name.to_s.length < 1
-        fail ArgumentError, 'invalid value for "name", the character length must be great than or equal to 1.'
       end
 
       @name = name

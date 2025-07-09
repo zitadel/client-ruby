@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceNotificationType
+          class UserServiceNotificationType
     NOTIFICATION_TYPE_UNSPECIFIED = "NOTIFICATION_TYPE_Unspecified".freeze
     NOTIFICATION_TYPE_EMAIL = "NOTIFICATION_TYPE_Email".freeze
     NOTIFICATION_TYPE_SMS = "NOTIFICATION_TYPE_SMS".freeze

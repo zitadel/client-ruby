@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class OIDCServiceAuthorizationError
+        class OIDCServiceAuthorizationError
     attr_accessor :error
 
     attr_accessor :error_description
@@ -74,6 +74,8 @@ module Zitadel::Client::Models
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'error_description',
+        :'error_uri'
       ])
     end
 
@@ -97,8 +99,6 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'error')
         self.error = attributes[:'error']
-      else
-        self.error = 'ERROR_REASON_UNSPECIFIED'
       end
 
       if attributes.key?(:'error_description')
@@ -108,21 +108,6 @@ module Zitadel::Client::Models
       if attributes.key?(:'error_uri')
         self.error_uri = attributes[:'error_uri']
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
     end
 
     # Checks equality by comparing each attribute.

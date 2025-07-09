@@ -14,43 +14,36 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class SettingsServiceLoginSettings
-    # defines if a user is allowed to log in with username and password
+        class SettingsServiceLoginSettings
     attr_accessor :allow_username_password
 
-    # defines if a person is allowed to register a user on this organization
     attr_accessor :allow_register
 
-    # defines if a user is allowed to add a defined identity provider. E.g. Google auth
     attr_accessor :allow_external_idp
 
-    # defines if a user MUST use a multi-factor to log in
     attr_accessor :force_mfa
 
     attr_accessor :passkeys_type
 
-    # defines if password reset link should be shown in the login screen
     attr_accessor :hide_password_reset
 
-    # defines if unknown username on login screen directly returns an error or always displays the password screen
     attr_accessor :ignore_unknown_usernames
 
-    # defines where the user will be redirected to if the login is started without app context (e.g. from mail)
     attr_accessor :default_redirect_uri
 
-    # Defines after how much time the user has to re-authenticate with the password.
+    # A Duration represents a signed, fixed-length span of time represented  as a count of seconds and fractions of seconds at nanosecond  resolution. It is independent of any calendar and concepts like \"day\"  or \"month\". It is related to Timestamp in that the difference between  two Timestamp values is a Duration and it can be added or subtracted  from a Timestamp. Range is approximately +-10,000 years.   # Examples   Example 1: Compute Duration from two Timestamps in pseudo code.       Timestamp start = ...;      Timestamp end = ...;      Duration duration = ...;       duration.seconds = end.seconds - start.seconds;      duration.nanos = end.nanos - start.nanos;       if (duration.seconds < 0 && duration.nanos > 0) {        duration.seconds += 1;        duration.nanos -= 1000000000;      } else if (duration.seconds > 0 && duration.nanos < 0) {        duration.seconds -= 1;        duration.nanos += 1000000000;      }   Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.       Timestamp start = ...;      Duration duration = ...;      Timestamp end = ...;       end.seconds = start.seconds + duration.seconds;      end.nanos = start.nanos + duration.nanos;       if (end.nanos < 0) {        end.seconds -= 1;        end.nanos += 1000000000;      } else if (end.nanos >= 1000000000) {        end.seconds += 1;        end.nanos -= 1000000000;      }   Example 3: Compute Duration from datetime.timedelta in Python.       td = datetime.timedelta(days=3, minutes=10)      duration = Duration()      duration.FromTimedelta(td)   # JSON Mapping   In JSON format, the Duration type is encoded as a string rather than an  object, where the string ends in the suffix \"s\" (indicating seconds) and  is preceded by the number of seconds, with nanoseconds expressed as  fractional seconds. For example, 3 seconds with 0 nanoseconds should be  encoded in JSON format as \"3s\", while 3 seconds and 1 nanosecond should  be expressed in JSON format as \"3.000000001s\", and 3 seconds and 1  microsecond should be expressed in JSON format as \"3.000001s\".
     attr_accessor :password_check_lifetime
 
-    # Defines after how much time the user has to re-authenticate with an external provider.
+    # A Duration represents a signed, fixed-length span of time represented  as a count of seconds and fractions of seconds at nanosecond  resolution. It is independent of any calendar and concepts like \"day\"  or \"month\". It is related to Timestamp in that the difference between  two Timestamp values is a Duration and it can be added or subtracted  from a Timestamp. Range is approximately +-10,000 years.   # Examples   Example 1: Compute Duration from two Timestamps in pseudo code.       Timestamp start = ...;      Timestamp end = ...;      Duration duration = ...;       duration.seconds = end.seconds - start.seconds;      duration.nanos = end.nanos - start.nanos;       if (duration.seconds < 0 && duration.nanos > 0) {        duration.seconds += 1;        duration.nanos -= 1000000000;      } else if (duration.seconds > 0 && duration.nanos < 0) {        duration.seconds -= 1;        duration.nanos += 1000000000;      }   Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.       Timestamp start = ...;      Duration duration = ...;      Timestamp end = ...;       end.seconds = start.seconds + duration.seconds;      end.nanos = start.nanos + duration.nanos;       if (end.nanos < 0) {        end.seconds -= 1;        end.nanos += 1000000000;      } else if (end.nanos >= 1000000000) {        end.seconds += 1;        end.nanos -= 1000000000;      }   Example 3: Compute Duration from datetime.timedelta in Python.       td = datetime.timedelta(days=3, minutes=10)      duration = Duration()      duration.FromTimedelta(td)   # JSON Mapping   In JSON format, the Duration type is encoded as a string rather than an  object, where the string ends in the suffix \"s\" (indicating seconds) and  is preceded by the number of seconds, with nanoseconds expressed as  fractional seconds. For example, 3 seconds with 0 nanoseconds should be  encoded in JSON format as \"3s\", while 3 seconds and 1 nanosecond should  be expressed in JSON format as \"3.000000001s\", and 3 seconds and 1  microsecond should be expressed in JSON format as \"3.000001s\".
     attr_accessor :external_login_check_lifetime
 
-    # Defines after how much time the mfa prompt will be shown again.
+    # A Duration represents a signed, fixed-length span of time represented  as a count of seconds and fractions of seconds at nanosecond  resolution. It is independent of any calendar and concepts like \"day\"  or \"month\". It is related to Timestamp in that the difference between  two Timestamp values is a Duration and it can be added or subtracted  from a Timestamp. Range is approximately +-10,000 years.   # Examples   Example 1: Compute Duration from two Timestamps in pseudo code.       Timestamp start = ...;      Timestamp end = ...;      Duration duration = ...;       duration.seconds = end.seconds - start.seconds;      duration.nanos = end.nanos - start.nanos;       if (duration.seconds < 0 && duration.nanos > 0) {        duration.seconds += 1;        duration.nanos -= 1000000000;      } else if (duration.seconds > 0 && duration.nanos < 0) {        duration.seconds -= 1;        duration.nanos += 1000000000;      }   Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.       Timestamp start = ...;      Duration duration = ...;      Timestamp end = ...;       end.seconds = start.seconds + duration.seconds;      end.nanos = start.nanos + duration.nanos;       if (end.nanos < 0) {        end.seconds -= 1;        end.nanos += 1000000000;      } else if (end.nanos >= 1000000000) {        end.seconds += 1;        end.nanos -= 1000000000;      }   Example 3: Compute Duration from datetime.timedelta in Python.       td = datetime.timedelta(days=3, minutes=10)      duration = Duration()      duration.FromTimedelta(td)   # JSON Mapping   In JSON format, the Duration type is encoded as a string rather than an  object, where the string ends in the suffix \"s\" (indicating seconds) and  is preceded by the number of seconds, with nanoseconds expressed as  fractional seconds. For example, 3 seconds with 0 nanoseconds should be  encoded in JSON format as \"3s\", while 3 seconds and 1 nanosecond should  be expressed in JSON format as \"3.000000001s\", and 3 seconds and 1  microsecond should be expressed in JSON format as \"3.000001s\".
     attr_accessor :mfa_init_skip_lifetime
 
-    # Defines after how long the second factor check is valid.
+    # A Duration represents a signed, fixed-length span of time represented  as a count of seconds and fractions of seconds at nanosecond  resolution. It is independent of any calendar and concepts like \"day\"  or \"month\". It is related to Timestamp in that the difference between  two Timestamp values is a Duration and it can be added or subtracted  from a Timestamp. Range is approximately +-10,000 years.   # Examples   Example 1: Compute Duration from two Timestamps in pseudo code.       Timestamp start = ...;      Timestamp end = ...;      Duration duration = ...;       duration.seconds = end.seconds - start.seconds;      duration.nanos = end.nanos - start.nanos;       if (duration.seconds < 0 && duration.nanos > 0) {        duration.seconds += 1;        duration.nanos -= 1000000000;      } else if (duration.seconds > 0 && duration.nanos < 0) {        duration.seconds -= 1;        duration.nanos += 1000000000;      }   Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.       Timestamp start = ...;      Duration duration = ...;      Timestamp end = ...;       end.seconds = start.seconds + duration.seconds;      end.nanos = start.nanos + duration.nanos;       if (end.nanos < 0) {        end.seconds -= 1;        end.nanos += 1000000000;      } else if (end.nanos >= 1000000000) {        end.seconds += 1;        end.nanos -= 1000000000;      }   Example 3: Compute Duration from datetime.timedelta in Python.       td = datetime.timedelta(days=3, minutes=10)      duration = Duration()      duration.FromTimedelta(td)   # JSON Mapping   In JSON format, the Duration type is encoded as a string rather than an  object, where the string ends in the suffix \"s\" (indicating seconds) and  is preceded by the number of seconds, with nanoseconds expressed as  fractional seconds. For example, 3 seconds with 0 nanoseconds should be  encoded in JSON format as \"3s\", while 3 seconds and 1 nanosecond should  be expressed in JSON format as \"3.000000001s\", and 3 seconds and 1  microsecond should be expressed in JSON format as \"3.000001s\".
     attr_accessor :second_factor_check_lifetime
 
-    # Defines how long the multi-factor check is valid.
+    # A Duration represents a signed, fixed-length span of time represented  as a count of seconds and fractions of seconds at nanosecond  resolution. It is independent of any calendar and concepts like \"day\"  or \"month\". It is related to Timestamp in that the difference between  two Timestamp values is a Duration and it can be added or subtracted  from a Timestamp. Range is approximately +-10,000 years.   # Examples   Example 1: Compute Duration from two Timestamps in pseudo code.       Timestamp start = ...;      Timestamp end = ...;      Duration duration = ...;       duration.seconds = end.seconds - start.seconds;      duration.nanos = end.nanos - start.nanos;       if (duration.seconds < 0 && duration.nanos > 0) {        duration.seconds += 1;        duration.nanos -= 1000000000;      } else if (duration.seconds > 0 && duration.nanos < 0) {        duration.seconds -= 1;        duration.nanos += 1000000000;      }   Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.       Timestamp start = ...;      Duration duration = ...;      Timestamp end = ...;       end.seconds = start.seconds + duration.seconds;      end.nanos = start.nanos + duration.nanos;       if (end.nanos < 0) {        end.seconds -= 1;        end.nanos += 1000000000;      } else if (end.nanos >= 1000000000) {        end.seconds += 1;        end.nanos -= 1000000000;      }   Example 3: Compute Duration from datetime.timedelta in Python.       td = datetime.timedelta(days=3, minutes=10)      duration = Duration()      duration.FromTimedelta(td)   # JSON Mapping   In JSON format, the Duration type is encoded as a string rather than an  object, where the string ends in the suffix \"s\" (indicating seconds) and  is preceded by the number of seconds, with nanoseconds expressed as  fractional seconds. For example, 3 seconds with 0 nanoseconds should be  encoded in JSON format as \"3s\", while 3 seconds and 1 nanosecond should  be expressed in JSON format as \"3.000000001s\", and 3 seconds and 1  microsecond should be expressed in JSON format as \"3.000001s\".
     attr_accessor :multi_factor_check_lifetime
 
     attr_accessor :second_factors
@@ -60,15 +53,12 @@ module Zitadel::Client::Models
     # If set to true, the suffix (@domain.com) of an unknown username input on the login screen will be matched against the org domains and will redirect to the registration of that organization on success.
     attr_accessor :allow_domain_discovery
 
-    # defines if the user can additionally (to the login name) be identified by their verified email address
     attr_accessor :disable_login_with_email
 
-    # defines if the user can additionally (to the login name) be identified by their verified phone number
     attr_accessor :disable_login_with_phone
 
     attr_accessor :resource_owner_type
 
-    # if activated, only local authenticated users are forced to use MFA. Authentication through IDPs won't prompt a MFA step in the login.
     attr_accessor :force_mfa_local_only
 
     class EnumAttributeValidator
@@ -197,8 +187,6 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'passkeys_type')
         self.passkeys_type = attributes[:'passkeys_type']
-      else
-        self.passkeys_type = 'PASSKEYS_TYPE_NOT_ALLOWED'
       end
 
       if attributes.key?(:'hide_password_reset')
@@ -259,28 +247,11 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'resource_owner_type')
         self.resource_owner_type = attributes[:'resource_owner_type']
-      else
-        self.resource_owner_type = 'RESOURCE_OWNER_TYPE_UNSPECIFIED'
       end
 
       if attributes.key?(:'force_mfa_local_only')
         self.force_mfa_local_only = attributes[:'force_mfa_local_only']
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
     end
 
     # Checks equality by comparing each attribute.

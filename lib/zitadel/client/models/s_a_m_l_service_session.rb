@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class SAMLServiceSession
+        class SAMLServiceSession
     # ID of the session, used to login the user. Connects the session to the SAML Request.
     attr_accessor :session_id
 
@@ -78,77 +78,6 @@ module Zitadel::Client::Models
       if attributes.key?(:'session_token')
         self.session_token = attributes[:'session_token']
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      if !@session_id.nil? && @session_id.to_s.length > 200
-        invalid_properties.push('invalid value for "session_id", the character length must be smaller than or equal to 200.')
-      end
-
-      if !@session_id.nil? && @session_id.to_s.length < 1
-        invalid_properties.push('invalid value for "session_id", the character length must be great than or equal to 1.')
-      end
-
-      if !@session_token.nil? && @session_token.to_s.length > 200
-        invalid_properties.push('invalid value for "session_token", the character length must be smaller than or equal to 200.')
-      end
-
-      if !@session_token.nil? && @session_token.to_s.length < 1
-        invalid_properties.push('invalid value for "session_token", the character length must be great than or equal to 1.')
-      end
-
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@session_id.nil? && @session_id.to_s.length > 200
-      return false if !@session_id.nil? && @session_id.to_s.length < 1
-      return false if !@session_token.nil? && @session_token.to_s.length > 200
-      return false if !@session_token.nil? && @session_token.to_s.length < 1
-      true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] session_id Value to be assigned
-    def session_id=(session_id)
-      if session_id.nil?
-        fail ArgumentError, 'session_id cannot be nil'
-      end
-
-      if session_id.to_s.length > 200
-        fail ArgumentError, 'invalid value for "session_id", the character length must be smaller than or equal to 200.'
-      end
-
-      if session_id.to_s.length < 1
-        fail ArgumentError, 'invalid value for "session_id", the character length must be great than or equal to 1.'
-      end
-
-      @session_id = session_id
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] session_token Value to be assigned
-    def session_token=(session_token)
-      if session_token.nil?
-        fail ArgumentError, 'session_token cannot be nil'
-      end
-
-      if session_token.to_s.length > 200
-        fail ArgumentError, 'invalid value for "session_token", the character length must be smaller than or equal to 200.'
-      end
-
-      if session_token.to_s.length < 1
-        fail ArgumentError, 'invalid value for "session_token", the character length must be great than or equal to 1.'
-      end
-
-      @session_token = session_token
     end
 
     # Checks equality by comparing each attribute.

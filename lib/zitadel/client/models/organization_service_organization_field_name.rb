@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class OrganizationServiceOrganizationFieldName
+          class OrganizationServiceOrganizationFieldName
     ORGANIZATION_FIELD_NAME_UNSPECIFIED = "ORGANIZATION_FIELD_NAME_UNSPECIFIED".freeze
     ORGANIZATION_FIELD_NAME_NAME = "ORGANIZATION_FIELD_NAME_NAME".freeze
 

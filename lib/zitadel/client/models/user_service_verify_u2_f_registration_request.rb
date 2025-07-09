@@ -14,8 +14,12 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class UserServiceVerifyU2FRegistrationRequest
-    # PublicKeyCredential Interface. Generated helper methods populate the field from JSON created by a WebauthN client. See also:  https://www.w3.org/TR/webauthn/#publickeycredential
+        class UserServiceVerifyU2FRegistrationRequest
+    attr_accessor :user_id
+
+    attr_accessor :u2f_id
+
+    # `Struct` represents a structured data value, consisting of fields  which map to dynamically typed values. In some languages, `Struct`  might be supported by a native representation. For example, in  scripting languages like JS a struct is represented as an  object. The details of that representation are described together  with the proto support for the language.   The JSON representation for `Struct` is JSON object.
     attr_accessor :public_key_credential
 
     attr_accessor :token_name
@@ -23,6 +27,8 @@ module Zitadel::Client::Models
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'user_id' => :'userId',
+        :'u2f_id' => :'u2fId',
         :'public_key_credential' => :'publicKeyCredential',
         :'token_name' => :'tokenName'
       }
@@ -41,7 +47,9 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'public_key_credential' => :'Object',
+        :'user_id' => :'String',
+        :'u2f_id' => :'String',
+        :'public_key_credential' => :'Hash<String, Object>',
         :'token_name' => :'String'
       }
     end
@@ -70,8 +78,22 @@ module Zitadel::Client::Models
         h[k.to_sym] = v
       }
 
+      if attributes.key?(:'user_id')
+        self.user_id = attributes[:'user_id']
+      else
+        self.user_id = nil
+      end
+
+      if attributes.key?(:'u2f_id')
+        self.u2f_id = attributes[:'u2f_id']
+      else
+        self.u2f_id = nil
+      end
+
       if attributes.key?(:'public_key_credential')
-        self.public_key_credential = attributes[:'public_key_credential']
+        if (value = attributes[:'public_key_credential']).is_a?(Hash)
+          self.public_key_credential = value
+        end
       else
         self.public_key_credential = nil
       end
@@ -83,43 +105,28 @@ module Zitadel::Client::Models
       end
     end
 
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      if @public_key_credential.nil?
-        invalid_properties.push('invalid value for "public_key_credential", public_key_credential cannot be nil.')
+    # Custom attribute writer method with validation
+    # @param [String] user_id Value to be assigned
+    def user_id=(user_id)
+      if user_id.nil?
+        fail ArgumentError, 'user_id cannot be nil'
       end
 
-      if @token_name.nil?
-        invalid_properties.push('invalid value for "token_name", token_name cannot be nil.')
-      end
-
-      if @token_name.to_s.length > 200
-        invalid_properties.push('invalid value for "token_name", the character length must be smaller than or equal to 200.')
-      end
-
-      if @token_name.to_s.length < 1
-        invalid_properties.push('invalid value for "token_name", the character length must be great than or equal to 1.')
-      end
-
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @public_key_credential.nil?
-      return false if @token_name.nil?
-      return false if @token_name.to_s.length > 200
-      return false if @token_name.to_s.length < 1
-      true
+      @user_id = user_id
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] public_key_credential Value to be assigned
+    # @param [String] u2f_id Value to be assigned
+    def u2f_id=(u2f_id)
+      if u2f_id.nil?
+        fail ArgumentError, 'u2f_id cannot be nil'
+      end
+
+      @u2f_id = u2f_id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Hash<String, Object>] public_key_credential Value to be assigned
     def public_key_credential=(public_key_credential)
       if public_key_credential.nil?
         fail ArgumentError, 'public_key_credential cannot be nil'
@@ -135,14 +142,6 @@ module Zitadel::Client::Models
         fail ArgumentError, 'token_name cannot be nil'
       end
 
-      if token_name.to_s.length > 200
-        fail ArgumentError, 'invalid value for "token_name", the character length must be smaller than or equal to 200.'
-      end
-
-      if token_name.to_s.length < 1
-        fail ArgumentError, 'invalid value for "token_name", the character length must be great than or equal to 1.'
-      end
-
       @token_name = token_name
     end
 
@@ -151,6 +150,8 @@ module Zitadel::Client::Models
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          user_id == o.user_id &&
+          u2f_id == o.u2f_id &&
           public_key_credential == o.public_key_credential &&
           token_name == o.token_name
     end
@@ -164,7 +165,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [public_key_credential, token_name].hash
+      [user_id, u2f_id, public_key_credential, token_name].hash
     end
 
 # Builds the object from hash

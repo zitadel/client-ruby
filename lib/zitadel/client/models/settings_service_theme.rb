@@ -14,23 +14,23 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class SettingsServiceTheme
+        class SettingsServiceTheme
     # hex value for primary color
     attr_accessor :primary_color
 
     # hex value for background color
     attr_accessor :background_color
 
-    # hex value for warn color
+    # hex value for warning color
     attr_accessor :warn_color
 
     # hex value for font color
     attr_accessor :font_color
 
-    # url to the logo
+    # url where the logo is served
     attr_accessor :logo_url
 
-    # url to the icon
+    # url where the icon is served
     attr_accessor :icon_url
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -114,21 +114,6 @@ module Zitadel::Client::Models
       if attributes.key?(:'icon_url')
         self.icon_url = attributes[:'icon_url']
       end
-    end
-
-    # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properties with the reasons
-    def list_invalid_properties
-      warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
-      invalid_properties = Array.new
-      invalid_properties
-    end
-
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
-    def valid?
-      warn '[DEPRECATED] the `valid?` method is obsolete'
-      true
     end
 
     # Checks equality by comparing each attribute.

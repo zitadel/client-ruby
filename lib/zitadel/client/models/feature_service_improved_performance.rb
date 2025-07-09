@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-  class FeatureServiceImprovedPerformance
+          class FeatureServiceImprovedPerformance
     IMPROVED_PERFORMANCE_UNSPECIFIED = "IMPROVED_PERFORMANCE_UNSPECIFIED".freeze
     IMPROVED_PERFORMANCE_ORG_BY_ID = "IMPROVED_PERFORMANCE_ORG_BY_ID".freeze
     IMPROVED_PERFORMANCE_PROJECT_GRANT = "IMPROVED_PERFORMANCE_PROJECT_GRANT".freeze
