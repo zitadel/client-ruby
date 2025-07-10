@@ -1,4 +1,4 @@
-FROM ruby:3.3@sha256:06c1c61f615d408a44d8d6f3a06b1e1f9dd1882aecb91a6a9fc75fe93d051369
+FROM ruby:3.4@sha256:f7ab76e2c36ab406ebc36aeba20624b26a8fae7c2998acabbe9662e2a73f00f3
 WORKDIR /app
 COPY . .
 RUN rm -f *.gem
