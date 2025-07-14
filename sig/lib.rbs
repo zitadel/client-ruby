@@ -111,7 +111,6 @@ module Zitadel
     end
 
     class Configuration
-      attr_reader authenticator: Auth::Authenticator
 
       def initialize: (Auth::Authenticator authenticator, ?Integer timeout, ?Integer connect_timeout) -> void
 
@@ -128,6 +127,12 @@ module Zitadel
       def timeout: () -> Integer
 
       def configure: () { (Configuration) -> void } -> void
+
+      private
+      attr_reader authenticator: Auth::Authenticator
+      attr_reader connect_timeout: Integer
+      attr_reader timeout: Integer
+      attr_reader user_agent: String
     end
 
     class ApiClient

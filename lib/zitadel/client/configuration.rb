@@ -4,18 +4,6 @@ module Zitadel
   module Client
     # Configuration class for the Zitadel::Client SDK.
     class Configuration
-      # @return [Authenticator] The authenticator for signing requests.
-      attr_reader :authenticator
-
-      # @return [Integer] The total request timeout in seconds.
-      attr_reader :timeout
-
-      # @return [Integer] The connection timeout in seconds.
-      attr_reader :connect_timeout
-
-      # @return [String] The user agent of the api client.
-      attr_reader :user_agent
-
       # Initializes a new instance of the API client.
       #
       # @param authenticator [Authenticator] The authenticator for signing requests.
@@ -60,6 +48,20 @@ module Zitadel
       def configure
         yield(self) if block_given?
       end
+
+      private
+
+      # @return [Authenticator] The authenticator for signing requests.
+      attr_reader :authenticator
+
+      # @return [Integer] The total request timeout in seconds.
+      attr_reader :timeout
+
+      # @return [Integer] The connection timeout in seconds.
+      attr_reader :connect_timeout
+
+      # @return [String] The user agent of the api client.
+      attr_reader :user_agent
     end
   end
 end
