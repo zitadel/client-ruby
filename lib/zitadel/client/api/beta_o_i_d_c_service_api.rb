@@ -16,19 +16,17 @@ module Zitadel::Client::Api
   class BetaOIDCServiceApi
   attr_accessor :api_client
 
-  def initialize(api_client = ApiClient.default)
+  def initialize(api_client)
   @api_client = api_client
   end
       # CreateCallback
-          # @param beta_oidc_service_create_callback_request [BetaOIDCServiceCreateCallbackRequest] 
+          # @param beta_oidc_service_create_callback_request [BetaOIDCServiceCreateCallbackRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaOIDCServiceCreateCallbackResponse]
     def create_callback(beta_oidc_service_create_callback_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaOIDCServiceApi.create_callback ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_oidc_service_create_callback_request' is set
-          if @api_client.config.client_side_validation && beta_oidc_service_create_callback_request.nil?
+          if beta_oidc_service_create_callback_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_oidc_service_create_callback_request' when calling Api::BetaOIDCServiceApi.create_callback" # MODIFIED
           end
     # resource path
@@ -70,22 +68,18 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaOIDCServiceApi#create_callback\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # GetAuthRequest
-          # @param beta_oidc_service_get_auth_request_request [BetaOIDCServiceGetAuthRequestRequest] 
+          # @param beta_oidc_service_get_auth_request_request [BetaOIDCServiceGetAuthRequestRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaOIDCServiceGetAuthRequestResponse]
     def get_auth_request(beta_oidc_service_get_auth_request_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaOIDCServiceApi.get_auth_request ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_oidc_service_get_auth_request_request' is set
-          if @api_client.config.client_side_validation && beta_oidc_service_get_auth_request_request.nil?
+          if beta_oidc_service_get_auth_request_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_oidc_service_get_auth_request_request' when calling Api::BetaOIDCServiceApi.get_auth_request" # MODIFIED
           end
     # resource path
@@ -127,9 +121,7 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaOIDCServiceApi#get_auth_request\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
   end

@@ -16,20 +16,18 @@ module Zitadel::Client::Api
   class BetaInternalPermissionServiceApi
   attr_accessor :api_client
 
-  def initialize(api_client = ApiClient.default)
+  def initialize(api_client)
   @api_client = api_client
   end
       # CreateAdministrator
       # CreateAdministrator grants a administrator role to a user for a specific resource.   Note that the roles are specific to the resource type.  This means that if you want to grant a user the administrator role for an organization and a project,  you need to create two administrator roles.   Required permissions depend on the resource type:    - \&quot;iam.member.write\&quot; for instance administrators    - \&quot;org.member.write\&quot; for organization administrators    - \&quot;project.member.write\&quot; for project administrators    - \&quot;project.grant.member.write\&quot; for project grant administrators
-          # @param beta_internal_permission_service_create_administrator_request [BetaInternalPermissionServiceCreateAdministratorRequest] 
+          # @param beta_internal_permission_service_create_administrator_request [BetaInternalPermissionServiceCreateAdministratorRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaInternalPermissionServiceCreateAdministratorResponse]
     def create_administrator(beta_internal_permission_service_create_administrator_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaInternalPermissionServiceApi.create_administrator ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_internal_permission_service_create_administrator_request' is set
-          if @api_client.config.client_side_validation && beta_internal_permission_service_create_administrator_request.nil?
+          if beta_internal_permission_service_create_administrator_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_internal_permission_service_create_administrator_request' when calling Api::BetaInternalPermissionServiceApi.create_administrator" # MODIFIED
           end
     # resource path
@@ -71,23 +69,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaInternalPermissionServiceApi#create_administrator\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # DeleteAdministrator
       # DeleteAdministrator revokes a administrator role from a user.   In case the administrator role is not found, the request will return a successful response as  the desired state is already achieved.  You can check the deletion date in the response to verify if the administrator role was deleted during the request.   Required permissions depend on the resource type:    - \&quot;iam.member.delete\&quot; for instance administrators    - \&quot;org.member.delete\&quot; for organization administrators    - \&quot;project.member.delete\&quot; for project administrators    - \&quot;project.grant.member.delete\&quot; for project grant administrators
-          # @param beta_internal_permission_service_delete_administrator_request [BetaInternalPermissionServiceDeleteAdministratorRequest] 
+          # @param beta_internal_permission_service_delete_administrator_request [BetaInternalPermissionServiceDeleteAdministratorRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaInternalPermissionServiceDeleteAdministratorResponse]
     def delete_administrator(beta_internal_permission_service_delete_administrator_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaInternalPermissionServiceApi.delete_administrator ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_internal_permission_service_delete_administrator_request' is set
-          if @api_client.config.client_side_validation && beta_internal_permission_service_delete_administrator_request.nil?
+          if beta_internal_permission_service_delete_administrator_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_internal_permission_service_delete_administrator_request' when calling Api::BetaInternalPermissionServiceApi.delete_administrator" # MODIFIED
           end
     # resource path
@@ -129,23 +123,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaInternalPermissionServiceApi#delete_administrator\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # ListAdministrators
       # ListAdministrators returns all administrators and its roles matching the request and necessary permissions.   Required permissions depend on the resource type:    - \&quot;iam.member.read\&quot; for instance administrators    - \&quot;org.member.read\&quot; for organization administrators    - \&quot;project.member.read\&quot; for project administrators    - \&quot;project.grant.member.read\&quot; for project grant administrators    - no permissions required for listing own administrator roles
-          # @param beta_internal_permission_service_list_administrators_request [BetaInternalPermissionServiceListAdministratorsRequest] 
+          # @param beta_internal_permission_service_list_administrators_request [BetaInternalPermissionServiceListAdministratorsRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaInternalPermissionServiceListAdministratorsResponse]
     def list_administrators(beta_internal_permission_service_list_administrators_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaInternalPermissionServiceApi.list_administrators ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_internal_permission_service_list_administrators_request' is set
-          if @api_client.config.client_side_validation && beta_internal_permission_service_list_administrators_request.nil?
+          if beta_internal_permission_service_list_administrators_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_internal_permission_service_list_administrators_request' when calling Api::BetaInternalPermissionServiceApi.list_administrators" # MODIFIED
           end
     # resource path
@@ -187,23 +177,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaInternalPermissionServiceApi#list_administrators\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # UpdateAdministrator
       # UpdateAdministrator updates the specific administrator role.   Note that any role previously granted to the user and not present in the request will be revoked.   Required permissions depend on the resource type:    - \&quot;iam.member.write\&quot; for instance administrators    - \&quot;org.member.write\&quot; for organization administrators    - \&quot;project.member.write\&quot; for project administrators    - \&quot;project.grant.member.write\&quot; for project grant administrators
-          # @param beta_internal_permission_service_update_administrator_request [BetaInternalPermissionServiceUpdateAdministratorRequest] 
+          # @param beta_internal_permission_service_update_administrator_request [BetaInternalPermissionServiceUpdateAdministratorRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaInternalPermissionServiceUpdateAdministratorResponse]
     def update_administrator(beta_internal_permission_service_update_administrator_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaInternalPermissionServiceApi.update_administrator ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_internal_permission_service_update_administrator_request' is set
-          if @api_client.config.client_side_validation && beta_internal_permission_service_update_administrator_request.nil?
+          if beta_internal_permission_service_update_administrator_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_internal_permission_service_update_administrator_request' when calling Api::BetaInternalPermissionServiceApi.update_administrator" # MODIFIED
           end
     # resource path
@@ -245,9 +231,7 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaInternalPermissionServiceApi#update_administrator\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
   end

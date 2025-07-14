@@ -136,12 +136,12 @@ end
 
 module Typhoeus::Request::Before
 
-  def run: () -> untyped
+  def run: () -> Typhoeus::Response
 end
 
 module Typhoeus::Request::BlockConnection
 
-  def run: () -> untyped
+  def run: () -> Typhoeus::Response
 
   def blocked?: () -> untyped
 end
@@ -151,7 +151,7 @@ module Typhoeus::Request::Cacheable
 
   def cacheable?: () -> untyped
 
-  def run: () -> untyped
+  def run: () -> Typhoeus::Response
 
   def cache_ttl: () -> untyped
 
@@ -194,7 +194,7 @@ end
 
 module Typhoeus::Request::Operations
 
-  def run: () -> untyped
+  def run: () -> Typhoeus::Response
 
   def finish: (untyped response, ?untyped? bypass_memoization) -> untyped
 end
@@ -234,7 +234,7 @@ class Typhoeus::Request
 
   attr_accessor block_connection: untyped
 
-  def initialize: (untyped base_url, ?::Hash[untyped, untyped] options) -> untyped
+  def initialize: (untyped base_url, ?::Hash[untyped, untyped] options) -> Typhoeus::Request
 
   def url: () -> untyped
 
@@ -269,7 +269,7 @@ end
 
 module Typhoeus::Request::Stubbable
 
-  def run: () -> untyped
+  def run: () -> Typhoeus::Response
 end
 
 module Typhoeus::Response::Cacheable
@@ -296,9 +296,15 @@ class Typhoeus::Response::Header
   def raw: () -> untyped
 
   def set_default_proc_on: (untyped hash, untyped default_proc) -> untyped
+
+  def to_h: () -> Hash[String, Array[String]]
 end
 
 module Typhoeus::Response::Informations
+
+  attr_reader body: String
+
+  attr_reader code: Integer
 
   def return_code: () -> untyped
 
@@ -308,7 +314,7 @@ module Typhoeus::Response::Informations
 
   def response_headers: () -> untyped
 
-  def response_code: () -> untyped
+  def response_code: () -> Integer
 
   def httpauth_avail: () -> untyped
 
@@ -336,7 +342,7 @@ module Typhoeus::Response::Informations
 
   def debug_info: () -> untyped
 
-  def headers: () -> untyped
+  def headers: () -> Typhoeus::Response::Header
 
   def redirections: () -> untyped
 end

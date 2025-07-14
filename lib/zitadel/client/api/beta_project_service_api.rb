@@ -16,20 +16,18 @@ module Zitadel::Client::Api
   class BetaProjectServiceApi
   attr_accessor :api_client
 
-  def initialize(api_client = ApiClient.default)
+  def initialize(api_client)
   @api_client = api_client
   end
       # ActivateProject
       # Activate Project   Set the state of a project to active. Request returns no error if the project is already activated.   Required permission:    - &#x60;project.write&#x60;
-          # @param beta_project_service_activate_project_request [BetaProjectServiceActivateProjectRequest] 
+          # @param beta_project_service_activate_project_request [BetaProjectServiceActivateProjectRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceActivateProjectResponse]
     def activate_project(beta_project_service_activate_project_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaProjectServiceApi.activate_project ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_project_service_activate_project_request' is set
-          if @api_client.config.client_side_validation && beta_project_service_activate_project_request.nil?
+          if beta_project_service_activate_project_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_project_service_activate_project_request' when calling Api::BetaProjectServiceApi.activate_project" # MODIFIED
           end
     # resource path
@@ -71,23 +69,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaProjectServiceApi#activate_project\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # ActivateProjectGrant
       # Activate Project Grant   Set the state of the project grant to activated.   Required permission:    - &#x60;project.grant.write&#x60;
-          # @param beta_project_service_activate_project_grant_request [BetaProjectServiceActivateProjectGrantRequest] 
+          # @param beta_project_service_activate_project_grant_request [BetaProjectServiceActivateProjectGrantRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceActivateProjectGrantResponse]
     def activate_project_grant(beta_project_service_activate_project_grant_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaProjectServiceApi.activate_project_grant ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_project_service_activate_project_grant_request' is set
-          if @api_client.config.client_side_validation && beta_project_service_activate_project_grant_request.nil?
+          if beta_project_service_activate_project_grant_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_project_service_activate_project_grant_request' when calling Api::BetaProjectServiceApi.activate_project_grant" # MODIFIED
           end
     # resource path
@@ -129,23 +123,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaProjectServiceApi#activate_project_grant\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # AddProjectRole
       # Add Project Role   Add a new project role to a project. The key must be unique within the project.   Required permission:    - &#x60;project.role.write&#x60;
-          # @param beta_project_service_add_project_role_request [BetaProjectServiceAddProjectRoleRequest] 
+          # @param beta_project_service_add_project_role_request [BetaProjectServiceAddProjectRoleRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceAddProjectRoleResponse]
     def add_project_role(beta_project_service_add_project_role_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaProjectServiceApi.add_project_role ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_project_service_add_project_role_request' is set
-          if @api_client.config.client_side_validation && beta_project_service_add_project_role_request.nil?
+          if beta_project_service_add_project_role_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_project_service_add_project_role_request' when calling Api::BetaProjectServiceApi.add_project_role" # MODIFIED
           end
     # resource path
@@ -187,23 +177,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaProjectServiceApi#add_project_role\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # CreateProject
       # Create Project   Create a new Project.   Required permission:    - &#x60;project.create&#x60;
-          # @param beta_project_service_create_project_request [BetaProjectServiceCreateProjectRequest] 
+          # @param beta_project_service_create_project_request [BetaProjectServiceCreateProjectRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceCreateProjectResponse]
     def create_project(beta_project_service_create_project_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaProjectServiceApi.create_project ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_project_service_create_project_request' is set
-          if @api_client.config.client_side_validation && beta_project_service_create_project_request.nil?
+          if beta_project_service_create_project_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_project_service_create_project_request' when calling Api::BetaProjectServiceApi.create_project" # MODIFIED
           end
     # resource path
@@ -245,23 +231,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaProjectServiceApi#create_project\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # CreateProjectGrant
       # Create Project Grant   Grant a project to another organization.  The project grant will allow the granted organization to access the project and manage the authorizations for its users.   Required permission:    - &#x60;project.grant.create&#x60;
-          # @param beta_project_service_create_project_grant_request [BetaProjectServiceCreateProjectGrantRequest] 
+          # @param beta_project_service_create_project_grant_request [BetaProjectServiceCreateProjectGrantRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceCreateProjectGrantResponse]
     def create_project_grant(beta_project_service_create_project_grant_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaProjectServiceApi.create_project_grant ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_project_service_create_project_grant_request' is set
-          if @api_client.config.client_side_validation && beta_project_service_create_project_grant_request.nil?
+          if beta_project_service_create_project_grant_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_project_service_create_project_grant_request' when calling Api::BetaProjectServiceApi.create_project_grant" # MODIFIED
           end
     # resource path
@@ -303,23 +285,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaProjectServiceApi#create_project_grant\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # DeactivateProject
       # Deactivate Project   Set the state of a project to deactivated. Request returns no error if the project is already deactivated.  Applications under deactivated projects are not able to login anymore.   Required permission:    - &#x60;project.write&#x60;
-          # @param beta_project_service_deactivate_project_request [BetaProjectServiceDeactivateProjectRequest] 
+          # @param beta_project_service_deactivate_project_request [BetaProjectServiceDeactivateProjectRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceDeactivateProjectResponse]
     def deactivate_project(beta_project_service_deactivate_project_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaProjectServiceApi.deactivate_project ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_project_service_deactivate_project_request' is set
-          if @api_client.config.client_side_validation && beta_project_service_deactivate_project_request.nil?
+          if beta_project_service_deactivate_project_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_project_service_deactivate_project_request' when calling Api::BetaProjectServiceApi.deactivate_project" # MODIFIED
           end
     # resource path
@@ -361,23 +339,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaProjectServiceApi#deactivate_project\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # DeactivateProjectGrant
       # Deactivate Project Grant   Set the state of the project grant to deactivated.  Applications under deactivated projects grants are not able to login anymore.   Required permission:    - &#x60;project.grant.write&#x60;
-          # @param beta_project_service_deactivate_project_grant_request [BetaProjectServiceDeactivateProjectGrantRequest] 
+          # @param beta_project_service_deactivate_project_grant_request [BetaProjectServiceDeactivateProjectGrantRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceDeactivateProjectGrantResponse]
     def deactivate_project_grant(beta_project_service_deactivate_project_grant_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaProjectServiceApi.deactivate_project_grant ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_project_service_deactivate_project_grant_request' is set
-          if @api_client.config.client_side_validation && beta_project_service_deactivate_project_grant_request.nil?
+          if beta_project_service_deactivate_project_grant_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_project_service_deactivate_project_grant_request' when calling Api::BetaProjectServiceApi.deactivate_project_grant" # MODIFIED
           end
     # resource path
@@ -419,23 +393,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaProjectServiceApi#deactivate_project_grant\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # DeleteProject
       # Delete Project   Delete an existing project.  In case the project is not found, the request will return a successful response as  the desired state is already achieved.   Required permission:    - &#x60;project.delete&#x60;
-          # @param beta_project_service_delete_project_request [BetaProjectServiceDeleteProjectRequest] 
+          # @param beta_project_service_delete_project_request [BetaProjectServiceDeleteProjectRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceDeleteProjectResponse]
     def delete_project(beta_project_service_delete_project_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaProjectServiceApi.delete_project ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_project_service_delete_project_request' is set
-          if @api_client.config.client_side_validation && beta_project_service_delete_project_request.nil?
+          if beta_project_service_delete_project_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_project_service_delete_project_request' when calling Api::BetaProjectServiceApi.delete_project" # MODIFIED
           end
     # resource path
@@ -477,23 +447,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaProjectServiceApi#delete_project\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # DeleteProjectGrant
       # Delete Project Grant   Delete a project grant. All user grants for this project grant will also be removed.  A user will not have access to the project afterward (if permissions are checked).  In case the project grant is not found, the request will return a successful response as  the desired state is already achieved.   Required permission:    - &#x60;project.grant.delete&#x60;
-          # @param beta_project_service_delete_project_grant_request [BetaProjectServiceDeleteProjectGrantRequest] 
+          # @param beta_project_service_delete_project_grant_request [BetaProjectServiceDeleteProjectGrantRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceDeleteProjectGrantResponse]
     def delete_project_grant(beta_project_service_delete_project_grant_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaProjectServiceApi.delete_project_grant ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_project_service_delete_project_grant_request' is set
-          if @api_client.config.client_side_validation && beta_project_service_delete_project_grant_request.nil?
+          if beta_project_service_delete_project_grant_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_project_service_delete_project_grant_request' when calling Api::BetaProjectServiceApi.delete_project_grant" # MODIFIED
           end
     # resource path
@@ -535,23 +501,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaProjectServiceApi#delete_project_grant\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # GetProject
       # Get Project   Returns the project identified by the requested ID.   Required permission:    - &#x60;project.read&#x60;
-          # @param beta_project_service_get_project_request [BetaProjectServiceGetProjectRequest] 
+          # @param beta_project_service_get_project_request [BetaProjectServiceGetProjectRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceGetProjectResponse]
     def get_project(beta_project_service_get_project_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaProjectServiceApi.get_project ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_project_service_get_project_request' is set
-          if @api_client.config.client_side_validation && beta_project_service_get_project_request.nil?
+          if beta_project_service_get_project_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_project_service_get_project_request' when calling Api::BetaProjectServiceApi.get_project" # MODIFIED
           end
     # resource path
@@ -593,23 +555,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaProjectServiceApi#get_project\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # ListProjectGrants
       # List Project Grants   Returns a list of project grants. A project grant is when the organization grants its project to another organization.   Required permission:    - &#x60;project.grant.write&#x60;
-          # @param beta_project_service_list_project_grants_request [BetaProjectServiceListProjectGrantsRequest] 
+          # @param beta_project_service_list_project_grants_request [BetaProjectServiceListProjectGrantsRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceListProjectGrantsResponse]
     def list_project_grants(beta_project_service_list_project_grants_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaProjectServiceApi.list_project_grants ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_project_service_list_project_grants_request' is set
-          if @api_client.config.client_side_validation && beta_project_service_list_project_grants_request.nil?
+          if beta_project_service_list_project_grants_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_project_service_list_project_grants_request' when calling Api::BetaProjectServiceApi.list_project_grants" # MODIFIED
           end
     # resource path
@@ -651,23 +609,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaProjectServiceApi#list_project_grants\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # ListProjectRoles
       # List Project Roles   Returns all roles of a project matching the search query.   Required permission:    - &#x60;project.role.read&#x60;
-          # @param beta_project_service_list_project_roles_request [BetaProjectServiceListProjectRolesRequest] 
+          # @param beta_project_service_list_project_roles_request [BetaProjectServiceListProjectRolesRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceListProjectRolesResponse]
     def list_project_roles(beta_project_service_list_project_roles_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaProjectServiceApi.list_project_roles ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_project_service_list_project_roles_request' is set
-          if @api_client.config.client_side_validation && beta_project_service_list_project_roles_request.nil?
+          if beta_project_service_list_project_roles_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_project_service_list_project_roles_request' when calling Api::BetaProjectServiceApi.list_project_roles" # MODIFIED
           end
     # resource path
@@ -709,23 +663,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaProjectServiceApi#list_project_roles\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # ListProjects
       # List Projects   List all matching projects. By default all projects of the instance that the caller has permission to read are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - &#x60;project.read&#x60;
-          # @param beta_project_service_list_projects_request [BetaProjectServiceListProjectsRequest] 
+          # @param beta_project_service_list_projects_request [BetaProjectServiceListProjectsRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceListProjectsResponse]
     def list_projects(beta_project_service_list_projects_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaProjectServiceApi.list_projects ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_project_service_list_projects_request' is set
-          if @api_client.config.client_side_validation && beta_project_service_list_projects_request.nil?
+          if beta_project_service_list_projects_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_project_service_list_projects_request' when calling Api::BetaProjectServiceApi.list_projects" # MODIFIED
           end
     # resource path
@@ -767,23 +717,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaProjectServiceApi#list_projects\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # RemoveProjectRole
       # Remove Project Role   Removes the role from the project and on every resource it has a dependency. This includes project grants and user grants.   Required permission:    - &#x60;project.role.write&#x60;
-          # @param beta_project_service_remove_project_role_request [BetaProjectServiceRemoveProjectRoleRequest] 
+          # @param beta_project_service_remove_project_role_request [BetaProjectServiceRemoveProjectRoleRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceRemoveProjectRoleResponse]
     def remove_project_role(beta_project_service_remove_project_role_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaProjectServiceApi.remove_project_role ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_project_service_remove_project_role_request' is set
-          if @api_client.config.client_side_validation && beta_project_service_remove_project_role_request.nil?
+          if beta_project_service_remove_project_role_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_project_service_remove_project_role_request' when calling Api::BetaProjectServiceApi.remove_project_role" # MODIFIED
           end
     # resource path
@@ -825,23 +771,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaProjectServiceApi#remove_project_role\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # UpdateProject
       # Update Project   Update an existing project.   Required permission:    - &#x60;project.write&#x60;
-          # @param beta_project_service_update_project_request [BetaProjectServiceUpdateProjectRequest] 
+          # @param beta_project_service_update_project_request [BetaProjectServiceUpdateProjectRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceUpdateProjectResponse]
     def update_project(beta_project_service_update_project_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaProjectServiceApi.update_project ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_project_service_update_project_request' is set
-          if @api_client.config.client_side_validation && beta_project_service_update_project_request.nil?
+          if beta_project_service_update_project_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_project_service_update_project_request' when calling Api::BetaProjectServiceApi.update_project" # MODIFIED
           end
     # resource path
@@ -883,23 +825,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaProjectServiceApi#update_project\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # UpdateProjectGrant
       # Update Project Grant   Change the roles of the project that is granted to another organization.  The project grant will allow the granted organization to access the project and manage the authorizations for its users.   Required permission:    - &#x60;project.grant.write&#x60;
-          # @param beta_project_service_update_project_grant_request [BetaProjectServiceUpdateProjectGrantRequest] 
+          # @param beta_project_service_update_project_grant_request [BetaProjectServiceUpdateProjectGrantRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceUpdateProjectGrantResponse]
     def update_project_grant(beta_project_service_update_project_grant_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaProjectServiceApi.update_project_grant ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_project_service_update_project_grant_request' is set
-          if @api_client.config.client_side_validation && beta_project_service_update_project_grant_request.nil?
+          if beta_project_service_update_project_grant_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_project_service_update_project_grant_request' when calling Api::BetaProjectServiceApi.update_project_grant" # MODIFIED
           end
     # resource path
@@ -941,23 +879,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaProjectServiceApi#update_project_grant\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # UpdateProjectRole
       # Update Project Role   Change a project role. The key is not editable. If a key should change, remove the role and create a new one.   Required permission:    - &#x60;project.role.write&#x60;
-          # @param beta_project_service_update_project_role_request [BetaProjectServiceUpdateProjectRoleRequest] 
+          # @param beta_project_service_update_project_role_request [BetaProjectServiceUpdateProjectRoleRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceUpdateProjectRoleResponse]
     def update_project_role(beta_project_service_update_project_role_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaProjectServiceApi.update_project_role ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_project_service_update_project_role_request' is set
-          if @api_client.config.client_side_validation && beta_project_service_update_project_role_request.nil?
+          if beta_project_service_update_project_role_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_project_service_update_project_role_request' when calling Api::BetaProjectServiceApi.update_project_role" # MODIFIED
           end
     # resource path
@@ -999,9 +933,7 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaProjectServiceApi#update_project_role\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
   end

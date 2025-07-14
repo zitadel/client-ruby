@@ -16,20 +16,18 @@ module Zitadel::Client::Api
   class WebKeyServiceApi
   attr_accessor :api_client
 
-  def initialize(api_client = ApiClient.default)
+  def initialize(api_client)
   @api_client = api_client
   end
       # ActivateWebKey
       # Activate Web Key   Switch the active signing web key. The previously active key will be deactivated.  Note that the JWKs OIDC endpoint returns a cacheable response.  Therefore it is not advised to activate a key that has been created within the cache duration (default is 5min),  as the public key may not have been propagated to caches and clients yet.   Required permission:    - &#x60;iam.web_key.write&#x60;   Required feature flag:    - &#x60;web_key&#x60;
-          # @param web_key_service_activate_web_key_request [WebKeyServiceActivateWebKeyRequest] 
+          # @param web_key_service_activate_web_key_request [WebKeyServiceActivateWebKeyRequest]
       # @param [Hash] opts the optional parameters
     # @return [WebKeyServiceActivateWebKeyResponse]
     def activate_web_key(web_key_service_activate_web_key_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::WebKeyServiceApi.activate_web_key ...' # MODIFIED
-    end
+
           # verify the required parameter 'web_key_service_activate_web_key_request' is set
-          if @api_client.config.client_side_validation && web_key_service_activate_web_key_request.nil?
+          if web_key_service_activate_web_key_request.nil?
           fail ArgumentError, "Missing the required parameter 'web_key_service_activate_web_key_request' when calling Api::WebKeyServiceApi.activate_web_key" # MODIFIED
           end
     # resource path
@@ -71,23 +69,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::WebKeyServiceApi#activate_web_key\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # CreateWebKey
       # Create Web Key   Generate a private and public key pair. The private key can be used to sign OIDC tokens after activation.  The public key can be used to validate OIDC tokens.  The newly created key will have the state &#x60;STATE_INITIAL&#x60; and is published to the public key endpoint.  Note that the JWKs OIDC endpoint returns a cacheable response.   If no key type is provided, a RSA key pair with 2048 bits and SHA256 hashing will be created.   Required permission:    - &#x60;iam.web_key.write&#x60;   Required feature flag:    - &#x60;web_key&#x60;
-          # @param web_key_service_create_web_key_request [WebKeyServiceCreateWebKeyRequest] 
+          # @param web_key_service_create_web_key_request [WebKeyServiceCreateWebKeyRequest]
       # @param [Hash] opts the optional parameters
     # @return [WebKeyServiceCreateWebKeyResponse]
     def create_web_key(web_key_service_create_web_key_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::WebKeyServiceApi.create_web_key ...' # MODIFIED
-    end
+
           # verify the required parameter 'web_key_service_create_web_key_request' is set
-          if @api_client.config.client_side_validation && web_key_service_create_web_key_request.nil?
+          if web_key_service_create_web_key_request.nil?
           fail ArgumentError, "Missing the required parameter 'web_key_service_create_web_key_request' when calling Api::WebKeyServiceApi.create_web_key" # MODIFIED
           end
     # resource path
@@ -129,23 +123,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::WebKeyServiceApi#create_web_key\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # DeleteWebKey
       # Delete Web Key   Delete a web key pair. Only inactive keys can be deleted. Once a key is deleted,  any tokens signed by this key will be invalid.  Note that the JWKs OIDC endpoint returns a cacheable response.  In case the web key is not found, the request will return a successful response as  the desired state is already achieved.  You can check the change date in the response to verify if the web key was deleted during the request.   Required permission:    - &#x60;iam.web_key.delete&#x60;   Required feature flag:    - &#x60;web_key&#x60;
-          # @param web_key_service_delete_web_key_request [WebKeyServiceDeleteWebKeyRequest] 
+          # @param web_key_service_delete_web_key_request [WebKeyServiceDeleteWebKeyRequest]
       # @param [Hash] opts the optional parameters
     # @return [WebKeyServiceDeleteWebKeyResponse]
     def delete_web_key(web_key_service_delete_web_key_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::WebKeyServiceApi.delete_web_key ...' # MODIFIED
-    end
+
           # verify the required parameter 'web_key_service_delete_web_key_request' is set
-          if @api_client.config.client_side_validation && web_key_service_delete_web_key_request.nil?
+          if web_key_service_delete_web_key_request.nil?
           fail ArgumentError, "Missing the required parameter 'web_key_service_delete_web_key_request' when calling Api::WebKeyServiceApi.delete_web_key" # MODIFIED
           end
     # resource path
@@ -187,23 +177,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::WebKeyServiceApi#delete_web_key\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # ListWebKeys
       # List Web Keys   List all web keys and their states.   Required permission:    - &#x60;iam.web_key.read&#x60;   Required feature flag:    - &#x60;web_key&#x60;
-          # @param body [Object] 
+          # @param body [Object]
       # @param [Hash] opts the optional parameters
     # @return [WebKeyServiceListWebKeysResponse]
     def list_web_keys(body = {}, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::WebKeyServiceApi.list_web_keys ...' # MODIFIED
-    end
+
           # verify the required parameter 'body' is set
-          if @api_client.config.client_side_validation && body.nil?
+          if body.nil?
           fail ArgumentError, "Missing the required parameter 'body' when calling Api::WebKeyServiceApi.list_web_keys" # MODIFIED
           end
     # resource path
@@ -245,9 +231,7 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::WebKeyServiceApi#list_web_keys\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
   end

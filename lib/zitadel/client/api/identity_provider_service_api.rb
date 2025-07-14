@@ -16,20 +16,18 @@ module Zitadel::Client::Api
   class IdentityProviderServiceApi
   attr_accessor :api_client
 
-  def initialize(api_client = ApiClient.default)
+  def initialize(api_client)
   @api_client = api_client
   end
       # GetIDPByID
       # Get identity provider (IdP) by ID   Returns an identity provider (social/enterprise login) by its ID, which can be of the type Google, AzureAD, etc.
-          # @param identity_provider_service_get_idpby_id_request [IdentityProviderServiceGetIDPByIDRequest] 
+          # @param identity_provider_service_get_idpby_id_request [IdentityProviderServiceGetIDPByIDRequest]
       # @param [Hash] opts the optional parameters
     # @return [IdentityProviderServiceGetIDPByIDResponse]
     def get_idpby_id(identity_provider_service_get_idpby_id_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::IdentityProviderServiceApi.get_idpby_id ...' # MODIFIED
-    end
+
           # verify the required parameter 'identity_provider_service_get_idpby_id_request' is set
-          if @api_client.config.client_side_validation && identity_provider_service_get_idpby_id_request.nil?
+          if identity_provider_service_get_idpby_id_request.nil?
           fail ArgumentError, "Missing the required parameter 'identity_provider_service_get_idpby_id_request' when calling Api::IdentityProviderServiceApi.get_idpby_id" # MODIFIED
           end
     # resource path
@@ -71,9 +69,7 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::IdentityProviderServiceApi#get_idpby_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
   end

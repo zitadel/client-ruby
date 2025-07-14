@@ -16,20 +16,18 @@ module Zitadel::Client::Api
   class BetaAppServiceApi
   attr_accessor :api_client
 
-  def initialize(api_client = ApiClient.default)
+  def initialize(api_client)
   @api_client = api_client
   end
       # CreateApplication
       # Create Application   Create an application. The application can be OIDC, API or SAML type, based on the input.   Required permissions:    - project.app.write
-          # @param beta_app_service_create_application_request [BetaAppServiceCreateApplicationRequest] 
+          # @param beta_app_service_create_application_request [BetaAppServiceCreateApplicationRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaAppServiceCreateApplicationResponse]
     def create_application(beta_app_service_create_application_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaAppServiceApi.create_application ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_app_service_create_application_request' is set
-          if @api_client.config.client_side_validation && beta_app_service_create_application_request.nil?
+          if beta_app_service_create_application_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_app_service_create_application_request' when calling Api::BetaAppServiceApi.create_application" # MODIFIED
           end
     # resource path
@@ -71,23 +69,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaAppServiceApi#create_application\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # CreateApplicationKey
       # Create Application Key    Create a new application key, which is used to authorize an API application.   Key details are returned in the response. They must be stored safely, as it will not  be possible to retrieve them again.   Required permissions:    - &#x60;project.app.write&#x60;
-          # @param beta_app_service_create_application_key_request [BetaAppServiceCreateApplicationKeyRequest] 
+          # @param beta_app_service_create_application_key_request [BetaAppServiceCreateApplicationKeyRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaAppServiceCreateApplicationKeyResponse]
     def create_application_key(beta_app_service_create_application_key_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaAppServiceApi.create_application_key ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_app_service_create_application_key_request' is set
-          if @api_client.config.client_side_validation && beta_app_service_create_application_key_request.nil?
+          if beta_app_service_create_application_key_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_app_service_create_application_key_request' when calling Api::BetaAppServiceApi.create_application_key" # MODIFIED
           end
     # resource path
@@ -129,23 +123,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaAppServiceApi#create_application_key\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # DeactivateApplication
       # Deactivate Application   Deactivates the application belonging to the input project and matching the provided  application ID.   Required permissions:    - project.app.write
-          # @param beta_app_service_deactivate_application_request [BetaAppServiceDeactivateApplicationRequest] 
+          # @param beta_app_service_deactivate_application_request [BetaAppServiceDeactivateApplicationRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaAppServiceDeactivateApplicationResponse]
     def deactivate_application(beta_app_service_deactivate_application_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaAppServiceApi.deactivate_application ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_app_service_deactivate_application_request' is set
-          if @api_client.config.client_side_validation && beta_app_service_deactivate_application_request.nil?
+          if beta_app_service_deactivate_application_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_app_service_deactivate_application_request' when calling Api::BetaAppServiceApi.deactivate_application" # MODIFIED
           end
     # resource path
@@ -187,23 +177,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaAppServiceApi#deactivate_application\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # DeleteApplication
       # Delete Application   Deletes the application belonging to the input project and matching the provided  application ID.   Required permissions:    - project.app.delete
-          # @param beta_app_service_delete_application_request [BetaAppServiceDeleteApplicationRequest] 
+          # @param beta_app_service_delete_application_request [BetaAppServiceDeleteApplicationRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaAppServiceDeleteApplicationResponse]
     def delete_application(beta_app_service_delete_application_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaAppServiceApi.delete_application ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_app_service_delete_application_request' is set
-          if @api_client.config.client_side_validation && beta_app_service_delete_application_request.nil?
+          if beta_app_service_delete_application_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_app_service_delete_application_request' when calling Api::BetaAppServiceApi.delete_application" # MODIFIED
           end
     # resource path
@@ -245,23 +231,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaAppServiceApi#delete_application\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # DeleteApplicationKey
       # Delete Application Key    Deletes an application key matching the provided ID.   Organization ID is not mandatory, but helps with filtering/performance.   The deletion time is returned in response message.   Required permissions:    - &#x60;project.app.write&#x60;
-          # @param beta_app_service_delete_application_key_request [BetaAppServiceDeleteApplicationKeyRequest] 
+          # @param beta_app_service_delete_application_key_request [BetaAppServiceDeleteApplicationKeyRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaAppServiceDeleteApplicationKeyResponse]
     def delete_application_key(beta_app_service_delete_application_key_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaAppServiceApi.delete_application_key ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_app_service_delete_application_key_request' is set
-          if @api_client.config.client_side_validation && beta_app_service_delete_application_key_request.nil?
+          if beta_app_service_delete_application_key_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_app_service_delete_application_key_request' when calling Api::BetaAppServiceApi.delete_application_key" # MODIFIED
           end
     # resource path
@@ -303,23 +285,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaAppServiceApi#delete_application_key\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # GetApplication
       # Get Application   Retrieves the application matching the provided ID.   Required permissions:    - project.app.read
-          # @param beta_app_service_get_application_request [BetaAppServiceGetApplicationRequest] 
+          # @param beta_app_service_get_application_request [BetaAppServiceGetApplicationRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaAppServiceGetApplicationResponse]
     def get_application(beta_app_service_get_application_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaAppServiceApi.get_application ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_app_service_get_application_request' is set
-          if @api_client.config.client_side_validation && beta_app_service_get_application_request.nil?
+          if beta_app_service_get_application_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_app_service_get_application_request' when calling Api::BetaAppServiceApi.get_application" # MODIFIED
           end
     # resource path
@@ -361,23 +339,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaAppServiceApi#get_application\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # GetApplicationKey
       # Get Application Key   Retrieves the application key matching the provided ID.   Specifying a project, organization and app ID is optional but help with filtering/performance.   Required permissions:    - project.app.read
-          # @param beta_app_service_get_application_key_request [BetaAppServiceGetApplicationKeyRequest] 
+          # @param beta_app_service_get_application_key_request [BetaAppServiceGetApplicationKeyRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaAppServiceGetApplicationKeyResponse]
     def get_application_key(beta_app_service_get_application_key_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaAppServiceApi.get_application_key ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_app_service_get_application_key_request' is set
-          if @api_client.config.client_side_validation && beta_app_service_get_application_key_request.nil?
+          if beta_app_service_get_application_key_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_app_service_get_application_key_request' when calling Api::BetaAppServiceApi.get_application_key" # MODIFIED
           end
     # resource path
@@ -419,23 +393,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaAppServiceApi#get_application_key\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # ListApplicationKeys
       # List Application Keys   Returns a list of application keys matching the input parameters.   The result can be sorted by id, aggregate, creation date, expiration date, resource owner or type.  It can also be filtered by app, project or organization ID.   Required permissions:    - project.app.read
-          # @param beta_app_service_list_application_keys_request [BetaAppServiceListApplicationKeysRequest] 
+          # @param beta_app_service_list_application_keys_request [BetaAppServiceListApplicationKeysRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaAppServiceListApplicationKeysResponse]
     def list_application_keys(beta_app_service_list_application_keys_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaAppServiceApi.list_application_keys ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_app_service_list_application_keys_request' is set
-          if @api_client.config.client_side_validation && beta_app_service_list_application_keys_request.nil?
+          if beta_app_service_list_application_keys_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_app_service_list_application_keys_request' when calling Api::BetaAppServiceApi.list_application_keys" # MODIFIED
           end
     # resource path
@@ -477,23 +447,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaAppServiceApi#list_application_keys\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # ListApplications
       # List Applications   Returns a list of applications matching the input parameters that belong to the provided  project.   The result can be sorted by app id, name, creation date, change date or state. It can also  be filtered by app state, app type and app name.   Required permissions:    - project.app.read
-          # @param beta_app_service_list_applications_request [BetaAppServiceListApplicationsRequest] 
+          # @param beta_app_service_list_applications_request [BetaAppServiceListApplicationsRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaAppServiceListApplicationsResponse]
     def list_applications(beta_app_service_list_applications_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaAppServiceApi.list_applications ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_app_service_list_applications_request' is set
-          if @api_client.config.client_side_validation && beta_app_service_list_applications_request.nil?
+          if beta_app_service_list_applications_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_app_service_list_applications_request' when calling Api::BetaAppServiceApi.list_applications" # MODIFIED
           end
     # resource path
@@ -535,23 +501,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaAppServiceApi#list_applications\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # ReactivateApplication
       # Reactivate Application   Reactivates the application belonging to the input project and matching the provided  application ID.   Required permissions:    - project.app.write
-          # @param beta_app_service_reactivate_application_request [BetaAppServiceReactivateApplicationRequest] 
+          # @param beta_app_service_reactivate_application_request [BetaAppServiceReactivateApplicationRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaAppServiceReactivateApplicationResponse]
     def reactivate_application(beta_app_service_reactivate_application_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaAppServiceApi.reactivate_application ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_app_service_reactivate_application_request' is set
-          if @api_client.config.client_side_validation && beta_app_service_reactivate_application_request.nil?
+          if beta_app_service_reactivate_application_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_app_service_reactivate_application_request' when calling Api::BetaAppServiceApi.reactivate_application" # MODIFIED
           end
     # resource path
@@ -593,23 +555,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaAppServiceApi#reactivate_application\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # RegenerateClientSecret
       # Regenerate Client Secret   Regenerates the client secret of an API or OIDC application that belongs to the input project.    Required permissions:    - project.app.write
-          # @param beta_app_service_regenerate_client_secret_request [BetaAppServiceRegenerateClientSecretRequest] 
+          # @param beta_app_service_regenerate_client_secret_request [BetaAppServiceRegenerateClientSecretRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaAppServiceRegenerateClientSecretResponse]
     def regenerate_client_secret(beta_app_service_regenerate_client_secret_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaAppServiceApi.regenerate_client_secret ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_app_service_regenerate_client_secret_request' is set
-          if @api_client.config.client_side_validation && beta_app_service_regenerate_client_secret_request.nil?
+          if beta_app_service_regenerate_client_secret_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_app_service_regenerate_client_secret_request' when calling Api::BetaAppServiceApi.regenerate_client_secret" # MODIFIED
           end
     # resource path
@@ -651,23 +609,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaAppServiceApi#regenerate_client_secret\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # UpdateApplication
       # Update Application   Changes the configuration of an OIDC, API or SAML type application, as well as  the application name, based on the input provided.   Required permissions:    - project.app.write
-          # @param beta_app_service_update_application_request [BetaAppServiceUpdateApplicationRequest] 
+          # @param beta_app_service_update_application_request [BetaAppServiceUpdateApplicationRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaAppServiceUpdateApplicationResponse]
     def update_application(beta_app_service_update_application_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaAppServiceApi.update_application ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_app_service_update_application_request' is set
-          if @api_client.config.client_side_validation && beta_app_service_update_application_request.nil?
+          if beta_app_service_update_application_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_app_service_update_application_request' when calling Api::BetaAppServiceApi.update_application" # MODIFIED
           end
     # resource path
@@ -709,9 +663,7 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaAppServiceApi#update_application\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
   end

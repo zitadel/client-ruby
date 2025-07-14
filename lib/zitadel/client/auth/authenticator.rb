@@ -40,6 +40,19 @@ module Zitadel
                 "#{self.class}#get_auth_headers is an abstract method. Please override it in a subclass."
           # :nocov:
         end
+
+        ##
+        # Retrieve the authentication token needed for API requests.
+        #
+        # @raise [NotImplementedError] Always raised to require implementation in a subclass.
+        # @return [String] The authentication token.
+        #
+        def auth_token
+          # :nocov:
+          raise NotImplementedError,
+                "#{self.class}#get_auth_token is an abstract method. Please override it in a subclass."
+          # :nocov:
+        end
       end
 
       ##

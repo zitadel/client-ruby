@@ -16,20 +16,18 @@ module Zitadel::Client::Api
   class BetaActionServiceApi
   attr_accessor :api_client
 
-  def initialize(api_client = ApiClient.default)
+  def initialize(api_client)
   @api_client = api_client
   end
       # CreateTarget
       # Create Target   Create a new target to your endpoint, which can be used in executions.   Required permission:    - &#x60;action.target.write&#x60;   Required feature flag:    - &#x60;actions&#x60;
-          # @param beta_action_service_create_target_request [BetaActionServiceCreateTargetRequest] 
+          # @param beta_action_service_create_target_request [BetaActionServiceCreateTargetRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaActionServiceCreateTargetResponse]
     def create_target(beta_action_service_create_target_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaActionServiceApi.create_target ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_action_service_create_target_request' is set
-          if @api_client.config.client_side_validation && beta_action_service_create_target_request.nil?
+          if beta_action_service_create_target_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_action_service_create_target_request' when calling Api::BetaActionServiceApi.create_target" # MODIFIED
           end
     # resource path
@@ -71,23 +69,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaActionServiceApi#create_target\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # DeleteTarget
       # Delete Target   Delete an existing target. This will remove it from any configured execution as well.  In case the target is not found, the request will return a successful response as  the desired state is already achieved.   Required permission:    - &#x60;action.target.delete&#x60;   Required feature flag:    - &#x60;actions&#x60;
-          # @param beta_action_service_delete_target_request [BetaActionServiceDeleteTargetRequest] 
+          # @param beta_action_service_delete_target_request [BetaActionServiceDeleteTargetRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaActionServiceDeleteTargetResponse]
     def delete_target(beta_action_service_delete_target_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaActionServiceApi.delete_target ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_action_service_delete_target_request' is set
-          if @api_client.config.client_side_validation && beta_action_service_delete_target_request.nil?
+          if beta_action_service_delete_target_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_action_service_delete_target_request' when calling Api::BetaActionServiceApi.delete_target" # MODIFIED
           end
     # resource path
@@ -129,23 +123,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaActionServiceApi#delete_target\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # GetTarget
       # Get Target   Returns the target identified by the requested ID.   Required permission:    - &#x60;action.target.read&#x60;   Required feature flag:    - &#x60;actions&#x60;
-          # @param beta_action_service_get_target_request [BetaActionServiceGetTargetRequest] 
+          # @param beta_action_service_get_target_request [BetaActionServiceGetTargetRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaActionServiceGetTargetResponse]
     def get_target(beta_action_service_get_target_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaActionServiceApi.get_target ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_action_service_get_target_request' is set
-          if @api_client.config.client_side_validation && beta_action_service_get_target_request.nil?
+          if beta_action_service_get_target_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_action_service_get_target_request' when calling Api::BetaActionServiceApi.get_target" # MODIFIED
           end
     # resource path
@@ -187,23 +177,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaActionServiceApi#get_target\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # ListExecutionFunctions
       # List Execution Functions   List all available functions which can be used as condition for executions.
-          # @param body [Object] 
+          # @param body [Object]
       # @param [Hash] opts the optional parameters
     # @return [BetaActionServiceListExecutionFunctionsResponse]
     def list_execution_functions(body = {}, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaActionServiceApi.list_execution_functions ...' # MODIFIED
-    end
+
           # verify the required parameter 'body' is set
-          if @api_client.config.client_side_validation && body.nil?
+          if body.nil?
           fail ArgumentError, "Missing the required parameter 'body' when calling Api::BetaActionServiceApi.list_execution_functions" # MODIFIED
           end
     # resource path
@@ -245,23 +231,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaActionServiceApi#list_execution_functions\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # ListExecutionMethods
       # List Execution Methods   List all available methods which can be used as condition for executions.
-          # @param body [Object] 
+          # @param body [Object]
       # @param [Hash] opts the optional parameters
     # @return [BetaActionServiceListExecutionMethodsResponse]
     def list_execution_methods(body = {}, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaActionServiceApi.list_execution_methods ...' # MODIFIED
-    end
+
           # verify the required parameter 'body' is set
-          if @api_client.config.client_side_validation && body.nil?
+          if body.nil?
           fail ArgumentError, "Missing the required parameter 'body' when calling Api::BetaActionServiceApi.list_execution_methods" # MODIFIED
           end
     # resource path
@@ -303,23 +285,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaActionServiceApi#list_execution_methods\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # ListExecutionServices
       # List Execution Services   List all available services which can be used as condition for executions.
-          # @param body [Object] 
+          # @param body [Object]
       # @param [Hash] opts the optional parameters
     # @return [BetaActionServiceListExecutionServicesResponse]
     def list_execution_services(body = {}, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaActionServiceApi.list_execution_services ...' # MODIFIED
-    end
+
           # verify the required parameter 'body' is set
-          if @api_client.config.client_side_validation && body.nil?
+          if body.nil?
           fail ArgumentError, "Missing the required parameter 'body' when calling Api::BetaActionServiceApi.list_execution_services" # MODIFIED
           end
     # resource path
@@ -361,23 +339,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaActionServiceApi#list_execution_services\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # ListExecutions
       # List Executions   List all matching executions. By default all executions of the instance are returned that have at least one execution target.  Make sure to include a limit and sorting for pagination.   Required permission:    - &#x60;action.execution.read&#x60;   Required feature flag:    - &#x60;actions&#x60;
-          # @param beta_action_service_list_executions_request [BetaActionServiceListExecutionsRequest] 
+          # @param beta_action_service_list_executions_request [BetaActionServiceListExecutionsRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaActionServiceListExecutionsResponse]
     def list_executions(beta_action_service_list_executions_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaActionServiceApi.list_executions ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_action_service_list_executions_request' is set
-          if @api_client.config.client_side_validation && beta_action_service_list_executions_request.nil?
+          if beta_action_service_list_executions_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_action_service_list_executions_request' when calling Api::BetaActionServiceApi.list_executions" # MODIFIED
           end
     # resource path
@@ -419,23 +393,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaActionServiceApi#list_executions\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # ListTargets
       # List targets   List all matching targets. By default all targets of the instance are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - &#x60;action.target.read&#x60;   Required feature flag:    - &#x60;actions&#x60;
-          # @param beta_action_service_list_targets_request [BetaActionServiceListTargetsRequest] 
+          # @param beta_action_service_list_targets_request [BetaActionServiceListTargetsRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaActionServiceListTargetsResponse]
     def list_targets(beta_action_service_list_targets_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaActionServiceApi.list_targets ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_action_service_list_targets_request' is set
-          if @api_client.config.client_side_validation && beta_action_service_list_targets_request.nil?
+          if beta_action_service_list_targets_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_action_service_list_targets_request' when calling Api::BetaActionServiceApi.list_targets" # MODIFIED
           end
     # resource path
@@ -477,23 +447,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaActionServiceApi#list_targets\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # SetExecution
       # Set Execution   Sets an execution to call a target or include the targets of another execution.  Setting an empty list of targets will remove all targets from the execution, making it a noop.   Required permission:    - &#x60;action.execution.write&#x60;   Required feature flag:    - &#x60;actions&#x60;
-          # @param beta_action_service_set_execution_request [BetaActionServiceSetExecutionRequest] 
+          # @param beta_action_service_set_execution_request [BetaActionServiceSetExecutionRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaActionServiceSetExecutionResponse]
     def set_execution(beta_action_service_set_execution_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaActionServiceApi.set_execution ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_action_service_set_execution_request' is set
-          if @api_client.config.client_side_validation && beta_action_service_set_execution_request.nil?
+          if beta_action_service_set_execution_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_action_service_set_execution_request' when calling Api::BetaActionServiceApi.set_execution" # MODIFIED
           end
     # resource path
@@ -535,23 +501,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaActionServiceApi#set_execution\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # UpdateTarget
       # Update Target   Update an existing target.  To generate a new signing key set the optional expirationSigningKey.   Required permission:    - &#x60;action.target.write&#x60;   Required feature flag:    - &#x60;actions&#x60;
-          # @param beta_action_service_update_target_request [BetaActionServiceUpdateTargetRequest] 
+          # @param beta_action_service_update_target_request [BetaActionServiceUpdateTargetRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaActionServiceUpdateTargetResponse]
     def update_target(beta_action_service_update_target_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaActionServiceApi.update_target ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_action_service_update_target_request' is set
-          if @api_client.config.client_side_validation && beta_action_service_update_target_request.nil?
+          if beta_action_service_update_target_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_action_service_update_target_request' when calling Api::BetaActionServiceApi.update_target" # MODIFIED
           end
     # resource path
@@ -593,9 +555,7 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaActionServiceApi#update_target\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
   end

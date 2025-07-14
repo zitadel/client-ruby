@@ -16,20 +16,18 @@ module Zitadel::Client::Api
   class BetaInstanceServiceApi
   attr_accessor :api_client
 
-  def initialize(api_client = ApiClient.default)
+  def initialize(api_client)
   @api_client = api_client
   end
       # AddCustomDomain
       # Add Custom Domain   Adds a custom domain to the instance in context.   The instance_id in the input message will be used in the future   Required permissions:    - &#x60;system.domain.write&#x60;
-          # @param beta_instance_service_add_custom_domain_request [BetaInstanceServiceAddCustomDomainRequest] 
+          # @param beta_instance_service_add_custom_domain_request [BetaInstanceServiceAddCustomDomainRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaInstanceServiceAddCustomDomainResponse]
     def add_custom_domain(beta_instance_service_add_custom_domain_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaInstanceServiceApi.add_custom_domain ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_instance_service_add_custom_domain_request' is set
-          if @api_client.config.client_side_validation && beta_instance_service_add_custom_domain_request.nil?
+          if beta_instance_service_add_custom_domain_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_instance_service_add_custom_domain_request' when calling Api::BetaInstanceServiceApi.add_custom_domain" # MODIFIED
           end
     # resource path
@@ -71,23 +69,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaInstanceServiceApi#add_custom_domain\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # AddTrustedDomain
       # Add Trusted Domain   Adds a trusted domain to the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - &#x60;iam.write&#x60;
-          # @param beta_instance_service_add_trusted_domain_request [BetaInstanceServiceAddTrustedDomainRequest] 
+          # @param beta_instance_service_add_trusted_domain_request [BetaInstanceServiceAddTrustedDomainRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaInstanceServiceAddTrustedDomainResponse]
     def add_trusted_domain(beta_instance_service_add_trusted_domain_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaInstanceServiceApi.add_trusted_domain ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_instance_service_add_trusted_domain_request' is set
-          if @api_client.config.client_side_validation && beta_instance_service_add_trusted_domain_request.nil?
+          if beta_instance_service_add_trusted_domain_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_instance_service_add_trusted_domain_request' when calling Api::BetaInstanceServiceApi.add_trusted_domain" # MODIFIED
           end
     # resource path
@@ -129,23 +123,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaInstanceServiceApi#add_trusted_domain\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # DeleteInstance
       # Delete Instance   Deletes an instance with the given ID.   Required permissions:    - &#x60;system.instance.delete&#x60;
-          # @param beta_instance_service_delete_instance_request [BetaInstanceServiceDeleteInstanceRequest] 
+          # @param beta_instance_service_delete_instance_request [BetaInstanceServiceDeleteInstanceRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaInstanceServiceDeleteInstanceResponse]
     def delete_instance(beta_instance_service_delete_instance_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaInstanceServiceApi.delete_instance ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_instance_service_delete_instance_request' is set
-          if @api_client.config.client_side_validation && beta_instance_service_delete_instance_request.nil?
+          if beta_instance_service_delete_instance_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_instance_service_delete_instance_request' when calling Api::BetaInstanceServiceApi.delete_instance" # MODIFIED
           end
     # resource path
@@ -187,23 +177,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaInstanceServiceApi#delete_instance\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # GetInstance
       # Get Instance   Returns the instance in the current context.   The instace_id in the input message will be used in the future.   Required permissions:    - &#x60;iam.read&#x60;
-          # @param beta_instance_service_get_instance_request [BetaInstanceServiceGetInstanceRequest] 
+          # @param beta_instance_service_get_instance_request [BetaInstanceServiceGetInstanceRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaInstanceServiceGetInstanceResponse]
     def get_instance(beta_instance_service_get_instance_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaInstanceServiceApi.get_instance ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_instance_service_get_instance_request' is set
-          if @api_client.config.client_side_validation && beta_instance_service_get_instance_request.nil?
+          if beta_instance_service_get_instance_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_instance_service_get_instance_request' when calling Api::BetaInstanceServiceApi.get_instance" # MODIFIED
           end
     # resource path
@@ -245,23 +231,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaInstanceServiceApi#get_instance\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # ListCustomDomains
       # List Custom Domains   Lists custom domains of the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - &#x60;iam.read&#x60;
-          # @param beta_instance_service_list_custom_domains_request [BetaInstanceServiceListCustomDomainsRequest] 
+          # @param beta_instance_service_list_custom_domains_request [BetaInstanceServiceListCustomDomainsRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaInstanceServiceListCustomDomainsResponse]
     def list_custom_domains(beta_instance_service_list_custom_domains_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaInstanceServiceApi.list_custom_domains ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_instance_service_list_custom_domains_request' is set
-          if @api_client.config.client_side_validation && beta_instance_service_list_custom_domains_request.nil?
+          if beta_instance_service_list_custom_domains_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_instance_service_list_custom_domains_request' when calling Api::BetaInstanceServiceApi.list_custom_domains" # MODIFIED
           end
     # resource path
@@ -303,23 +285,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaInstanceServiceApi#list_custom_domains\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # ListInstances
       # List Instances   Lists instances matching the given query.  The query can be used to filter either by instance ID or domain.  The request is paginated and returns 100 results by default.   Required permissions:   - &#x60;system.instance.read&#x60;
-          # @param beta_instance_service_list_instances_request [BetaInstanceServiceListInstancesRequest] 
+          # @param beta_instance_service_list_instances_request [BetaInstanceServiceListInstancesRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaInstanceServiceListInstancesResponse]
     def list_instances(beta_instance_service_list_instances_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaInstanceServiceApi.list_instances ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_instance_service_list_instances_request' is set
-          if @api_client.config.client_side_validation && beta_instance_service_list_instances_request.nil?
+          if beta_instance_service_list_instances_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_instance_service_list_instances_request' when calling Api::BetaInstanceServiceApi.list_instances" # MODIFIED
           end
     # resource path
@@ -361,23 +339,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaInstanceServiceApi#list_instances\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # ListTrustedDomains
       # List Trusted Domains   Lists trusted domains of the instance.   The instance_id in the input message will be used in the future.   Required permissions:    - &#x60;iam.read&#x60;
-          # @param beta_instance_service_list_trusted_domains_request [BetaInstanceServiceListTrustedDomainsRequest] 
+          # @param beta_instance_service_list_trusted_domains_request [BetaInstanceServiceListTrustedDomainsRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaInstanceServiceListTrustedDomainsResponse]
     def list_trusted_domains(beta_instance_service_list_trusted_domains_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaInstanceServiceApi.list_trusted_domains ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_instance_service_list_trusted_domains_request' is set
-          if @api_client.config.client_side_validation && beta_instance_service_list_trusted_domains_request.nil?
+          if beta_instance_service_list_trusted_domains_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_instance_service_list_trusted_domains_request' when calling Api::BetaInstanceServiceApi.list_trusted_domains" # MODIFIED
           end
     # resource path
@@ -419,23 +393,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaInstanceServiceApi#list_trusted_domains\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # RemoveCustomDomain
       # Remove Custom Domain   Removes a custom domain from the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - &#x60;system.domain.write&#x60;
-          # @param beta_instance_service_remove_custom_domain_request [BetaInstanceServiceRemoveCustomDomainRequest] 
+          # @param beta_instance_service_remove_custom_domain_request [BetaInstanceServiceRemoveCustomDomainRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaInstanceServiceRemoveCustomDomainResponse]
     def remove_custom_domain(beta_instance_service_remove_custom_domain_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaInstanceServiceApi.remove_custom_domain ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_instance_service_remove_custom_domain_request' is set
-          if @api_client.config.client_side_validation && beta_instance_service_remove_custom_domain_request.nil?
+          if beta_instance_service_remove_custom_domain_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_instance_service_remove_custom_domain_request' when calling Api::BetaInstanceServiceApi.remove_custom_domain" # MODIFIED
           end
     # resource path
@@ -477,23 +447,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaInstanceServiceApi#remove_custom_domain\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # RemoveTrustedDomain
       # Remove Trusted Domain   Removes a trusted domain from the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - &#x60;iam.write&#x60;
-          # @param beta_instance_service_remove_trusted_domain_request [BetaInstanceServiceRemoveTrustedDomainRequest] 
+          # @param beta_instance_service_remove_trusted_domain_request [BetaInstanceServiceRemoveTrustedDomainRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaInstanceServiceRemoveTrustedDomainResponse]
     def remove_trusted_domain(beta_instance_service_remove_trusted_domain_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaInstanceServiceApi.remove_trusted_domain ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_instance_service_remove_trusted_domain_request' is set
-          if @api_client.config.client_side_validation && beta_instance_service_remove_trusted_domain_request.nil?
+          if beta_instance_service_remove_trusted_domain_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_instance_service_remove_trusted_domain_request' when calling Api::BetaInstanceServiceApi.remove_trusted_domain" # MODIFIED
           end
     # resource path
@@ -535,23 +501,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaInstanceServiceApi#remove_trusted_domain\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # UpdateInstance
       # Update Instance   Updates instance in context with the given name.   The instance_id in the input message will be used in the future.   Required permissions:    - &#x60;iam.write&#x60;
-          # @param beta_instance_service_update_instance_request [BetaInstanceServiceUpdateInstanceRequest] 
+          # @param beta_instance_service_update_instance_request [BetaInstanceServiceUpdateInstanceRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaInstanceServiceUpdateInstanceResponse]
     def update_instance(beta_instance_service_update_instance_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaInstanceServiceApi.update_instance ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_instance_service_update_instance_request' is set
-          if @api_client.config.client_side_validation && beta_instance_service_update_instance_request.nil?
+          if beta_instance_service_update_instance_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_instance_service_update_instance_request' when calling Api::BetaInstanceServiceApi.update_instance" # MODIFIED
           end
     # resource path
@@ -593,9 +555,7 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaInstanceServiceApi#update_instance\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
   end

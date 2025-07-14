@@ -16,19 +16,17 @@ module Zitadel::Client::Api
   class SAMLServiceApi
   attr_accessor :api_client
 
-  def initialize(api_client = ApiClient.default)
+  def initialize(api_client)
   @api_client = api_client
   end
       # CreateResponse
-          # @param saml_service_create_response_request [SAMLServiceCreateResponseRequest] 
+          # @param saml_service_create_response_request [SAMLServiceCreateResponseRequest]
       # @param [Hash] opts the optional parameters
     # @return [SAMLServiceCreateResponseResponse]
     def create_response(saml_service_create_response_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::SAMLServiceApi.create_response ...' # MODIFIED
-    end
+
           # verify the required parameter 'saml_service_create_response_request' is set
-          if @api_client.config.client_side_validation && saml_service_create_response_request.nil?
+          if saml_service_create_response_request.nil?
           fail ArgumentError, "Missing the required parameter 'saml_service_create_response_request' when calling Api::SAMLServiceApi.create_response" # MODIFIED
           end
     # resource path
@@ -70,22 +68,18 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::SAMLServiceApi#create_response\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # GetSAMLRequest
-          # @param saml_service_get_saml_request_request [SAMLServiceGetSAMLRequestRequest] 
+          # @param saml_service_get_saml_request_request [SAMLServiceGetSAMLRequestRequest]
       # @param [Hash] opts the optional parameters
     # @return [SAMLServiceGetSAMLRequestResponse]
     def get_saml_request(saml_service_get_saml_request_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::SAMLServiceApi.get_saml_request ...' # MODIFIED
-    end
+
           # verify the required parameter 'saml_service_get_saml_request_request' is set
-          if @api_client.config.client_side_validation && saml_service_get_saml_request_request.nil?
+          if saml_service_get_saml_request_request.nil?
           fail ArgumentError, "Missing the required parameter 'saml_service_get_saml_request_request' when calling Api::SAMLServiceApi.get_saml_request" # MODIFIED
           end
     # resource path
@@ -127,9 +121,7 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::SAMLServiceApi#get_saml_request\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
   end

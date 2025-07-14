@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Style/ClassVars
 # rubocop:disable Metrics/AbcSize
 # rubocop:disable Metrics/CyclomaticComplexity
 # rubocop:disable Metrics/MethodLength
@@ -43,18 +42,12 @@ module Zitadel
       # Initializes the ApiClient
       # @option config [Configuration] Configuration for initializing the object, default to the
       # default configuration.
-      def initialize(config = Configuration.new)
+      def initialize(config)
         @config = config
         @default_headers = {
           'Content-Type' => 'application/json',
           'User-Agent' => config.user_agent
         }
-      end
-
-      # noinspection RubyClassVariableUsageInspection,RbsMissingTypeSignature
-      # @return [Zitadel::Client::ApiClient]
-      def self.default
-        @@default ||= ApiClient.new
       end
 
       # Call an API with given options.
@@ -68,15 +61,13 @@ module Zitadel
         (download_file(request) { tempfile = _1 }) if opts[:return_type] == 'File'
         response = request.run
 
-        @config.logger.debug "HTTP response body ~BEGIN~\n#{response.body}\n~END~\n" if @config.debugging
-
         unless response.success?
           if response.timed_out?
             raise 'Connection timed out'
           elsif response.return_code != :ok
             raise "Network error (#{response.return_code}): #{response.return_message}"
           else
-            raise ApiError.new(response.code, response.headers, response.body)
+            raise ApiError.new(response.code, response.headers.to_h, response.body)
           end
         end
 
@@ -101,23 +92,13 @@ module Zitadel
           method: http_method,
           headers: header_params,
           params: query_params,
-          params_encoding: @config.params_encoding,
           timeout: @config.timeout,
-          ssl_verifypeer: @config.verify_ssl,
-          ssl_verifyhost: (@config.verify_ssl_host ? 2 : 0),
-          sslcert: @config.cert_file,
-          sslkey: @config.key_file,
-          verbose: @config.debugging,
           followlocation: follow_location
         }
-
-        # set custom cert, if provided
-        req_opts[:cainfo] = @config.ssl_ca_cert if @config.ssl_ca_cert
 
         if %i[post patch put delete].include?(http_method)
           req_body = build_request_body(header_params, form_params, opts[:body])
           req_opts.update body: req_body
-          @config.logger.debug "HTTP request body param ~BEGIN~\n#{req_body}\n~END~\n" if @config.debugging
         end
 
         Typhoeus::Request.new(url, req_opts)
@@ -157,7 +138,6 @@ module Zitadel
       # size is larger than maximum Ruby String or even larger than the maximum memory a Ruby
       # process can use.
       #
-      # @see Configuration#temp_folder_path
       #
       # @return [Tempfile] the tempfile generated
       # noinspection RbsMissingTypeSignature
@@ -175,7 +155,7 @@ module Zitadel
           end
           prefix += '-' unless prefix.end_with?('-')
           encoding = response.body.encoding
-          tempfile = Tempfile.open(prefix, @config.temp_folder_path, encoding: encoding)
+          tempfile = Tempfile.open(prefix, encoding: encoding)
         end
 
         request.on_body do |chunk|
@@ -187,10 +167,6 @@ module Zitadel
           t = ensure_tempfile(tempfile)
           t.close
           # noinspection RubyNilAnalysis
-          @config.logger.info "Temp file written to #{t.path}, please copy the file to a proper folder " \
-                              "with e.g. `FileUtils.cp(t.path, '/new/file/path')` otherwise the temp file " \
-                              "will be deleted automatically with GC. It's also recommended to delete the temp file " \
-                              'explicitly with `t.delete`'
           yield t if block_given?
         end
       end
@@ -370,7 +346,6 @@ module Zitadel
   end
 end
 
-# rubocop:enable Style/ClassVars
 # rubocop:enable Metrics/AbcSize
 # rubocop:enable Metrics/CyclomaticComplexity
 # rubocop:enable Metrics/MethodLength

@@ -16,19 +16,17 @@ module Zitadel::Client::Api
   class BetaFeatureServiceApi
   attr_accessor :api_client
 
-  def initialize(api_client = ApiClient.default)
+  def initialize(api_client)
   @api_client = api_client
   end
       # GetInstanceFeatures
-          # @param beta_feature_service_get_instance_features_request [BetaFeatureServiceGetInstanceFeaturesRequest] 
+          # @param beta_feature_service_get_instance_features_request [BetaFeatureServiceGetInstanceFeaturesRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaFeatureServiceGetInstanceFeaturesResponse]
     def get_instance_features(beta_feature_service_get_instance_features_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaFeatureServiceApi.get_instance_features ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_feature_service_get_instance_features_request' is set
-          if @api_client.config.client_side_validation && beta_feature_service_get_instance_features_request.nil?
+          if beta_feature_service_get_instance_features_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_feature_service_get_instance_features_request' when calling Api::BetaFeatureServiceApi.get_instance_features" # MODIFIED
           end
     # resource path
@@ -70,22 +68,18 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaFeatureServiceApi#get_instance_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # GetOrganizationFeatures
-          # @param beta_feature_service_get_organization_features_request [BetaFeatureServiceGetOrganizationFeaturesRequest] 
+          # @param beta_feature_service_get_organization_features_request [BetaFeatureServiceGetOrganizationFeaturesRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaFeatureServiceGetOrganizationFeaturesResponse]
     def get_organization_features(beta_feature_service_get_organization_features_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaFeatureServiceApi.get_organization_features ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_feature_service_get_organization_features_request' is set
-          if @api_client.config.client_side_validation && beta_feature_service_get_organization_features_request.nil?
+          if beta_feature_service_get_organization_features_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_feature_service_get_organization_features_request' when calling Api::BetaFeatureServiceApi.get_organization_features" # MODIFIED
           end
     # resource path
@@ -127,22 +121,18 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaFeatureServiceApi#get_organization_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # GetSystemFeatures
-          # @param body [Object] 
+          # @param body [Object]
       # @param [Hash] opts the optional parameters
     # @return [BetaFeatureServiceGetSystemFeaturesResponse]
     def get_system_features(body = {}, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaFeatureServiceApi.get_system_features ...' # MODIFIED
-    end
+
           # verify the required parameter 'body' is set
-          if @api_client.config.client_side_validation && body.nil?
+          if body.nil?
           fail ArgumentError, "Missing the required parameter 'body' when calling Api::BetaFeatureServiceApi.get_system_features" # MODIFIED
           end
     # resource path
@@ -184,22 +174,18 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaFeatureServiceApi#get_system_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # GetUserFeatures
-          # @param beta_feature_service_get_user_features_request [BetaFeatureServiceGetUserFeaturesRequest] 
+          # @param beta_feature_service_get_user_features_request [BetaFeatureServiceGetUserFeaturesRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaFeatureServiceGetUserFeaturesResponse]
     def get_user_features(beta_feature_service_get_user_features_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaFeatureServiceApi.get_user_features ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_feature_service_get_user_features_request' is set
-          if @api_client.config.client_side_validation && beta_feature_service_get_user_features_request.nil?
+          if beta_feature_service_get_user_features_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_feature_service_get_user_features_request' when calling Api::BetaFeatureServiceApi.get_user_features" # MODIFIED
           end
     # resource path
@@ -241,22 +227,18 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaFeatureServiceApi#get_user_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # ResetInstanceFeatures
-          # @param body [Object] 
+          # @param body [Object]
       # @param [Hash] opts the optional parameters
     # @return [BetaFeatureServiceResetInstanceFeaturesResponse]
     def reset_instance_features(body = {}, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaFeatureServiceApi.reset_instance_features ...' # MODIFIED
-    end
+
           # verify the required parameter 'body' is set
-          if @api_client.config.client_side_validation && body.nil?
+          if body.nil?
           fail ArgumentError, "Missing the required parameter 'body' when calling Api::BetaFeatureServiceApi.reset_instance_features" # MODIFIED
           end
     # resource path
@@ -298,22 +280,18 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaFeatureServiceApi#reset_instance_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # ResetOrganizationFeatures
-          # @param beta_feature_service_reset_organization_features_request [BetaFeatureServiceResetOrganizationFeaturesRequest] 
+          # @param beta_feature_service_reset_organization_features_request [BetaFeatureServiceResetOrganizationFeaturesRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaFeatureServiceResetOrganizationFeaturesResponse]
     def reset_organization_features(beta_feature_service_reset_organization_features_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaFeatureServiceApi.reset_organization_features ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_feature_service_reset_organization_features_request' is set
-          if @api_client.config.client_side_validation && beta_feature_service_reset_organization_features_request.nil?
+          if beta_feature_service_reset_organization_features_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_feature_service_reset_organization_features_request' when calling Api::BetaFeatureServiceApi.reset_organization_features" # MODIFIED
           end
     # resource path
@@ -355,22 +333,18 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaFeatureServiceApi#reset_organization_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # ResetSystemFeatures
-          # @param body [Object] 
+          # @param body [Object]
       # @param [Hash] opts the optional parameters
     # @return [BetaFeatureServiceResetSystemFeaturesResponse]
     def reset_system_features(body = {}, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaFeatureServiceApi.reset_system_features ...' # MODIFIED
-    end
+
           # verify the required parameter 'body' is set
-          if @api_client.config.client_side_validation && body.nil?
+          if body.nil?
           fail ArgumentError, "Missing the required parameter 'body' when calling Api::BetaFeatureServiceApi.reset_system_features" # MODIFIED
           end
     # resource path
@@ -412,22 +386,18 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaFeatureServiceApi#reset_system_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # ResetUserFeatures
-          # @param beta_feature_service_reset_user_features_request [BetaFeatureServiceResetUserFeaturesRequest] 
+          # @param beta_feature_service_reset_user_features_request [BetaFeatureServiceResetUserFeaturesRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaFeatureServiceResetUserFeaturesResponse]
     def reset_user_features(beta_feature_service_reset_user_features_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaFeatureServiceApi.reset_user_features ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_feature_service_reset_user_features_request' is set
-          if @api_client.config.client_side_validation && beta_feature_service_reset_user_features_request.nil?
+          if beta_feature_service_reset_user_features_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_feature_service_reset_user_features_request' when calling Api::BetaFeatureServiceApi.reset_user_features" # MODIFIED
           end
     # resource path
@@ -469,22 +439,18 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaFeatureServiceApi#reset_user_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # SetInstanceFeatures
-          # @param beta_feature_service_set_instance_features_request [BetaFeatureServiceSetInstanceFeaturesRequest] 
+          # @param beta_feature_service_set_instance_features_request [BetaFeatureServiceSetInstanceFeaturesRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaFeatureServiceSetInstanceFeaturesResponse]
     def set_instance_features(beta_feature_service_set_instance_features_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaFeatureServiceApi.set_instance_features ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_feature_service_set_instance_features_request' is set
-          if @api_client.config.client_side_validation && beta_feature_service_set_instance_features_request.nil?
+          if beta_feature_service_set_instance_features_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_feature_service_set_instance_features_request' when calling Api::BetaFeatureServiceApi.set_instance_features" # MODIFIED
           end
     # resource path
@@ -526,22 +492,18 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaFeatureServiceApi#set_instance_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # SetOrganizationFeatures
-          # @param beta_feature_service_set_organization_features_request [BetaFeatureServiceSetOrganizationFeaturesRequest] 
+          # @param beta_feature_service_set_organization_features_request [BetaFeatureServiceSetOrganizationFeaturesRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaFeatureServiceSetOrganizationFeaturesResponse]
     def set_organization_features(beta_feature_service_set_organization_features_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaFeatureServiceApi.set_organization_features ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_feature_service_set_organization_features_request' is set
-          if @api_client.config.client_side_validation && beta_feature_service_set_organization_features_request.nil?
+          if beta_feature_service_set_organization_features_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_feature_service_set_organization_features_request' when calling Api::BetaFeatureServiceApi.set_organization_features" # MODIFIED
           end
     # resource path
@@ -583,22 +545,18 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaFeatureServiceApi#set_organization_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # SetSystemFeatures
-          # @param beta_feature_service_set_system_features_request [BetaFeatureServiceSetSystemFeaturesRequest] 
+          # @param beta_feature_service_set_system_features_request [BetaFeatureServiceSetSystemFeaturesRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaFeatureServiceSetSystemFeaturesResponse]
     def set_system_features(beta_feature_service_set_system_features_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaFeatureServiceApi.set_system_features ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_feature_service_set_system_features_request' is set
-          if @api_client.config.client_side_validation && beta_feature_service_set_system_features_request.nil?
+          if beta_feature_service_set_system_features_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_feature_service_set_system_features_request' when calling Api::BetaFeatureServiceApi.set_system_features" # MODIFIED
           end
     # resource path
@@ -640,22 +598,18 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaFeatureServiceApi#set_system_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # SetUserFeatures
-          # @param beta_feature_service_set_user_feature_request [BetaFeatureServiceSetUserFeatureRequest] 
+          # @param beta_feature_service_set_user_feature_request [BetaFeatureServiceSetUserFeatureRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaFeatureServiceSetUserFeaturesResponse]
     def set_user_features(beta_feature_service_set_user_feature_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaFeatureServiceApi.set_user_features ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_feature_service_set_user_feature_request' is set
-          if @api_client.config.client_side_validation && beta_feature_service_set_user_feature_request.nil?
+          if beta_feature_service_set_user_feature_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_feature_service_set_user_feature_request' when calling Api::BetaFeatureServiceApi.set_user_features" # MODIFIED
           end
     # resource path
@@ -697,9 +651,7 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaFeatureServiceApi#set_user_features\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
   end

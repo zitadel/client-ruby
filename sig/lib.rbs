@@ -111,30 +111,23 @@ module Zitadel
     end
 
     class Configuration
-      USER_AGENT: String
-
-      @@default: Configuration
-
       attr_reader authenticator: Auth::Authenticator
-      attr_accessor debugging: bool
-      attr_accessor logger: untyped
-      attr_accessor temp_folder_path: String
-      attr_accessor timeout: Integer
-      attr_accessor client_side_validation: bool
-      attr_accessor user_agent: String
-      attr_accessor verify_ssl: bool
-      attr_accessor verify_ssl_host: bool
-      attr_accessor ssl_ca_cert: String?
-      attr_accessor cert_file: String?
-      attr_accessor key_file: String?
-      attr_accessor params_encoding: Symbol?
 
-      def self.default: () -> Configuration
+      def initialize: (Auth::Authenticator authenticator, ?Integer timeout, ?Integer connect_timeout) -> void
 
-      def initialize: (?Auth::Authenticator) ?{ (Configuration) -> untyped } -> void
+      def self.my_user_agent: () -> String
 
-      def configure: () ?{ (Configuration) -> untyped } -> void
+      def access_token: () -> String
 
+      def host: () -> String
+
+      def user_agent: () -> String
+
+      def connect_timeout: () -> Integer
+
+      def timeout: () -> Integer
+
+      def configure: () { (Configuration) -> void } -> void
     end
 
     class ApiClient
@@ -147,7 +140,7 @@ module Zitadel
 
       attr_accessor default_headers: Hash[String, String]
 
-      def initialize: (?Configuration) -> void
+      def initialize: (Configuration) -> void
 
       def self.default: () -> untyped
 
@@ -193,9 +186,9 @@ module Zitadel
     class ApiError < ZitadelError
       attr_reader code: Integer
       attr_reader response_headers: Hash[String, Array[String]]
-      attr_reader response_body: String | Typhoeus::Response
+      attr_reader response_body: (String | Object)?
 
-      def initialize: (Integer, Hash[String, Array[String]], String | Typhoeus::Response) -> void
+      def initialize: (Integer, Hash[String, Array[String]], (String | Object)?) -> void
     end
 
     module Auth
@@ -204,11 +197,16 @@ module Zitadel
 
         @host: String
 
+        @auth_token: String
+
         attr_reader host: String
 
         def initialize: (String) -> void
 
         def auth_headers: () -> Hash[String, String]
+
+        def auth_token: () -> String
+
       end
 
       class ClientCredentialsAuthenticator < OAuthAuthenticator
@@ -232,7 +230,9 @@ module Zitadel
 
       class NoAuthAuthenticator < Authenticator
 
-        def initialize: (?String) -> void
+        @token: String
+
+        def initialize: (?String, ?String) -> void
 
         def auth_headers: () -> Hash[String, String]
       end
@@ -358,6 +358,78 @@ module Zitadel
 
       def initialize: (Auth::Authenticator) ?{ (Configuration) -> void } -> void
 
+    end
+
+    class ObjectSerializer
+
+      def initialize: () -> void
+
+      def serialize: (untyped object) -> String
+
+      def deserialize: [T] (String data, T klass) -> T
+
+      private
+
+      def convert_to_type: (untyped data, (::Class | String) return_type) -> (untyped | nil)
+
+      def object_to_hash: (untyped obj) -> untyped
+    end
+
+    interface _IApiClient
+      def invoke_api: [T] (
+          operation_id: String,
+          path_template: String,
+          method: String,
+          path_params: Hash[String | Symbol, untyped],
+          query_params: Hash[String | Symbol, untyped],
+          header_params: Hash[String | Symbol, untyped],
+          ?body: untyped,
+          ?success_type: T?,
+          ?error_types: Hash[Integer | String, ::Class]?
+        ) -> T?
+    end
+
+    class IApiClient
+      def invoke_api: [T] (
+          operation_id: String,
+          path_template: String,
+          method: String,
+          path_params: Hash[String | Symbol, untyped],
+          query_params: Hash[String | Symbol, untyped],
+          header_params: Hash[String | Symbol, untyped],
+          ?body: untyped,
+          ?success_type: T?,
+          ?error_types: Hash[Integer | String, ::Class]?
+        ) -> T?
+    end
+
+    class DefaultApiClient
+      include _IApiClient
+
+      VALID_METHODS: Array[Symbol]
+
+      @config: Configuration
+      @serde: ObjectSerializer
+
+      def initialize: (Configuration config) -> void
+
+      def invoke_api: [T] (
+          operation_id: String,
+          path_template: String,
+          method: String,
+          path_params: Hash[String | Symbol, untyped],
+          query_params: Hash[String | Symbol, untyped],
+          header_params: Hash[String | Symbol, untyped],
+          ?body: untyped,
+          ?success_type: T?,
+          ?error_types: Hash[Integer | String, ::Class]?
+        ) -> T?
+
+      private
+
+      def find_error_type: (Integer status_code, Hash[Integer | String, ::Class]? error_types) -> ::Class?
+
+      def build_path: (String path_template, Hash[String | Symbol, untyped] path_params) -> String
     end
 
   end

@@ -16,20 +16,18 @@ module Zitadel::Client::Api
   class BetaUserServiceApi
   attr_accessor :api_client
 
-  def initialize(api_client = ApiClient.default)
+  def initialize(api_client)
   @api_client = api_client
   end
       # AddHumanUser
       # Create a new human user   Create/import a new user with the type human. The newly created user will get a verification email if either the email address is not marked as verified and you did not request the verification to be returned.   Deprecated: please move to the corresponding endpoint under user service v2 (GA)
-          # @param beta_user_service_add_human_user_request [BetaUserServiceAddHumanUserRequest] 
+          # @param beta_user_service_add_human_user_request [BetaUserServiceAddHumanUserRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceAddHumanUserResponse]
     def add_human_user(beta_user_service_add_human_user_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.add_human_user ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_add_human_user_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_add_human_user_request.nil?
+          if beta_user_service_add_human_user_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_add_human_user_request' when calling Api::BetaUserServiceApi.add_human_user" # MODIFIED
           end
     # resource path
@@ -71,23 +69,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#add_human_user\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # AddIDPLink
       # Add link to an identity provider to an user   Add link to an identity provider to an user.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_add_idp_link_request [BetaUserServiceAddIDPLinkRequest] 
+          # @param beta_user_service_add_idp_link_request [BetaUserServiceAddIDPLinkRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceAddIDPLinkResponse]
     def add_idp_link(beta_user_service_add_idp_link_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.add_idp_link ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_add_idp_link_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_add_idp_link_request.nil?
+          if beta_user_service_add_idp_link_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_add_idp_link_request' when calling Api::BetaUserServiceApi.add_idp_link" # MODIFIED
           end
     # resource path
@@ -129,23 +123,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#add_idp_link\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # AddOTPEmail
       # Add OTP Email for a user   Add a new One-Time Password (OTP) Email factor to the authenticated user. OTP Email will enable the user to verify a OTP with the latest verified email. The email has to be verified to add the second factor.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_add_otp_email_request [BetaUserServiceAddOTPEmailRequest] 
+          # @param beta_user_service_add_otp_email_request [BetaUserServiceAddOTPEmailRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceAddOTPEmailResponse]
     def add_otp_email(beta_user_service_add_otp_email_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.add_otp_email ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_add_otp_email_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_add_otp_email_request.nil?
+          if beta_user_service_add_otp_email_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_add_otp_email_request' when calling Api::BetaUserServiceApi.add_otp_email" # MODIFIED
           end
     # resource path
@@ -187,23 +177,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#add_otp_email\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # AddOTPSMS
       # Add OTP SMS for a user   Add a new One-Time Password (OTP) SMS factor to the authenticated user. OTP SMS will enable the user to verify a OTP with the latest verified phone number. The phone number has to be verified to add the second factor.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_add_otpsms_request [BetaUserServiceAddOTPSMSRequest] 
+          # @param beta_user_service_add_otpsms_request [BetaUserServiceAddOTPSMSRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceAddOTPSMSResponse]
     def add_otpsms(beta_user_service_add_otpsms_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.add_otpsms ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_add_otpsms_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_add_otpsms_request.nil?
+          if beta_user_service_add_otpsms_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_add_otpsms_request' when calling Api::BetaUserServiceApi.add_otpsms" # MODIFIED
           end
     # resource path
@@ -245,23 +231,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#add_otpsms\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # CreatePasskeyRegistrationLink
       # Create a passkey registration link for a user   Create a passkey registration link which includes a code and either return it or send it to the user.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_create_passkey_registration_link_request [BetaUserServiceCreatePasskeyRegistrationLinkRequest] 
+          # @param beta_user_service_create_passkey_registration_link_request [BetaUserServiceCreatePasskeyRegistrationLinkRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceCreatePasskeyRegistrationLinkResponse]
     def create_passkey_registration_link(beta_user_service_create_passkey_registration_link_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.create_passkey_registration_link ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_create_passkey_registration_link_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_create_passkey_registration_link_request.nil?
+          if beta_user_service_create_passkey_registration_link_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_create_passkey_registration_link_request' when calling Api::BetaUserServiceApi.create_passkey_registration_link" # MODIFIED
           end
     # resource path
@@ -303,23 +285,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#create_passkey_registration_link\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # DeactivateUser
       # Deactivate user   The state of the user will be changed to &#39;deactivated&#39;. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state &#39;deactivated&#39;. Use deactivate user when the user should not be able to use the account anymore, but you still need access to the user data.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_deactivate_user_request [BetaUserServiceDeactivateUserRequest] 
+          # @param beta_user_service_deactivate_user_request [BetaUserServiceDeactivateUserRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceDeactivateUserResponse]
     def deactivate_user(beta_user_service_deactivate_user_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.deactivate_user ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_deactivate_user_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_deactivate_user_request.nil?
+          if beta_user_service_deactivate_user_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_deactivate_user_request' when calling Api::BetaUserServiceApi.deactivate_user" # MODIFIED
           end
     # resource path
@@ -361,23 +339,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#deactivate_user\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # DeleteUser
       # Delete user   The state of the user will be changed to &#39;deleted&#39;. The user will not be able to log in anymore. Endpoints requesting this user will return an error &#39;User not found.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_delete_user_request [BetaUserServiceDeleteUserRequest] 
+          # @param beta_user_service_delete_user_request [BetaUserServiceDeleteUserRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceDeleteUserResponse]
     def delete_user(beta_user_service_delete_user_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.delete_user ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_delete_user_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_delete_user_request.nil?
+          if beta_user_service_delete_user_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_delete_user_request' when calling Api::BetaUserServiceApi.delete_user" # MODIFIED
           end
     # resource path
@@ -419,23 +393,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#delete_user\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # GetUserByID
       # User by ID   Returns the full user object (human or machine) including the profile, email, etc.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_get_user_by_id_request [BetaUserServiceGetUserByIDRequest] 
+          # @param beta_user_service_get_user_by_id_request [BetaUserServiceGetUserByIDRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceGetUserByIDResponse]
     def get_user_by_id(beta_user_service_get_user_by_id_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.get_user_by_id ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_get_user_by_id_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_get_user_by_id_request.nil?
+          if beta_user_service_get_user_by_id_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_get_user_by_id_request' when calling Api::BetaUserServiceApi.get_user_by_id" # MODIFIED
           end
     # resource path
@@ -477,23 +447,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#get_user_by_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # ListAuthenticationMethodTypes
       # List all possible authentication methods of a user   List all possible authentication methods of a user like password, passwordless, (T)OTP and more.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_list_authentication_method_types_request [BetaUserServiceListAuthenticationMethodTypesRequest] 
+          # @param beta_user_service_list_authentication_method_types_request [BetaUserServiceListAuthenticationMethodTypesRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceListAuthenticationMethodTypesResponse]
     def list_authentication_method_types(beta_user_service_list_authentication_method_types_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.list_authentication_method_types ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_list_authentication_method_types_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_list_authentication_method_types_request.nil?
+          if beta_user_service_list_authentication_method_types_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_list_authentication_method_types_request' when calling Api::BetaUserServiceApi.list_authentication_method_types" # MODIFIED
           end
     # resource path
@@ -535,23 +501,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#list_authentication_method_types\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # ListUsers
       # Search Users   Search for users. By default, we will return all users of your instance that you have permission to read. Make sure to include a limit and sorting for pagination.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_list_users_request [BetaUserServiceListUsersRequest] 
+          # @param beta_user_service_list_users_request [BetaUserServiceListUsersRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceListUsersResponse]
     def list_users(beta_user_service_list_users_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.list_users ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_list_users_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_list_users_request.nil?
+          if beta_user_service_list_users_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_list_users_request' when calling Api::BetaUserServiceApi.list_users" # MODIFIED
           end
     # resource path
@@ -593,23 +555,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#list_users\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # LockUser
       # Lock user   The state of the user will be changed to &#39;locked&#39;. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state &#39;locked&#39;. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.).   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_lock_user_request [BetaUserServiceLockUserRequest] 
+          # @param beta_user_service_lock_user_request [BetaUserServiceLockUserRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceLockUserResponse]
     def lock_user(beta_user_service_lock_user_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.lock_user ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_lock_user_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_lock_user_request.nil?
+          if beta_user_service_lock_user_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_lock_user_request' when calling Api::BetaUserServiceApi.lock_user" # MODIFIED
           end
     # resource path
@@ -651,23 +609,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#lock_user\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # PasswordReset
       # Request a code to reset a password   Request a code to reset a password.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_password_reset_request [BetaUserServicePasswordResetRequest] 
+          # @param beta_user_service_password_reset_request [BetaUserServicePasswordResetRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServicePasswordResetResponse]
     def password_reset(beta_user_service_password_reset_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.password_reset ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_password_reset_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_password_reset_request.nil?
+          if beta_user_service_password_reset_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_password_reset_request' when calling Api::BetaUserServiceApi.password_reset" # MODIFIED
           end
     # resource path
@@ -709,23 +663,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#password_reset\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # ReactivateUser
       # Reactivate user   Reactivate a user with the state &#39;deactivated&#39;. The user will be able to log in again afterward. The endpoint returns an error if the user is not in the state &#39;deactivated&#39;.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_reactivate_user_request [BetaUserServiceReactivateUserRequest] 
+          # @param beta_user_service_reactivate_user_request [BetaUserServiceReactivateUserRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceReactivateUserResponse]
     def reactivate_user(beta_user_service_reactivate_user_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.reactivate_user ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_reactivate_user_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_reactivate_user_request.nil?
+          if beta_user_service_reactivate_user_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_reactivate_user_request' when calling Api::BetaUserServiceApi.reactivate_user" # MODIFIED
           end
     # resource path
@@ -767,23 +717,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#reactivate_user\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # RegisterPasskey
       # Start the registration of passkey for a user   Start the registration of a passkey for a user, as a response the public key credential creation options are returned, which are used to verify the passkey.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_register_passkey_request [BetaUserServiceRegisterPasskeyRequest] 
+          # @param beta_user_service_register_passkey_request [BetaUserServiceRegisterPasskeyRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceRegisterPasskeyResponse]
     def register_passkey(beta_user_service_register_passkey_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.register_passkey ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_register_passkey_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_register_passkey_request.nil?
+          if beta_user_service_register_passkey_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_register_passkey_request' when calling Api::BetaUserServiceApi.register_passkey" # MODIFIED
           end
     # resource path
@@ -825,23 +771,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#register_passkey\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # RegisterTOTP
       # Start the registration of a TOTP generator for a user   Start the registration of a TOTP generator for a user, as a response a secret returned, which is used to initialize a TOTP app or device.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_register_totp_request [BetaUserServiceRegisterTOTPRequest] 
+          # @param beta_user_service_register_totp_request [BetaUserServiceRegisterTOTPRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceRegisterTOTPResponse]
     def register_totp(beta_user_service_register_totp_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.register_totp ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_register_totp_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_register_totp_request.nil?
+          if beta_user_service_register_totp_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_register_totp_request' when calling Api::BetaUserServiceApi.register_totp" # MODIFIED
           end
     # resource path
@@ -883,23 +825,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#register_totp\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # RegisterU2F
       # Start the registration of a u2f token for a user   Start the registration of a u2f token for a user, as a response the public key credential creation options are returned, which are used to verify the u2f token.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_register_u2_f_request [BetaUserServiceRegisterU2FRequest] 
+          # @param beta_user_service_register_u2_f_request [BetaUserServiceRegisterU2FRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceRegisterU2FResponse]
     def register_u2_f(beta_user_service_register_u2_f_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.register_u2_f ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_register_u2_f_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_register_u2_f_request.nil?
+          if beta_user_service_register_u2_f_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_register_u2_f_request' when calling Api::BetaUserServiceApi.register_u2_f" # MODIFIED
           end
     # resource path
@@ -941,23 +879,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#register_u2_f\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # RemoveOTPEmail
       # Remove One-Time Password (OTP) Email from a user   Remove the configured One-Time Password (OTP) Email factor of a user. As only one OTP Email per user is allowed, the user will not have OTP Email as a second factor afterward.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_remove_otp_email_request [BetaUserServiceRemoveOTPEmailRequest] 
+          # @param beta_user_service_remove_otp_email_request [BetaUserServiceRemoveOTPEmailRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceRemoveOTPEmailResponse]
     def remove_otp_email(beta_user_service_remove_otp_email_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.remove_otp_email ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_remove_otp_email_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_remove_otp_email_request.nil?
+          if beta_user_service_remove_otp_email_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_remove_otp_email_request' when calling Api::BetaUserServiceApi.remove_otp_email" # MODIFIED
           end
     # resource path
@@ -999,23 +933,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#remove_otp_email\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # RemoveOTPSMS
       # Remove One-Time Password (OTP) SMS from a user   Remove the configured One-Time Password (OTP) SMS factor of a user. As only one OTP SMS per user is allowed, the user will not have OTP SMS as a second factor afterward.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_remove_otpsms_request [BetaUserServiceRemoveOTPSMSRequest] 
+          # @param beta_user_service_remove_otpsms_request [BetaUserServiceRemoveOTPSMSRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceRemoveOTPSMSResponse]
     def remove_otpsms(beta_user_service_remove_otpsms_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.remove_otpsms ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_remove_otpsms_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_remove_otpsms_request.nil?
+          if beta_user_service_remove_otpsms_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_remove_otpsms_request' when calling Api::BetaUserServiceApi.remove_otpsms" # MODIFIED
           end
     # resource path
@@ -1057,23 +987,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#remove_otpsms\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # RemovePhone
       # Remove the user phone   Remove the user phone   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_remove_phone_request [BetaUserServiceRemovePhoneRequest] 
+          # @param beta_user_service_remove_phone_request [BetaUserServiceRemovePhoneRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceRemovePhoneResponse]
     def remove_phone(beta_user_service_remove_phone_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.remove_phone ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_remove_phone_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_remove_phone_request.nil?
+          if beta_user_service_remove_phone_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_remove_phone_request' when calling Api::BetaUserServiceApi.remove_phone" # MODIFIED
           end
     # resource path
@@ -1115,23 +1041,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#remove_phone\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # RemoveTOTP
       # Remove TOTP generator from a user   Remove the configured TOTP generator of a user. As only one TOTP generator per user is allowed, the user will not have TOTP as a second factor afterward.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_remove_totp_request [BetaUserServiceRemoveTOTPRequest] 
+          # @param beta_user_service_remove_totp_request [BetaUserServiceRemoveTOTPRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceRemoveTOTPResponse]
     def remove_totp(beta_user_service_remove_totp_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.remove_totp ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_remove_totp_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_remove_totp_request.nil?
+          if beta_user_service_remove_totp_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_remove_totp_request' when calling Api::BetaUserServiceApi.remove_totp" # MODIFIED
           end
     # resource path
@@ -1173,23 +1095,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#remove_totp\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # ResendEmailCode
       # Resend code to verify user email   Resend code to verify user email   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_resend_email_code_request [BetaUserServiceResendEmailCodeRequest] 
+          # @param beta_user_service_resend_email_code_request [BetaUserServiceResendEmailCodeRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceResendEmailCodeResponse]
     def resend_email_code(beta_user_service_resend_email_code_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.resend_email_code ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_resend_email_code_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_resend_email_code_request.nil?
+          if beta_user_service_resend_email_code_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_resend_email_code_request' when calling Api::BetaUserServiceApi.resend_email_code" # MODIFIED
           end
     # resource path
@@ -1231,23 +1149,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#resend_email_code\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # ResendPhoneCode
       # Resend code to verify user phone   Resend code to verify user phone   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_resend_phone_code_request [BetaUserServiceResendPhoneCodeRequest] 
+          # @param beta_user_service_resend_phone_code_request [BetaUserServiceResendPhoneCodeRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceResendPhoneCodeResponse]
     def resend_phone_code(beta_user_service_resend_phone_code_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.resend_phone_code ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_resend_phone_code_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_resend_phone_code_request.nil?
+          if beta_user_service_resend_phone_code_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_resend_phone_code_request' when calling Api::BetaUserServiceApi.resend_phone_code" # MODIFIED
           end
     # resource path
@@ -1289,23 +1203,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#resend_phone_code\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # RetrieveIdentityProviderIntent
       # Retrieve the information returned by the identity provider   Retrieve the information returned by the identity provider for registration or updating an existing user with new information.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_retrieve_identity_provider_intent_request [BetaUserServiceRetrieveIdentityProviderIntentRequest] 
+          # @param beta_user_service_retrieve_identity_provider_intent_request [BetaUserServiceRetrieveIdentityProviderIntentRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceRetrieveIdentityProviderIntentResponse]
     def retrieve_identity_provider_intent(beta_user_service_retrieve_identity_provider_intent_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.retrieve_identity_provider_intent ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_retrieve_identity_provider_intent_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_retrieve_identity_provider_intent_request.nil?
+          if beta_user_service_retrieve_identity_provider_intent_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_retrieve_identity_provider_intent_request' when calling Api::BetaUserServiceApi.retrieve_identity_provider_intent" # MODIFIED
           end
     # resource path
@@ -1347,23 +1257,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#retrieve_identity_provider_intent\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # SetEmail
       # Change the user email   Change the email address of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by email.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_set_email_request [BetaUserServiceSetEmailRequest] 
+          # @param beta_user_service_set_email_request [BetaUserServiceSetEmailRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceSetEmailResponse]
     def set_email(beta_user_service_set_email_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.set_email ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_set_email_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_set_email_request.nil?
+          if beta_user_service_set_email_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_set_email_request' when calling Api::BetaUserServiceApi.set_email" # MODIFIED
           end
     # resource path
@@ -1405,23 +1311,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#set_email\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # SetPassword
       # Change password   Change the password of a user with either a verification code or the current password.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_set_password_request [BetaUserServiceSetPasswordRequest] 
+          # @param beta_user_service_set_password_request [BetaUserServiceSetPasswordRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceSetPasswordResponse]
     def set_password(beta_user_service_set_password_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.set_password ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_set_password_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_set_password_request.nil?
+          if beta_user_service_set_password_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_set_password_request' when calling Api::BetaUserServiceApi.set_password" # MODIFIED
           end
     # resource path
@@ -1463,23 +1365,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#set_password\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # SetPhone
       # Set the user phone   Set the phone number of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by sms.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_set_phone_request [BetaUserServiceSetPhoneRequest] 
+          # @param beta_user_service_set_phone_request [BetaUserServiceSetPhoneRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceSetPhoneResponse]
     def set_phone(beta_user_service_set_phone_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.set_phone ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_set_phone_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_set_phone_request.nil?
+          if beta_user_service_set_phone_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_set_phone_request' when calling Api::BetaUserServiceApi.set_phone" # MODIFIED
           end
     # resource path
@@ -1521,23 +1419,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#set_phone\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # StartIdentityProviderIntent
       # Start flow with an identity provider   Start a flow with an identity provider, for external login, registration or linking.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_start_identity_provider_intent_request [BetaUserServiceStartIdentityProviderIntentRequest] 
+          # @param beta_user_service_start_identity_provider_intent_request [BetaUserServiceStartIdentityProviderIntentRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceStartIdentityProviderIntentResponse]
     def start_identity_provider_intent(beta_user_service_start_identity_provider_intent_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.start_identity_provider_intent ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_start_identity_provider_intent_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_start_identity_provider_intent_request.nil?
+          if beta_user_service_start_identity_provider_intent_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_start_identity_provider_intent_request' when calling Api::BetaUserServiceApi.start_identity_provider_intent" # MODIFIED
           end
     # resource path
@@ -1579,23 +1473,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#start_identity_provider_intent\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # UnlockUser
       # Unlock user   The state of the user will be changed to &#39;locked&#39;. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state &#39;locked&#39;. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.).   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_unlock_user_request [BetaUserServiceUnlockUserRequest] 
+          # @param beta_user_service_unlock_user_request [BetaUserServiceUnlockUserRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceUnlockUserResponse]
     def unlock_user(beta_user_service_unlock_user_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.unlock_user ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_unlock_user_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_unlock_user_request.nil?
+          if beta_user_service_unlock_user_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_unlock_user_request' when calling Api::BetaUserServiceApi.unlock_user" # MODIFIED
           end
     # resource path
@@ -1637,23 +1527,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#unlock_user\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # UpdateHumanUser
       # Update User   Update all information from a user.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_update_human_user_request [BetaUserServiceUpdateHumanUserRequest] 
+          # @param beta_user_service_update_human_user_request [BetaUserServiceUpdateHumanUserRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceUpdateHumanUserResponse]
     def update_human_user(beta_user_service_update_human_user_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.update_human_user ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_update_human_user_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_update_human_user_request.nil?
+          if beta_user_service_update_human_user_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_update_human_user_request' when calling Api::BetaUserServiceApi.update_human_user" # MODIFIED
           end
     # resource path
@@ -1695,23 +1581,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#update_human_user\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # VerifyEmail
       # Verify the email   Verify the email with the generated code.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_verify_email_request [BetaUserServiceVerifyEmailRequest] 
+          # @param beta_user_service_verify_email_request [BetaUserServiceVerifyEmailRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceVerifyEmailResponse]
     def verify_email(beta_user_service_verify_email_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.verify_email ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_verify_email_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_verify_email_request.nil?
+          if beta_user_service_verify_email_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_verify_email_request' when calling Api::BetaUserServiceApi.verify_email" # MODIFIED
           end
     # resource path
@@ -1753,23 +1635,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#verify_email\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # VerifyPasskeyRegistration
       # Verify a passkey for a user   Verify the passkey registration with the public key credential.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_verify_passkey_registration_request [BetaUserServiceVerifyPasskeyRegistrationRequest] 
+          # @param beta_user_service_verify_passkey_registration_request [BetaUserServiceVerifyPasskeyRegistrationRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceVerifyPasskeyRegistrationResponse]
     def verify_passkey_registration(beta_user_service_verify_passkey_registration_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.verify_passkey_registration ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_verify_passkey_registration_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_verify_passkey_registration_request.nil?
+          if beta_user_service_verify_passkey_registration_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_verify_passkey_registration_request' when calling Api::BetaUserServiceApi.verify_passkey_registration" # MODIFIED
           end
     # resource path
@@ -1811,23 +1689,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#verify_passkey_registration\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # VerifyPhone
       # Verify the phone   Verify the phone with the generated code.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_verify_phone_request [BetaUserServiceVerifyPhoneRequest] 
+          # @param beta_user_service_verify_phone_request [BetaUserServiceVerifyPhoneRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceVerifyPhoneResponse]
     def verify_phone(beta_user_service_verify_phone_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.verify_phone ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_verify_phone_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_verify_phone_request.nil?
+          if beta_user_service_verify_phone_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_verify_phone_request' when calling Api::BetaUserServiceApi.verify_phone" # MODIFIED
           end
     # resource path
@@ -1869,23 +1743,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#verify_phone\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # VerifyTOTPRegistration
       # Verify a TOTP generator for a user   Verify the TOTP registration with a generated code.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_verify_totp_registration_request [BetaUserServiceVerifyTOTPRegistrationRequest] 
+          # @param beta_user_service_verify_totp_registration_request [BetaUserServiceVerifyTOTPRegistrationRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceVerifyTOTPRegistrationResponse]
     def verify_totp_registration(beta_user_service_verify_totp_registration_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.verify_totp_registration ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_verify_totp_registration_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_verify_totp_registration_request.nil?
+          if beta_user_service_verify_totp_registration_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_verify_totp_registration_request' when calling Api::BetaUserServiceApi.verify_totp_registration" # MODIFIED
           end
     # resource path
@@ -1927,23 +1797,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#verify_totp_registration\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # VerifyU2FRegistration
       # Verify a u2f token for a user   Verify the u2f token registration with the public key credential.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
-          # @param beta_user_service_verify_u2_f_registration_request [BetaUserServiceVerifyU2FRegistrationRequest] 
+          # @param beta_user_service_verify_u2_f_registration_request [BetaUserServiceVerifyU2FRegistrationRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceVerifyU2FRegistrationResponse]
     def verify_u2_f_registration(beta_user_service_verify_u2_f_registration_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.verify_u2_f_registration ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_user_service_verify_u2_f_registration_request' is set
-          if @api_client.config.client_side_validation && beta_user_service_verify_u2_f_registration_request.nil?
+          if beta_user_service_verify_u2_f_registration_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_user_service_verify_u2_f_registration_request' when calling Api::BetaUserServiceApi.verify_u2_f_registration" # MODIFIED
           end
     # resource path
@@ -1985,9 +1851,7 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaUserServiceApi#verify_u2_f_registration\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
   end

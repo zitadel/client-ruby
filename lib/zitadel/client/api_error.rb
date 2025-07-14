@@ -13,13 +13,13 @@ module Zitadel
       # @return [Hash{String=>Array<String>}] HTTP response headers
       attr_reader :response_headers
 
-      # @return [String, Typhoeus::Response] HTTP response body
+      # @return [String, Object, nil] HTTP response body
       attr_reader :response_body
 
       ##
       # @param code             [Integer]                     HTTP status code
       # @param response_headers [Hash{String=>Array<String>}] HTTP response headers
-      # @param response_body    [String, Typhoeus::Response]  HTTP response body
+      # @param response_body    [String, Object, nil]  HTTP response body
       def initialize(code, response_headers, response_body)
         super("Error #{code}")
         @code = code

@@ -16,20 +16,18 @@ module Zitadel::Client::Api
   class BetaSessionServiceApi
   attr_accessor :api_client
 
-  def initialize(api_client = ApiClient.default)
+  def initialize(api_client)
   @api_client = api_client
   end
       # CreateSession
       # Create a new session
-          # @param beta_session_service_create_session_request [BetaSessionServiceCreateSessionRequest] 
+          # @param beta_session_service_create_session_request [BetaSessionServiceCreateSessionRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaSessionServiceCreateSessionResponse]
     def create_session(beta_session_service_create_session_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaSessionServiceApi.create_session ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_session_service_create_session_request' is set
-          if @api_client.config.client_side_validation && beta_session_service_create_session_request.nil?
+          if beta_session_service_create_session_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_session_service_create_session_request' when calling Api::BetaSessionServiceApi.create_session" # MODIFIED
           end
     # resource path
@@ -71,23 +69,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaSessionServiceApi#create_session\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # DeleteSession
       # Terminate a session
-          # @param beta_session_service_delete_session_request [BetaSessionServiceDeleteSessionRequest] 
+          # @param beta_session_service_delete_session_request [BetaSessionServiceDeleteSessionRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaSessionServiceDeleteSessionResponse]
     def delete_session(beta_session_service_delete_session_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaSessionServiceApi.delete_session ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_session_service_delete_session_request' is set
-          if @api_client.config.client_side_validation && beta_session_service_delete_session_request.nil?
+          if beta_session_service_delete_session_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_session_service_delete_session_request' when calling Api::BetaSessionServiceApi.delete_session" # MODIFIED
           end
     # resource path
@@ -129,23 +123,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaSessionServiceApi#delete_session\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # GetSession
       # GetSession a session
-          # @param beta_session_service_get_session_request [BetaSessionServiceGetSessionRequest] 
+          # @param beta_session_service_get_session_request [BetaSessionServiceGetSessionRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaSessionServiceGetSessionResponse]
     def get_session(beta_session_service_get_session_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaSessionServiceApi.get_session ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_session_service_get_session_request' is set
-          if @api_client.config.client_side_validation && beta_session_service_get_session_request.nil?
+          if beta_session_service_get_session_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_session_service_get_session_request' when calling Api::BetaSessionServiceApi.get_session" # MODIFIED
           end
     # resource path
@@ -187,23 +177,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaSessionServiceApi#get_session\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # ListSessions
       # Search sessions
-          # @param beta_session_service_list_sessions_request [BetaSessionServiceListSessionsRequest] 
+          # @param beta_session_service_list_sessions_request [BetaSessionServiceListSessionsRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaSessionServiceListSessionsResponse]
     def list_sessions(beta_session_service_list_sessions_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaSessionServiceApi.list_sessions ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_session_service_list_sessions_request' is set
-          if @api_client.config.client_side_validation && beta_session_service_list_sessions_request.nil?
+          if beta_session_service_list_sessions_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_session_service_list_sessions_request' when calling Api::BetaSessionServiceApi.list_sessions" # MODIFIED
           end
     # resource path
@@ -245,23 +231,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaSessionServiceApi#list_sessions\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # SetSession
       # Update a session
-          # @param beta_session_service_set_session_request [BetaSessionServiceSetSessionRequest] 
+          # @param beta_session_service_set_session_request [BetaSessionServiceSetSessionRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaSessionServiceSetSessionResponse]
     def set_session(beta_session_service_set_session_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaSessionServiceApi.set_session ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_session_service_set_session_request' is set
-          if @api_client.config.client_side_validation && beta_session_service_set_session_request.nil?
+          if beta_session_service_set_session_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_session_service_set_session_request' when calling Api::BetaSessionServiceApi.set_session" # MODIFIED
           end
     # resource path
@@ -303,9 +285,7 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaSessionServiceApi#set_session\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
   end

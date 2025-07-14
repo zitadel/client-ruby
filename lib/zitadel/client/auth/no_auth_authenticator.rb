@@ -13,10 +13,12 @@ module Zitadel
         ##
         # Initializes the NoAuthAuthenticator with a default host.
         #
-        # @param host [String] the base URL for the service. Defaults to "http://localhost".
+        # @param host [String] the base URL for all authentication endpoints.
+        # @param token [String] The token to be used for authentication.
         #
-        def initialize(host = 'http://localhost')
-          super
+        def initialize(host = 'http://localhost', token = 'test-token')
+          super(host)
+          @token = token
         end
 
         protected
@@ -28,6 +30,15 @@ module Zitadel
         #
         def auth_headers
           {}
+        end
+
+        ##
+        # Retrieves the authentication token needed for API requests.
+        #
+        # @return [String] The authentication token.
+        #
+        def auth_token
+          @token
         end
       end
     end

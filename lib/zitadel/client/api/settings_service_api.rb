@@ -16,20 +16,18 @@ module Zitadel::Client::Api
   class SettingsServiceApi
   attr_accessor :api_client
 
-  def initialize(api_client = ApiClient.default)
+  def initialize(api_client)
   @api_client = api_client
   end
       # GetActiveIdentityProviders
       # Get the current active identity providers
-          # @param settings_service_get_active_identity_providers_request [SettingsServiceGetActiveIdentityProvidersRequest] 
+          # @param settings_service_get_active_identity_providers_request [SettingsServiceGetActiveIdentityProvidersRequest]
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceGetActiveIdentityProvidersResponse]
     def get_active_identity_providers(settings_service_get_active_identity_providers_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.get_active_identity_providers ...' # MODIFIED
-    end
+
           # verify the required parameter 'settings_service_get_active_identity_providers_request' is set
-          if @api_client.config.client_side_validation && settings_service_get_active_identity_providers_request.nil?
+          if settings_service_get_active_identity_providers_request.nil?
           fail ArgumentError, "Missing the required parameter 'settings_service_get_active_identity_providers_request' when calling Api::SettingsServiceApi.get_active_identity_providers" # MODIFIED
           end
     # resource path
@@ -71,23 +69,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#get_active_identity_providers\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # GetBrandingSettings
       # Get the current active branding settings
-          # @param settings_service_get_branding_settings_request [SettingsServiceGetBrandingSettingsRequest] 
+          # @param settings_service_get_branding_settings_request [SettingsServiceGetBrandingSettingsRequest]
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceGetBrandingSettingsResponse]
     def get_branding_settings(settings_service_get_branding_settings_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.get_branding_settings ...' # MODIFIED
-    end
+
           # verify the required parameter 'settings_service_get_branding_settings_request' is set
-          if @api_client.config.client_side_validation && settings_service_get_branding_settings_request.nil?
+          if settings_service_get_branding_settings_request.nil?
           fail ArgumentError, "Missing the required parameter 'settings_service_get_branding_settings_request' when calling Api::SettingsServiceApi.get_branding_settings" # MODIFIED
           end
     # resource path
@@ -129,23 +123,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#get_branding_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # GetDomainSettings
       # Get the domain settings
-          # @param settings_service_get_domain_settings_request [SettingsServiceGetDomainSettingsRequest] 
+          # @param settings_service_get_domain_settings_request [SettingsServiceGetDomainSettingsRequest]
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceGetDomainSettingsResponse]
     def get_domain_settings(settings_service_get_domain_settings_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.get_domain_settings ...' # MODIFIED
-    end
+
           # verify the required parameter 'settings_service_get_domain_settings_request' is set
-          if @api_client.config.client_side_validation && settings_service_get_domain_settings_request.nil?
+          if settings_service_get_domain_settings_request.nil?
           fail ArgumentError, "Missing the required parameter 'settings_service_get_domain_settings_request' when calling Api::SettingsServiceApi.get_domain_settings" # MODIFIED
           end
     # resource path
@@ -187,23 +177,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#get_domain_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # GetGeneralSettings
       # Get basic information over the instance
-          # @param body [Object] 
+          # @param body [Object]
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceGetGeneralSettingsResponse]
     def get_general_settings(body = {}, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.get_general_settings ...' # MODIFIED
-    end
+
           # verify the required parameter 'body' is set
-          if @api_client.config.client_side_validation && body.nil?
+          if body.nil?
           fail ArgumentError, "Missing the required parameter 'body' when calling Api::SettingsServiceApi.get_general_settings" # MODIFIED
           end
     # resource path
@@ -245,23 +231,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#get_general_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # GetHostedLoginTranslation
       # Get Hosted Login Translation   Returns the translations in the requested locale for the hosted login.  The translations returned are based on the input level specified (system, instance or organization).   If the requested level doesn&#39;t contain all translations, and ignore_inheritance is set to false,  a merging process fallbacks onto the higher levels ensuring all keys in the file have a translation,  which could be in the default language if the one of the locale is missing on all levels.   The etag returned in the response represents the hash of the translations as they are stored on DB  and its reliable only if ignore_inheritance &#x3D; true.   Required permissions:    - &#x60;iam.policy.read&#x60;
-          # @param settings_service_get_hosted_login_translation_request [SettingsServiceGetHostedLoginTranslationRequest] 
+          # @param settings_service_get_hosted_login_translation_request [SettingsServiceGetHostedLoginTranslationRequest]
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceGetHostedLoginTranslationResponse]
     def get_hosted_login_translation(settings_service_get_hosted_login_translation_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.get_hosted_login_translation ...' # MODIFIED
-    end
+
           # verify the required parameter 'settings_service_get_hosted_login_translation_request' is set
-          if @api_client.config.client_side_validation && settings_service_get_hosted_login_translation_request.nil?
+          if settings_service_get_hosted_login_translation_request.nil?
           fail ArgumentError, "Missing the required parameter 'settings_service_get_hosted_login_translation_request' when calling Api::SettingsServiceApi.get_hosted_login_translation" # MODIFIED
           end
     # resource path
@@ -303,23 +285,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#get_hosted_login_translation\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # GetLegalAndSupportSettings
       # Get the legal and support settings
-          # @param settings_service_get_legal_and_support_settings_request [SettingsServiceGetLegalAndSupportSettingsRequest] 
+          # @param settings_service_get_legal_and_support_settings_request [SettingsServiceGetLegalAndSupportSettingsRequest]
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceGetLegalAndSupportSettingsResponse]
     def get_legal_and_support_settings(settings_service_get_legal_and_support_settings_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.get_legal_and_support_settings ...' # MODIFIED
-    end
+
           # verify the required parameter 'settings_service_get_legal_and_support_settings_request' is set
-          if @api_client.config.client_side_validation && settings_service_get_legal_and_support_settings_request.nil?
+          if settings_service_get_legal_and_support_settings_request.nil?
           fail ArgumentError, "Missing the required parameter 'settings_service_get_legal_and_support_settings_request' when calling Api::SettingsServiceApi.get_legal_and_support_settings" # MODIFIED
           end
     # resource path
@@ -361,23 +339,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#get_legal_and_support_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # GetLockoutSettings
       # Get the lockout settings
-          # @param settings_service_get_lockout_settings_request [SettingsServiceGetLockoutSettingsRequest] 
+          # @param settings_service_get_lockout_settings_request [SettingsServiceGetLockoutSettingsRequest]
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceGetLockoutSettingsResponse]
     def get_lockout_settings(settings_service_get_lockout_settings_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.get_lockout_settings ...' # MODIFIED
-    end
+
           # verify the required parameter 'settings_service_get_lockout_settings_request' is set
-          if @api_client.config.client_side_validation && settings_service_get_lockout_settings_request.nil?
+          if settings_service_get_lockout_settings_request.nil?
           fail ArgumentError, "Missing the required parameter 'settings_service_get_lockout_settings_request' when calling Api::SettingsServiceApi.get_lockout_settings" # MODIFIED
           end
     # resource path
@@ -419,23 +393,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#get_lockout_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # GetLoginSettings
       # Get the login settings
-          # @param settings_service_get_login_settings_request [SettingsServiceGetLoginSettingsRequest] 
+          # @param settings_service_get_login_settings_request [SettingsServiceGetLoginSettingsRequest]
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceGetLoginSettingsResponse]
     def get_login_settings(settings_service_get_login_settings_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.get_login_settings ...' # MODIFIED
-    end
+
           # verify the required parameter 'settings_service_get_login_settings_request' is set
-          if @api_client.config.client_side_validation && settings_service_get_login_settings_request.nil?
+          if settings_service_get_login_settings_request.nil?
           fail ArgumentError, "Missing the required parameter 'settings_service_get_login_settings_request' when calling Api::SettingsServiceApi.get_login_settings" # MODIFIED
           end
     # resource path
@@ -477,23 +447,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#get_login_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # GetPasswordComplexitySettings
       # Get the password complexity settings
-          # @param settings_service_get_password_complexity_settings_request [SettingsServiceGetPasswordComplexitySettingsRequest] 
+          # @param settings_service_get_password_complexity_settings_request [SettingsServiceGetPasswordComplexitySettingsRequest]
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceGetPasswordComplexitySettingsResponse]
     def get_password_complexity_settings(settings_service_get_password_complexity_settings_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.get_password_complexity_settings ...' # MODIFIED
-    end
+
           # verify the required parameter 'settings_service_get_password_complexity_settings_request' is set
-          if @api_client.config.client_side_validation && settings_service_get_password_complexity_settings_request.nil?
+          if settings_service_get_password_complexity_settings_request.nil?
           fail ArgumentError, "Missing the required parameter 'settings_service_get_password_complexity_settings_request' when calling Api::SettingsServiceApi.get_password_complexity_settings" # MODIFIED
           end
     # resource path
@@ -535,23 +501,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#get_password_complexity_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # GetPasswordExpirySettings
       # Get the password expiry settings
-          # @param settings_service_get_password_expiry_settings_request [SettingsServiceGetPasswordExpirySettingsRequest] 
+          # @param settings_service_get_password_expiry_settings_request [SettingsServiceGetPasswordExpirySettingsRequest]
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceGetPasswordExpirySettingsResponse]
     def get_password_expiry_settings(settings_service_get_password_expiry_settings_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.get_password_expiry_settings ...' # MODIFIED
-    end
+
           # verify the required parameter 'settings_service_get_password_expiry_settings_request' is set
-          if @api_client.config.client_side_validation && settings_service_get_password_expiry_settings_request.nil?
+          if settings_service_get_password_expiry_settings_request.nil?
           fail ArgumentError, "Missing the required parameter 'settings_service_get_password_expiry_settings_request' when calling Api::SettingsServiceApi.get_password_expiry_settings" # MODIFIED
           end
     # resource path
@@ -593,23 +555,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#get_password_expiry_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # GetSecuritySettings
       # Get the security settings
-          # @param body [Object] 
+          # @param body [Object]
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceGetSecuritySettingsResponse]
     def get_security_settings(body = {}, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.get_security_settings ...' # MODIFIED
-    end
+
           # verify the required parameter 'body' is set
-          if @api_client.config.client_side_validation && body.nil?
+          if body.nil?
           fail ArgumentError, "Missing the required parameter 'body' when calling Api::SettingsServiceApi.get_security_settings" # MODIFIED
           end
     # resource path
@@ -651,23 +609,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#get_security_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # SetHostedLoginTranslation
       # Set Hosted Login Translation   Sets the input translations at the specified level (instance or organization) for the input language.   Required permissions:    - &#x60;iam.policy.write&#x60;
-          # @param settings_service_set_hosted_login_translation_request [SettingsServiceSetHostedLoginTranslationRequest] 
+          # @param settings_service_set_hosted_login_translation_request [SettingsServiceSetHostedLoginTranslationRequest]
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceSetHostedLoginTranslationResponse]
     def set_hosted_login_translation(settings_service_set_hosted_login_translation_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.set_hosted_login_translation ...' # MODIFIED
-    end
+
           # verify the required parameter 'settings_service_set_hosted_login_translation_request' is set
-          if @api_client.config.client_side_validation && settings_service_set_hosted_login_translation_request.nil?
+          if settings_service_set_hosted_login_translation_request.nil?
           fail ArgumentError, "Missing the required parameter 'settings_service_set_hosted_login_translation_request' when calling Api::SettingsServiceApi.set_hosted_login_translation" # MODIFIED
           end
     # resource path
@@ -709,23 +663,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#set_hosted_login_translation\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # SetSecuritySettings
       # Set the security settings
-          # @param settings_service_set_security_settings_request [SettingsServiceSetSecuritySettingsRequest] 
+          # @param settings_service_set_security_settings_request [SettingsServiceSetSecuritySettingsRequest]
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceSetSecuritySettingsResponse]
     def set_security_settings(settings_service_set_security_settings_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.set_security_settings ...' # MODIFIED
-    end
+
           # verify the required parameter 'settings_service_set_security_settings_request' is set
-          if @api_client.config.client_side_validation && settings_service_set_security_settings_request.nil?
+          if settings_service_set_security_settings_request.nil?
           fail ArgumentError, "Missing the required parameter 'settings_service_set_security_settings_request' when calling Api::SettingsServiceApi.set_security_settings" # MODIFIED
           end
     # resource path
@@ -767,9 +717,7 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::SettingsServiceApi#set_security_settings\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
   end

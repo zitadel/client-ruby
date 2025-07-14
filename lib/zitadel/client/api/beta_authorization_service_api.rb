@@ -16,20 +16,18 @@ module Zitadel::Client::Api
   class BetaAuthorizationServiceApi
   attr_accessor :api_client
 
-  def initialize(api_client = ApiClient.default)
+  def initialize(api_client)
   @api_client = api_client
   end
       # ActivateAuthorization
       # Activate Authorization   ActivateAuthorization activates an existing but inactive authorization.   In case the authorization is already active, the request will return a successful response as  the desired state is already achieved.  You can check the change date in the response to verify if the authorization was activated by the request.   Required permissions:    - \&quot;user.grant.write\&quot;
-          # @param beta_authorization_service_activate_authorization_request [BetaAuthorizationServiceActivateAuthorizationRequest] 
+          # @param beta_authorization_service_activate_authorization_request [BetaAuthorizationServiceActivateAuthorizationRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaAuthorizationServiceActivateAuthorizationResponse]
     def activate_authorization(beta_authorization_service_activate_authorization_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaAuthorizationServiceApi.activate_authorization ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_authorization_service_activate_authorization_request' is set
-          if @api_client.config.client_side_validation && beta_authorization_service_activate_authorization_request.nil?
+          if beta_authorization_service_activate_authorization_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_authorization_service_activate_authorization_request' when calling Api::BetaAuthorizationServiceApi.activate_authorization" # MODIFIED
           end
     # resource path
@@ -71,23 +69,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaAuthorizationServiceApi#activate_authorization\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # CreateAuthorization
       # Create Authorization   CreateAuthorization creates a new authorization for a user in an owned or granted project.   Required permissions:    - \&quot;user.grant.write\&quot;
-          # @param beta_authorization_service_create_authorization_request [BetaAuthorizationServiceCreateAuthorizationRequest] 
+          # @param beta_authorization_service_create_authorization_request [BetaAuthorizationServiceCreateAuthorizationRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaAuthorizationServiceCreateAuthorizationResponse]
     def create_authorization(beta_authorization_service_create_authorization_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaAuthorizationServiceApi.create_authorization ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_authorization_service_create_authorization_request' is set
-          if @api_client.config.client_side_validation && beta_authorization_service_create_authorization_request.nil?
+          if beta_authorization_service_create_authorization_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_authorization_service_create_authorization_request' when calling Api::BetaAuthorizationServiceApi.create_authorization" # MODIFIED
           end
     # resource path
@@ -129,23 +123,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaAuthorizationServiceApi#create_authorization\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # DeactivateAuthorization
       # Deactivate Authorization   DeactivateAuthorization deactivates an existing and active authorization.   In case the authorization is already inactive, the request will return a successful response as  the desired state is already achieved.  You can check the change date in the response to verify if the authorization was deactivated by the request.   Required permissions:    - \&quot;user.grant.write\&quot;
-          # @param beta_authorization_service_deactivate_authorization_request [BetaAuthorizationServiceDeactivateAuthorizationRequest] 
+          # @param beta_authorization_service_deactivate_authorization_request [BetaAuthorizationServiceDeactivateAuthorizationRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaAuthorizationServiceDeactivateAuthorizationResponse]
     def deactivate_authorization(beta_authorization_service_deactivate_authorization_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaAuthorizationServiceApi.deactivate_authorization ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_authorization_service_deactivate_authorization_request' is set
-          if @api_client.config.client_side_validation && beta_authorization_service_deactivate_authorization_request.nil?
+          if beta_authorization_service_deactivate_authorization_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_authorization_service_deactivate_authorization_request' when calling Api::BetaAuthorizationServiceApi.deactivate_authorization" # MODIFIED
           end
     # resource path
@@ -187,23 +177,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaAuthorizationServiceApi#deactivate_authorization\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # DeleteAuthorization
       # Delete Authorization   DeleteAuthorization deletes the authorization.   In case the authorization is not found, the request will return a successful response as  the desired state is already achieved.  You can check the deletion date in the response to verify if the authorization was deleted by the request.   Required permissions:    - \&quot;user.grant.delete\&quot;
-          # @param beta_authorization_service_delete_authorization_request [BetaAuthorizationServiceDeleteAuthorizationRequest] 
+          # @param beta_authorization_service_delete_authorization_request [BetaAuthorizationServiceDeleteAuthorizationRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaAuthorizationServiceDeleteAuthorizationResponse]
     def delete_authorization(beta_authorization_service_delete_authorization_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaAuthorizationServiceApi.delete_authorization ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_authorization_service_delete_authorization_request' is set
-          if @api_client.config.client_side_validation && beta_authorization_service_delete_authorization_request.nil?
+          if beta_authorization_service_delete_authorization_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_authorization_service_delete_authorization_request' when calling Api::BetaAuthorizationServiceApi.delete_authorization" # MODIFIED
           end
     # resource path
@@ -245,23 +231,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaAuthorizationServiceApi#delete_authorization\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # ListAuthorizations
       # List Authorizations   ListAuthorizations returns all authorizations matching the request and necessary permissions.   Required permissions:    - \&quot;user.grant.read\&quot;    - no permissions required for listing own authorizations
-          # @param beta_authorization_service_list_authorizations_request [BetaAuthorizationServiceListAuthorizationsRequest] 
+          # @param beta_authorization_service_list_authorizations_request [BetaAuthorizationServiceListAuthorizationsRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaAuthorizationServiceListAuthorizationsResponse]
     def list_authorizations(beta_authorization_service_list_authorizations_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaAuthorizationServiceApi.list_authorizations ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_authorization_service_list_authorizations_request' is set
-          if @api_client.config.client_side_validation && beta_authorization_service_list_authorizations_request.nil?
+          if beta_authorization_service_list_authorizations_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_authorization_service_list_authorizations_request' when calling Api::BetaAuthorizationServiceApi.list_authorizations" # MODIFIED
           end
     # resource path
@@ -303,23 +285,19 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaAuthorizationServiceApi#list_authorizations\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
 
       # UpdateAuthorization
       # Update Authorization   UpdateAuthorization updates the authorization.   Note that any role keys previously granted to the user and not present in the request will be revoked.   Required permissions:    - \&quot;user.grant.write\&quot;
-          # @param beta_authorization_service_update_authorization_request [BetaAuthorizationServiceUpdateAuthorizationRequest] 
+          # @param beta_authorization_service_update_authorization_request [BetaAuthorizationServiceUpdateAuthorizationRequest]
       # @param [Hash] opts the optional parameters
     # @return [BetaAuthorizationServiceUpdateAuthorizationResponse]
     def update_authorization(beta_authorization_service_update_authorization_request, opts = {})
-    if @api_client.config.debugging
-    @api_client.config.logger.debug 'Calling API: Api::BetaAuthorizationServiceApi.update_authorization ...' # MODIFIED
-    end
+
           # verify the required parameter 'beta_authorization_service_update_authorization_request' is set
-          if @api_client.config.client_side_validation && beta_authorization_service_update_authorization_request.nil?
+          if beta_authorization_service_update_authorization_request.nil?
           fail ArgumentError, "Missing the required parameter 'beta_authorization_service_update_authorization_request' when calling Api::BetaAuthorizationServiceApi.update_authorization" # MODIFIED
           end
     # resource path
@@ -361,9 +339,7 @@ module Zitadel::Client::Api
     )
 
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-    if @api_client.config.debugging
-    @api_client.config.logger.debug "API called: Api::BetaAuthorizationServiceApi#update_authorization\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
-    end
+
     return data
     end
   end
