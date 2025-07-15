@@ -19,6 +19,7 @@ end
 
 group :test do
   gem 'dotenv'
+  gem 'json_expressions'
   gem 'minitest'
   gem 'minitest-hooks'
   gem 'minitest-reporters'
@@ -26,5 +27,4 @@ group :test do
   gem 'simplecov', require: false
   gem 'simplecov-cobertura', require: false
   gem 'testcontainers'
-  gem 'json_expressions'
 end

@@ -14,7 +14,7 @@ require 'json_expressions/minitest'
 
 module Zitadel
   module Client
-    # rubocop:disable Style/ConditionalAssignment, Metrics/MethodLength
+    # rubocop:disable Style/ConditionalAssignment, Metrics/MethodLength, Layout/LineLength, Metrics/PerceivedComplexity, Metrics/ClassLength, Metrics/CyclomaticComplexity
     module Models
       class NestedObject < BaseModel
         attr_accessor :some_level1
@@ -464,7 +464,7 @@ module Zitadel
         end
       end
     end
-    # rubocop:enable Style/ConditionalAssignment, Metrics/MethodLength
+    # rubocop:enable Style/ConditionalAssignment, Metrics/MethodLength, Layout/LineLength, Metrics/PerceivedComplexity, Metrics/ClassLength, Metrics/CyclomaticComplexity
 
     class ObjectSerializerTest < Minitest::Test
       SERIALIZER = ObjectSerializer.new
