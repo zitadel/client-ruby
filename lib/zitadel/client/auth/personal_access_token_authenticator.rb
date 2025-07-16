@@ -31,6 +31,15 @@ module Zitadel
         def auth_headers
           { 'Authorization' => "Bearer #{@token}" }
         end
+
+        ##
+        # Retrieve the authentication token needed for API requests.
+        #
+        # @return [String] The authentication token.
+        #
+        def auth_token
+          @token
+        end
       end
     end
   end

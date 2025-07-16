@@ -17,100 +17,151 @@ module Zitadel
 
     module Api
       class FeatureServiceApi
-        def initialize: (ApiClient) -> void
+        attr_accessor api_client: IApiClient
+
+        def initialize: (IApiClient) -> void
       end
 
       class IdentityProviderServiceApi
-        def initialize: (ApiClient) -> void
+        attr_accessor api_client: IApiClient
+
+        def initialize: (IApiClient) -> void
       end
 
       class OIDCServiceApi
-        def initialize: (ApiClient) -> void
+        attr_accessor api_client: IApiClient
+
+        def initialize: (IApiClient) -> void
       end
 
       class OrganizationServiceApi
-        def initialize: (ApiClient) -> void
+        attr_accessor api_client: IApiClient
+
+        def initialize: (IApiClient) -> void
       end
 
       class SessionServiceApi
-        def initialize: (ApiClient) -> void
+        attr_accessor api_client: IApiClient
+
+        def initialize: (IApiClient) -> void
       end
 
       class SettingsServiceApi
-        def initialize: (ApiClient) -> void
+        attr_accessor api_client: IApiClient
+
+        def initialize: (IApiClient) -> void
       end
 
       class UserServiceApi
-        def initialize: (ApiClient) -> void
+        attr_accessor api_client: IApiClient
+
+        def initialize: (IApiClient) -> void
       end
 
       class WebKeyServiceApi
-        def initialize: (ApiClient) -> void
+        attr_accessor api_client: IApiClient
+
+        def initialize: (IApiClient) -> void
       end
 
       class SAMLServiceApi
-        def initialize: (ApiClient) -> void
+        attr_accessor api_client: IApiClient
+
+        def initialize: (IApiClient) -> void
       end
 
       # Beta Service APIs
       class BetaProjectServiceApi
-        def initialize: (ApiClient) -> void
+        attr_accessor api_client: IApiClient
+
+        def initialize: (IApiClient) -> void
       end
 
       class BetaAppServiceApi
-        def initialize: (ApiClient) -> void
+        attr_accessor api_client: IApiClient
+
+        def initialize: (IApiClient) -> void
       end
 
       class BetaOIDCServiceApi
-        def initialize: (ApiClient) -> void
+        attr_accessor api_client: IApiClient
+
+        def initialize: (IApiClient) -> void
       end
 
       class BetaUserServiceApi
-        def initialize: (ApiClient) -> void
+        attr_accessor api_client: IApiClient
+
+        def initialize: (IApiClient) -> void
       end
 
       class BetaOrganizationServiceApi
-        def initialize: (ApiClient) -> void
+        attr_accessor api_client: IApiClient
+
+        def initialize: (IApiClient) -> void
       end
 
       class BetaSettingsServiceApi
-        def initialize: (ApiClient) -> void
+        attr_accessor api_client: IApiClient
+
+        def initialize: (IApiClient) -> void
       end
 
       class BetaInternalPermissionServiceApi
-        def initialize: (ApiClient) -> void
+        attr_accessor api_client: IApiClient
+
+        def initialize: (IApiClient) -> void
       end
 
       class BetaAuthorizationServiceApi
-        def initialize: (ApiClient) -> void
+        attr_accessor api_client: IApiClient
+
+        def initialize: (IApiClient) -> void
       end
 
       class BetaSessionServiceApi
-        def initialize: (ApiClient) -> void
+        attr_accessor api_client: IApiClient
+
+        def initialize: (IApiClient) -> void
       end
 
       class BetaInstanceServiceApi
-        def initialize: (ApiClient) -> void
+        attr_accessor api_client: IApiClient
+
+        def initialize: (IApiClient) -> void
       end
 
       class BetaTelemetryServiceApi
-        def initialize: (ApiClient) -> void
+        attr_accessor api_client: IApiClient
+
+        def initialize: (IApiClient) -> void
       end
 
       class BetaFeatureServiceApi
-        def initialize: (ApiClient) -> void
+        attr_accessor api_client: IApiClient
+
+        def initialize: (IApiClient) -> void
       end
 
       class BetaWebKeyServiceApi
-        def initialize: (ApiClient) -> void
+        attr_accessor api_client: IApiClient
+
+        def initialize: (IApiClient) -> void
       end
 
       class BetaActionServiceApi
-        def initialize: (ApiClient) -> void
+        attr_accessor api_client: IApiClient
+
+        def initialize: (IApiClient) -> void
       end
     end
 
     class Configuration
+
+      attr_reader authenticator: Auth::Authenticator
+      attr_reader connect_timeout: Integer
+      attr_reader timeout: Integer
+      attr_reader user_agent: String
 
       def initialize: (Auth::Authenticator authenticator, ?Integer timeout, ?Integer connect_timeout) -> void
 
@@ -120,19 +171,7 @@ module Zitadel
 
       def host: () -> String
 
-      def user_agent: () -> String
-
-      def connect_timeout: () -> Integer
-
-      def timeout: () -> Integer
-
       def configure: () { (Configuration) -> void } -> void
-
-      private
-      attr_reader authenticator: Auth::Authenticator
-      attr_reader connect_timeout: Integer
-      attr_reader timeout: Integer
-      attr_reader user_agent: String
     end
 
     class ApiClient
@@ -380,21 +419,9 @@ module Zitadel
       def object_to_hash: (untyped obj) -> untyped
     end
 
-    interface _IApiClient
-      def invoke_api: [T] (
-          operation_id: String,
-          path_template: String,
-          method: String,
-          path_params: Hash[String | Symbol, untyped],
-          query_params: Hash[String | Symbol, untyped],
-          header_params: Hash[String | Symbol, untyped],
-          ?body: untyped,
-          ?success_type: T?,
-          ?error_types: Hash[Integer | String, ::Class]?
-        ) -> T?
-    end
 
-    class IApiClient
+
+    module IApiClient
       def invoke_api: [T] (
           operation_id: String,
           path_template: String,
@@ -403,13 +430,14 @@ module Zitadel
           query_params: Hash[String | Symbol, untyped],
           header_params: Hash[String | Symbol, untyped],
           ?body: untyped,
-          ?success_type: T?,
-          ?error_types: Hash[Integer | String, ::Class]?
+          ?success_type: T,
+          ?error_types: Hash[Integer | String, ::Class]
         ) -> T?
+
     end
 
     class DefaultApiClient
-      include _IApiClient
+      include IApiClient
 
       VALID_METHODS: Array[Symbol]
 
@@ -426,8 +454,8 @@ module Zitadel
           query_params: Hash[String | Symbol, untyped],
           header_params: Hash[String | Symbol, untyped],
           ?body: untyped,
-          ?success_type: T?,
-          ?error_types: Hash[Integer | String, ::Class]?
+          ?success_type: T,
+          ?error_types: Hash[Integer | String, ::Class]
         ) -> T?
 
       private

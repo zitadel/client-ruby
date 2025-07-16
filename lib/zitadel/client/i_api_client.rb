@@ -18,8 +18,15 @@ module Zitadel
       # @param error_types [Hash, nil] A map of status codes (e.g., 404, "4XX", "default") to error response types.
       # @return [Object, nil] The deserialized response object on success, or nil if the success_type is not provided.
       # rubocop:disable Metrics/ParameterLists
-      def invoke_api(operation_id:, path_template:, method:, path_params:, query_params:, header_params:, success_type:,
-                     error_types:, body: nil)
+      def invoke_api(operation_id:,
+                     path_template:,
+                     method:,
+                     path_params:,
+                     query_params:,
+                     header_params:,
+                     body: nil,
+                     success_type: nil,
+                     error_types: {})
         raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
       end
       # rubocop:enable Metrics/ParameterLists

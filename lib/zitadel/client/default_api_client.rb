@@ -51,7 +51,7 @@ module Zitadel
 
       # rubocop:disable Metrics/ParameterLists, Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
       def invoke_api(operation_id:, path_template:, method:, path_params:, query_params:, header_params:, body: nil,
-                     success_type: nil, error_types: nil)
+                     success_type: nil, error_types: {})
         raise ArgumentError, "Invalid HTTP method: #{method}" unless VALID_METHODS.include?(method.downcase.to_sym)
 
         final_path = build_path(path_template, path_params)

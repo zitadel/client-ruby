@@ -42,7 +42,7 @@ module Zitadel
         @configuration = Configuration.new(authenticator)
         yield @configuration if block_given?
 
-        client = ApiClient.new(@configuration)
+        client = DefaultApiClient.new(@configuration)
 
         @features = Api::FeatureServiceApi.new(client)
         @idps = Api::IdentityProviderServiceApi.new(client)
