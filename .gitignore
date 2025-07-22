@@ -43,3 +43,4 @@ build/
 devbox.json
 devbox.lock
 .devbox
+Gemfile.lock

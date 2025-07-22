@@ -17,7 +17,7 @@ module Zitadel
         config = Configuration.new(authenticator)
 
         assert_match(
-          %r{^zitadel-client/[\w.-]+ \(lang=ruby; lang_version=[^;]+; os=[^;]+; arch=[^;]+\)$},
+          %r{\Azitadel-client/\d+\.\d+\.\d+([.-][a-zA-Z0-9]+(\.\d+)?)? \(lang=ruby; lang_version=[^;]+; os=[^;]+; arch=[^;]+\)\z},
           config.user_agent
         )
       end
