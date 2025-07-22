@@ -60,9 +60,11 @@ module Zitadel
                 'Authorization' => {
                   equalTo: 'Bearer mm'
                 },
+                # rubocop:disable Layout/LineLength
                 'User-Agent' => {
-                  matches: '^zitadel-client/\\d\\.\\d\\.\\d \\(lang=ruby; lang_version=[^;]+; os=[^;]+; arch=[^;]+\\)$'
+                  matches: '^zitadel-client/\\d+\\.\\d+\\.\\d+([.-][a-zA-Z0-9]+(\\.\\d+)?)? \\(lang=ruby; lang_version=[^;]+; os=[^;]+; arch=[^;]+\\)$'
                 }
+                # rubocop:enable Layout/LineLength
               }
             },
             response: {
