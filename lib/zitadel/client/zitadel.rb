@@ -17,6 +17,7 @@ module Zitadel
                   :settings,
                   :users,
                   :webkeys,
+                  :actions,
                   # Beta services
                   :beta_projects,
                   :beta_apps,
@@ -53,6 +54,7 @@ module Zitadel
         @settings = Api::SettingsServiceApi.new(client)
         @users = Api::UserServiceApi.new(client)
         @webkeys = Api::WebKeyServiceApi.new(client)
+        @actions = Api::ActionServiceApi.new(client)
         @beta_projects = Api::BetaProjectServiceApi.new(client)
         @beta_apps = Api::BetaAppServiceApi.new(client)
         @beta_oidc = Api::BetaOIDCServiceApi.new(client)

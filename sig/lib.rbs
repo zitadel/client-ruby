@@ -48,6 +48,10 @@ module Zitadel
         def initialize: (ApiClient) -> void
       end
 
+      class ActionServiceApi
+        def initialize: (ApiClient) -> void
+      end
+
       class SAMLServiceApi
         def initialize: (ApiClient) -> void
       end
@@ -341,6 +345,7 @@ module Zitadel
       attr_reader settings: Api::SettingsServiceApi
       attr_reader users: Api::UserServiceApi
       attr_reader webkeys: Api::WebKeyServiceApi
+      attr_reader actions: Api::ActionServiceApi
       attr_reader beta_projects: Api::BetaProjectServiceApi
       attr_reader beta_apps: Api::BetaAppServiceApi
       attr_reader beta_oidc: Api::BetaOIDCServiceApi
