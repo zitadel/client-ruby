@@ -75,19 +75,7 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'domain')
         self.domain = attributes[:'domain']
-      else
-        self.domain = nil
       end
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] domain Value to be assigned
-    def domain=(domain)
-      if domain.nil?
-        fail ArgumentError, 'domain cannot be nil'
-      end
-
-      @domain = domain
     end
 
     # Checks equality by comparing each attribute.

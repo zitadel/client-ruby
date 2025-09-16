@@ -112,14 +112,10 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'given_name')
         self.given_name = attributes[:'given_name']
-      else
-        self.given_name = nil
       end
 
       if attributes.key?(:'family_name')
         self.family_name = attributes[:'family_name']
-      else
-        self.family_name = nil
       end
 
       if attributes.key?(:'nick_name')
@@ -137,26 +133,6 @@ module Zitadel::Client::Models
       if attributes.key?(:'gender')
         self.gender = attributes[:'gender']
       end
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] given_name Value to be assigned
-    def given_name=(given_name)
-      if given_name.nil?
-        fail ArgumentError, 'given_name cannot be nil'
-      end
-
-      @given_name = given_name
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] family_name Value to be assigned
-    def family_name=(family_name)
-      if family_name.nil?
-        fail ArgumentError, 'family_name cannot be nil'
-      end
-
-      @family_name = family_name
     end
 
     # Checks equality by comparing each attribute.

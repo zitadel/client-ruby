@@ -94,23 +94,11 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'user_name')
         self.user_name = attributes[:'user_name']
-      else
-        self.user_name = nil
       end
 
       if attributes.key?(:'method')
         self.method = attributes[:'method']
       end
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] user_name Value to be assigned
-    def user_name=(user_name)
-      if user_name.nil?
-        fail ArgumentError, 'user_name cannot be nil'
-      end
-
-      @user_name = user_name
     end
 
     # Checks equality by comparing each attribute.

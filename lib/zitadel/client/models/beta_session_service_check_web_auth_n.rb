@@ -70,19 +70,7 @@ module Zitadel::Client::Models
         if (value = attributes[:'credential_assertion_data']).is_a?(Hash)
           self.credential_assertion_data = value
         end
-      else
-        self.credential_assertion_data = nil
       end
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Hash<String, Object>] credential_assertion_data Value to be assigned
-    def credential_assertion_data=(credential_assertion_data)
-      if credential_assertion_data.nil?
-        fail ArgumentError, 'credential_assertion_data cannot be nil'
-      end
-
-      @credential_assertion_data = credential_assertion_data
     end
 
     # Checks equality by comparing each attribute.

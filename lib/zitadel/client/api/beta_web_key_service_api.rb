@@ -19,8 +19,8 @@ module Zitadel::Client::Api
   def initialize(api_client = ApiClient.default)
   @api_client = api_client
   end
-      # ActivateWebKey
-      # Activate Web Key   Switch the active signing web key. The previously active key will be deactivated.  Note that the JWKs OIDC endpoint returns a cacheable response.  Therefore it is not advised to activate a key that has been created within the cache duration (default is 5min),  as the public key may not have been propagated to caches and clients yet.   Required permission:    - &#x60;iam.web_key.write&#x60;   Required feature flag:    - &#x60;web_key&#x60;
+      # Activate Web Key
+      # Switch the active signing web key. The previously active key will be deactivated.  Note that the JWKs OIDC endpoint returns a cacheable response.  Therefore it is not advised to activate a key that has been created within the cache duration (default is 5min),  as the public key may not have been propagated to caches and clients yet.   Required permission:    - &#x60;iam.web_key.write&#x60;   Required feature flag:    - &#x60;web_key&#x60;
           # @param beta_web_key_service_activate_web_key_request [BetaWebKeyServiceActivateWebKeyRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaWebKeyServiceActivateWebKeyResponse]
@@ -77,8 +77,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # CreateWebKey
-      # Create Web Key   Generate a private and public key pair. The private key can be used to sign OIDC tokens after activation.  The public key can be used to validate OIDC tokens.  The newly created key will have the state &#x60;STATE_INITIAL&#x60; and is published to the public key endpoint.  Note that the JWKs OIDC endpoint returns a cacheable response.   If no key type is provided, a RSA key pair with 2048 bits and SHA256 hashing will be created.   Required permission:    - &#x60;iam.web_key.write&#x60;   Required feature flag:    - &#x60;web_key&#x60;
+      # Create Web Key
+      # Generate a private and public key pair. The private key can be used to sign OIDC tokens after activation.  The public key can be used to validate OIDC tokens.  The newly created key will have the state &#x60;STATE_INITIAL&#x60; and is published to the public key endpoint.  Note that the JWKs OIDC endpoint returns a cacheable response.   If no key type is provided, a RSA key pair with 2048 bits and SHA256 hashing will be created.   Required permission:    - &#x60;iam.web_key.write&#x60;   Required feature flag:    - &#x60;web_key&#x60;
           # @param beta_web_key_service_create_web_key_request [BetaWebKeyServiceCreateWebKeyRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaWebKeyServiceCreateWebKeyResponse]
@@ -135,8 +135,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # DeleteWebKey
-      # Delete Web Key   Delete a web key pair. Only inactive keys can be deleted. Once a key is deleted,  any tokens signed by this key will be invalid.  Note that the JWKs OIDC endpoint returns a cacheable response.  In case the web key is not found, the request will return a successful response as  the desired state is already achieved.  You can check the change date in the response to verify if the web key was deleted during the request.   Required permission:    - &#x60;iam.web_key.delete&#x60;   Required feature flag:    - &#x60;web_key&#x60;
+      # Delete Web Key
+      # Delete a web key pair. Only inactive keys can be deleted. Once a key is deleted,  any tokens signed by this key will be invalid.  Note that the JWKs OIDC endpoint returns a cacheable response.  In case the web key is not found, the request will return a successful response as  the desired state is already achieved.  You can check the change date in the response to verify if the web key was deleted during the request.   Required permission:    - &#x60;iam.web_key.delete&#x60;   Required feature flag:    - &#x60;web_key&#x60;
           # @param beta_web_key_service_delete_web_key_request [BetaWebKeyServiceDeleteWebKeyRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaWebKeyServiceDeleteWebKeyResponse]
@@ -193,8 +193,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ListWebKeys
-      # List Web Keys   List all web keys and their states.   Required permission:    - &#x60;iam.web_key.read&#x60;   Required feature flag:    - &#x60;web_key&#x60;
+      # List Web Keys
+      # List all web keys and their states.   Required permission:    - &#x60;iam.web_key.read&#x60;   Required feature flag:    - &#x60;web_key&#x60;
           # @param body [Object] 
       # @param [Hash] opts the optional parameters
     # @return [BetaWebKeyServiceListWebKeysResponse]

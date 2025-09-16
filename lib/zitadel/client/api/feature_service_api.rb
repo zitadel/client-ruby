@@ -19,8 +19,8 @@ module Zitadel::Client::Api
   def initialize(api_client = ApiClient.default)
   @api_client = api_client
   end
-      # GetInstanceFeatures
-      # Get Instance Features   Returns all configured features for an instance. Unset fields mean the feature is the current system default.   Required permissions:   - none
+      # Get Instance Features
+      # Returns all configured features for an instance. Unset fields mean the feature is the current system default.   Required permissions:   - none
           # @param feature_service_get_instance_features_request [FeatureServiceGetInstanceFeaturesRequest] 
       # @param [Hash] opts the optional parameters
     # @return [FeatureServiceGetInstanceFeaturesResponse]
@@ -77,8 +77,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetOrganizationFeatures
-      # Get Organization Features   Returns all configured features for an organization. Unset fields mean the feature is the current instance default.   Required permissions:   - org.feature.read   - no permission required for the organization the user belongs to
+      # Get Organization Features
+      # Returns all configured features for an organization. Unset fields mean the feature is the current instance default.   Required permissions:   - org.feature.read   - no permission required for the organization the user belongs to
           # @param feature_service_get_organization_features_request [FeatureServiceGetOrganizationFeaturesRequest] 
       # @param [Hash] opts the optional parameters
     # @return [FeatureServiceGetOrganizationFeaturesResponse]
@@ -135,8 +135,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetSystemFeatures
-      # Get System Features   Returns all configured features for the system. Unset fields mean the feature is the current system default.   Required permissions:   - none
+      # Get System Features
+      # Returns all configured features for the system. Unset fields mean the feature is the current system default.   Required permissions:   - none
           # @param body [Object] 
       # @param [Hash] opts the optional parameters
     # @return [FeatureServiceGetSystemFeaturesResponse]
@@ -193,8 +193,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetUserFeatures
-      # Get User Features   Returns all configured features for a user. Unset fields mean the feature is the current organization default.   Required permissions:   - user.feature.read   - no permission required for the own user
+      # Get User Features
+      # Returns all configured features for a user. Unset fields mean the feature is the current organization default.   Required permissions:   - user.feature.read   - no permission required for the own user
           # @param feature_service_get_user_features_request [FeatureServiceGetUserFeaturesRequest] 
       # @param [Hash] opts the optional parameters
     # @return [FeatureServiceGetUserFeaturesResponse]
@@ -251,8 +251,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ResetInstanceFeatures
-      # Reset Instance Features   Deletes ALL configured features for an instance, reverting the behaviors to system defaults.   Required permissions:   - iam.feature.delete
+      # Reset Instance Features
+      # Deletes ALL configured features for an instance, reverting the behaviors to system defaults.   Required permissions:   - iam.feature.delete
           # @param body [Object] 
       # @param [Hash] opts the optional parameters
     # @return [FeatureServiceResetInstanceFeaturesResponse]
@@ -309,8 +309,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ResetOrganizationFeatures
-      # Reset Organization Features   Deletes ALL configured features for an organization, reverting the behaviors to instance defaults.   Required permissions:   - org.feature.delete
+      # Reset Organization Features
+      # Deletes ALL configured features for an organization, reverting the behaviors to instance defaults.   Required permissions:   - org.feature.delete
           # @param feature_service_reset_organization_features_request [FeatureServiceResetOrganizationFeaturesRequest] 
       # @param [Hash] opts the optional parameters
     # @return [FeatureServiceResetOrganizationFeaturesResponse]
@@ -367,8 +367,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ResetSystemFeatures
-      # Reset System Features   Deletes ALL configured features for the system, reverting the behaviors to system defaults.   Required permissions:   - system.feature.delete
+      # Reset System Features
+      # Deletes ALL configured features for the system, reverting the behaviors to system defaults.   Required permissions:   - system.feature.delete
           # @param body [Object] 
       # @param [Hash] opts the optional parameters
     # @return [FeatureServiceResetSystemFeaturesResponse]
@@ -425,8 +425,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ResetUserFeatures
-      # Reset User Features   Deletes ALL configured features for a user, reverting the behaviors to organization defaults.   Required permissions:   - user.feature.delete
+      # Reset User Features
+      # Deletes ALL configured features for a user, reverting the behaviors to organization defaults.   Required permissions:   - user.feature.delete
           # @param feature_service_reset_user_features_request [FeatureServiceResetUserFeaturesRequest] 
       # @param [Hash] opts the optional parameters
     # @return [FeatureServiceResetUserFeaturesResponse]
@@ -483,8 +483,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # SetInstanceFeatures
-      # Set Instance Features   Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.   Required permissions:   - iam.feature.write
+      # Set Instance Features
+      # Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.   Required permissions:   - iam.feature.write
           # @param feature_service_set_instance_features_request [FeatureServiceSetInstanceFeaturesRequest] 
       # @param [Hash] opts the optional parameters
     # @return [FeatureServiceSetInstanceFeaturesResponse]
@@ -541,8 +541,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # SetOrganizationFeatures
-      # Set Organization Features   Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.   Required permissions:   - org.feature.write
+      # Set Organization Features
+      # Configure and set features that apply to a complete instance. Only fields present in the request are set or unset.   Required permissions:   - org.feature.write
           # @param feature_service_set_organization_features_request [FeatureServiceSetOrganizationFeaturesRequest] 
       # @param [Hash] opts the optional parameters
     # @return [FeatureServiceSetOrganizationFeaturesResponse]
@@ -599,8 +599,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # SetSystemFeatures
-      # Set System Features   Configure and set features that apply to the complete system. Only fields present in the request are set or unset.   Required permissions:   - system.feature.write
+      # Set System Features
+      # Configure and set features that apply to the complete system. Only fields present in the request are set or unset.   Required permissions:   - system.feature.write
           # @param feature_service_set_system_features_request [FeatureServiceSetSystemFeaturesRequest] 
       # @param [Hash] opts the optional parameters
     # @return [FeatureServiceSetSystemFeaturesResponse]
@@ -657,8 +657,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # SetUserFeatures
-      # Set User Features   Configure and set features that apply to an user. Only fields present in the request are set or unset.   Required permissions:   - user.feature.write
+      # Set User Features
+      # Configure and set features that apply to an user. Only fields present in the request are set or unset.   Required permissions:   - user.feature.write
           # @param feature_service_set_user_feature_request [FeatureServiceSetUserFeatureRequest] 
       # @param [Hash] opts the optional parameters
     # @return [FeatureServiceSetUserFeaturesResponse]

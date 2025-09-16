@@ -71,35 +71,11 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'user_id')
         self.user_id = attributes[:'user_id']
-      else
-        self.user_id = nil
       end
 
       if attributes.key?(:'passkey_id')
         self.passkey_id = attributes[:'passkey_id']
-      else
-        self.passkey_id = nil
       end
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] user_id Value to be assigned
-    def user_id=(user_id)
-      if user_id.nil?
-        fail ArgumentError, 'user_id cannot be nil'
-      end
-
-      @user_id = user_id
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] passkey_id Value to be assigned
-    def passkey_id=(passkey_id)
-      if passkey_id.nil?
-        fail ArgumentError, 'passkey_id cannot be nil'
-      end
-
-      @passkey_id = passkey_id
     end
 
     # Checks equality by comparing each attribute.

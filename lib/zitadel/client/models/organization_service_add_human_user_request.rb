@@ -125,14 +125,10 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'profile')
         self.profile = attributes[:'profile']
-      else
-        self.profile = nil
       end
 
       if attributes.key?(:'email')
         self.email = attributes[:'email']
-      else
-        self.email = nil
       end
 
       if attributes.key?(:'phone')
@@ -162,26 +158,6 @@ module Zitadel::Client::Models
       if attributes.key?(:'password')
         self.password = attributes[:'password']
       end
-    end
-
-    # Custom attribute writer method with validation
-    # @param [OrganizationServiceSetHumanProfile] profile Value to be assigned
-    def profile=(profile)
-      if profile.nil?
-        fail ArgumentError, 'profile cannot be nil'
-      end
-
-      @profile = profile
-    end
-
-    # Custom attribute writer method with validation
-    # @param [OrganizationServiceSetHumanEmail] email Value to be assigned
-    def email=(email)
-      if email.nil?
-        fail ArgumentError, 'email cannot be nil'
-      end
-
-      @email = email
     end
 
     # Checks equality by comparing each attribute.

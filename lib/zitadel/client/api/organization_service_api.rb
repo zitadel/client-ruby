@@ -19,8 +19,8 @@ module Zitadel::Client::Api
   def initialize(api_client = ApiClient.default)
   @api_client = api_client
   end
-      # AddOrganization
-      # Create an Organization   Create a new organization with an administrative user. If no specific roles are sent for the users, they will be granted the role ORG_OWNER.
+      # Create an Organization
+      # Create a new organization with an administrative user. If no specific roles are sent for the users, they will be granted the role ORG_OWNER.
           # @param organization_service_add_organization_request [OrganizationServiceAddOrganizationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [OrganizationServiceAddOrganizationResponse]
@@ -77,8 +77,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ListOrganizations
-      # Search Organizations   Search for Organizations. By default, we will return all organization of the instance. Make sure to include a limit and sorting for pagination..
+      # Search Organizations
+      # Search for Organizations. By default, we will return all organization of the instance. Make sure to include a limit and sorting for pagination..
           # @param organization_service_list_organizations_request [OrganizationServiceListOrganizationsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [OrganizationServiceListOrganizationsResponse]

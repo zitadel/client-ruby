@@ -23,7 +23,7 @@ module Zitadel::Client::Api
           # @param saml_service_create_response_request [SAMLServiceCreateResponseRequest] 
       # @param [Hash] opts the optional parameters
     # @return [SAMLServiceCreateResponseResponse]
-    def create_response(saml_service_create_response_request, opts = {})
+    def create_response(saml_service_create_response_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::SAMLServiceApi.create_response ...' # MODIFIED
     end

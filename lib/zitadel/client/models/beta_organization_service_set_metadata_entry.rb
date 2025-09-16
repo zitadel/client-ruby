@@ -71,35 +71,11 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'key')
         self.key = attributes[:'key']
-      else
-        self.key = nil
       end
 
       if attributes.key?(:'value')
         self.value = attributes[:'value']
-      else
-        self.value = nil
       end
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] key Value to be assigned
-    def key=(key)
-      if key.nil?
-        fail ArgumentError, 'key cannot be nil'
-      end
-
-      @key = key
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] value Value to be assigned
-    def value=(value)
-      if value.nil?
-        fail ArgumentError, 'value cannot be nil'
-      end
-
-      @value = value
     end
 
     # Checks equality by comparing each attribute.

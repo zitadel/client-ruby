@@ -94,23 +94,11 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'email_address')
         self.email_address = attributes[:'email_address']
-      else
-        self.email_address = nil
       end
 
       if attributes.key?(:'method')
         self.method = attributes[:'method']
       end
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] email_address Value to be assigned
-    def email_address=(email_address)
-      if email_address.nil?
-        fail ArgumentError, 'email_address cannot be nil'
-      end
-
-      @email_address = email_address
     end
 
     # Checks equality by comparing each attribute.

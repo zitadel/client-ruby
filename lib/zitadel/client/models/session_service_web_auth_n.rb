@@ -93,35 +93,11 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'domain')
         self.domain = attributes[:'domain']
-      else
-        self.domain = nil
       end
 
       if attributes.key?(:'user_verification_requirement')
         self.user_verification_requirement = attributes[:'user_verification_requirement']
-      else
-        self.user_verification_requirement = nil
       end
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] domain Value to be assigned
-    def domain=(domain)
-      if domain.nil?
-        fail ArgumentError, 'domain cannot be nil'
-      end
-
-      @domain = domain
-    end
-
-    # Custom attribute writer method with validation
-    # @param [SessionServiceUserVerificationRequirement] user_verification_requirement Value to be assigned
-    def user_verification_requirement=(user_verification_requirement)
-      if user_verification_requirement.nil?
-        fail ArgumentError, 'user_verification_requirement cannot be nil'
-      end
-
-      @user_verification_requirement = user_verification_requirement
     end
 
     # Checks equality by comparing each attribute.

@@ -19,12 +19,12 @@ module Zitadel::Client::Api
   def initialize(api_client = ApiClient.default)
   @api_client = api_client
   end
-      # CreateApplication
-      # Create Application   Create an application. The application can be OIDC, API or SAML type, based on the input.   Required permissions:    - project.app.write
+      # Create Application
+      # Create an application. The application can be OIDC, API or SAML type, based on the input.   Required permissions:    - project.app.write
           # @param beta_app_service_create_application_request [BetaAppServiceCreateApplicationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaAppServiceCreateApplicationResponse]
-    def create_application(beta_app_service_create_application_request, opts = {})
+    def create_application(beta_app_service_create_application_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::BetaAppServiceApi.create_application ...' # MODIFIED
     end
@@ -77,8 +77,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # CreateApplicationKey
-      # Create Application Key    Create a new application key, which is used to authorize an API application.   Key details are returned in the response. They must be stored safely, as it will not  be possible to retrieve them again.   Required permissions:    - &#x60;project.app.write&#x60;
+      # Create Application Key
+      # Create a new application key, which is used to authorize an API application.   Key details are returned in the response. They must be stored safely, as it will not  be possible to retrieve them again.   Required permissions:    - &#x60;project.app.write&#x60;
           # @param beta_app_service_create_application_key_request [BetaAppServiceCreateApplicationKeyRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaAppServiceCreateApplicationKeyResponse]
@@ -135,8 +135,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # DeactivateApplication
-      # Deactivate Application   Deactivates the application belonging to the input project and matching the provided  application ID.   Required permissions:    - project.app.write
+      # Deactivate Application
+      # Deactivates the application belonging to the input project and matching the provided  application ID.   Required permissions:    - project.app.write
           # @param beta_app_service_deactivate_application_request [BetaAppServiceDeactivateApplicationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaAppServiceDeactivateApplicationResponse]
@@ -193,8 +193,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # DeleteApplication
-      # Delete Application   Deletes the application belonging to the input project and matching the provided  application ID.   Required permissions:    - project.app.delete
+      # Delete Application
+      # Deletes the application belonging to the input project and matching the provided  application ID.   Required permissions:    - project.app.delete
           # @param beta_app_service_delete_application_request [BetaAppServiceDeleteApplicationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaAppServiceDeleteApplicationResponse]
@@ -251,8 +251,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # DeleteApplicationKey
-      # Delete Application Key    Deletes an application key matching the provided ID.   Organization ID is not mandatory, but helps with filtering/performance.   The deletion time is returned in response message.   Required permissions:    - &#x60;project.app.write&#x60;
+      # Delete Application Key
+      # Deletes an application key matching the provided ID.   Organization ID is not mandatory, but helps with filtering/performance.   The deletion time is returned in response message.   Required permissions:    - &#x60;project.app.write&#x60;
           # @param beta_app_service_delete_application_key_request [BetaAppServiceDeleteApplicationKeyRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaAppServiceDeleteApplicationKeyResponse]
@@ -309,8 +309,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetApplication
-      # Get Application   Retrieves the application matching the provided ID.   Required permissions:    - project.app.read
+      # Get Application
+      # Retrieves the application matching the provided ID.   Required permissions:    - project.app.read
           # @param beta_app_service_get_application_request [BetaAppServiceGetApplicationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaAppServiceGetApplicationResponse]
@@ -367,8 +367,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetApplicationKey
-      # Get Application Key   Retrieves the application key matching the provided ID.   Specifying a project, organization and app ID is optional but help with filtering/performance.   Required permissions:    - project.app.read
+      # Get Application Key
+      # Retrieves the application key matching the provided ID.   Specifying a project, organization and app ID is optional but help with filtering/performance.   Required permissions:    - project.app.read
           # @param beta_app_service_get_application_key_request [BetaAppServiceGetApplicationKeyRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaAppServiceGetApplicationKeyResponse]
@@ -425,12 +425,12 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ListApplicationKeys
-      # List Application Keys   Returns a list of application keys matching the input parameters.   The result can be sorted by id, aggregate, creation date, expiration date, resource owner or type.  It can also be filtered by app, project or organization ID.   Required permissions:    - project.app.read
+      # List Application Keys
+      # Returns a list of application keys matching the input parameters.   The result can be sorted by id, aggregate, creation date, expiration date, resource owner or type.  It can also be filtered by app, project or organization ID.   Required permissions:    - project.app.read
           # @param beta_app_service_list_application_keys_request [BetaAppServiceListApplicationKeysRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaAppServiceListApplicationKeysResponse]
-    def list_application_keys(beta_app_service_list_application_keys_request, opts = {})
+    def list_application_keys(beta_app_service_list_application_keys_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::BetaAppServiceApi.list_application_keys ...' # MODIFIED
     end
@@ -483,8 +483,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ListApplications
-      # List Applications   Returns a list of applications matching the input parameters that belong to the provided  project.   The result can be sorted by app id, name, creation date, change date or state. It can also  be filtered by app state, app type and app name.   Required permissions:    - project.app.read
+      # List Applications
+      # Returns a list of applications matching the input parameters that belong to the provided  project.   The result can be sorted by app id, name, creation date, change date or state. It can also  be filtered by app state, app type and app name.   Required permissions:    - project.app.read
           # @param beta_app_service_list_applications_request [BetaAppServiceListApplicationsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaAppServiceListApplicationsResponse]
@@ -541,8 +541,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ReactivateApplication
-      # Reactivate Application   Reactivates the application belonging to the input project and matching the provided  application ID.   Required permissions:    - project.app.write
+      # Reactivate Application
+      # Reactivates the application belonging to the input project and matching the provided  application ID.   Required permissions:    - project.app.write
           # @param beta_app_service_reactivate_application_request [BetaAppServiceReactivateApplicationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaAppServiceReactivateApplicationResponse]
@@ -599,12 +599,12 @@ module Zitadel::Client::Api
     return data
     end
 
-      # RegenerateClientSecret
-      # Regenerate Client Secret   Regenerates the client secret of an API or OIDC application that belongs to the input project.    Required permissions:    - project.app.write
+      # Regenerate Client Secret
+      # Regenerates the client secret of an API or OIDC application that belongs to the input project.    Required permissions:    - project.app.write
           # @param beta_app_service_regenerate_client_secret_request [BetaAppServiceRegenerateClientSecretRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaAppServiceRegenerateClientSecretResponse]
-    def regenerate_client_secret(beta_app_service_regenerate_client_secret_request, opts = {})
+    def regenerate_client_secret(beta_app_service_regenerate_client_secret_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::BetaAppServiceApi.regenerate_client_secret ...' # MODIFIED
     end
@@ -657,12 +657,12 @@ module Zitadel::Client::Api
     return data
     end
 
-      # UpdateApplication
-      # Update Application   Changes the configuration of an OIDC, API or SAML type application, as well as  the application name, based on the input provided.   Required permissions:    - project.app.write
+      # Update Application
+      # Changes the configuration of an OIDC, API or SAML type application, as well as  the application name, based on the input provided.   Required permissions:    - project.app.write
           # @param beta_app_service_update_application_request [BetaAppServiceUpdateApplicationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaAppServiceUpdateApplicationResponse]
-    def update_application(beta_app_service_update_application_request, opts = {})
+    def update_application(beta_app_service_update_application_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::BetaAppServiceApi.update_application ...' # MODIFIED
     end
