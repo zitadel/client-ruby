@@ -31,6 +31,10 @@ module Zitadel::Client::Models
 
     attr_accessor :login_name_query
 
+    attr_accessor :metadata_key_filter
+
+    attr_accessor :metadata_value_filter
+
     attr_accessor :nick_name_query
 
     attr_accessor :not_query
@@ -58,6 +62,8 @@ module Zitadel::Client::Models
         :'in_user_ids_query' => :'inUserIdsQuery',
         :'last_name_query' => :'lastNameQuery',
         :'login_name_query' => :'loginNameQuery',
+        :'metadata_key_filter' => :'metadataKeyFilter',
+        :'metadata_value_filter' => :'metadataValueFilter',
         :'nick_name_query' => :'nickNameQuery',
         :'not_query' => :'notQuery',
         :'or_query' => :'orQuery',
@@ -90,6 +96,8 @@ module Zitadel::Client::Models
         :'in_user_ids_query' => :'UserServiceInUserIDQuery',
         :'last_name_query' => :'UserServiceLastNameQuery',
         :'login_name_query' => :'UserServiceLoginNameQuery',
+        :'metadata_key_filter' => :'UserServiceMetadataKeyFilter',
+        :'metadata_value_filter' => :'UserServiceMetadataValueFilter',
         :'nick_name_query' => :'UserServiceNickNameQuery',
         :'not_query' => :'UserServiceNotQuery',
         :'or_query' => :'UserServiceOrQuery',
@@ -157,6 +165,14 @@ module Zitadel::Client::Models
         self.login_name_query = attributes[:'login_name_query']
       end
 
+      if attributes.key?(:'metadata_key_filter')
+        self.metadata_key_filter = attributes[:'metadata_key_filter']
+      end
+
+      if attributes.key?(:'metadata_value_filter')
+        self.metadata_value_filter = attributes[:'metadata_value_filter']
+      end
+
       if attributes.key?(:'nick_name_query')
         self.nick_name_query = attributes[:'nick_name_query']
       end
@@ -203,6 +219,8 @@ module Zitadel::Client::Models
           in_user_ids_query == o.in_user_ids_query &&
           last_name_query == o.last_name_query &&
           login_name_query == o.login_name_query &&
+          metadata_key_filter == o.metadata_key_filter &&
+          metadata_value_filter == o.metadata_value_filter &&
           nick_name_query == o.nick_name_query &&
           not_query == o.not_query &&
           or_query == o.or_query &&
@@ -222,7 +240,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [and_query, display_name_query, email_query, first_name_query, in_user_emails_query, in_user_ids_query, last_name_query, login_name_query, nick_name_query, not_query, or_query, organization_id_query, phone_query, state_query, type_query, user_name_query].hash
+      [and_query, display_name_query, email_query, first_name_query, in_user_emails_query, in_user_ids_query, last_name_query, login_name_query, metadata_key_filter, metadata_value_filter, nick_name_query, not_query, or_query, organization_id_query, phone_query, state_query, type_query, user_name_query].hash
     end
 
 # Builds the object from hash

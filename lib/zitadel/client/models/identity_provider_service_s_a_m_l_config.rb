@@ -31,6 +31,8 @@ module Zitadel::Client::Models
     # Boolean weather federated logout is enabled. If enabled, ZITADEL will send a logout request to the identity provider,  if the user terminates the session in ZITADEL. Be sure to provide a SLO endpoint as part of the metadata.
     attr_accessor :federated_logout_enabled
 
+    attr_accessor :signature_algorithm
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -61,7 +63,8 @@ module Zitadel::Client::Models
         :'with_signed_request' => :'withSignedRequest',
         :'name_id_format' => :'nameIdFormat',
         :'transient_mapping_attribute_name' => :'transientMappingAttributeName',
-        :'federated_logout_enabled' => :'federatedLogoutEnabled'
+        :'federated_logout_enabled' => :'federatedLogoutEnabled',
+        :'signature_algorithm' => :'signatureAlgorithm'
       }
     end
 
@@ -83,7 +86,8 @@ module Zitadel::Client::Models
         :'with_signed_request' => :'Boolean',
         :'name_id_format' => :'IdentityProviderServiceSAMLNameIDFormat',
         :'transient_mapping_attribute_name' => :'String',
-        :'federated_logout_enabled' => :'Boolean'
+        :'federated_logout_enabled' => :'Boolean',
+        :'signature_algorithm' => :'IdentityProviderServiceSAMLSignatureAlgorithm'
       }
     end
 
@@ -91,7 +95,7 @@ module Zitadel::Client::Models
     def self.openapi_nullable
       Set.new([
         :'transient_mapping_attribute_name',
-        :'federated_logout_enabled'
+        :'federated_logout_enabled',
       ])
     end
 
@@ -136,6 +140,10 @@ module Zitadel::Client::Models
       if attributes.key?(:'federated_logout_enabled')
         self.federated_logout_enabled = attributes[:'federated_logout_enabled']
       end
+
+      if attributes.key?(:'signature_algorithm')
+        self.signature_algorithm = attributes[:'signature_algorithm']
+      end
     end
 
     # Checks equality by comparing each attribute.
@@ -148,7 +156,8 @@ module Zitadel::Client::Models
           with_signed_request == o.with_signed_request &&
           name_id_format == o.name_id_format &&
           transient_mapping_attribute_name == o.transient_mapping_attribute_name &&
-          federated_logout_enabled == o.federated_logout_enabled
+          federated_logout_enabled == o.federated_logout_enabled &&
+          signature_algorithm == o.signature_algorithm
     end
 
     # @see the `==` method
@@ -160,7 +169,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [metadata_xml, binding, with_signed_request, name_id_format, transient_mapping_attribute_name, federated_logout_enabled].hash
+      [metadata_xml, binding, with_signed_request, name_id_format, transient_mapping_attribute_name, federated_logout_enabled, signature_algorithm].hash
     end
 
 # Builds the object from hash

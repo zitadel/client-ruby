@@ -14,43 +14,38 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-        class FeatureServiceGetInstanceFeaturesResponse
-    attr_accessor :details
+        class UserServiceMetadataValueFilter
+    attr_accessor :value
 
-    attr_accessor :login_default_org
+    attr_accessor :method
 
-    attr_accessor :user_schema
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
 
-    attr_accessor :oidc_token_exchange
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
 
-    attr_accessor :improved_performance
-
-    attr_accessor :debug_oidc_parent_error
-
-    attr_accessor :oidc_single_v1_session_termination
-
-    attr_accessor :enable_back_channel_logout
-
-    attr_accessor :login_v2
-
-    attr_accessor :permission_check_v2
-
-    attr_accessor :console_use_v2_user_api
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'details' => :'details',
-        :'login_default_org' => :'loginDefaultOrg',
-        :'user_schema' => :'userSchema',
-        :'oidc_token_exchange' => :'oidcTokenExchange',
-        :'improved_performance' => :'improvedPerformance',
-        :'debug_oidc_parent_error' => :'debugOidcParentError',
-        :'oidc_single_v1_session_termination' => :'oidcSingleV1SessionTermination',
-        :'enable_back_channel_logout' => :'enableBackChannelLogout',
-        :'login_v2' => :'loginV2',
-        :'permission_check_v2' => :'permissionCheckV2',
-        :'console_use_v2_user_api' => :'consoleUseV2UserApi'
+        :'value' => :'value',
+        :'method' => :'method'
       }
     end
 
@@ -67,17 +62,8 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'details' => :'FeatureServiceDetails',
-        :'login_default_org' => :'FeatureServiceFeatureFlag',
-        :'user_schema' => :'FeatureServiceFeatureFlag',
-        :'oidc_token_exchange' => :'FeatureServiceFeatureFlag',
-        :'improved_performance' => :'FeatureServiceImprovedPerformanceFeatureFlag',
-        :'debug_oidc_parent_error' => :'FeatureServiceFeatureFlag',
-        :'oidc_single_v1_session_termination' => :'FeatureServiceFeatureFlag',
-        :'enable_back_channel_logout' => :'FeatureServiceFeatureFlag',
-        :'login_v2' => :'FeatureServiceLoginV2FeatureFlag',
-        :'permission_check_v2' => :'FeatureServiceFeatureFlag',
-        :'console_use_v2_user_api' => :'FeatureServiceFeatureFlag'
+        :'value' => :'String',
+        :'method' => :'UserServiceByteFilterMethod'
       }
     end
 
@@ -92,7 +78,7 @@ module Zitadel::Client::Models
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
         # MODIFIED: Updated class name in error message
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Zitadel::Client::Models::FeatureServiceGetInstanceFeaturesResponse` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Zitadel::Client::Models::UserServiceMetadataValueFilter` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
@@ -100,53 +86,17 @@ module Zitadel::Client::Models
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!acceptable_attribute_map.key?(k.to_sym))
           # MODIFIED: Updated class name in error message
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Zitadel::Client::Models::FeatureServiceGetInstanceFeaturesResponse`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Zitadel::Client::Models::UserServiceMetadataValueFilter`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'details')
-        self.details = attributes[:'details']
+      if attributes.key?(:'value')
+        self.value = attributes[:'value']
       end
 
-      if attributes.key?(:'login_default_org')
-        self.login_default_org = attributes[:'login_default_org']
-      end
-
-      if attributes.key?(:'user_schema')
-        self.user_schema = attributes[:'user_schema']
-      end
-
-      if attributes.key?(:'oidc_token_exchange')
-        self.oidc_token_exchange = attributes[:'oidc_token_exchange']
-      end
-
-      if attributes.key?(:'improved_performance')
-        self.improved_performance = attributes[:'improved_performance']
-      end
-
-      if attributes.key?(:'debug_oidc_parent_error')
-        self.debug_oidc_parent_error = attributes[:'debug_oidc_parent_error']
-      end
-
-      if attributes.key?(:'oidc_single_v1_session_termination')
-        self.oidc_single_v1_session_termination = attributes[:'oidc_single_v1_session_termination']
-      end
-
-      if attributes.key?(:'enable_back_channel_logout')
-        self.enable_back_channel_logout = attributes[:'enable_back_channel_logout']
-      end
-
-      if attributes.key?(:'login_v2')
-        self.login_v2 = attributes[:'login_v2']
-      end
-
-      if attributes.key?(:'permission_check_v2')
-        self.permission_check_v2 = attributes[:'permission_check_v2']
-      end
-
-      if attributes.key?(:'console_use_v2_user_api')
-        self.console_use_v2_user_api = attributes[:'console_use_v2_user_api']
+      if attributes.key?(:'method')
+        self.method = attributes[:'method']
       end
     end
 
@@ -155,17 +105,8 @@ module Zitadel::Client::Models
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          details == o.details &&
-          login_default_org == o.login_default_org &&
-          user_schema == o.user_schema &&
-          oidc_token_exchange == o.oidc_token_exchange &&
-          improved_performance == o.improved_performance &&
-          debug_oidc_parent_error == o.debug_oidc_parent_error &&
-          oidc_single_v1_session_termination == o.oidc_single_v1_session_termination &&
-          enable_back_channel_logout == o.enable_back_channel_logout &&
-          login_v2 == o.login_v2 &&
-          permission_check_v2 == o.permission_check_v2 &&
-          console_use_v2_user_api == o.console_use_v2_user_api
+          value == o.value &&
+          method == o.method
     end
 
     # @see the `==` method
@@ -177,7 +118,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [details, login_default_org, user_schema, oidc_token_exchange, improved_performance, debug_oidc_parent_error, oidc_single_v1_session_termination, enable_back_channel_logout, login_v2, permission_check_v2, console_use_v2_user_api].hash
+      [value, method].hash
     end
 
 # Builds the object from hash

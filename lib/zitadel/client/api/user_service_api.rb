@@ -20,7 +20,7 @@ module Zitadel::Client::Api
   @api_client = api_client
   end
       # AddHumanUser
-      # Create a new human user   Create/import a new user with the type human. The newly created user will get a verification email if either the email address is not marked as verified and you did not request the verification to be returned.
+      # Create a new human user   Deprecated: Use [CreateUser](apis/resources/user_service_v2/user-service-create-user.api.mdx) to create a new user of type human instead.   Create/import a new user with the type human. The newly created user will get a verification email if either the email address is not marked as verified and you did not request the verification to be returned.
           # @param user_service_add_human_user_request [UserServiceAddHumanUserRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceAddHumanUserResponse]
@@ -426,7 +426,7 @@ module Zitadel::Client::Api
     end
 
       # CreateInviteCode
-      # Create an invite code for a user   Create an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization&#39;s available methods.  If an invite code has been created previously, it&#39;s url template and application name will be used as defaults for the new code.  The new code will overwrite the previous one and make it invalid.
+      # Create an invite code for a user   Create an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization&#39;s available methods.  If an invite code has been created previously, it&#39;s url template and application name will be used as defaults for the new code.  The new code will overwrite the previous one and make it invalid.  Note: It is possible to reissue a new code only when the previous code has expired, or when the user provides a wrong code three or more times during verification.
           # @param user_service_create_invite_code_request [UserServiceCreateInviteCodeRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceCreateInviteCodeResponse]
@@ -2049,7 +2049,7 @@ module Zitadel::Client::Api
     end
 
       # RemovePhone
-      # Delete the user phone   Delete the phone number of a user.
+      # Delete the user phone   Deprecated: [Update the users phone field](apis/resources/user_service_v2/user-service-update-user.api.mdx) to remove the phone number.   Delete the phone number of a user.
           # @param user_service_remove_phone_request [UserServiceRemovePhoneRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceRemovePhoneResponse]
@@ -2397,7 +2397,7 @@ module Zitadel::Client::Api
     end
 
       # ResendPhoneCode
-      # Resend code to verify user phone
+      # Resend code to verify user phone number   Resend code to verify user phone number.
           # @param user_service_resend_phone_code_request [UserServiceResendPhoneCodeRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceResendPhoneCodeResponse]
@@ -2571,7 +2571,7 @@ module Zitadel::Client::Api
     end
 
       # SetEmail
-      # Change the user email   Change the email address of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by email..
+      # Change the user email   Deprecated: [Update the users email field](apis/resources/user_service_v2/user-service-update-user.api.mdx).   Change the email address of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by email..
           # @param user_service_set_email_request [UserServiceSetEmailRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceSetEmailResponse]
@@ -2629,7 +2629,7 @@ module Zitadel::Client::Api
     end
 
       # SetPassword
-      # Change password   Change the password of a user with either a verification code or the current password..
+      # Change password   Deprecated: [Update the users password](apis/resources/user_service_v2/user-service-update-user.api.mdx) instead.   Change the password of a user with either a verification code or the current password..
           # @param user_service_set_password_request [UserServiceSetPasswordRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceSetPasswordResponse]
@@ -2687,7 +2687,7 @@ module Zitadel::Client::Api
     end
 
       # SetPhone
-      # Set the user phone   Set the phone number of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by sms..
+      # Set the user phone   Deprecated: [Update the users phone field](apis/resources/user_service_v2/user-service-update-user.api.mdx).   Set the phone number of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by sms..
           # @param user_service_set_phone_request [UserServiceSetPhoneRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceSetPhoneResponse]
@@ -2919,7 +2919,7 @@ module Zitadel::Client::Api
     end
 
       # UpdateHumanUser
-      # Update Human User   Update all information from a user..
+      # Update Human User   Deprecated: Use [UpdateUser](apis/resources/user_service_v2/user-service-update-user.api.mdx) to update a user of type human instead.   Update all information from a user.
           # @param user_service_update_human_user_request [UserServiceUpdateHumanUserRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceUpdateHumanUserResponse]
@@ -3209,7 +3209,7 @@ module Zitadel::Client::Api
     end
 
       # VerifyPhone
-      # Verify the phone   Verify the phone with the generated code..
+      # Verify the phone number   Verify the phone number with the generated code.
           # @param user_service_verify_phone_request [UserServiceVerifyPhoneRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceVerifyPhoneResponse]

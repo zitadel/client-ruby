@@ -14,43 +14,39 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-        class FeatureServiceGetInstanceFeaturesResponse
-    attr_accessor :details
+        class SessionServiceExpirationDateQuery
+    # A Timestamp represents a point in time independent of any time zone or local  calendar, encoded as a count of seconds and fractions of seconds at  nanosecond resolution. The count is relative to an epoch at UTC midnight on  January 1, 1970, in the proleptic Gregorian calendar which extends the  Gregorian calendar backwards to year one.   All minutes are 60 seconds long. Leap seconds are \"smeared\" so that no leap  second table is needed for interpretation, using a [24-hour linear  smear](https://developers.google.com/time/smear).   The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By  restricting to that range, we ensure that we can convert to and from [RFC  3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.   # Examples   Example 1: Compute Timestamp from POSIX `time()`.       Timestamp timestamp;      timestamp.set_seconds(time(NULL));      timestamp.set_nanos(0);   Example 2: Compute Timestamp from POSIX `gettimeofday()`.       struct timeval tv;      gettimeofday(&tv, NULL);       Timestamp timestamp;      timestamp.set_seconds(tv.tv_sec);      timestamp.set_nanos(tv.tv_usec * 1000);   Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.       FILETIME ft;      GetSystemTimeAsFileTime(&ft);      UINT64 ticks = (((UINT64)ft.dwHighDateTime) << 32) | ft.dwLowDateTime;       // A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z      // is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z.      Timestamp timestamp;      timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL));      timestamp.set_nanos((INT32) ((ticks % 10000000) * 100));   Example 4: Compute Timestamp from Java `System.currentTimeMillis()`.       long millis = System.currentTimeMillis();       Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)          .setNanos((int) ((millis % 1000) * 1000000)).build();   Example 5: Compute Timestamp from Java `Instant.now()`.       Instant now = Instant.now();       Timestamp timestamp =          Timestamp.newBuilder().setSeconds(now.getEpochSecond())              .setNanos(now.getNano()).build();   Example 6: Compute Timestamp from current time in Python.       timestamp = Timestamp()      timestamp.GetCurrentTime()   # JSON Mapping   In JSON format, the Timestamp type is encoded as a string in the  [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the  format is \"{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z\"  where {year} is always expressed using four digits while {month}, {day},  {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional  seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution),  are optional. The \"Z\" suffix indicates the timezone (\"UTC\"); the timezone  is required. A proto3 JSON serializer should always use UTC (as indicated by  \"Z\") when printing the Timestamp type and a proto3 JSON parser should be  able to accept both UTC and other timezones (as indicated by an offset).   For example, \"2017-01-15T01:30:15.01Z\" encodes 15.01 seconds past  01:30 UTC on January 15, 2017.   In JavaScript, one can convert a Date object to this format using the  standard  [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)  method. In Python, a standard `datetime.datetime` object can be converted  to this format using  [`strftime`](https://docs.python.org/2/library/time.html#time.strftime) with  the time format spec '%Y-%m-%dT%H:%M:%S.%fZ'. Likewise, in Java, one can use  the Joda Time's [`ISODateTimeFormat.dateTime()`](  http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime()  ) to obtain a formatter capable of generating timestamps in this format.
+    attr_accessor :expiration_date
 
-    attr_accessor :login_default_org
+    attr_accessor :method
 
-    attr_accessor :user_schema
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
 
-    attr_accessor :oidc_token_exchange
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
 
-    attr_accessor :improved_performance
-
-    attr_accessor :debug_oidc_parent_error
-
-    attr_accessor :oidc_single_v1_session_termination
-
-    attr_accessor :enable_back_channel_logout
-
-    attr_accessor :login_v2
-
-    attr_accessor :permission_check_v2
-
-    attr_accessor :console_use_v2_user_api
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'details' => :'details',
-        :'login_default_org' => :'loginDefaultOrg',
-        :'user_schema' => :'userSchema',
-        :'oidc_token_exchange' => :'oidcTokenExchange',
-        :'improved_performance' => :'improvedPerformance',
-        :'debug_oidc_parent_error' => :'debugOidcParentError',
-        :'oidc_single_v1_session_termination' => :'oidcSingleV1SessionTermination',
-        :'enable_back_channel_logout' => :'enableBackChannelLogout',
-        :'login_v2' => :'loginV2',
-        :'permission_check_v2' => :'permissionCheckV2',
-        :'console_use_v2_user_api' => :'consoleUseV2UserApi'
+        :'expiration_date' => :'expirationDate',
+        :'method' => :'method'
       }
     end
 
@@ -67,17 +63,8 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'details' => :'FeatureServiceDetails',
-        :'login_default_org' => :'FeatureServiceFeatureFlag',
-        :'user_schema' => :'FeatureServiceFeatureFlag',
-        :'oidc_token_exchange' => :'FeatureServiceFeatureFlag',
-        :'improved_performance' => :'FeatureServiceImprovedPerformanceFeatureFlag',
-        :'debug_oidc_parent_error' => :'FeatureServiceFeatureFlag',
-        :'oidc_single_v1_session_termination' => :'FeatureServiceFeatureFlag',
-        :'enable_back_channel_logout' => :'FeatureServiceFeatureFlag',
-        :'login_v2' => :'FeatureServiceLoginV2FeatureFlag',
-        :'permission_check_v2' => :'FeatureServiceFeatureFlag',
-        :'console_use_v2_user_api' => :'FeatureServiceFeatureFlag'
+        :'expiration_date' => :'Time',
+        :'method' => :'SessionServiceTimestampQueryMethod'
       }
     end
 
@@ -92,7 +79,7 @@ module Zitadel::Client::Models
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
         # MODIFIED: Updated class name in error message
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Zitadel::Client::Models::FeatureServiceGetInstanceFeaturesResponse` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Zitadel::Client::Models::SessionServiceExpirationDateQuery` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
@@ -100,53 +87,17 @@ module Zitadel::Client::Models
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!acceptable_attribute_map.key?(k.to_sym))
           # MODIFIED: Updated class name in error message
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Zitadel::Client::Models::FeatureServiceGetInstanceFeaturesResponse`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Zitadel::Client::Models::SessionServiceExpirationDateQuery`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'details')
-        self.details = attributes[:'details']
+      if attributes.key?(:'expiration_date')
+        self.expiration_date = attributes[:'expiration_date']
       end
 
-      if attributes.key?(:'login_default_org')
-        self.login_default_org = attributes[:'login_default_org']
-      end
-
-      if attributes.key?(:'user_schema')
-        self.user_schema = attributes[:'user_schema']
-      end
-
-      if attributes.key?(:'oidc_token_exchange')
-        self.oidc_token_exchange = attributes[:'oidc_token_exchange']
-      end
-
-      if attributes.key?(:'improved_performance')
-        self.improved_performance = attributes[:'improved_performance']
-      end
-
-      if attributes.key?(:'debug_oidc_parent_error')
-        self.debug_oidc_parent_error = attributes[:'debug_oidc_parent_error']
-      end
-
-      if attributes.key?(:'oidc_single_v1_session_termination')
-        self.oidc_single_v1_session_termination = attributes[:'oidc_single_v1_session_termination']
-      end
-
-      if attributes.key?(:'enable_back_channel_logout')
-        self.enable_back_channel_logout = attributes[:'enable_back_channel_logout']
-      end
-
-      if attributes.key?(:'login_v2')
-        self.login_v2 = attributes[:'login_v2']
-      end
-
-      if attributes.key?(:'permission_check_v2')
-        self.permission_check_v2 = attributes[:'permission_check_v2']
-      end
-
-      if attributes.key?(:'console_use_v2_user_api')
-        self.console_use_v2_user_api = attributes[:'console_use_v2_user_api']
+      if attributes.key?(:'method')
+        self.method = attributes[:'method']
       end
     end
 
@@ -155,17 +106,8 @@ module Zitadel::Client::Models
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          details == o.details &&
-          login_default_org == o.login_default_org &&
-          user_schema == o.user_schema &&
-          oidc_token_exchange == o.oidc_token_exchange &&
-          improved_performance == o.improved_performance &&
-          debug_oidc_parent_error == o.debug_oidc_parent_error &&
-          oidc_single_v1_session_termination == o.oidc_single_v1_session_termination &&
-          enable_back_channel_logout == o.enable_back_channel_logout &&
-          login_v2 == o.login_v2 &&
-          permission_check_v2 == o.permission_check_v2 &&
-          console_use_v2_user_api == o.console_use_v2_user_api
+          expiration_date == o.expiration_date &&
+          method == o.method
     end
 
     # @see the `==` method
@@ -177,7 +119,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [details, login_default_org, user_schema, oidc_token_exchange, improved_performance, debug_oidc_parent_error, oidc_single_v1_session_termination, enable_back_channel_logout, login_v2, permission_check_v2, console_use_v2_user_api].hash
+      [expiration_date, method].hash
     end
 
 # Builds the object from hash

@@ -14,15 +14,14 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-          class FeatureServiceImprovedPerformance
-    IMPROVED_PERFORMANCE_UNSPECIFIED = "IMPROVED_PERFORMANCE_UNSPECIFIED".freeze
-    IMPROVED_PERFORMANCE_PROJECT_GRANT = "IMPROVED_PERFORMANCE_PROJECT_GRANT".freeze
-    IMPROVED_PERFORMANCE_PROJECT = "IMPROVED_PERFORMANCE_PROJECT".freeze
-    IMPROVED_PERFORMANCE_USER_GRANT = "IMPROVED_PERFORMANCE_USER_GRANT".freeze
-    IMPROVED_PERFORMANCE_ORG_DOMAIN_VERIFIED = "IMPROVED_PERFORMANCE_ORG_DOMAIN_VERIFIED".freeze
+          class IdentityProviderServiceSAMLSignatureAlgorithm
+    SAML_SIGNATURE_UNSPECIFIED = "SAML_SIGNATURE_UNSPECIFIED".freeze
+    SAML_SIGNATURE_RSA_SHA1 = "SAML_SIGNATURE_RSA_SHA1".freeze
+    SAML_SIGNATURE_RSA_SHA256 = "SAML_SIGNATURE_RSA_SHA256".freeze
+    SAML_SIGNATURE_RSA_SHA512 = "SAML_SIGNATURE_RSA_SHA512".freeze
 
     def self.all_vars
-      @all_vars ||= [IMPROVED_PERFORMANCE_UNSPECIFIED, IMPROVED_PERFORMANCE_PROJECT_GRANT, IMPROVED_PERFORMANCE_PROJECT, IMPROVED_PERFORMANCE_USER_GRANT, IMPROVED_PERFORMANCE_ORG_DOMAIN_VERIFIED].freeze
+      @all_vars ||= [SAML_SIGNATURE_UNSPECIFIED, SAML_SIGNATURE_RSA_SHA1, SAML_SIGNATURE_RSA_SHA256, SAML_SIGNATURE_RSA_SHA512].freeze
     end
 
     # Builds the enum from string
@@ -36,8 +35,8 @@ module Zitadel::Client::Models
     # @param [String] The enum value in the form of the string
     # @return [String] The enum value
     def build_from_hash(value)
-      return value if FeatureServiceImprovedPerformance.all_vars.include?(value)
-      raise "Invalid ENUM value #{value} for class #Zitadel::Client::Models::FeatureServiceImprovedPerformance"
+      return value if IdentityProviderServiceSAMLSignatureAlgorithm.all_vars.include?(value)
+      raise "Invalid ENUM value #{value} for class #Zitadel::Client::Models::IdentityProviderServiceSAMLSignatureAlgorithm"
     end
   end
 
