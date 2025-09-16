@@ -25,8 +25,6 @@ module Zitadel::Client::Models
 
     attr_accessor :oidc_single_v1_session_termination
 
-    attr_accessor :disable_user_token_event
-
     attr_accessor :enable_back_channel_logout
 
     attr_accessor :login_v2
@@ -41,7 +39,6 @@ module Zitadel::Client::Models
         :'oidc_token_exchange' => :'oidcTokenExchange',
         :'improved_performance' => :'improvedPerformance',
         :'oidc_single_v1_session_termination' => :'oidcSingleV1SessionTermination',
-        :'disable_user_token_event' => :'disableUserTokenEvent',
         :'enable_back_channel_logout' => :'enableBackChannelLogout',
         :'login_v2' => :'loginV2',
         :'permission_check_v2' => :'permissionCheckV2'
@@ -66,7 +63,6 @@ module Zitadel::Client::Models
         :'oidc_token_exchange' => :'Boolean',
         :'improved_performance' => :'Array<FeatureServiceImprovedPerformance>',
         :'oidc_single_v1_session_termination' => :'Boolean',
-        :'disable_user_token_event' => :'Boolean',
         :'enable_back_channel_logout' => :'Boolean',
         :'login_v2' => :'FeatureServiceLoginV2',
         :'permission_check_v2' => :'Boolean'
@@ -80,7 +76,6 @@ module Zitadel::Client::Models
         :'user_schema',
         :'oidc_token_exchange',
         :'oidc_single_v1_session_termination',
-        :'disable_user_token_event',
         :'enable_back_channel_logout',
         :'permission_check_v2'
       ])
@@ -126,10 +121,6 @@ module Zitadel::Client::Models
         self.oidc_single_v1_session_termination = attributes[:'oidc_single_v1_session_termination']
       end
 
-      if attributes.key?(:'disable_user_token_event')
-        self.disable_user_token_event = attributes[:'disable_user_token_event']
-      end
-
       if attributes.key?(:'enable_back_channel_logout')
         self.enable_back_channel_logout = attributes[:'enable_back_channel_logout']
       end
@@ -153,7 +144,6 @@ module Zitadel::Client::Models
           oidc_token_exchange == o.oidc_token_exchange &&
           improved_performance == o.improved_performance &&
           oidc_single_v1_session_termination == o.oidc_single_v1_session_termination &&
-          disable_user_token_event == o.disable_user_token_event &&
           enable_back_channel_logout == o.enable_back_channel_logout &&
           login_v2 == o.login_v2 &&
           permission_check_v2 == o.permission_check_v2
@@ -168,7 +158,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [login_default_org, user_schema, oidc_token_exchange, improved_performance, oidc_single_v1_session_termination, disable_user_token_event, enable_back_channel_logout, login_v2, permission_check_v2].hash
+      [login_default_org, user_schema, oidc_token_exchange, improved_performance, oidc_single_v1_session_termination, enable_back_channel_logout, login_v2, permission_check_v2].hash
     end
 
 # Builds the object from hash

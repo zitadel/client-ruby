@@ -19,6 +19,8 @@ module Zitadel::Client::Models
 
     attr_accessor :creator_query
 
+    attr_accessor :expiration_date_query
+
     attr_accessor :ids_query
 
     attr_accessor :user_agent_query
@@ -30,6 +32,7 @@ module Zitadel::Client::Models
       {
         :'creation_date_query' => :'creationDateQuery',
         :'creator_query' => :'creatorQuery',
+        :'expiration_date_query' => :'expirationDateQuery',
         :'ids_query' => :'idsQuery',
         :'user_agent_query' => :'userAgentQuery',
         :'user_id_query' => :'userIdQuery'
@@ -51,6 +54,7 @@ module Zitadel::Client::Models
       {
         :'creation_date_query' => :'SessionServiceCreationDateQuery',
         :'creator_query' => :'SessionServiceCreatorQuery',
+        :'expiration_date_query' => :'SessionServiceExpirationDateQuery',
         :'ids_query' => :'SessionServiceIDsQuery',
         :'user_agent_query' => :'SessionServiceUserAgentQuery',
         :'user_id_query' => :'SessionServiceUserIDQuery'
@@ -89,6 +93,10 @@ module Zitadel::Client::Models
         self.creator_query = attributes[:'creator_query']
       end
 
+      if attributes.key?(:'expiration_date_query')
+        self.expiration_date_query = attributes[:'expiration_date_query']
+      end
+
       if attributes.key?(:'ids_query')
         self.ids_query = attributes[:'ids_query']
       end
@@ -109,6 +117,7 @@ module Zitadel::Client::Models
       self.class == o.class &&
           creation_date_query == o.creation_date_query &&
           creator_query == o.creator_query &&
+          expiration_date_query == o.expiration_date_query &&
           ids_query == o.ids_query &&
           user_agent_query == o.user_agent_query &&
           user_id_query == o.user_id_query
@@ -123,7 +132,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [creation_date_query, creator_query, ids_query, user_agent_query, user_id_query].hash
+      [creation_date_query, creator_query, expiration_date_query, ids_query, user_agent_query, user_id_query].hash
     end
 
 # Builds the object from hash

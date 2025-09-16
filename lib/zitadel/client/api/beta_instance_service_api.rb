@@ -194,7 +194,7 @@ module Zitadel::Client::Api
     end
 
       # GetInstance
-      # Get Instance   Returns the instance in the current context.   The instace_id in the input message will be used in the future.   Required permissions:    - &#x60;iam.read&#x60;
+      # Get Instance   Returns the instance in the current context.   The instance_id in the input message will be used in the future.   Required permissions:    - &#x60;iam.read&#x60;
           # @param beta_instance_service_get_instance_request [BetaInstanceServiceGetInstanceRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaInstanceServiceGetInstanceResponse]
