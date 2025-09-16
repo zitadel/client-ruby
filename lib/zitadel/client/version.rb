@@ -2,6 +2,6 @@
 
 module Zitadel
   module Client
-    VERSION = '4.1.0.beta.7'
+    VERSION = '4.1.0.beta.8'
   end
 end
