@@ -19,12 +19,12 @@ module Zitadel::Client::Api
   def initialize(api_client = ApiClient.default)
   @api_client = api_client
   end
-      # AddHumanUser
-      # Create a new human user   Create/import a new user with the type human. The newly created user will get a verification email if either the email address is not marked as verified and you did not request the verification to be returned.   Deprecated: please move to the corresponding endpoint under user service v2 (GA)
+      # Create a new human user
+      # Create/import a new user with the type human. The newly created user will get a verification email if either the email address is not marked as verified and you did not request the verification to be returned.   Deprecated: please move to the corresponding endpoint under user service v2 (GA)
           # @param beta_user_service_add_human_user_request [BetaUserServiceAddHumanUserRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceAddHumanUserResponse]
-    def add_human_user(beta_user_service_add_human_user_request, opts = {})
+    def add_human_user(beta_user_service_add_human_user_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.add_human_user ...' # MODIFIED
     end
@@ -77,8 +77,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # AddIDPLink
-      # Add link to an identity provider to an user   Add link to an identity provider to an user.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Add link to an identity provider to an user
+      # Add link to an identity provider to an user.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_add_idp_link_request [BetaUserServiceAddIDPLinkRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceAddIDPLinkResponse]
@@ -135,8 +135,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # AddOTPEmail
-      # Add OTP Email for a user   Add a new One-Time Password (OTP) Email factor to the authenticated user. OTP Email will enable the user to verify a OTP with the latest verified email. The email has to be verified to add the second factor.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Add OTP Email for a user
+      # Add a new One-Time Password (OTP) Email factor to the authenticated user. OTP Email will enable the user to verify a OTP with the latest verified email. The email has to be verified to add the second factor.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_add_otp_email_request [BetaUserServiceAddOTPEmailRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceAddOTPEmailResponse]
@@ -193,8 +193,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # AddOTPSMS
-      # Add OTP SMS for a user   Add a new One-Time Password (OTP) SMS factor to the authenticated user. OTP SMS will enable the user to verify a OTP with the latest verified phone number. The phone number has to be verified to add the second factor.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Add OTP SMS for a user
+      # Add a new One-Time Password (OTP) SMS factor to the authenticated user. OTP SMS will enable the user to verify a OTP with the latest verified phone number. The phone number has to be verified to add the second factor.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_add_otpsms_request [BetaUserServiceAddOTPSMSRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceAddOTPSMSResponse]
@@ -251,12 +251,12 @@ module Zitadel::Client::Api
     return data
     end
 
-      # CreatePasskeyRegistrationLink
-      # Create a passkey registration link for a user   Create a passkey registration link which includes a code and either return it or send it to the user.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Create a passkey registration link for a user
+      # Create a passkey registration link which includes a code and either return it or send it to the user.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_create_passkey_registration_link_request [BetaUserServiceCreatePasskeyRegistrationLinkRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceCreatePasskeyRegistrationLinkResponse]
-    def create_passkey_registration_link(beta_user_service_create_passkey_registration_link_request, opts = {})
+    def create_passkey_registration_link(beta_user_service_create_passkey_registration_link_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.create_passkey_registration_link ...' # MODIFIED
     end
@@ -309,8 +309,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # DeactivateUser
-      # Deactivate user   The state of the user will be changed to &#39;deactivated&#39;. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state &#39;deactivated&#39;. Use deactivate user when the user should not be able to use the account anymore, but you still need access to the user data.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Deactivate user
+      # The state of the user will be changed to &#39;deactivated&#39;. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state &#39;deactivated&#39;. Use deactivate user when the user should not be able to use the account anymore, but you still need access to the user data.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_deactivate_user_request [BetaUserServiceDeactivateUserRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceDeactivateUserResponse]
@@ -367,8 +367,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # DeleteUser
-      # Delete user   The state of the user will be changed to &#39;deleted&#39;. The user will not be able to log in anymore. Endpoints requesting this user will return an error &#39;User not found.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Delete user
+      # The state of the user will be changed to &#39;deleted&#39;. The user will not be able to log in anymore. Endpoints requesting this user will return an error &#39;User not found.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_delete_user_request [BetaUserServiceDeleteUserRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceDeleteUserResponse]
@@ -425,8 +425,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetUserByID
-      # User by ID   Returns the full user object (human or machine) including the profile, email, etc.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # User by ID
+      # Returns the full user object (human or machine) including the profile, email, etc.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_get_user_by_id_request [BetaUserServiceGetUserByIDRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceGetUserByIDResponse]
@@ -483,8 +483,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ListAuthenticationMethodTypes
-      # List all possible authentication methods of a user   List all possible authentication methods of a user like password, passwordless, (T)OTP and more.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # List all possible authentication methods of a user
+      # List all possible authentication methods of a user like password, passwordless, (T)OTP and more.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_list_authentication_method_types_request [BetaUserServiceListAuthenticationMethodTypesRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceListAuthenticationMethodTypesResponse]
@@ -541,8 +541,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ListUsers
-      # Search Users   Search for users. By default, we will return all users of your instance that you have permission to read. Make sure to include a limit and sorting for pagination.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Search Users
+      # Search for users. By default, we will return all users of your instance that you have permission to read. Make sure to include a limit and sorting for pagination.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_list_users_request [BetaUserServiceListUsersRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceListUsersResponse]
@@ -599,8 +599,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # LockUser
-      # Lock user   The state of the user will be changed to &#39;locked&#39;. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state &#39;locked&#39;. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.).   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Lock user
+      # The state of the user will be changed to &#39;locked&#39;. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state &#39;locked&#39;. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.).   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_lock_user_request [BetaUserServiceLockUserRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceLockUserResponse]
@@ -657,12 +657,12 @@ module Zitadel::Client::Api
     return data
     end
 
-      # PasswordReset
-      # Request a code to reset a password   Request a code to reset a password.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Request a code to reset a password
+      # Request a code to reset a password.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_password_reset_request [BetaUserServicePasswordResetRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServicePasswordResetResponse]
-    def password_reset(beta_user_service_password_reset_request, opts = {})
+    def password_reset(beta_user_service_password_reset_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.password_reset ...' # MODIFIED
     end
@@ -715,8 +715,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ReactivateUser
-      # Reactivate user   Reactivate a user with the state &#39;deactivated&#39;. The user will be able to log in again afterward. The endpoint returns an error if the user is not in the state &#39;deactivated&#39;.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Reactivate user
+      # Reactivate a user with the state &#39;deactivated&#39;. The user will be able to log in again afterward. The endpoint returns an error if the user is not in the state &#39;deactivated&#39;.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_reactivate_user_request [BetaUserServiceReactivateUserRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceReactivateUserResponse]
@@ -773,8 +773,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # RegisterPasskey
-      # Start the registration of passkey for a user   Start the registration of a passkey for a user, as a response the public key credential creation options are returned, which are used to verify the passkey.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Start the registration of passkey for a user
+      # Start the registration of a passkey for a user, as a response the public key credential creation options are returned, which are used to verify the passkey.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_register_passkey_request [BetaUserServiceRegisterPasskeyRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceRegisterPasskeyResponse]
@@ -831,8 +831,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # RegisterTOTP
-      # Start the registration of a TOTP generator for a user   Start the registration of a TOTP generator for a user, as a response a secret returned, which is used to initialize a TOTP app or device.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Start the registration of a TOTP generator for a user
+      # Start the registration of a TOTP generator for a user, as a response a secret returned, which is used to initialize a TOTP app or device.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_register_totp_request [BetaUserServiceRegisterTOTPRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceRegisterTOTPResponse]
@@ -889,8 +889,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # RegisterU2F
-      # Start the registration of a u2f token for a user   Start the registration of a u2f token for a user, as a response the public key credential creation options are returned, which are used to verify the u2f token.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Start the registration of a u2f token for a user
+      # Start the registration of a u2f token for a user, as a response the public key credential creation options are returned, which are used to verify the u2f token.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_register_u2_f_request [BetaUserServiceRegisterU2FRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceRegisterU2FResponse]
@@ -947,8 +947,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # RemoveOTPEmail
-      # Remove One-Time Password (OTP) Email from a user   Remove the configured One-Time Password (OTP) Email factor of a user. As only one OTP Email per user is allowed, the user will not have OTP Email as a second factor afterward.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Remove One-Time Password (OTP) Email from a user
+      # Remove the configured One-Time Password (OTP) Email factor of a user. As only one OTP Email per user is allowed, the user will not have OTP Email as a second factor afterward.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_remove_otp_email_request [BetaUserServiceRemoveOTPEmailRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceRemoveOTPEmailResponse]
@@ -1005,8 +1005,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # RemoveOTPSMS
-      # Remove One-Time Password (OTP) SMS from a user   Remove the configured One-Time Password (OTP) SMS factor of a user. As only one OTP SMS per user is allowed, the user will not have OTP SMS as a second factor afterward.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Remove One-Time Password (OTP) SMS from a user
+      # Remove the configured One-Time Password (OTP) SMS factor of a user. As only one OTP SMS per user is allowed, the user will not have OTP SMS as a second factor afterward.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_remove_otpsms_request [BetaUserServiceRemoveOTPSMSRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceRemoveOTPSMSResponse]
@@ -1063,8 +1063,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # RemovePhone
-      # Remove the user phone   Remove the user phone   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Remove the user phone
+      # Remove the user phone   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_remove_phone_request [BetaUserServiceRemovePhoneRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceRemovePhoneResponse]
@@ -1121,8 +1121,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # RemoveTOTP
-      # Remove TOTP generator from a user   Remove the configured TOTP generator of a user. As only one TOTP generator per user is allowed, the user will not have TOTP as a second factor afterward.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Remove TOTP generator from a user
+      # Remove the configured TOTP generator of a user. As only one TOTP generator per user is allowed, the user will not have TOTP as a second factor afterward.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_remove_totp_request [BetaUserServiceRemoveTOTPRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceRemoveTOTPResponse]
@@ -1179,12 +1179,12 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ResendEmailCode
-      # Resend code to verify user email   Resend code to verify user email   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Resend code to verify user email
+      # Resend code to verify user email   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_resend_email_code_request [BetaUserServiceResendEmailCodeRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceResendEmailCodeResponse]
-    def resend_email_code(beta_user_service_resend_email_code_request, opts = {})
+    def resend_email_code(beta_user_service_resend_email_code_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.resend_email_code ...' # MODIFIED
     end
@@ -1237,12 +1237,12 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ResendPhoneCode
-      # Resend code to verify user phone   Resend code to verify user phone   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Resend code to verify user phone
+      # Resend code to verify user phone   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_resend_phone_code_request [BetaUserServiceResendPhoneCodeRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceResendPhoneCodeResponse]
-    def resend_phone_code(beta_user_service_resend_phone_code_request, opts = {})
+    def resend_phone_code(beta_user_service_resend_phone_code_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.resend_phone_code ...' # MODIFIED
     end
@@ -1295,8 +1295,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # RetrieveIdentityProviderIntent
-      # Retrieve the information returned by the identity provider   Retrieve the information returned by the identity provider for registration or updating an existing user with new information.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Retrieve the information returned by the identity provider
+      # Retrieve the information returned by the identity provider for registration or updating an existing user with new information.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_retrieve_identity_provider_intent_request [BetaUserServiceRetrieveIdentityProviderIntentRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceRetrieveIdentityProviderIntentResponse]
@@ -1353,12 +1353,12 @@ module Zitadel::Client::Api
     return data
     end
 
-      # SetEmail
-      # Change the user email   Change the email address of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by email.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Change the user email
+      # Change the email address of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by email.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_set_email_request [BetaUserServiceSetEmailRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceSetEmailResponse]
-    def set_email(beta_user_service_set_email_request, opts = {})
+    def set_email(beta_user_service_set_email_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.set_email ...' # MODIFIED
     end
@@ -1411,12 +1411,12 @@ module Zitadel::Client::Api
     return data
     end
 
-      # SetPassword
-      # Change password   Change the password of a user with either a verification code or the current password.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Change password
+      # Change the password of a user with either a verification code or the current password.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_set_password_request [BetaUserServiceSetPasswordRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceSetPasswordResponse]
-    def set_password(beta_user_service_set_password_request, opts = {})
+    def set_password(beta_user_service_set_password_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.set_password ...' # MODIFIED
     end
@@ -1469,12 +1469,12 @@ module Zitadel::Client::Api
     return data
     end
 
-      # SetPhone
-      # Set the user phone   Set the phone number of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by sms.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Set the user phone
+      # Set the phone number of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by sms.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_set_phone_request [BetaUserServiceSetPhoneRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceSetPhoneResponse]
-    def set_phone(beta_user_service_set_phone_request, opts = {})
+    def set_phone(beta_user_service_set_phone_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.set_phone ...' # MODIFIED
     end
@@ -1527,12 +1527,12 @@ module Zitadel::Client::Api
     return data
     end
 
-      # StartIdentityProviderIntent
-      # Start flow with an identity provider   Start a flow with an identity provider, for external login, registration or linking.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Start flow with an identity provider
+      # Start a flow with an identity provider, for external login, registration or linking.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_start_identity_provider_intent_request [BetaUserServiceStartIdentityProviderIntentRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceStartIdentityProviderIntentResponse]
-    def start_identity_provider_intent(beta_user_service_start_identity_provider_intent_request, opts = {})
+    def start_identity_provider_intent(beta_user_service_start_identity_provider_intent_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::BetaUserServiceApi.start_identity_provider_intent ...' # MODIFIED
     end
@@ -1585,8 +1585,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # UnlockUser
-      # Unlock user   The state of the user will be changed to &#39;locked&#39;. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state &#39;locked&#39;. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.).   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Unlock user
+      # The state of the user will be changed to &#39;locked&#39;. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state &#39;locked&#39;. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.).   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_unlock_user_request [BetaUserServiceUnlockUserRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceUnlockUserResponse]
@@ -1643,8 +1643,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # UpdateHumanUser
-      # Update User   Update all information from a user.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Update User
+      # Update all information from a user.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_update_human_user_request [BetaUserServiceUpdateHumanUserRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceUpdateHumanUserResponse]
@@ -1701,8 +1701,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # VerifyEmail
-      # Verify the email   Verify the email with the generated code.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Verify the email
+      # Verify the email with the generated code.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_verify_email_request [BetaUserServiceVerifyEmailRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceVerifyEmailResponse]
@@ -1759,8 +1759,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # VerifyPasskeyRegistration
-      # Verify a passkey for a user   Verify the passkey registration with the public key credential.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Verify a passkey for a user
+      # Verify the passkey registration with the public key credential.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_verify_passkey_registration_request [BetaUserServiceVerifyPasskeyRegistrationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceVerifyPasskeyRegistrationResponse]
@@ -1817,8 +1817,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # VerifyPhone
-      # Verify the phone   Verify the phone with the generated code.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Verify the phone
+      # Verify the phone with the generated code.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_verify_phone_request [BetaUserServiceVerifyPhoneRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceVerifyPhoneResponse]
@@ -1875,8 +1875,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # VerifyTOTPRegistration
-      # Verify a TOTP generator for a user   Verify the TOTP registration with a generated code.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Verify a TOTP generator for a user
+      # Verify the TOTP registration with a generated code.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_verify_totp_registration_request [BetaUserServiceVerifyTOTPRegistrationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceVerifyTOTPRegistrationResponse]
@@ -1933,8 +1933,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # VerifyU2FRegistration
-      # Verify a u2f token for a user   Verify the u2f token registration with the public key credential.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
+      # Verify a u2f token for a user
+      # Verify the u2f token registration with the public key credential.   Deprecated: please move to the corresponding endpoint under user service v2 (GA).
           # @param beta_user_service_verify_u2_f_registration_request [BetaUserServiceVerifyU2FRegistrationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaUserServiceVerifyU2FRegistrationResponse]

@@ -19,8 +19,8 @@ module Zitadel::Client::Api
   def initialize(api_client = ApiClient.default)
   @api_client = api_client
   end
-      # ActivateOrganization
-      # Activate Organization   Set the state of my organization to active. The state of the organization has to be deactivated to perform the request. Users of this organization will be able to log in again.   Required permission:   - &#x60;org.write&#x60;
+      # Activate Organization
+      # Set the state of my organization to active. The state of the organization has to be deactivated to perform the request. Users of this organization will be able to log in again.   Required permission:   - &#x60;org.write&#x60;
           # @param beta_organization_service_activate_organization_request [BetaOrganizationServiceActivateOrganizationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaOrganizationServiceActivateOrganizationResponse]
@@ -77,8 +77,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # AddOrganizationDomain
-      # Add Organization Domain   Add a new domain to an organization. The domains are used to identify to which organization a user belongs.   Required permission:   - &#x60;org.write&#x60;
+      # Add Organization Domain
+      # Add a new domain to an organization. The domains are used to identify to which organization a user belongs.   Required permission:   - &#x60;org.write&#x60;
           # @param beta_organization_service_add_organization_domain_request [BetaOrganizationServiceAddOrganizationDomainRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaOrganizationServiceAddOrganizationDomainResponse]
@@ -135,8 +135,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # CreateOrganization
-      # Create Organization   Create a new organization with an administrative user. If no specific roles are sent for the users, they will be granted the role ORG_OWNER.   Required permission:   - &#x60;org.create&#x60;   Deprecated: Use [AddOrganization](/apis/resources/org_service_v2/organization-service-add-organization.api.mdx) instead to create an organization.
+      # Create Organization
+      # Create a new organization with an administrative user. If no specific roles are sent for the users, they will be granted the role ORG_OWNER.   Required permission:   - &#x60;org.create&#x60;   Deprecated: Use [AddOrganization](/apis/resources/org_service_v2/organization-service-add-organization.api.mdx) instead to create an organization.
           # @param beta_organization_service_create_organization_request [BetaOrganizationServiceCreateOrganizationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaOrganizationServiceCreateOrganizationResponse]
@@ -193,8 +193,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # DeactivateOrganization
-      # Deactivate Organization   Sets the state of my organization to deactivated. Users of this organization will not be able to log in.   Required permission:   - &#x60;org.write&#x60;
+      # Deactivate Organization
+      # Sets the state of my organization to deactivated. Users of this organization will not be able to log in.   Required permission:   - &#x60;org.write&#x60;
           # @param beta_organization_service_deactivate_organization_request [BetaOrganizationServiceDeactivateOrganizationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaOrganizationServiceDeactivateOrganizationResponse]
@@ -251,8 +251,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # DeleteOrganization
-      # Delete Organization   Deletes the organization and all its resources (Users, Projects, Grants to and from the org). Users of this organization will not be able to log in.   Required permission:   - &#x60;org.delete&#x60;
+      # Delete Organization
+      # Deletes the organization and all its resources (Users, Projects, Grants to and from the org). Users of this organization will not be able to log in.   Required permission:   - &#x60;org.delete&#x60;
           # @param beta_organization_service_delete_organization_request [BetaOrganizationServiceDeleteOrganizationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaOrganizationServiceDeleteOrganizationResponse]
@@ -309,8 +309,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # DeleteOrganizationDomain
-      # Delete Organization Domain   Delete a new domain from an organization. The domains are used to identify to which organization a user belongs. If the uses use the domain for login, this will not be possible afterwards. They have to use another domain instead.   Required permission:   - &#x60;org.write&#x60;
+      # Delete Organization Domain
+      # Delete a new domain from an organization. The domains are used to identify to which organization a user belongs. If the uses use the domain for login, this will not be possible afterwards. They have to use another domain instead.   Required permission:   - &#x60;org.write&#x60;
           # @param beta_organization_service_delete_organization_domain_request [BetaOrganizationServiceDeleteOrganizationDomainRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaOrganizationServiceDeleteOrganizationDomainResponse]
@@ -367,8 +367,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # DeleteOrganizationMetadata
-      # Delete Organization Metadata   Delete metadata objects from an organization with a specific key.   Required permission:   - &#x60;org.write&#x60;
+      # Delete Organization Metadata
+      # Delete metadata objects from an organization with a specific key.   Required permission:   - &#x60;org.write&#x60;
           # @param beta_organization_service_delete_organization_metadata_request [BetaOrganizationServiceDeleteOrganizationMetadataRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaOrganizationServiceDeleteOrganizationMetadataResponse]
@@ -425,8 +425,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GenerateOrganizationDomainValidation
-      # Generate Organization Domain Validation   Generate a new file to be able to verify your domain with DNS or HTTP challenge.   Required permission:   - &#x60;org.write&#x60;
+      # Generate Organization Domain Validation
+      # Generate a new file to be able to verify your domain with DNS or HTTP challenge.   Required permission:   - &#x60;org.write&#x60;
           # @param beta_organization_service_generate_organization_domain_validation_request [BetaOrganizationServiceGenerateOrganizationDomainValidationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaOrganizationServiceGenerateOrganizationDomainValidationResponse]
@@ -483,8 +483,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ListOrganizationDomains
-      # List Organization Domains   Returns the list of registered domains of an organization. The domains are used to identify to which organization a user belongs.    Required permission:   - &#x60;org.read&#x60;
+      # List Organization Domains
+      # Returns the list of registered domains of an organization. The domains are used to identify to which organization a user belongs.    Required permission:   - &#x60;org.read&#x60;
           # @param beta_organization_service_list_organization_domains_request [BetaOrganizationServiceListOrganizationDomainsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaOrganizationServiceListOrganizationDomainsResponse]
@@ -541,8 +541,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ListOrganizationMetadata
-      # List Organization Metadata   List metadata of an organization filtered by query.   Required permission:   - &#x60;org.read&#x60;
+      # List Organization Metadata
+      # List metadata of an organization filtered by query.   Required permission:   - &#x60;org.read&#x60;
           # @param beta_organization_service_list_organization_metadata_request [BetaOrganizationServiceListOrganizationMetadataRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaOrganizationServiceListOrganizationMetadataResponse]
@@ -599,8 +599,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ListOrganizations
-      # List Organizations   Returns a list of organizations that match the requesting filters. All filters are applied with an AND condition.   Required permission:   - &#x60;iam.read&#x60;   Deprecated: Use [ListOrganizations](/apis/resources/org_service_v2/organization-service-list-organizations.api.mdx) instead to list organizations.
+      # List Organizations
+      # Returns a list of organizations that match the requesting filters. All filters are applied with an AND condition.   Required permission:   - &#x60;iam.read&#x60;   Deprecated: Use [ListOrganizations](/apis/resources/org_service_v2/organization-service-list-organizations.api.mdx) instead to list organizations.
           # @param beta_organization_service_list_organizations_request [BetaOrganizationServiceListOrganizationsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaOrganizationServiceListOrganizationsResponse]
@@ -657,8 +657,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # SetOrganizationMetadata
-      # Set Organization Metadata   Adds or updates a metadata value for the requested key. Make sure the value is base64 encoded.   Required permission:   - &#x60;org.write&#x60;
+      # Set Organization Metadata
+      # Adds or updates a metadata value for the requested key. Make sure the value is base64 encoded.   Required permission:   - &#x60;org.write&#x60;
           # @param beta_organization_service_set_organization_metadata_request [BetaOrganizationServiceSetOrganizationMetadataRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaOrganizationServiceSetOrganizationMetadataResponse]
@@ -715,8 +715,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # UpdateOrganization
-      # Update Organization   Change the name of the organization.   Required permission:   - &#x60;org.write&#x60;
+      # Update Organization
+      # Change the name of the organization.   Required permission:   - &#x60;org.write&#x60;
           # @param beta_organization_service_update_organization_request [BetaOrganizationServiceUpdateOrganizationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaOrganizationServiceUpdateOrganizationResponse]
@@ -773,8 +773,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # VerifyOrganizationDomain
-      # Verify Organization Domain   Make sure you have added the required verification to your domain, depending on the method you have chosen (HTTP or DNS challenge). ZITADEL will check it and set the domain as verified if it was successful. A verify domain has to be unique.   Required permission:   - &#x60;org.write&#x60;
+      # Verify Organization Domain
+      # Make sure you have added the required verification to your domain, depending on the method you have chosen (HTTP or DNS challenge). ZITADEL will check it and set the domain as verified if it was successful. A verify domain has to be unique.   Required permission:   - &#x60;org.write&#x60;
           # @param beta_organization_service_verify_organization_domain_request [BetaOrganizationServiceVerifyOrganizationDomainRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaOrganizationServiceVerifyOrganizationDomainResponse]

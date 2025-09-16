@@ -80,69 +80,21 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'user_id')
         self.user_id = attributes[:'user_id']
-      else
-        self.user_id = nil
       end
 
       if attributes.key?(:'u2f_id')
         self.u2f_id = attributes[:'u2f_id']
-      else
-        self.u2f_id = nil
       end
 
       if attributes.key?(:'public_key_credential')
         if (value = attributes[:'public_key_credential']).is_a?(Hash)
           self.public_key_credential = value
         end
-      else
-        self.public_key_credential = nil
       end
 
       if attributes.key?(:'token_name')
         self.token_name = attributes[:'token_name']
-      else
-        self.token_name = nil
       end
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] user_id Value to be assigned
-    def user_id=(user_id)
-      if user_id.nil?
-        fail ArgumentError, 'user_id cannot be nil'
-      end
-
-      @user_id = user_id
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] u2f_id Value to be assigned
-    def u2f_id=(u2f_id)
-      if u2f_id.nil?
-        fail ArgumentError, 'u2f_id cannot be nil'
-      end
-
-      @u2f_id = u2f_id
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Hash<String, Object>] public_key_credential Value to be assigned
-    def public_key_credential=(public_key_credential)
-      if public_key_credential.nil?
-        fail ArgumentError, 'public_key_credential cannot be nil'
-      end
-
-      @public_key_credential = public_key_credential
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] token_name Value to be assigned
-    def token_name=(token_name)
-      if token_name.nil?
-        fail ArgumentError, 'token_name cannot be nil'
-      end
-
-      @token_name = token_name
     end
 
     # Checks equality by comparing each attribute.

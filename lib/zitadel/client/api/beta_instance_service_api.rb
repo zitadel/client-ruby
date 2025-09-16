@@ -19,8 +19,8 @@ module Zitadel::Client::Api
   def initialize(api_client = ApiClient.default)
   @api_client = api_client
   end
-      # AddCustomDomain
-      # Add Custom Domain   Adds a custom domain to the instance in context.   The instance_id in the input message will be used in the future   Required permissions:    - &#x60;system.domain.write&#x60;
+      # Add Custom Domain
+      # Adds a custom domain to the instance in context.   The instance_id in the input message will be used in the future   Required permissions:    - &#x60;system.domain.write&#x60;
           # @param beta_instance_service_add_custom_domain_request [BetaInstanceServiceAddCustomDomainRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaInstanceServiceAddCustomDomainResponse]
@@ -77,8 +77,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # AddTrustedDomain
-      # Add Trusted Domain   Adds a trusted domain to the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - &#x60;iam.write&#x60;
+      # Add Trusted Domain
+      # Adds a trusted domain to the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - &#x60;iam.write&#x60;
           # @param beta_instance_service_add_trusted_domain_request [BetaInstanceServiceAddTrustedDomainRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaInstanceServiceAddTrustedDomainResponse]
@@ -135,8 +135,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # DeleteInstance
-      # Delete Instance   Deletes an instance with the given ID.   Required permissions:    - &#x60;system.instance.delete&#x60;
+      # Delete Instance
+      # Deletes an instance with the given ID.   Required permissions:    - &#x60;system.instance.delete&#x60;
           # @param beta_instance_service_delete_instance_request [BetaInstanceServiceDeleteInstanceRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaInstanceServiceDeleteInstanceResponse]
@@ -193,8 +193,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetInstance
-      # Get Instance   Returns the instance in the current context.   The instance_id in the input message will be used in the future.   Required permissions:    - &#x60;iam.read&#x60;
+      # Get Instance
+      # Returns the instance in the current context.   The instance_id in the input message will be used in the future.   Required permissions:    - &#x60;iam.read&#x60;
           # @param beta_instance_service_get_instance_request [BetaInstanceServiceGetInstanceRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaInstanceServiceGetInstanceResponse]
@@ -251,8 +251,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ListCustomDomains
-      # List Custom Domains   Lists custom domains of the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - &#x60;iam.read&#x60;
+      # List Custom Domains
+      # Lists custom domains of the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - &#x60;iam.read&#x60;
           # @param beta_instance_service_list_custom_domains_request [BetaInstanceServiceListCustomDomainsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaInstanceServiceListCustomDomainsResponse]
@@ -309,8 +309,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ListInstances
-      # List Instances   Lists instances matching the given query.  The query can be used to filter either by instance ID or domain.  The request is paginated and returns 100 results by default.   Required permissions:   - &#x60;system.instance.read&#x60;
+      # List Instances
+      # Lists instances matching the given query.  The query can be used to filter either by instance ID or domain.  The request is paginated and returns 100 results by default.   Required permissions:   - &#x60;system.instance.read&#x60;
           # @param beta_instance_service_list_instances_request [BetaInstanceServiceListInstancesRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaInstanceServiceListInstancesResponse]
@@ -367,8 +367,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ListTrustedDomains
-      # List Trusted Domains   Lists trusted domains of the instance.   The instance_id in the input message will be used in the future.   Required permissions:    - &#x60;iam.read&#x60;
+      # List Trusted Domains
+      # Lists trusted domains of the instance.   The instance_id in the input message will be used in the future.   Required permissions:    - &#x60;iam.read&#x60;
           # @param beta_instance_service_list_trusted_domains_request [BetaInstanceServiceListTrustedDomainsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaInstanceServiceListTrustedDomainsResponse]
@@ -425,8 +425,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # RemoveCustomDomain
-      # Remove Custom Domain   Removes a custom domain from the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - &#x60;system.domain.write&#x60;
+      # Remove Custom Domain
+      # Removes a custom domain from the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - &#x60;system.domain.write&#x60;
           # @param beta_instance_service_remove_custom_domain_request [BetaInstanceServiceRemoveCustomDomainRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaInstanceServiceRemoveCustomDomainResponse]
@@ -483,8 +483,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # RemoveTrustedDomain
-      # Remove Trusted Domain   Removes a trusted domain from the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - &#x60;iam.write&#x60;
+      # Remove Trusted Domain
+      # Removes a trusted domain from the instance.   The instance_id in the input message will be used in the future.   Required permissions:   - &#x60;iam.write&#x60;
           # @param beta_instance_service_remove_trusted_domain_request [BetaInstanceServiceRemoveTrustedDomainRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaInstanceServiceRemoveTrustedDomainResponse]
@@ -541,8 +541,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # UpdateInstance
-      # Update Instance   Updates instance in context with the given name.   The instance_id in the input message will be used in the future.   Required permissions:    - &#x60;iam.write&#x60;
+      # Update Instance
+      # Updates instance in context with the given name.   The instance_id in the input message will be used in the future.   Required permissions:    - &#x60;iam.write&#x60;
           # @param beta_instance_service_update_instance_request [BetaInstanceServiceUpdateInstanceRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaInstanceServiceUpdateInstanceResponse]

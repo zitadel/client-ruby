@@ -19,7 +19,7 @@ module Zitadel::Client::Api
   def initialize(api_client = ApiClient.default)
   @api_client = api_client
   end
-      # GetActiveIdentityProviders
+      # Get the current active identity providers
       # Get the current active identity providers
           # @param settings_service_get_active_identity_providers_request [SettingsServiceGetActiveIdentityProvidersRequest] 
       # @param [Hash] opts the optional parameters
@@ -77,7 +77,7 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetBrandingSettings
+      # Get the current active branding settings
       # Get the current active branding settings
           # @param settings_service_get_branding_settings_request [SettingsServiceGetBrandingSettingsRequest] 
       # @param [Hash] opts the optional parameters
@@ -135,7 +135,7 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetDomainSettings
+      # Get the domain settings
       # Get the domain settings
           # @param settings_service_get_domain_settings_request [SettingsServiceGetDomainSettingsRequest] 
       # @param [Hash] opts the optional parameters
@@ -193,7 +193,7 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetGeneralSettings
+      # Get basic information over the instance
       # Get basic information over the instance
           # @param body [Object] 
       # @param [Hash] opts the optional parameters
@@ -251,12 +251,12 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetHostedLoginTranslation
-      # Get Hosted Login Translation   Returns the translations in the requested locale for the hosted login.  The translations returned are based on the input level specified (system, instance or organization).   If the requested level doesn&#39;t contain all translations, and ignore_inheritance is set to false,  a merging process fallbacks onto the higher levels ensuring all keys in the file have a translation,  which could be in the default language if the one of the locale is missing on all levels.   The etag returned in the response represents the hash of the translations as they are stored on DB  and its reliable only if ignore_inheritance &#x3D; true.   Required permissions:    - &#x60;iam.policy.read&#x60;
+      # Get Hosted Login Translation
+      # Returns the translations in the requested locale for the hosted login.  The translations returned are based on the input level specified (system, instance or organization).   If the requested level doesn&#39;t contain all translations, and ignore_inheritance is set to false,  a merging process fallbacks onto the higher levels ensuring all keys in the file have a translation,  which could be in the default language if the one of the locale is missing on all levels.   The etag returned in the response represents the hash of the translations as they are stored on DB  and its reliable only if ignore_inheritance &#x3D; true.   Required permissions:    - &#x60;iam.policy.read&#x60;
           # @param settings_service_get_hosted_login_translation_request [SettingsServiceGetHostedLoginTranslationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceGetHostedLoginTranslationResponse]
-    def get_hosted_login_translation(settings_service_get_hosted_login_translation_request, opts = {})
+    def get_hosted_login_translation(settings_service_get_hosted_login_translation_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.get_hosted_login_translation ...' # MODIFIED
     end
@@ -309,7 +309,7 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetLegalAndSupportSettings
+      # Get the legal and support settings
       # Get the legal and support settings
           # @param settings_service_get_legal_and_support_settings_request [SettingsServiceGetLegalAndSupportSettingsRequest] 
       # @param [Hash] opts the optional parameters
@@ -367,7 +367,7 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetLockoutSettings
+      # Get the lockout settings
       # Get the lockout settings
           # @param settings_service_get_lockout_settings_request [SettingsServiceGetLockoutSettingsRequest] 
       # @param [Hash] opts the optional parameters
@@ -425,7 +425,7 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetLoginSettings
+      # Get the login settings
       # Get the login settings
           # @param settings_service_get_login_settings_request [SettingsServiceGetLoginSettingsRequest] 
       # @param [Hash] opts the optional parameters
@@ -483,7 +483,7 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetPasswordComplexitySettings
+      # Get the password complexity settings
       # Get the password complexity settings
           # @param settings_service_get_password_complexity_settings_request [SettingsServiceGetPasswordComplexitySettingsRequest] 
       # @param [Hash] opts the optional parameters
@@ -541,7 +541,7 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetPasswordExpirySettings
+      # Get the password expiry settings
       # Get the password expiry settings
           # @param settings_service_get_password_expiry_settings_request [SettingsServiceGetPasswordExpirySettingsRequest] 
       # @param [Hash] opts the optional parameters
@@ -599,7 +599,7 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetSecuritySettings
+      # Get the security settings
       # Get the security settings
           # @param body [Object] 
       # @param [Hash] opts the optional parameters
@@ -657,12 +657,12 @@ module Zitadel::Client::Api
     return data
     end
 
-      # SetHostedLoginTranslation
-      # Set Hosted Login Translation   Sets the input translations at the specified level (instance or organization) for the input language.   Required permissions:    - &#x60;iam.policy.write&#x60;
+      # Set Hosted Login Translation
+      # Sets the input translations at the specified level (instance or organization) for the input language.   Required permissions:    - &#x60;iam.policy.write&#x60;
           # @param settings_service_set_hosted_login_translation_request [SettingsServiceSetHostedLoginTranslationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceSetHostedLoginTranslationResponse]
-    def set_hosted_login_translation(settings_service_set_hosted_login_translation_request, opts = {})
+    def set_hosted_login_translation(settings_service_set_hosted_login_translation_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::SettingsServiceApi.set_hosted_login_translation ...' # MODIFIED
     end
@@ -715,7 +715,7 @@ module Zitadel::Client::Api
     return data
     end
 
-      # SetSecuritySettings
+      # Set the security settings
       # Set the security settings
           # @param settings_service_set_security_settings_request [SettingsServiceSetSecuritySettingsRequest] 
       # @param [Hash] opts the optional parameters

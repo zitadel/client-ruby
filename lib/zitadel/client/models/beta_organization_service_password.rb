@@ -71,23 +71,11 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'password')
         self.password = attributes[:'password']
-      else
-        self.password = nil
       end
 
       if attributes.key?(:'change_required')
         self.change_required = attributes[:'change_required']
       end
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] password Value to be assigned
-    def password=(password)
-      if password.nil?
-        fail ArgumentError, 'password cannot be nil'
-      end
-
-      @password = password
     end
 
     # Checks equality by comparing each attribute.

@@ -103,8 +103,6 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'project_id')
         self.project_id = attributes[:'project_id']
-      else
-        self.project_id = nil
       end
 
       if attributes.key?(:'pagination')
@@ -120,16 +118,6 @@ module Zitadel::Client::Models
           self.filters = value
         end
       end
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] project_id Value to be assigned
-    def project_id=(project_id)
-      if project_id.nil?
-        fail ArgumentError, 'project_id cannot be nil'
-      end
-
-      @project_id = project_id
     end
 
     # Checks equality by comparing each attribute.

@@ -19,12 +19,12 @@ module Zitadel::Client::Api
   def initialize(api_client = ApiClient.default)
   @api_client = api_client
   end
-      # AddHumanUser
-      # Create a new human user   Deprecated: Use [CreateUser](apis/resources/user_service_v2/user-service-create-user.api.mdx) to create a new user of type human instead.   Create/import a new user with the type human. The newly created user will get a verification email if either the email address is not marked as verified and you did not request the verification to be returned.
+      # Create a new human user
+      # Deprecated: Use [CreateUser](apis/resources/user_service_v2/user-service-create-user.api.mdx) to create a new user of type human instead.   Create/import a new user with the type human. The newly created user will get a verification email if either the email address is not marked as verified and you did not request the verification to be returned.
           # @param user_service_add_human_user_request [UserServiceAddHumanUserRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceAddHumanUserResponse]
-    def add_human_user(user_service_add_human_user_request, opts = {})
+    def add_human_user(user_service_add_human_user_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::UserServiceApi.add_human_user ...' # MODIFIED
     end
@@ -77,8 +77,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # AddIDPLink
-      # Add link to an identity provider to an user   Add link to an identity provider to an user..
+      # Add link to an identity provider to an user
+      # Add link to an identity provider to an user..
           # @param user_service_add_idp_link_request [UserServiceAddIDPLinkRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceAddIDPLinkResponse]
@@ -135,8 +135,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # AddKey
-      # Add a Key   Add a keys that can be used to securely authenticate at the Zitadel APIs using JWT profile authentication using short-lived tokens.  Make sure you store the returned key safely, as you won&#39;t be able to read it from the Zitadel API anymore.  Only users of type machine can have keys.   Required permission:    - user.write
+      # Add a Key
+      # Add a keys that can be used to securely authenticate at the Zitadel APIs using JWT profile authentication using short-lived tokens.  Make sure you store the returned key safely, as you won&#39;t be able to read it from the Zitadel API anymore.  Only users of type machine can have keys.   Required permission:    - user.write
           # @param user_service_add_key_request [UserServiceAddKeyRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceAddKeyResponse]
@@ -193,8 +193,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # AddOTPEmail
-      # Add OTP Email for a user   Add a new One-Time Password (OTP) Email factor to the authenticated user. OTP Email will enable the user to verify a OTP with the latest verified email. The email has to be verified to add the second factor..
+      # Add OTP Email for a user
+      # Add a new One-Time Password (OTP) Email factor to the authenticated user. OTP Email will enable the user to verify a OTP with the latest verified email. The email has to be verified to add the second factor..
           # @param user_service_add_otp_email_request [UserServiceAddOTPEmailRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceAddOTPEmailResponse]
@@ -251,8 +251,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # AddOTPSMS
-      # Add OTP SMS for a user   Add a new One-Time Password (OTP) SMS factor to the authenticated user. OTP SMS will enable the user to verify a OTP with the latest verified phone number. The phone number has to be verified to add the second factor..
+      # Add OTP SMS for a user
+      # Add a new One-Time Password (OTP) SMS factor to the authenticated user. OTP SMS will enable the user to verify a OTP with the latest verified phone number. The phone number has to be verified to add the second factor..
           # @param user_service_add_otpsms_request [UserServiceAddOTPSMSRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceAddOTPSMSResponse]
@@ -309,8 +309,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # AddPersonalAccessToken
-      # Add a Personal Access Token   Personal access tokens (PAT) are the easiest way to authenticate to the Zitadel APIs.  Make sure you store the returned PAT safely, as you won&#39;t be able to read it from the Zitadel API anymore.  Only users of type machine can have personal access tokens.   Required permission:    - user.write
+      # Add a Personal Access Token
+      # Personal access tokens (PAT) are the easiest way to authenticate to the Zitadel APIs.  Make sure you store the returned PAT safely, as you won&#39;t be able to read it from the Zitadel API anymore.  Only users of type machine can have personal access tokens.   Required permission:    - user.write
           # @param user_service_add_personal_access_token_request [UserServiceAddPersonalAccessTokenRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceAddPersonalAccessTokenResponse]
@@ -367,8 +367,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # AddSecret
-      # Add a Users Secret   Generates a client secret for the user.  The client id is the users username.  If the user already has a secret, it is overwritten.  Only users of type machine can have a secret.   Required permission:    - user.write
+      # Add a Users Secret
+      # Generates a client secret for the user.  The client id is the users username.  If the user already has a secret, it is overwritten.  Only users of type machine can have a secret.   Required permission:    - user.write
           # @param user_service_add_secret_request [UserServiceAddSecretRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceAddSecretResponse]
@@ -425,12 +425,12 @@ module Zitadel::Client::Api
     return data
     end
 
-      # CreateInviteCode
-      # Create an invite code for a user   Create an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization&#39;s available methods.  If an invite code has been created previously, it&#39;s url template and application name will be used as defaults for the new code.  The new code will overwrite the previous one and make it invalid.  Note: It is possible to reissue a new code only when the previous code has expired, or when the user provides a wrong code three or more times during verification.
+      # Create an invite code for a user
+      # Create an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization&#39;s available methods.  If an invite code has been created previously, it&#39;s url template and application name will be used as defaults for the new code.  The new code will overwrite the previous one and make it invalid.  Note: It is possible to reissue a new code only when the previous code has expired, or when the user provides a wrong code three or more times during verification.
           # @param user_service_create_invite_code_request [UserServiceCreateInviteCodeRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceCreateInviteCodeResponse]
-    def create_invite_code(user_service_create_invite_code_request, opts = {})
+    def create_invite_code(user_service_create_invite_code_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::UserServiceApi.create_invite_code ...' # MODIFIED
     end
@@ -483,12 +483,12 @@ module Zitadel::Client::Api
     return data
     end
 
-      # CreatePasskeyRegistrationLink
-      # Create a passkey registration link for a user   Create a passkey registration link which includes a code and either return it or send it to the user..
+      # Create a passkey registration link for a user
+      # Create a passkey registration link which includes a code and either return it or send it to the user..
           # @param user_service_create_passkey_registration_link_request [UserServiceCreatePasskeyRegistrationLinkRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceCreatePasskeyRegistrationLinkResponse]
-    def create_passkey_registration_link(user_service_create_passkey_registration_link_request, opts = {})
+    def create_passkey_registration_link(user_service_create_passkey_registration_link_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::UserServiceApi.create_passkey_registration_link ...' # MODIFIED
     end
@@ -541,12 +541,12 @@ module Zitadel::Client::Api
     return data
     end
 
-      # CreateUser
-      # Create a User   Create a new human or machine user in the specified organization.   Required permission:    - user.write
+      # Create a User
+      # Create a new human or machine user in the specified organization.   Required permission:    - user.write
           # @param user_service_create_user_request [UserServiceCreateUserRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceCreateUserResponse]
-    def create_user(user_service_create_user_request, opts = {})
+    def create_user(user_service_create_user_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::UserServiceApi.create_user ...' # MODIFIED
     end
@@ -599,8 +599,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # DeactivateUser
-      # Deactivate user   The state of the user will be changed to &#39;deactivated&#39;. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state &#39;deactivated&#39;. Use deactivate user when the user should not be able to use the account anymore, but you still need access to the user data..
+      # Deactivate user
+      # The state of the user will be changed to &#39;deactivated&#39;. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state &#39;deactivated&#39;. Use deactivate user when the user should not be able to use the account anymore, but you still need access to the user data..
           # @param user_service_deactivate_user_request [UserServiceDeactivateUserRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceDeactivateUserResponse]
@@ -657,8 +657,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # DeleteUser
-      # Delete user   The state of the user will be changed to &#39;deleted&#39;. The user will not be able to log in anymore. Endpoints requesting this user will return an error &#39;User not found..
+      # Delete user
+      # The state of the user will be changed to &#39;deleted&#39;. The user will not be able to log in anymore. Endpoints requesting this user will return an error &#39;User not found..
           # @param user_service_delete_user_request [UserServiceDeleteUserRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceDeleteUserResponse]
@@ -715,8 +715,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # DeleteUserMetadata
-      # Delete User Metadata   Delete metadata objects from an user with a specific key.   Required permission:   - &#x60;user.write&#x60;
+      # Delete User Metadata
+      # Delete metadata objects from an user with a specific key.   Required permission:   - &#x60;user.write&#x60;
           # @param user_service_delete_user_metadata_request [UserServiceDeleteUserMetadataRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceDeleteUserMetadataResponse]
@@ -773,8 +773,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetUserByID
-      # User by ID   Returns the full user object (human or machine) including the profile, email, etc..
+      # User by ID
+      # Returns the full user object (human or machine) including the profile, email, etc..
           # @param user_service_get_user_by_id_request [UserServiceGetUserByIDRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceGetUserByIDResponse]
@@ -831,8 +831,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # HumanMFAInitSkipped
-      # MFA Init Skipped   Update the last time the user has skipped MFA initialization. The server timestamp is used.
+      # MFA Init Skipped
+      # Update the last time the user has skipped MFA initialization. The server timestamp is used.
           # @param user_service_human_mfa_init_skipped_request [UserServiceHumanMFAInitSkippedRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceHumanMFAInitSkippedResponse]
@@ -946,8 +946,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ListAuthenticationMethodTypes
-      # List all possible authentication methods of a user   List all possible authentication methods of a user like password, passwordless, (T)OTP and more..
+      # List all possible authentication methods of a user
+      # List all possible authentication methods of a user like password, passwordless, (T)OTP and more..
           # @param user_service_list_authentication_method_types_request [UserServiceListAuthenticationMethodTypesRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceListAuthenticationMethodTypesResponse]
@@ -1004,8 +1004,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ListIDPLinks
-      # List links to an identity provider of an user   List links to an identity provider of an user.
+      # List links to an identity provider of an user
+      # List links to an identity provider of an user.
           # @param user_service_list_idp_links_request [UserServiceListIDPLinksRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceListIDPLinksResponse]
@@ -1062,8 +1062,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ListKeys
-      # Search Keys   List all matching keys. By default all keys of the instance on which the caller has permission to read the owning users are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - user.read
+      # Search Keys
+      # List all matching keys. By default all keys of the instance on which the caller has permission to read the owning users are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - user.read
           # @param user_service_list_keys_request [UserServiceListKeysRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceListKeysResponse]
@@ -1120,8 +1120,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ListPasskeys
-      # List passkeys of an user   List passkeys of an user
+      # List passkeys of an user
+      # List passkeys of an user
           # @param user_service_list_passkeys_request [UserServiceListPasskeysRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceListPasskeysResponse]
@@ -1178,8 +1178,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ListPersonalAccessTokens
-      # Search Personal Access Tokens   List all personal access tokens. By default all personal access tokens of the instance on which the caller has permission to read the owning users are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - user.read
+      # Search Personal Access Tokens
+      # List all personal access tokens. By default all personal access tokens of the instance on which the caller has permission to read the owning users are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - user.read
           # @param user_service_list_personal_access_tokens_request [UserServiceListPersonalAccessTokensRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceListPersonalAccessTokensResponse]
@@ -1236,8 +1236,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ListUserMetadata
-      # List User Metadata   List metadata of an user filtered by query.   Required permission:   - &#x60;user.read&#x60;
+      # List User Metadata
+      # List metadata of an user filtered by query.   Required permission:   - &#x60;user.read&#x60;
           # @param user_service_list_user_metadata_request [UserServiceListUserMetadataRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceListUserMetadataResponse]
@@ -1294,8 +1294,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ListUsers
-      # Search Users   Search for users. By default, we will return all users of your instance that you have permission to read. Make sure to include a limit and sorting for pagination.
+      # Search Users
+      # Search for users. By default, we will return all users of your instance that you have permission to read. Make sure to include a limit and sorting for pagination.
           # @param user_service_list_users_request [UserServiceListUsersRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceListUsersResponse]
@@ -1352,8 +1352,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # LockUser
-      # Lock user   The state of the user will be changed to &#39;locked&#39;. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state &#39;locked&#39;. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.)..
+      # Lock user
+      # The state of the user will be changed to &#39;locked&#39;. The user will not be able to log in anymore. The endpoint returns an error if the user is already in the state &#39;locked&#39;. Use this endpoint if the user should not be able to log in temporarily because of an event that happened (wrong password, etc.)..
           # @param user_service_lock_user_request [UserServiceLockUserRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceLockUserResponse]
@@ -1410,12 +1410,12 @@ module Zitadel::Client::Api
     return data
     end
 
-      # PasswordReset
-      # Request a code to reset a password   Request a code to reset a password..
+      # Request a code to reset a password
+      # Request a code to reset a password..
           # @param user_service_password_reset_request [UserServicePasswordResetRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServicePasswordResetResponse]
-    def password_reset(user_service_password_reset_request, opts = {})
+    def password_reset(user_service_password_reset_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::UserServiceApi.password_reset ...' # MODIFIED
     end
@@ -1468,8 +1468,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ReactivateUser
-      # Reactivate user   Reactivate a user with the state &#39;deactivated&#39;. The user will be able to log in again afterward. The endpoint returns an error if the user is not in the state &#39;deactivated&#39;..
+      # Reactivate user
+      # Reactivate a user with the state &#39;deactivated&#39;. The user will be able to log in again afterward. The endpoint returns an error if the user is not in the state &#39;deactivated&#39;..
           # @param user_service_reactivate_user_request [UserServiceReactivateUserRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceReactivateUserResponse]
@@ -1526,8 +1526,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # RegisterPasskey
-      # Start the registration of passkey for a user   Start the registration of a passkey for a user, as a response the public key credential creation options are returned, which are used to verify the passkey..
+      # Start the registration of passkey for a user
+      # Start the registration of a passkey for a user, as a response the public key credential creation options are returned, which are used to verify the passkey..
           # @param user_service_register_passkey_request [UserServiceRegisterPasskeyRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceRegisterPasskeyResponse]
@@ -1584,8 +1584,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # RegisterTOTP
-      # Start the registration of a TOTP generator for a user   Start the registration of a TOTP generator for a user, as a response a secret returned, which is used to initialize a TOTP app or device..
+      # Start the registration of a TOTP generator for a user
+      # Start the registration of a TOTP generator for a user, as a response a secret returned, which is used to initialize a TOTP app or device..
           # @param user_service_register_totp_request [UserServiceRegisterTOTPRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceRegisterTOTPResponse]
@@ -1642,8 +1642,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # RegisterU2F
-      # Start the registration of a u2f token for a user   Start the registration of a u2f token for a user, as a response the public key credential creation options are returned, which are used to verify the u2f token..
+      # Start the registration of a u2f token for a user
+      # Start the registration of a u2f token for a user, as a response the public key credential creation options are returned, which are used to verify the u2f token..
           # @param user_service_register_u2_f_request [UserServiceRegisterU2FRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceRegisterU2FResponse]
@@ -1700,8 +1700,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # RemoveIDPLink
-      # Remove link of an identity provider to an user   Remove link of an identity provider to an user.
+      # Remove link of an identity provider to an user
+      # Remove link of an identity provider to an user.
           # @param user_service_remove_idp_link_request [UserServiceRemoveIDPLinkRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceRemoveIDPLinkResponse]
@@ -1758,8 +1758,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # RemoveKey
-      # Remove a Key   Remove a machine users key by the given key ID and an optionally given user ID.   Required permission:    - user.write
+      # Remove a Key
+      # Remove a machine users key by the given key ID and an optionally given user ID.   Required permission:    - user.write
           # @param user_service_remove_key_request [UserServiceRemoveKeyRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceRemoveKeyResponse]
@@ -1816,8 +1816,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # RemoveOTPEmail
-      # Remove One-Time Password (OTP) Email from a user   Remove the configured One-Time Password (OTP) Email factor of a user. As only one OTP Email per user is allowed, the user will not have OTP Email as a second factor afterward.
+      # Remove One-Time Password (OTP) Email from a user
+      # Remove the configured One-Time Password (OTP) Email factor of a user. As only one OTP Email per user is allowed, the user will not have OTP Email as a second factor afterward.
           # @param user_service_remove_otp_email_request [UserServiceRemoveOTPEmailRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceRemoveOTPEmailResponse]
@@ -1874,8 +1874,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # RemoveOTPSMS
-      # Remove One-Time Password (OTP) SMS from a user   Remove the configured One-Time Password (OTP) SMS factor of a user. As only one OTP SMS per user is allowed, the user will not have OTP SMS as a second factor afterward.
+      # Remove One-Time Password (OTP) SMS from a user
+      # Remove the configured One-Time Password (OTP) SMS factor of a user. As only one OTP SMS per user is allowed, the user will not have OTP SMS as a second factor afterward.
           # @param user_service_remove_otpsms_request [UserServiceRemoveOTPSMSRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceRemoveOTPSMSResponse]
@@ -1932,8 +1932,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # RemovePasskey
-      # Remove passkey from a user   Remove passkey from a user.
+      # Remove passkey from a user
+      # Remove passkey from a user.
           # @param user_service_remove_passkey_request [UserServiceRemovePasskeyRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceRemovePasskeyResponse]
@@ -1990,8 +1990,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # RemovePersonalAccessToken
-      # Remove a Personal Access Token   Removes a machine users personal access token by the given token ID and an optionally given user ID.   Required permission:    - user.write
+      # Remove a Personal Access Token
+      # Removes a machine users personal access token by the given token ID and an optionally given user ID.   Required permission:    - user.write
           # @param user_service_remove_personal_access_token_request [UserServiceRemovePersonalAccessTokenRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceRemovePersonalAccessTokenResponse]
@@ -2048,8 +2048,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # RemovePhone
-      # Delete the user phone   Deprecated: [Update the users phone field](apis/resources/user_service_v2/user-service-update-user.api.mdx) to remove the phone number.   Delete the phone number of a user.
+      # Delete the user phone
+      # Deprecated: [Update the users phone field](apis/resources/user_service_v2/user-service-update-user.api.mdx) to remove the phone number.   Delete the phone number of a user.
           # @param user_service_remove_phone_request [UserServiceRemovePhoneRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceRemovePhoneResponse]
@@ -2106,8 +2106,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # RemoveSecret
-      # Remove a Users Secret   Remove the current client ID and client secret from a machine user.   Required permission:    - user.write
+      # Remove a Users Secret
+      # Remove the current client ID and client secret from a machine user.   Required permission:    - user.write
           # @param user_service_remove_secret_request [UserServiceRemoveSecretRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceRemoveSecretResponse]
@@ -2164,8 +2164,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # RemoveTOTP
-      # Remove TOTP generator from a user   Remove the configured TOTP generator of a user. As only one TOTP generator per user is allowed, the user will not have TOTP as a second factor afterward.
+      # Remove TOTP generator from a user
+      # Remove the configured TOTP generator of a user. As only one TOTP generator per user is allowed, the user will not have TOTP as a second factor afterward.
           # @param user_service_remove_totp_request [UserServiceRemoveTOTPRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceRemoveTOTPResponse]
@@ -2222,8 +2222,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # RemoveU2F
-      # Remove u2f token from a user   Remove u2f token from a user.
+      # Remove u2f token from a user
+      # Remove u2f token from a user.
           # @param user_service_remove_u2_f_request [UserServiceRemoveU2FRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceRemoveU2FResponse]
@@ -2280,12 +2280,12 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ResendEmailCode
+      # Resend code to verify user email
       # Resend code to verify user email
           # @param user_service_resend_email_code_request [UserServiceResendEmailCodeRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceResendEmailCodeResponse]
-    def resend_email_code(user_service_resend_email_code_request, opts = {})
+    def resend_email_code(user_service_resend_email_code_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::UserServiceApi.resend_email_code ...' # MODIFIED
     end
@@ -2338,8 +2338,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ResendInviteCode
-      # Resend an invite code for a user   Deprecated: Use [CreateInviteCode](apis/resources/user_service_v2/user-service-create-invite-code.api.mdx) instead.   Resend an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization&#39;s available methods.  A resend is only possible if a code has been created previously and sent to the user. If there is no code or it was directly returned, an error will be returned.
+      # Resend an invite code for a user
+      # Deprecated: Use [CreateInviteCode](apis/resources/user_service_v2/user-service-create-invite-code.api.mdx) instead.   Resend an invite code for a user to initialize their first authentication method (password, passkeys, IdP) depending on the organization&#39;s available methods.  A resend is only possible if a code has been created previously and sent to the user. If there is no code or it was directly returned, an error will be returned.
           # @param user_service_resend_invite_code_request [UserServiceResendInviteCodeRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceResendInviteCodeResponse]
@@ -2396,12 +2396,12 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ResendPhoneCode
-      # Resend code to verify user phone number   Resend code to verify user phone number.
+      # Resend code to verify user phone number
+      # Resend code to verify user phone number.
           # @param user_service_resend_phone_code_request [UserServiceResendPhoneCodeRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceResendPhoneCodeResponse]
-    def resend_phone_code(user_service_resend_phone_code_request, opts = {})
+    def resend_phone_code(user_service_resend_phone_code_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::UserServiceApi.resend_phone_code ...' # MODIFIED
     end
@@ -2454,8 +2454,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # RetrieveIdentityProviderIntent
-      # Retrieve the information returned by the identity provider   Retrieve the information returned by the identity provider for registration or updating an existing user with new information..
+      # Retrieve the information returned by the identity provider
+      # Retrieve the information returned by the identity provider for registration or updating an existing user with new information..
           # @param user_service_retrieve_identity_provider_intent_request [UserServiceRetrieveIdentityProviderIntentRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceRetrieveIdentityProviderIntentResponse]
@@ -2512,12 +2512,12 @@ module Zitadel::Client::Api
     return data
     end
 
-      # SendEmailCode
+      # Send code to verify user email
       # Send code to verify user email
           # @param user_service_send_email_code_request [UserServiceSendEmailCodeRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceSendEmailCodeResponse]
-    def send_email_code(user_service_send_email_code_request, opts = {})
+    def send_email_code(user_service_send_email_code_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::UserServiceApi.send_email_code ...' # MODIFIED
     end
@@ -2570,12 +2570,12 @@ module Zitadel::Client::Api
     return data
     end
 
-      # SetEmail
-      # Change the user email   Deprecated: [Update the users email field](apis/resources/user_service_v2/user-service-update-user.api.mdx).   Change the email address of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by email..
+      # Change the user email
+      # Deprecated: [Update the users email field](apis/resources/user_service_v2/user-service-update-user.api.mdx).   Change the email address of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by email..
           # @param user_service_set_email_request [UserServiceSetEmailRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceSetEmailResponse]
-    def set_email(user_service_set_email_request, opts = {})
+    def set_email(user_service_set_email_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::UserServiceApi.set_email ...' # MODIFIED
     end
@@ -2628,12 +2628,12 @@ module Zitadel::Client::Api
     return data
     end
 
-      # SetPassword
-      # Change password   Deprecated: [Update the users password](apis/resources/user_service_v2/user-service-update-user.api.mdx) instead.   Change the password of a user with either a verification code or the current password..
+      # Change password
+      # Deprecated: [Update the users password](apis/resources/user_service_v2/user-service-update-user.api.mdx) instead.   Change the password of a user with either a verification code or the current password..
           # @param user_service_set_password_request [UserServiceSetPasswordRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceSetPasswordResponse]
-    def set_password(user_service_set_password_request, opts = {})
+    def set_password(user_service_set_password_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::UserServiceApi.set_password ...' # MODIFIED
     end
@@ -2686,12 +2686,12 @@ module Zitadel::Client::Api
     return data
     end
 
-      # SetPhone
-      # Set the user phone   Deprecated: [Update the users phone field](apis/resources/user_service_v2/user-service-update-user.api.mdx).   Set the phone number of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by sms..
+      # Set the user phone
+      # Deprecated: [Update the users phone field](apis/resources/user_service_v2/user-service-update-user.api.mdx).   Set the phone number of a user. If the state is set to not verified, a verification code will be generated, which can be either returned or sent to the user by sms..
           # @param user_service_set_phone_request [UserServiceSetPhoneRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceSetPhoneResponse]
-    def set_phone(user_service_set_phone_request, opts = {})
+    def set_phone(user_service_set_phone_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::UserServiceApi.set_phone ...' # MODIFIED
     end
@@ -2744,8 +2744,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # SetUserMetadata
-      # Set User Metadata   Sets a list of key value pairs. Existing metadata entries with matching keys are overwritten. Existing metadata entries without matching keys are untouched. To remove metadata entries, use [DeleteUserMetadata](apis/resources/user_service_v2/user-service-delete-user-metadata.api.mdx). For HTTP requests, make sure the bytes array value is base64 encoded.   Required permission:   - &#x60;user.write&#x60;
+      # Set User Metadata
+      # Sets a list of key value pairs. Existing metadata entries with matching keys are overwritten. Existing metadata entries without matching keys are untouched. To remove metadata entries, use [DeleteUserMetadata](apis/resources/user_service_v2/user-service-delete-user-metadata.api.mdx). For HTTP requests, make sure the bytes array value is base64 encoded.   Required permission:   - &#x60;user.write&#x60;
           # @param user_service_set_user_metadata_request [UserServiceSetUserMetadataRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceSetUserMetadataResponse]
@@ -2802,12 +2802,12 @@ module Zitadel::Client::Api
     return data
     end
 
-      # StartIdentityProviderIntent
-      # Start flow with an identity provider   Start a flow with an identity provider, for external login, registration or linking..
+      # Start flow with an identity provider
+      # Start a flow with an identity provider, for external login, registration or linking..
           # @param user_service_start_identity_provider_intent_request [UserServiceStartIdentityProviderIntentRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceStartIdentityProviderIntentResponse]
-    def start_identity_provider_intent(user_service_start_identity_provider_intent_request, opts = {})
+    def start_identity_provider_intent(user_service_start_identity_provider_intent_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::UserServiceApi.start_identity_provider_intent ...' # MODIFIED
     end
@@ -2860,8 +2860,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # UnlockUser
-      # Unlock user   The state of the user will be changed to &#39;active&#39;. The user will be able to log in again. The endpoint returns an error if the user is not in the state &#39;locked&#39;.
+      # Unlock user
+      # The state of the user will be changed to &#39;active&#39;. The user will be able to log in again. The endpoint returns an error if the user is not in the state &#39;locked&#39;.
           # @param user_service_unlock_user_request [UserServiceUnlockUserRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceUnlockUserResponse]
@@ -2918,8 +2918,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # UpdateHumanUser
-      # Update Human User   Deprecated: Use [UpdateUser](apis/resources/user_service_v2/user-service-update-user.api.mdx) to update a user of type human instead.   Update all information from a user.
+      # Update Human User
+      # Deprecated: Use [UpdateUser](apis/resources/user_service_v2/user-service-update-user.api.mdx) to update a user of type human instead.   Update all information from a user.
           # @param user_service_update_human_user_request [UserServiceUpdateHumanUserRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceUpdateHumanUserResponse]
@@ -2976,12 +2976,12 @@ module Zitadel::Client::Api
     return data
     end
 
-      # UpdateUser
-      # Update a User   Partially update an existing user.  If you change the users email or phone, you can specify how the ownership should be verified.  If you change the users password, you can specify if the password should be changed again on the users next login.   Required permission:    - user.write
+      # Update a User
+      # Partially update an existing user.  If you change the users email or phone, you can specify how the ownership should be verified.  If you change the users password, you can specify if the password should be changed again on the users next login.   Required permission:    - user.write
           # @param user_service_update_user_request [UserServiceUpdateUserRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceUpdateUserResponse]
-    def update_user(user_service_update_user_request, opts = {})
+    def update_user(user_service_update_user_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::UserServiceApi.update_user ...' # MODIFIED
     end
@@ -3034,8 +3034,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # VerifyEmail
-      # Verify the email   Verify the email with the generated code.
+      # Verify the email
+      # Verify the email with the generated code.
           # @param user_service_verify_email_request [UserServiceVerifyEmailRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceVerifyEmailResponse]
@@ -3092,8 +3092,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # VerifyInviteCode
-      # Verify an invite code for a user   Verify the invite code of a user previously issued. This will set their email to a verified state and  allow the user to set up their first authentication method (password, passkeys, IdP) depending on the organization&#39;s available methods.
+      # Verify an invite code for a user
+      # Verify the invite code of a user previously issued. This will set their email to a verified state and  allow the user to set up their first authentication method (password, passkeys, IdP) depending on the organization&#39;s available methods.
           # @param user_service_verify_invite_code_request [UserServiceVerifyInviteCodeRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceVerifyInviteCodeResponse]
@@ -3150,8 +3150,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # VerifyPasskeyRegistration
-      # Verify a passkey for a user   Verify the passkey registration with the public key credential..
+      # Verify a passkey for a user
+      # Verify the passkey registration with the public key credential..
           # @param user_service_verify_passkey_registration_request [UserServiceVerifyPasskeyRegistrationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceVerifyPasskeyRegistrationResponse]
@@ -3208,8 +3208,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # VerifyPhone
-      # Verify the phone number   Verify the phone number with the generated code.
+      # Verify the phone number
+      # Verify the phone number with the generated code.
           # @param user_service_verify_phone_request [UserServiceVerifyPhoneRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceVerifyPhoneResponse]
@@ -3266,8 +3266,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # VerifyTOTPRegistration
-      # Verify a TOTP generator for a user   Verify the TOTP registration with a generated code..
+      # Verify a TOTP generator for a user
+      # Verify the TOTP registration with a generated code..
           # @param user_service_verify_totp_registration_request [UserServiceVerifyTOTPRegistrationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceVerifyTOTPRegistrationResponse]
@@ -3324,8 +3324,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # VerifyU2FRegistration
-      # Verify a u2f token for a user   Verify the u2f token registration with the public key credential..
+      # Verify a u2f token for a user
+      # Verify the u2f token registration with the public key credential..
           # @param user_service_verify_u2_f_registration_request [UserServiceVerifyU2FRegistrationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [UserServiceVerifyU2FRegistrationResponse]

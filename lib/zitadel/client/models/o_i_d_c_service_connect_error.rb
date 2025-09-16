@@ -22,7 +22,8 @@ module Zitadel::Client::Models
     # A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the [google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client.
     attr_accessor :message
 
-    attr_accessor :detail
+    # A list of messages that carry the error details. There is no limit on the number of messages.
+    attr_accessor :details
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -51,7 +52,7 @@ module Zitadel::Client::Models
       {
         :'code' => :'code',
         :'message' => :'message',
-        :'detail' => :'detail'
+        :'details' => :'details'
       }
     end
 
@@ -70,7 +71,7 @@ module Zitadel::Client::Models
       {
         :'code' => :'String',
         :'message' => :'String',
-        :'detail' => :'OIDCServiceAny'
+        :'details' => :'Array<OIDCServiceAny>'
       }
     end
 
@@ -106,8 +107,10 @@ module Zitadel::Client::Models
         self.message = attributes[:'message']
       end
 
-      if attributes.key?(:'detail')
-        self.detail = attributes[:'detail']
+      if attributes.key?(:'details')
+        if (value = attributes[:'details']).is_a?(Array)
+          self.details = value
+        end
       end
     end
 
@@ -128,7 +131,7 @@ module Zitadel::Client::Models
       self.class == o.class &&
           code == o.code &&
           message == o.message &&
-          detail == o.detail
+          details == o.details
     end
 
     # @see the `==` method
@@ -140,7 +143,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [code, message, detail].hash
+      [code, message, details].hash
     end
 
 # Builds the object from hash

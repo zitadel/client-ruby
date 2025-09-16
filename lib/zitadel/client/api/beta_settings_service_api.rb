@@ -19,7 +19,7 @@ module Zitadel::Client::Api
   def initialize(api_client = ApiClient.default)
   @api_client = api_client
   end
-      # GetActiveIdentityProviders
+      # Get the current active identity providers
       # Get the current active identity providers
           # @param beta_settings_service_get_active_identity_providers_request [BetaSettingsServiceGetActiveIdentityProvidersRequest] 
       # @param [Hash] opts the optional parameters
@@ -77,7 +77,7 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetBrandingSettings
+      # Get the current active branding settings
       # Get the current active branding settings
           # @param beta_settings_service_get_branding_settings_request [BetaSettingsServiceGetBrandingSettingsRequest] 
       # @param [Hash] opts the optional parameters
@@ -135,7 +135,7 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetDomainSettings
+      # Get the domain settings
       # Get the domain settings
           # @param beta_settings_service_get_domain_settings_request [BetaSettingsServiceGetDomainSettingsRequest] 
       # @param [Hash] opts the optional parameters
@@ -193,7 +193,7 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetGeneralSettings
+      # Get basic information over the instance
       # Get basic information over the instance
           # @param body [Object] 
       # @param [Hash] opts the optional parameters
@@ -251,7 +251,7 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetLegalAndSupportSettings
+      # Get the legal and support settings
       # Get the legal and support settings
           # @param beta_settings_service_get_legal_and_support_settings_request [BetaSettingsServiceGetLegalAndSupportSettingsRequest] 
       # @param [Hash] opts the optional parameters
@@ -309,7 +309,7 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetLockoutSettings
+      # Get the lockout settings
       # Get the lockout settings
           # @param beta_settings_service_get_lockout_settings_request [BetaSettingsServiceGetLockoutSettingsRequest] 
       # @param [Hash] opts the optional parameters
@@ -367,7 +367,7 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetLoginSettings
+      # Get the login settings
       # Get the login settings
           # @param beta_settings_service_get_login_settings_request [BetaSettingsServiceGetLoginSettingsRequest] 
       # @param [Hash] opts the optional parameters
@@ -425,7 +425,7 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetPasswordComplexitySettings
+      # Get the password complexity settings
       # Get the password complexity settings
           # @param beta_settings_service_get_password_complexity_settings_request [BetaSettingsServiceGetPasswordComplexitySettingsRequest] 
       # @param [Hash] opts the optional parameters
@@ -483,7 +483,7 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetPasswordExpirySettings
+      # Get the password expiry settings
       # Get the password expiry settings
           # @param beta_settings_service_get_password_expiry_settings_request [BetaSettingsServiceGetPasswordExpirySettingsRequest] 
       # @param [Hash] opts the optional parameters
@@ -541,7 +541,7 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetSecuritySettings
+      # Get the security settings
       # Get the security settings
           # @param body [Object] 
       # @param [Hash] opts the optional parameters
@@ -599,7 +599,7 @@ module Zitadel::Client::Api
     return data
     end
 
-      # SetSecuritySettings
+      # Set the security settings
       # Set the security settings
           # @param beta_settings_service_set_security_settings_request [BetaSettingsServiceSetSecuritySettingsRequest] 
       # @param [Hash] opts the optional parameters

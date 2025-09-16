@@ -90,19 +90,7 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'state')
         self.state = attributes[:'state']
-      else
-        self.state = nil
       end
-    end
-
-    # Custom attribute writer method with validation
-    # @param [BetaUserServiceUserState] state Value to be assigned
-    def state=(state)
-      if state.nil?
-        fail ArgumentError, 'state cannot be nil'
-      end
-
-      @state = state
     end
 
     # Checks equality by comparing each attribute.

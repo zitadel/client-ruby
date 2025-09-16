@@ -80,69 +80,21 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'user_id')
         self.user_id = attributes[:'user_id']
-      else
-        self.user_id = nil
       end
 
       if attributes.key?(:'passkey_id')
         self.passkey_id = attributes[:'passkey_id']
-      else
-        self.passkey_id = nil
       end
 
       if attributes.key?(:'public_key_credential')
         if (value = attributes[:'public_key_credential']).is_a?(Hash)
           self.public_key_credential = value
         end
-      else
-        self.public_key_credential = nil
       end
 
       if attributes.key?(:'passkey_name')
         self.passkey_name = attributes[:'passkey_name']
-      else
-        self.passkey_name = nil
       end
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] user_id Value to be assigned
-    def user_id=(user_id)
-      if user_id.nil?
-        fail ArgumentError, 'user_id cannot be nil'
-      end
-
-      @user_id = user_id
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] passkey_id Value to be assigned
-    def passkey_id=(passkey_id)
-      if passkey_id.nil?
-        fail ArgumentError, 'passkey_id cannot be nil'
-      end
-
-      @passkey_id = passkey_id
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Hash<String, Object>] public_key_credential Value to be assigned
-    def public_key_credential=(public_key_credential)
-      if public_key_credential.nil?
-        fail ArgumentError, 'public_key_credential cannot be nil'
-      end
-
-      @public_key_credential = public_key_credential
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] passkey_name Value to be assigned
-    def passkey_name=(passkey_name)
-      if passkey_name.nil?
-        fail ArgumentError, 'passkey_name cannot be nil'
-      end
-
-      @passkey_name = passkey_name
     end
 
     # Checks equality by comparing each attribute.

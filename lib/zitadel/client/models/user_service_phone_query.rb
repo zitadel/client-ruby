@@ -94,23 +94,11 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'number')
         self.number = attributes[:'number']
-      else
-        self.number = nil
       end
 
       if attributes.key?(:'method')
         self.method = attributes[:'method']
       end
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] number Value to be assigned
-    def number=(number)
-      if number.nil?
-        fail ArgumentError, 'number cannot be nil'
-      end
-
-      @number = number
     end
 
     # Checks equality by comparing each attribute.

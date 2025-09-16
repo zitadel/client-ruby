@@ -19,12 +19,12 @@ module Zitadel::Client::Api
   def initialize(api_client = ApiClient.default)
   @api_client = api_client
   end
-      # AuthorizeOrDenyDeviceAuthorization
-      # Authorize or deny device authorization   Authorize or deny the device authorization request based on the provided device authorization id.
+      # Authorize or deny device authorization
+      # Authorize or deny the device authorization request based on the provided device authorization id.
           # @param oidc_service_authorize_or_deny_device_authorization_request [OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [Object]
-    def authorize_or_deny_device_authorization(oidc_service_authorize_or_deny_device_authorization_request, opts = {})
+    def authorize_or_deny_device_authorization(oidc_service_authorize_or_deny_device_authorization_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::OIDCServiceApi.authorize_or_deny_device_authorization ...' # MODIFIED
     end
@@ -81,7 +81,7 @@ module Zitadel::Client::Api
           # @param oidc_service_create_callback_request [OIDCServiceCreateCallbackRequest] 
       # @param [Hash] opts the optional parameters
     # @return [OIDCServiceCreateCallbackResponse]
-    def create_callback(oidc_service_create_callback_request, opts = {})
+    def create_callback(oidc_service_create_callback_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::OIDCServiceApi.create_callback ...' # MODIFIED
     end
@@ -191,8 +191,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetDeviceAuthorizationRequest
-      # Get device authorization request   Get the device authorization based on the provided \&quot;user code\&quot;.  This will return the device authorization request, which contains the device authorization id  that is required to authorize the request once the user signed in or to deny it.
+      # Get device authorization request
+      # Get the device authorization based on the provided \&quot;user code\&quot;.  This will return the device authorization request, which contains the device authorization id  that is required to authorize the request once the user signed in or to deny it.
           # @param oidc_service_get_device_authorization_request_request [OIDCServiceGetDeviceAuthorizationRequestRequest] 
       # @param [Hash] opts the optional parameters
     # @return [OIDCServiceGetDeviceAuthorizationRequestResponse]

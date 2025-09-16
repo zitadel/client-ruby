@@ -99,39 +99,15 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'organization_id')
         self.organization_id = attributes[:'organization_id']
-      else
-        self.organization_id = nil
       end
 
       if attributes.key?(:'domain')
         self.domain = attributes[:'domain']
-      else
-        self.domain = nil
       end
 
       if attributes.key?(:'type')
         self.type = attributes[:'type']
       end
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] organization_id Value to be assigned
-    def organization_id=(organization_id)
-      if organization_id.nil?
-        fail ArgumentError, 'organization_id cannot be nil'
-      end
-
-      @organization_id = organization_id
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] domain Value to be assigned
-    def domain=(domain)
-      if domain.nil?
-        fail ArgumentError, 'domain cannot be nil'
-      end
-
-      @domain = domain
     end
 
     # Checks equality by comparing each attribute.

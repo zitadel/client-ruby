@@ -94,23 +94,11 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'login_name')
         self.login_name = attributes[:'login_name']
-      else
-        self.login_name = nil
       end
 
       if attributes.key?(:'method')
         self.method = attributes[:'method']
       end
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] login_name Value to be assigned
-    def login_name=(login_name)
-      if login_name.nil?
-        fail ArgumentError, 'login_name cannot be nil'
-      end
-
-      @login_name = login_name
     end
 
     # Checks equality by comparing each attribute.

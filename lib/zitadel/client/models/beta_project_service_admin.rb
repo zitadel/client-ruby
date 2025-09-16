@@ -14,13 +14,17 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-        class BetaUserServiceRemoveOTPEmailRequest
+        class BetaProjectServiceAdmin
     attr_accessor :user_id
+
+    # specify the Project Member Roles for the provided user (default is PROJECT_OWNER if roles are empty
+    attr_accessor :roles
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'user_id' => :'userId'
+        :'user_id' => :'userId',
+        :'roles' => :'roles'
       }
     end
 
@@ -37,7 +41,8 @@ module Zitadel::Client::Models
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'user_id' => :'String'
+        :'user_id' => :'String',
+        :'roles' => :'Array<String>'
       }
     end
 
@@ -52,7 +57,7 @@ module Zitadel::Client::Models
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
         # MODIFIED: Updated class name in error message
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Zitadel::Client::Models::BetaUserServiceRemoveOTPEmailRequest` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Zitadel::Client::Models::BetaProjectServiceAdmin` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
@@ -60,13 +65,19 @@ module Zitadel::Client::Models
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!acceptable_attribute_map.key?(k.to_sym))
           # MODIFIED: Updated class name in error message
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Zitadel::Client::Models::BetaUserServiceRemoveOTPEmailRequest`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Zitadel::Client::Models::BetaProjectServiceAdmin`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
       if attributes.key?(:'user_id')
         self.user_id = attributes[:'user_id']
+      end
+
+      if attributes.key?(:'roles')
+        if (value = attributes[:'roles']).is_a?(Array)
+          self.roles = value
+        end
       end
     end
 
@@ -75,7 +86,8 @@ module Zitadel::Client::Models
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          user_id == o.user_id
+          user_id == o.user_id &&
+          roles == o.roles
     end
 
     # @see the `==` method
@@ -87,7 +99,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [user_id].hash
+      [user_id, roles].hash
     end
 
 # Builds the object from hash

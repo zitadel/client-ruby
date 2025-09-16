@@ -23,7 +23,7 @@ module Zitadel::Client::Api
           # @param beta_oidc_service_create_callback_request [BetaOIDCServiceCreateCallbackRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaOIDCServiceCreateCallbackResponse]
-    def create_callback(beta_oidc_service_create_callback_request, opts = {})
+    def create_callback(beta_oidc_service_create_callback_request = {}, opts = {})
     if @api_client.config.debugging
     @api_client.config.logger.debug 'Calling API: Api::BetaOIDCServiceApi.create_callback ...' # MODIFIED
     end

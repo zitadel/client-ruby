@@ -35,6 +35,9 @@ module Zitadel::Client::Models
 
     attr_accessor :private_labeling_setting
 
+    # List of users and Project Member roles (PROJECT_OWNER, by default) to be assigned to those users.
+    attr_accessor :admins
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -66,7 +69,8 @@ module Zitadel::Client::Models
         :'project_role_assertion' => :'projectRoleAssertion',
         :'authorization_required' => :'authorizationRequired',
         :'project_access_required' => :'projectAccessRequired',
-        :'private_labeling_setting' => :'privateLabelingSetting'
+        :'private_labeling_setting' => :'privateLabelingSetting',
+        :'admins' => :'admins'
       }
     end
 
@@ -89,7 +93,8 @@ module Zitadel::Client::Models
         :'project_role_assertion' => :'Boolean',
         :'authorization_required' => :'Boolean',
         :'project_access_required' => :'Boolean',
-        :'private_labeling_setting' => :'BetaProjectServicePrivateLabelingSetting'
+        :'private_labeling_setting' => :'BetaProjectServicePrivateLabelingSetting',
+        :'admins' => :'Array<BetaProjectServiceAdmin>'
       }
     end
 
@@ -128,8 +133,6 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'name')
         self.name = attributes[:'name']
-      else
-        self.name = nil
       end
 
       if attributes.key?(:'project_role_assertion')
@@ -147,16 +150,12 @@ module Zitadel::Client::Models
       if attributes.key?(:'private_labeling_setting')
         self.private_labeling_setting = attributes[:'private_labeling_setting']
       end
-    end
 
-    # Custom attribute writer method with validation
-    # @param [String] name Value to be assigned
-    def name=(name)
-      if name.nil?
-        fail ArgumentError, 'name cannot be nil'
+      if attributes.key?(:'admins')
+        if (value = attributes[:'admins']).is_a?(Array)
+          self.admins = value
+        end
       end
-
-      @name = name
     end
 
     # Checks equality by comparing each attribute.
@@ -170,7 +169,8 @@ module Zitadel::Client::Models
           project_role_assertion == o.project_role_assertion &&
           authorization_required == o.authorization_required &&
           project_access_required == o.project_access_required &&
-          private_labeling_setting == o.private_labeling_setting
+          private_labeling_setting == o.private_labeling_setting &&
+          admins == o.admins
     end
 
     # @see the `==` method
@@ -182,7 +182,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [organization_id, id, name, project_role_assertion, authorization_required, project_access_required, private_labeling_setting].hash
+      [organization_id, id, name, project_role_assertion, authorization_required, project_access_required, private_labeling_setting, admins].hash
     end
 
 # Builds the object from hash

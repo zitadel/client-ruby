@@ -19,7 +19,7 @@ module Zitadel::Client::Api
   def initialize(api_client = ApiClient.default)
   @api_client = api_client
   end
-      # CreateSession
+      # Create a new session
       # Create a new session
           # @param beta_session_service_create_session_request [BetaSessionServiceCreateSessionRequest] 
       # @param [Hash] opts the optional parameters
@@ -77,7 +77,7 @@ module Zitadel::Client::Api
     return data
     end
 
-      # DeleteSession
+      # Terminate a session
       # Terminate a session
           # @param beta_session_service_delete_session_request [BetaSessionServiceDeleteSessionRequest] 
       # @param [Hash] opts the optional parameters
@@ -135,7 +135,7 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetSession
+      # GetSession a session
       # GetSession a session
           # @param beta_session_service_get_session_request [BetaSessionServiceGetSessionRequest] 
       # @param [Hash] opts the optional parameters
@@ -193,7 +193,7 @@ module Zitadel::Client::Api
     return data
     end
 
-      # ListSessions
+      # Search sessions
       # Search sessions
           # @param beta_session_service_list_sessions_request [BetaSessionServiceListSessionsRequest] 
       # @param [Hash] opts the optional parameters
@@ -251,7 +251,7 @@ module Zitadel::Client::Api
     return data
     end
 
-      # SetSession
+      # Update a session
       # Update a session
           # @param beta_session_service_set_session_request [BetaSessionServiceSetSessionRequest] 
       # @param [Hash] opts the optional parameters

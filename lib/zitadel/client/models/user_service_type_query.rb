@@ -90,19 +90,7 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'type')
         self.type = attributes[:'type']
-      else
-        self.type = nil
       end
-    end
-
-    # Custom attribute writer method with validation
-    # @param [UserServiceType] type Value to be assigned
-    def type=(type)
-      if type.nil?
-        fail ArgumentError, 'type cannot be nil'
-      end
-
-      @type = type
     end
 
     # Checks equality by comparing each attribute.

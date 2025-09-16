@@ -14,12 +14,15 @@ require 'date'
 require 'time'
 
 module Zitadel::Client::Models
-        # Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+        # Contains an arbitrary serialized message along with a @type that describes the type of the serialized message, with an additional debug field for ConnectRPC error details.
   class BetaAppServiceAny
+    # A URL that acts as a globally unique identifier for the type of the serialized message. For example: `type.googleapis.com/google.rpc.ErrorInfo`. This is used to determine the schema of the data in the `value` field and is the discriminator for the `debug` field.
     attr_accessor :type
 
+    # The Protobuf message, serialized as bytes and base64-encoded. The specific message type is identified by the `type` field.
     attr_accessor :value
 
+    # Deserialized error detail payload. The 'type' field indicates the schema. This field is for easier debugging and should not be relied upon for application logic.
     attr_accessor :debug
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -46,13 +49,14 @@ module Zitadel::Client::Models
       {
         :'type' => :'String',
         :'value' => :'File',
-        :'debug' => :'Hash<String, Object>'
+        :'debug' => :'Object'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'debug'
       ])
     end
 
@@ -83,9 +87,7 @@ module Zitadel::Client::Models
       end
 
       if attributes.key?(:'debug')
-        if (value = attributes[:'debug']).is_a?(Hash)
-          self.debug = value
-        end
+        self.debug = attributes[:'debug']
       end
     end
 

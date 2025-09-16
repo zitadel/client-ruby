@@ -68,19 +68,7 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'organization_id')
         self.organization_id = attributes[:'organization_id']
-      else
-        self.organization_id = nil
       end
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] organization_id Value to be assigned
-    def organization_id=(organization_id)
-      if organization_id.nil?
-        fail ArgumentError, 'organization_id cannot be nil'
-      end
-
-      @organization_id = organization_id
     end
 
     # Checks equality by comparing each attribute.

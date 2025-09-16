@@ -83,14 +83,10 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'user_id')
         self.user_id = attributes[:'user_id']
-      else
-        self.user_id = nil
       end
 
       if attributes.key?(:'phone')
         self.phone = attributes[:'phone']
-      else
-        self.phone = nil
       end
 
       if attributes.key?(:'is_verified')
@@ -104,26 +100,6 @@ module Zitadel::Client::Models
       if attributes.key?(:'send_code')
         self.send_code = attributes[:'send_code']
       end
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] user_id Value to be assigned
-    def user_id=(user_id)
-      if user_id.nil?
-        fail ArgumentError, 'user_id cannot be nil'
-      end
-
-      @user_id = user_id
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] phone Value to be assigned
-    def phone=(phone)
-      if phone.nil?
-        fail ArgumentError, 'phone cannot be nil'
-      end
-
-      @phone = phone
     end
 
     # Checks equality by comparing each attribute.

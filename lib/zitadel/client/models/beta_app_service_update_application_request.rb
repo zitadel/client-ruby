@@ -91,8 +91,6 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'id')
         self.id = attributes[:'id']
-      else
-        self.id = nil
       end
 
       if attributes.key?(:'name')
@@ -110,16 +108,6 @@ module Zitadel::Client::Models
       if attributes.key?(:'saml_configuration_request')
         self.saml_configuration_request = attributes[:'saml_configuration_request']
       end
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] id Value to be assigned
-    def id=(id)
-      if id.nil?
-        fail ArgumentError, 'id cannot be nil'
-      end
-
-      @id = id
     end
 
     # Checks equality by comparing each attribute.

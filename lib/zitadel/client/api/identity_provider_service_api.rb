@@ -19,8 +19,8 @@ module Zitadel::Client::Api
   def initialize(api_client = ApiClient.default)
   @api_client = api_client
   end
-      # GetIDPByID
-      # Get identity provider (IdP) by ID   Returns an identity provider (social/enterprise login) by its ID, which can be of the type Google, AzureAD, etc.
+      # Get identity provider (IdP) by ID
+      # Returns an identity provider (social/enterprise login) by its ID, which can be of the type Google, AzureAD, etc.
           # @param identity_provider_service_get_idpby_id_request [IdentityProviderServiceGetIDPByIDRequest] 
       # @param [Hash] opts the optional parameters
     # @return [IdentityProviderServiceGetIDPByIDResponse]

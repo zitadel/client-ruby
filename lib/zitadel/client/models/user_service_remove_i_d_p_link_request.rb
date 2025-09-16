@@ -75,51 +75,15 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'user_id')
         self.user_id = attributes[:'user_id']
-      else
-        self.user_id = nil
       end
 
       if attributes.key?(:'idp_id')
         self.idp_id = attributes[:'idp_id']
-      else
-        self.idp_id = nil
       end
 
       if attributes.key?(:'linked_user_id')
         self.linked_user_id = attributes[:'linked_user_id']
-      else
-        self.linked_user_id = nil
       end
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] user_id Value to be assigned
-    def user_id=(user_id)
-      if user_id.nil?
-        fail ArgumentError, 'user_id cannot be nil'
-      end
-
-      @user_id = user_id
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] idp_id Value to be assigned
-    def idp_id=(idp_id)
-      if idp_id.nil?
-        fail ArgumentError, 'idp_id cannot be nil'
-      end
-
-      @idp_id = idp_id
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] linked_user_id Value to be assigned
-    def linked_user_id=(linked_user_id)
-      if linked_user_id.nil?
-        fail ArgumentError, 'linked_user_id cannot be nil'
-      end
-
-      @linked_user_id = linked_user_id
     end
 
     # Checks equality by comparing each attribute.

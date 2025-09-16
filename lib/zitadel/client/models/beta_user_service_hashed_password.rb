@@ -71,23 +71,11 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'hash')
         self.hash = attributes[:'hash']
-      else
-        self.hash = nil
       end
 
       if attributes.key?(:'change_required')
         self.change_required = attributes[:'change_required']
       end
-    end
-
-    # Custom attribute writer method with validation
-    # @param [String] hash Value to be assigned
-    def hash=(hash)
-      if hash.nil?
-        fail ArgumentError, 'hash cannot be nil'
-      end
-
-      @hash = hash
     end
 
     # Checks equality by comparing each attribute.
