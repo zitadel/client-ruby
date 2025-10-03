@@ -18,14 +18,14 @@ module Zitadel::Client::Models
     # ProjectID is required to grant administrator privileges for a specific project.
     attr_accessor :project_id
 
-    # ProjectGrantID is required to grant administrator privileges for a specific project grant.
-    attr_accessor :project_grant_id
+    # OrganizationID is required to grant administrator privileges for a specific project grant.
+    attr_accessor :organization_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'project_id' => :'projectId',
-        :'project_grant_id' => :'projectGrantId'
+        :'organization_id' => :'organizationId'
       }
     end
 
@@ -43,7 +43,7 @@ module Zitadel::Client::Models
     def self.openapi_types
       {
         :'project_id' => :'String',
-        :'project_grant_id' => :'String'
+        :'organization_id' => :'String'
       }
     end
 
@@ -75,8 +75,8 @@ module Zitadel::Client::Models
         self.project_id = attributes[:'project_id']
       end
 
-      if attributes.key?(:'project_grant_id')
-        self.project_grant_id = attributes[:'project_grant_id']
+      if attributes.key?(:'organization_id')
+        self.organization_id = attributes[:'organization_id']
       end
     end
 
@@ -86,7 +86,7 @@ module Zitadel::Client::Models
       return true if self.equal?(o)
       self.class == o.class &&
           project_id == o.project_id &&
-          project_grant_id == o.project_grant_id
+          organization_id == o.organization_id
     end
 
     # @see the `==` method
@@ -98,7 +98,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [project_id, project_grant_id].hash
+      [project_id, organization_id].hash
     end
 
 # Builds the object from hash
