@@ -18,6 +18,7 @@ group :development do
 end
 
 group :test do
+  gem 'better_coverage'
   gem 'dotenv'
   gem 'minitest'
   gem 'minitest-hooks'

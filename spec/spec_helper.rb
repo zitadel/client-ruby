@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
+$VERBOSE = nil
+
 require 'dotenv'
 require 'simplecov'
 require 'simplecov-cobertura'
 require 'warning'
 
 require_relative '../lib/zitadel_client'
+require 'better_coverage'
 
 Warning.ignore(:method_redefined, __dir__)
 Dotenv.load('.env')
@@ -98,6 +101,7 @@ begin
 
   unless ENV['RM_INFO']
     Minitest::Reporters.use! [
+      MinitestPlus::BetterCoverage.new,
       Minitest::Reporters::SpecReporter.new(color: true),
       Minitest::Reporters::JUnitReporter.new('build/reports/', true, single_file: true)
     ]
