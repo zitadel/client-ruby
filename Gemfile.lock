@@ -45,20 +45,19 @@ GEM
       ffi (>= 1.15.0)
     excon (1.2.5)
       logger
-    faraday (2.13.3)
+    faraday (2.14.1)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
-    faraday-net_http (3.4.1)
-      net-http (>= 0.5.0)
+    faraday-net_http (3.4.2)
+      net-http (~> 0.5)
     ffi (1.17.3)
     ffi (1.17.3-arm64-darwin)
-
     fileutils (1.7.3)
     hashie (5.0.0)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
-    json (2.13.0)
+    json (2.18.1)
     jwt (3.1.2)
       base64
     language_server-protocol (3.17.0.5)
@@ -78,8 +77,8 @@ GEM
     multi_json (1.17.0)
     multi_xml (0.6.0)
     mutex_m (0.3.0)
-    net-http (0.6.0)
-      uri
+    net-http (0.9.1)
+      uri (>= 0.11.1)
     oauth2 (2.0.12)
       faraday (>= 0.17.3, < 4.0)
       jwt (>= 1.0, < 4.0)
@@ -166,7 +165,7 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.6.0)
-    uri (1.0.3)
+    uri (1.1.1)
     version_gem (1.1.8)
     warning (1.5.0)
     zeitwerk (2.6.18)
