@@ -93,7 +93,7 @@ GEM
       racc
     prism (1.4.0)
     racc (1.8.1)
-    rack (3.1.16)
+    rack (3.2.5)
     rainbow (3.1.1)
     rake (13.3.0)
     rb-fsevent (0.11.2)
