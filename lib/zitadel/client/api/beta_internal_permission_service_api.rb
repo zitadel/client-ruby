@@ -20,7 +20,7 @@ module Zitadel::Client::Api
   @api_client = api_client
   end
       # CreateAdministrator grants a administrator role to a user for a specific resource.
-      # Note that the roles are specific to the resource type.  This means that if you want to grant a user the administrator role for an organization and a project,  you need to create two administrator roles.   Required permissions depend on the resource type:    - \&quot;iam.member.write\&quot; for instance administrators    - \&quot;org.member.write\&quot; for organization administrators    - \&quot;project.member.write\&quot; for project administrators    - \&quot;project.grant.member.write\&quot; for project grant administrators
+      # Deprecated: please move to the corresponding endpoint under internal permission service v2. This endpoint will be removed with the next major version of ZITADEL.   Note that the roles are specific to the resource type.  This means that if you want to grant a user the administrator role for an organization and a project,  you need to create two administrator roles.   Required permissions depend on the resource type:    - \&quot;iam.member.write\&quot; for instance administrators    - \&quot;org.member.write\&quot; for organization administrators    - \&quot;project.member.write\&quot; for project administrators    - \&quot;project.grant.member.write\&quot; for project grant administrators
           # @param beta_internal_permission_service_create_administrator_request [BetaInternalPermissionServiceCreateAdministratorRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaInternalPermissionServiceCreateAdministratorResponse]
@@ -78,7 +78,7 @@ module Zitadel::Client::Api
     end
 
       # DeleteAdministrator revokes a administrator role from a user.
-      # In case the administrator role is not found, the request will return a successful response as  the desired state is already achieved.  You can check the deletion date in the response to verify if the administrator role was deleted during the request.   Required permissions depend on the resource type:    - \&quot;iam.member.delete\&quot; for instance administrators    - \&quot;org.member.delete\&quot; for organization administrators    - \&quot;project.member.delete\&quot; for project administrators    - \&quot;project.grant.member.delete\&quot; for project grant administrators
+      # Deprecated: please move to the corresponding endpoint under internal permission service v2. This endpoint will be removed with the next major version of ZITADEL.   In case the administrator role is not found, the request will return a successful response as  the desired state is already achieved.  You can check the deletion date in the response to verify if the administrator role was deleted during the request.   Required permissions depend on the resource type:    - \&quot;iam.member.delete\&quot; for instance administrators    - \&quot;org.member.delete\&quot; for organization administrators    - \&quot;project.member.delete\&quot; for project administrators    - \&quot;project.grant.member.delete\&quot; for project grant administrators
           # @param beta_internal_permission_service_delete_administrator_request [BetaInternalPermissionServiceDeleteAdministratorRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaInternalPermissionServiceDeleteAdministratorResponse]
@@ -136,7 +136,7 @@ module Zitadel::Client::Api
     end
 
       # ListAdministrators returns all administrators and its roles matching the request and necessary permissions.
-      # Required permissions depend on the resource type:    - \&quot;iam.member.read\&quot; for instance administrators    - \&quot;org.member.read\&quot; for organization administrators    - \&quot;project.member.read\&quot; for project administrators    - \&quot;project.grant.member.read\&quot; for project grant administrators    - no permissions required for listing own administrator roles
+      # Deprecated: please move to the corresponding endpoint under internal permission service v2. This endpoint will be removed with the next major version of ZITADEL.   Required permissions depend on the resource type:    - \&quot;iam.member.read\&quot; for instance administrators    - \&quot;org.member.read\&quot; for organization administrators    - \&quot;project.member.read\&quot; for project administrators    - \&quot;project.grant.member.read\&quot; for project grant administrators    - no permissions required for listing own administrator roles
           # @param beta_internal_permission_service_list_administrators_request [BetaInternalPermissionServiceListAdministratorsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaInternalPermissionServiceListAdministratorsResponse]
@@ -194,7 +194,7 @@ module Zitadel::Client::Api
     end
 
       # UpdateAdministrator updates the specific administrator role.
-      # Note that any role previously granted to the user and not present in the request will be revoked.   Required permissions depend on the resource type:    - \&quot;iam.member.write\&quot; for instance administrators    - \&quot;org.member.write\&quot; for organization administrators    - \&quot;project.member.write\&quot; for project administrators    - \&quot;project.grant.member.write\&quot; for project grant administrators
+      # Deprecated: please move to the corresponding endpoint under internal permission service v2. This endpoint will be removed with the next major version of ZITADEL.   Note that any role previously granted to the user and not present in the request will be revoked.   Required permissions depend on the resource type:    - \&quot;iam.member.write\&quot; for instance administrators    - \&quot;org.member.write\&quot; for organization administrators    - \&quot;project.member.write\&quot; for project administrators    - \&quot;project.grant.member.write\&quot; for project grant administrators
           # @param beta_internal_permission_service_update_administrator_request [BetaInternalPermissionServiceUpdateAdministratorRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaInternalPermissionServiceUpdateAdministratorResponse]

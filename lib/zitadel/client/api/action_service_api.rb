@@ -19,8 +19,124 @@ module Zitadel::Client::Api
   def initialize(api_client = ApiClient.default)
   @api_client = api_client
   end
+      # Activate Public Key
+      # Activates the public key for payload encryption.  The public key is used to encrypt the payload sent to the target when the payload type is set to &#x60;PAYLOAD_TYPE_JWE&#x60;.  Activating a new key will deactivate the current active key. Only one key can be active at a time.  The active key is indicated in the &#x60;kid&#x60; header in the JWE token sent to the target.  Activating a key that is already active is a no-op.   Required permission:    - &#x60;action.target.write&#x60;
+          # @param action_service_activate_public_key_request [ActionServiceActivatePublicKeyRequest] 
+      # @param [Hash] opts the optional parameters
+    # @return [ActionServiceActivatePublicKeyResponse]
+    def activate_public_key(action_service_activate_public_key_request, opts = {})
+    if @api_client.config.debugging
+    @api_client.config.logger.debug 'Calling API: Api::ActionServiceApi.activate_public_key ...' # MODIFIED
+    end
+          # verify the required parameter 'action_service_activate_public_key_request' is set
+          if @api_client.config.client_side_validation && action_service_activate_public_key_request.nil?
+          fail ArgumentError, "Missing the required parameter 'action_service_activate_public_key_request' when calling Api::ActionServiceApi.activate_public_key" # MODIFIED
+          end
+    # resource path
+    local_var_path = '/zitadel.action.v2.ActionService/ActivatePublicKey'
+
+    # query parameters
+    query_params = opts[:query_params] || {}
+
+    # header parameters
+    header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
+
+    # form parameters
+    form_params = opts[:form_params] || {}
+
+    # http body (model)
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(action_service_activate_public_key_request)
+
+    # return_type
+    return_type = opts[:debug_return_type] || 'ActionServiceActivatePublicKeyResponse'
+
+    # auth_names
+    auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
+
+    new_options = opts.merge(
+    :operation => :"Api::ActionServiceApi.activate_public_key", # MODIFIED
+    :header_params => header_params,
+    :query_params => query_params,
+    :form_params => form_params,
+    :body => post_body,
+    :auth_names => auth_names,
+    :return_type => return_type
+    )
+
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+    if @api_client.config.debugging
+    @api_client.config.logger.debug "API called: Api::ActionServiceApi#activate_public_key\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    end
+    return data
+    end
+
+      # Add Public Key
+      # Adds a public key to the target for payload encryption.  The public key is used to encrypt the payload sent to the target when the payload type is set to &#x60;PAYLOAD_TYPE_JWE&#x60;.  The public key must be in PEM format and be either an RSA or an EC key.  On a successful addition, a key ID is returned which can not only be used to manage the key (activate, remove),  but also will be used as the &#x60;kid&#x60; header in the JWE token sent to the target to indicate which key was used for encryption.  Note that newly added keys are inactive by default. You must activate the key to use it for payload encryption.  Providing an optional expiration date allows you to set a validity period for the key.  After the expiration date, the key will be automatically deactivated and no longer used for payload encryption.  Be sure to activate a new key before the current active key expires to avoid interruptions in your target executions.  You can have multiple inactive keys for rotation purposes, but only one active key at a time.   Required permission:    - &#x60;action.target.write&#x60;
+          # @param action_service_add_public_key_request [ActionServiceAddPublicKeyRequest] 
+      # @param [Hash] opts the optional parameters
+    # @return [ActionServiceAddPublicKeyResponse]
+    def add_public_key(action_service_add_public_key_request, opts = {})
+    if @api_client.config.debugging
+    @api_client.config.logger.debug 'Calling API: Api::ActionServiceApi.add_public_key ...' # MODIFIED
+    end
+          # verify the required parameter 'action_service_add_public_key_request' is set
+          if @api_client.config.client_side_validation && action_service_add_public_key_request.nil?
+          fail ArgumentError, "Missing the required parameter 'action_service_add_public_key_request' when calling Api::ActionServiceApi.add_public_key" # MODIFIED
+          end
+    # resource path
+    local_var_path = '/zitadel.action.v2.ActionService/AddPublicKey'
+
+    # query parameters
+    query_params = opts[:query_params] || {}
+
+    # header parameters
+    header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
+
+    # form parameters
+    form_params = opts[:form_params] || {}
+
+    # http body (model)
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(action_service_add_public_key_request)
+
+    # return_type
+    return_type = opts[:debug_return_type] || 'ActionServiceAddPublicKeyResponse'
+
+    # auth_names
+    auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
+
+    new_options = opts.merge(
+    :operation => :"Api::ActionServiceApi.add_public_key", # MODIFIED
+    :header_params => header_params,
+    :query_params => query_params,
+    :form_params => form_params,
+    :body => post_body,
+    :auth_names => auth_names,
+    :return_type => return_type
+    )
+
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+    if @api_client.config.debugging
+    @api_client.config.logger.debug "API called: Api::ActionServiceApi#add_public_key\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    end
+    return data
+    end
+
       # Create Target
-      # Create a new target to your endpoint, which can be used in executions.   Required permission:    - &#x60;action.target.write&#x60;   Required feature flag:    - &#x60;actions&#x60;
+      # Create a new target to your endpoint, which can be used in executions.   Required permission:    - &#x60;action.target.write&#x60;
           # @param action_service_create_target_request [ActionServiceCreateTargetRequest] 
       # @param [Hash] opts the optional parameters
     # @return [ActionServiceCreateTargetResponse]
@@ -77,8 +193,66 @@ module Zitadel::Client::Api
     return data
     end
 
+      # Deactivate Public Key
+      # Deactivates the public key for payload encryption.  The public key will no longer be used to encrypt payloads sent to the target.  Be aware that deactivating the active key will leave the target without an active key.  Subsequent calls to the target with payload type &#x60;PAYLOAD_TYPE_JWE&#x60; will fail until a new key is activated.  This endpoint can be used in break glass scenarios to quickly disable a compromised key.  Deactivating a key that is already inactive is a no-op.   Required permission:    - &#x60;action.target.write&#x60;
+          # @param action_service_deactivate_public_key_request [ActionServiceDeactivatePublicKeyRequest] 
+      # @param [Hash] opts the optional parameters
+    # @return [ActionServiceDeactivatePublicKeyResponse]
+    def deactivate_public_key(action_service_deactivate_public_key_request, opts = {})
+    if @api_client.config.debugging
+    @api_client.config.logger.debug 'Calling API: Api::ActionServiceApi.deactivate_public_key ...' # MODIFIED
+    end
+          # verify the required parameter 'action_service_deactivate_public_key_request' is set
+          if @api_client.config.client_side_validation && action_service_deactivate_public_key_request.nil?
+          fail ArgumentError, "Missing the required parameter 'action_service_deactivate_public_key_request' when calling Api::ActionServiceApi.deactivate_public_key" # MODIFIED
+          end
+    # resource path
+    local_var_path = '/zitadel.action.v2.ActionService/DeactivatePublicKey'
+
+    # query parameters
+    query_params = opts[:query_params] || {}
+
+    # header parameters
+    header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
+
+    # form parameters
+    form_params = opts[:form_params] || {}
+
+    # http body (model)
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(action_service_deactivate_public_key_request)
+
+    # return_type
+    return_type = opts[:debug_return_type] || 'ActionServiceDeactivatePublicKeyResponse'
+
+    # auth_names
+    auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
+
+    new_options = opts.merge(
+    :operation => :"Api::ActionServiceApi.deactivate_public_key", # MODIFIED
+    :header_params => header_params,
+    :query_params => query_params,
+    :form_params => form_params,
+    :body => post_body,
+    :auth_names => auth_names,
+    :return_type => return_type
+    )
+
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+    if @api_client.config.debugging
+    @api_client.config.logger.debug "API called: Api::ActionServiceApi#deactivate_public_key\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    end
+    return data
+    end
+
       # Delete Target
-      # Delete an existing target. This will remove it from any configured execution as well.  In case the target is not found, the request will return a successful response as  the desired state is already achieved.   Required permission:    - &#x60;action.target.delete&#x60;   Required feature flag:    - &#x60;actions&#x60;
+      # Delete an existing target. This will remove it from any configured execution as well.  In case the target is not found, the request will return a successful response as  the desired state is already achieved.   Required permission:    - &#x60;action.target.delete&#x60;
           # @param action_service_delete_target_request [ActionServiceDeleteTargetRequest] 
       # @param [Hash] opts the optional parameters
     # @return [ActionServiceDeleteTargetResponse]
@@ -136,7 +310,7 @@ module Zitadel::Client::Api
     end
 
       # Get Target
-      # Returns the target identified by the requested ID.   Required permission:    - &#x60;action.target.read&#x60;   Required feature flag:    - &#x60;actions&#x60;
+      # Returns the target identified by the requested ID.   Required permission:    - &#x60;action.target.read&#x60;
           # @param action_service_get_target_request [ActionServiceGetTargetRequest] 
       # @param [Hash] opts the optional parameters
     # @return [ActionServiceGetTargetResponse]
@@ -368,7 +542,7 @@ module Zitadel::Client::Api
     end
 
       # List Executions
-      # List all matching executions. By default all executions of the instance are returned that have at least one execution target.  Make sure to include a limit and sorting for pagination.   Required permission:    - &#x60;action.execution.read&#x60;   Required feature flag:    - &#x60;actions&#x60;
+      # List all matching executions. By default all executions of the instance are returned that have at least one execution target.  Make sure to include a limit and sorting for pagination.   Required permission:    - &#x60;action.execution.read&#x60;
           # @param action_service_list_executions_request [ActionServiceListExecutionsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [ActionServiceListExecutionsResponse]
@@ -425,8 +599,66 @@ module Zitadel::Client::Api
     return data
     end
 
+      # List Public Keys
+      # Lists all public keys of a target.  The response includes which key is active and the key&#39;s expiration dates.  This allows you to manage key rotations and ensure that your target always has an active key for payload encryption.   Required permission:    - &#x60;action.target.read&#x60;
+          # @param action_service_list_public_keys_request [ActionServiceListPublicKeysRequest] 
+      # @param [Hash] opts the optional parameters
+    # @return [ActionServiceListPublicKeysResponse]
+    def list_public_keys(action_service_list_public_keys_request, opts = {})
+    if @api_client.config.debugging
+    @api_client.config.logger.debug 'Calling API: Api::ActionServiceApi.list_public_keys ...' # MODIFIED
+    end
+          # verify the required parameter 'action_service_list_public_keys_request' is set
+          if @api_client.config.client_side_validation && action_service_list_public_keys_request.nil?
+          fail ArgumentError, "Missing the required parameter 'action_service_list_public_keys_request' when calling Api::ActionServiceApi.list_public_keys" # MODIFIED
+          end
+    # resource path
+    local_var_path = '/zitadel.action.v2.ActionService/ListPublicKeys'
+
+    # query parameters
+    query_params = opts[:query_params] || {}
+
+    # header parameters
+    header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
+
+    # form parameters
+    form_params = opts[:form_params] || {}
+
+    # http body (model)
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(action_service_list_public_keys_request)
+
+    # return_type
+    return_type = opts[:debug_return_type] || 'ActionServiceListPublicKeysResponse'
+
+    # auth_names
+    auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
+
+    new_options = opts.merge(
+    :operation => :"Api::ActionServiceApi.list_public_keys", # MODIFIED
+    :header_params => header_params,
+    :query_params => query_params,
+    :form_params => form_params,
+    :body => post_body,
+    :auth_names => auth_names,
+    :return_type => return_type
+    )
+
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+    if @api_client.config.debugging
+    @api_client.config.logger.debug "API called: Api::ActionServiceApi#list_public_keys\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    end
+    return data
+    end
+
       # List targets
-      # List all matching targets. By default all targets of the instance are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - &#x60;action.target.read&#x60;   Required feature flag:    - &#x60;actions&#x60;
+      # List all matching targets. By default all targets of the instance are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - &#x60;action.target.read&#x60;
           # @param action_service_list_targets_request [ActionServiceListTargetsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [ActionServiceListTargetsResponse]
@@ -483,8 +715,66 @@ module Zitadel::Client::Api
     return data
     end
 
+      # Remove Public Key
+      # Removes the public key from the target. This is a permanent action and can not be undone.  Note that you can only remove inactive keys. Attempting to remove an active key will result in an error.  For break glass scenarios, deactivate the key first and then remove it.  Removing a non-existing key is a no-op.   Required permission:    - &#x60;action.target.write&#x60;
+          # @param action_service_remove_public_key_request [ActionServiceRemovePublicKeyRequest] 
+      # @param [Hash] opts the optional parameters
+    # @return [ActionServiceRemovePublicKeyResponse]
+    def remove_public_key(action_service_remove_public_key_request, opts = {})
+    if @api_client.config.debugging
+    @api_client.config.logger.debug 'Calling API: Api::ActionServiceApi.remove_public_key ...' # MODIFIED
+    end
+          # verify the required parameter 'action_service_remove_public_key_request' is set
+          if @api_client.config.client_side_validation && action_service_remove_public_key_request.nil?
+          fail ArgumentError, "Missing the required parameter 'action_service_remove_public_key_request' when calling Api::ActionServiceApi.remove_public_key" # MODIFIED
+          end
+    # resource path
+    local_var_path = '/zitadel.action.v2.ActionService/RemovePublicKey'
+
+    # query parameters
+    query_params = opts[:query_params] || {}
+
+    # header parameters
+    header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
+
+    # form parameters
+    form_params = opts[:form_params] || {}
+
+    # http body (model)
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(action_service_remove_public_key_request)
+
+    # return_type
+    return_type = opts[:debug_return_type] || 'ActionServiceRemovePublicKeyResponse'
+
+    # auth_names
+    auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
+
+    new_options = opts.merge(
+    :operation => :"Api::ActionServiceApi.remove_public_key", # MODIFIED
+    :header_params => header_params,
+    :query_params => query_params,
+    :form_params => form_params,
+    :body => post_body,
+    :auth_names => auth_names,
+    :return_type => return_type
+    )
+
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+    if @api_client.config.debugging
+    @api_client.config.logger.debug "API called: Api::ActionServiceApi#remove_public_key\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    end
+    return data
+    end
+
       # Set Execution
-      # Sets an execution to call a target or include the targets of another execution.  Setting an empty list of targets will remove all targets from the execution, making it a noop.   Required permission:    - &#x60;action.execution.write&#x60;   Required feature flag:    - &#x60;actions&#x60;
+      # Sets an execution to call a target or include the targets of another execution.  Setting an empty list of targets will remove all targets from the execution, making it a noop.   Required permission:    - &#x60;action.execution.write&#x60;
           # @param action_service_set_execution_request [ActionServiceSetExecutionRequest] 
       # @param [Hash] opts the optional parameters
     # @return [ActionServiceSetExecutionResponse]
@@ -542,7 +832,7 @@ module Zitadel::Client::Api
     end
 
       # Update Target
-      # Update an existing target.  To generate a new signing key set the optional expirationSigningKey.   Required permission:    - &#x60;action.target.write&#x60;   Required feature flag:    - &#x60;actions&#x60;
+      # Update an existing target.  To generate a new signing key set the optional expirationSigningKey.   Required permission:    - &#x60;action.target.write&#x60;
           # @param action_service_update_target_request [ActionServiceUpdateTargetRequest] 
       # @param [Hash] opts the optional parameters
     # @return [ActionServiceUpdateTargetResponse]

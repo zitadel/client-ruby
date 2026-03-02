@@ -15,10 +15,12 @@ require 'time'
 
 module Zitadel::Client::Models
         class SettingsServiceLockoutSettings
+    # The amount of failed password attempts before the account gets locked.  Attempts are reset as soon as the password is entered correctly or the password is reset.  If set to 0 the account will never be locked.
     attr_accessor :max_password_attempts
 
     attr_accessor :resource_owner_type
 
+    # THe amount of failed OTP (TOTP, SMS, Email) attempts before the account gets locked.  Attempts are reset as soon as the OTP is entered correctly.  If set to 0 the account will never be locked.
     attr_accessor :max_otp_attempts
 
     class EnumAttributeValidator

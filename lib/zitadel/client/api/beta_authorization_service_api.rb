@@ -20,7 +20,7 @@ module Zitadel::Client::Api
   @api_client = api_client
   end
       # Activate Authorization
-      # ActivateAuthorization activates an existing but inactive authorization.   In case the authorization is already active, the request will return a successful response as  the desired state is already achieved.  You can check the change date in the response to verify if the authorization was activated by the request.   Required permissions:    - \&quot;user.grant.write\&quot;
+      # Deprecated: please move to the corresponding endpoint under authorization service v2. This endpoint will be removed with the next major version of ZITADEL.   ActivateAuthorization activates an existing but inactive authorization.   In case the authorization is already active, the request will return a successful response as  the desired state is already achieved.  You can check the change date in the response to verify if the authorization was activated by the request.   Required permissions:    - \&quot;user.grant.write\&quot;
           # @param beta_authorization_service_activate_authorization_request [BetaAuthorizationServiceActivateAuthorizationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaAuthorizationServiceActivateAuthorizationResponse]
@@ -78,7 +78,7 @@ module Zitadel::Client::Api
     end
 
       # Create Authorization
-      # CreateAuthorization creates a new authorization for a user in an owned or granted project.   Required permissions:    - \&quot;user.grant.write\&quot;
+      # Deprecated: please move to the corresponding endpoint under authorization service v2. This endpoint will be removed with the next major version of ZITADEL.   CreateAuthorization creates a new authorization for a user in an owned or granted project.   Required permissions:    - \&quot;user.grant.write\&quot;
           # @param beta_authorization_service_create_authorization_request [BetaAuthorizationServiceCreateAuthorizationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaAuthorizationServiceCreateAuthorizationResponse]
@@ -136,7 +136,7 @@ module Zitadel::Client::Api
     end
 
       # Deactivate Authorization
-      # DeactivateAuthorization deactivates an existing and active authorization.   In case the authorization is already inactive, the request will return a successful response as  the desired state is already achieved.  You can check the change date in the response to verify if the authorization was deactivated by the request.   Required permissions:    - \&quot;user.grant.write\&quot;
+      # Deprecated: please move to the corresponding endpoint under authorization service v2. This endpoint will be removed with the next major version of ZITADEL.   DeactivateAuthorization deactivates an existing and active authorization.   In case the authorization is already inactive, the request will return a successful response as  the desired state is already achieved.  You can check the change date in the response to verify if the authorization was deactivated by the request.   Required permissions:    - \&quot;user.grant.write\&quot;
           # @param beta_authorization_service_deactivate_authorization_request [BetaAuthorizationServiceDeactivateAuthorizationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaAuthorizationServiceDeactivateAuthorizationResponse]
@@ -194,7 +194,7 @@ module Zitadel::Client::Api
     end
 
       # Delete Authorization
-      # DeleteAuthorization deletes the authorization.   In case the authorization is not found, the request will return a successful response as  the desired state is already achieved.  You can check the deletion date in the response to verify if the authorization was deleted by the request.   Required permissions:    - \&quot;user.grant.delete\&quot;
+      # Deprecated: please move to the corresponding endpoint under authorization service v2. This endpoint will be removed with the next major version of ZITADEL.   DeleteAuthorization deletes the authorization.   In case the authorization is not found, the request will return a successful response as  the desired state is already achieved.  You can check the deletion date in the response to verify if the authorization was deleted by the request.   Required permissions:    - \&quot;user.grant.delete\&quot;
           # @param beta_authorization_service_delete_authorization_request [BetaAuthorizationServiceDeleteAuthorizationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaAuthorizationServiceDeleteAuthorizationResponse]
@@ -252,7 +252,7 @@ module Zitadel::Client::Api
     end
 
       # List Authorizations
-      # ListAuthorizations returns all authorizations matching the request and necessary permissions.   Required permissions:    - \&quot;user.grant.read\&quot;    - no permissions required for listing own authorizations
+      # Deprecated: please move to the corresponding endpoint under authorization service v2. This endpoint will be removed with the next major version of ZITADEL.   ListAuthorizations returns all authorizations matching the request and necessary permissions.   Required permissions:    - \&quot;user.grant.read\&quot;    - no permissions required for listing own authorizations
           # @param beta_authorization_service_list_authorizations_request [BetaAuthorizationServiceListAuthorizationsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaAuthorizationServiceListAuthorizationsResponse]
@@ -310,7 +310,7 @@ module Zitadel::Client::Api
     end
 
       # Update Authorization
-      # UpdateAuthorization updates the authorization.   Note that any role keys previously granted to the user and not present in the request will be revoked.   Required permissions:    - \&quot;user.grant.write\&quot;
+      # Deprecated: please move to the corresponding endpoint under authorization service v2. This endpoint will be removed with the next major version of ZITADEL.   UpdateAuthorization updates the authorization.   Note that any role keys previously granted to the user and not present in the request will be revoked.   Required permissions:    - \&quot;user.grant.write\&quot;
           # @param beta_authorization_service_update_authorization_request [BetaAuthorizationServiceUpdateAuthorizationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaAuthorizationServiceUpdateAuthorizationResponse]

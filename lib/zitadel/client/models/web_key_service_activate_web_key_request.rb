@@ -15,6 +15,7 @@ require 'time'
 
 module Zitadel::Client::Models
         class WebKeyServiceActivateWebKeyRequest
+    # The unique identifier of the key to activate.
     attr_accessor :id
 
     # Attribute mapping from ruby-style variable name to JSON key.

@@ -17,6 +17,7 @@ module Zitadel::Client::Models
         class SettingsServiceSecuritySettings
     attr_accessor :embedded_iframe
 
+    # If enabled, users are allowed to impersonate other users.  The impersonator needs the appropriate `*_IMPERSONATOR` roles assigned as well\".
     attr_accessor :enable_impersonation
 
     # Attribute mapping from ruby-style variable name to JSON key.

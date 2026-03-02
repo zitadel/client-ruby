@@ -15,12 +15,15 @@ require 'time'
 
 module Zitadel::Client::Models
         class SessionServiceSetSessionRequest
+    # The unique identifier of the session to be updated.
     attr_accessor :session_id
 
+    # Deprecated: the session token is no longer required when updating a session  and will be ignored when provided.
     attr_accessor :session_token
 
     attr_accessor :checks
 
+    # Additional custom key value pairs to be stored on the session.  Existing keys will be overwritten. To delete a key, set its value to an empty byte array.  Note that metadata keys cannot be changed once the session has been created.  You need to create a new entry and delete the old one instead.
     attr_accessor :metadata
 
     attr_accessor :challenges

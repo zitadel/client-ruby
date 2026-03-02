@@ -29,6 +29,8 @@ module Zitadel::Client::Models
 
     attr_accessor :otp_email
 
+    attr_accessor :recovery_code
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -38,7 +40,8 @@ module Zitadel::Client::Models
         :'idp_intent' => :'idpIntent',
         :'totp' => :'totp',
         :'otp_sms' => :'otpSms',
-        :'otp_email' => :'otpEmail'
+        :'otp_email' => :'otpEmail',
+        :'recovery_code' => :'recoveryCode'
       }
     end
 
@@ -61,7 +64,8 @@ module Zitadel::Client::Models
         :'idp_intent' => :'SessionServiceCheckIDPIntent',
         :'totp' => :'SessionServiceCheckTOTP',
         :'otp_sms' => :'SessionServiceCheckOTP',
-        :'otp_email' => :'SessionServiceCheckOTP'
+        :'otp_email' => :'SessionServiceCheckOTP',
+        :'recovery_code' => :'SessionServiceCheckRecoveryCode'
       }
     end
 
@@ -116,6 +120,10 @@ module Zitadel::Client::Models
       if attributes.key?(:'otp_email')
         self.otp_email = attributes[:'otp_email']
       end
+
+      if attributes.key?(:'recovery_code')
+        self.recovery_code = attributes[:'recovery_code']
+      end
     end
 
     # Checks equality by comparing each attribute.
@@ -129,7 +137,8 @@ module Zitadel::Client::Models
           idp_intent == o.idp_intent &&
           totp == o.totp &&
           otp_sms == o.otp_sms &&
-          otp_email == o.otp_email
+          otp_email == o.otp_email &&
+          recovery_code == o.recovery_code
     end
 
     # @see the `==` method
@@ -141,7 +150,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [user, password, web_auth_n, idp_intent, totp, otp_sms, otp_email].hash
+      [user, password, web_auth_n, idp_intent, totp, otp_sms, otp_email, recovery_code].hash
     end
 
 # Builds the object from hash

@@ -15,22 +15,22 @@ require 'time'
 
 module Zitadel::Client::Models
         class SettingsServiceTheme
-    # hex value for primary color
+    # The hex value for primary color.
     attr_accessor :primary_color
 
-    # hex value for background color
+    # The hex value for background color.
     attr_accessor :background_color
 
-    # hex value for warning color
+    # The hex value for warning color.
     attr_accessor :warn_color
 
-    # hex value for font color
+    # The value for font color.
     attr_accessor :font_color
 
-    # url where the logo is served
+    # The URL where the logo is served.
     attr_accessor :logo_url
 
-    # url where the icon is served
+    # The URL where the icon is served.
     attr_accessor :icon_url
 
     # Attribute mapping from ruby-style variable name to JSON key.

@@ -17,6 +17,7 @@ module Zitadel::Client::Models
         class ActionServiceListTargetsResponse
     attr_accessor :pagination
 
+    # List of all targets matching the query.
     attr_accessor :targets
 
     # Attribute mapping from ruby-style variable name to JSON key.

@@ -15,7 +15,7 @@ require 'time'
 
 module Zitadel::Client::Models
         class OrganizationServiceOrganization
-    # Unique identifier of the organization.
+    # ID is the unique identifier of the organization.
     attr_accessor :id
 
     attr_accessor :details

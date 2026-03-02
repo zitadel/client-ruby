@@ -19,8 +19,8 @@ module Zitadel::Client::Api
   def initialize(api_client = ApiClient.default)
   @api_client = api_client
   end
-      # Create a new session
-      # Create a new session
+      # Create Session
+      # Create a new session with initial checks, metadata and challenges for further verification.  A token will be returned, which is required for using the session as authentication, e.g.  when authenticating an OIDC auth request or SAML request.  Additionally, the session token can be used as OAuth2 access token to authenticate against  the ZITADEL APIs.   Required permissions:    - &#x60;session.write&#x60;
           # @param session_service_create_session_request [SessionServiceCreateSessionRequest] 
       # @param [Hash] opts the optional parameters
     # @return [SessionServiceCreateSessionResponse]
@@ -77,8 +77,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # Terminate a session
-      # Terminate a session
+      # DeleteSession
+      # Terminate an existing session. This invalidates the session and its token.  The session can no longer be used for the authentication of other resources  or to authenticate against the ZITADEL APIs.   You can only terminate your own session, unless you are granted the &#x60;session.delete&#x60; permission.   Required permissions:    - &#x60;session.delete&#x60;    - no permission required for own sessions or when providing the current session token
           # @param session_service_delete_session_request [SessionServiceDeleteSessionRequest] 
       # @param [Hash] opts the optional parameters
     # @return [SessionServiceDeleteSessionResponse]
@@ -135,8 +135,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetSession a session
-      # GetSession a session
+      # Get Session
+      # Retrieve a session by its ID. Returns all information about the session, including  the factors that were verified, the metadata, user agent information and possible expiration date.  The session token is required unless either of the following conditions is met:    - the caller created the session    - the authenticated user requests their own session (checked user)    - the security token provided in the authorization header has the same user agent as the session    - the caller is granted the permission session.read permission on either the instance or on the checked user&#39;s organization   Required permissions:    - &#x60;session.read&#x60;    - no permission required to get own sessions (see above) or when providing the current session token
           # @param session_service_get_session_request [SessionServiceGetSessionRequest] 
       # @param [Hash] opts the optional parameters
     # @return [SessionServiceGetSessionResponse]
@@ -193,8 +193,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # Search sessions
-      # Search sessions
+      # List sessions
+      # Searches for sessions matching the given query. You can search by session ID, user ID,  creation date, creator, user agent or expiration date.   Required permissions:    - &#x60;session.read&#x60;    - no permission required to search for own sessions
           # @param session_service_list_sessions_request [SessionServiceListSessionsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [SessionServiceListSessionsResponse]
@@ -251,8 +251,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # Update a session
-      # Update a session
+      # Set Session
+      # Update an existing session with new information like additional checks or metadata  or request additional challenges.  A new session token will be returned. Note that the previous token will be invalidated.   Required permissions:    - &#x60;session.write&#x60;
           # @param session_service_set_session_request [SessionServiceSetSessionRequest] 
       # @param [Hash] opts the optional parameters
     # @return [SessionServiceSetSessionResponse]

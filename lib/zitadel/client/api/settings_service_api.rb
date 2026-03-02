@@ -19,8 +19,8 @@ module Zitadel::Client::Api
   def initialize(api_client = ApiClient.default)
   @api_client = api_client
   end
-      # Get the current active identity providers
-      # Get the current active identity providers
+      # Get Active Identity Providers
+      # Get the current active identity providers for the requested context.  This can be the instance or an organization. In case of an organization,  the returned identity providers will fall back to the active instance identity providers  if not explicitly set on the organization.   Optionally, filter the identity providers by their allowed actions:    - creation_allowed: only return identity providers that are allowed for user creation    - linking_allowed: only return identity providers that are allowed for linking to existing users    - auto_creation: only return identity providers that are allowed for automatic user creation    - auto_linking: only return identity providers that are allowed for automatic linking to existing users   Required permissions:    - &#x60;policy.read&#x60;
           # @param settings_service_get_active_identity_providers_request [SettingsServiceGetActiveIdentityProvidersRequest] 
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceGetActiveIdentityProvidersResponse]
@@ -77,8 +77,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # Get the current active branding settings
-      # Get the current active branding settings
+      # Get Branding Settings
+      # Get the current active branding settings for the requested context.  This can be the instance or an organization. In case of an organization,  the returned settings will fall back to the instance settings if not explicitly set on the organization.   Required permissions:    - &#x60;policy.read&#x60;
           # @param settings_service_get_branding_settings_request [SettingsServiceGetBrandingSettingsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceGetBrandingSettingsResponse]
@@ -135,8 +135,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # Get the domain settings
-      # Get the domain settings
+      # Get Domain Settings
+      # Get the domain settings for the requested context.  This can be the instance or an organization. In case of an organization,  the returned settings will fall back to the instance settings if not explicitly set on the organization.   Required permissions:    - &#x60;policy.read&#x60;
           # @param settings_service_get_domain_settings_request [SettingsServiceGetDomainSettingsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceGetDomainSettingsResponse]
@@ -193,8 +193,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # Get basic information over the instance
-      # Get basic information over the instance
+      # Get General Settings
+      # Get basic information of the instance like the default organization, default language and supported languages.   Required permissions:    - &#x60;policy.read&#x60;
           # @param body [Object] 
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceGetGeneralSettingsResponse]
@@ -309,8 +309,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # Get the legal and support settings
-      # Get the legal and support settings
+      # Get Legal and Support Settings
+      # Get the legal and support settings for the requested context.  This can be the instance or an organization. In case of an organization,  the returned settings will fall back to the instance settings if not explicitly set on the organization.   Required permissions:    - &#x60;policy.read&#x60;
           # @param settings_service_get_legal_and_support_settings_request [SettingsServiceGetLegalAndSupportSettingsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceGetLegalAndSupportSettingsResponse]
@@ -367,8 +367,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # Get the lockout settings
-      # Get the lockout settings
+      # Get Lockout Settings
+      # Get the lockout settings for the requested context.  This can be the instance or an organization. In case of an organization,  the returned settings will fall back to the instance settings if not explicitly set on the organization.   Lockout settings define how many failed attempts are allowed before a user is locked out.   Required permissions:    - &#x60;policy.read&#x60;
           # @param settings_service_get_lockout_settings_request [SettingsServiceGetLockoutSettingsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceGetLockoutSettingsResponse]
@@ -425,8 +425,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # Get the login settings
-      # Get the login settings
+      # Get Login Settings
+      # Get the login settings for the requested context.  This can be the instance or an organization. In case of an organization,  the returned settings will fall back to the instance settings if not explicitly set on the organization.   Required permissions:    - &#x60;policy.read&#x60;
           # @param settings_service_get_login_settings_request [SettingsServiceGetLoginSettingsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceGetLoginSettingsResponse]
@@ -483,8 +483,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # Get the password complexity settings
-      # Get the password complexity settings
+      # Get Password Complexity Settings
+      # Get the password complexity settings for the requested context.  This can be the instance or an organization. In case of an organization,  the returned settings will fall back to the instance settings if not explicitly set on the organization.   Required permissions:    - &#x60;policy.read&#x60;
           # @param settings_service_get_password_complexity_settings_request [SettingsServiceGetPasswordComplexitySettingsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceGetPasswordComplexitySettingsResponse]
@@ -541,8 +541,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # Get the password expiry settings
-      # Get the password expiry settings
+      # Get Password Expiry Settings
+      # Get the password expiry settings for the requested context.  This can be the instance or an organization. In case of an organization,  the returned settings will fall back to the instance settings if not explicitly set on the organization.   Required permissions:    - &#x60;policy.read&#x60;
           # @param settings_service_get_password_expiry_settings_request [SettingsServiceGetPasswordExpirySettingsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceGetPasswordExpirySettingsResponse]
@@ -599,8 +599,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # Get the security settings
-      # Get the security settings
+      # Get Security Settings
+      # Get the security settings of the ZITADEL instance.  Security settings include settings like enabling impersonation and embedded iframe settings.   Required permissions:    - &#x60;iam.policy.read&#x60;
           # @param body [Object] 
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceGetSecuritySettingsResponse]
@@ -715,8 +715,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # Set the security settings
-      # Set the security settings
+      # Set Security Settings
+      # Set the security settings of the instance.   Required permissions:    - &#x60;iam.policy.write&#x60;
           # @param settings_service_set_security_settings_request [SettingsServiceSetSecuritySettingsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [SettingsServiceSetSecuritySettingsResponse]

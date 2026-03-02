@@ -15,7 +15,7 @@ require 'time'
 
 module Zitadel::Client::Models
         class ActionServiceListExecutionServicesResponse
-    # All available methods
+    # All available services to use in conditions.
     attr_accessor :services
 
     # Attribute mapping from ruby-style variable name to JSON key.

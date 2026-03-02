@@ -17,6 +17,7 @@ module Zitadel::Client::Models
         class OIDCServiceCreateCallbackResponse
     attr_accessor :details
 
+    # The callback URL where the user should be redirected using an HTTP \"302 FOUND\" status.  This contains details for the application to obtain the tokens on success, or error details on failure.  Note that this field must be treated as credentials, as the contained code can be used to obtain tokens on behalf of the user.\"
     attr_accessor :callback_url
 
     # Attribute mapping from ruby-style variable name to JSON key.

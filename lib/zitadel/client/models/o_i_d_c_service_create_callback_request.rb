@@ -15,6 +15,7 @@ require 'time'
 
 module Zitadel::Client::Models
         class OIDCServiceCreateCallbackRequest
+    # The ID of the Auth Request to finalize.
     attr_accessor :auth_request_id
 
     attr_accessor :error

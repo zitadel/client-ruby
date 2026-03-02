@@ -15,6 +15,7 @@ require 'time'
 
 module Zitadel::Client::Models
         class SettingsServiceGetHostedLoginTranslationRequest
+    # The locale of the translations to be returned.  Needs to be a BCP 47 language tag (e.g. \"en\", \"de\", \"fr-CH\").
     attr_accessor :locale
 
     # if set to true, higher levels are ignored, if false higher levels are merged into the file

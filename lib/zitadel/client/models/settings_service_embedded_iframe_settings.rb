@@ -15,8 +15,10 @@ require 'time'
 
 module Zitadel::Client::Models
         class SettingsServiceEmbeddedIframeSettings
+    # Enabled states if iframe embedding is enabled or disabled.
     attr_accessor :enabled
 
+    # AllowedOrigins defines which origins are allowed to embed ZITADEL in an iframe.
     attr_accessor :allowed_origins
 
     # Attribute mapping from ruby-style variable name to JSON key.

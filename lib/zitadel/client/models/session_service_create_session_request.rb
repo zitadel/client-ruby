@@ -17,6 +17,7 @@ module Zitadel::Client::Models
         class SessionServiceCreateSessionRequest
     attr_accessor :checks
 
+    # Custom key value list to be stored on the session.
     attr_accessor :metadata
 
     attr_accessor :challenges

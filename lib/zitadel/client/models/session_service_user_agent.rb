@@ -15,10 +15,13 @@ require 'time'
 
 module Zitadel::Client::Models
         class SessionServiceUserAgent
+    # FingerprintID is a unique identifier for the user agent's fingerprint.  It can be used to group sessions by device or browser.
     attr_accessor :fingerprint_id
 
+    # IP is the IP address from which the session was created.
     attr_accessor :ip
 
+    # Description is a human-readable description of the user agent.
     attr_accessor :description
 
     attr_accessor :header

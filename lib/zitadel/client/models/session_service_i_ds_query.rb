@@ -15,6 +15,7 @@ require 'time'
 
 module Zitadel::Client::Models
         class SessionServiceIDsQuery
+    # List of session IDs to search for.  If multiple IDs are provided, sessions matching any of the IDs will be returned.
     attr_accessor :ids
 
     # Attribute mapping from ruby-style variable name to JSON key.

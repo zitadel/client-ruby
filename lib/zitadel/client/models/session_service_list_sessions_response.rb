@@ -17,6 +17,7 @@ module Zitadel::Client::Models
         class SessionServiceListSessionsResponse
     attr_accessor :details
 
+    # The sessions matching the search query. There might be more sessions available  than returned in this response. Use the details field to see if there are more sessions  available and to get the total count of sessions matching the query.
     attr_accessor :sessions
 
     # Attribute mapping from ruby-style variable name to JSON key.

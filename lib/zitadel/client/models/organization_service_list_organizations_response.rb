@@ -19,6 +19,7 @@ module Zitadel::Client::Models
 
     attr_accessor :sorting_column
 
+    # The Result is a list of organizations matching the query.
     attr_accessor :result
 
     class EnumAttributeValidator

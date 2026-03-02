@@ -15,8 +15,10 @@ require 'time'
 
 module Zitadel::Client::Models
         class SAMLServicePostResponse
+    # The SAML RelaySate, that needs to be returned to the application to match the response to the request.
     attr_accessor :relay_state
 
+    # The SAML Response, that needs to be returned to the application to complete the SAML flow.
     attr_accessor :saml_response
 
     # Attribute mapping from ruby-style variable name to JSON key.

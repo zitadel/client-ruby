@@ -24,13 +24,13 @@ module Zitadel::Client::Models
     # Name of the project.
     attr_accessor :name
 
-    # Enable this setting to have role information included in the user info endpoint. It is also dependent on your application settings to include it in tokens and other types.
+    # Enable this setting to provide role information to your application. For OpenID Connect, the roles can be requested from the UserInfo endpoint or sent in the ID or Access Token, based on your application's configuration.
     attr_accessor :project_role_assertion
 
-    # When enabled ZITADEL will check if a user has an authorization to use this project assigned when login into an application of this project.
+    # Deny authentication if the user has no authorization assigned to this project. Authorizations to the project without assigned a specific role to the user are allowed.
     attr_accessor :authorization_required
 
-    # When enabled ZITADEL will check if the organization of the user, that is trying to log in, has access to this project (either owns the project or is granted).
+    # Before a user can be authenticated, it is verified that their affiliated organization has been granted access to this project. Authentication is not permitted for users from unauthorized organizations.
     attr_accessor :project_access_required
 
     attr_accessor :private_labeling_setting

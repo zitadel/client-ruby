@@ -15,20 +15,30 @@ require 'time'
 
 module Zitadel::Client::Models
         class SettingsServiceLoginSettings
+    # If enabled, users can log in locally with their username and passkeys or password.  Disabling this option will require users to log in with an external identity provider.  Be sure to allow at least one external identity provider if this option is disabled.  Deprecated: check allow_local_authentication instead.
     attr_accessor :allow_username_password
 
+    # If enabled, users can log in locally with their username and passkeys or password.  Disabling this option will require users to log in with an external identity provider.  Be sure to allow at least one external identity provider if this option is disabled.
+    attr_accessor :allow_local_authentication
+
+    # If enabled, users can register a local account by themself.  This option does not effect external identity providers.  Each identity provider can be configured to allow or disallow registration.
     attr_accessor :allow_register
 
+    # If enabled, users will generally be allowed to use an external identity provider to log in.  Be sure to allow at least one external identity provider if this option is enabled.
     attr_accessor :allow_external_idp
 
+    # If enabled, users will be forced to use a multi-factor to log in.  This also applies to federated logins through an external identity provider.  Users will be required to set up a second factor if they have not done so already.
     attr_accessor :force_mfa
 
     attr_accessor :passkeys_type
 
+    # If enabled, the password reset link will be hidden on the login screen.
     attr_accessor :hide_password_reset
 
+    # If enabled, an unknown username on the login screen will not return an error directly,  but will always display the password screen.  This prevents user enumeration attacks.
     attr_accessor :ignore_unknown_usernames
 
+    # Defines where the user will be redirected to if the login is started without app context (e.g. from mail).
     attr_accessor :default_redirect_uri
 
     # A Duration represents a signed, fixed-length span of time represented  as a count of seconds and fractions of seconds at nanosecond  resolution. It is independent of any calendar and concepts like \"day\"  or \"month\". It is related to Timestamp in that the difference between  two Timestamp values is a Duration and it can be added or subtracted  from a Timestamp. Range is approximately +-10,000 years.   # Examples   Example 1: Compute Duration from two Timestamps in pseudo code.       Timestamp start = ...;      Timestamp end = ...;      Duration duration = ...;       duration.seconds = end.seconds - start.seconds;      duration.nanos = end.nanos - start.nanos;       if (duration.seconds < 0 && duration.nanos > 0) {        duration.seconds += 1;        duration.nanos -= 1000000000;      } else if (duration.seconds > 0 && duration.nanos < 0) {        duration.seconds -= 1;        duration.nanos += 1000000000;      }   Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.       Timestamp start = ...;      Duration duration = ...;      Timestamp end = ...;       end.seconds = start.seconds + duration.seconds;      end.nanos = start.nanos + duration.nanos;       if (end.nanos < 0) {        end.seconds -= 1;        end.nanos += 1000000000;      } else if (end.nanos >= 1000000000) {        end.seconds += 1;        end.nanos -= 1000000000;      }   Example 3: Compute Duration from datetime.timedelta in Python.       td = datetime.timedelta(days=3, minutes=10)      duration = Duration()      duration.FromTimedelta(td)   # JSON Mapping   In JSON format, the Duration type is encoded as a string rather than an  object, where the string ends in the suffix \"s\" (indicating seconds) and  is preceded by the number of seconds, with nanoseconds expressed as  fractional seconds. For example, 3 seconds with 0 nanoseconds should be  encoded in JSON format as \"3s\", while 3 seconds and 1 nanosecond should  be expressed in JSON format as \"3.000000001s\", and 3 seconds and 1  microsecond should be expressed in JSON format as \"3.000001s\".
@@ -46,19 +56,24 @@ module Zitadel::Client::Models
     # A Duration represents a signed, fixed-length span of time represented  as a count of seconds and fractions of seconds at nanosecond  resolution. It is independent of any calendar and concepts like \"day\"  or \"month\". It is related to Timestamp in that the difference between  two Timestamp values is a Duration and it can be added or subtracted  from a Timestamp. Range is approximately +-10,000 years.   # Examples   Example 1: Compute Duration from two Timestamps in pseudo code.       Timestamp start = ...;      Timestamp end = ...;      Duration duration = ...;       duration.seconds = end.seconds - start.seconds;      duration.nanos = end.nanos - start.nanos;       if (duration.seconds < 0 && duration.nanos > 0) {        duration.seconds += 1;        duration.nanos -= 1000000000;      } else if (duration.seconds > 0 && duration.nanos < 0) {        duration.seconds -= 1;        duration.nanos += 1000000000;      }   Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.       Timestamp start = ...;      Duration duration = ...;      Timestamp end = ...;       end.seconds = start.seconds + duration.seconds;      end.nanos = start.nanos + duration.nanos;       if (end.nanos < 0) {        end.seconds -= 1;        end.nanos += 1000000000;      } else if (end.nanos >= 1000000000) {        end.seconds += 1;        end.nanos -= 1000000000;      }   Example 3: Compute Duration from datetime.timedelta in Python.       td = datetime.timedelta(days=3, minutes=10)      duration = Duration()      duration.FromTimedelta(td)   # JSON Mapping   In JSON format, the Duration type is encoded as a string rather than an  object, where the string ends in the suffix \"s\" (indicating seconds) and  is preceded by the number of seconds, with nanoseconds expressed as  fractional seconds. For example, 3 seconds with 0 nanoseconds should be  encoded in JSON format as \"3s\", while 3 seconds and 1 nanosecond should  be expressed in JSON format as \"3.000000001s\", and 3 seconds and 1  microsecond should be expressed in JSON format as \"3.000001s\".
     attr_accessor :multi_factor_check_lifetime
 
+    # The list of allowed second factors.
     attr_accessor :second_factors
 
+    # The list of allowed multi factors.
     attr_accessor :multi_factors
 
-    # If set to true, the suffix (@domain.com) of an unknown username input on the login screen will be matched against the org domains and will redirect to the registration of that organization on success.
+    # Allow discovery of the organization and its authentication option by domain.  If set to true, the suffix (@domain.com) of an unknown username input on the login screen  will be matched against the organization domains and will redirect to the registration of that organization on success.  The registration can either be locally (requires allow_register to be true) or through an external identity provider.  In case only one identity provider is configured for the organization, the user will be redirected directly to the identity provider.
     attr_accessor :allow_domain_discovery
 
+    # By default, users can login with their verified email address additionally to their login name.  Setting this to true disables the email login.  Note: If the email is set as the login name, this setting has no effect.
     attr_accessor :disable_login_with_email
 
+    # By default, users can login with their verified phone number additionally to their login name.  Setting this to true disables the phone number login.  Note: If the phone number is set as the login name, this setting has no effect.
     attr_accessor :disable_login_with_phone
 
     attr_accessor :resource_owner_type
 
+    # If enabled, users will be forced to use a multi-factor to log in if they authenticated locally.  This does not apply to federated logins through an external identity provider.  Users will be required to set up a second factor if they have not done so already.  If both force_mfa and force_mfa_local_only are enabled, force_mfa takes precedence and  all logins will require a second factor.
     attr_accessor :force_mfa_local_only
 
     class EnumAttributeValidator
@@ -87,6 +102,7 @@ module Zitadel::Client::Models
     def self.attribute_map
       {
         :'allow_username_password' => :'allowUsernamePassword',
+        :'allow_local_authentication' => :'allowLocalAuthentication',
         :'allow_register' => :'allowRegister',
         :'allow_external_idp' => :'allowExternalIdp',
         :'force_mfa' => :'forceMfa',
@@ -123,6 +139,7 @@ module Zitadel::Client::Models
     def self.openapi_types
       {
         :'allow_username_password' => :'Boolean',
+        :'allow_local_authentication' => :'Boolean',
         :'allow_register' => :'Boolean',
         :'allow_external_idp' => :'Boolean',
         :'force_mfa' => :'Boolean',
@@ -171,6 +188,10 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'allow_username_password')
         self.allow_username_password = attributes[:'allow_username_password']
+      end
+
+      if attributes.key?(:'allow_local_authentication')
+        self.allow_local_authentication = attributes[:'allow_local_authentication']
       end
 
       if attributes.key?(:'allow_register')
@@ -260,6 +281,7 @@ module Zitadel::Client::Models
       return true if self.equal?(o)
       self.class == o.class &&
           allow_username_password == o.allow_username_password &&
+          allow_local_authentication == o.allow_local_authentication &&
           allow_register == o.allow_register &&
           allow_external_idp == o.allow_external_idp &&
           force_mfa == o.force_mfa &&
@@ -290,7 +312,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [allow_username_password, allow_register, allow_external_idp, force_mfa, passkeys_type, hide_password_reset, ignore_unknown_usernames, default_redirect_uri, password_check_lifetime, external_login_check_lifetime, mfa_init_skip_lifetime, second_factor_check_lifetime, multi_factor_check_lifetime, second_factors, multi_factors, allow_domain_discovery, disable_login_with_email, disable_login_with_phone, resource_owner_type, force_mfa_local_only].hash
+      [allow_username_password, allow_local_authentication, allow_register, allow_external_idp, force_mfa, passkeys_type, hide_password_reset, ignore_unknown_usernames, default_redirect_uri, password_check_lifetime, external_login_check_lifetime, mfa_init_skip_lifetime, second_factor_check_lifetime, multi_factor_check_lifetime, second_factors, multi_factors, allow_domain_discovery, disable_login_with_email, disable_login_with_phone, resource_owner_type, force_mfa_local_only].hash
     end
 
 # Builds the object from hash
