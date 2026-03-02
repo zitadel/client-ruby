@@ -53,7 +53,7 @@ GEM
       net-http (>= 0.5.0)
     ffi (1.17.3)
     ffi (1.17.3-arm64-darwin)
-    ffi (1.17.3-x86_64-linux-gnu)
+
     fileutils (1.7.3)
     hashie (5.0.0)
     i18n (1.14.7)
@@ -174,7 +174,6 @@ GEM
 PLATFORMS
   arm64-darwin-23
   ruby
-  x86_64-linux
 
 DEPENDENCIES
   better_coverage
