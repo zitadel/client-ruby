@@ -26,13 +26,12 @@ module SimpleCov
   end
 end
 
-# Set up multiple formatters: HTML and LCOV
-SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new(
-  [
-    SimpleCov::Formatter::HTMLFormatter,
-    SimpleCov::Formatter::CoberturaFormatter
-  ]
-)
+# Set up multiple formatters: HTML and Cobertura
+# Note: formatters= already wraps in MultiFormatter, so pass a plain array
+SimpleCov.formatters = [
+  SimpleCov::Formatter::HTMLFormatter,
+  SimpleCov::Formatter::CoberturaFormatter
+]
 
 # Set the base coverage directory and apply filters
 SimpleCov.coverage_dir('build/coverage')
