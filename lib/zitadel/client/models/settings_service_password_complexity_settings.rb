@@ -15,14 +15,19 @@ require 'time'
 
 module Zitadel::Client::Models
         class SettingsServicePasswordComplexitySettings
+    # The minimum length a password must have.
     attr_accessor :min_length
 
+    # Defines if the password MUST contain an upper case letter.
     attr_accessor :requires_uppercase
 
+    # Defines if the password MUST contain a lowercase letter.
     attr_accessor :requires_lowercase
 
+    # Defines if the password MUST contain a number.
     attr_accessor :requires_number
 
+    # Defines if the password MUST contain a symbol or special character. E.g. \"$\"
     attr_accessor :requires_symbol
 
     attr_accessor :resource_owner_type

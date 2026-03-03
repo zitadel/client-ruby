@@ -20,7 +20,7 @@ module Zitadel::Client::Api
   @api_client = api_client
   end
       # Get the current active identity providers
-      # Get the current active identity providers
+      # Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
           # @param beta_settings_service_get_active_identity_providers_request [BetaSettingsServiceGetActiveIdentityProvidersRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaSettingsServiceGetActiveIdentityProvidersResponse]
@@ -78,7 +78,7 @@ module Zitadel::Client::Api
     end
 
       # Get the current active branding settings
-      # Get the current active branding settings
+      # Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
           # @param beta_settings_service_get_branding_settings_request [BetaSettingsServiceGetBrandingSettingsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaSettingsServiceGetBrandingSettingsResponse]
@@ -136,7 +136,7 @@ module Zitadel::Client::Api
     end
 
       # Get the domain settings
-      # Get the domain settings
+      # Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
           # @param beta_settings_service_get_domain_settings_request [BetaSettingsServiceGetDomainSettingsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaSettingsServiceGetDomainSettingsResponse]
@@ -194,7 +194,7 @@ module Zitadel::Client::Api
     end
 
       # Get basic information over the instance
-      # Get basic information over the instance
+      # Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
           # @param body [Object] 
       # @param [Hash] opts the optional parameters
     # @return [BetaSettingsServiceGetGeneralSettingsResponse]
@@ -252,7 +252,7 @@ module Zitadel::Client::Api
     end
 
       # Get the legal and support settings
-      # Get the legal and support settings
+      # Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
           # @param beta_settings_service_get_legal_and_support_settings_request [BetaSettingsServiceGetLegalAndSupportSettingsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaSettingsServiceGetLegalAndSupportSettingsResponse]
@@ -310,7 +310,7 @@ module Zitadel::Client::Api
     end
 
       # Get the lockout settings
-      # Get the lockout settings
+      # Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
           # @param beta_settings_service_get_lockout_settings_request [BetaSettingsServiceGetLockoutSettingsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaSettingsServiceGetLockoutSettingsResponse]
@@ -368,7 +368,7 @@ module Zitadel::Client::Api
     end
 
       # Get the login settings
-      # Get the login settings
+      # Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
           # @param beta_settings_service_get_login_settings_request [BetaSettingsServiceGetLoginSettingsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaSettingsServiceGetLoginSettingsResponse]
@@ -426,7 +426,7 @@ module Zitadel::Client::Api
     end
 
       # Get the password complexity settings
-      # Get the password complexity settings
+      # Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
           # @param beta_settings_service_get_password_complexity_settings_request [BetaSettingsServiceGetPasswordComplexitySettingsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaSettingsServiceGetPasswordComplexitySettingsResponse]
@@ -484,7 +484,7 @@ module Zitadel::Client::Api
     end
 
       # Get the password expiry settings
-      # Get the password expiry settings
+      # Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
           # @param beta_settings_service_get_password_expiry_settings_request [BetaSettingsServiceGetPasswordExpirySettingsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaSettingsServiceGetPasswordExpirySettingsResponse]
@@ -542,7 +542,7 @@ module Zitadel::Client::Api
     end
 
       # Get the security settings
-      # Get the security settings
+      # Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
           # @param body [Object] 
       # @param [Hash] opts the optional parameters
     # @return [BetaSettingsServiceGetSecuritySettingsResponse]
@@ -600,7 +600,7 @@ module Zitadel::Client::Api
     end
 
       # Set the security settings
-      # Set the security settings
+      # Deprecated: please move to the corresponding endpoint under settings service v2. This endpoint will be removed with the next major version of ZITADEL.
           # @param beta_settings_service_set_security_settings_request [BetaSettingsServiceSetSecuritySettingsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaSettingsServiceSetSecuritySettingsResponse]

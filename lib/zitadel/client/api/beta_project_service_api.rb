@@ -20,7 +20,7 @@ module Zitadel::Client::Api
   @api_client = api_client
   end
       # Activate Project
-      # Set the state of a project to active. Request returns no error if the project is already activated.   Required permission:    - &#x60;project.write&#x60;
+      # Deprecated: please move to the corresponding endpoint under project service v2. This endpoint will be removed with the next major version of ZITADEL.   Set the state of a project to active. Request returns no error if the project is already activated.   Required permission:    - &#x60;project.write&#x60;
           # @param beta_project_service_activate_project_request [BetaProjectServiceActivateProjectRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceActivateProjectResponse]
@@ -78,7 +78,7 @@ module Zitadel::Client::Api
     end
 
       # Activate Project Grant
-      # Set the state of the project grant to activated.   Required permission:    - &#x60;project.grant.write&#x60;
+      # Deprecated: please move to the corresponding endpoint under project service v2. This endpoint will be removed with the next major version of ZITADEL.   Set the state of the project grant to activated.   Required permission:    - &#x60;project.grant.write&#x60;
           # @param beta_project_service_activate_project_grant_request [BetaProjectServiceActivateProjectGrantRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceActivateProjectGrantResponse]
@@ -136,7 +136,7 @@ module Zitadel::Client::Api
     end
 
       # Add Project Role
-      # Add a new project role to a project. The key must be unique within the project.   Required permission:    - &#x60;project.role.write&#x60;
+      # Deprecated: please move to the corresponding endpoint under project service v2. This endpoint will be removed with the next major version of ZITADEL.   Add a new project role to a project. The key must be unique within the project.   Required permission:    - &#x60;project.role.write&#x60;
           # @param beta_project_service_add_project_role_request [BetaProjectServiceAddProjectRoleRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceAddProjectRoleResponse]
@@ -194,7 +194,7 @@ module Zitadel::Client::Api
     end
 
       # Create Project
-      # Create a new Project.   Required permission:    - &#x60;project.create&#x60;
+      # Deprecated: please move to the corresponding endpoint under project service v2. This endpoint will be removed with the next major version of ZITADEL.   Create a new Project.   Required permission:    - &#x60;project.create&#x60;
           # @param beta_project_service_create_project_request [BetaProjectServiceCreateProjectRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceCreateProjectResponse]
@@ -252,7 +252,7 @@ module Zitadel::Client::Api
     end
 
       # Create Project Grant
-      # Grant a project to another organization.  The project grant will allow the granted organization to access the project and manage the authorizations for its users.   Required permission:    - &#x60;project.grant.create&#x60;
+      # Deprecated: please move to the corresponding endpoint under project service v2. This endpoint will be removed with the next major version of ZITADEL.   Grant a project to another organization.  The project grant will allow the granted organization to access the project and manage the authorizations for its users.   Required permission:    - &#x60;project.grant.create&#x60;
           # @param beta_project_service_create_project_grant_request [BetaProjectServiceCreateProjectGrantRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceCreateProjectGrantResponse]
@@ -310,7 +310,7 @@ module Zitadel::Client::Api
     end
 
       # Deactivate Project
-      # Set the state of a project to deactivated. Request returns no error if the project is already deactivated.  Applications under deactivated projects are not able to login anymore.   Required permission:    - &#x60;project.write&#x60;
+      # Deprecated: please move to the corresponding endpoint under project service v2. This endpoint will be removed with the next major version of ZITADEL.   Set the state of a project to deactivated. Request returns no error if the project is already deactivated.  Applications under deactivated projects are not able to login anymore.   Required permission:    - &#x60;project.write&#x60;
           # @param beta_project_service_deactivate_project_request [BetaProjectServiceDeactivateProjectRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceDeactivateProjectResponse]
@@ -368,7 +368,7 @@ module Zitadel::Client::Api
     end
 
       # Deactivate Project Grant
-      # Set the state of the project grant to deactivated.  Applications under deactivated projects grants are not able to login anymore.   Required permission:    - &#x60;project.grant.write&#x60;
+      # Deprecated: please move to the corresponding endpoint under project service v2. This endpoint will be removed with the next major version of ZITADEL.   Set the state of the project grant to deactivated.  Applications under deactivated projects grants are not able to login anymore.   Required permission:    - &#x60;project.grant.write&#x60;
           # @param beta_project_service_deactivate_project_grant_request [BetaProjectServiceDeactivateProjectGrantRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceDeactivateProjectGrantResponse]
@@ -426,7 +426,7 @@ module Zitadel::Client::Api
     end
 
       # Delete Project
-      # Delete an existing project.  In case the project is not found, the request will return a successful response as  the desired state is already achieved.   Required permission:    - &#x60;project.delete&#x60;
+      # Deprecated: please move to the corresponding endpoint under project service v2. This endpoint will be removed with the next major version of ZITADEL.   Delete an existing project.  In case the project is not found, the request will return a successful response as  the desired state is already achieved.   Required permission:    - &#x60;project.delete&#x60;
           # @param beta_project_service_delete_project_request [BetaProjectServiceDeleteProjectRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceDeleteProjectResponse]
@@ -484,7 +484,7 @@ module Zitadel::Client::Api
     end
 
       # Delete Project Grant
-      # Delete a project grant. All user grants for this project grant will also be removed.  A user will not have access to the project afterward (if permissions are checked).  In case the project grant is not found, the request will return a successful response as  the desired state is already achieved.   Required permission:    - &#x60;project.grant.delete&#x60;
+      # Deprecated: please move to the corresponding endpoint under project service v2. This endpoint will be removed with the next major version of ZITADEL.   Delete a project grant. All user grants for this project grant will also be removed.  A user will not have access to the project afterward (if permissions are checked).  In case the project grant is not found, the request will return a successful response as  the desired state is already achieved.   Required permission:    - &#x60;project.grant.delete&#x60;
           # @param beta_project_service_delete_project_grant_request [BetaProjectServiceDeleteProjectGrantRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceDeleteProjectGrantResponse]
@@ -542,7 +542,7 @@ module Zitadel::Client::Api
     end
 
       # Get Project
-      # Returns the project identified by the requested ID.   Required permission:    - &#x60;project.read&#x60;
+      # Deprecated: please move to the corresponding endpoint under project service v2. This endpoint will be removed with the next major version of ZITADEL.   Returns the project identified by the requested ID.   Required permission:    - &#x60;project.read&#x60;
           # @param beta_project_service_get_project_request [BetaProjectServiceGetProjectRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceGetProjectResponse]
@@ -600,7 +600,7 @@ module Zitadel::Client::Api
     end
 
       # List Project Grants
-      # Returns a list of project grants. A project grant is when the organization grants its project to another organization.   Required permission:    - &#x60;project.grant.write&#x60;
+      # Deprecated: please move to the corresponding endpoint under project service v2. This endpoint will be removed with the next major version of ZITADEL.   Returns a list of project grants. A project grant is when the organization grants its project to another organization.   Required permission:    - &#x60;project.grant.write&#x60;
           # @param beta_project_service_list_project_grants_request [BetaProjectServiceListProjectGrantsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceListProjectGrantsResponse]
@@ -658,7 +658,7 @@ module Zitadel::Client::Api
     end
 
       # List Project Roles
-      # Returns all roles of a project matching the search query.   Required permission:    - &#x60;project.role.read&#x60;
+      # Deprecated: please move to the corresponding endpoint under project service v2. This endpoint will be removed with the next major version of ZITADEL.   Returns all roles of a project matching the search query.   Required permission:    - &#x60;project.role.read&#x60;
           # @param beta_project_service_list_project_roles_request [BetaProjectServiceListProjectRolesRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceListProjectRolesResponse]
@@ -716,7 +716,7 @@ module Zitadel::Client::Api
     end
 
       # List Projects
-      # List all matching projects. By default all projects of the instance that the caller has permission to read are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - &#x60;project.read&#x60;
+      # Deprecated: please move to the corresponding endpoint under project service v2. This endpoint will be removed with the next major version of ZITADEL.   List all matching projects. By default all projects of the instance that the caller has permission to read are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - &#x60;project.read&#x60;
           # @param beta_project_service_list_projects_request [BetaProjectServiceListProjectsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceListProjectsResponse]
@@ -774,7 +774,7 @@ module Zitadel::Client::Api
     end
 
       # Remove Project Role
-      # Removes the role from the project and on every resource it has a dependency. This includes project grants and user grants.   Required permission:    - &#x60;project.role.write&#x60;
+      # Deprecated: please move to the corresponding endpoint under project service v2. This endpoint will be removed with the next major version of ZITADEL.   Removes the role from the project and on every resource it has a dependency. This includes project grants and user grants.   Required permission:    - &#x60;project.role.write&#x60;
           # @param beta_project_service_remove_project_role_request [BetaProjectServiceRemoveProjectRoleRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceRemoveProjectRoleResponse]
@@ -832,7 +832,7 @@ module Zitadel::Client::Api
     end
 
       # Update Project
-      # Update an existing project.   Required permission:    - &#x60;project.write&#x60;
+      # Deprecated: please move to the corresponding endpoint under project service v2. This endpoint will be removed with the next major version of ZITADEL.   Update an existing project.   Required permission:    - &#x60;project.write&#x60;
           # @param beta_project_service_update_project_request [BetaProjectServiceUpdateProjectRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceUpdateProjectResponse]
@@ -890,7 +890,7 @@ module Zitadel::Client::Api
     end
 
       # Update Project Grant
-      # Change the roles of the project that is granted to another organization.  The project grant will allow the granted organization to access the project and manage the authorizations for its users.   Required permission:    - &#x60;project.grant.write&#x60;
+      # Deprecated: please move to the corresponding endpoint under project service v2. This endpoint will be removed with the next major version of ZITADEL.   Change the roles of the project that is granted to another organization.  The project grant will allow the granted organization to access the project and manage the authorizations for its users.   Required permission:    - &#x60;project.grant.write&#x60;
           # @param beta_project_service_update_project_grant_request [BetaProjectServiceUpdateProjectGrantRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceUpdateProjectGrantResponse]
@@ -948,7 +948,7 @@ module Zitadel::Client::Api
     end
 
       # Update Project Role
-      # Change a project role. The key is not editable. If a key should change, remove the role and create a new one.   Required permission:    - &#x60;project.role.write&#x60;
+      # Deprecated: please move to the corresponding endpoint under project service v2. This endpoint will be removed with the next major version of ZITADEL.   Change a project role. The key is not editable. If a key should change, remove the role and create a new one.   Required permission:    - &#x60;project.role.write&#x60;
           # @param beta_project_service_update_project_role_request [BetaProjectServiceUpdateProjectRoleRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaProjectServiceUpdateProjectRoleResponse]

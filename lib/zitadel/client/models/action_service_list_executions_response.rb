@@ -17,6 +17,7 @@ module Zitadel::Client::Models
         class ActionServiceListExecutionsResponse
     attr_accessor :pagination
 
+    # List of all executions matching the query.
     attr_accessor :executions
 
     # Attribute mapping from ruby-style variable name to JSON key.

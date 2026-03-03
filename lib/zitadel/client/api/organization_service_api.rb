@@ -19,8 +19,66 @@ module Zitadel::Client::Api
   def initialize(api_client = ApiClient.default)
   @api_client = api_client
   end
-      # Create an Organization
-      # Create a new organization with an administrative user. If no specific roles are sent for the users, they will be granted the role ORG_OWNER.
+      # Activate Organization
+      # Set the state of my organization to active. The state of the organization has to be deactivated to perform the request. Users of this organization will be able to log in again.   Required permission:   - &#x60;org.write&#x60;
+          # @param organization_service_activate_organization_request [OrganizationServiceActivateOrganizationRequest] 
+      # @param [Hash] opts the optional parameters
+    # @return [OrganizationServiceActivateOrganizationResponse]
+    def activate_organization(organization_service_activate_organization_request, opts = {})
+    if @api_client.config.debugging
+    @api_client.config.logger.debug 'Calling API: Api::OrganizationServiceApi.activate_organization ...' # MODIFIED
+    end
+          # verify the required parameter 'organization_service_activate_organization_request' is set
+          if @api_client.config.client_side_validation && organization_service_activate_organization_request.nil?
+          fail ArgumentError, "Missing the required parameter 'organization_service_activate_organization_request' when calling Api::OrganizationServiceApi.activate_organization" # MODIFIED
+          end
+    # resource path
+    local_var_path = '/zitadel.org.v2.OrganizationService/ActivateOrganization'
+
+    # query parameters
+    query_params = opts[:query_params] || {}
+
+    # header parameters
+    header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
+
+    # form parameters
+    form_params = opts[:form_params] || {}
+
+    # http body (model)
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(organization_service_activate_organization_request)
+
+    # return_type
+    return_type = opts[:debug_return_type] || 'OrganizationServiceActivateOrganizationResponse'
+
+    # auth_names
+    auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
+
+    new_options = opts.merge(
+    :operation => :"Api::OrganizationServiceApi.activate_organization", # MODIFIED
+    :header_params => header_params,
+    :query_params => query_params,
+    :form_params => form_params,
+    :body => post_body,
+    :auth_names => auth_names,
+    :return_type => return_type
+    )
+
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+    if @api_client.config.debugging
+    @api_client.config.logger.debug "API called: Api::OrganizationServiceApi#activate_organization\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    end
+    return data
+    end
+
+      # Add Organization
+      # Create a new organization with an administrative user. If no specific roles are sent for the users, they will be granted the role ORG_OWNER.   Required permission:   - &#x60;org.create&#x60;
           # @param organization_service_add_organization_request [OrganizationServiceAddOrganizationRequest] 
       # @param [Hash] opts the optional parameters
     # @return [OrganizationServiceAddOrganizationResponse]
@@ -77,8 +135,472 @@ module Zitadel::Client::Api
     return data
     end
 
-      # Search Organizations
-      # Search for Organizations. By default, we will return all organization of the instance. Make sure to include a limit and sorting for pagination..
+      # Add Organization Domain
+      # Add a new domain to an organization. The domains are used to identify to which organization a user belongs.   Required permission:   - &#x60;org.write&#x60;
+          # @param organization_service_add_organization_domain_request [OrganizationServiceAddOrganizationDomainRequest] 
+      # @param [Hash] opts the optional parameters
+    # @return [OrganizationServiceAddOrganizationDomainResponse]
+    def add_organization_domain(organization_service_add_organization_domain_request, opts = {})
+    if @api_client.config.debugging
+    @api_client.config.logger.debug 'Calling API: Api::OrganizationServiceApi.add_organization_domain ...' # MODIFIED
+    end
+          # verify the required parameter 'organization_service_add_organization_domain_request' is set
+          if @api_client.config.client_side_validation && organization_service_add_organization_domain_request.nil?
+          fail ArgumentError, "Missing the required parameter 'organization_service_add_organization_domain_request' when calling Api::OrganizationServiceApi.add_organization_domain" # MODIFIED
+          end
+    # resource path
+    local_var_path = '/zitadel.org.v2.OrganizationService/AddOrganizationDomain'
+
+    # query parameters
+    query_params = opts[:query_params] || {}
+
+    # header parameters
+    header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
+
+    # form parameters
+    form_params = opts[:form_params] || {}
+
+    # http body (model)
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(organization_service_add_organization_domain_request)
+
+    # return_type
+    return_type = opts[:debug_return_type] || 'OrganizationServiceAddOrganizationDomainResponse'
+
+    # auth_names
+    auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
+
+    new_options = opts.merge(
+    :operation => :"Api::OrganizationServiceApi.add_organization_domain", # MODIFIED
+    :header_params => header_params,
+    :query_params => query_params,
+    :form_params => form_params,
+    :body => post_body,
+    :auth_names => auth_names,
+    :return_type => return_type
+    )
+
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+    if @api_client.config.debugging
+    @api_client.config.logger.debug "API called: Api::OrganizationServiceApi#add_organization_domain\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    end
+    return data
+    end
+
+      # Deactivate Organization
+      # Sets the state of my organization to deactivated. Users of this organization will not be able to log in.   Required permission:   - &#x60;org.write&#x60;
+          # @param organization_service_deactivate_organization_request [OrganizationServiceDeactivateOrganizationRequest] 
+      # @param [Hash] opts the optional parameters
+    # @return [OrganizationServiceDeactivateOrganizationResponse]
+    def deactivate_organization(organization_service_deactivate_organization_request, opts = {})
+    if @api_client.config.debugging
+    @api_client.config.logger.debug 'Calling API: Api::OrganizationServiceApi.deactivate_organization ...' # MODIFIED
+    end
+          # verify the required parameter 'organization_service_deactivate_organization_request' is set
+          if @api_client.config.client_side_validation && organization_service_deactivate_organization_request.nil?
+          fail ArgumentError, "Missing the required parameter 'organization_service_deactivate_organization_request' when calling Api::OrganizationServiceApi.deactivate_organization" # MODIFIED
+          end
+    # resource path
+    local_var_path = '/zitadel.org.v2.OrganizationService/DeactivateOrganization'
+
+    # query parameters
+    query_params = opts[:query_params] || {}
+
+    # header parameters
+    header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
+
+    # form parameters
+    form_params = opts[:form_params] || {}
+
+    # http body (model)
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(organization_service_deactivate_organization_request)
+
+    # return_type
+    return_type = opts[:debug_return_type] || 'OrganizationServiceDeactivateOrganizationResponse'
+
+    # auth_names
+    auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
+
+    new_options = opts.merge(
+    :operation => :"Api::OrganizationServiceApi.deactivate_organization", # MODIFIED
+    :header_params => header_params,
+    :query_params => query_params,
+    :form_params => form_params,
+    :body => post_body,
+    :auth_names => auth_names,
+    :return_type => return_type
+    )
+
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+    if @api_client.config.debugging
+    @api_client.config.logger.debug "API called: Api::OrganizationServiceApi#deactivate_organization\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    end
+    return data
+    end
+
+      # Delete Organization
+      # Deletes the organization and all its resources (Users, Projects, Grants to and from the org). Users of this organization will not be able to log in.   Required permission:   - &#x60;org.delete&#x60;
+          # @param organization_service_delete_organization_request [OrganizationServiceDeleteOrganizationRequest] 
+      # @param [Hash] opts the optional parameters
+    # @return [OrganizationServiceDeleteOrganizationResponse]
+    def delete_organization(organization_service_delete_organization_request, opts = {})
+    if @api_client.config.debugging
+    @api_client.config.logger.debug 'Calling API: Api::OrganizationServiceApi.delete_organization ...' # MODIFIED
+    end
+          # verify the required parameter 'organization_service_delete_organization_request' is set
+          if @api_client.config.client_side_validation && organization_service_delete_organization_request.nil?
+          fail ArgumentError, "Missing the required parameter 'organization_service_delete_organization_request' when calling Api::OrganizationServiceApi.delete_organization" # MODIFIED
+          end
+    # resource path
+    local_var_path = '/zitadel.org.v2.OrganizationService/DeleteOrganization'
+
+    # query parameters
+    query_params = opts[:query_params] || {}
+
+    # header parameters
+    header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
+
+    # form parameters
+    form_params = opts[:form_params] || {}
+
+    # http body (model)
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(organization_service_delete_organization_request)
+
+    # return_type
+    return_type = opts[:debug_return_type] || 'OrganizationServiceDeleteOrganizationResponse'
+
+    # auth_names
+    auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
+
+    new_options = opts.merge(
+    :operation => :"Api::OrganizationServiceApi.delete_organization", # MODIFIED
+    :header_params => header_params,
+    :query_params => query_params,
+    :form_params => form_params,
+    :body => post_body,
+    :auth_names => auth_names,
+    :return_type => return_type
+    )
+
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+    if @api_client.config.debugging
+    @api_client.config.logger.debug "API called: Api::OrganizationServiceApi#delete_organization\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    end
+    return data
+    end
+
+      # Delete Organization Domain
+      # Delete a new domain from an organization. The domains are used to identify to which organization a user belongs. If the uses use the domain for login, this will not be possible afterwards. They have to use another domain instead.   Required permission:   - &#x60;org.write&#x60;
+          # @param organization_service_delete_organization_domain_request [OrganizationServiceDeleteOrganizationDomainRequest] 
+      # @param [Hash] opts the optional parameters
+    # @return [OrganizationServiceDeleteOrganizationDomainResponse]
+    def delete_organization_domain(organization_service_delete_organization_domain_request, opts = {})
+    if @api_client.config.debugging
+    @api_client.config.logger.debug 'Calling API: Api::OrganizationServiceApi.delete_organization_domain ...' # MODIFIED
+    end
+          # verify the required parameter 'organization_service_delete_organization_domain_request' is set
+          if @api_client.config.client_side_validation && organization_service_delete_organization_domain_request.nil?
+          fail ArgumentError, "Missing the required parameter 'organization_service_delete_organization_domain_request' when calling Api::OrganizationServiceApi.delete_organization_domain" # MODIFIED
+          end
+    # resource path
+    local_var_path = '/zitadel.org.v2.OrganizationService/DeleteOrganizationDomain'
+
+    # query parameters
+    query_params = opts[:query_params] || {}
+
+    # header parameters
+    header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
+
+    # form parameters
+    form_params = opts[:form_params] || {}
+
+    # http body (model)
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(organization_service_delete_organization_domain_request)
+
+    # return_type
+    return_type = opts[:debug_return_type] || 'OrganizationServiceDeleteOrganizationDomainResponse'
+
+    # auth_names
+    auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
+
+    new_options = opts.merge(
+    :operation => :"Api::OrganizationServiceApi.delete_organization_domain", # MODIFIED
+    :header_params => header_params,
+    :query_params => query_params,
+    :form_params => form_params,
+    :body => post_body,
+    :auth_names => auth_names,
+    :return_type => return_type
+    )
+
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+    if @api_client.config.debugging
+    @api_client.config.logger.debug "API called: Api::OrganizationServiceApi#delete_organization_domain\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    end
+    return data
+    end
+
+      # Delete Organization Metadata
+      # Delete metadata objects from an organization with a specific key.   Required permission:   - &#x60;org.write&#x60;
+          # @param organization_service_delete_organization_metadata_request [OrganizationServiceDeleteOrganizationMetadataRequest] 
+      # @param [Hash] opts the optional parameters
+    # @return [OrganizationServiceDeleteOrganizationMetadataResponse]
+    def delete_organization_metadata(organization_service_delete_organization_metadata_request, opts = {})
+    if @api_client.config.debugging
+    @api_client.config.logger.debug 'Calling API: Api::OrganizationServiceApi.delete_organization_metadata ...' # MODIFIED
+    end
+          # verify the required parameter 'organization_service_delete_organization_metadata_request' is set
+          if @api_client.config.client_side_validation && organization_service_delete_organization_metadata_request.nil?
+          fail ArgumentError, "Missing the required parameter 'organization_service_delete_organization_metadata_request' when calling Api::OrganizationServiceApi.delete_organization_metadata" # MODIFIED
+          end
+    # resource path
+    local_var_path = '/zitadel.org.v2.OrganizationService/DeleteOrganizationMetadata'
+
+    # query parameters
+    query_params = opts[:query_params] || {}
+
+    # header parameters
+    header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
+
+    # form parameters
+    form_params = opts[:form_params] || {}
+
+    # http body (model)
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(organization_service_delete_organization_metadata_request)
+
+    # return_type
+    return_type = opts[:debug_return_type] || 'OrganizationServiceDeleteOrganizationMetadataResponse'
+
+    # auth_names
+    auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
+
+    new_options = opts.merge(
+    :operation => :"Api::OrganizationServiceApi.delete_organization_metadata", # MODIFIED
+    :header_params => header_params,
+    :query_params => query_params,
+    :form_params => form_params,
+    :body => post_body,
+    :auth_names => auth_names,
+    :return_type => return_type
+    )
+
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+    if @api_client.config.debugging
+    @api_client.config.logger.debug "API called: Api::OrganizationServiceApi#delete_organization_metadata\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    end
+    return data
+    end
+
+      # Generate Organization Domain Validation
+      # Generate a new file to be able to verify your domain with DNS or HTTP challenge.   Required permission:   - &#x60;org.write&#x60;
+          # @param organization_service_generate_organization_domain_validation_request [OrganizationServiceGenerateOrganizationDomainValidationRequest] 
+      # @param [Hash] opts the optional parameters
+    # @return [OrganizationServiceGenerateOrganizationDomainValidationResponse]
+    def generate_organization_domain_validation(organization_service_generate_organization_domain_validation_request, opts = {})
+    if @api_client.config.debugging
+    @api_client.config.logger.debug 'Calling API: Api::OrganizationServiceApi.generate_organization_domain_validation ...' # MODIFIED
+    end
+          # verify the required parameter 'organization_service_generate_organization_domain_validation_request' is set
+          if @api_client.config.client_side_validation && organization_service_generate_organization_domain_validation_request.nil?
+          fail ArgumentError, "Missing the required parameter 'organization_service_generate_organization_domain_validation_request' when calling Api::OrganizationServiceApi.generate_organization_domain_validation" # MODIFIED
+          end
+    # resource path
+    local_var_path = '/zitadel.org.v2.OrganizationService/GenerateOrganizationDomainValidation'
+
+    # query parameters
+    query_params = opts[:query_params] || {}
+
+    # header parameters
+    header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
+
+    # form parameters
+    form_params = opts[:form_params] || {}
+
+    # http body (model)
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(organization_service_generate_organization_domain_validation_request)
+
+    # return_type
+    return_type = opts[:debug_return_type] || 'OrganizationServiceGenerateOrganizationDomainValidationResponse'
+
+    # auth_names
+    auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
+
+    new_options = opts.merge(
+    :operation => :"Api::OrganizationServiceApi.generate_organization_domain_validation", # MODIFIED
+    :header_params => header_params,
+    :query_params => query_params,
+    :form_params => form_params,
+    :body => post_body,
+    :auth_names => auth_names,
+    :return_type => return_type
+    )
+
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+    if @api_client.config.debugging
+    @api_client.config.logger.debug "API called: Api::OrganizationServiceApi#generate_organization_domain_validation\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    end
+    return data
+    end
+
+      # List Organization Domains
+      # Returns the list of registered domains of an organization. The domains are used to identify to which organization a user belongs.   Required permission:   - &#x60;org.read&#x60;
+          # @param organization_service_list_organization_domains_request [OrganizationServiceListOrganizationDomainsRequest] 
+      # @param [Hash] opts the optional parameters
+    # @return [OrganizationServiceListOrganizationDomainsResponse]
+    def list_organization_domains(organization_service_list_organization_domains_request, opts = {})
+    if @api_client.config.debugging
+    @api_client.config.logger.debug 'Calling API: Api::OrganizationServiceApi.list_organization_domains ...' # MODIFIED
+    end
+          # verify the required parameter 'organization_service_list_organization_domains_request' is set
+          if @api_client.config.client_side_validation && organization_service_list_organization_domains_request.nil?
+          fail ArgumentError, "Missing the required parameter 'organization_service_list_organization_domains_request' when calling Api::OrganizationServiceApi.list_organization_domains" # MODIFIED
+          end
+    # resource path
+    local_var_path = '/zitadel.org.v2.OrganizationService/ListOrganizationDomains'
+
+    # query parameters
+    query_params = opts[:query_params] || {}
+
+    # header parameters
+    header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
+
+    # form parameters
+    form_params = opts[:form_params] || {}
+
+    # http body (model)
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(organization_service_list_organization_domains_request)
+
+    # return_type
+    return_type = opts[:debug_return_type] || 'OrganizationServiceListOrganizationDomainsResponse'
+
+    # auth_names
+    auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
+
+    new_options = opts.merge(
+    :operation => :"Api::OrganizationServiceApi.list_organization_domains", # MODIFIED
+    :header_params => header_params,
+    :query_params => query_params,
+    :form_params => form_params,
+    :body => post_body,
+    :auth_names => auth_names,
+    :return_type => return_type
+    )
+
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+    if @api_client.config.debugging
+    @api_client.config.logger.debug "API called: Api::OrganizationServiceApi#list_organization_domains\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    end
+    return data
+    end
+
+      # List Organization Metadata
+      # List metadata of an organization filtered by query.   Required permission:   - &#x60;org.read&#x60;
+          # @param organization_service_list_organization_metadata_request [OrganizationServiceListOrganizationMetadataRequest] 
+      # @param [Hash] opts the optional parameters
+    # @return [OrganizationServiceListOrganizationMetadataResponse]
+    def list_organization_metadata(organization_service_list_organization_metadata_request, opts = {})
+    if @api_client.config.debugging
+    @api_client.config.logger.debug 'Calling API: Api::OrganizationServiceApi.list_organization_metadata ...' # MODIFIED
+    end
+          # verify the required parameter 'organization_service_list_organization_metadata_request' is set
+          if @api_client.config.client_side_validation && organization_service_list_organization_metadata_request.nil?
+          fail ArgumentError, "Missing the required parameter 'organization_service_list_organization_metadata_request' when calling Api::OrganizationServiceApi.list_organization_metadata" # MODIFIED
+          end
+    # resource path
+    local_var_path = '/zitadel.org.v2.OrganizationService/ListOrganizationMetadata'
+
+    # query parameters
+    query_params = opts[:query_params] || {}
+
+    # header parameters
+    header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
+
+    # form parameters
+    form_params = opts[:form_params] || {}
+
+    # http body (model)
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(organization_service_list_organization_metadata_request)
+
+    # return_type
+    return_type = opts[:debug_return_type] || 'OrganizationServiceListOrganizationMetadataResponse'
+
+    # auth_names
+    auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
+
+    new_options = opts.merge(
+    :operation => :"Api::OrganizationServiceApi.list_organization_metadata", # MODIFIED
+    :header_params => header_params,
+    :query_params => query_params,
+    :form_params => form_params,
+    :body => post_body,
+    :auth_names => auth_names,
+    :return_type => return_type
+    )
+
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+    if @api_client.config.debugging
+    @api_client.config.logger.debug "API called: Api::OrganizationServiceApi#list_organization_metadata\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    end
+    return data
+    end
+
+      # List Organizations
+      # Search for Organizations. By default, we will return all organization of the instance that you have permission to read.  Make sure to include a limit and sorting for pagination.   Required permission:   - &#x60;org.read&#x60;
           # @param organization_service_list_organizations_request [OrganizationServiceListOrganizationsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [OrganizationServiceListOrganizationsResponse]
@@ -131,6 +653,180 @@ module Zitadel::Client::Api
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
     @api_client.config.logger.debug "API called: Api::OrganizationServiceApi#list_organizations\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    end
+    return data
+    end
+
+      # Set Organization Metadata
+      # Adds or updates a metadata value for the requested key. Make sure the value is base64 encoded.   Required permission:   - &#x60;org.write&#x60;
+          # @param organization_service_set_organization_metadata_request [OrganizationServiceSetOrganizationMetadataRequest] 
+      # @param [Hash] opts the optional parameters
+    # @return [OrganizationServiceSetOrganizationMetadataResponse]
+    def set_organization_metadata(organization_service_set_organization_metadata_request, opts = {})
+    if @api_client.config.debugging
+    @api_client.config.logger.debug 'Calling API: Api::OrganizationServiceApi.set_organization_metadata ...' # MODIFIED
+    end
+          # verify the required parameter 'organization_service_set_organization_metadata_request' is set
+          if @api_client.config.client_side_validation && organization_service_set_organization_metadata_request.nil?
+          fail ArgumentError, "Missing the required parameter 'organization_service_set_organization_metadata_request' when calling Api::OrganizationServiceApi.set_organization_metadata" # MODIFIED
+          end
+    # resource path
+    local_var_path = '/zitadel.org.v2.OrganizationService/SetOrganizationMetadata'
+
+    # query parameters
+    query_params = opts[:query_params] || {}
+
+    # header parameters
+    header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
+
+    # form parameters
+    form_params = opts[:form_params] || {}
+
+    # http body (model)
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(organization_service_set_organization_metadata_request)
+
+    # return_type
+    return_type = opts[:debug_return_type] || 'OrganizationServiceSetOrganizationMetadataResponse'
+
+    # auth_names
+    auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
+
+    new_options = opts.merge(
+    :operation => :"Api::OrganizationServiceApi.set_organization_metadata", # MODIFIED
+    :header_params => header_params,
+    :query_params => query_params,
+    :form_params => form_params,
+    :body => post_body,
+    :auth_names => auth_names,
+    :return_type => return_type
+    )
+
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+    if @api_client.config.debugging
+    @api_client.config.logger.debug "API called: Api::OrganizationServiceApi#set_organization_metadata\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    end
+    return data
+    end
+
+      # Update Organization
+      # Change the name of the organization.   Required permission:   - &#x60;org.write&#x60;
+          # @param organization_service_update_organization_request [OrganizationServiceUpdateOrganizationRequest] 
+      # @param [Hash] opts the optional parameters
+    # @return [OrganizationServiceUpdateOrganizationResponse]
+    def update_organization(organization_service_update_organization_request, opts = {})
+    if @api_client.config.debugging
+    @api_client.config.logger.debug 'Calling API: Api::OrganizationServiceApi.update_organization ...' # MODIFIED
+    end
+          # verify the required parameter 'organization_service_update_organization_request' is set
+          if @api_client.config.client_side_validation && organization_service_update_organization_request.nil?
+          fail ArgumentError, "Missing the required parameter 'organization_service_update_organization_request' when calling Api::OrganizationServiceApi.update_organization" # MODIFIED
+          end
+    # resource path
+    local_var_path = '/zitadel.org.v2.OrganizationService/UpdateOrganization'
+
+    # query parameters
+    query_params = opts[:query_params] || {}
+
+    # header parameters
+    header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
+
+    # form parameters
+    form_params = opts[:form_params] || {}
+
+    # http body (model)
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(organization_service_update_organization_request)
+
+    # return_type
+    return_type = opts[:debug_return_type] || 'OrganizationServiceUpdateOrganizationResponse'
+
+    # auth_names
+    auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
+
+    new_options = opts.merge(
+    :operation => :"Api::OrganizationServiceApi.update_organization", # MODIFIED
+    :header_params => header_params,
+    :query_params => query_params,
+    :form_params => form_params,
+    :body => post_body,
+    :auth_names => auth_names,
+    :return_type => return_type
+    )
+
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+    if @api_client.config.debugging
+    @api_client.config.logger.debug "API called: Api::OrganizationServiceApi#update_organization\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    end
+    return data
+    end
+
+      # Verify Organization Domain
+      # Make sure you have added the required verification to your domain, depending on the method you have chosen (HTTP or DNS challenge). ZITADEL will check it and set the domain as verified if it was successful. A verify domain has to be unique.   Required permission:   - &#x60;org.write&#x60;
+          # @param organization_service_verify_organization_domain_request [OrganizationServiceVerifyOrganizationDomainRequest] 
+      # @param [Hash] opts the optional parameters
+    # @return [OrganizationServiceVerifyOrganizationDomainResponse]
+    def verify_organization_domain(organization_service_verify_organization_domain_request, opts = {})
+    if @api_client.config.debugging
+    @api_client.config.logger.debug 'Calling API: Api::OrganizationServiceApi.verify_organization_domain ...' # MODIFIED
+    end
+          # verify the required parameter 'organization_service_verify_organization_domain_request' is set
+          if @api_client.config.client_side_validation && organization_service_verify_organization_domain_request.nil?
+          fail ArgumentError, "Missing the required parameter 'organization_service_verify_organization_domain_request' when calling Api::OrganizationServiceApi.verify_organization_domain" # MODIFIED
+          end
+    # resource path
+    local_var_path = '/zitadel.org.v2.OrganizationService/VerifyOrganizationDomain'
+
+    # query parameters
+    query_params = opts[:query_params] || {}
+
+    # header parameters
+    header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
+
+    # form parameters
+    form_params = opts[:form_params] || {}
+
+    # http body (model)
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(organization_service_verify_organization_domain_request)
+
+    # return_type
+    return_type = opts[:debug_return_type] || 'OrganizationServiceVerifyOrganizationDomainResponse'
+
+    # auth_names
+    auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
+
+    new_options = opts.merge(
+    :operation => :"Api::OrganizationServiceApi.verify_organization_domain", # MODIFIED
+    :header_params => header_params,
+    :query_params => query_params,
+    :form_params => form_params,
+    :body => post_body,
+    :auth_names => auth_names,
+    :return_type => return_type
+    )
+
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+    if @api_client.config.debugging
+    @api_client.config.logger.debug "API called: Api::OrganizationServiceApi#verify_organization_domain\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data
     end

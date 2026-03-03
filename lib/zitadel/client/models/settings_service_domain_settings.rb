@@ -15,10 +15,13 @@ require 'time'
 
 module Zitadel::Client::Models
         class SettingsServiceDomainSettings
+    # If enabled, the login name will automatically be suffixed with the domain of the organization.  This ensures that the login name is unique across the instance.
     attr_accessor :login_name_includes_domain
 
+    # If enabled, organization domains must be verified (through an DNS or HTTP challenge) upon creation.  If disabled, organization domains will be created as already verified automatically.
     attr_accessor :require_org_domain_verification
 
+    # If enabled, the SMTP sender address domain must match custom domain on the instance.
     attr_accessor :smtp_sender_address_matches_instance_domain
 
     attr_accessor :resource_owner_type

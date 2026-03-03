@@ -15,8 +15,10 @@ require 'time'
 
 module Zitadel::Client::Models
         class SessionServiceCheckIDPIntent
+    # The ID of the idp intent, previously returned on the success response of the IDP callback.
     attr_accessor :idp_intent_id
 
+    # The token of the idp intent, previously returned on the success response of the IDP callback.
     attr_accessor :idp_intent_token
 
     # Attribute mapping from ruby-style variable name to JSON key.

@@ -15,6 +15,7 @@ require 'time'
 
 module Zitadel::Client::Models
         class SessionServiceOTPSMS
+    # Request the code to be returned instead of sending an SMS.  This is useful for testing or in case you want to send the code yourself.
     attr_accessor :return_code
 
     # Attribute mapping from ruby-style variable name to JSON key.

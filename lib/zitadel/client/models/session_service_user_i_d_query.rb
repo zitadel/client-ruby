@@ -15,6 +15,7 @@ require 'time'
 
 module Zitadel::Client::Models
         class SessionServiceUserIDQuery
+    # ID of the user whose sessions are being searched for.
     attr_accessor :id
 
     # Attribute mapping from ruby-style variable name to JSON key.

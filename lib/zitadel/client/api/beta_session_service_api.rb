@@ -20,7 +20,7 @@ module Zitadel::Client::Api
   @api_client = api_client
   end
       # Create a new session
-      # Create a new session
+      # Deprecated: please move to the corresponding endpoint under session service v2. This endpoint will be removed with the next major version of ZITADEL.
           # @param beta_session_service_create_session_request [BetaSessionServiceCreateSessionRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaSessionServiceCreateSessionResponse]
@@ -78,7 +78,7 @@ module Zitadel::Client::Api
     end
 
       # Terminate a session
-      # Terminate a session
+      # Deprecated: please move to the corresponding endpoint under session service v2. This endpoint will be removed with the next major version of ZITADEL.
           # @param beta_session_service_delete_session_request [BetaSessionServiceDeleteSessionRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaSessionServiceDeleteSessionResponse]
@@ -136,7 +136,7 @@ module Zitadel::Client::Api
     end
 
       # GetSession a session
-      # GetSession a session
+      # Deprecated: please move to the corresponding endpoint under session service v2. This endpoint will be removed with the next major version of ZITADEL.
           # @param beta_session_service_get_session_request [BetaSessionServiceGetSessionRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaSessionServiceGetSessionResponse]
@@ -194,7 +194,7 @@ module Zitadel::Client::Api
     end
 
       # Search sessions
-      # Search sessions
+      # Deprecated: please move to the corresponding endpoint under session service v2. This endpoint will be removed with the next major version of ZITADEL.
           # @param beta_session_service_list_sessions_request [BetaSessionServiceListSessionsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaSessionServiceListSessionsResponse]
@@ -252,7 +252,7 @@ module Zitadel::Client::Api
     end
 
       # Update a session
-      # Update a session
+      # Deprecated: please move to the corresponding endpoint under session service v2. This endpoint will be removed with the next major version of ZITADEL.
           # @param beta_session_service_set_session_request [BetaSessionServiceSetSessionRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaSessionServiceSetSessionResponse]

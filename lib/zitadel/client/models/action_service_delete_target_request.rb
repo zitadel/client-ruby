@@ -15,6 +15,7 @@ require 'time'
 
 module Zitadel::Client::Models
         class ActionServiceDeleteTargetRequest
+    # The unique identifier of the target to delete.
     attr_accessor :id
 
     # Attribute mapping from ruby-style variable name to JSON key.

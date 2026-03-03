@@ -19,7 +19,8 @@ module Zitadel::Client::Api
   def initialize(api_client = ApiClient.default)
   @api_client = api_client
   end
-      # CreateResponse
+      # Create Response
+      # Finalize a SAML Request and get the response definition for success or failure.  The response must be handled as per the SAML definition to inform the application about the success or failure.  On success, the response contains details for the application to obtain the SAMLResponse.  This method can only be called once for an SAML request.   Required permissions:    - &#x60;session.link&#x60;
           # @param saml_service_create_response_request [SAMLServiceCreateResponseRequest] 
       # @param [Hash] opts the optional parameters
     # @return [SAMLServiceCreateResponseResponse]
@@ -76,7 +77,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetSAMLRequest
+      # Get SAML Request
+      # Get SAML Request details by ID. Returns details that are parsed from the application&#39;s SAML Request.   Required permissions:    - &#x60;session.read&#x60;
           # @param saml_service_get_saml_request_request [SAMLServiceGetSAMLRequestRequest] 
       # @param [Hash] opts the optional parameters
     # @return [SAMLServiceGetSAMLRequestResponse]

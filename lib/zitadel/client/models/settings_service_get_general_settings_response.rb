@@ -15,18 +15,29 @@ require 'time'
 
 module Zitadel::Client::Models
         class SettingsServiceGetGeneralSettingsResponse
+    # The unique identifier of the default organization.  The default organization is used to assign new users to an organization if no other organization is specified.  Deprecated: use default_organization_id instead.
     attr_accessor :default_org_id
 
+    # The default language is use if no other language is specified or detected.  The format is a BCP 47 language tag (e.g. \"en\", \"de\", \"fr-CH\").
     attr_accessor :default_language
 
+    # The list of supported languages.  Note that the instance might restrict the languages further  only allowing a subset of these languages to be used.  The format is a BCP 47 language tag (e.g. \"en\", \"de\", \"fr-CH\").
     attr_accessor :supported_languages
+
+    # The unique identifier of the default organization.  The default organization is used to assign new users to an organization if no other organization is specified.
+    attr_accessor :default_organization_id
+
+    # The list of allowed languages for the instance.  This is a subset of the supported languages to be used in the instance  e.g. for user selection during registration or language detection in the UI.  The format is a BCP 47 language tag (e.g. \"en\", \"de\", \"fr-CH\").
+    attr_accessor :allowed_languages
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'default_org_id' => :'defaultOrgId',
         :'default_language' => :'defaultLanguage',
-        :'supported_languages' => :'supportedLanguages'
+        :'supported_languages' => :'supportedLanguages',
+        :'default_organization_id' => :'defaultOrganizationId',
+        :'allowed_languages' => :'allowedLanguages'
       }
     end
 
@@ -45,7 +56,9 @@ module Zitadel::Client::Models
       {
         :'default_org_id' => :'String',
         :'default_language' => :'String',
-        :'supported_languages' => :'Array<String>'
+        :'supported_languages' => :'Array<String>',
+        :'default_organization_id' => :'String',
+        :'allowed_languages' => :'Array<String>'
       }
     end
 
@@ -86,6 +99,16 @@ module Zitadel::Client::Models
           self.supported_languages = value
         end
       end
+
+      if attributes.key?(:'default_organization_id')
+        self.default_organization_id = attributes[:'default_organization_id']
+      end
+
+      if attributes.key?(:'allowed_languages')
+        if (value = attributes[:'allowed_languages']).is_a?(Array)
+          self.allowed_languages = value
+        end
+      end
     end
 
     # Checks equality by comparing each attribute.
@@ -95,7 +118,9 @@ module Zitadel::Client::Models
       self.class == o.class &&
           default_org_id == o.default_org_id &&
           default_language == o.default_language &&
-          supported_languages == o.supported_languages
+          supported_languages == o.supported_languages &&
+          default_organization_id == o.default_organization_id &&
+          allowed_languages == o.allowed_languages
     end
 
     # @see the `==` method
@@ -107,7 +132,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [default_org_id, default_language, supported_languages].hash
+      [default_org_id, default_language, supported_languages, default_organization_id, allowed_languages].hash
     end
 
 # Builds the object from hash

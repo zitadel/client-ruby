@@ -15,8 +15,10 @@ require 'time'
 
 module Zitadel::Client::Models
         class OIDCServiceSession
+    # ID of the session, used to login the user. Connects the session to the Auth Request.
     attr_accessor :session_id
 
+    # Token of the session used to login the user. This token verifies that the session is valid.
     attr_accessor :session_token
 
     # Attribute mapping from ruby-style variable name to JSON key.

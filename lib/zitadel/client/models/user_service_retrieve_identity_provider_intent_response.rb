@@ -23,13 +23,16 @@ module Zitadel::Client::Models
 
     attr_accessor :add_human_user
 
+    attr_accessor :update_human_user
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'details' => :'details',
         :'idp_information' => :'idpInformation',
         :'user_id' => :'userId',
-        :'add_human_user' => :'addHumanUser'
+        :'add_human_user' => :'addHumanUser',
+        :'update_human_user' => :'updateHumanUser'
       }
     end
 
@@ -49,7 +52,8 @@ module Zitadel::Client::Models
         :'details' => :'UserServiceDetails',
         :'idp_information' => :'UserServiceIDPInformation',
         :'user_id' => :'String',
-        :'add_human_user' => :'UserServiceAddHumanUserRequest'
+        :'add_human_user' => :'UserServiceAddHumanUserRequest',
+        :'update_human_user' => :'UserServiceUpdateHumanUserRequest'
       }
     end
 
@@ -92,6 +96,10 @@ module Zitadel::Client::Models
       if attributes.key?(:'add_human_user')
         self.add_human_user = attributes[:'add_human_user']
       end
+
+      if attributes.key?(:'update_human_user')
+        self.update_human_user = attributes[:'update_human_user']
+      end
     end
 
     # Checks equality by comparing each attribute.
@@ -102,7 +110,8 @@ module Zitadel::Client::Models
           details == o.details &&
           idp_information == o.idp_information &&
           user_id == o.user_id &&
-          add_human_user == o.add_human_user
+          add_human_user == o.add_human_user &&
+          update_human_user == o.update_human_user
     end
 
     # @see the `==` method
@@ -114,7 +123,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [details, idp_information, user_id, add_human_user].hash
+      [details, idp_information, user_id, add_human_user, update_human_user].hash
     end
 
 # Builds the object from hash

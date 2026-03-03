@@ -17,6 +17,8 @@ module Zitadel::Client::Models
         class BetaAuthorizationServiceAuthorizationsSearchFilter
     attr_accessor :authorization_ids
 
+    attr_accessor :in_user_ids
+
     attr_accessor :organization_id
 
     attr_accessor :project_grant_id
@@ -41,6 +43,7 @@ module Zitadel::Client::Models
     def self.attribute_map
       {
         :'authorization_ids' => :'authorizationIds',
+        :'in_user_ids' => :'inUserIds',
         :'organization_id' => :'organizationId',
         :'project_grant_id' => :'projectGrantId',
         :'project_id' => :'projectId',
@@ -68,6 +71,7 @@ module Zitadel::Client::Models
     def self.openapi_types
       {
         :'authorization_ids' => :'BetaAuthorizationServiceInIDsFilter',
+        :'in_user_ids' => :'BetaAuthorizationServiceInIDsFilter',
         :'organization_id' => :'BetaAuthorizationServiceIDFilter',
         :'project_grant_id' => :'BetaAuthorizationServiceIDFilter',
         :'project_id' => :'BetaAuthorizationServiceIDFilter',
@@ -107,6 +111,10 @@ module Zitadel::Client::Models
 
       if attributes.key?(:'authorization_ids')
         self.authorization_ids = attributes[:'authorization_ids']
+      end
+
+      if attributes.key?(:'in_user_ids')
+        self.in_user_ids = attributes[:'in_user_ids']
       end
 
       if attributes.key?(:'organization_id')
@@ -156,6 +164,7 @@ module Zitadel::Client::Models
       return true if self.equal?(o)
       self.class == o.class &&
           authorization_ids == o.authorization_ids &&
+          in_user_ids == o.in_user_ids &&
           organization_id == o.organization_id &&
           project_grant_id == o.project_grant_id &&
           project_id == o.project_id &&
@@ -177,7 +186,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [authorization_ids, organization_id, project_grant_id, project_id, project_name, role_key, state, user_display_name, user_id, user_organization_id, user_preferred_login_name].hash
+      [authorization_ids, in_user_ids, organization_id, project_grant_id, project_id, project_name, role_key, state, user_display_name, user_id, user_organization_id, user_preferred_login_name].hash
     end
 
 # Builds the object from hash

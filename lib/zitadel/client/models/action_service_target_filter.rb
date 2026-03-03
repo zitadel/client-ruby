@@ -15,7 +15,7 @@ require 'time'
 
 module Zitadel::Client::Models
         class ActionServiceTargetFilter
-    # Defines the id to query for.
+    # Defines the id of the target that needs to be part of the execution.
     attr_accessor :target_id
 
     # Attribute mapping from ruby-style variable name to JSON key.

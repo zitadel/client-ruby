@@ -15,20 +15,27 @@ require 'time'
 
 module Zitadel::Client::Models
         class SettingsServiceLegalAndSupportSettings
+    # Link to the Terms of Service. Can be a relative or absolute URL.
     attr_accessor :tos_link
 
+    # Link to the Privacy Policy. Can be a relative or absolute URL.
     attr_accessor :privacy_policy_link
 
+    # Link to a help page. Can be a relative or absolute URL.
     attr_accessor :help_link
 
+    # Email address for support issues.
     attr_accessor :support_email
 
     attr_accessor :resource_owner_type
 
+    # Link to documentation to be shown in the console.
     attr_accessor :docs_link
 
+    # Link to an external resource that will be available to users in the console.
     attr_accessor :custom_link
 
+    # The button text that would be shown in console pointing to custom link.
     attr_accessor :custom_link_text
 
     class EnumAttributeValidator

@@ -20,7 +20,7 @@ module Zitadel::Client::Api
   @api_client = api_client
   end
       # Create Target
-      # Create a new target to your endpoint, which can be used in executions.   Required permission:    - &#x60;action.target.write&#x60;   Required feature flag:    - &#x60;actions&#x60;
+      # Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   Create a new target to your endpoint, which can be used in executions.   Required permission:    - &#x60;action.target.write&#x60;
           # @param beta_action_service_create_target_request [BetaActionServiceCreateTargetRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaActionServiceCreateTargetResponse]
@@ -78,7 +78,7 @@ module Zitadel::Client::Api
     end
 
       # Delete Target
-      # Delete an existing target. This will remove it from any configured execution as well.  In case the target is not found, the request will return a successful response as  the desired state is already achieved.   Required permission:    - &#x60;action.target.delete&#x60;   Required feature flag:    - &#x60;actions&#x60;
+      # Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   Delete an existing target. This will remove it from any configured execution as well.  In case the target is not found, the request will return a successful response as  the desired state is already achieved.   Required permission:    - &#x60;action.target.delete&#x60;
           # @param beta_action_service_delete_target_request [BetaActionServiceDeleteTargetRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaActionServiceDeleteTargetResponse]
@@ -136,7 +136,7 @@ module Zitadel::Client::Api
     end
 
       # Get Target
-      # Returns the target identified by the requested ID.   Required permission:    - &#x60;action.target.read&#x60;   Required feature flag:    - &#x60;actions&#x60;
+      # Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   Returns the target identified by the requested ID.   Required permission:    - &#x60;action.target.read&#x60;
           # @param beta_action_service_get_target_request [BetaActionServiceGetTargetRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaActionServiceGetTargetResponse]
@@ -194,7 +194,7 @@ module Zitadel::Client::Api
     end
 
       # List Execution Functions
-      # List all available functions which can be used as condition for executions.
+      # Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   List all available functions which can be used as condition for executions.
           # @param body [Object] 
       # @param [Hash] opts the optional parameters
     # @return [BetaActionServiceListExecutionFunctionsResponse]
@@ -252,7 +252,7 @@ module Zitadel::Client::Api
     end
 
       # List Execution Methods
-      # List all available methods which can be used as condition for executions.
+      # Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   List all available methods which can be used as condition for executions.
           # @param body [Object] 
       # @param [Hash] opts the optional parameters
     # @return [BetaActionServiceListExecutionMethodsResponse]
@@ -310,7 +310,7 @@ module Zitadel::Client::Api
     end
 
       # List Execution Services
-      # List all available services which can be used as condition for executions.
+      # Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   List all available services which can be used as condition for executions.
           # @param body [Object] 
       # @param [Hash] opts the optional parameters
     # @return [BetaActionServiceListExecutionServicesResponse]
@@ -368,7 +368,7 @@ module Zitadel::Client::Api
     end
 
       # List Executions
-      # List all matching executions. By default all executions of the instance are returned that have at least one execution target.  Make sure to include a limit and sorting for pagination.   Required permission:    - &#x60;action.execution.read&#x60;   Required feature flag:    - &#x60;actions&#x60;
+      # Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   List all matching executions. By default all executions of the instance are returned that have at least one execution target.  Make sure to include a limit and sorting for pagination.   Required permission:    - &#x60;action.execution.read&#x60;
           # @param beta_action_service_list_executions_request [BetaActionServiceListExecutionsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaActionServiceListExecutionsResponse]
@@ -426,7 +426,7 @@ module Zitadel::Client::Api
     end
 
       # List targets
-      # List all matching targets. By default all targets of the instance are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - &#x60;action.target.read&#x60;   Required feature flag:    - &#x60;actions&#x60;
+      # Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   List all matching targets. By default all targets of the instance are returned.  Make sure to include a limit and sorting for pagination.   Required permission:    - &#x60;action.target.read&#x60;
           # @param beta_action_service_list_targets_request [BetaActionServiceListTargetsRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaActionServiceListTargetsResponse]
@@ -484,7 +484,7 @@ module Zitadel::Client::Api
     end
 
       # Set Execution
-      # Sets an execution to call a target or include the targets of another execution.  Setting an empty list of targets will remove all targets from the execution, making it a noop.   Required permission:    - &#x60;action.execution.write&#x60;   Required feature flag:    - &#x60;actions&#x60;
+      # Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   Sets an execution to call a target or include the targets of another execution.  Setting an empty list of targets will remove all targets from the execution, making it a noop.   Required permission:    - &#x60;action.execution.write&#x60;
           # @param beta_action_service_set_execution_request [BetaActionServiceSetExecutionRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaActionServiceSetExecutionResponse]
@@ -542,7 +542,7 @@ module Zitadel::Client::Api
     end
 
       # Update Target
-      # Update an existing target.  To generate a new signing key set the optional expirationSigningKey.   Required permission:    - &#x60;action.target.write&#x60;   Required feature flag:    - &#x60;actions&#x60;
+      # Deprecated: please move to the corresponding endpoint under action service v2. This endpoint will be removed with the next major version of ZITADEL.   Update an existing target.  To generate a new signing key set the optional expirationSigningKey.   Required permission:    - &#x60;action.target.write&#x60;
           # @param beta_action_service_update_target_request [BetaActionServiceUpdateTargetRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaActionServiceUpdateTargetResponse]

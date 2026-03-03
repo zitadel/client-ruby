@@ -17,6 +17,7 @@ module Zitadel::Client::Models
         class SessionServiceListSessionsRequest
     attr_accessor :query
 
+    # The criteria to be used when searching for sessions.  Multiple queries will be combined with a logical AND.
     attr_accessor :queries
 
     attr_accessor :sorting_column

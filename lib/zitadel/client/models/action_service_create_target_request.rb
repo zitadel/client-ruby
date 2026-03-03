@@ -20,7 +20,10 @@ module Zitadel::Client::Models
     # A Duration represents a signed, fixed-length span of time represented  as a count of seconds and fractions of seconds at nanosecond  resolution. It is independent of any calendar and concepts like \"day\"  or \"month\". It is related to Timestamp in that the difference between  two Timestamp values is a Duration and it can be added or subtracted  from a Timestamp. Range is approximately +-10,000 years.   # Examples   Example 1: Compute Duration from two Timestamps in pseudo code.       Timestamp start = ...;      Timestamp end = ...;      Duration duration = ...;       duration.seconds = end.seconds - start.seconds;      duration.nanos = end.nanos - start.nanos;       if (duration.seconds < 0 && duration.nanos > 0) {        duration.seconds += 1;        duration.nanos -= 1000000000;      } else if (duration.seconds > 0 && duration.nanos < 0) {        duration.seconds -= 1;        duration.nanos += 1000000000;      }   Example 2: Compute Timestamp from Timestamp + Duration in pseudo code.       Timestamp start = ...;      Duration duration = ...;      Timestamp end = ...;       end.seconds = start.seconds + duration.seconds;      end.nanos = start.nanos + duration.nanos;       if (end.nanos < 0) {        end.seconds -= 1;        end.nanos += 1000000000;      } else if (end.nanos >= 1000000000) {        end.seconds += 1;        end.nanos -= 1000000000;      }   Example 3: Compute Duration from datetime.timedelta in Python.       td = datetime.timedelta(days=3, minutes=10)      duration = Duration()      duration.FromTimedelta(td)   # JSON Mapping   In JSON format, the Duration type is encoded as a string rather than an  object, where the string ends in the suffix \"s\" (indicating seconds) and  is preceded by the number of seconds, with nanoseconds expressed as  fractional seconds. For example, 3 seconds with 0 nanoseconds should be  encoded in JSON format as \"3s\", while 3 seconds and 1 nanosecond should  be expressed in JSON format as \"3.000000001s\", and 3 seconds and 1  microsecond should be expressed in JSON format as \"3.000001s\".
     attr_accessor :timeout
 
+    # The URL of the endpoint to call.
     attr_accessor :endpoint
+
+    attr_accessor :payload_type
 
     attr_accessor :rest_async
 
@@ -28,12 +31,35 @@ module Zitadel::Client::Models
 
     attr_accessor :rest_webhook
 
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'name' => :'name',
         :'timeout' => :'timeout',
         :'endpoint' => :'endpoint',
+        :'payload_type' => :'payloadType',
         :'rest_async' => :'restAsync',
         :'rest_call' => :'restCall',
         :'rest_webhook' => :'restWebhook'
@@ -56,6 +82,7 @@ module Zitadel::Client::Models
         :'name' => :'String',
         :'timeout' => :'String',
         :'endpoint' => :'String',
+        :'payload_type' => :'ActionServicePayloadType',
         :'rest_async' => :'Object',
         :'rest_call' => :'ActionServiceRESTCall',
         :'rest_webhook' => :'ActionServiceRESTWebhook'
@@ -98,6 +125,10 @@ module Zitadel::Client::Models
         self.endpoint = attributes[:'endpoint']
       end
 
+      if attributes.key?(:'payload_type')
+        self.payload_type = attributes[:'payload_type']
+      end
+
       if attributes.key?(:'rest_async')
         self.rest_async = attributes[:'rest_async']
       end
@@ -119,6 +150,7 @@ module Zitadel::Client::Models
           name == o.name &&
           timeout == o.timeout &&
           endpoint == o.endpoint &&
+          payload_type == o.payload_type &&
           rest_async == o.rest_async &&
           rest_call == o.rest_call &&
           rest_webhook == o.rest_webhook
@@ -133,7 +165,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [name, timeout, endpoint, rest_async, rest_call, rest_webhook].hash
+      [name, timeout, endpoint, payload_type, rest_async, rest_call, rest_webhook].hash
     end
 
 # Builds the object from hash

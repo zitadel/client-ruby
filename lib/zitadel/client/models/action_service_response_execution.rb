@@ -15,13 +15,13 @@ require 'time'
 
 module Zitadel::Client::Models
         class ActionServiceResponseExecution
-    # All calls to any available services and methods as condition.
+    # Define all calls as condition.  Before a response is returned to the client from any available service,  the execution is triggered.
     attr_accessor :all
 
-    # GRPC-method as condition.
+    # Define a GRPC-method as condition.  Before a response is returned to the client from this method, the execution is triggered.
     attr_accessor :method
 
-    # GRPC-service as condition.
+    # Define a GRPC-service as condition.  Before a response is returned to the client from any method of this service, the execution is triggered.
     attr_accessor :service
 
     # Attribute mapping from ruby-style variable name to JSON key.

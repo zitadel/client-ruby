@@ -15,11 +15,16 @@ require 'time'
 
 module Zitadel::Client::Models
         class OrganizationServiceAddOrganizationRequest
+    # Name is the unique name of the organization to be created.  This must be unique across the instance.
     attr_accessor :name
 
+    # Specify users to be assigned as organization admins.  If no users are specified here, the organization will be created without any admin users.  The organization can still be managed by any instance administrator.  If no roles are specified for a user, they will be assigned the role ORG_OWNER.
     attr_accessor :admins
 
-    # optionally set your own id unique for the organization.
+    # OrganizationID is the unique identifier of the organization. This field is optional.  If omitted, the system will generate one,  which is the recommended way. The generated ID will be returned in the response.
+    attr_accessor :organization_id
+
+    # Optionally, set a unique id for the organization. If omitted, the system will generate one,  which is the recommended way. The generated ID will be returned in the response.   Deprecated: use 'organization_id' field instead.  If both org_id and organization_id are set, organization_id will take precedence.
     attr_accessor :org_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -27,6 +32,7 @@ module Zitadel::Client::Models
       {
         :'name' => :'name',
         :'admins' => :'admins',
+        :'organization_id' => :'organizationId',
         :'org_id' => :'orgId'
       }
     end
@@ -46,6 +52,7 @@ module Zitadel::Client::Models
       {
         :'name' => :'String',
         :'admins' => :'Array<OrganizationServiceAdmin>',
+        :'organization_id' => :'String',
         :'org_id' => :'String'
       }
     end
@@ -53,6 +60,7 @@ module Zitadel::Client::Models
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'organization_id',
         :'org_id'
       ])
     end
@@ -85,6 +93,10 @@ module Zitadel::Client::Models
         end
       end
 
+      if attributes.key?(:'organization_id')
+        self.organization_id = attributes[:'organization_id']
+      end
+
       if attributes.key?(:'org_id')
         self.org_id = attributes[:'org_id']
       end
@@ -97,6 +109,7 @@ module Zitadel::Client::Models
       self.class == o.class &&
           name == o.name &&
           admins == o.admins &&
+          organization_id == o.organization_id &&
           org_id == o.org_id
     end
 
@@ -109,7 +122,7 @@ module Zitadel::Client::Models
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [name, admins, org_id].hash
+      [name, admins, organization_id, org_id].hash
     end
 
 # Builds the object from hash

@@ -15,6 +15,7 @@ require 'time'
 
 module Zitadel::Client::Models
         class SessionServiceCheckOTP
+    # The One-Time Password sent over SMS or Email of the user to be checked.
     attr_accessor :code
 
     # Attribute mapping from ruby-style variable name to JSON key.

@@ -15,6 +15,7 @@ require 'time'
 
 module Zitadel::Client::Models
         class SessionServiceCheckPassword
+    # The password of the user to be checked.
     attr_accessor :password
 
     # Attribute mapping from ruby-style variable name to JSON key.

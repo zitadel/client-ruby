@@ -15,6 +15,7 @@ require 'time'
 
 module Zitadel::Client::Models
         class OIDCServiceGetAuthRequestRequest
+    # The ID of the Auth Request, as obtained from the redirect URL.
     attr_accessor :auth_request_id
 
     # Attribute mapping from ruby-style variable name to JSON key.

@@ -773,6 +773,64 @@ module Zitadel::Client::Api
     return data
     end
 
+      # Generate single-use recovery codes for a user
+      # Generate new single-use recovery codes for the authenticated user. Recovery codes can be used to recover access to the account if other second factors are not available.
+          # @param user_service_generate_recovery_codes_request [UserServiceGenerateRecoveryCodesRequest] 
+      # @param [Hash] opts the optional parameters
+    # @return [UserServiceGenerateRecoveryCodesResponse]
+    def generate_recovery_codes(user_service_generate_recovery_codes_request, opts = {})
+    if @api_client.config.debugging
+    @api_client.config.logger.debug 'Calling API: Api::UserServiceApi.generate_recovery_codes ...' # MODIFIED
+    end
+          # verify the required parameter 'user_service_generate_recovery_codes_request' is set
+          if @api_client.config.client_side_validation && user_service_generate_recovery_codes_request.nil?
+          fail ArgumentError, "Missing the required parameter 'user_service_generate_recovery_codes_request' when calling Api::UserServiceApi.generate_recovery_codes" # MODIFIED
+          end
+    # resource path
+    local_var_path = '/zitadel.user.v2.UserService/GenerateRecoveryCodes'
+
+    # query parameters
+    query_params = opts[:query_params] || {}
+
+    # header parameters
+    header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
+
+    # form parameters
+    form_params = opts[:form_params] || {}
+
+    # http body (model)
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(user_service_generate_recovery_codes_request)
+
+    # return_type
+    return_type = opts[:debug_return_type] || 'UserServiceGenerateRecoveryCodesResponse'
+
+    # auth_names
+    auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
+
+    new_options = opts.merge(
+    :operation => :"Api::UserServiceApi.generate_recovery_codes", # MODIFIED
+    :header_params => header_params,
+    :query_params => query_params,
+    :form_params => form_params,
+    :body => post_body,
+    :auth_names => auth_names,
+    :return_type => return_type
+    )
+
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+    if @api_client.config.debugging
+    @api_client.config.logger.debug "API called: Api::UserServiceApi#generate_recovery_codes\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    end
+    return data
+    end
+
       # User by ID
       # Returns the full user object (human or machine) including the profile, email, etc..
           # @param user_service_get_user_by_id_request [UserServiceGetUserByIDRequest] 
@@ -2102,6 +2160,64 @@ module Zitadel::Client::Api
     data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
     if @api_client.config.debugging
     @api_client.config.logger.debug "API called: Api::UserServiceApi#remove_phone\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
+    end
+    return data
+    end
+
+      # Remove recovery codes from a user
+      # Remove all recovery codes from the authenticated user. This will disable the recovery code second factor.
+          # @param user_service_remove_recovery_codes_request [UserServiceRemoveRecoveryCodesRequest] 
+      # @param [Hash] opts the optional parameters
+    # @return [UserServiceRemoveRecoveryCodesResponse]
+    def remove_recovery_codes(user_service_remove_recovery_codes_request, opts = {})
+    if @api_client.config.debugging
+    @api_client.config.logger.debug 'Calling API: Api::UserServiceApi.remove_recovery_codes ...' # MODIFIED
+    end
+          # verify the required parameter 'user_service_remove_recovery_codes_request' is set
+          if @api_client.config.client_side_validation && user_service_remove_recovery_codes_request.nil?
+          fail ArgumentError, "Missing the required parameter 'user_service_remove_recovery_codes_request' when calling Api::UserServiceApi.remove_recovery_codes" # MODIFIED
+          end
+    # resource path
+    local_var_path = '/zitadel.user.v2.UserService/RemoveRecoveryCodes'
+
+    # query parameters
+    query_params = opts[:query_params] || {}
+
+    # header parameters
+    header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+      header_params['Content-Type'] = content_type
+      end
+
+    # form parameters
+    form_params = opts[:form_params] || {}
+
+    # http body (model)
+    post_body = opts[:debug_body] || @api_client.object_to_http_body(user_service_remove_recovery_codes_request)
+
+    # return_type
+    return_type = opts[:debug_return_type] || 'UserServiceRemoveRecoveryCodesResponse'
+
+    # auth_names
+    auth_names = opts[:debug_auth_names] || ['zitadelAccessToken']
+
+    new_options = opts.merge(
+    :operation => :"Api::UserServiceApi.remove_recovery_codes", # MODIFIED
+    :header_params => header_params,
+    :query_params => query_params,
+    :form_params => form_params,
+    :body => post_body,
+    :auth_names => auth_names,
+    :return_type => return_type
+    )
+
+    data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+    if @api_client.config.debugging
+    @api_client.config.logger.debug "API called: Api::UserServiceApi#remove_recovery_codes\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}" # MODIFIED
     end
     return data
     end

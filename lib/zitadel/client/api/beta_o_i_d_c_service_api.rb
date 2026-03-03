@@ -19,7 +19,8 @@ module Zitadel::Client::Api
   def initialize(api_client = ApiClient.default)
   @api_client = api_client
   end
-      # CreateCallback
+      # Create Callback
+      # Deprecated: please move to the corresponding endpoint under oidc service v2. This endpoint will be removed with the next major version of ZITADEL.   Finalize an Auth Request and get the callback URL for success or failure.  The user must be redirected to the URL in order to inform the application about the success or failure.  On success, the URL contains details for the application to obtain the tokens.  This method can only be called once for an Auth request.
           # @param beta_oidc_service_create_callback_request [BetaOIDCServiceCreateCallbackRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaOIDCServiceCreateCallbackResponse]
@@ -76,7 +77,8 @@ module Zitadel::Client::Api
     return data
     end
 
-      # GetAuthRequest
+      # Get AuthRequest
+      # Deprecated: please move to the corresponding endpoint under oidc service v2. This endpoint will be removed with the next major version of ZITADEL.   Get OIDC Auth Request details by ID, obtained from the redirect URL. Returns details that are parsed from the application&#39;s Auth Request.
           # @param beta_oidc_service_get_auth_request_request [BetaOIDCServiceGetAuthRequestRequest] 
       # @param [Hash] opts the optional parameters
     # @return [BetaOIDCServiceGetAuthRequestResponse]
