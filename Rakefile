@@ -2,7 +2,6 @@
 
 require 'bundler/gem_tasks'
 require 'rake/testtask'
-require 'rdoc/task'
 require 'steep/rake_task'
 require 'rubocop/rake_task'
 
@@ -17,12 +16,18 @@ Steep::RakeTask.new(:steep) do |task|
   task.watch.verbose
 end
 
-Rake::RDocTask.new(:rdoc) do |task|
-  task.title = 'Zitadel'
-  task.rdoc_dir = 'build/docs'
-  task.main = 'README.md'
-  task.rdoc_files.include('README.md')
-  task.rdoc_files.include('lib/**/*.rb')
+begin
+  require 'rdoc/task'
+
+  Rake::RDocTask.new(:rdoc) do |task|
+    task.title = 'Zitadel'
+    task.rdoc_dir = 'build/docs'
+    task.main = 'README.md'
+    task.rdoc_files.include('README.md')
+    task.rdoc_files.include('lib/**/*.rb')
+  end
+rescue LoadError
+  # rdoc is not a default gem in Ruby 4.0+
 end
 
 Rake::TestTask.new(:test) do |task|
