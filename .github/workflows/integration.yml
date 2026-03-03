@@ -45,6 +45,10 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby-version }}
 
+      - name: Remove lockfile
+        working-directory: project/sanity
+        run: rm -f Gemfile.lock
+
       - name: Check Installability
         working-directory: project/sanity
         run: bundle install
