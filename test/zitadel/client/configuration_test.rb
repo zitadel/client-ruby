@@ -15,7 +15,7 @@ module Zitadel
         config = Configuration.new
 
         assert_match(
-          %r{\Azitadel-client/\d+\.\d+\.\d+ \(lang=ruby; lang_version=[^;]+; os=[^;]+; arch=[^;]+\)\z},
+          %r{\Azitadel-client/\d+\.\d+\.\d+([.-][a-zA-Z0-9]+(\.\d+)?)? \(lang=ruby; lang_version=[^;]+; os=[^;]+; arch=[^;]+\)\z},
           config.user_agent
         )
         config.user_agent = 'CustomUserAgent/1.0'

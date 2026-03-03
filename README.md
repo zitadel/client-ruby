@@ -81,7 +81,7 @@ require 'securerandom'
 client = Zitadel::Client::Zitadel.with_private_key("https://example.us1.zitadel.cloud", "path/to/jwt-key.json")
 
 begin
-  response = client.users.user_service_add_human_user(
+  response = client.users.add_human_user(
     Zitadel::Client::UserServiceAddHumanUserRequest.new(
       username: SecureRandom.hex,
       profile: Zitadel::Client::UserServiceSetHumanProfile.new(
@@ -124,7 +124,7 @@ require 'securerandom'
 client = Zitadel::Client::Zitadel.with_client_credentials("https://example.us1.zitadel.cloud", "id", "secret")
 
 begin
-  response = client.users.user_service_add_human_user(
+  response = client.users.add_human_user(
     Zitadel::Client::UserServiceAddHumanUserRequest.new(
       username: SecureRandom.hex,
       profile: Zitadel::Client::UserServiceSetHumanProfile.new(
@@ -167,7 +167,7 @@ require 'securerandom'
 client = Zitadel::Client::Zitadel.with_access_token("https://example.us1.zitadel.cloud", "token")
 
 begin
-  response = client.users.user_service_add_human_user(
+  response = client.users.add_human_user(
     Zitadel::Client::UserServiceAddHumanUserRequest.new(
       username: SecureRandom.hex,
       profile: Zitadel::Client::UserServiceSetHumanProfile.new(

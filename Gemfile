@@ -18,11 +18,13 @@ group :development do
 end
 
 group :test do
+  gem 'better_coverage'
   gem 'dotenv'
   gem 'minitest'
   gem 'minitest-hooks'
   gem 'minitest-reporters'
   gem 'rake'
+  gem 'securerandom'
   gem 'simplecov', require: false
   gem 'simplecov-cobertura', require: false
   gem 'testcontainers'

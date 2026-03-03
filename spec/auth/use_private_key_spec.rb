@@ -18,7 +18,7 @@ require_relative '../base_spec'
 class UsePrivateKeySpec < BaseSpec
   it 'retrieves general settings with valid private key' do
     client = Zitadel::Client::Zitadel.with_private_key(@base_url, @jwt_key)
-    client.settings.settings_service_get_general_settings
+    client.settings.get_general_settings
   end
 
   it 'raises an ApiError with invalid private key' do
@@ -27,7 +27,7 @@ class UsePrivateKeySpec < BaseSpec
       @jwt_key
     )
     assert_raises(Zitadel::Client::ZitadelError) do
-      client.settings.settings_service_get_general_settings
+      client.settings.get_general_settings
     end
   end
 end

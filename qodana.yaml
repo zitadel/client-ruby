@@ -16,4 +16,4 @@ exclude:
 bootstrap: |
   bundle install
 
-linter: jetbrains/qodana-ruby:2025.2-eap-ruby3.4-privileged
+linter: jetbrains/qodana-ruby:2025.3-eap-ruby3.4-privileged

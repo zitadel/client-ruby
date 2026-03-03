@@ -8,16 +8,36 @@ module Zitadel
     # Sets up service APIs for interacting with various Zitadel features.
     # noinspection RubyTooManyInstanceVariablesInspection
     class Zitadel
-      attr_reader :actions,
-                  :features,
+      attr_reader :features,
                   :idps,
+                  :instances,
+                  :internal_permissions,
                   :oidc,
                   :organizations,
+                  :projects,
                   :saml,
                   :sessions,
                   :settings,
                   :users,
-                  :webkeys
+                  :webkeys,
+                  :actions,
+                  :applications,
+                  :authorizations,
+                  # Beta services
+                  :beta_projects,
+                  :beta_apps,
+                  :beta_oidc,
+                  :beta_users,
+                  :beta_organizations,
+                  :beta_settings,
+                  :beta_permissions,
+                  :beta_authorizations,
+                  :beta_sessions,
+                  :beta_instance,
+                  :beta_telemetry,
+                  :beta_features,
+                  :beta_webkeys,
+                  :beta_actions
 
       # Initialize the Zitadel SDK.
       #
@@ -30,7 +50,6 @@ module Zitadel
 
         client = ApiClient.new(@configuration)
 
-        @actions = Api::ActionServiceApi.new(client)
         @features = Api::FeatureServiceApi.new(client)
         @idps = Api::IdentityProviderServiceApi.new(client)
         @oidc = Api::OIDCServiceApi.new(client)
@@ -40,6 +59,26 @@ module Zitadel
         @settings = Api::SettingsServiceApi.new(client)
         @users = Api::UserServiceApi.new(client)
         @webkeys = Api::WebKeyServiceApi.new(client)
+        @actions = Api::ActionServiceApi.new(client)
+        @applications = Api::ApplicationServiceApi.new(client)
+        @authorizations = Api::AuthorizationServiceApi.new(client)
+        @beta_projects = Api::BetaProjectServiceApi.new(client)
+        @beta_apps = Api::BetaAppServiceApi.new(client)
+        @beta_oidc = Api::BetaOIDCServiceApi.new(client)
+        @beta_users = Api::BetaUserServiceApi.new(client)
+        @beta_organizations = Api::BetaOrganizationServiceApi.new(client)
+        @beta_settings = Api::BetaSettingsServiceApi.new(client)
+        @beta_permissions = Api::BetaInternalPermissionServiceApi.new(client)
+        @beta_authorizations = Api::BetaAuthorizationServiceApi.new(client)
+        @beta_sessions = Api::BetaSessionServiceApi.new(client)
+        @beta_instance = Api::BetaInstanceServiceApi.new(client)
+        @beta_telemetry = Api::BetaTelemetryServiceApi.new(client)
+        @instances = Api::InstanceServiceApi.new(client)
+        @internal_permissions = Api::InternalPermissionServiceApi.new(client)
+        @beta_features = Api::BetaFeatureServiceApi.new(client)
+        @beta_webkeys = Api::BetaWebKeyServiceApi.new(client)
+        @beta_actions = Api::BetaActionServiceApi.new(client)
+        @projects = Api::ProjectServiceApi.new(client)
       end
 
       # rubocop:enable Metrics/MethodLength, Metrics/AbcSize

@@ -1,6 +1,10 @@
 {
   "branches": [
-    "main"
+    "main",
+    {
+      "name": "beta",
+      "prerelease": "beta"
+    }
   ],
   "plugins": [
     "@semantic-release/commit-analyzer",
@@ -20,7 +24,7 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "sed -i 's/[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+/${nextRelease.version}/' lib/zitadel/client/version.rb"
+        "prepareCmd": "sed -i 's/[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+[-a-zA-Z0-9\\.]*/${nextRelease.version}/' lib/zitadel/client/version.rb"
       }
     ],
     [
@@ -58,8 +62,7 @@
       {
         "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
         "assets": [
-          "lib/zitadel/client/version.rb",
-          "Gemfile.lock"
+          "lib/zitadel/client/version.rb"
         ]
       }
     ]

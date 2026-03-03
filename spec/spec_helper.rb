@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
+$VERBOSE = nil
+
 require 'dotenv'
 require 'simplecov'
 require 'simplecov-cobertura'
 require 'warning'
 
 require_relative '../lib/zitadel_client'
+require 'better_coverage'
 
 Warning.ignore(:method_redefined, __dir__)
 Dotenv.load('.env')
@@ -27,13 +30,12 @@ module SimpleCov
   end
 end
 
-# Set up multiple formatters: HTML and LCOV
-SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new(
-  [
-    SimpleCov::Formatter::HTMLFormatter,
-    SimpleCov::Formatter::CoberturaFormatter
-  ]
-)
+# Set up multiple formatters: HTML and Cobertura
+# Note: formatters= already wraps in MultiFormatter, so pass a plain array
+SimpleCov.formatters = [
+  SimpleCov::Formatter::HTMLFormatter,
+  SimpleCov::Formatter::CoberturaFormatter
+]
 
 # Set the base coverage directory and apply filters
 SimpleCov.coverage_dir('build/coverage')
@@ -98,10 +100,23 @@ begin
 
   unless ENV['RM_INFO']
     Minitest::Reporters.use! [
+      MinitestPlus::BetterCoverage.new,
       Minitest::Reporters::SpecReporter.new(color: true),
       Minitest::Reporters::JUnitReporter.new('build/reports/', true, single_file: true)
     ]
   end
+
+  # Workaround: BetterCoverage's report method calls SimpleCov.result, whose
+  # ensure block sets SimpleCov.running = false. SimpleCov's own after_run hook
+  # then skips formatting because it sees running == false. Re-arm it here so
+  # the Cobertura/HTML formatters still execute.
+  module BetterCoverageRunningFix
+    def report
+      super
+      SimpleCov.running = true if defined?(SimpleCov) && SimpleCov.respond_to?(:running=)
+    end
+  end
+  MinitestPlus::BetterCoverage.prepend(BetterCoverageRunningFix)
 rescue LoadError
   warn 'minitest-reporters not available — install with `bundle add minitest-reporters`'
 end
