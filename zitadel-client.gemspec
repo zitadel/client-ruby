@@ -17,8 +17,15 @@ Gem::Specification.new do |gemspec|
   gemspec.required_ruby_version = '>= 3.0'
   gemspec.metadata = { 'rubygems_mfa_required' => 'true' }
 
+  gemspec.add_dependency 'cgi', '>= 0.1'
+  gemspec.add_dependency 'date', '>= 3.0'
+  gemspec.add_dependency 'logger', '>= 1.4'
+  gemspec.add_dependency 'net-http', '>= 0.1'
   gemspec.add_dependency 'oauth2', '~> 2.0'
+  gemspec.add_dependency 'tempfile', '>= 0.1'
+  gemspec.add_dependency 'time', '>= 0.1'
   gemspec.add_dependency 'typhoeus', '~> 1.0', '>= 1.0.1'
+  gemspec.add_dependency 'uri', '>= 0.10'
   gemspec.add_dependency 'warning', '~> 1.5.0'
   gemspec.add_dependency 'zeitwerk', '~> 2.5'
 

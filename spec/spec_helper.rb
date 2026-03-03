@@ -120,5 +120,3 @@ begin
 rescue LoadError
   warn 'minitest-reporters not available — install with `bundle add minitest-reporters`'
 end
-
-

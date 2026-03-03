@@ -24,6 +24,7 @@ group :test do
   gem 'minitest-hooks'
   gem 'minitest-reporters'
   gem 'rake'
+  gem 'securerandom'
   gem 'simplecov', require: false
   gem 'simplecov-cobertura', require: false
   gem 'testcontainers'
