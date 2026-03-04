@@ -194,15 +194,16 @@ environment and security requirements. For more details, please refer to the
 ### Debugging
 
 The SDK supports debug logging, which can be enabled for troubleshooting
-and debugging purposes. You can enable debug logging by setting the `debug`
-flag to `true` when initializing the `Zitadel` client, like this:
+and debugging purposes. You can enable debug logging by setting `debugging`
+to `true` via the configuration block when initializing the `Zitadel` client:
 
 ```ruby
 zitadel = Zitadel::Client::Zitadel.with_access_token(
   'your-zitadel-base-url',
-  'your-valid-token',
-  debug: true
-)
+  'your-valid-token'
+) do |config|
+  config.debugging = true
+end
 ```
 
 When enabled, the SDK will log additional information, such as HTTP request
@@ -290,7 +291,7 @@ zitadel = Zitadel::Client::Zitadel.with_client_credentials(
 
 This SDK is designed to be lean and efficient, focusing on providing a
 streamlined way to interact with the Zitadel API. It relies on the commonly used
-Faraday HTTP library for making requests, which ensures that
+Typhoeus HTTP library for making requests, which ensures that
 the SDK integrates well with other libraries and provides flexibility
 in terms of request handling and error management.
 
