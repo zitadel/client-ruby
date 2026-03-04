@@ -132,6 +132,8 @@ module Zitadel
       attr_accessor cert_file: String?
       attr_accessor key_file: String?
       attr_accessor params_encoding: Symbol?
+      attr_accessor default_headers: Hash[String, String]
+      attr_accessor proxy_url: String?
 
       def self.default: () -> Configuration
 
@@ -202,6 +204,15 @@ module Zitadel
       def initialize: (Integer, Hash[String, Array[String]], String | Typhoeus::Response) -> void
     end
 
+    class TransportOptions
+      attr_reader default_headers: Hash[String, String]
+      attr_reader ca_cert_path: String?
+      attr_reader insecure: bool
+      attr_reader proxy_url: String?
+      def initialize: (?default_headers: Hash[String, String], ?ca_cert_path: String?, ?insecure: bool, ?proxy_url: String?) -> void
+      def self.defaults: -> TransportOptions
+    end
+
     module Auth
 
       class Authenticator
@@ -221,13 +232,13 @@ module Zitadel
 
         def get_grant: (OAuth2::Client, String) -> OAuth2::AccessToken
 
-        def self.builder: (String, String, String) -> ClientCredentialsAuthenticatorBuilder
+        def self.builder: (String, String, String, ?transport_options: TransportOptions?) -> ClientCredentialsAuthenticatorBuilder
 
         class ClientCredentialsAuthenticatorBuilder < OAuthAuthenticatorBuilder
           @client_id: String
           @client_secret: String
 
-          def initialize: (String, String, String) -> void
+          def initialize: (String, String, String, ?transport_options: TransportOptions?) -> void
 
           def build: -> ClientCredentialsAuthenticator
         end
@@ -248,7 +259,7 @@ module Zitadel
         attr_reader open_id: OpenId
         attr_reader auth_scopes: Set[String]
 
-        def initialize: (String) -> void
+        def initialize: (String, ?transport_options: TransportOptions?) -> void
 
         def scopes: (*String) -> self
       end
@@ -278,7 +289,7 @@ module Zitadel
         attr_accessor host_endpoint: String
         attr_accessor token_endpoint: String
 
-        def initialize: (String) -> void
+        def initialize: (String, ?transport_options: TransportOptions?) -> void
 
         def self.build_well_known_url: (String) -> String
       end
@@ -300,9 +311,9 @@ module Zitadel
         @key_id: String?
         @private_key: OpenSSL::PKey::RSA
 
-        def self.builder: (String, String, String) -> WebTokenAuthenticatorBuilder
+        def self.builder: (String, String, String, ?transport_options: TransportOptions?) -> WebTokenAuthenticatorBuilder
 
-        def self.from_json: (String, String) -> WebTokenAuthenticator
+        def self.from_json: (String, String, ?transport_options: TransportOptions?) -> WebTokenAuthenticator
 
         def get_grant: (OAuth2::Client, String) -> OAuth2::AccessToken
 
@@ -316,7 +327,7 @@ module Zitadel
           @key_id: String
           @private_key: String
 
-          def initialize: (String, String, String, String, String) -> void
+          def initialize: (String, String, String, String, String, ?transport_options: TransportOptions?) -> void
 
           def build: -> WebTokenAuthenticator
 
@@ -329,11 +340,11 @@ module Zitadel
 
     class Zitadel
 
-      def self.with_access_token: (String, String) -> Zitadel
+      def self.with_access_token: (String, String, ?default_headers: Hash[String, String], ?ca_cert_path: String?, ?insecure: bool, ?proxy_url: String?, ?transport_options: TransportOptions?) -> Zitadel
 
-      def self.with_client_credentials: (String, String, String) -> Zitadel
+      def self.with_client_credentials: (String, String, String, ?default_headers: Hash[String, String], ?ca_cert_path: String?, ?insecure: bool, ?proxy_url: String?, ?transport_options: TransportOptions?) -> Zitadel
 
-      def self.with_private_key: (String, String) -> Zitadel
+      def self.with_private_key: (String, String, ?default_headers: Hash[String, String], ?ca_cert_path: String?, ?insecure: bool, ?proxy_url: String?, ?transport_options: TransportOptions?) -> Zitadel
 
       attr_reader configuration: Configuration
       attr_reader features: Api::FeatureServiceApi

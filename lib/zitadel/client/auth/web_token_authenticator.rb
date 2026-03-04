@@ -64,7 +64,8 @@ module Zitadel
         # @param json_path [String] File path to the JSON configuration file.
         # @return [WebTokenAuthenticator] A new instance of WebTokenAuthenticator.
         # @raise [RuntimeError] If the file cannot be read, the JSON is invalid, or required keys are missing.
-        def self.from_json(host, json_path)
+        # rubocop:disable Metrics/MethodLength
+        def self.from_json(host, json_path, transport_options: nil)
           config = JSON.parse(File.read(json_path))
         rescue Errno::ENOENT => e
           raise "Unable to read JSON file at #{json_path}: #{e.message}"
@@ -76,8 +77,10 @@ module Zitadel
           user_id, private_key, key_id = config.values_at('userId', 'key', 'keyId')
           raise "Missing required keys 'userId', 'keyId' or 'key'" unless user_id && key_id && private_key
 
-          WebTokenAuthenticator.builder(host, user_id, private_key).key_identifier(key_id).build
+          WebTokenAuthenticator.builder(host, user_id, private_key, transport_options: transport_options)
+                               .key_identifier(key_id).build
         end
+        # rubocop:enable Metrics/MethodLength
 
         # Returns a builder for constructing a WebTokenAuthenticator.
         #
@@ -85,8 +88,9 @@ module Zitadel
         # @param user_id [String] The user identifier (used as both the issuer and subject).
         # @param private_key [String] The private key used to sign the JWT.
         # @return [WebTokenAuthenticatorBuilder] A builder instance.
-        def self.builder(host, user_id, private_key)
-          WebTokenAuthenticatorBuilder.new(host, user_id, user_id, host, private_key)
+        def self.builder(host, user_id, private_key, transport_options: nil)
+          WebTokenAuthenticatorBuilder.new(host, user_id, user_id, host, private_key,
+                                           transport_options: transport_options)
         end
 
         protected
@@ -130,15 +134,17 @@ module Zitadel
           # @param jwt_subject [String] The subject claim for the JWT.
           # @param jwt_audience [String] The audience claim for the JWT.
           # @param private_key [String] The PEM-formatted private key used for signing the JWT.
-          def initialize(host, jwt_issuer, jwt_subject, jwt_audience, private_key)
+          # rubocop:disable Metrics/ParameterLists
+          def initialize(host, jwt_issuer, jwt_subject, jwt_audience, private_key, transport_options: nil)
             # noinspection RubyArgCount
-            super(host)
+            super(host, transport_options: transport_options)
             @jwt_issuer = jwt_issuer
             @jwt_subject = jwt_subject
             @jwt_audience = jwt_audience
             @private_key = private_key
             @jwt_lifetime = 3600
           end
+          # rubocop:enable Metrics/ParameterLists
 
           # Sets the JWT token lifetime in seconds.
           #

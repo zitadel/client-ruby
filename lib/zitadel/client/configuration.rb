@@ -149,6 +149,24 @@ module Zitadel
       # @return [String, nil]
       attr_accessor :user_agent
 
+      ##
+      # Additional headers to include in every HTTP request.
+      #
+      # These headers are merged with the default headers set by the API client.
+      # Defaults to an empty hash.
+      #
+      # @return [Hash{String => String}]
+      attr_accessor :default_headers
+
+      ##
+      # Proxy URL to use for HTTP requests.
+      #
+      # When set, all HTTP requests will be routed through the specified proxy.
+      # The URL should include the scheme, host, and port (e.g., "http://proxy:8080").
+      #
+      # @return [String, nil]
+      attr_accessor :proxy_url
+
       # rubocop:disable Metrics/MethodLength
       def initialize(authenticator = Auth::NoAuthAuthenticator.new)
         @authenticator = authenticator
@@ -157,6 +175,8 @@ module Zitadel
         @verify_ssl_host = true
         @cert_file = nil
         @key_file = nil
+        @default_headers = {}
+        @proxy_url = nil
         @timeout = 0
         @params_encoding = nil
         @debugging = false

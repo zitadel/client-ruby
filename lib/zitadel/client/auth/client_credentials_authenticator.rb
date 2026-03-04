@@ -25,8 +25,9 @@ module Zitadel
         # @param client_id [String] The OAuth client identifier.
         # @param client_secret [String] The OAuth client secret.
         # @return [ClientCredentialsAuthenticatorBuilder] A builder instance.
-        def self.builder(host, client_id, client_secret)
-          ClientCredentialsAuthenticatorBuilder.new(host, client_id, client_secret)
+        def self.builder(host, client_id, client_secret, transport_options: nil)
+          ClientCredentialsAuthenticatorBuilder.new(host, client_id, client_secret,
+                                                    transport_options: transport_options)
         end
 
         protected
@@ -45,9 +46,9 @@ module Zitadel
           # @param host [String] The OAuth provider's base URL.
           # @param client_id [String] The OAuth client identifier.
           # @param client_secret [String] The OAuth client secret.
-          def initialize(host, client_id, client_secret)
+          def initialize(host, client_id, client_secret, transport_options: nil)
             # noinspection RubyArgCount
-            super(host)
+            super(host, transport_options: transport_options)
             @client_id = client_id
             @client_secret = client_secret
           end

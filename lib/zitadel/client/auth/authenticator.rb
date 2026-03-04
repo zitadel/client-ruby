@@ -57,8 +57,9 @@ module Zitadel
         #
         # @param host [String] the base URL for the OAuth provider.
         #
-        def initialize(host)
-          @open_id = OpenId.new(host)
+        def initialize(host, transport_options: nil)
+          transport_options ||= TransportOptions.defaults
+          @open_id = OpenId.new(host, transport_options: transport_options)
           @auth_scopes = Set.new(%w[openid urn:zitadel:iam:org:project:id:zitadel:aud])
         end
 

@@ -48,7 +48,7 @@ module Zitadel
         @default_headers = {
           'Content-Type' => 'application/json',
           'User-Agent' => config.user_agent
-        }
+        }.merge(config.default_headers || {})
       end
 
       # noinspection RubyClassVariableUsageInspection,RbsMissingTypeSignature
@@ -113,6 +113,9 @@ module Zitadel
 
         # set custom cert, if provided
         req_opts[:cainfo] = @config.ssl_ca_cert if @config.ssl_ca_cert
+
+        # set proxy, if provided
+        req_opts[:proxy] = @config.proxy_url if @config.proxy_url
 
         if %i[post patch put delete].include?(http_method)
           req_body = build_request_body(header_params, form_params, opts[:body])

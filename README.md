@@ -198,18 +198,100 @@ and debugging purposes. You can enable debug logging by setting the `debug`
 flag to `true` when initializing the `Zitadel` client, like this:
 
 ```ruby
-zitadel = zitadel.Zitadel("your-zitadel-base-url", 'your-valid-token', lambda config: config.debug = True)
+zitadel = Zitadel::Client::Zitadel.with_access_token(
+  'your-zitadel-base-url',
+  'your-valid-token',
+  debug: true
+)
 ```
 
 When enabled, the SDK will log additional information, such as HTTP request
 and response details, which can be useful for identifying issues in the
 integration or troubleshooting unexpected behavior.
 
+## Advanced Configuration
+
+The SDK supports several advanced configuration options that can be passed
+to any of the factory methods (`with_client_credentials`, `with_private_key`,
+or `with_access_token`).
+
+### Disabling TLS Verification
+
+To disable TLS certificate verification (not recommended for production),
+pass `insecure: true`:
+
+```ruby
+client = Zitadel::Client::Zitadel.with_client_credentials(
+  "https://example.us1.zitadel.cloud",
+  "client-id", "client-secret",
+  insecure: true
+)
+```
+
+### Using a Custom CA Certificate
+
+To use a custom CA certificate for TLS verification, pass the path to the
+certificate file via `ca_cert_path`:
+
+```ruby
+client = Zitadel::Client::Zitadel.with_client_credentials(
+  "https://example.us1.zitadel.cloud",
+  "client-id", "client-secret",
+  ca_cert_path: '/path/to/ca.pem'
+)
+```
+
+### Custom Default Headers
+
+To include additional headers in every HTTP request, pass a hash via
+`default_headers`:
+
+```ruby
+client = Zitadel::Client::Zitadel.with_client_credentials(
+  "https://example.us1.zitadel.cloud",
+  "client-id", "client-secret",
+  default_headers: { 'Proxy-Authorization' => 'Basic ...' }
+)
+```
+
+### Proxy Configuration
+
+To route all HTTP requests through a proxy, pass the proxy URL via
+`proxy_url`:
+
+```ruby
+client = Zitadel::Client::Zitadel.with_client_credentials(
+  "https://example.us1.zitadel.cloud",
+  "client-id", "client-secret",
+  proxy_url: 'http://proxy:8080'
+)
+```
+
+### Using TransportOptions
+
+All transport settings can be combined into a single `TransportOptions` object:
+
+```ruby
+options = Zitadel::Client::TransportOptions.new(
+  insecure: true,
+  ca_cert_path: '/path/to/ca.pem',
+  default_headers: { 'Proxy-Authorization' => 'Basic dXNlcjpwYXNz' },
+  proxy_url: 'http://proxy:8080'
+)
+
+zitadel = Zitadel::Client::Zitadel.with_client_credentials(
+  'https://my-instance.zitadel.cloud',
+  'client-id',
+  'client-secret',
+  transport_options: options
+)
+```
+
 ## Design and Dependencies
 
 This SDK is designed to be lean and efficient, focusing on providing a
 streamlined way to interact with the Zitadel API. It relies on the commonly used
-urllib3 HTTP transport for making requests, which ensures that
+Faraday HTTP library for making requests, which ensures that
 the SDK integrates well with other libraries and provides flexibility
 in terms of request handling and error management.
 

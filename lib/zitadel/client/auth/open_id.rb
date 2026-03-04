@@ -3,6 +3,7 @@
 require 'json'
 require 'uri'
 require 'net/http'
+require 'openssl'
 
 module Zitadel
   module Client
@@ -23,13 +24,31 @@ module Zitadel
         # @raise [RuntimeError] if the OpenID configuration cannot be fetched or the token_endpoint is missing.
         #
         # noinspection HttpUrlsUsage
-        def initialize(hostname)
+        # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+        def initialize(hostname, transport_options: nil)
+          transport_options ||= TransportOptions.defaults
           hostname = "https://#{hostname}" unless hostname.start_with?('http://', 'https://')
           @host_endpoint = hostname
           well_known_url = self.class.build_well_known_url(hostname)
 
           uri = URI.parse(well_known_url)
-          response = Net::HTTP.get_response(uri)
+          http = if transport_options.proxy_url
+                   proxy_uri = URI.parse(transport_options.proxy_url)
+                   Net::HTTP.new(uri.host.to_s, uri.port, proxy_uri.host, proxy_uri.port)
+                 else
+                   Net::HTTP.new(uri.host.to_s, uri.port)
+                 end
+          http.use_ssl = (uri.scheme == 'https')
+          if transport_options.insecure
+            http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+          elsif transport_options.ca_cert_path
+            http.ca_file = transport_options.ca_cert_path
+            http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+            http.verify_hostname = false
+          end
+          request = Net::HTTP::Get.new(uri)
+          transport_options.default_headers.each { |k, v| request[k] = v }
+          response = http.request(request)
           raise "Failed to fetch OpenID configuration: HTTP #{response.code}" unless response.code.to_i == 200
 
           config = JSON.parse(response.body)
@@ -38,6 +57,7 @@ module Zitadel
 
           @token_endpoint = token_endpoint
         end
+        # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
         ##
         # Builds the well-known OpenID configuration URL for the given hostname.
