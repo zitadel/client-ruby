@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'openssl'
+
 module Zitadel
   module Client
     # Immutable transport options for configuring HTTP connections.
