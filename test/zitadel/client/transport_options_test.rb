@@ -13,9 +13,8 @@ require 'minitest/hooks/test'
 require 'testcontainers'
 require 'net/http'
 require 'json'
-require 'socket'
-require 'openssl'
-require 'tempfile'
+
+FIXTURES_DIR = File.join(__dir__, '..', '..', 'fixtures')
 
 module Zitadel
   module Client
@@ -27,8 +26,18 @@ module Zitadel
       def before_all
         super
 
+        @ca_cert_path = File.join(FIXTURES_DIR, 'ca.pem')
+        keystore_path = File.join(FIXTURES_DIR, 'keystore.p12')
+
         @wiremock = Testcontainers::DockerContainer.new('wiremock/wiremock:3.3.1')
-                                                   .with_command('--https-port', '8443', '--global-response-templating')
+                                                   .with_filesystem_binds("#{keystore_path}:/home/wiremock/keystore.p12:ro")
+                                                   .with_command(
+                                                     '--https-port', '8443',
+                                                     '--https-keystore', '/home/wiremock/keystore.p12',
+                                                     '--keystore-password', 'password',
+                                                     '--keystore-type', 'PKCS12',
+                                                     '--global-response-templating'
+                                                   )
                                                    .with_exposed_ports(8080, 8443)
                                                    .start
         @wiremock.wait_for_http(container_port: 8080, path: '/__admin/mappings', status: 200)
@@ -38,12 +47,10 @@ module Zitadel
         @https_port = @wiremock.mapped_port(8443)
 
         register_wiremock_stubs
-        extract_wiremock_certificate
       end
       # rubocop:enable Metrics/MethodLength
 
       def after_all
-        @cert_tempfile&.close!
         @wiremock&.stop
         super
       end
@@ -152,27 +159,6 @@ module Zitadel
             jsonBody: { access_token: 'test-token-12345', token_type: 'Bearer', expires_in: 3600 }
           }
         }.to_json, 'Content-Type' => 'application/json')
-      end
-      # rubocop:enable Metrics/MethodLength
-
-      # rubocop:disable Metrics/MethodLength
-      def extract_wiremock_certificate
-        tcp = TCPSocket.new(@host, @https_port)
-        begin
-          ctx = OpenSSL::SSL::SSLContext.new
-          ctx.verify_mode = OpenSSL::SSL::VERIFY_NONE
-          ssl = OpenSSL::SSL::SSLSocket.new(tcp, ctx)
-          ssl.connect
-          pem = ssl.peer_cert.to_pem
-        ensure
-          ssl&.close
-          tcp.close
-        end
-
-        @cert_tempfile = Tempfile.new(['wiremock-ca-', '.pem'])
-        @cert_tempfile.write(pem)
-        @cert_tempfile.close
-        @ca_cert_path = @cert_tempfile.path
       end
       # rubocop:enable Metrics/MethodLength
     end

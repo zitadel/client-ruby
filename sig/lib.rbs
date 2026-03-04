@@ -228,7 +228,7 @@ module Zitadel
 
       class ClientCredentialsAuthenticator < OAuthAuthenticator
 
-        def initialize: (OpenId, String, String, Set[String]) -> void
+        def initialize: (OpenId, String, String, Set[String], ?transport_options: TransportOptions?) -> void
 
         def get_grant: (OAuth2::Client, String) -> OAuth2::AccessToken
 
@@ -270,8 +270,9 @@ module Zitadel
         @open_id: OpenId
         @token: OAuth2::AccessToken
         @auth_scopes: String
+        @transport_options: TransportOptions
 
-        def initialize: (OpenId, Set[String], OAuth2::Client) -> void
+        def initialize: (OpenId, Set[String], OAuth2::Client, ?transport_options: TransportOptions?) -> void
 
         def auth_token: () -> String
 
@@ -317,7 +318,7 @@ module Zitadel
 
         def get_grant: (OAuth2::Client, String) -> OAuth2::AccessToken
 
-        def initialize: (OpenId, Set[String], String, String, String, (String | OpenSSL::PKey::PKey), ?jwt_lifetime: Integer, ?jwt_algorithm: String, ?key_id: String?) -> void
+        def initialize: (OpenId, Set[String], String, String, String, (String | OpenSSL::PKey::PKey), ?jwt_lifetime: Integer, ?jwt_algorithm: String, ?key_id: String?, ?transport_options: TransportOptions?) -> void
 
         class WebTokenAuthenticatorBuilder < OAuthAuthenticatorBuilder
           @jwt_audience: String
