@@ -11,6 +11,7 @@ require 'test_helper'
 require 'minitest/autorun'
 require 'minitest/hooks/test'
 require 'testcontainers'
+require 'docker'
 require 'net/http'
 require 'json'
 
@@ -28,6 +29,9 @@ module Zitadel
 
         @ca_cert_path = File.join(FIXTURES_DIR, 'ca.pem')
         keystore_path = File.join(FIXTURES_DIR, 'keystore.p12')
+        tinyproxy_conf = File.join(FIXTURES_DIR, 'tinyproxy.conf')
+
+        @network = Docker::Network.create('zitadel-proxy-test')
 
         @wiremock = Testcontainers::DockerContainer.new('wiremock/wiremock:3.3.1')
                                                    .with_filesystem_binds("#{keystore_path}:/home/wiremock/keystore.p12:ro")
@@ -42,16 +46,38 @@ module Zitadel
                                                    .start
         @wiremock.wait_for_http(container_port: 8080, path: '/__admin/mappings', status: 200)
 
+        # Connect WireMock to network with alias so the proxy can resolve it
+        wiremock_id = @wiremock.instance_variable_get(:@_id)
+        @network.connect(wiremock_id, {}, 'EndpointConfig' => { 'Aliases' => ['wiremock'] })
+
+        # Create proxy directly on the network so Docker DNS resolves 'wiremock'
+        Docker::Image.create('fromImage' => 'vimagick/tinyproxy')
+        @proxy_container = Docker::Container.create(
+          'Image' => 'vimagick/tinyproxy',
+          'ExposedPorts' => { '8888/tcp' => {} },
+          'HostConfig' => {
+            'PortBindings' => { '8888/tcp' => [{ 'HostPort' => '' }] },
+            'Binds' => ["#{tinyproxy_conf}:/etc/tinyproxy/tinyproxy.conf:ro"],
+            'NetworkMode' => 'zitadel-proxy-test'
+          }
+        )
+        @proxy_container.start
+
         @host = @wiremock.host
         @http_port = @wiremock.mapped_port(8080)
         @https_port = @wiremock.mapped_port(8443)
+        @proxy_container.refresh!
+        @proxy_port = @proxy_container.json['NetworkSettings']['Ports']['8888/tcp'].first['HostPort'].to_i
 
         register_wiremock_stubs
       end
       # rubocop:enable Metrics/MethodLength
 
       def after_all
+        @proxy_container&.stop
+        @proxy_container&.remove
         @wiremock&.stop
+        @network&.remove
         super
       end
 
@@ -105,13 +131,15 @@ module Zitadel
       # rubocop:enable Metrics/MethodLength
 
       def test_proxy_url
+        # Use Docker-internal hostname — only resolvable through the proxy's network
         zitadel = ::Zitadel::Client::Zitadel.with_access_token(
-          "http://#{@host}:#{@http_port}",
+          'http://wiremock:8080',
           'test-token',
-          transport_options: TransportOptions.new(proxy_url: "http://#{@host}:#{@http_port}")
+          transport_options: TransportOptions.new(proxy_url: "http://#{@host}:#{@proxy_port}")
         )
 
         refute_nil zitadel
+        zitadel.settings.get_general_settings({})
       end
 
       def test_no_ca_cert_fails
