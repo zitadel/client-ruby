@@ -27,12 +27,27 @@ module Zitadel
         # @param key_id [String, nil] Optional key identifier for the JWT header (default: nil).
         # rubocop:disable Metrics/ParameterLists,Metrics/MethodLength
         def initialize(open_id, auth_scopes, jwt_issuer, jwt_subject, jwt_audience, private_key,
-                       jwt_lifetime: 3600, jwt_algorithm: 'RS256', key_id: nil)
+                       jwt_lifetime: 3600, jwt_algorithm: 'RS256', key_id: nil, transport_options: nil)
+          transport_options ||= TransportOptions.defaults
+
+          conn_opts = {}
+          if transport_options.insecure
+            conn_opts[:ssl] = { verify: false }
+          elsif transport_options.ca_cert_path
+            store = OpenSSL::X509::Store.new
+            store.set_default_paths
+            store.add_file(transport_options.ca_cert_path)
+            conn_opts[:ssl] = { cert_store: store, verify: true }
+          end
+          conn_opts[:proxy] = transport_options.proxy_url if transport_options.proxy_url
+          conn_opts[:headers] = transport_options.default_headers if transport_options.default_headers.any?
+
           # noinspection RubyArgCount,RubyMismatchedArgumentType
           super(open_id, auth_scopes, OAuth2::Client.new('zitadel', 'zitadel', {
                                                            site: open_id.host_endpoint,
-                                                           token_url: open_id.token_endpoint
-                                                         }))
+                                                           token_url: open_id.token_endpoint,
+                                                           connection_opts: conn_opts
+                                                         }), transport_options: transport_options)
           @jwt_issuer = jwt_issuer
           @jwt_subject = jwt_subject
           @jwt_audience = jwt_audience
@@ -165,7 +180,8 @@ module Zitadel
           # @return [WebTokenAuthenticator] A configured instance.
           def build
             WebTokenAuthenticator.new(open_id, auth_scopes, @jwt_issuer, @jwt_subject, @jwt_audience,
-                                      @private_key, jwt_lifetime: @jwt_lifetime, key_id: @key_id)
+                                      @private_key, jwt_lifetime: @jwt_lifetime, key_id: @key_id,
+                                      transport_options: @transport_options)
           end
         end
       end

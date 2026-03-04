@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'openssl'
+
 module Zitadel
   module Client
     module Auth
@@ -11,13 +13,30 @@ module Zitadel
         # @param client_id [String] The OAuth client identifier.
         # @param client_secret [String] The OAuth client secret.
         # @param auth_scopes [Set<String>] The scope(s) for the token request.
-        def initialize(open_id, client_id, client_secret, auth_scopes)
+        # rubocop:disable Metrics/MethodLength
+        def initialize(open_id, client_id, client_secret, auth_scopes, transport_options: nil)
+          transport_options ||= TransportOptions.defaults
+
+          conn_opts = {}
+          if transport_options.insecure
+            conn_opts[:ssl] = { verify: false }
+          elsif transport_options.ca_cert_path
+            store = OpenSSL::X509::Store.new
+            store.set_default_paths
+            store.add_file(transport_options.ca_cert_path)
+            conn_opts[:ssl] = { cert_store: store, verify: true }
+          end
+          conn_opts[:proxy] = transport_options.proxy_url if transport_options.proxy_url
+          conn_opts[:headers] = transport_options.default_headers if transport_options.default_headers.any?
+
           # noinspection RubyArgCount
           super(open_id, auth_scopes, OAuth2::Client.new(client_id, client_secret, {
                                                            site: open_id.host_endpoint,
-                                                           token_url: open_id.token_endpoint
-                                                         }))
+                                                           token_url: open_id.token_endpoint,
+                                                           connection_opts: conn_opts
+                                                         }), transport_options: transport_options)
         end
+        # rubocop:enable Metrics/MethodLength
 
         # Returns a new builder for constructing a ClientCredentialsAuthenticator.
         #
@@ -57,7 +76,8 @@ module Zitadel
           #
           # @return [ClientCredentialsAuthenticator] A configured instance.
           def build
-            ClientCredentialsAuthenticator.new(open_id, @client_id, @client_secret, auth_scopes)
+            ClientCredentialsAuthenticator.new(open_id, @client_id, @client_secret, auth_scopes,
+                                                transport_options: @transport_options)
           end
         end
       end

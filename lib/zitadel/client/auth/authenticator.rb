@@ -59,6 +59,7 @@ module Zitadel
         #
         def initialize(host, transport_options: nil)
           transport_options ||= TransportOptions.defaults
+          @transport_options = transport_options
           @open_id = OpenId.new(host, transport_options: transport_options)
           @auth_scopes = Set.new(%w[openid urn:zitadel:iam:org:project:id:zitadel:aud])
         end
