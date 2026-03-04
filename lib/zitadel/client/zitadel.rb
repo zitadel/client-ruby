@@ -7,7 +7,7 @@ module Zitadel
     # Initializes and configures the SDK with the provided authentication strategy.
     # Sets up service APIs for interacting with various Zitadel features.
     # noinspection RubyTooManyInstanceVariablesInspection
-    class Zitadel
+    class Zitadel # rubocop:disable Metrics/ClassLength
       attr_reader :features,
                   :idps,
                   :instances,
@@ -93,10 +93,11 @@ module Zitadel
         # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, headers.
         # @return [Zitadel] SDK client configured with PAT authentication.
         # @see https://zitadel.com/docs/guides/integrate/service-users/personal-access-token
-        def with_access_token(host, access_token, transport_options: nil)
+        def with_access_token(host, access_token, transport_options: nil, &block)
           resolved = transport_options || TransportOptions.defaults
           new(Auth::PersonalAccessTokenAuthenticator.new(host, access_token)) do |config|
             apply_transport_options(config, resolved)
+            block&.call(config)
           end
         end
 
@@ -108,7 +109,7 @@ module Zitadel
         # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, headers.
         # @return [Zitadel] SDK client with automatic token acquisition & refresh.
         # @see https://zitadel.com/docs/guides/integrate/service-users/client-credentials
-        def with_client_credentials(host, client_id, client_secret, transport_options: nil)
+        def with_client_credentials(host, client_id, client_secret, transport_options: nil, &block)
           resolved = transport_options || TransportOptions.defaults
           new(
             Auth::ClientCredentialsAuthenticator
@@ -116,6 +117,7 @@ module Zitadel
               .build
           ) do |config|
             apply_transport_options(config, resolved)
+            block&.call(config)
           end
         end
 
@@ -126,11 +128,12 @@ module Zitadel
         # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, headers.
         # @return [Zitadel] SDK client using JWT assertion for secure, secret-less auth.
         # @see https://zitadel.com/docs/guides/integrate/service-users/private-key-jwt
-        def with_private_key(host, key_file, transport_options: nil)
+        def with_private_key(host, key_file, transport_options: nil, &block)
           resolved = transport_options || TransportOptions.defaults
           new(Auth::WebTokenAuthenticator.from_json(host, key_file,
                                                     transport_options: resolved)) do |config|
             apply_transport_options(config, resolved)
+            block&.call(config)
           end
         end
 

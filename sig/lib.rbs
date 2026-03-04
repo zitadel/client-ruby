@@ -342,11 +342,11 @@ module Zitadel
 
     class Zitadel
 
-      def self.with_access_token: (String, String, ?transport_options: TransportOptions?) -> Zitadel
+      def self.with_access_token: (String, String, ?transport_options: TransportOptions?) ?{ (Configuration) -> void } -> Zitadel
 
-      def self.with_client_credentials: (String, String, String, ?transport_options: TransportOptions?) -> Zitadel
+      def self.with_client_credentials: (String, String, String, ?transport_options: TransportOptions?) ?{ (Configuration) -> void } -> Zitadel
 
-      def self.with_private_key: (String, String, ?transport_options: TransportOptions?) -> Zitadel
+      def self.with_private_key: (String, String, ?transport_options: TransportOptions?) ?{ (Configuration) -> void } -> Zitadel
 
       private
 
