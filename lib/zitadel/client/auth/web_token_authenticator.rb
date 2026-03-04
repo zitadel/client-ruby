@@ -25,7 +25,7 @@ module Zitadel
         # @param jwt_lifetime [Integer] Lifetime of the JWT in seconds (default 3600 seconds).
         # @param jwt_algorithm [String] The JWT signing algorithm (default "RS256").
         # @param key_id [String, nil] Optional key identifier for the JWT header (default: nil).
-        # rubocop:disable Metrics/ParameterLists, Metrics/MethodLength, Metrics/AbcSize, Metrics/PerceivedComplexity
+        # rubocop:disable Metrics/ParameterLists, Metrics/MethodLength
         def initialize(open_id, auth_scopes, jwt_issuer, jwt_subject, jwt_audience, private_key,
                        jwt_lifetime: 3600, jwt_algorithm: 'RS256', key_id: nil, transport_options: nil)
           transport_options ||= TransportOptions.defaults
@@ -52,7 +52,7 @@ module Zitadel
                          end
         end
 
-        # rubocop:enable Metrics/ParameterLists, Metrics/MethodLength, Metrics/AbcSize, Metrics/PerceivedComplexity
+        # rubocop:enable Metrics/ParameterLists, Metrics/MethodLength
 
         # Creates a WebTokenAuthenticator instance from a JSON configuration file.
         #

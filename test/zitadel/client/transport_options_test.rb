@@ -98,7 +98,8 @@ module Zitadel
         }.to_json, 'Content-Type' => 'application/json')
 
         count = JSON.parse(verify_response.body)['count']
-        assert count >= 1, 'Custom header should be present on API call'
+
+        assert_operator count, :>=, 1, 'Custom header should be present on API call'
       end
       # rubocop:enable Metrics/MethodLength
 

@@ -21,6 +21,7 @@ module Zitadel
       # Builds Faraday connection options from these transport options.
       #
       # @return [Hash] connection options for OAuth2::Client
+      # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
       def to_connection_opts
         opts = {}
         if insecure
@@ -35,6 +36,7 @@ module Zitadel
         opts[:headers] = default_headers.dup if default_headers.any?
         opts
       end
+      # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
     end
   end
 end
