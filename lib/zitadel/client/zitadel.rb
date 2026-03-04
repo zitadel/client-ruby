@@ -92,7 +92,7 @@ module Zitadel
         # @param access_token [String] Personal Access Token for Bearer authentication.
         # @return [Zitadel] SDK client configured with PAT authentication.
         # @see https://zitadel.com/docs/guides/integrate/service-users/personal-access-token
-        # rubocop:disable Metrics/ParameterLists, Metrics/MethodLength
+        # rubocop:disable Metrics/ParameterLists, Metrics/MethodLength, Metrics/AbcSize
         def with_access_token(host, access_token, default_headers: {}, ca_cert_path: nil, insecure: false,
                               proxy_url: nil, transport_options: nil)
           resolved = transport_options || TransportOptions.new(default_headers: default_headers,
@@ -100,7 +100,7 @@ module Zitadel
                                                                insecure: insecure,
                                                                proxy_url: proxy_url)
           new(Auth::PersonalAccessTokenAuthenticator.new(host, access_token)) do |config|
-            config.default_headers = resolved.default_headers
+            config.default_headers = resolved.default_headers.dup
             config.ssl_ca_cert = resolved.ca_cert_path if resolved.ca_cert_path
             if resolved.insecure
               config.verify_ssl = false
@@ -109,7 +109,7 @@ module Zitadel
             config.proxy_url = resolved.proxy_url if resolved.proxy_url
           end
         end
-        # rubocop:enable Metrics/ParameterLists, Metrics/MethodLength
+        # rubocop:enable Metrics/ParameterLists, Metrics/MethodLength, Metrics/AbcSize
 
         # Initialize the SDK using OAuth2 Client Credentials flow.
         #
@@ -130,7 +130,7 @@ module Zitadel
               .builder(host, client_id, client_secret, transport_options: resolved)
               .build
           ) do |config|
-            config.default_headers = resolved.default_headers
+            config.default_headers = resolved.default_headers.dup
             config.ssl_ca_cert = resolved.ca_cert_path if resolved.ca_cert_path
             if resolved.insecure
               config.verify_ssl = false
@@ -147,7 +147,7 @@ module Zitadel
         # @param key_file [String] Path to service account JSON/PEM key file.
         # @return [Zitadel] SDK client using JWT assertion for secure, secret-less auth.
         # @see https://zitadel.com/docs/guides/integrate/service-users/private-key-jwt
-        # rubocop:disable Metrics/ParameterLists, Metrics/MethodLength
+        # rubocop:disable Metrics/ParameterLists, Metrics/MethodLength, Metrics/AbcSize
         def with_private_key(host, key_file, default_headers: {}, ca_cert_path: nil, insecure: false,
                              proxy_url: nil, transport_options: nil)
           resolved = transport_options || TransportOptions.new(default_headers: default_headers,
@@ -156,7 +156,7 @@ module Zitadel
                                                                proxy_url: proxy_url)
           new(Auth::WebTokenAuthenticator.from_json(host, key_file,
                                                     transport_options: resolved)) do |config|
-            config.default_headers = resolved.default_headers
+            config.default_headers = resolved.default_headers.dup
             config.ssl_ca_cert = resolved.ca_cert_path if resolved.ca_cert_path
             if resolved.insecure
               config.verify_ssl = false
@@ -165,7 +165,7 @@ module Zitadel
             config.proxy_url = resolved.proxy_url if resolved.proxy_url
           end
         end
-        # rubocop:enable Metrics/ParameterLists, Metrics/MethodLength
+        # rubocop:enable Metrics/ParameterLists, Metrics/MethodLength, Metrics/AbcSize
 
         # @!endgroup
       end
