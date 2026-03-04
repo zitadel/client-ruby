@@ -273,7 +273,6 @@ All transport settings can be combined into a single `TransportOptions` object:
 
 ```ruby
 options = Zitadel::Client::TransportOptions.new(
-  insecure: true,
   ca_cert_path: '/path/to/ca.pem',
   default_headers: { 'Proxy-Authorization' => 'Basic dXNlcjpwYXNz' },
   proxy_url: 'http://proxy:8080'
