@@ -92,24 +92,15 @@ module Zitadel
         # @param access_token [String] Personal Access Token for Bearer authentication.
         # @return [Zitadel] SDK client configured with PAT authentication.
         # @see https://zitadel.com/docs/guides/integrate/service-users/personal-access-token
-        # rubocop:disable Metrics/ParameterLists, Metrics/MethodLength, Metrics/AbcSize
+        # rubocop:disable Metrics/ParameterLists
         def with_access_token(host, access_token, default_headers: {}, ca_cert_path: nil, insecure: false,
                               proxy_url: nil, transport_options: nil)
-          resolved = transport_options || TransportOptions.new(default_headers: default_headers,
-                                                               ca_cert_path: ca_cert_path,
-                                                               insecure: insecure,
-                                                               proxy_url: proxy_url)
+          resolved = resolve_transport_options(transport_options, default_headers, ca_cert_path, insecure, proxy_url)
           new(Auth::PersonalAccessTokenAuthenticator.new(host, access_token)) do |config|
-            config.default_headers = resolved.default_headers.dup
-            config.ssl_ca_cert = resolved.ca_cert_path if resolved.ca_cert_path
-            if resolved.insecure
-              config.verify_ssl = false
-              config.verify_ssl_host = false
-            end
-            config.proxy_url = resolved.proxy_url if resolved.proxy_url
+            apply_transport_options(config, resolved)
           end
         end
-        # rubocop:enable Metrics/ParameterLists, Metrics/MethodLength, Metrics/AbcSize
+        # rubocop:enable Metrics/ParameterLists
 
         # Initialize the SDK using OAuth2 Client Credentials flow.
         #
@@ -118,28 +109,19 @@ module Zitadel
         # @param client_secret [String] OAuth2 client secret.
         # @return [Zitadel] SDK client with automatic token acquisition & refresh.
         # @see https://zitadel.com/docs/guides/integrate/service-users/client-credentials
-        # rubocop:disable Metrics/ParameterLists, Metrics/MethodLength, Metrics/AbcSize
+        # rubocop:disable Metrics/ParameterLists
         def with_client_credentials(host, client_id, client_secret, default_headers: {}, ca_cert_path: nil,
                                     insecure: false, proxy_url: nil, transport_options: nil)
-          resolved = transport_options || TransportOptions.new(default_headers: default_headers,
-                                                               ca_cert_path: ca_cert_path,
-                                                               insecure: insecure,
-                                                               proxy_url: proxy_url)
+          resolved = resolve_transport_options(transport_options, default_headers, ca_cert_path, insecure, proxy_url)
           new(
             Auth::ClientCredentialsAuthenticator
               .builder(host, client_id, client_secret, transport_options: resolved)
               .build
           ) do |config|
-            config.default_headers = resolved.default_headers.dup
-            config.ssl_ca_cert = resolved.ca_cert_path if resolved.ca_cert_path
-            if resolved.insecure
-              config.verify_ssl = false
-              config.verify_ssl_host = false
-            end
-            config.proxy_url = resolved.proxy_url if resolved.proxy_url
+            apply_transport_options(config, resolved)
           end
         end
-        # rubocop:enable Metrics/ParameterLists, Metrics/MethodLength, Metrics/AbcSize
+        # rubocop:enable Metrics/ParameterLists
 
         # Initialize the SDK via Private Key JWT assertion.
         #
@@ -147,27 +129,37 @@ module Zitadel
         # @param key_file [String] Path to service account JSON/PEM key file.
         # @return [Zitadel] SDK client using JWT assertion for secure, secret-less auth.
         # @see https://zitadel.com/docs/guides/integrate/service-users/private-key-jwt
-        # rubocop:disable Metrics/ParameterLists, Metrics/MethodLength, Metrics/AbcSize
+        # rubocop:disable Metrics/ParameterLists
         def with_private_key(host, key_file, default_headers: {}, ca_cert_path: nil, insecure: false,
                              proxy_url: nil, transport_options: nil)
-          resolved = transport_options || TransportOptions.new(default_headers: default_headers,
-                                                               ca_cert_path: ca_cert_path,
-                                                               insecure: insecure,
-                                                               proxy_url: proxy_url)
+          resolved = resolve_transport_options(transport_options, default_headers, ca_cert_path, insecure, proxy_url)
           new(Auth::WebTokenAuthenticator.from_json(host, key_file,
                                                     transport_options: resolved)) do |config|
-            config.default_headers = resolved.default_headers.dup
-            config.ssl_ca_cert = resolved.ca_cert_path if resolved.ca_cert_path
-            if resolved.insecure
-              config.verify_ssl = false
-              config.verify_ssl_host = false
-            end
-            config.proxy_url = resolved.proxy_url if resolved.proxy_url
+            apply_transport_options(config, resolved)
           end
         end
-        # rubocop:enable Metrics/ParameterLists, Metrics/MethodLength, Metrics/AbcSize
+        # rubocop:enable Metrics/ParameterLists
 
         # @!endgroup
+
+        private
+
+        def resolve_transport_options(transport_options, default_headers, ca_cert_path, insecure, proxy_url)
+          transport_options || TransportOptions.new(default_headers: default_headers,
+                                                    ca_cert_path: ca_cert_path,
+                                                    insecure: insecure,
+                                                    proxy_url: proxy_url)
+        end
+
+        def apply_transport_options(config, resolved)
+          config.default_headers = resolved.default_headers.dup
+          config.ssl_ca_cert = resolved.ca_cert_path if resolved.ca_cert_path
+          if resolved.insecure
+            config.verify_ssl = false
+            config.verify_ssl_host = false
+          end
+          config.proxy_url = resolved.proxy_url if resolved.proxy_url
+        end
       end
     end
   end
