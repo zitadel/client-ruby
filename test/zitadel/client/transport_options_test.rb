@@ -86,16 +86,19 @@ module Zitadel
 
         refute_nil zitadel
 
-        # Verify via WireMock request journal
+        # Make an actual API call to verify headers propagate to service requests
+        zitadel.settings.get_general_settings({})
+
+        # Use WireMock's verification API to assert the header was sent on the API call
         # noinspection HttpUrlsUsage
-        journal_uri = URI("http://#{@host}:#{@http_port}/__admin/requests")
-        journal = JSON.parse(Net::HTTP.get(journal_uri))
+        verify_uri = URI("http://#{@host}:#{@http_port}/__admin/requests/count")
+        verify_response = Net::HTTP.post(verify_uri, {
+          url: '/zitadel.settings.v2.SettingsService/GetGeneralSettings',
+          headers: { 'X-Custom-Header' => { 'equalTo' => 'test-value' } }
+        }.to_json, 'Content-Type' => 'application/json')
 
-        found_header = journal['requests'].any? do |req|
-          req.dig('request', 'headers', 'X-Custom-Header')
-        end
-
-        assert found_header, 'Custom header should be present in WireMock request journal'
+        count = JSON.parse(verify_response.body)['count']
+        assert count >= 1, 'Custom header should be present on API call'
       end
       # rubocop:enable Metrics/MethodLength
 
@@ -159,6 +162,18 @@ module Zitadel
             status: 200,
             headers: { 'Content-Type' => 'application/json' },
             jsonBody: { access_token: 'test-token-12345', token_type: 'Bearer', expires_in: 3600 }
+          }
+        }.to_json, 'Content-Type' => 'application/json')
+
+        assert_equal '201', response.code
+
+        # Stub 3 - Settings API endpoint (for verifying headers on API calls)
+        response = Net::HTTP.post(uri, {
+          request: { method: 'POST', url: '/zitadel.settings.v2.SettingsService/GetGeneralSettings' },
+          response: {
+            status: 200,
+            headers: { 'Content-Type' => 'application/json' },
+            jsonBody: {}
           }
         }.to_json, 'Content-Type' => 'application/json')
 
