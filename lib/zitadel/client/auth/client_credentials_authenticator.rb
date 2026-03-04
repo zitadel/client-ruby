@@ -13,7 +13,7 @@ module Zitadel
         # @param client_id [String] The OAuth client identifier.
         # @param client_secret [String] The OAuth client secret.
         # @param auth_scopes [Set<String>] The scope(s) for the token request.
-        # rubocop:disable Metrics/MethodLength
+        # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
         def initialize(open_id, client_id, client_secret, auth_scopes, transport_options: nil)
           transport_options ||= TransportOptions.defaults
 
@@ -36,7 +36,7 @@ module Zitadel
                                                            connection_opts: conn_opts
                                                          }), transport_options: transport_options)
         end
-        # rubocop:enable Metrics/MethodLength
+        # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
         # Returns a new builder for constructing a ClientCredentialsAuthenticator.
         #
@@ -77,7 +77,7 @@ module Zitadel
           # @return [ClientCredentialsAuthenticator] A configured instance.
           def build
             ClientCredentialsAuthenticator.new(open_id, @client_id, @client_secret, auth_scopes,
-                                                transport_options: @transport_options)
+                                               transport_options: @transport_options)
           end
         end
       end

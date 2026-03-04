@@ -110,7 +110,7 @@ module Zitadel
       end
 
       def test_no_ca_cert_fails
-        assert_raises(Exception) do
+        assert_raises(StandardError) do
           ::Zitadel::Client::Zitadel.with_client_credentials(
             "https://#{@host}:#{@https_port}",
             'dummy-client', 'dummy-secret'
@@ -137,7 +137,7 @@ module Zitadel
         uri = URI("http://#{@host}:#{@http_port}/__admin/mappings")
 
         # Stub 1 - OpenID Configuration
-        Net::HTTP.post(uri, {
+        response = Net::HTTP.post(uri, {
           request: { method: 'GET', url: '/.well-known/openid-configuration' },
           response: {
             status: 200,
@@ -150,8 +150,10 @@ module Zitadel
           }
         }.to_json, 'Content-Type' => 'application/json')
 
+        assert_equal '201', response.code
+
         # Stub 2 - Token endpoint
-        Net::HTTP.post(uri, {
+        response = Net::HTTP.post(uri, {
           request: { method: 'POST', url: '/oauth/v2/token' },
           response: {
             status: 200,
@@ -159,6 +161,8 @@ module Zitadel
             jsonBody: { access_token: 'test-token-12345', token_type: 'Bearer', expires_in: 3600 }
           }
         }.to_json, 'Content-Type' => 'application/json')
+
+        assert_equal '201', response.code
       end
       # rubocop:enable Metrics/MethodLength
     end

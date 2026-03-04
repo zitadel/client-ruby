@@ -34,7 +34,8 @@ module Zitadel
           uri = URI.parse(well_known_url)
           http = if transport_options.proxy_url
                    proxy_uri = URI.parse(transport_options.proxy_url)
-                   Net::HTTP.new(uri.host.to_s, uri.port, proxy_uri.host, proxy_uri.port)
+                   Net::HTTP.new(uri.host.to_s, uri.port, proxy_uri.host, proxy_uri.port,
+                                 proxy_uri.user, proxy_uri.password)
                  else
                    Net::HTTP.new(uri.host.to_s, uri.port)
                  end

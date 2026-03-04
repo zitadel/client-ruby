@@ -92,7 +92,7 @@ module Zitadel
         # @param access_token [String] Personal Access Token for Bearer authentication.
         # @return [Zitadel] SDK client configured with PAT authentication.
         # @see https://zitadel.com/docs/guides/integrate/service-users/personal-access-token
-        # rubocop:disable Metrics/ParameterLists
+        # rubocop:disable Metrics/ParameterLists, Metrics/MethodLength
         def with_access_token(host, access_token, default_headers: {}, ca_cert_path: nil, insecure: false,
                               proxy_url: nil, transport_options: nil)
           resolved = transport_options || TransportOptions.new(default_headers: default_headers,
@@ -102,11 +102,14 @@ module Zitadel
           new(Auth::PersonalAccessTokenAuthenticator.new(host, access_token)) do |config|
             config.default_headers = resolved.default_headers
             config.ssl_ca_cert = resolved.ca_cert_path if resolved.ca_cert_path
-            config.verify_ssl = !resolved.insecure if resolved.insecure
+            if resolved.insecure
+              config.verify_ssl = false
+              config.verify_ssl_host = false
+            end
             config.proxy_url = resolved.proxy_url if resolved.proxy_url
           end
         end
-        # rubocop:enable Metrics/ParameterLists
+        # rubocop:enable Metrics/ParameterLists, Metrics/MethodLength
 
         # Initialize the SDK using OAuth2 Client Credentials flow.
         #
@@ -129,7 +132,10 @@ module Zitadel
           ) do |config|
             config.default_headers = resolved.default_headers
             config.ssl_ca_cert = resolved.ca_cert_path if resolved.ca_cert_path
-            config.verify_ssl = !resolved.insecure if resolved.insecure
+            if resolved.insecure
+              config.verify_ssl = false
+              config.verify_ssl_host = false
+            end
             config.proxy_url = resolved.proxy_url if resolved.proxy_url
           end
         end
@@ -152,7 +158,10 @@ module Zitadel
                                                     transport_options: resolved)) do |config|
             config.default_headers = resolved.default_headers
             config.ssl_ca_cert = resolved.ca_cert_path if resolved.ca_cert_path
-            config.verify_ssl = !resolved.insecure if resolved.insecure
+            if resolved.insecure
+              config.verify_ssl = false
+              config.verify_ssl_host = false
+            end
             config.proxy_url = resolved.proxy_url if resolved.proxy_url
           end
         end
