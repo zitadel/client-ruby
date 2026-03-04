@@ -44,7 +44,6 @@ module Zitadel
           elsif transport_options.ca_cert_path
             http.ca_file = transport_options.ca_cert_path
             http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-            http.verify_hostname = false
           end
           request = Net::HTTP::Get.new(uri)
           transport_options.default_headers.each { |k, v| request[k] = v }
