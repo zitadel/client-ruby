@@ -158,13 +158,16 @@ module Zitadel
       # rubocop:disable Metrics/MethodLength
       def extract_wiremock_certificate
         tcp = TCPSocket.new(@host, @https_port)
-        ctx = OpenSSL::SSL::SSLContext.new
-        ctx.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        ssl = OpenSSL::SSL::SSLSocket.new(tcp, ctx)
-        ssl.connect
-        pem = ssl.peer_cert.to_pem
-        ssl.close
-        tcp.close
+        begin
+          ctx = OpenSSL::SSL::SSLContext.new
+          ctx.verify_mode = OpenSSL::SSL::VERIFY_NONE
+          ssl = OpenSSL::SSL::SSLSocket.new(tcp, ctx)
+          ssl.connect
+          pem = ssl.peer_cert.to_pem
+        ensure
+          ssl&.close
+          tcp.close
+        end
 
         @cert_tempfile = Tempfile.new(['wiremock-ca-', '.pem'])
         @cert_tempfile.write(pem)
