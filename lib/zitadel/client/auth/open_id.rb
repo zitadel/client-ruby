@@ -42,7 +42,10 @@ module Zitadel
           if transport_options.insecure
             http.verify_mode = OpenSSL::SSL::VERIFY_NONE
           elsif transport_options.ca_cert_path
-            http.ca_file = transport_options.ca_cert_path
+            store = OpenSSL::X509::Store.new
+            store.set_default_paths
+            store.add_file(transport_options.ca_cert_path)
+            http.cert_store = store
             http.verify_mode = OpenSSL::SSL::VERIFY_PEER
           end
           request = Net::HTTP::Get.new(uri)
