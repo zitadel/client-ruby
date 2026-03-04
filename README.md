@@ -212,71 +212,17 @@ integration or troubleshooting unexpected behavior.
 
 ## Advanced Configuration
 
-The SDK supports several advanced configuration options that can be passed
-to any of the factory methods (`with_client_credentials`, `with_private_key`,
-or `with_access_token`).
-
-### Disabling TLS Verification
-
-To disable TLS certificate verification (not recommended for production),
-pass `insecure: true`:
-
-```ruby
-client = Zitadel::Client::Zitadel.with_client_credentials(
-  "https://example.us1.zitadel.cloud",
-  "client-id", "client-secret",
-  insecure: true
-)
-```
-
-### Using a Custom CA Certificate
-
-To use a custom CA certificate for TLS verification, pass the path to the
-certificate file via `ca_cert_path`:
-
-```ruby
-client = Zitadel::Client::Zitadel.with_client_credentials(
-  "https://example.us1.zitadel.cloud",
-  "client-id", "client-secret",
-  ca_cert_path: '/path/to/ca.pem'
-)
-```
-
-### Custom Default Headers
-
-To include additional headers in every HTTP request, pass a hash via
-`default_headers`:
-
-```ruby
-client = Zitadel::Client::Zitadel.with_client_credentials(
-  "https://example.us1.zitadel.cloud",
-  "client-id", "client-secret",
-  default_headers: { 'Proxy-Authorization' => 'Basic ...' }
-)
-```
-
-### Proxy Configuration
-
-To route all HTTP requests through a proxy, pass the proxy URL via
-`proxy_url`:
-
-```ruby
-client = Zitadel::Client::Zitadel.with_client_credentials(
-  "https://example.us1.zitadel.cloud",
-  "client-id", "client-secret",
-  proxy_url: 'http://proxy:8080'
-)
-```
-
-### Using TransportOptions
-
-All transport settings can be combined into a single `TransportOptions` object:
+All factory methods (`with_client_credentials`, `with_private_key`,
+`with_access_token`) accept an optional `transport_options` parameter
+for configuring TLS, proxies, and default headers via a `TransportOptions`
+object.
 
 ```ruby
 options = Zitadel::Client::TransportOptions.new(
   ca_cert_path: '/path/to/ca.pem',
   default_headers: { 'Proxy-Authorization' => 'Basic dXNlcjpwYXNz' },
-  proxy_url: 'http://proxy:8080'
+  proxy_url: 'http://proxy:8080',
+  insecure: false
 )
 
 zitadel = Zitadel::Client::Zitadel.with_client_credentials(
@@ -286,6 +232,13 @@ zitadel = Zitadel::Client::Zitadel.with_client_credentials(
   transport_options: options
 )
 ```
+
+Available options:
+
+- `ca_cert_path` — path to a custom CA certificate for TLS verification
+- `insecure` — disable TLS certificate verification (not recommended for production)
+- `default_headers` — hash of headers to include in every HTTP request
+- `proxy_url` — HTTP proxy URL for all requests
 
 ## Design and Dependencies
 

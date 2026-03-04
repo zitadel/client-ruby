@@ -59,7 +59,7 @@ module Zitadel
         zitadel = ::Zitadel::Client::Zitadel.with_client_credentials(
           "https://#{@host}:#{@https_port}",
           'dummy-client', 'dummy-secret',
-          ca_cert_path: @ca_cert_path
+          transport_options: TransportOptions.new(ca_cert_path: @ca_cert_path)
         )
 
         refute_nil zitadel
@@ -69,7 +69,7 @@ module Zitadel
         zitadel = ::Zitadel::Client::Zitadel.with_client_credentials(
           "https://#{@host}:#{@https_port}",
           'dummy-client', 'dummy-secret',
-          insecure: true
+          transport_options: TransportOptions.new(insecure: true)
         )
 
         refute_nil zitadel
@@ -78,10 +78,11 @@ module Zitadel
       # rubocop:disable Metrics/MethodLength
       def test_default_headers
         # Use HTTP to avoid TLS concerns
+        opts = TransportOptions.new(default_headers: { 'X-Custom-Header' => 'test-value' })
         zitadel = ::Zitadel::Client::Zitadel.with_client_credentials(
           "http://#{@host}:#{@http_port}",
           'dummy-client', 'dummy-secret',
-          default_headers: { 'X-Custom-Header' => 'test-value' }
+          transport_options: opts
         )
 
         refute_nil zitadel
@@ -107,7 +108,7 @@ module Zitadel
         zitadel = ::Zitadel::Client::Zitadel.with_client_credentials(
           "http://#{@host}:#{@http_port}",
           'dummy-client', 'dummy-secret',
-          proxy_url: "http://#{@host}:#{@http_port}"
+          transport_options: TransportOptions.new(proxy_url: "http://#{@host}:#{@http_port}")
         )
 
         refute_nil zitadel
@@ -120,17 +121,6 @@ module Zitadel
             'dummy-client', 'dummy-secret'
           )
         end
-      end
-
-      def test_transport_options_object
-        opts = TransportOptions.new(insecure: true)
-        zitadel = Zitadel.with_client_credentials(
-          "https://#{@host}:#{@https_port}",
-          'dummy-client', 'dummy-secret',
-          transport_options: opts
-        )
-
-        assert_instance_of Zitadel, zitadel
       end
 
       private

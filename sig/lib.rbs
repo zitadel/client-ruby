@@ -342,15 +342,13 @@ module Zitadel
 
     class Zitadel
 
-      def self.with_access_token: (String, String, ?default_headers: Hash[String, String], ?ca_cert_path: String?, ?insecure: bool, ?proxy_url: String?, ?transport_options: TransportOptions?) -> Zitadel
+      def self.with_access_token: (String, String, ?transport_options: TransportOptions?) -> Zitadel
 
-      def self.with_client_credentials: (String, String, String, ?default_headers: Hash[String, String], ?ca_cert_path: String?, ?insecure: bool, ?proxy_url: String?, ?transport_options: TransportOptions?) -> Zitadel
+      def self.with_client_credentials: (String, String, String, ?transport_options: TransportOptions?) -> Zitadel
 
-      def self.with_private_key: (String, String, ?default_headers: Hash[String, String], ?ca_cert_path: String?, ?insecure: bool, ?proxy_url: String?, ?transport_options: TransportOptions?) -> Zitadel
+      def self.with_private_key: (String, String, ?transport_options: TransportOptions?) -> Zitadel
 
       private
-
-      def self.resolve_transport_options: (TransportOptions?, Hash[String, String], String?, bool, String?) -> TransportOptions
 
       def self.apply_transport_options: (Configuration, TransportOptions) -> void
 

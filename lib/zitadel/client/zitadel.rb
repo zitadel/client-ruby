@@ -7,7 +7,7 @@ module Zitadel
     # Initializes and configures the SDK with the provided authentication strategy.
     # Sets up service APIs for interacting with various Zitadel features.
     # noinspection RubyTooManyInstanceVariablesInspection
-    class Zitadel # rubocop:disable Metrics/ClassLength
+    class Zitadel
       attr_reader :features,
                   :idps,
                   :instances,
@@ -90,29 +90,26 @@ module Zitadel
         #
         # @param host [String] API URL (e.g. "https://api.zitadel.example.com").
         # @param access_token [String] Personal Access Token for Bearer authentication.
+        # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, headers.
         # @return [Zitadel] SDK client configured with PAT authentication.
         # @see https://zitadel.com/docs/guides/integrate/service-users/personal-access-token
-        # rubocop:disable Metrics/ParameterLists
-        def with_access_token(host, access_token, default_headers: {}, ca_cert_path: nil, insecure: false,
-                              proxy_url: nil, transport_options: nil)
-          resolved = resolve_transport_options(transport_options, default_headers, ca_cert_path, insecure, proxy_url)
+        def with_access_token(host, access_token, transport_options: nil)
+          resolved = transport_options || TransportOptions.defaults
           new(Auth::PersonalAccessTokenAuthenticator.new(host, access_token)) do |config|
             apply_transport_options(config, resolved)
           end
         end
-        # rubocop:enable Metrics/ParameterLists
 
         # Initialize the SDK using OAuth2 Client Credentials flow.
         #
         # @param host [String] API URL.
         # @param client_id [String] OAuth2 client identifier.
         # @param client_secret [String] OAuth2 client secret.
+        # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, headers.
         # @return [Zitadel] SDK client with automatic token acquisition & refresh.
         # @see https://zitadel.com/docs/guides/integrate/service-users/client-credentials
-        # rubocop:disable Metrics/ParameterLists
-        def with_client_credentials(host, client_id, client_secret, default_headers: {}, ca_cert_path: nil,
-                                    insecure: false, proxy_url: nil, transport_options: nil)
-          resolved = resolve_transport_options(transport_options, default_headers, ca_cert_path, insecure, proxy_url)
+        def with_client_credentials(host, client_id, client_secret, transport_options: nil)
+          resolved = transport_options || TransportOptions.defaults
           new(
             Auth::ClientCredentialsAuthenticator
               .builder(host, client_id, client_secret, transport_options: resolved)
@@ -121,35 +118,25 @@ module Zitadel
             apply_transport_options(config, resolved)
           end
         end
-        # rubocop:enable Metrics/ParameterLists
 
         # Initialize the SDK via Private Key JWT assertion.
         #
         # @param host [String] API URL.
         # @param key_file [String] Path to service account JSON/PEM key file.
+        # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, headers.
         # @return [Zitadel] SDK client using JWT assertion for secure, secret-less auth.
         # @see https://zitadel.com/docs/guides/integrate/service-users/private-key-jwt
-        # rubocop:disable Metrics/ParameterLists
-        def with_private_key(host, key_file, default_headers: {}, ca_cert_path: nil, insecure: false,
-                             proxy_url: nil, transport_options: nil)
-          resolved = resolve_transport_options(transport_options, default_headers, ca_cert_path, insecure, proxy_url)
+        def with_private_key(host, key_file, transport_options: nil)
+          resolved = transport_options || TransportOptions.defaults
           new(Auth::WebTokenAuthenticator.from_json(host, key_file,
                                                     transport_options: resolved)) do |config|
             apply_transport_options(config, resolved)
           end
         end
-        # rubocop:enable Metrics/ParameterLists
 
         # @!endgroup
 
         private
-
-        def resolve_transport_options(transport_options, default_headers, ca_cert_path, insecure, proxy_url)
-          transport_options || TransportOptions.new(default_headers: default_headers,
-                                                    ca_cert_path: ca_cert_path,
-                                                    insecure: insecure,
-                                                    proxy_url: proxy_url)
-        end
 
         def apply_transport_options(config, resolved)
           config.default_headers = resolved.default_headers.dup
