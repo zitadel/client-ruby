@@ -17,6 +17,24 @@ module Zitadel
       def self.defaults
         new
       end
+
+      # Builds Faraday connection options from these transport options.
+      #
+      # @return [Hash] connection options for OAuth2::Client
+      def to_connection_opts
+        opts = {}
+        if insecure
+          opts[:ssl] = { verify: false }
+        elsif ca_cert_path
+          store = OpenSSL::X509::Store.new
+          store.set_default_paths
+          store.add_file(ca_cert_path)
+          opts[:ssl] = { cert_store: store, verify: true }
+        end
+        opts[:proxy] = proxy_url if proxy_url
+        opts[:headers] = default_headers.dup if default_headers.any?
+        opts
+      end
     end
   end
 end

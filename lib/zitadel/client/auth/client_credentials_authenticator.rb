@@ -17,17 +17,7 @@ module Zitadel
         def initialize(open_id, client_id, client_secret, auth_scopes, transport_options: nil)
           transport_options ||= TransportOptions.defaults
 
-          conn_opts = {}
-          if transport_options.insecure
-            conn_opts[:ssl] = { verify: false }
-          elsif transport_options.ca_cert_path
-            store = OpenSSL::X509::Store.new
-            store.set_default_paths
-            store.add_file(transport_options.ca_cert_path)
-            conn_opts[:ssl] = { cert_store: store, verify: true }
-          end
-          conn_opts[:proxy] = transport_options.proxy_url if transport_options.proxy_url
-          conn_opts[:headers] = transport_options.default_headers.dup if transport_options.default_headers.any?
+          conn_opts = transport_options.to_connection_opts
 
           # noinspection RubyArgCount
           super(open_id, auth_scopes, OAuth2::Client.new(client_id, client_secret, {

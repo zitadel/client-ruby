@@ -211,6 +211,7 @@ module Zitadel
       attr_reader proxy_url: String?
       def initialize: (?default_headers: Hash[String, String], ?ca_cert_path: String?, ?insecure: bool, ?proxy_url: String?) -> void
       def self.defaults: -> TransportOptions
+      def to_connection_opts: -> Hash[Symbol, untyped]
     end
 
     module Auth

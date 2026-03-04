@@ -30,17 +30,7 @@ module Zitadel
                        jwt_lifetime: 3600, jwt_algorithm: 'RS256', key_id: nil, transport_options: nil)
           transport_options ||= TransportOptions.defaults
 
-          conn_opts = {}
-          if transport_options.insecure
-            conn_opts[:ssl] = { verify: false }
-          elsif transport_options.ca_cert_path
-            store = OpenSSL::X509::Store.new
-            store.set_default_paths
-            store.add_file(transport_options.ca_cert_path)
-            conn_opts[:ssl] = { cert_store: store, verify: true }
-          end
-          conn_opts[:proxy] = transport_options.proxy_url if transport_options.proxy_url
-          conn_opts[:headers] = transport_options.default_headers.dup if transport_options.default_headers.any?
+          conn_opts = transport_options.to_connection_opts
 
           # noinspection RubyArgCount,RubyMismatchedArgumentType
           super(open_id, auth_scopes, OAuth2::Client.new('zitadel', 'zitadel', {
