@@ -105,9 +105,9 @@ module Zitadel
       # rubocop:enable Metrics/MethodLength
 
       def test_proxy_url
-        zitadel = ::Zitadel::Client::Zitadel.with_client_credentials(
+        zitadel = ::Zitadel::Client::Zitadel.with_access_token(
           "http://#{@host}:#{@http_port}",
-          'dummy-client', 'dummy-secret',
+          'test-token',
           transport_options: TransportOptions.new(proxy_url: "http://#{@host}:#{@http_port}")
         )
 
