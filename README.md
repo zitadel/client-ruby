@@ -250,11 +250,11 @@ zitadel = Zitadel::Client::Zitadel.with_client_credentials(
 ### Custom Default Headers
 
 You can attach default headers to every outgoing request. This is useful for
-proxy authentication or custom routing headers:
+custom routing or tracing headers:
 
 ```ruby
 options = Zitadel::Client::TransportOptions.new(
-  default_headers: { 'Proxy-Authorization' => 'Basic dXNlcjpwYXNz' }
+  default_headers: { 'X-Custom-Header' => 'my-value' }
 )
 
 zitadel = Zitadel::Client::Zitadel.with_client_credentials(
@@ -268,10 +268,11 @@ zitadel = Zitadel::Client::Zitadel.with_client_credentials(
 ### Proxy Configuration
 
 If your environment requires routing traffic through an HTTP proxy, you can
-specify the proxy URL:
+specify the proxy URL. To authenticate with the proxy, embed the credentials
+directly in the URL:
 
 ```ruby
-options = Zitadel::Client::TransportOptions.new(proxy_url: 'http://proxy:8080')
+options = Zitadel::Client::TransportOptions.new(proxy_url: 'http://user:pass@proxy:8080')
 
 zitadel = Zitadel::Client::Zitadel.with_client_credentials(
   'https://your-instance.zitadel.cloud',
