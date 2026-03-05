@@ -7,6 +7,7 @@ require 'testcontainers'
 require 'docker'
 require 'net/http'
 require 'json'
+require 'securerandom'
 
 FIXTURES_DIR = File.join(__dir__, '..', '..', 'fixtures')
 
@@ -23,7 +24,8 @@ module Zitadel
         keystore_path = File.join(FIXTURES_DIR, 'keystore.p12')
         squid_conf = File.join(FIXTURES_DIR, 'squid.conf')
 
-        @network = Docker::Network.create('zitadel-proxy-test')
+        @network_name = "zitadel-test-#{SecureRandom.hex(4)}"
+        @network = Docker::Network.create(@network_name)
 
         @wiremock = Testcontainers::DockerContainer.new('wiremock/wiremock:3.3.1')
                                                    .with_filesystem_binds("#{keystore_path}:/home/wiremock/keystore.p12:ro")
@@ -48,7 +50,7 @@ module Zitadel
           'HostConfig' => {
             'PortBindings' => { '3128/tcp' => [{ 'HostPort' => '' }] },
             'Binds' => ["#{squid_conf}:/etc/squid/squid.conf:ro"],
-            'NetworkMode' => 'zitadel-proxy-test'
+            'NetworkMode' => @network_name
           }
         )
         @proxy_container.start
