@@ -21,7 +21,7 @@ module Zitadel
 
         @ca_cert_path = File.join(FIXTURES_DIR, 'ca.pem')
         keystore_path = File.join(FIXTURES_DIR, 'keystore.p12')
-        tinyproxy_conf = File.join(FIXTURES_DIR, 'tinyproxy.conf')
+        squid_conf = File.join(FIXTURES_DIR, 'squid.conf')
 
         @network = Docker::Network.create('zitadel-proxy-test')
 
@@ -41,13 +41,13 @@ module Zitadel
         wiremock_id = @wiremock.instance_variable_get(:@_id)
         @network.connect(wiremock_id, {}, 'EndpointConfig' => { 'Aliases' => ['wiremock'] })
 
-        Docker::Image.create('fromImage' => 'vimagick/tinyproxy')
+        Docker::Image.create('fromImage' => 'ubuntu/squid:6.10-24.10_beta')
         @proxy_container = Docker::Container.create(
-          'Image' => 'vimagick/tinyproxy',
-          'ExposedPorts' => { '8888/tcp' => {} },
+          'Image' => 'ubuntu/squid:6.10-24.10_beta',
+          'ExposedPorts' => { '3128/tcp' => {} },
           'HostConfig' => {
-            'PortBindings' => { '8888/tcp' => [{ 'HostPort' => '' }] },
-            'Binds' => ["#{tinyproxy_conf}:/etc/tinyproxy/tinyproxy.conf:ro"],
+            'PortBindings' => { '3128/tcp' => [{ 'HostPort' => '' }] },
+            'Binds' => ["#{squid_conf}:/etc/squid/squid.conf:ro"],
             'NetworkMode' => 'zitadel-proxy-test'
           }
         )
@@ -57,7 +57,7 @@ module Zitadel
         @http_port = @wiremock.mapped_port(8080)
         @https_port = @wiremock.mapped_port(8443)
         @proxy_container.refresh!
-        @proxy_port = @proxy_container.json['NetworkSettings']['Ports']['8888/tcp'].first['HostPort'].to_i
+        @proxy_port = @proxy_container.json['NetworkSettings']['Ports']['3128/tcp'].first['HostPort'].to_i
 
         register_wiremock_stubs
       end
