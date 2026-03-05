@@ -10,9 +10,9 @@ module Zitadel
 
       def initialize(default_headers: {}, ca_cert_path: nil, insecure: false, proxy_url: nil)
         @default_headers = default_headers.dup.freeze
-        @ca_cert_path = ca_cert_path.freeze
+        @ca_cert_path = ca_cert_path&.dup&.freeze
         @insecure = insecure
-        @proxy_url = proxy_url.freeze
+        @proxy_url = proxy_url&.dup&.freeze
         freeze
       end
 
