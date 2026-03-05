@@ -40,7 +40,7 @@ module Zitadel
                                                    .start
         @wiremock.wait_for_http(container_port: 8080, path: '/__admin/mappings', status: 200)
 
-        wiremock_id = @wiremock.instance_variable_get(:@_id)
+        wiremock_id = @wiremock._id
         @network.connect(wiremock_id, {}, 'EndpointConfig' => { 'Aliases' => ['wiremock'] })
 
         Docker::Image.create('fromImage' => 'ubuntu/squid:6.10-24.10_beta')
