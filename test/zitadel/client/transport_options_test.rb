@@ -8,6 +8,7 @@ require 'docker'
 require 'net/http'
 require 'json'
 require 'securerandom'
+require 'socket'
 
 FIXTURES_DIR = File.join(__dir__, '..', '..', 'fixtures')
 
@@ -54,6 +55,7 @@ module Zitadel
           }
         )
         @proxy_container.start
+        wait_for_port(@proxy_container, 3128)
 
         @host = @wiremock.host
         @http_port = @wiremock.mapped_port(8080)
@@ -139,6 +141,22 @@ module Zitadel
       end
 
       private
+
+      def wait_for_port(container, port, timeout: 30)
+        container.refresh!
+        host_port = container.json['NetworkSettings']['Ports']["#{port}/tcp"].first['HostPort'].to_i
+        host = container.json['NetworkSettings']['Ports']["#{port}/tcp"].first['HostIP']
+        host = '127.0.0.1' if host == '0.0.0.0' # rubocop:disable Style/NumericLiteralPrefix
+        deadline = Time.now + timeout
+        loop do
+          TCPSocket.new(host, host_port).close
+          return
+        rescue Errno::ECONNREFUSED, Errno::EHOSTUNREACH
+          raise "Timed out waiting for port #{port}" if Time.now > deadline
+
+          sleep 0.1
+        end
+      end
 
       # rubocop:disable Metrics/MethodLength
       def register_wiremock_stubs
