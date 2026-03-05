@@ -142,14 +142,13 @@ module Zitadel
 
       private
 
-      def wait_for_port(container, port, timeout: 30)
+      def wait_for_port(container, port, timeout: 30) # rubocop:disable Metrics/MethodLength
         container.refresh!
-        host_port = container.json['NetworkSettings']['Ports']["#{port}/tcp"].first['HostPort'].to_i
-        host = container.json['NetworkSettings']['Ports']["#{port}/tcp"].first['HostIP']
-        host = '127.0.0.1' if host == '0.0.0.0' # rubocop:disable Style/NumericLiteralPrefix
+        binding = container.json['NetworkSettings']['Ports']["#{port}/tcp"].first
+        host = binding['HostIP'] == '0.0.0.0' ? '127.0.0.1' : binding['HostIP']
         deadline = Time.now + timeout
         loop do
-          TCPSocket.new(host, host_port).close
+          TCPSocket.new(host, binding['HostPort'].to_i).close
           return
         rescue Errno::ECONNREFUSED, Errno::EHOSTUNREACH
           raise "Timed out waiting for port #{port}" if Time.now > deadline
