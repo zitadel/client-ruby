@@ -1,12 +1,5 @@
 # frozen_string_literal: true
 
-# Test suite for transport options (default_headers, ca_cert_path, insecure).
-#
-# Uses a WireMock Docker container with HTTPS support to verify that the SDK
-# correctly handles custom CA certificates, insecure TLS mode, and custom
-# default headers when initializing via `with_client_credentials`.
-
-# noinspection RubyResolve
 require 'test_helper'
 require 'minitest/autorun'
 require 'minitest/hooks/test'
@@ -20,7 +13,6 @@ FIXTURES_DIR = File.join(__dir__, '..', '..', 'fixtures')
 module Zitadel
   module Client
     class TransportOptionsTest < Minitest::Test # rubocop:disable Metrics/ClassLength
-      # noinspection RbsMissingTypeSignature
       include Minitest::Hooks
 
       # rubocop:disable Metrics/MethodLength
@@ -46,11 +38,9 @@ module Zitadel
                                                    .start
         @wiremock.wait_for_http(container_port: 8080, path: '/__admin/mappings', status: 200)
 
-        # Connect WireMock to network with alias so the proxy can resolve it
         wiremock_id = @wiremock.instance_variable_get(:@_id)
         @network.connect(wiremock_id, {}, 'EndpointConfig' => { 'Aliases' => ['wiremock'] })
 
-        # Create proxy directly on the network so Docker DNS resolves 'wiremock'
         Docker::Image.create('fromImage' => 'vimagick/tinyproxy')
         @proxy_container = Docker::Container.create(
           'Image' => 'vimagick/tinyproxy',
@@ -103,7 +93,6 @@ module Zitadel
 
       # rubocop:disable Metrics/MethodLength
       def test_default_headers
-        # Use HTTP to avoid TLS concerns
         opts = TransportOptions.new(default_headers: { 'X-Custom-Header' => 'test-value' })
         zitadel = ::Zitadel::Client::Zitadel.with_client_credentials(
           "http://#{@host}:#{@http_port}",
@@ -113,11 +102,8 @@ module Zitadel
 
         refute_nil zitadel
 
-        # Make an actual API call to verify headers propagate to service requests
         zitadel.settings.get_general_settings({})
 
-        # Use WireMock's verification API to assert the header was sent on the API call
-        # noinspection HttpUrlsUsage
         verify_uri = URI("http://#{@host}:#{@http_port}/__admin/requests/count")
         verify_response = Net::HTTP.post(verify_uri, {
           url: '/zitadel.settings.v2.SettingsService/GetGeneralSettings',
@@ -131,7 +117,6 @@ module Zitadel
       # rubocop:enable Metrics/MethodLength
 
       def test_proxy_url
-        # Use Docker-internal hostname — only resolvable through the proxy's network
         zitadel = ::Zitadel::Client::Zitadel.with_access_token(
           'http://wiremock:8080',
           'test-token',
@@ -155,10 +140,8 @@ module Zitadel
 
       # rubocop:disable Metrics/MethodLength
       def register_wiremock_stubs
-        # noinspection HttpUrlsUsage
         uri = URI("http://#{@host}:#{@http_port}/__admin/mappings")
 
-        # Stub 1 - OpenID Configuration
         response = Net::HTTP.post(uri, {
           request: { method: 'GET', url: '/.well-known/openid-configuration' },
           response: {
@@ -174,7 +157,6 @@ module Zitadel
 
         assert_equal '201', response.code
 
-        # Stub 2 - Token endpoint
         response = Net::HTTP.post(uri, {
           request: { method: 'POST', url: '/oauth/v2/token' },
           response: {
@@ -186,7 +168,6 @@ module Zitadel
 
         assert_equal '201', response.code
 
-        # Stub 3 - Settings API endpoint (for verifying headers on API calls)
         response = Net::HTTP.post(uri, {
           request: { method: 'POST', url: '/zitadel.settings.v2.SettingsService/GetGeneralSettings' },
           response: {
