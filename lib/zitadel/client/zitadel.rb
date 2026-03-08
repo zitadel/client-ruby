@@ -90,7 +90,7 @@ module Zitadel
         #
         # @param host [String] API URL (e.g. "https://api.zitadel.example.com").
         # @param access_token [String] Personal Access Token for Bearer authentication.
-        # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, headers.
+        # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
         # @return [Zitadel] SDK client configured with PAT authentication.
         # @see https://zitadel.com/docs/guides/integrate/service-users/personal-access-token
         def with_access_token(host, access_token, transport_options: nil, &block)
@@ -106,7 +106,7 @@ module Zitadel
         # @param host [String] API URL.
         # @param client_id [String] OAuth2 client identifier.
         # @param client_secret [String] OAuth2 client secret.
-        # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, headers.
+        # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
         # @return [Zitadel] SDK client with automatic token acquisition & refresh.
         # @see https://zitadel.com/docs/guides/integrate/service-users/client-credentials
         def with_client_credentials(host, client_id, client_secret, transport_options: nil, &block)
@@ -125,7 +125,7 @@ module Zitadel
         #
         # @param host [String] API URL.
         # @param key_file [String] Path to service account JSON/PEM key file.
-        # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, headers.
+        # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
         # @return [Zitadel] SDK client using JWT assertion for secure, secret-less auth.
         # @see https://zitadel.com/docs/guides/integrate/service-users/private-key-jwt
         def with_private_key(host, key_file, transport_options: nil, &block)
