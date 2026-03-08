@@ -21,6 +21,7 @@ module Zitadel
         # Initializes a new OpenId instance.
         #
         # @param hostname [String] the hostname for the OpenID provider.
+        # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
         # @raise [RuntimeError] if the OpenID configuration cannot be fetched or the token_endpoint is missing.
         #
         # noinspection HttpUrlsUsage

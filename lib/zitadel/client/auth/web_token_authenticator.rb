@@ -25,6 +25,7 @@ module Zitadel
         # @param jwt_lifetime [Integer] Lifetime of the JWT in seconds (default 3600 seconds).
         # @param jwt_algorithm [String] The JWT signing algorithm (default "RS256").
         # @param key_id [String, nil] Optional key identifier for the JWT header (default: nil).
+        # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
         # rubocop:disable Metrics/ParameterLists, Metrics/MethodLength
         def initialize(open_id, auth_scopes, jwt_issuer, jwt_subject, jwt_audience, private_key,
                        jwt_lifetime: 3600, jwt_algorithm: 'RS256', key_id: nil, transport_options: nil)
@@ -67,6 +68,7 @@ module Zitadel
         #
         # @param host [String] Base URL for the API endpoints.
         # @param json_path [String] File path to the JSON configuration file.
+        # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
         # @return [WebTokenAuthenticator] A new instance of WebTokenAuthenticator.
         # @raise [RuntimeError] If the file cannot be read, the JSON is invalid, or required keys are missing.
         # rubocop:disable Metrics/MethodLength
@@ -92,6 +94,7 @@ module Zitadel
         # @param host [String] The base URL for the OAuth provider.
         # @param user_id [String] The user identifier (used as both the issuer and subject).
         # @param private_key [String] The private key used to sign the JWT.
+        # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
         # @return [WebTokenAuthenticatorBuilder] A builder instance.
         def self.builder(host, user_id, private_key, transport_options: nil)
           WebTokenAuthenticatorBuilder.new(host, user_id, user_id, host, private_key,
@@ -139,6 +142,7 @@ module Zitadel
           # @param jwt_subject [String] The subject claim for the JWT.
           # @param jwt_audience [String] The audience claim for the JWT.
           # @param private_key [String] The PEM-formatted private key used for signing the JWT.
+          # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
           # rubocop:disable Metrics/ParameterLists
           def initialize(host, jwt_issuer, jwt_subject, jwt_audience, private_key, transport_options: nil)
             # noinspection RubyArgCount

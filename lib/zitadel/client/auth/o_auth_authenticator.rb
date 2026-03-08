@@ -25,7 +25,9 @@ module Zitadel
         # Constructs an OAuthAuthenticator.
         #
         # @param open_id [OpenId] An object that must implement `get_host_endpoint` and `get_token_endpoint`.
-        # @param auth_session [OAuth2Session] The OAuth2Session instance used for token requests.
+        # @param auth_scopes [Set<String>] The scope(s) for the token request.
+        # @param auth_session [OAuth2::Client] The OAuth2 client instance used for token requests.
+        # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
         #
         def initialize(open_id, auth_scopes, auth_session, transport_options: nil)
           super(open_id.host_endpoint)
