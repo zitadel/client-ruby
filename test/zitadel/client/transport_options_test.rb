@@ -8,7 +8,6 @@ require 'docker'
 require 'net/http'
 require 'json'
 require 'securerandom'
-require 'socket'
 
 FIXTURES_DIR = File.join(__dir__, '..', '..', 'fixtures')
 
@@ -44,32 +43,25 @@ module Zitadel
         wiremock_id = @wiremock._id
         @network.connect(wiremock_id, {}, 'EndpointConfig' => { 'Aliases' => ['wiremock'] })
 
-        Docker::Image.create('fromImage' => 'ubuntu/squid:6.10-24.10_beta')
-        @proxy_container = Docker::Container.create(
-          'Image' => 'ubuntu/squid:6.10-24.10_beta',
-          'ExposedPorts' => { '3128/tcp' => {} },
-          'HostConfig' => {
-            'PortBindings' => { '3128/tcp' => [{ 'HostPort' => '' }] },
-            'Binds' => ["#{squid_conf}:/etc/squid/squid.conf:ro"],
-            'NetworkMode' => @network_name
-          }
-        )
-        @proxy_container.start
-        wait_for_port(@proxy_container, 3128)
+        @proxy = Testcontainers::DockerContainer.new('ubuntu/squid:6.10-24.10_beta')
+                                                .with_filesystem_binds("#{squid_conf}:/etc/squid/squid.conf:ro")
+                                                .with_exposed_ports(3128)
+                                                .start
+        @proxy.wait_for_tcp_port(3128)
+        @network.connect(@proxy._id)
 
         @host = @wiremock.host
         @http_port = @wiremock.mapped_port(8080)
         @https_port = @wiremock.mapped_port(8443)
-        @proxy_container.refresh!
-        @proxy_port = @proxy_container.json['NetworkSettings']['Ports']['3128/tcp'].first['HostPort'].to_i
+        @proxy_port = @proxy.mapped_port(3128)
 
         register_wiremock_stubs
       end
       # rubocop:enable Metrics/MethodLength
 
       def after_all
-        @proxy_container&.stop
-        @proxy_container&.remove
+        @proxy&.stop
+        @proxy&.remove
         @wiremock&.stop
         @wiremock&.remove
         @network&.remove
@@ -142,21 +134,6 @@ module Zitadel
       end
 
       private
-
-      def wait_for_port(container, port, timeout: 30) # rubocop:disable Metrics/MethodLength
-        container.refresh!
-        binding = container.json['NetworkSettings']['Ports']["#{port}/tcp"].first
-        host = binding['HostIP'] == '0.0.0.0' ? '127.0.0.1' : binding['HostIP']
-        deadline = Time.now + timeout
-        loop do
-          TCPSocket.new(host, binding['HostPort'].to_i).close
-          return
-        rescue Errno::ECONNREFUSED, Errno::EHOSTUNREACH
-          raise "Timed out waiting for port #{port}" if Time.now > deadline
-
-          sleep 0.1
-        end
-      end
 
       # rubocop:disable Metrics/MethodLength
       def register_wiremock_stubs
