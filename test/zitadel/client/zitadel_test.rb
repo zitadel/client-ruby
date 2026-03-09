@@ -11,7 +11,7 @@ FIXTURES_DIR = File.join(__dir__, '..', '..', 'fixtures')
 
 module Zitadel
   module Client
-    class ZitadelTest < Minitest::Test
+    class ZitadelTest < Minitest::Test # rubocop:disable Metrics/ClassLength
       include Minitest::Hooks
 
       # rubocop:disable Metrics/MethodLength
@@ -91,6 +91,7 @@ module Zitadel
         )
 
         response = zitadel.settings.get_general_settings({})
+
         assert_equal 'https', response.default_language
       end
 
@@ -102,6 +103,7 @@ module Zitadel
         )
 
         response = zitadel.settings.get_general_settings({})
+
         assert_equal 'https', response.default_language
       end
 
@@ -114,6 +116,7 @@ module Zitadel
         )
 
         response = zitadel.settings.get_general_settings({})
+
         assert_equal 'http', response.default_language
         assert_equal 'test-value', response.default_org_id
       end
@@ -126,6 +129,7 @@ module Zitadel
         )
 
         response = zitadel.settings.get_general_settings({})
+
         assert_equal 'http', response.default_language
       end
 

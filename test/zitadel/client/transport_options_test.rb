@@ -9,12 +9,13 @@ module Zitadel
       FIXTURES_DIR = File.join(__dir__, '..', '..', 'fixtures')
 
       def test_defaults_returns_empty
-        assert_equal({}, TransportOptions.defaults.to_connection_opts)
+        assert_empty(TransportOptions.defaults.to_connection_opts)
       end
 
       def test_insecure_sets_ssl_verify
         opts = TransportOptions.new(insecure: true)
         result = opts.to_connection_opts
+
         assert_equal({ verify: false }, result[:ssl])
       end
 
@@ -22,19 +23,22 @@ module Zitadel
         ca_path = File.join(FIXTURES_DIR, 'ca.pem')
         opts = TransportOptions.new(ca_cert_path: ca_path)
         result = opts.to_connection_opts
+
         assert_instance_of OpenSSL::X509::Store, result[:ssl][:cert_store]
-        assert_equal true, result[:ssl][:verify]
+        assert result[:ssl][:verify]
       end
 
       def test_proxy_url_sets_proxy
         opts = TransportOptions.new(proxy_url: 'http://proxy:3128')
         result = opts.to_connection_opts
+
         assert_equal 'http://proxy:3128', result[:proxy]
       end
 
       def test_default_headers_sets_headers
         opts = TransportOptions.new(default_headers: { 'X-Custom' => 'value' })
         result = opts.to_connection_opts
+
         assert_equal({ 'X-Custom' => 'value' }, result[:headers])
       end
 
@@ -42,19 +46,27 @@ module Zitadel
         ca_path = File.join(FIXTURES_DIR, 'ca.pem')
         opts = TransportOptions.new(insecure: true, ca_cert_path: ca_path)
         result = opts.to_connection_opts
+
         assert_equal({ verify: false }, result[:ssl])
       end
 
       def test_frozen
         opts = TransportOptions.defaults
+
         assert_predicate opts, :frozen?
       end
 
       def test_defaults_factory
         opts = TransportOptions.defaults
-        assert_equal({}, opts.default_headers)
+
+        assert_empty(opts.default_headers)
         assert_nil opts.ca_cert_path
-        assert_equal false, opts.insecure
+        refute opts.insecure
+      end
+
+      def test_defaults_factory_proxy_url
+        opts = TransportOptions.defaults
+
         assert_nil opts.proxy_url
       end
     end
