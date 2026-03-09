@@ -9,7 +9,7 @@ module Zitadel
     # Holds TLS, proxy, and default-header settings that are threaded through
     # every authenticator and OpenID discovery call.
     class TransportOptions
-      # @return [Hash{String => String}] frozen default headers sent with every request.
+      # @return [Hash{String => String}] frozen default headers sent to the origin server with every request.
       attr_reader :default_headers
 
       # @return [String, nil] path to a PEM-encoded CA certificate bundle.
@@ -23,7 +23,7 @@ module Zitadel
 
       # Creates a new TransportOptions instance.
       #
-      # @param default_headers [Hash{String => String}] headers to include in every request.
+      # @param default_headers [Hash{String => String}] headers sent to the origin server with every request.
       # @param ca_cert_path [String, nil] path to a custom CA certificate file.
       # @param insecure [Boolean] whether to skip TLS verification.
       # @param proxy_url [String, nil] HTTP proxy URL.
