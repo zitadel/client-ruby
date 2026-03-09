@@ -27,8 +27,13 @@ module Zitadel
         @network_name = "zitadel-test-#{SecureRandom.hex(4)}"
         @network = Docker::Network.create(@network_name)
 
+        mappings_dir = File.join(FIXTURES_DIR, 'mappings')
+
         @wiremock = Testcontainers::DockerContainer.new('wiremock/wiremock:3.12.1')
-                                                   .with_filesystem_binds("#{keystore_path}:/home/wiremock/keystore.p12:ro")
+                                                   .with_filesystem_binds(
+                                                     "#{keystore_path}:/home/wiremock/keystore.p12:ro",
+                                                     "#{mappings_dir}:/home/wiremock/mappings:ro"
+                                                   )
                                                    .with_command(
                                                      '--https-port', '8443',
                                                      '--https-keystore', '/home/wiremock/keystore.p12',
@@ -55,7 +60,6 @@ module Zitadel
         @https_port = @wiremock.mapped_port(8443)
         @proxy_port = @proxy.mapped_port(3128)
 
-        register_wiremock_stubs
       end
       # rubocop:enable Metrics/MethodLength
 
@@ -133,50 +137,6 @@ module Zitadel
         end
       end
 
-      private
-
-      # rubocop:disable Metrics/MethodLength
-      def register_wiremock_stubs
-        uri = URI("http://#{@host}:#{@http_port}/__admin/mappings")
-
-        response = Net::HTTP.post(uri, {
-          request: { method: 'GET', url: '/.well-known/openid-configuration' },
-          response: {
-            status: 200,
-            headers: { 'Content-Type' => 'application/json' },
-            body: '{"issuer":"{{request.baseUrl}}",' \
-                  '"token_endpoint":"{{request.baseUrl}}/oauth/v2/token",' \
-                  '"authorization_endpoint":"{{request.baseUrl}}/oauth/v2/authorize",' \
-                  '"userinfo_endpoint":"{{request.baseUrl}}/oidc/v1/userinfo",' \
-                  '"jwks_uri":"{{request.baseUrl}}/oauth/v2/keys"}'
-          }
-        }.to_json, 'Content-Type' => 'application/json')
-
-        assert_equal '201', response.code
-
-        response = Net::HTTP.post(uri, {
-          request: { method: 'POST', url: '/oauth/v2/token' },
-          response: {
-            status: 200,
-            headers: { 'Content-Type' => 'application/json' },
-            jsonBody: { access_token: 'test-token-12345', token_type: 'Bearer', expires_in: 3600 }
-          }
-        }.to_json, 'Content-Type' => 'application/json')
-
-        assert_equal '201', response.code
-
-        response = Net::HTTP.post(uri, {
-          request: { method: 'POST', url: '/zitadel.settings.v2.SettingsService/GetGeneralSettings' },
-          response: {
-            status: 200,
-            headers: { 'Content-Type' => 'application/json' },
-            jsonBody: {}
-          }
-        }.to_json, 'Content-Type' => 'application/json')
-
-        assert_equal '201', response.code
-      end
-      # rubocop:enable Metrics/MethodLength
     end
   end
 end
