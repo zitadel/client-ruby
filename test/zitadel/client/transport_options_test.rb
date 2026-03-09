@@ -71,6 +71,7 @@ module Zitadel
         @proxy_container&.stop
         @proxy_container&.remove
         @wiremock&.stop
+        @wiremock&.remove
         @network&.remove
         super
       end
