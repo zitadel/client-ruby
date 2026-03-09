@@ -43,8 +43,7 @@ module Zitadel
       end
 
       def test_insecure_takes_precedence_over_ca_cert
-        ca_path = File.join(FIXTURES_DIR, 'ca.pem')
-        opts = TransportOptions.new(insecure: true, ca_cert_path: ca_path)
+        opts = TransportOptions.new(insecure: true, ca_cert_path: '/nonexistent/ca.pem')
         result = opts.to_connection_opts
 
         assert_equal({ verify: false }, result[:ssl])
