@@ -13,7 +13,7 @@ FIXTURES_DIR = File.join(__dir__, '..', '..', 'fixtures')
 
 module Zitadel
   module Client
-    class TransportOptionsTest < Minitest::Test # rubocop:disable Metrics/ClassLength
+    class TransportOptionsTest < Minitest::Test
       include Minitest::Hooks
 
       # rubocop:disable Metrics/MethodLength
@@ -30,10 +30,8 @@ module Zitadel
         mappings_dir = File.join(FIXTURES_DIR, 'mappings')
 
         @wiremock = Testcontainers::DockerContainer.new('wiremock/wiremock:3.12.1')
-                                                   .with_filesystem_binds(
-                                                     "#{keystore_path}:/home/wiremock/keystore.p12:ro",
-                                                     "#{mappings_dir}:/home/wiremock/mappings:ro"
-                                                   )
+                                                   .with_filesystem_binds("#{keystore_path}:/home/wiremock/keystore.p12:ro")
+                                                   .with_filesystem_binds("#{mappings_dir}:/home/wiremock/mappings:ro")
                                                    .with_command(
                                                      '--https-port', '8443',
                                                      '--https-keystore', '/home/wiremock/keystore.p12',
@@ -59,7 +57,6 @@ module Zitadel
         @http_port = @wiremock.mapped_port(8080)
         @https_port = @wiremock.mapped_port(8443)
         @proxy_port = @proxy.mapped_port(3128)
-
       end
       # rubocop:enable Metrics/MethodLength
 
@@ -136,7 +133,6 @@ module Zitadel
           )
         end
       end
-
     end
   end
 end
