@@ -5,28 +5,25 @@ require 'openssl'
 module Zitadel
   module Client
     # Immutable transport options for configuring HTTP connections.
-    #
-    # Holds TLS, proxy, and default-header settings that are threaded through
-    # every authenticator and OpenID discovery call.
     class TransportOptions
-      # @return [Hash{String => String}] frozen default headers sent to the origin server with every request.
+      # @return [Hash{String => String}] Default HTTP headers sent to the origin server with every request.
       attr_reader :default_headers
 
-      # @return [String, nil] path to a PEM-encoded CA certificate bundle.
+      # @return [String, nil] Path to a custom CA certificate file for TLS verification.
       attr_reader :ca_cert_path
 
-      # @return [Boolean] when true, TLS certificate verification is disabled.
+      # @return [Boolean] Whether to disable TLS certificate verification.
       attr_reader :insecure
 
-      # @return [String, nil] HTTP proxy URL (e.g. "http://proxy:8080").
+      # @return [String, nil] Proxy URL for HTTP connections.
       attr_reader :proxy_url
 
       # Creates a new TransportOptions instance.
       #
-      # @param default_headers [Hash{String => String}] headers sent to the origin server with every request.
-      # @param ca_cert_path [String, nil] path to a custom CA certificate file.
-      # @param insecure [Boolean] whether to skip TLS verification.
-      # @param proxy_url [String, nil] HTTP proxy URL.
+      # @param default_headers [Hash{String => String}] Default HTTP headers sent to the origin server with every request.
+      # @param ca_cert_path [String, nil] Path to a custom CA certificate file for TLS verification.
+      # @param insecure [Boolean] Whether to disable TLS certificate verification.
+      # @param proxy_url [String, nil] Proxy URL for HTTP connections.
       # @return [TransportOptions] an immutable transport options instance.
       def initialize(default_headers: {}, ca_cert_path: nil, insecure: false, proxy_url: nil)
         @default_headers = default_headers.dup.freeze
