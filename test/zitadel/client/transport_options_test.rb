@@ -28,7 +28,7 @@ module Zitadel
         @network_name = "zitadel-test-#{SecureRandom.hex(4)}"
         @network = Docker::Network.create(@network_name)
 
-        @wiremock = Testcontainers::DockerContainer.new('wiremock/wiremock:3.3.1')
+        @wiremock = Testcontainers::DockerContainer.new('wiremock/wiremock:3.12.1')
                                                    .with_filesystem_binds("#{keystore_path}:/home/wiremock/keystore.p12:ro")
                                                    .with_command(
                                                      '--https-port', '8443',
