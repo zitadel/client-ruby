@@ -25,14 +25,20 @@ module Zitadel
         # @param jwt_lifetime [Integer] Lifetime of the JWT in seconds (default 3600 seconds).
         # @param jwt_algorithm [String] The JWT signing algorithm (default "RS256").
         # @param key_id [String, nil] Optional key identifier for the JWT header (default: nil).
-        # rubocop:disable Metrics/ParameterLists,Metrics/MethodLength
+        # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
+        # rubocop:disable Metrics/ParameterLists, Metrics/MethodLength
         def initialize(open_id, auth_scopes, jwt_issuer, jwt_subject, jwt_audience, private_key,
-                       jwt_lifetime: 3600, jwt_algorithm: 'RS256', key_id: nil)
+                       jwt_lifetime: 3600, jwt_algorithm: 'RS256', key_id: nil, transport_options: nil)
+          transport_options ||= TransportOptions.defaults
+
+          conn_opts = transport_options.to_connection_opts
+
           # noinspection RubyArgCount,RubyMismatchedArgumentType
           super(open_id, auth_scopes, OAuth2::Client.new('zitadel', 'zitadel', {
                                                            site: open_id.host_endpoint,
-                                                           token_url: open_id.token_endpoint
-                                                         }))
+                                                           token_url: open_id.token_endpoint,
+                                                           connection_opts: conn_opts
+                                                         }), transport_options: transport_options)
           @jwt_issuer = jwt_issuer
           @jwt_subject = jwt_subject
           @jwt_audience = jwt_audience
@@ -47,7 +53,7 @@ module Zitadel
                          end
         end
 
-        # rubocop:enable Metrics/ParameterLists,Metrics/MethodLength
+        # rubocop:enable Metrics/ParameterLists, Metrics/MethodLength
 
         # Creates a WebTokenAuthenticator instance from a JSON configuration file.
         #
@@ -62,9 +68,11 @@ module Zitadel
         #
         # @param host [String] Base URL for the API endpoints.
         # @param json_path [String] File path to the JSON configuration file.
+        # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
         # @return [WebTokenAuthenticator] A new instance of WebTokenAuthenticator.
         # @raise [RuntimeError] If the file cannot be read, the JSON is invalid, or required keys are missing.
-        def self.from_json(host, json_path)
+        # rubocop:disable Metrics/MethodLength
+        def self.from_json(host, json_path, transport_options: nil)
           config = JSON.parse(File.read(json_path))
         rescue Errno::ENOENT => e
           raise "Unable to read JSON file at #{json_path}: #{e.message}"
@@ -76,17 +84,21 @@ module Zitadel
           user_id, private_key, key_id = config.values_at('userId', 'key', 'keyId')
           raise "Missing required keys 'userId', 'keyId' or 'key'" unless user_id && key_id && private_key
 
-          WebTokenAuthenticator.builder(host, user_id, private_key).key_identifier(key_id).build
+          WebTokenAuthenticator.builder(host, user_id, private_key, transport_options: transport_options)
+                               .key_identifier(key_id).build
         end
+        # rubocop:enable Metrics/MethodLength
 
         # Returns a builder for constructing a WebTokenAuthenticator.
         #
         # @param host [String] The base URL for the OAuth provider.
         # @param user_id [String] The user identifier (used as both the issuer and subject).
         # @param private_key [String] The private key used to sign the JWT.
+        # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
         # @return [WebTokenAuthenticatorBuilder] A builder instance.
-        def self.builder(host, user_id, private_key)
-          WebTokenAuthenticatorBuilder.new(host, user_id, user_id, host, private_key)
+        def self.builder(host, user_id, private_key, transport_options: nil)
+          WebTokenAuthenticatorBuilder.new(host, user_id, user_id, host, private_key,
+                                           transport_options: transport_options)
         end
 
         protected
@@ -130,15 +142,18 @@ module Zitadel
           # @param jwt_subject [String] The subject claim for the JWT.
           # @param jwt_audience [String] The audience claim for the JWT.
           # @param private_key [String] The PEM-formatted private key used for signing the JWT.
-          def initialize(host, jwt_issuer, jwt_subject, jwt_audience, private_key)
+          # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
+          # rubocop:disable Metrics/ParameterLists
+          def initialize(host, jwt_issuer, jwt_subject, jwt_audience, private_key, transport_options: nil)
             # noinspection RubyArgCount
-            super(host)
+            super(host, transport_options: transport_options)
             @jwt_issuer = jwt_issuer
             @jwt_subject = jwt_subject
             @jwt_audience = jwt_audience
             @private_key = private_key
             @jwt_lifetime = 3600
           end
+          # rubocop:enable Metrics/ParameterLists
 
           # Sets the JWT token lifetime in seconds.
           #
@@ -159,7 +174,8 @@ module Zitadel
           # @return [WebTokenAuthenticator] A configured instance.
           def build
             WebTokenAuthenticator.new(open_id, auth_scopes, @jwt_issuer, @jwt_subject, @jwt_audience,
-                                      @private_key, jwt_lifetime: @jwt_lifetime, key_id: @key_id)
+                                      @private_key, jwt_lifetime: @jwt_lifetime, key_id: @key_id,
+                                                    transport_options: @transport_options)
           end
         end
       end

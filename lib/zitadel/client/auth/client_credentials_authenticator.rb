@@ -11,12 +11,18 @@ module Zitadel
         # @param client_id [String] The OAuth client identifier.
         # @param client_secret [String] The OAuth client secret.
         # @param auth_scopes [Set<String>] The scope(s) for the token request.
-        def initialize(open_id, client_id, client_secret, auth_scopes)
+        # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
+        def initialize(open_id, client_id, client_secret, auth_scopes, transport_options: nil)
+          transport_options ||= TransportOptions.defaults
+
+          conn_opts = transport_options.to_connection_opts
+
           # noinspection RubyArgCount
           super(open_id, auth_scopes, OAuth2::Client.new(client_id, client_secret, {
                                                            site: open_id.host_endpoint,
-                                                           token_url: open_id.token_endpoint
-                                                         }))
+                                                           token_url: open_id.token_endpoint,
+                                                           connection_opts: conn_opts
+                                                         }), transport_options: transport_options)
         end
 
         # Returns a new builder for constructing a ClientCredentialsAuthenticator.
@@ -24,9 +30,11 @@ module Zitadel
         # @param host [String] The OAuth provider's base URL.
         # @param client_id [String] The OAuth client identifier.
         # @param client_secret [String] The OAuth client secret.
+        # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
         # @return [ClientCredentialsAuthenticatorBuilder] A builder instance.
-        def self.builder(host, client_id, client_secret)
-          ClientCredentialsAuthenticatorBuilder.new(host, client_id, client_secret)
+        def self.builder(host, client_id, client_secret, transport_options: nil)
+          ClientCredentialsAuthenticatorBuilder.new(host, client_id, client_secret,
+                                                    transport_options: transport_options)
         end
 
         protected
@@ -45,9 +53,10 @@ module Zitadel
           # @param host [String] The OAuth provider's base URL.
           # @param client_id [String] The OAuth client identifier.
           # @param client_secret [String] The OAuth client secret.
-          def initialize(host, client_id, client_secret)
+          # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
+          def initialize(host, client_id, client_secret, transport_options: nil)
             # noinspection RubyArgCount
-            super(host)
+            super(host, transport_options: transport_options)
             @client_id = client_id
             @client_secret = client_secret
           end
@@ -56,7 +65,8 @@ module Zitadel
           #
           # @return [ClientCredentialsAuthenticator] A configured instance.
           def build
-            ClientCredentialsAuthenticator.new(open_id, @client_id, @client_secret, auth_scopes)
+            ClientCredentialsAuthenticator.new(open_id, @client_id, @client_secret, auth_scopes,
+                                               transport_options: @transport_options)
           end
         end
       end

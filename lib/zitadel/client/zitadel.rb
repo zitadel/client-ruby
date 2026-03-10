@@ -7,7 +7,7 @@ module Zitadel
     # Initializes and configures the SDK with the provided authentication strategy.
     # Sets up service APIs for interacting with various Zitadel features.
     # noinspection RubyTooManyInstanceVariablesInspection
-    class Zitadel
+    class Zitadel # rubocop:disable Metrics/ClassLength
       attr_reader :features,
                   :idps,
                   :instances,
@@ -90,10 +90,15 @@ module Zitadel
         #
         # @param host [String] API URL (e.g. "https://api.zitadel.example.com").
         # @param access_token [String] Personal Access Token for Bearer authentication.
-        # @return [Zitadel] SDK client configured with PAT authentication.
+        # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
+        # @return [Zitadel] Configured Zitadel client instance.
         # @see https://zitadel.com/docs/guides/integrate/service-users/personal-access-token
-        def with_access_token(host, access_token)
-          new(Auth::PersonalAccessTokenAuthenticator.new(host, access_token))
+        def with_access_token(host, access_token, transport_options: nil, &block)
+          resolved = transport_options || TransportOptions.defaults
+          new(Auth::PersonalAccessTokenAuthenticator.new(host, access_token)) do |config|
+            apply_transport_options(config, resolved)
+            block&.call(config)
+          end
         end
 
         # Initialize the SDK using OAuth2 Client Credentials flow.
@@ -101,27 +106,50 @@ module Zitadel
         # @param host [String] API URL.
         # @param client_id [String] OAuth2 client identifier.
         # @param client_secret [String] OAuth2 client secret.
-        # @return [Zitadel] SDK client with automatic token acquisition & refresh.
+        # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
+        # @return [Zitadel] Configured Zitadel client instance with token auto-refresh.
         # @see https://zitadel.com/docs/guides/integrate/service-users/client-credentials
-        def with_client_credentials(host, client_id, client_secret)
+        def with_client_credentials(host, client_id, client_secret, transport_options: nil, &block)
+          resolved = transport_options || TransportOptions.defaults
           new(
             Auth::ClientCredentialsAuthenticator
-              .builder(host, client_id, client_secret)
+              .builder(host, client_id, client_secret, transport_options: resolved)
               .build
-          )
+          ) do |config|
+            apply_transport_options(config, resolved)
+            block&.call(config)
+          end
         end
 
         # Initialize the SDK via Private Key JWT assertion.
         #
         # @param host [String] API URL.
         # @param key_file [String] Path to service account JSON/PEM key file.
-        # @return [Zitadel] SDK client using JWT assertion for secure, secret-less auth.
+        # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
+        # @return [Zitadel] Configured Zitadel client instance using JWT assertion.
         # @see https://zitadel.com/docs/guides/integrate/service-users/private-key-jwt
-        def with_private_key(host, key_file)
-          new(Auth::WebTokenAuthenticator.from_json(host, key_file))
+        def with_private_key(host, key_file, transport_options: nil, &block)
+          resolved = transport_options || TransportOptions.defaults
+          new(Auth::WebTokenAuthenticator.from_json(host, key_file,
+                                                    transport_options: resolved)) do |config|
+            apply_transport_options(config, resolved)
+            block&.call(config)
+          end
         end
 
         # @!endgroup
+
+        private
+
+        def apply_transport_options(config, resolved)
+          config.default_headers = resolved.default_headers.dup
+          config.ssl_ca_cert = resolved.ca_cert_path if resolved.ca_cert_path
+          if resolved.insecure
+            config.verify_ssl = false
+            config.verify_ssl_host = false
+          end
+          config.proxy_url = resolved.proxy_url if resolved.proxy_url
+        end
       end
     end
   end

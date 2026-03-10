@@ -194,22 +194,99 @@ environment and security requirements. For more details, please refer to the
 ### Debugging
 
 The SDK supports debug logging, which can be enabled for troubleshooting
-and debugging purposes. You can enable debug logging by setting the `debug`
-flag to `true` when initializing the `Zitadel` client, like this:
+and debugging purposes. You can enable debug logging by setting `debugging`
+to `true` via the configuration block when initializing the `Zitadel` client:
 
 ```ruby
-zitadel = zitadel.Zitadel("your-zitadel-base-url", 'your-valid-token', lambda config: config.debug = True)
+zitadel = Zitadel::Client::Zitadel.with_access_token(
+  'your-zitadel-base-url',
+  'your-valid-token'
+) do |config|
+  config.debugging = true
+end
 ```
 
 When enabled, the SDK will log additional information, such as HTTP request
 and response details, which can be useful for identifying issues in the
 integration or troubleshooting unexpected behavior.
 
+## Advanced Configuration
+
+The SDK provides a `TransportOptions` object that allows you to customise
+the underlying HTTP transport used for both OpenID discovery and API calls.
+
+### Disabling TLS Verification
+
+In development or testing environments with self-signed certificates, you can
+disable TLS verification entirely:
+
+```ruby
+options = Zitadel::Client::TransportOptions.new(insecure: true)
+
+zitadel = Zitadel::Client::Zitadel.with_client_credentials(
+  'https://your-instance.zitadel.cloud',
+  'client-id',
+  'client-secret',
+  transport_options: options
+)
+```
+
+### Using a Custom CA Certificate
+
+If your Zitadel instance uses a certificate signed by a private CA, you can
+provide the path to the CA certificate in PEM format:
+
+```ruby
+options = Zitadel::Client::TransportOptions.new(ca_cert_path: '/path/to/ca.pem')
+
+zitadel = Zitadel::Client::Zitadel.with_client_credentials(
+  'https://your-instance.zitadel.cloud',
+  'client-id',
+  'client-secret',
+  transport_options: options
+)
+```
+
+### Custom Default Headers
+
+You can attach default headers to every outgoing request. This is useful for
+custom routing or tracing headers:
+
+```ruby
+options = Zitadel::Client::TransportOptions.new(
+  default_headers: { 'X-Custom-Header' => 'my-value' }
+)
+
+zitadel = Zitadel::Client::Zitadel.with_client_credentials(
+  'https://your-instance.zitadel.cloud',
+  'client-id',
+  'client-secret',
+  transport_options: options
+)
+```
+
+### Proxy Configuration
+
+If your environment requires routing traffic through an HTTP proxy, you can
+specify the proxy URL. To authenticate with the proxy, embed the credentials
+directly in the URL:
+
+```ruby
+options = Zitadel::Client::TransportOptions.new(proxy_url: 'http://user:pass@proxy:8080')
+
+zitadel = Zitadel::Client::Zitadel.with_client_credentials(
+  'https://your-instance.zitadel.cloud',
+  'client-id',
+  'client-secret',
+  transport_options: options
+)
+```
+
 ## Design and Dependencies
 
 This SDK is designed to be lean and efficient, focusing on providing a
 streamlined way to interact with the Zitadel API. It relies on the commonly used
-urllib3 HTTP transport for making requests, which ensures that
+Typhoeus HTTP library for making requests, which ensures that
 the SDK integrates well with other libraries and provides flexibility
 in terms of request handling and error management.
 

@@ -56,9 +56,12 @@ module Zitadel
         # Initializes the OAuthAuthenticatorBuilder with a given host.
         #
         # @param host [String] the base URL for the OAuth provider.
+        # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
         #
-        def initialize(host)
-          @open_id = OpenId.new(host)
+        def initialize(host, transport_options: nil)
+          transport_options ||= TransportOptions.defaults
+          @transport_options = transport_options
+          @open_id = OpenId.new(host, transport_options: transport_options)
           @auth_scopes = Set.new(%w[openid urn:zitadel:iam:org:project:id:zitadel:aud])
         end
 

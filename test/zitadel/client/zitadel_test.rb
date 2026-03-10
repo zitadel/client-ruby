@@ -1,38 +1,145 @@
 # frozen_string_literal: true
 
-# noinspection RubyResolve
 require 'test_helper'
 require 'minitest/autorun'
+require 'minitest/hooks/test'
+require 'testcontainers'
+require 'docker'
+require 'securerandom'
+
+FIXTURES_DIR = File.join(__dir__, '..', '..', 'fixtures')
 
 module Zitadel
   module Client
-    # This test ensures that the Zitadel SDK class exposes a reader method
-    # for every service API class defined in the Zitadel::Client namespace
-    # that ends with "ServiceApi".
-    #
-    # It dynamically collects all service classes and compares them with
-    # the classes returned by each public method defined directly on the
-    # Zitadel instance.
-    # noinspection RbsMissingTypeSignature
-    class ZitadelTest < Minitest::Test
-      # noinspection RubyArgCount
+    class ZitadelTest < Minitest::Test # rubocop:disable Metrics/ClassLength
+      include Minitest::Hooks
+
+      # rubocop:disable Metrics/MethodLength
+      def before_all
+        super
+
+        @ca_cert_path = File.join(FIXTURES_DIR, 'ca.pem')
+        keystore_path = File.join(FIXTURES_DIR, 'keystore.p12')
+        squid_conf = File.join(FIXTURES_DIR, 'squid.conf')
+
+        @network_name = "zitadel-test-#{SecureRandom.hex(4)}"
+        @network = Docker::Network.create(@network_name)
+
+        mappings_dir = File.join(FIXTURES_DIR, 'mappings')
+
+        @wiremock = Testcontainers::DockerContainer.new('wiremock/wiremock:3.12.1')
+                                                   .with_filesystem_binds("#{keystore_path}:/home/wiremock/keystore.p12:ro")
+                                                   .with_filesystem_binds("#{mappings_dir}:/home/wiremock/mappings:ro")
+                                                   .with_command(
+                                                     '--https-port', '8443',
+                                                     '--https-keystore', '/home/wiremock/keystore.p12',
+                                                     '--keystore-password', 'password',
+                                                     '--keystore-type', 'PKCS12',
+                                                     '--global-response-templating'
+                                                   )
+                                                   .with_exposed_ports(8080, 8443)
+                                                   .start
+        @wiremock.wait_for_http(container_port: 8080, path: '/__admin/mappings', status: 200)
+
+        wiremock_id = @wiremock._id
+        @network.connect(wiremock_id, {}, 'EndpointConfig' => { 'Aliases' => ['wiremock'] })
+
+        @proxy = Testcontainers::DockerContainer.new('ubuntu/squid:6.10-24.10_beta')
+                                                .with_filesystem_binds("#{squid_conf}:/etc/squid/squid.conf:ro")
+                                                .with_exposed_ports(3128)
+                                                .start
+        @proxy.wait_for_tcp_port(3128)
+        @network.connect(@proxy._id)
+
+        @host = @wiremock.host
+        @http_port = @wiremock.mapped_port(8080)
+        @https_port = @wiremock.mapped_port(8443)
+        @proxy_port = @proxy.mapped_port(3128)
+      end
+      # rubocop:enable Metrics/MethodLength
+
+      def after_all
+        @proxy&.stop
+        @proxy&.remove
+        @wiremock&.stop
+        @wiremock&.remove
+        @network&.remove
+        super
+      end
+
       def test_zitadel_exposes_all_service_apis
-        # Collect all classes under Zitadel::Client that end with "ServiceApi"
         expected = Api.constants
                       .map { |const| Api.const_get(const) }
                       .select { |klass| klass.is_a?(Class) && klass.name.end_with?('ServiceApi') }
                       .to_set
 
-        # Instantiate the Zitadel SDK with a dummy authenticator
         zitadel = Zitadel.new(Auth::NoAuthAuthenticator.new)
 
-        # Collect all instance method return types that are service API classes
         actual = Zitadel.instance_methods(false)
                         .map { |meth| zitadel.public_send(meth).class }
                         .select { |klass| klass.name.end_with?('ServiceApi') }
                         .to_set
 
         assert_equal expected, actual
+      end
+
+      def test_custom_ca_cert
+        zitadel = ::Zitadel::Client::Zitadel.with_client_credentials(
+          "https://#{@host}:#{@https_port}",
+          'dummy-client', 'dummy-secret',
+          transport_options: TransportOptions.new(ca_cert_path: @ca_cert_path)
+        )
+
+        response = zitadel.settings.get_general_settings({})
+
+        assert_equal 'https', response.default_language
+      end
+
+      def test_insecure_mode
+        zitadel = ::Zitadel::Client::Zitadel.with_client_credentials(
+          "https://#{@host}:#{@https_port}",
+          'dummy-client', 'dummy-secret',
+          transport_options: TransportOptions.new(insecure: true)
+        )
+
+        response = zitadel.settings.get_general_settings({})
+
+        assert_equal 'https', response.default_language
+      end
+
+      def test_default_headers
+        opts = TransportOptions.new(default_headers: { 'X-Custom-Header' => 'test-value' })
+        zitadel = ::Zitadel::Client::Zitadel.with_client_credentials(
+          "http://#{@host}:#{@http_port}",
+          'dummy-client', 'dummy-secret',
+          transport_options: opts
+        )
+
+        response = zitadel.settings.get_general_settings({})
+
+        assert_equal 'http', response.default_language
+        assert_equal 'test-value', response.default_org_id
+      end
+
+      def test_proxy_url
+        zitadel = ::Zitadel::Client::Zitadel.with_access_token(
+          'http://wiremock:8080',
+          'test-token',
+          transport_options: TransportOptions.new(proxy_url: "http://#{@host}:#{@proxy_port}")
+        )
+
+        response = zitadel.settings.get_general_settings({})
+
+        assert_equal 'http', response.default_language
+      end
+
+      def test_no_ca_cert_fails
+        assert_raises(StandardError) do
+          ::Zitadel::Client::Zitadel.with_client_credentials(
+            "https://#{@host}:#{@https_port}",
+            'dummy-client', 'dummy-secret'
+          )
+        end
       end
     end
   end

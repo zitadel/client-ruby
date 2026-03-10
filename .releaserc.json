@@ -30,7 +30,7 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "bundle install --path vendor/bundle && gem build *.gemspec"
+        "prepareCmd": "bundle config set path 'vendor/bundle' && bundle install && gem build *.gemspec"
       }
     ],
     [
@@ -56,7 +56,7 @@
         ]
       }
     ],
-    "semantic-release-rubygem",
+    "@webhippie/semantic-release-rubygem",
     [
       "@semantic-release/git",
       {
