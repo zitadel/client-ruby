@@ -68,6 +68,7 @@ jobs:
   all-passed:
     name: Check Build Status
     runs-on: ubuntu-latest
+    if: always()
     needs:
       - lint-commits
       - code-style
@@ -76,12 +77,15 @@ jobs:
       - run-tests
       - code-inspection
       - build-docker
-    if: ${{ success() }}
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@0634a2670c59f64b4a01f0f96f84700a4088b9f0 # v2.12.0
         with:
           egress-policy: audit
 
-      - name: Report Success
-        run: echo "All required checks passed successfully."
+      - name: Verify all jobs passed
+        run: |
+          if [[ "${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}" == "true" ]]; then
+            echo "One or more jobs failed or were cancelled."
+            exit 1
+          fi
