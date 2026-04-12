@@ -17,4 +17,4 @@ bootstrap: |
   rm -f .idea/misc.xml .idea/client-ruby.iml
   bundle install
 
-linter: jetbrains/qodana-ruby:2025.2-eap-ruby3.4-privileged
+linter: jetbrains/qodana-ruby:2026.1-eap-ruby3.4-privileged
