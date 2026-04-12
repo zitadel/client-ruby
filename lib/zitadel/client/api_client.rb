@@ -65,7 +65,7 @@ module Zitadel
       def call_api(http_method, path, opts = {})
         request = build_request(http_method, path, opts)
         tempfile = nil
-        (download_file(request) { tempfile = _1 }) if opts[:return_type] == 'File'
+        download_file(request) { tempfile = _1 } if opts[:return_type] == 'File'
         response = request.run
 
         @config.logger.debug "HTTP response body ~BEGIN~\n#{response.body}\n~END~\n" if @config.debugging

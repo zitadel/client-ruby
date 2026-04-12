@@ -16,13 +16,11 @@ Dotenv.load('.env')
 # Override the HTMLFormatter so that it writes its report inside build/coverage/html
 module SimpleCov
   module Formatter
-    # rubocop:disable Style/Documentation
     module HTMLFormatterPatch
       def output_path
         File.join(SimpleCov.coverage_path, 'html')
       end
     end
-    # rubocop:enable Style/Documentation
 
     class HTMLFormatter
       prepend HTMLFormatterPatch
@@ -51,7 +49,7 @@ begin
 
   module Minitest
     module Reporters
-      # rubocop:disable Metrics/AbcSize,Style/Documentation,Metrics/MethodLength
+      # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
       class JUnitReporter
         private
 
@@ -94,7 +92,7 @@ begin
         end
       end
 
-      # rubocop:enable Metrics/AbcSize,Style/Documentation,Metrics/MethodLength
+      # rubocop:enable Metrics/AbcSize,Metrics/MethodLength
     end
   end
 

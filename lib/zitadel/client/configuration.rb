@@ -28,7 +28,7 @@ module Zitadel
           "os=#{RUBY_PLATFORM}",
           "arch=#{RbConfig::CONFIG['host_cpu']}"
         ].join('; ')
-          .prepend('(').concat(')')
+         .prepend('(').concat(')')
       ].join(' ')
 
       ##
