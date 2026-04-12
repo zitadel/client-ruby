@@ -9,9 +9,10 @@
       200
     ],
     "footer-max-line-length": [
-      2,
-      "always",
-      200
+      0
+    ],
+    "footer-leading-blank": [
+      0
     ]
   }
 }
