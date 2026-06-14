@@ -1,0 +1,14 @@
+module Zitadel::Client::Models
+  class FeatureServiceSource
+    SOURCE_UNSPECIFIED: String
+    SOURCE_SYSTEM: String
+    SOURCE_INSTANCE: String
+    SOURCE_ORGANIZATION: String
+    SOURCE_PROJECT: String
+    SOURCE_APP: String
+    SOURCE_USER: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

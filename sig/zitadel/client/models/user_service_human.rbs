@@ -1,0 +1,12 @@
+module Zitadel::Client::Models
+  class UserServiceHuman < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader profile: UserServiceProfile?
+    attr_reader email: UserServiceSetHumanEmail?
+    attr_reader phone: UserServiceSetHumanPhone?
+    attr_reader password: UserServiceSetPassword?
+  end
+end

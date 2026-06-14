@@ -1,0 +1,14 @@
+module Zitadel::Client::Models
+  class IdentityProviderServiceIDP < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader id: String?
+    attr_reader details: IdentityProviderServiceDetails?
+    attr_reader state: IdentityProviderServiceIDPState?
+    attr_reader name: String?
+    attr_reader type: IdentityProviderServiceIDPType?
+    attr_reader config: IdentityProviderServiceIDPConfig?
+  end
+end

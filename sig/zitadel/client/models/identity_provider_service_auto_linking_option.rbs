@@ -1,0 +1,10 @@
+module Zitadel::Client::Models
+  class IdentityProviderServiceAutoLinkingOption
+    AUTO_LINKING_OPTION_UNSPECIFIED: String
+    AUTO_LINKING_OPTION_USERNAME: String
+    AUTO_LINKING_OPTION_EMAIL: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

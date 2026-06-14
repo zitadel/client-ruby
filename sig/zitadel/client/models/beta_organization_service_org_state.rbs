@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class BetaOrganizationServiceOrgState
+    ORG_STATE_UNSPECIFIED: String
+    ORG_STATE_ACTIVE: String
+    ORG_STATE_INACTIVE: String
+    ORG_STATE_REMOVED: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

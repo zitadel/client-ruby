@@ -1,0 +1,15 @@
+module Zitadel::Client
+  module Api
+    class OIDCServiceApi < BaseApi
+      def initialize: (?::Zitadel::Client::ApiClient? api_client, ?::Zitadel::Client::Configuration config, ?::Zitadel::Client::Auth::Authenticator? authenticator) -> void
+      def authorize_or_deny_device_authorization: (Models::OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest oidc_service_authorize_or_deny_device_authorization_request) -> untyped
+      def authorize_or_deny_device_authorization_with_http_info: (Models::OIDCServiceAuthorizeOrDenyDeviceAuthorizationRequest oidc_service_authorize_or_deny_device_authorization_request) -> ::Zitadel::Client::ApiResult[untyped]
+      def create_callback: (Models::OIDCServiceCreateCallbackRequest oidc_service_create_callback_request) -> Models::OIDCServiceCreateCallbackResponse
+      def create_callback_with_http_info: (Models::OIDCServiceCreateCallbackRequest oidc_service_create_callback_request) -> ::Zitadel::Client::ApiResult[Models::OIDCServiceCreateCallbackResponse]
+      def get_auth_request: (Models::OIDCServiceGetAuthRequestRequest oidc_service_get_auth_request_request) -> Models::OIDCServiceGetAuthRequestResponse
+      def get_auth_request_with_http_info: (Models::OIDCServiceGetAuthRequestRequest oidc_service_get_auth_request_request) -> ::Zitadel::Client::ApiResult[Models::OIDCServiceGetAuthRequestResponse]
+      def get_device_authorization_request: (Models::OIDCServiceGetDeviceAuthorizationRequestRequest oidc_service_get_device_authorization_request_request) -> Models::OIDCServiceGetDeviceAuthorizationRequestResponse
+      def get_device_authorization_request_with_http_info: (Models::OIDCServiceGetDeviceAuthorizationRequestRequest oidc_service_get_device_authorization_request_request) -> ::Zitadel::Client::ApiResult[Models::OIDCServiceGetDeviceAuthorizationRequestResponse]
+    end
+  end
+end

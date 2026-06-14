@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class SessionServiceSetSessionResponse < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader details: SessionServiceDetails?
+    attr_reader session_token: String?
+    attr_reader challenges: SessionServiceChallenges?
+  end
+end

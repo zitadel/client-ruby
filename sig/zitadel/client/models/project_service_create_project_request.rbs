@@ -1,0 +1,15 @@
+module Zitadel::Client::Models
+  class ProjectServiceCreateProjectRequest < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader organization_id: String?
+    attr_reader project_id: String?
+    attr_reader name: String?
+    attr_reader project_role_assertion: bool?
+    attr_reader authorization_required: bool?
+    attr_reader project_access_required: bool?
+    attr_reader private_labeling_setting: ProjectServicePrivateLabelingSetting?
+  end
+end

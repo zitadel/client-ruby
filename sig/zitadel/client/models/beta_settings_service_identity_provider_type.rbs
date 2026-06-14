@@ -1,0 +1,19 @@
+module Zitadel::Client::Models
+  class BetaSettingsServiceIdentityProviderType
+    IDENTITY_PROVIDER_TYPE_UNSPECIFIED: String
+    IDENTITY_PROVIDER_TYPE_OIDC: String
+    IDENTITY_PROVIDER_TYPE_JWT: String
+    IDENTITY_PROVIDER_TYPE_LDAP: String
+    IDENTITY_PROVIDER_TYPE_OAUTH: String
+    IDENTITY_PROVIDER_TYPE_AZURE_AD: String
+    IDENTITY_PROVIDER_TYPE_GITHUB: String
+    IDENTITY_PROVIDER_TYPE_GITHUB_ES: String
+    IDENTITY_PROVIDER_TYPE_GITLAB: String
+    IDENTITY_PROVIDER_TYPE_GITLAB_SELF_HOSTED: String
+    IDENTITY_PROVIDER_TYPE_GOOGLE: String
+    IDENTITY_PROVIDER_TYPE_SAML: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

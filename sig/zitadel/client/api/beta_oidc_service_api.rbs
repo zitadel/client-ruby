@@ -1,0 +1,11 @@
+module Zitadel::Client
+  module Api
+    class BetaOIDCServiceApi < BaseApi
+      def initialize: (?::Zitadel::Client::ApiClient? api_client, ?::Zitadel::Client::Configuration config, ?::Zitadel::Client::Auth::Authenticator? authenticator) -> void
+      def create_callback: (Models::BetaOIDCServiceCreateCallbackRequest beta_oidc_service_create_callback_request) -> Models::BetaOIDCServiceCreateCallbackResponse
+      def create_callback_with_http_info: (Models::BetaOIDCServiceCreateCallbackRequest beta_oidc_service_create_callback_request) -> ::Zitadel::Client::ApiResult[Models::BetaOIDCServiceCreateCallbackResponse]
+      def get_auth_request: (Models::BetaOIDCServiceGetAuthRequestRequest beta_oidc_service_get_auth_request_request) -> Models::BetaOIDCServiceGetAuthRequestResponse
+      def get_auth_request_with_http_info: (Models::BetaOIDCServiceGetAuthRequestRequest beta_oidc_service_get_auth_request_request) -> ::Zitadel::Client::ApiResult[Models::BetaOIDCServiceGetAuthRequestResponse]
+    end
+  end
+end

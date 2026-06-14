@@ -3,29 +3,22 @@
 module Zitadel
   module Client
     module Auth
-      ##
-      # A simple authenticator that performs no authentication.
+      # A no-op authenticator that performs no authentication.
       #
-      # This authenticator is useful for cases where no token or credentials are required.
-      # It simply returns an empty dictionary for authentication headers.
-      #
-      class NoAuthAuthenticator < Authenticator
-        ##
-        # Initializes the NoAuthAuthenticator with a default host.
-        #
+      # Useful for testing and unauthenticated endpoints: it has no
+      # host-dependent state and never mints a token, so it returns an empty set
+      # of auth headers.
+      class NoAuthAuthenticator < BaseAuthenticator
+        # @return [String]
+        attr_reader :host
+
         # @param host [String] the base URL for the service. Defaults to "http://localhost".
-        #
         def initialize(host = 'http://localhost')
-          super
+          super()
+          @host = host
         end
 
-        protected
-
-        ##
-        # Returns an empty dictionary since no authentication is performed.
-        #
         # @return [Hash{String => String}] an empty hash.
-        #
         def auth_headers
           {}
         end

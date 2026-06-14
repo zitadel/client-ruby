@@ -1,0 +1,12 @@
+module Zitadel::Client::Models
+  class IdentityProviderServiceJWTConfig < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader jwt_endpoint: String?
+    attr_reader issuer: String?
+    attr_reader keys_endpoint: String?
+    attr_reader header_name: String?
+  end
+end

@@ -1,0 +1,16 @@
+module Zitadel::Client::Models
+  class ActionServiceTargetFieldName
+    TARGET_FIELD_NAME_UNSPECIFIED: String
+    TARGET_FIELD_NAME_ID: String
+    TARGET_FIELD_NAME_CREATED_DATE: String
+    TARGET_FIELD_NAME_CHANGED_DATE: String
+    TARGET_FIELD_NAME_NAME: String
+    TARGET_FIELD_NAME_TARGET_TYPE: String
+    TARGET_FIELD_NAME_URL: String
+    TARGET_FIELD_NAME_TIMEOUT: String
+    TARGET_FIELD_NAME_INTERRUPT_ON_ERROR: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

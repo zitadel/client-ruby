@@ -1,0 +1,12 @@
+module Zitadel::Client::Models
+  class ProjectServiceListProjectRolesRequest < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader project_id: String?
+    attr_reader pagination: ProjectServicePaginationRequest?
+    attr_reader sorting_column: ProjectServiceProjectRoleFieldName?
+    attr_reader filters: Array[ProjectServiceProjectRoleSearchFilter]?
+  end
+end

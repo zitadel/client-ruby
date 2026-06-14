@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class ActionServicePayloadType
+    PAYLOAD_TYPE_UNSPECIFIED: String
+    PAYLOAD_TYPE_JSON: String
+    PAYLOAD_TYPE_JWT: String
+    PAYLOAD_TYPE_JWE: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

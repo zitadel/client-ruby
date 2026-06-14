@@ -1,0 +1,19 @@
+module Zitadel::Client::Models
+  class OrganizationServiceAddHumanUserRequest < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader user_id: String?
+    attr_reader username: String?
+    attr_reader organization: OrganizationServiceOrganization?
+    attr_reader profile: OrganizationServiceSetHumanProfile?
+    attr_reader email: OrganizationServiceSetHumanEmail?
+    attr_reader phone: OrganizationServiceSetHumanPhone?
+    attr_reader metadata: Array[OrganizationServiceSetMetadataEntry]?
+    attr_reader idp_links: Array[OrganizationServiceIDPLink]?
+    attr_reader totp_secret: String?
+    attr_reader hashed_password: OrganizationServiceHashedPassword?
+    attr_reader password: OrganizationServicePassword?
+  end
+end

@@ -1,0 +1,16 @@
+module Zitadel::Client::Models
+  class SessionServiceFactors < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader user: SessionServiceUserFactor?
+    attr_reader password: SessionServicePasswordFactor?
+    attr_reader web_auth_n: SessionServiceWebAuthNFactor?
+    attr_reader intent: SessionServiceIntentFactor?
+    attr_reader totp: SessionServiceTOTPFactor?
+    attr_reader otp_sms: SessionServiceOTPFactor?
+    attr_reader otp_email: SessionServiceOTPFactor?
+    attr_reader recovery_code: SessionServiceRecoveryCodeFactor?
+  end
+end

@@ -1,0 +1,14 @@
+module Zitadel::Client::Models
+  class ApplicationServiceUpdateApplicationRequest < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader application_id: String?
+    attr_reader project_id: String?
+    attr_reader name: String?
+    attr_reader api_configuration: ApplicationServiceUpdateAPIApplicationConfigurationRequest?
+    attr_reader oidc_configuration: ApplicationServiceUpdateOIDCApplicationConfigurationRequest?
+    attr_reader saml_configuration: ApplicationServiceUpdateSAMLApplicationConfigurationRequest?
+  end
+end

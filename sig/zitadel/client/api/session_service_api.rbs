@@ -1,0 +1,17 @@
+module Zitadel::Client
+  module Api
+    class SessionServiceApi < BaseApi
+      def initialize: (?::Zitadel::Client::ApiClient? api_client, ?::Zitadel::Client::Configuration config, ?::Zitadel::Client::Auth::Authenticator? authenticator) -> void
+      def create_session: (Models::SessionServiceCreateSessionRequest session_service_create_session_request) -> Models::SessionServiceCreateSessionResponse
+      def create_session_with_http_info: (Models::SessionServiceCreateSessionRequest session_service_create_session_request) -> ::Zitadel::Client::ApiResult[Models::SessionServiceCreateSessionResponse]
+      def delete_session: (Models::SessionServiceDeleteSessionRequest session_service_delete_session_request) -> Models::SessionServiceDeleteSessionResponse
+      def delete_session_with_http_info: (Models::SessionServiceDeleteSessionRequest session_service_delete_session_request) -> ::Zitadel::Client::ApiResult[Models::SessionServiceDeleteSessionResponse]
+      def get_session: (Models::SessionServiceGetSessionRequest session_service_get_session_request) -> Models::SessionServiceGetSessionResponse
+      def get_session_with_http_info: (Models::SessionServiceGetSessionRequest session_service_get_session_request) -> ::Zitadel::Client::ApiResult[Models::SessionServiceGetSessionResponse]
+      def list_sessions: (Models::SessionServiceListSessionsRequest session_service_list_sessions_request) -> Models::SessionServiceListSessionsResponse
+      def list_sessions_with_http_info: (Models::SessionServiceListSessionsRequest session_service_list_sessions_request) -> ::Zitadel::Client::ApiResult[Models::SessionServiceListSessionsResponse]
+      def set_session: (Models::SessionServiceSetSessionRequest session_service_set_session_request) -> Models::SessionServiceSetSessionResponse
+      def set_session_with_http_info: (Models::SessionServiceSetSessionRequest session_service_set_session_request) -> ::Zitadel::Client::ApiResult[Models::SessionServiceSetSessionResponse]
+    end
+  end
+end

@@ -1,0 +1,9 @@
+module Zitadel::Client::Models
+  class BetaSettingsServicePasskeysType
+    PASSKEYS_TYPE_NOT_ALLOWED: String
+    PASSKEYS_TYPE_ALLOWED: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

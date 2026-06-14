@@ -1,0 +1,12 @@
+module Zitadel::Client::Models
+  class BetaAppServiceAppSorting
+    APP_SORT_BY_ID: String
+    APP_SORT_BY_NAME: String
+    APP_SORT_BY_STATE: String
+    APP_SORT_BY_CREATION_DATE: String
+    APP_SORT_BY_CHANGE_DATE: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

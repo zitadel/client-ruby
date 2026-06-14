@@ -1,0 +1,15 @@
+module Zitadel::Client::Models
+  class BetaTelemetryServiceResourceCount < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader instance_id: String?
+    attr_reader parent_type: BetaTelemetryServiceCountParentType?
+    attr_reader parent_id: String?
+    attr_reader resource_name: String?
+    attr_reader table_name: String?
+    attr_reader updated_at: Time?
+    attr_reader amount: Integer?
+  end
+end

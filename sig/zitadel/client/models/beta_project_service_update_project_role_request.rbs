@@ -1,0 +1,12 @@
+module Zitadel::Client::Models
+  class BetaProjectServiceUpdateProjectRoleRequest < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader project_id: String?
+    attr_reader role_key: String?
+    attr_reader display_name: String?
+    attr_reader group: String?
+  end
+end

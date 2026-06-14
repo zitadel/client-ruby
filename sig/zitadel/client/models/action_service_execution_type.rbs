@@ -1,0 +1,12 @@
+module Zitadel::Client::Models
+  class ActionServiceExecutionType
+    EXECUTION_TYPE_UNSPECIFIED: String
+    EXECUTION_TYPE_REQUEST: String
+    EXECUTION_TYPE_RESPONSE: String
+    EXECUTION_TYPE_EVENT: String
+    EXECUTION_TYPE_FUNCTION: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

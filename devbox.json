@@ -3,7 +3,8 @@
   "packages": [
     "ruby@4.0",
     "lefthook@latest",
-    "clang@latest"
+    "clang@latest",
+    "github:mridang/nixpkgs#qodana"
   ],
   "env": {
     "BUNDLE_PATH": "./vendor/bundle"

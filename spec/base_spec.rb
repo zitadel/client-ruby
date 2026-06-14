@@ -25,11 +25,17 @@ class BaseSpec < Minitest::Spec
   # This method brings up the Docker Compose stack before each test run,
   # waits for the services to initialize, and loads necessary data such as
   # authentication tokens and JWT keys into instance variables.
-  # rubocop:disable Metrics/MethodLength
   def setup_docker_compose
     @compose_file_path = File.join(File.dirname(__FILE__), '..', 'etc', 'docker-compose.yaml')
     raise 'docker-compose file not found!' unless File.exist?(@compose_file_path)
 
+    compose_up
+    sleep 20
+    load_credentials
+  end
+
+  # Brings the Docker Compose stack up in detached mode.
+  def compose_up
     command = [
       'docker', 'compose', '--file', @compose_file_path,
       'up', '--detach', '--no-color', '--quiet-pull', '--yes'
@@ -38,9 +44,11 @@ class BaseSpec < Minitest::Spec
     raise "Failed to bring up Docker Compose stack. Error: #{result}" unless $CHILD_STATUS.success?
 
     LOGGER.info('Docker Compose stack is up.')
-    sleep 20
+  end
 
-    @base_url = 'http://localhost:8099'
+  # Loads the base URL, PAT and service-account key produced by the stack.
+  def load_credentials
+    @base_url = 'http://localhost:18102'
     @auth_token = load_file_content_into_property('zitadel_output/pat.txt', 'auth_token')
 
     jwt_key_path = File.join(File.dirname(__FILE__), '..', 'etc', 'zitadel_output', 'sa-key.json')
@@ -49,7 +57,6 @@ class BaseSpec < Minitest::Spec
     @jwt_key = jwt_key_path
     LOGGER.info("Loaded JWT_KEY path: #{@jwt_key}")
   end
-  # rubocop:enable Metrics/MethodLength
 
   # Tear down the Docker Compose environment
   #

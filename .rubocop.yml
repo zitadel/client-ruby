@@ -1,26 +1,4 @@
-plugins:
-  - rubocop-minitest
-  - rubocop-rake
-
 AllCops:
-  Exclude:
-    - 'lib/zitadel/client/models/**/*'
-    - 'lib/zitadel/client/api/**/*'
-    - 'vendor/**/*'
+  TargetRubyVersion: 3.4
   NewCops: enable
-  TargetRubyVersion: 3.0
-
-Layout/LineLength:
-  Max: 130
-
-Style/StringLiterals:
-  EnforcedStyle: single_quotes
-
-Metrics/AbcSize:
-  Exclude:
-    - 'test/**/*'
-
-Metrics/BlockLength:
-  Max: 100
-  Exclude:
-    - 'spec/**/*'
+  SuggestExtensions: false

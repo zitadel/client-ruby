@@ -1,0 +1,15 @@
+module Zitadel::Client::Models
+  class SAMLServiceErrorReason
+    ERROR_REASON_UNSPECIFIED: String
+    ERROR_REASON_VERSION_MISSMATCH: String
+    ERROR_REASON_AUTH_N_FAILED: String
+    ERROR_REASON_INVALID_ATTR_NAME_OR_VALUE: String
+    ERROR_REASON_INVALID_NAMEID_POLICY: String
+    ERROR_REASON_REQUEST_DENIED: String
+    ERROR_REASON_REQUEST_UNSUPPORTED: String
+    ERROR_REASON_UNSUPPORTED_BINDING: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

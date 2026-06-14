@@ -1,0 +1,19 @@
+module Zitadel::Client::Models
+  class BetaUserServiceAddHumanUserRequest < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader user_id: String?
+    attr_reader username: String?
+    attr_reader organization: BetaUserServiceOrganization?
+    attr_reader profile: BetaUserServiceSetHumanProfile?
+    attr_reader email: BetaUserServiceSetHumanEmail?
+    attr_reader phone: BetaUserServiceSetHumanPhone?
+    attr_reader metadata: Array[BetaUserServiceSetMetadataEntry]?
+    attr_reader idp_links: Array[BetaUserServiceIDPLink]?
+    attr_reader totp_secret: String?
+    attr_reader hashed_password: BetaUserServiceHashedPassword?
+    attr_reader password: BetaUserServicePassword?
+  end
+end

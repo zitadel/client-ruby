@@ -4,10 +4,24 @@ module Zitadel
   module Client
     # Main entry point for the Zitadel SDK.
     #
-    # Initializes and configures the SDK with the provided authentication strategy.
-    # Sets up service APIs for interacting with various Zitadel features.
+    # Initializes and configures the SDK with the provided authentication
+    # strategy and optional {TransportOptions}, then exposes each API group as a
+    # short-named property. Mirrors the generated {Client} wiring (shared
+    # {ApiClient} + {Configuration} + authenticator injected into every service)
+    # while keeping the curated property names and +with_*+ factories.
     # noinspection RubyTooManyInstanceVariablesInspection
-    class Zitadel # rubocop:disable Metrics/ClassLength
+    class Zitadel
+      # The generated SDK refers to its own namespace with bare, unanchored
+      # +Zitadel::Client::...+ constants. Because this facade class is itself
+      # named +Zitadel+ and lives inside +Zitadel::Client+, a relative lookup of
+      # +Zitadel+ from generated code resolves to this class first, turning
+      # +Zitadel::Client::ApiError+ into +Zitadel::Client::Zitadel::Client::ApiError+.
+      # Re-exposing the enclosing +Client+ module under this class makes that
+      # accidental chain resolve back to the real namespace, so the generated
+      # fully-qualified references keep working without anchoring every one with
+      # a leading +::+ (see generator bug report).
+      Client = ::Zitadel::Client
+
       attr_reader :features,
                   :idps,
                   :instances,
@@ -39,49 +53,57 @@ module Zitadel
                   :beta_webkeys,
                   :beta_actions
 
+      # Maps each short-named accessor to the API service class it wires up.
+      # Driving the constructor from this table keeps the per-service
+      # instantiation declarative and avoids one assignment statement per
+      # service in {#initialize}.
+      SERVICES = {
+        features: Api::FeatureServiceApi,
+        idps: Api::IdentityProviderServiceApi,
+        oidc: Api::OIDCServiceApi,
+        organizations: Api::OrganizationServiceApi,
+        saml: Api::SAMLServiceApi,
+        sessions: Api::SessionServiceApi,
+        settings: Api::SettingsServiceApi,
+        users: Api::UserServiceApi,
+        webkeys: Api::WebKeyServiceApi,
+        actions: Api::ActionServiceApi,
+        applications: Api::ApplicationServiceApi,
+        authorizations: Api::AuthorizationServiceApi,
+        instances: Api::InstanceServiceApi,
+        internal_permissions: Api::InternalPermissionServiceApi,
+        projects: Api::ProjectServiceApi,
+        beta_projects: Api::BetaProjectServiceApi,
+        beta_apps: Api::BetaAppServiceApi,
+        beta_oidc: Api::BetaOIDCServiceApi,
+        beta_users: Api::BetaUserServiceApi,
+        beta_organizations: Api::BetaOrganizationServiceApi,
+        beta_settings: Api::BetaSettingsServiceApi,
+        beta_permissions: Api::BetaInternalPermissionServiceApi,
+        beta_authorizations: Api::BetaAuthorizationServiceApi,
+        beta_sessions: Api::BetaSessionServiceApi,
+        beta_instance: Api::BetaInstanceServiceApi,
+        beta_telemetry: Api::BetaTelemetryServiceApi,
+        beta_features: Api::BetaFeatureServiceApi,
+        beta_webkeys: Api::BetaWebKeyServiceApi,
+        beta_actions: Api::BetaActionServiceApi
+      }.freeze
+
       # Initialize the Zitadel SDK.
       #
-      # @param authenticator [Authenticator] the authentication strategy to use
-      # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
-      def initialize(authenticator)
-        # noinspection RubyArgCount
-        @configuration = Configuration.new(authenticator)
-        yield @configuration if block_given?
+      # @param authenticator [Auth::Authenticator] the authentication strategy to use.
+      # @param transport_options [TransportOptions, nil] HTTP transport configuration.
+      def initialize(authenticator, transport_options = nil)
+        transport_options ||= TransportOptions.builder.build
+        api_client = DefaultApiClient.new(transport_options)
+        authenticator.api_client = api_client if authenticator.is_a?(Auth::HttpAwareAuthenticator)
 
-        client = ApiClient.new(@configuration)
+        config = Configuration.builder.base_url(authenticator.host).build
 
-        @features = Api::FeatureServiceApi.new(client)
-        @idps = Api::IdentityProviderServiceApi.new(client)
-        @oidc = Api::OIDCServiceApi.new(client)
-        @organizations = Api::OrganizationServiceApi.new(client)
-        @saml = Api::SAMLServiceApi.new(client)
-        @sessions = Api::SessionServiceApi.new(client)
-        @settings = Api::SettingsServiceApi.new(client)
-        @users = Api::UserServiceApi.new(client)
-        @webkeys = Api::WebKeyServiceApi.new(client)
-        @actions = Api::ActionServiceApi.new(client)
-        @applications = Api::ApplicationServiceApi.new(client)
-        @authorizations = Api::AuthorizationServiceApi.new(client)
-        @beta_projects = Api::BetaProjectServiceApi.new(client)
-        @beta_apps = Api::BetaAppServiceApi.new(client)
-        @beta_oidc = Api::BetaOIDCServiceApi.new(client)
-        @beta_users = Api::BetaUserServiceApi.new(client)
-        @beta_organizations = Api::BetaOrganizationServiceApi.new(client)
-        @beta_settings = Api::BetaSettingsServiceApi.new(client)
-        @beta_permissions = Api::BetaInternalPermissionServiceApi.new(client)
-        @beta_authorizations = Api::BetaAuthorizationServiceApi.new(client)
-        @beta_sessions = Api::BetaSessionServiceApi.new(client)
-        @beta_instance = Api::BetaInstanceServiceApi.new(client)
-        @beta_telemetry = Api::BetaTelemetryServiceApi.new(client)
-        @instances = Api::InstanceServiceApi.new(client)
-        @internal_permissions = Api::InternalPermissionServiceApi.new(client)
-        @beta_features = Api::BetaFeatureServiceApi.new(client)
-        @beta_webkeys = Api::BetaWebKeyServiceApi.new(client)
-        @beta_actions = Api::BetaActionServiceApi.new(client)
-        @projects = Api::ProjectServiceApi.new(client)
+        SERVICES.each do |name, service_class|
+          instance_variable_set("@#{name}", service_class.new(api_client, config, authenticator))
+        end
       end
-
-      # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
       class << self
         # @!group Authentication Entry Points
@@ -93,12 +115,8 @@ module Zitadel
         # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
         # @return [Zitadel] Configured Zitadel client instance.
         # @see https://zitadel.com/docs/guides/integrate/service-users/personal-access-token
-        def with_access_token(host, access_token, transport_options: nil, &block)
-          resolved = transport_options || TransportOptions.defaults
-          new(Auth::PersonalAccessTokenAuthenticator.new(host, access_token)) do |config|
-            apply_transport_options(config, resolved)
-            block&.call(config)
-          end
+        def with_access_token(host, access_token, transport_options: nil)
+          new(Auth::PersonalAccessTokenAuthenticator.new(host, access_token), transport_options)
         end
 
         # Initialize the SDK using OAuth2 Client Credentials flow.
@@ -109,16 +127,13 @@ module Zitadel
         # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
         # @return [Zitadel] Configured Zitadel client instance with token auto-refresh.
         # @see https://zitadel.com/docs/guides/integrate/service-users/client-credentials
-        def with_client_credentials(host, client_id, client_secret, transport_options: nil, &block)
-          resolved = transport_options || TransportOptions.defaults
+        def with_client_credentials(host, client_id, client_secret, transport_options: nil)
           new(
             Auth::ClientCredentialsAuthenticator
-              .builder(host, client_id, client_secret, transport_options: resolved)
-              .build
-          ) do |config|
-            apply_transport_options(config, resolved)
-            block&.call(config)
-          end
+              .builder(host, client_id, client_secret, transport_options: transport_options)
+              .build,
+            transport_options
+          )
         end
 
         # Initialize the SDK via Private Key JWT assertion.
@@ -128,28 +143,14 @@ module Zitadel
         # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
         # @return [Zitadel] Configured Zitadel client instance using JWT assertion.
         # @see https://zitadel.com/docs/guides/integrate/service-users/private-key-jwt
-        def with_private_key(host, key_file, transport_options: nil, &block)
-          resolved = transport_options || TransportOptions.defaults
-          new(Auth::WebTokenAuthenticator.from_json(host, key_file,
-                                                    transport_options: resolved)) do |config|
-            apply_transport_options(config, resolved)
-            block&.call(config)
-          end
+        def with_private_key(host, key_file, transport_options: nil)
+          new(
+            Auth::WebTokenAuthenticator.from_json(host, key_file, transport_options: transport_options),
+            transport_options
+          )
         end
 
         # @!endgroup
-
-        private
-
-        def apply_transport_options(config, resolved)
-          config.default_headers = resolved.default_headers.dup
-          config.ssl_ca_cert = resolved.ca_cert_path if resolved.ca_cert_path
-          if resolved.insecure
-            config.verify_ssl = false
-            config.verify_ssl_host = false
-          end
-          config.proxy_url = resolved.proxy_url if resolved.proxy_url
-        end
       end
     end
   end

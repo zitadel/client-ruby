@@ -1,0 +1,81 @@
+module Dry
+  def self.Types: () -> Module
+
+  module Types
+    class CoercionError < StandardError
+    end
+  end
+
+  class Struct
+    def self.attribute: (Symbol, untyped) -> void
+    def self.transform_keys: () { (untyped) -> untyped } -> void
+
+    # Dry::Struct instances are built from keyword attributes (the generated
+    # Models::* classes declare attr_readers but inherit construction from here).
+    # Accept arbitrary keywords so `Model.new(field: value)` type-checks; the
+    # readers on each subclass provide the precise per-field types.
+    def self.new: (**untyped) -> instance
+    def initialize: (**untyped) -> void
+  end
+end
+
+module Types
+  Builder: untyped
+  Any: untyped
+  Required: untyped
+  String: untyped
+  Integer: untyped
+  Float: untyped
+  Decimal: untyped
+  Bool: untyped
+  Date: untyped
+  DateTime: untyped
+  Time: untyped
+  Hash: untyped
+  Array: untyped
+  Nil: untyped
+end
+
+module Brotli
+  def self.inflate: (String) -> String
+end
+
+module Zstd
+  def self.decompress: (String) -> String
+end
+
+# 4.8: format: time — Tod::TimeOfDay surface for HH:MM:SS values.
+module Tod
+  class TimeOfDay
+    def self.parse: (String) -> TimeOfDay
+    def self.new: (Integer, ?Integer, ?Integer) -> TimeOfDay
+    def strftime: (String) -> String
+    def to_s: () -> String
+    def hour: () -> Integer
+    def minute: () -> Integer
+    def second: () -> Integer
+  end
+end
+
+# 4.8: format: duration — ISO8601::Duration surface for ISO-8601 durations.
+module ISO8601
+  class Duration
+    def self.new: (String) -> Duration
+    def to_s: () -> String
+    # to_seconds yields a concrete Float so arithmetic (`*`, `-`, `floor`) in
+    # ObjectSerializer.duration_to_protobuf_json type-checks; abstract Numeric
+    # declares none of those operators in RBS.
+    def to_seconds: () -> Float
+  end
+end
+# Faraday signatures come from the gem_rbs_collection (.gem_rbs_collection/faraday).
+# Do NOT redeclare its classes (e.g. Error, TimeoutError, SSLOptions,
+# RequestOptions) — the collection already defines them (with
+# `TimeoutError < ServerError`), so redeclaring here triggers conflicting
+# superclass errors. Only reopen Connection to ADD the one writer the
+# collection omits but the generated client uses.
+module Faraday
+  class Connection
+    def proxy=: (String?) -> void
+  end
+end

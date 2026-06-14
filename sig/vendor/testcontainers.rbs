@@ -1,0 +1,37 @@
+# Signatures for the testcontainers-core gem (no RBS in gem_rbs_collection).
+#
+# Only the surface used by the test suite is declared:
+#   test/zitadel/client/zitadel_test.rb
+#   test/zitadel/client/auth/oauth_authenticator_test.rb
+#
+# The builder methods (with_*) return self so they can be chained; return types
+# are kept loose (untyped) where the exact value is irrelevant to type checking.
+module Testcontainers
+  class DockerContainer
+    def initialize: (String image, **untyped) -> void
+
+    def with_command: (*String parts) -> DockerContainer
+
+    def with_exposed_ports: (*Integer ports) -> DockerContainer
+
+    def with_exposed_port: (Integer port) -> DockerContainer
+
+    def with_filesystem_binds: (untyped binds) -> DockerContainer
+
+    def start: () -> DockerContainer
+
+    def stop: (?force: bool) -> untyped
+
+    def remove: (?untyped options) -> untyped
+
+    def host: () -> String
+
+    def mapped_port: (Integer port) -> Integer
+
+    def wait_for_tcp_port: (Integer port, ?timeout: Numeric, ?interval: Numeric) -> untyped
+
+    def wait_for_http: (?timeout: Numeric, ?interval: Numeric, ?path: String, ?container_port: Integer, ?https: bool, ?status: Integer) -> untyped
+
+    def _id: () -> String
+  end
+end

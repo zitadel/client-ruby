@@ -1,0 +1,12 @@
+module Zitadel::Client::Models
+  class UserServiceAny < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    ADDITIONAL_PROPERTIES: bool
+    attr_reader type: String?
+    attr_reader value: File?
+    attr_reader debug: untyped?
+  end
+end

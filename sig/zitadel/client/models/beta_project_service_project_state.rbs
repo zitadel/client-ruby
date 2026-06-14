@@ -1,0 +1,10 @@
+module Zitadel::Client::Models
+  class BetaProjectServiceProjectState
+    PROJECT_STATE_UNSPECIFIED: String
+    PROJECT_STATE_ACTIVE: String
+    PROJECT_STATE_INACTIVE: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end
