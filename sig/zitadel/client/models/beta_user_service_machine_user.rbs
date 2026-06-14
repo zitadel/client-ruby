@@ -1,0 +1,12 @@
+module Zitadel::Client::Models
+  class BetaUserServiceMachineUser < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader name: String?
+    attr_reader description: String?
+    attr_reader has_secret: bool?
+    attr_reader access_token_type: BetaUserServiceAccessTokenType?
+  end
+end

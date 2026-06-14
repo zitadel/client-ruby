@@ -1,0 +1,16 @@
+module Zitadel::Client::Models
+  class SettingsServiceLegalAndSupportSettings < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader tos_link: String?
+    attr_reader privacy_policy_link: String?
+    attr_reader help_link: String?
+    attr_reader support_email: String?
+    attr_reader resource_owner_type: SettingsServiceResourceOwnerType?
+    attr_reader docs_link: String?
+    attr_reader custom_link: String?
+    attr_reader custom_link_text: String?
+  end
+end

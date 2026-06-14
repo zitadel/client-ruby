@@ -1,0 +1,13 @@
+module Zitadel::Client::Models
+  class SettingsServiceGetHostedLoginTranslationRequest < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader locale: String?
+    attr_reader ignore_inheritance: bool?
+    attr_reader instance: bool?
+    attr_reader organization_id: String?
+    attr_reader system: bool?
+  end
+end

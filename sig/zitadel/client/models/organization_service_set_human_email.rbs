@@ -1,0 +1,12 @@
+module Zitadel::Client::Models
+  class OrganizationServiceSetHumanEmail < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader email: String?
+    attr_reader is_verified: bool?
+    attr_reader return_code: untyped?
+    attr_reader send_code: OrganizationServiceSendEmailVerificationCode?
+  end
+end

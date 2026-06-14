@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class BetaSessionServiceRequestChallenges < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader web_auth_n: BetaSessionServiceWebAuthN?
+    attr_reader otp_sms: BetaSessionServiceOTPSMS?
+    attr_reader otp_email: BetaSessionServiceOTPEmail?
+  end
+end

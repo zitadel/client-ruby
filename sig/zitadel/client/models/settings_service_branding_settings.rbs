@@ -1,0 +1,15 @@
+module Zitadel::Client::Models
+  class SettingsServiceBrandingSettings < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader light_theme: SettingsServiceTheme?
+    attr_reader dark_theme: SettingsServiceTheme?
+    attr_reader font_url: String?
+    attr_reader hide_login_name_suffix: bool?
+    attr_reader disable_watermark: bool?
+    attr_reader resource_owner_type: SettingsServiceResourceOwnerType?
+    attr_reader theme_mode: SettingsServiceThemeMode?
+  end
+end

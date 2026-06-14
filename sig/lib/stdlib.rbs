@@ -1,0 +1,69 @@
+# Hand-written stubs for the standard-library and third-party APIs used by the
+# keep-listed hand-written sources (the bespoke authenticators and the Zeitwerk
+# entrypoint). The generated sig/vendor.rbs only covers what the generated code
+# exercises; these declarations cover the additional surface used by the
+# hand-written code.
+
+# Minimal Zeitwerk surface used by the hand-written entrypoint
+# (lib/zitadel_client.rb). The zeitwerk gem ships no RBS in
+# ruby/gem_rbs_collection, so the parent class and the loader API the
+# entrypoint calls are stubbed here alongside the other third-party stubs.
+module Zeitwerk
+  class Inflector
+    def camelize: (String basename, String abspath) -> String
+  end
+
+  class Loader
+    def self.new: () -> Loader
+    attr_accessor tag: String
+    attr_accessor inflector: Inflector
+    def push_dir: (String dir, ?namespace: Module) -> void
+    def setup: () -> void
+  end
+end
+
+# Top-level Zeitwerk inflector defined in lib/zitadel_inflector.rb.
+class ZitadelInflector < Zeitwerk::Inflector
+  IGNORED_DECLARATIONS: Array[String]
+
+  DECLARATION: Regexp
+
+  def camelize: (String basename, String abspath) -> String
+
+  def leaf_constant: (String abspath) -> String?
+
+  def each_declaration: (String abspath) -> Array[[String, String]]
+end
+
+# Additional Net::HTTP surface used by lib/zitadel/client/auth/open_id.rb
+# (the proxy-aware constructor, TLS configuration setters and the GET request).
+module Net
+  class HTTP
+    def self.new: (String? address, Integer? port, ?String? proxy_address, ?Integer? proxy_port, ?String? proxy_user, ?String? proxy_pass) -> HTTP
+
+    def use_ssl=: (bool) -> void
+
+    def verify_mode=: (Integer?) -> void
+
+    def cert_store=: (OpenSSL::X509::Store) -> void
+
+    def request: (untyped request) -> untyped
+
+    class Get < HTTPRequest
+      def self.new: (URI::Generic | String) -> HTTPRequest
+    end
+  end
+end
+
+# The `warning` gem reopens the core Warning module to add `Warning.ignore`,
+# used by lib/zitadel_client.rb and the spec/test helpers to silence the
+# redefinition warnings dry-struct emits. The gem ships no RBS, so the
+# added singleton method is stubbed here.
+module Warning
+  def self.ignore: (Symbol | Regexp pattern, ?String? path) -> void
+end
+
+# The jwt gem, used by lib/zitadel/client/auth/web_token_authenticator.rb.
+module JWT
+  def self.encode: (untyped payload, untyped key, ?String? algorithm, ?Hash[untyped, untyped] header_fields) -> String
+end

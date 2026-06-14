@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class ActionServiceCreateTargetResponse < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader id: String?
+    attr_reader creation_date: Time?
+    attr_reader signing_key: String?
+  end
+end

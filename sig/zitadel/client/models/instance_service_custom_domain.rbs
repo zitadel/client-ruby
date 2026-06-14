@@ -1,0 +1,13 @@
+module Zitadel::Client::Models
+  class InstanceServiceCustomDomain < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader instance_id: String?
+    attr_reader creation_date: Time?
+    attr_reader domain: String?
+    attr_reader primary: bool?
+    attr_reader generated: bool?
+  end
+end

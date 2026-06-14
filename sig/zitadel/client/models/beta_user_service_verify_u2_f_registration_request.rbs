@@ -1,0 +1,12 @@
+module Zitadel::Client::Models
+  class BetaUserServiceVerifyU2FRegistrationRequest < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader user_id: String?
+    attr_reader u2f_id: String?
+    attr_reader public_key_credential: Hash[String, untyped]?
+    attr_reader token_name: String?
+  end
+end

@@ -1,0 +1,10 @@
+module Zitadel::Client::Models
+  class BetaActionServicePaginationResponse < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader total_result: untyped?
+    attr_reader applied_limit: untyped?
+  end
+end

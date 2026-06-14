@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class InstanceServiceCustomDomainFilter < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader domain_filter: InstanceServiceDomainFilter?
+    attr_reader generated_filter: bool?
+    attr_reader primary_filter: bool?
+  end
+end

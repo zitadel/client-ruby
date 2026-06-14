@@ -1,0 +1,13 @@
+module Zitadel::Client::Models
+  class BetaFeatureServiceSetSystemFeaturesRequest < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader login_default_org: bool?
+    attr_reader user_schema: bool?
+    attr_reader oidc_token_exchange: bool?
+    attr_reader improved_performance: Array[BetaFeatureServiceImprovedPerformance]?
+    attr_reader oidc_single_v1_session_termination: bool?
+  end
+end

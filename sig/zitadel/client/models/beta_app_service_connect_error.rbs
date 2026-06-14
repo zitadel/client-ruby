@@ -1,0 +1,12 @@
+module Zitadel::Client::Models
+  class BetaAppServiceConnectError < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    ADDITIONAL_PROPERTIES: bool
+    attr_reader code: String?
+    attr_reader message: String?
+    attr_reader details: Array[BetaAppServiceAny]?
+  end
+end

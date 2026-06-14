@@ -1,0 +1,35 @@
+module Zitadel::Client
+  module Api
+    class OrganizationServiceApi < BaseApi
+      def initialize: (?::Zitadel::Client::ApiClient? api_client, ?::Zitadel::Client::Configuration config, ?::Zitadel::Client::Auth::Authenticator? authenticator) -> void
+      def activate_organization: (Models::OrganizationServiceActivateOrganizationRequest organization_service_activate_organization_request) -> Models::OrganizationServiceActivateOrganizationResponse
+      def activate_organization_with_http_info: (Models::OrganizationServiceActivateOrganizationRequest organization_service_activate_organization_request) -> ::Zitadel::Client::ApiResult[Models::OrganizationServiceActivateOrganizationResponse]
+      def add_organization: (Models::OrganizationServiceAddOrganizationRequest organization_service_add_organization_request) -> Models::OrganizationServiceAddOrganizationResponse
+      def add_organization_with_http_info: (Models::OrganizationServiceAddOrganizationRequest organization_service_add_organization_request) -> ::Zitadel::Client::ApiResult[Models::OrganizationServiceAddOrganizationResponse]
+      def add_organization_domain: (Models::OrganizationServiceAddOrganizationDomainRequest organization_service_add_organization_domain_request) -> Models::OrganizationServiceAddOrganizationDomainResponse
+      def add_organization_domain_with_http_info: (Models::OrganizationServiceAddOrganizationDomainRequest organization_service_add_organization_domain_request) -> ::Zitadel::Client::ApiResult[Models::OrganizationServiceAddOrganizationDomainResponse]
+      def deactivate_organization: (Models::OrganizationServiceDeactivateOrganizationRequest organization_service_deactivate_organization_request) -> Models::OrganizationServiceDeactivateOrganizationResponse
+      def deactivate_organization_with_http_info: (Models::OrganizationServiceDeactivateOrganizationRequest organization_service_deactivate_organization_request) -> ::Zitadel::Client::ApiResult[Models::OrganizationServiceDeactivateOrganizationResponse]
+      def delete_organization: (Models::OrganizationServiceDeleteOrganizationRequest organization_service_delete_organization_request) -> Models::OrganizationServiceDeleteOrganizationResponse
+      def delete_organization_with_http_info: (Models::OrganizationServiceDeleteOrganizationRequest organization_service_delete_organization_request) -> ::Zitadel::Client::ApiResult[Models::OrganizationServiceDeleteOrganizationResponse]
+      def delete_organization_domain: (Models::OrganizationServiceDeleteOrganizationDomainRequest organization_service_delete_organization_domain_request) -> Models::OrganizationServiceDeleteOrganizationDomainResponse
+      def delete_organization_domain_with_http_info: (Models::OrganizationServiceDeleteOrganizationDomainRequest organization_service_delete_organization_domain_request) -> ::Zitadel::Client::ApiResult[Models::OrganizationServiceDeleteOrganizationDomainResponse]
+      def delete_organization_metadata: (Models::OrganizationServiceDeleteOrganizationMetadataRequest organization_service_delete_organization_metadata_request) -> Models::OrganizationServiceDeleteOrganizationMetadataResponse
+      def delete_organization_metadata_with_http_info: (Models::OrganizationServiceDeleteOrganizationMetadataRequest organization_service_delete_organization_metadata_request) -> ::Zitadel::Client::ApiResult[Models::OrganizationServiceDeleteOrganizationMetadataResponse]
+      def generate_organization_domain_validation: (Models::OrganizationServiceGenerateOrganizationDomainValidationRequest organization_service_generate_organization_domain_validation_request) -> Models::OrganizationServiceGenerateOrganizationDomainValidationResponse
+      def generate_organization_domain_validation_with_http_info: (Models::OrganizationServiceGenerateOrganizationDomainValidationRequest organization_service_generate_organization_domain_validation_request) -> ::Zitadel::Client::ApiResult[Models::OrganizationServiceGenerateOrganizationDomainValidationResponse]
+      def list_organization_domains: (Models::OrganizationServiceListOrganizationDomainsRequest organization_service_list_organization_domains_request) -> Models::OrganizationServiceListOrganizationDomainsResponse
+      def list_organization_domains_with_http_info: (Models::OrganizationServiceListOrganizationDomainsRequest organization_service_list_organization_domains_request) -> ::Zitadel::Client::ApiResult[Models::OrganizationServiceListOrganizationDomainsResponse]
+      def list_organization_metadata: (Models::OrganizationServiceListOrganizationMetadataRequest organization_service_list_organization_metadata_request) -> Models::OrganizationServiceListOrganizationMetadataResponse
+      def list_organization_metadata_with_http_info: (Models::OrganizationServiceListOrganizationMetadataRequest organization_service_list_organization_metadata_request) -> ::Zitadel::Client::ApiResult[Models::OrganizationServiceListOrganizationMetadataResponse]
+      def list_organizations: (Models::OrganizationServiceListOrganizationsRequest organization_service_list_organizations_request) -> Models::OrganizationServiceListOrganizationsResponse
+      def list_organizations_with_http_info: (Models::OrganizationServiceListOrganizationsRequest organization_service_list_organizations_request) -> ::Zitadel::Client::ApiResult[Models::OrganizationServiceListOrganizationsResponse]
+      def set_organization_metadata: (Models::OrganizationServiceSetOrganizationMetadataRequest organization_service_set_organization_metadata_request) -> Models::OrganizationServiceSetOrganizationMetadataResponse
+      def set_organization_metadata_with_http_info: (Models::OrganizationServiceSetOrganizationMetadataRequest organization_service_set_organization_metadata_request) -> ::Zitadel::Client::ApiResult[Models::OrganizationServiceSetOrganizationMetadataResponse]
+      def update_organization: (Models::OrganizationServiceUpdateOrganizationRequest organization_service_update_organization_request) -> Models::OrganizationServiceUpdateOrganizationResponse
+      def update_organization_with_http_info: (Models::OrganizationServiceUpdateOrganizationRequest organization_service_update_organization_request) -> ::Zitadel::Client::ApiResult[Models::OrganizationServiceUpdateOrganizationResponse]
+      def verify_organization_domain: (Models::OrganizationServiceVerifyOrganizationDomainRequest organization_service_verify_organization_domain_request) -> Models::OrganizationServiceVerifyOrganizationDomainResponse
+      def verify_organization_domain_with_http_info: (Models::OrganizationServiceVerifyOrganizationDomainRequest organization_service_verify_organization_domain_request) -> ::Zitadel::Client::ApiResult[Models::OrganizationServiceVerifyOrganizationDomainResponse]
+    end
+  end
+end

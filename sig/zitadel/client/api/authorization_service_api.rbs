@@ -1,0 +1,19 @@
+module Zitadel::Client
+  module Api
+    class AuthorizationServiceApi < BaseApi
+      def initialize: (?::Zitadel::Client::ApiClient? api_client, ?::Zitadel::Client::Configuration config, ?::Zitadel::Client::Auth::Authenticator? authenticator) -> void
+      def activate_authorization: (Models::AuthorizationServiceActivateAuthorizationRequest authorization_service_activate_authorization_request) -> Models::AuthorizationServiceActivateAuthorizationResponse
+      def activate_authorization_with_http_info: (Models::AuthorizationServiceActivateAuthorizationRequest authorization_service_activate_authorization_request) -> ::Zitadel::Client::ApiResult[Models::AuthorizationServiceActivateAuthorizationResponse]
+      def create_authorization: (Models::AuthorizationServiceCreateAuthorizationRequest authorization_service_create_authorization_request) -> Models::AuthorizationServiceCreateAuthorizationResponse
+      def create_authorization_with_http_info: (Models::AuthorizationServiceCreateAuthorizationRequest authorization_service_create_authorization_request) -> ::Zitadel::Client::ApiResult[Models::AuthorizationServiceCreateAuthorizationResponse]
+      def deactivate_authorization: (Models::AuthorizationServiceDeactivateAuthorizationRequest authorization_service_deactivate_authorization_request) -> Models::AuthorizationServiceDeactivateAuthorizationResponse
+      def deactivate_authorization_with_http_info: (Models::AuthorizationServiceDeactivateAuthorizationRequest authorization_service_deactivate_authorization_request) -> ::Zitadel::Client::ApiResult[Models::AuthorizationServiceDeactivateAuthorizationResponse]
+      def delete_authorization: (Models::AuthorizationServiceDeleteAuthorizationRequest authorization_service_delete_authorization_request) -> Models::AuthorizationServiceDeleteAuthorizationResponse
+      def delete_authorization_with_http_info: (Models::AuthorizationServiceDeleteAuthorizationRequest authorization_service_delete_authorization_request) -> ::Zitadel::Client::ApiResult[Models::AuthorizationServiceDeleteAuthorizationResponse]
+      def list_authorizations: (Models::AuthorizationServiceListAuthorizationsRequest authorization_service_list_authorizations_request) -> Models::AuthorizationServiceListAuthorizationsResponse
+      def list_authorizations_with_http_info: (Models::AuthorizationServiceListAuthorizationsRequest authorization_service_list_authorizations_request) -> ::Zitadel::Client::ApiResult[Models::AuthorizationServiceListAuthorizationsResponse]
+      def update_authorization: (Models::AuthorizationServiceUpdateAuthorizationRequest authorization_service_update_authorization_request) -> Models::AuthorizationServiceUpdateAuthorizationResponse
+      def update_authorization_with_http_info: (Models::AuthorizationServiceUpdateAuthorizationRequest authorization_service_update_authorization_request) -> ::Zitadel::Client::ApiResult[Models::AuthorizationServiceUpdateAuthorizationResponse]
+    end
+  end
+end

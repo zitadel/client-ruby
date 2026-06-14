@@ -1,0 +1,14 @@
+module Zitadel::Client::Models
+  class BetaAppServiceApplicationKeysSorting
+    APPLICATION_KEYS_SORT_BY_ID: String
+    APPLICATION_KEYS_SORT_BY_PROJECT_ID: String
+    APPLICATION_KEYS_SORT_BY_APPLICATION_ID: String
+    APPLICATION_KEYS_SORT_BY_CREATION_DATE: String
+    APPLICATION_KEYS_SORT_BY_ORGANIZATION_ID: String
+    APPLICATION_KEYS_SORT_BY_EXPIRATION: String
+    APPLICATION_KEYS_SORT_BY_TYPE: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

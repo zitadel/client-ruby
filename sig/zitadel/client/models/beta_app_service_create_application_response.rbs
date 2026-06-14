@@ -1,0 +1,13 @@
+module Zitadel::Client::Models
+  class BetaAppServiceCreateApplicationResponse < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader app_id: String?
+    attr_reader creation_date: Time?
+    attr_reader api_response: BetaAppServiceCreateAPIApplicationResponse?
+    attr_reader oidc_response: BetaAppServiceCreateOIDCApplicationResponse?
+    attr_reader saml_response: untyped?
+  end
+end

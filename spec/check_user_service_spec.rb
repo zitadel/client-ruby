@@ -46,20 +46,22 @@ class UserServiceSanityCheckSpec < BaseSpec
   end
 
   it 'retrieves the user details by ID' do
-    response = client.users.get_user_by_id(Zitadel::Client::Models::UserServiceGetUserByIDRequest.new(user_id: @user.user_id))
-    _(response.user.user_id).must_equal @user.user_id
+    request = Zitadel::Client::Models::UserServiceGetUserByIDRequest.new(user_id: @user.user_id)
+    response = client.users.get_user_by_id(request)
+    _(response.user&.user_id).must_equal @user.user_id
   end
 
   it 'raises an error when retrieving a non-existent user' do
+    request = Zitadel::Client::Models::UserServiceGetUserByIDRequest.new(user_id: SecureRandom.uuid)
     assert_raises(Zitadel::Client::ApiError) do
-      client.users.get_user_by_id(Zitadel::Client::Models::UserServiceGetUserByIDRequest.new(user_id: SecureRandom.uuid))
+      client.users.get_user_by_id(request)
     end
   end
 
   it 'includes the created user when listing all users' do
     request = Zitadel::Client::Models::UserServiceListUsersRequest.new(queries: [])
     response = client.users.list_users(request)
-    _(response.result.map(&:user_id)).must_include @user.user_id
+    _(response.result&.map(&:user_id)).must_include @user.user_id
   end
 
   it "updates the user's email and reflects the change" do
@@ -70,7 +72,9 @@ class UserServiceSanityCheckSpec < BaseSpec
     )
     client.users.update_human_user(update_req)
 
-    response = client.users.get_user_by_id(Zitadel::Client::Models::UserServiceGetUserByIDRequest.new(user_id: @user.user_id))
-    _(response.user.human.email.email).must_equal new_email
+    get_req = Zitadel::Client::Models::UserServiceGetUserByIDRequest.new(user_id: @user.user_id)
+    response = client.users.get_user_by_id(get_req)
+    human = response.user&.human
+    _(human&.email&.email).must_equal new_email
   end
 end

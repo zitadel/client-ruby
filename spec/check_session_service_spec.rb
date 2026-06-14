@@ -59,9 +59,10 @@ class SessionServiceSanityCheckSpec < BaseSpec
   end
 
   it 'retrieves the session details by the session identifier' do
-    request = Zitadel::Client::Models::SessionServiceGetSessionRequest.new(session_id: @session_id, session_token: @session_token)
+    request = Zitadel::Client::Models::SessionServiceGetSessionRequest.new(session_id: @session_id,
+                                                                           session_token: @session_token)
     response = client.sessions.get_session(request)
-    _(response.session.id).must_equal @session_id
+    _(response.session&.id).must_equal @session_id
   end
 
   it 'raises an error when retrieving a non-existent session' do
@@ -75,7 +76,7 @@ class SessionServiceSanityCheckSpec < BaseSpec
   it 'includes the created session when listing all sessions' do
     request = Zitadel::Client::Models::SessionServiceListSessionsRequest.new(queries: [])
     response = client.sessions.list_sessions(request)
-    _(response.sessions.map(&:id)).must_include @session_id
+    _(response.sessions&.map(&:id)).must_include @session_id
   end
 
   it 'updates the session lifetime and returns a new token' do
