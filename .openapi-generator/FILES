@@ -1410,6 +1410,7 @@ lib/zitadel/client/transport_options.rb
 lib/zitadel/client/value_serializer.rb
 lib/zitadel/client/version.rb
 lib/zitadel/client/zitadel.rb
+lib/zitadel/client/zitadel_error.rb
 sig/infrastructure.rbs
 sig/vendor.rbs
 sig/zitadel/client/api/action_service_api.rbs
