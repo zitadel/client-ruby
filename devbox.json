@@ -2,7 +2,6 @@
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.10.7/.schema/devbox.schema.json",
   "packages": [
     "ruby@4.0",
-    "lefthook@latest",
     "clang@latest",
     "github:mridang/nixpkgs#qodana"
   ],
@@ -11,7 +10,6 @@
   },
   "shell": {
     "init_hook": [
-      "lefthook install",
       "bundle install --quiet"
     ],
     "scripts": {

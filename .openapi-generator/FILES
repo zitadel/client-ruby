@@ -1,6 +1,4 @@
-.editorconfig
 .yardopts
-README.md
 SKILLS.md
 lib/zitadel/client/api/action_service_api.rb
 lib/zitadel/client/api/application_service_api.rb
