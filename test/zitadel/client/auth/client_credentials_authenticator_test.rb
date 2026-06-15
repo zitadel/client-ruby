@@ -114,6 +114,20 @@ module Zitadel
 
           refute_equal token1, token2
         end
+
+        ##
+        # @return [void]
+        #
+        # Verifies that the client secret is masked in both #inspect and #to_s
+        # while the client id stays visible.
+        def test_redacts_secret
+          auth = ClientCredentialsAuthenticator.new(redaction_open_id, 'visible-client-id',
+                                                    REDACTION_SECRET, %w[openid].to_set)
+          auth.instance_variable_set(:@access_token, REDACTION_SECRET)
+
+          assert_redacted(auth)
+          assert_includes auth.inspect, 'visible-client-id'
+        end
       end
     end
   end

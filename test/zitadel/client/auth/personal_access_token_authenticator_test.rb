@@ -36,6 +36,20 @@ module Zitadel
           assert_equal({ 'Authorization' => 'Bearer my-secret-token' }, auth.send(:auth_headers))
           assert_equal('https://api.example.com', auth.send(:host))
         end
+
+        ##
+        # Verifies that the personal access token is masked in both #inspect and #to_s.
+        #
+        # @return [void]
+        def test_redacts_secret
+          secret = 'super-secret-credential-value'
+          auth = Auth::PersonalAccessTokenAuthenticator.new('https://api.example.com', secret)
+
+          [auth.inspect, auth.to_s].each do |rendered|
+            refute_includes rendered, secret
+            assert_includes rendered, '***'
+          end
+        end
       end
     end
   end
