@@ -59,37 +59,13 @@ module Zitadel
         #
         # @return [void]
         def test_redacts_secret
-          auth = OAuthAuthenticator.new(redaction_open_id, 'visible-client-id', 'openid')
-          auth.instance_variable_set(:@access_token, REDACTION_SECRET)
+          secret = 'super-secret-credential-value'
+          auth = OAuthAuthenticator.new(OpenId.allocate, 'visible-client-id', 'openid')
+          auth.instance_variable_set(:@access_token, secret)
 
-          assert_redacted(auth)
-        end
-
-        REDACTION_SECRET = 'super-secret-credential-value'
-
-        ##
-        # Builds an OpenId without network discovery, for redaction tests.
-        #
-        # @return [OpenId]
-        def redaction_open_id
-          open_id = OpenId.allocate
-          open_id.host_endpoint = 'https://api.example.com'
-          open_id.token_endpoint = 'https://api.example.com/oauth/v2/token'
-          open_id
-        end
-
-        ##
-        # Asserts both #inspect and #to_s hide the secret and render the literal
-        # *** placeholder instead.
-        #
-        # @param auth [Object]
-        # @param secret [String]
-        # @return [void]
-        def assert_redacted(auth, secret = REDACTION_SECRET)
-          [auth.inspect, auth.to_s].each do |rendered|
-            refute_includes rendered, secret
-            assert_includes rendered, '***'
-          end
+          rendered = auth.inspect + auth.to_s
+          refute_includes rendered, secret
+          assert_includes rendered, '***'
         end
       end
     end
