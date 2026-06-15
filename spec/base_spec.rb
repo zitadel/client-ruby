@@ -46,9 +46,28 @@ class BaseSpec < Minitest::Spec
     LOGGER.info('Docker Compose stack is up.')
   end
 
+  # Discovers the base URL of the Zitadel service by asking Docker Compose
+  # for the host port that was ephemerally mapped to the container's port
+  # 8080. This avoids relying on a hardcoded host port.
+  def discover_base_url
+    command = [
+      'docker', 'compose', '--file', @compose_file_path,
+      'port', 'zitadel', '8080'
+    ]
+    mapping = `#{command.join(' ')}`.strip
+    raise "Failed to discover mapped port for zitadel service. Error: #{mapping}" unless $CHILD_STATUS.success?
+
+    # Output is of the form "host:port", e.g. "0.0.0.0:54321".
+    port = mapping.split(':').last
+    raise "Could not parse mapped port from Docker Compose output: #{mapping}" unless port =~ /\A\d+\z/
+
+    "http://localhost:#{port}"
+  end
+
   # Loads the base URL, PAT and service-account key produced by the stack.
   def load_credentials
-    @base_url = 'http://localhost:18102'
+    @base_url = discover_base_url
+    LOGGER.info("Exposed BASE_URL as: #{@base_url}")
     @auth_token = load_file_content_into_property('zitadel_output/pat.txt', 'auth_token')
 
     jwt_key_path = File.join(File.dirname(__FILE__), '..', 'etc', 'zitadel_output', 'sa-key.json')

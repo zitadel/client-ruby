@@ -18,7 +18,10 @@ require 'json'
 # Each test runs in isolation: the client is instantiated in each example to
 # guarantee a clean, stateless call.
 class UseClientCredentialsSpec < BaseSpec
-  MANAGEMENT_BASE = 'http://localhost:18102/management/v1'
+  # Built from the dynamically discovered base URL of the Zitadel service.
+  def management_base
+    "#{@base_url}/management/v1"
+  end
 
   def generate_user_secret(token, login_name = 'api-user')
     user_id = lookup_user_id(token, login_name)
@@ -28,7 +31,7 @@ class UseClientCredentialsSpec < BaseSpec
   # Resolves the user id for a login name via the management API.
   def lookup_user_id(token, login_name)
     query = URI.encode_www_form_component(login_name)
-    uri = URI("#{MANAGEMENT_BASE}/global/users/_by_login_name?loginName=#{query}")
+    uri = URI("#{management_base}/global/users/_by_login_name?loginName=#{query}")
     response = get_json(uri, token)
     unless response.is_a?(Net::HTTPSuccess)
       raise "API call to retrieve user failed for login name: '#{login_name}'. Response: #{response.body}"
@@ -43,7 +46,7 @@ class UseClientCredentialsSpec < BaseSpec
 
   # Generates and returns a client-credentials secret for the given user id.
   def create_secret(token, user_id)
-    response = put_json(URI("#{MANAGEMENT_BASE}/users/#{user_id}/secret"), token)
+    response = put_json(URI("#{management_base}/users/#{user_id}/secret"), token)
     unless response.is_a?(Net::HTTPSuccess)
       raise "API call to generate secret failed for user ID: '#{user_id}'. Response: #{response.body}"
     end
