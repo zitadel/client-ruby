@@ -4,6 +4,7 @@
 Gemfile.lock
 
 # Tool caches
+devbox.d/
 .rubocop/
 .yardoc/
 
