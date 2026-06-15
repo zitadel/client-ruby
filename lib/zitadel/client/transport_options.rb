@@ -18,7 +18,7 @@ module Zitadel::Client
   #
   # This class is immutable and thread-safe. Use {TransportOptions.builder} to create instances:
   #
-  #     transport = Zitadel::Client::TransportOptions.builder
+  #     transport = ::Zitadel::Client::TransportOptions.builder
   #       .verify_ssl(false)
   #       .proxy('http://proxy.example.com:8080')
   #       .timeout(5000)

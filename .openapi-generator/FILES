@@ -41,7 +41,6 @@ lib/zitadel/client/auth/base_authenticator.rb
 lib/zitadel/client/auth/bearer_authenticator.rb
 lib/zitadel/client/auth/http_aware_authenticator.rb
 lib/zitadel/client/auth/zitadel_access_token_authenticator.rb
-lib/zitadel/client/client.rb
 lib/zitadel/client/configuration.rb
 lib/zitadel/client/default_api_client.rb
 lib/zitadel/client/errors/bad_request_error.rb
@@ -1412,6 +1411,7 @@ lib/zitadel/client/trace_context_util.rb
 lib/zitadel/client/transport_options.rb
 lib/zitadel/client/value_serializer.rb
 lib/zitadel/client/version.rb
+lib/zitadel/client/zitadel.rb
 sig/infrastructure.rbs
 sig/vendor.rbs
 sig/zitadel/client/api/action_service_api.rbs

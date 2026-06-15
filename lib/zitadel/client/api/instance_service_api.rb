@@ -14,7 +14,7 @@ module Zitadel::Client
 
     # InstanceServiceApi provides methods for the InstanceService API group.
     class InstanceServiceApi < BaseApi
-      def initialize(api_client = nil, config = Zitadel::Client::Configuration.default, authenticator = nil)
+      def initialize(api_client = nil, config = ::Zitadel::Client::Configuration.default, authenticator = nil)
         super
       end
 
@@ -37,7 +37,7 @@ module Zitadel::Client
         # loudly as a typed ApiError instead of handing back a silent nil,
         # so callers see the same catchable error across all SDKs.
         if result.data.nil?
-          raise Zitadel::Client::ApiError.new(
+          raise ::Zitadel::Client::ApiError.new(
             message: 'Expected a non-empty response body but the server returned no decodable content',
             status_code: result.status_code,
             response_headers: result.headers,
@@ -90,7 +90,7 @@ module Zitadel::Client
         # loudly as a typed ApiError instead of handing back a silent nil,
         # so callers see the same catchable error across all SDKs.
         if result.data.nil?
-          raise Zitadel::Client::ApiError.new(
+          raise ::Zitadel::Client::ApiError.new(
             message: 'Expected a non-empty response body but the server returned no decodable content',
             status_code: result.status_code,
             response_headers: result.headers,
@@ -143,7 +143,7 @@ module Zitadel::Client
         # loudly as a typed ApiError instead of handing back a silent nil,
         # so callers see the same catchable error across all SDKs.
         if result.data.nil?
-          raise Zitadel::Client::ApiError.new(
+          raise ::Zitadel::Client::ApiError.new(
             message: 'Expected a non-empty response body but the server returned no decodable content',
             status_code: result.status_code,
             response_headers: result.headers,
@@ -196,7 +196,7 @@ module Zitadel::Client
         # loudly as a typed ApiError instead of handing back a silent nil,
         # so callers see the same catchable error across all SDKs.
         if result.data.nil?
-          raise Zitadel::Client::ApiError.new(
+          raise ::Zitadel::Client::ApiError.new(
             message: 'Expected a non-empty response body but the server returned no decodable content',
             status_code: result.status_code,
             response_headers: result.headers,
@@ -249,7 +249,7 @@ module Zitadel::Client
         # loudly as a typed ApiError instead of handing back a silent nil,
         # so callers see the same catchable error across all SDKs.
         if result.data.nil?
-          raise Zitadel::Client::ApiError.new(
+          raise ::Zitadel::Client::ApiError.new(
             message: 'Expected a non-empty response body but the server returned no decodable content',
             status_code: result.status_code,
             response_headers: result.headers,
@@ -302,7 +302,7 @@ module Zitadel::Client
         # loudly as a typed ApiError instead of handing back a silent nil,
         # so callers see the same catchable error across all SDKs.
         if result.data.nil?
-          raise Zitadel::Client::ApiError.new(
+          raise ::Zitadel::Client::ApiError.new(
             message: 'Expected a non-empty response body but the server returned no decodable content',
             status_code: result.status_code,
             response_headers: result.headers,
@@ -355,7 +355,7 @@ module Zitadel::Client
         # loudly as a typed ApiError instead of handing back a silent nil,
         # so callers see the same catchable error across all SDKs.
         if result.data.nil?
-          raise Zitadel::Client::ApiError.new(
+          raise ::Zitadel::Client::ApiError.new(
             message: 'Expected a non-empty response body but the server returned no decodable content',
             status_code: result.status_code,
             response_headers: result.headers,
@@ -408,7 +408,7 @@ module Zitadel::Client
         # loudly as a typed ApiError instead of handing back a silent nil,
         # so callers see the same catchable error across all SDKs.
         if result.data.nil?
-          raise Zitadel::Client::ApiError.new(
+          raise ::Zitadel::Client::ApiError.new(
             message: 'Expected a non-empty response body but the server returned no decodable content',
             status_code: result.status_code,
             response_headers: result.headers,
@@ -461,7 +461,7 @@ module Zitadel::Client
         # loudly as a typed ApiError instead of handing back a silent nil,
         # so callers see the same catchable error across all SDKs.
         if result.data.nil?
-          raise Zitadel::Client::ApiError.new(
+          raise ::Zitadel::Client::ApiError.new(
             message: 'Expected a non-empty response body but the server returned no decodable content',
             status_code: result.status_code,
             response_headers: result.headers,
@@ -514,7 +514,7 @@ module Zitadel::Client
         # loudly as a typed ApiError instead of handing back a silent nil,
         # so callers see the same catchable error across all SDKs.
         if result.data.nil?
-          raise Zitadel::Client::ApiError.new(
+          raise ::Zitadel::Client::ApiError.new(
             message: 'Expected a non-empty response body but the server returned no decodable content',
             status_code: result.status_code,
             response_headers: result.headers,

@@ -11,7 +11,7 @@
 module Zitadel::Client
   module Errors
     # Exception for HTTP 5xx server errors.
-    class ServerError < Zitadel::Client::ApiError
+    class ServerError < ::Zitadel::Client::ApiError
     end
   end
 end

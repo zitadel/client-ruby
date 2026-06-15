@@ -17,7 +17,7 @@ module Zitadel::Client
   #
   # This class is immutable. Use {Configuration.builder} to create instances:
   #
-  #     config = Zitadel::Client::Configuration.builder
+  #     config = ::Zitadel::Client::Configuration.builder
   #       .base_url('https://api.example.com')
   #       .default_header('Authorization', 'Bearer token')
   #       .build

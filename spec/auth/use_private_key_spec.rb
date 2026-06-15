@@ -17,17 +17,16 @@ require_relative '../base_spec'
 # guarantee a clean, stateless call.
 class UsePrivateKeySpec < BaseSpec
   it 'retrieves general settings with valid private key' do
-    client = Zitadel::Client::Zitadel.with_private_key(@base_url, @jwt_key)
-    client.settings.get_general_settings({})
+    authenticator = Zitadel::Client::Auth::WebTokenAuthenticator.from_json(@base_url, @jwt_key)
+    client = Zitadel::Client::Zitadel.with_authenticator(authenticator)
+    client.settings_service.get_general_settings({})
   end
 
   it 'raises an ApiError with invalid private key' do
-    client = Zitadel::Client::Zitadel.with_private_key(
-      'https://zitadel.cloud',
-      @jwt_key
-    )
+    authenticator = Zitadel::Client::Auth::WebTokenAuthenticator.from_json('https://zitadel.cloud', @jwt_key)
+    client = Zitadel::Client::Zitadel.with_authenticator(authenticator)
     assert_raises(Zitadel::Client::ZitadelError) do
-      client.settings.get_general_settings({})
+      client.settings_service.get_general_settings({})
     end
   end
 end
