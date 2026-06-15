@@ -80,22 +80,20 @@ class UseClientCredentialsSpec < BaseSpec
   end
   it 'retrieves general settings with valid credentials' do
     credentials = generate_user_secret(@auth_token, 'api-user')
-    client = Zitadel::Client::Zitadel.with_client_credentials(
-      @base_url,
-      credentials.fetch(:clientId),
-      credentials.fetch(:clientSecret)
-    )
-    client.settings.get_general_settings({})
+    authenticator = Zitadel::Client::Auth::ClientCredentialsAuthenticator
+                    .builder(@base_url, credentials.fetch(:clientId), credentials.fetch(:clientSecret))
+                    .build
+    client = Zitadel::Client::Zitadel.with_authenticator(authenticator)
+    client.settings_service.get_general_settings({})
   end
 
   it 'raises an ApiError with invalid credentials' do
-    client = Zitadel::Client::Zitadel.with_client_credentials(
-      @base_url,
-      'invalid',
-      'invalid'
-    )
+    authenticator = Zitadel::Client::Auth::ClientCredentialsAuthenticator
+                    .builder(@base_url, 'invalid', 'invalid')
+                    .build
+    client = Zitadel::Client::Zitadel.with_authenticator(authenticator)
     assert_raises(Zitadel::Client::ZitadelError) do
-      client.settings.get_general_settings({})
+      client.settings_service.get_general_settings({})
     end
   end
 end

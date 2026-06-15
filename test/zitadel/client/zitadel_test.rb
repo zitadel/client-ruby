@@ -92,10 +92,11 @@ module Zitadel
       # Builds a client-credentials SDK client against the given URL with the
       # supplied transport options, then returns the general settings response.
       def general_settings(url, transport_options)
-        zitadel = ::Zitadel::Client::Zitadel.with_client_credentials(
-          url, 'dummy-client', 'dummy-secret', transport_options: transport_options
-        )
-        zitadel.settings.get_general_settings({})
+        authenticator = Auth::ClientCredentialsAuthenticator
+                        .builder(url, 'dummy-client', 'dummy-secret', transport_options: transport_options)
+                        .build
+        zitadel = ::Zitadel::Client::Zitadel.with_authenticator(authenticator, transport_options)
+        zitadel.settings_service.get_general_settings({})
       end
 
       def test_custom_ca_cert
@@ -119,16 +120,14 @@ module Zitadel
       end
 
       def test_proxy_url
-        zitadel = ::Zitadel::Client::Zitadel.with_access_token(
-          'http://wiremock:8080',
-          'test-token',
-          transport_options: TransportOptions.builder.proxy("http://#{@host}:#{@proxy_port}").build
-        )
+        transport_options = TransportOptions.builder.proxy("http://#{@host}:#{@proxy_port}").build
+        authenticator = Auth::PersonalAccessTokenAuthenticator.new('http://wiremock:8080', 'test-token')
+        zitadel = ::Zitadel::Client::Zitadel.with_authenticator(authenticator, transport_options)
 
         # Squid resolves the `wiremock` network alias via Docker's embedded DNS,
         # which can briefly be unavailable right after both containers join the
         # network; retry the first proxied call past that warm-up window.
-        response = with_proxy_retry { zitadel.settings.get_general_settings({}) }
+        response = with_proxy_retry { zitadel.settings_service.get_general_settings({}) }
 
         assert_equal 'http', response.default_language
       end
@@ -138,7 +137,7 @@ module Zitadel
       def with_proxy_retry(attempts: 5)
         (1...attempts).each do
           return yield
-        rescue Zitadel::Client::ApiError
+        rescue ::Zitadel::Client::ApiError
           sleep 1
         end
         yield
@@ -146,10 +145,10 @@ module Zitadel
 
       def test_no_ca_cert_fails
         assert_raises(StandardError) do
-          ::Zitadel::Client::Zitadel.with_client_credentials(
-            "https://#{@host}:#{@https_port}",
-            'dummy-client', 'dummy-secret'
-          )
+          authenticator = Auth::ClientCredentialsAuthenticator
+                          .builder("https://#{@host}:#{@https_port}", 'dummy-client', 'dummy-secret')
+                          .build
+          ::Zitadel::Client::Zitadel.with_authenticator(authenticator)
         end
       end
     end

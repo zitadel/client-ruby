@@ -248,7 +248,7 @@ module Zitadel::Client
     end
   end
 
-  class Client
+  class Zitadel
     attr_reader action_service: Api::ActionServiceApi
     attr_reader application_service: Api::ApplicationServiceApi
     attr_reader authorization_service: Api::AuthorizationServiceApi
@@ -279,7 +279,8 @@ module Zitadel::Client
     attr_reader user_service: Api::UserServiceApi
     attr_reader web_key_service: Api::WebKeyServiceApi
     def initialize: (Auth::Authenticator, ?TransportOptions?) -> void
-    def self.with_token: (String, String) -> Client
+    def self.with_token: (String, String) -> Zitadel
+    def self.with_authenticator: (Auth::Authenticator, ?TransportOptions?) -> Zitadel
   end
 
   module Models

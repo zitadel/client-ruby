@@ -19,7 +19,7 @@ bundle install
 ```ruby
 require 'zitadel-client'
 
-client = Zitadel::Client::Client.with_token('https://api.example.com', 'your-token')
+client = Zitadel::Client::Zitadel.with_token('https://api.example.com', 'your-token')
 ```
 
 ## Authentication
@@ -30,7 +30,7 @@ All authentication is handled via `Authenticator` implementations passed to the 
 
 ```ruby
 authenticator = Zitadel::Client::Auth::BearerAuthenticator.new('https://api.example.com', 'your-token')
-client = Zitadel::Client::Client.new(authenticator)
+client = Zitadel::Client::Zitadel.new(authenticator)
 ```
 
 ## Servers
@@ -38,7 +38,7 @@ client = Zitadel::Client::Client.new(authenticator)
 If the OpenAPI spec defines multiple servers, the generated `Zitadel::Client::Servers` module exposes each as a `ServerConfiguration` constant (e.g., `SERVER_0`, `SERVER_1`, ...) plus an `ALL` array. Pass the desired server's URL to the client:
 
 ```ruby
-client = Zitadel::Client::Client.with_token(Zitadel::Client::Servers::SERVER_0.url, 'your-token')
+client = Zitadel::Client::Zitadel.with_token(Zitadel::Client::Servers::SERVER_0.url, 'your-token')
 ```
 
 ## Testing
@@ -51,7 +51,7 @@ fake_authenticator = Class.new do
   def host = 'https://api.example.com'
 end.new
 
-client = Zitadel::Client::Client.new(fake_authenticator)
+client = Zitadel::Client::Zitadel.new(fake_authenticator)
 ```
 
 ## Error Handling
@@ -93,7 +93,7 @@ transport = Zitadel::Client::TransportOptions.builder
   .timeout(5000)
   .build
 
-client = Zitadel::Client::Client.new(authenticator, transport)
+client = Zitadel::Client::Zitadel.new(authenticator, transport)
 ```
 
 ## API Methods

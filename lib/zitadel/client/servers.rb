@@ -15,13 +15,13 @@ module Zitadel::Client
   # +servers+ array. Use these constants with
   # {Configuration::Builder#base_url} to select a server:
   #
-  #     config = Zitadel::Client::Configuration.builder
-  #       .base_url(Zitadel::Client::Servers::SERVER_0.url)
+  #     config = ::Zitadel::Client::Configuration.builder
+  #       .base_url(::Zitadel::Client::Servers::SERVER_0.url)
   #       .build
   #
   # For servers with variables, pass overrides:
   #
-  #     url = Zitadel::Client::Servers::SERVER_1.url('environment' => 'staging')
+  #     url = ::Zitadel::Client::Servers::SERVER_1.url('environment' => 'staging')
   module Servers
     # Server 0: +https://zitadel.com+
     SERVER_0 = ServerConfiguration.new(

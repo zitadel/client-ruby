@@ -13,16 +13,15 @@ lib/zitadel/client/auth/open_id.rb
 lib/zitadel/client/auth/personal_access_token_authenticator.rb
 lib/zitadel/client/auth/web_token_authenticator.rb
 
-# --- bespoke support classes (facade, error base, dual entrypoints, Zeitwerk inflector, RBS trees) ---
+# --- bespoke support classes (error base, dual entrypoints, Zeitwerk inflector, RBS trees) ---
 # zitadel-client.rb is the gem-name entrypoint shim delegating to the Zeitwerk
 # entrypoint zitadel_client.rb, which loads zitadel_inflector.rb (custom acronym
-# inflector). zitadel.rb is the hand-written facade; zitadel_error.rb is the
-# SDK-wide error base the generated ApiError extends. sig/lib.rbs is the facade
-# RBS plus the `module Zitadel`/`module Client` namespace anchor the generated
-# signatures require; sig/lib, sig/spec, sig/test, sig/vendor are hand-authored
-# RBS trees the generator does not produce.
+# inflector). The facade (zitadel.rb, named via clientClassName=Zitadel) is now
+# generated; zitadel_error.rb is the SDK-wide error base the generated ApiError
+# extends. sig/lib.rbs is the `module Zitadel`/`module Client` namespace anchor
+# the generated signatures require; sig/lib, sig/spec, sig/test, sig/vendor are
+# hand-authored RBS trees the generator does not produce.
 lib/zitadel-client.rb
-lib/zitadel/client/zitadel.rb
 lib/zitadel/client/zitadel_error.rb
 lib/zitadel_client.rb
 lib/zitadel_inflector.rb

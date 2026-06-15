@@ -30,10 +30,10 @@ module Zitadel::Client
       #
       # @param api_client [ApiClient, nil] the HTTP transport client
       # @param config [Configuration] API-level configuration (base URL and default headers)
-      def initialize(api_client = nil, config = Zitadel::Client::Configuration.default, authenticator = nil)
+      def initialize(api_client = nil, config = ::Zitadel::Client::Configuration.default, authenticator = nil)
         @config = config
-        @api_client = api_client || Zitadel::Client::DefaultApiClient.new
-        @header_selector = Zitadel::Client::HeaderSelector.new
+        @api_client = api_client || ::Zitadel::Client::DefaultApiClient.new
+        @header_selector = ::Zitadel::Client::HeaderSelector.new
         @authenticator = authenticator
       end
 
@@ -89,7 +89,7 @@ module Zitadel::Client
           existing = headers['Cookie']
           headers['Cookie'] = existing ? "#{existing}; #{cookie_str}" : cookie_str
         end
-        Zitadel::Client::TraceContextUtil.inject_trace_context(headers)
+        ::Zitadel::Client::TraceContextUtil.inject_trace_context(headers)
         serialized_body = serialize_body(body, content_type)
         headers.delete('Content-Type') if serialized_body.nil?
         response = @api_client.send_request(method, url, headers, serialized_body)
@@ -115,13 +115,13 @@ module Zitadel::Client
                                end
                    StringIO.new(raw_bytes)
                  elsif !resp_content_type || @header_selector.json_mime?(resp_content_type)
-                   Zitadel::Client::ObjectSerializer.deserialize(response.body, return_type)
+                   ::Zitadel::Client::ObjectSerializer.deserialize(response.body, return_type)
                  else
                    response.body
                  end
         end
 
-        Zitadel::Client::ApiResult.new(
+        ::Zitadel::Client::ApiResult.new(
           status_code: response.status_code,
           data: data,
           raw_body: response.body,
@@ -162,22 +162,22 @@ module Zitadel::Client
 
         if code >= 400 && code < 500
           raise case code
-                when 400 then Zitadel::Client::Errors::BadRequestError.new(**err_opts)
-                when 401 then Zitadel::Client::Errors::UnauthorizedError.new(**err_opts)
-                when 403 then Zitadel::Client::Errors::ForbiddenError.new(**err_opts)
-                when 404 then Zitadel::Client::Errors::NotFoundError.new(**err_opts)
-                when 409 then Zitadel::Client::Errors::ConflictError.new(**err_opts)
-                when 422 then Zitadel::Client::Errors::UnprocessableEntityError.new(**err_opts)
-                else Zitadel::Client::Errors::ClientError.new(status_code: code, **err_opts)
+                when 400 then ::Zitadel::Client::Errors::BadRequestError.new(**err_opts)
+                when 401 then ::Zitadel::Client::Errors::UnauthorizedError.new(**err_opts)
+                when 403 then ::Zitadel::Client::Errors::ForbiddenError.new(**err_opts)
+                when 404 then ::Zitadel::Client::Errors::NotFoundError.new(**err_opts)
+                when 409 then ::Zitadel::Client::Errors::ConflictError.new(**err_opts)
+                when 422 then ::Zitadel::Client::Errors::UnprocessableEntityError.new(**err_opts)
+                else ::Zitadel::Client::Errors::ClientError.new(status_code: code, **err_opts)
                 end
         end
         if code >= 500
           raise case code
-                when 500 then Zitadel::Client::Errors::InternalServerError.new(**err_opts)
-                else Zitadel::Client::Errors::ServerError.new(status_code: code, **err_opts)
+                when 500 then ::Zitadel::Client::Errors::InternalServerError.new(**err_opts)
+                else ::Zitadel::Client::Errors::ServerError.new(status_code: code, **err_opts)
                 end
         end
-        raise Zitadel::Client::ApiError.new(status_code: code, **err_opts)
+        raise ::Zitadel::Client::ApiError.new(status_code: code, **err_opts)
       end
 
       def build_query_string(query_params)
@@ -187,10 +187,10 @@ module Zitadel::Client
             next [] if v.empty?
 
             v.map do |val|
-              "#{encoded_key}=#{CGI.escape(Zitadel::Client::ObjectSerializer.to_query_value(val))}"
+              "#{encoded_key}=#{CGI.escape(::Zitadel::Client::ObjectSerializer.to_query_value(val))}"
             end
           else
-            encoded_val = CGI.escape(Zitadel::Client::ObjectSerializer.to_query_value(v))
+            encoded_val = CGI.escape(::Zitadel::Client::ObjectSerializer.to_query_value(v))
             "#{encoded_key}=#{encoded_val}"
           end
         end
@@ -210,7 +210,7 @@ module Zitadel::Client
         elsif content_type == 'application/x-www-form-urlencoded'
           URI.encode_www_form(body)
         else
-          Zitadel::Client::ObjectSerializer.serialize(body)
+          ::Zitadel::Client::ObjectSerializer.serialize(body)
         end
       end
 

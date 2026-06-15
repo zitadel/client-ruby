@@ -11,3 +11,4 @@ generateUnitTests: true
 repoName: git@github.com:zitadel/client-ruby.git
 generatorName: ruby-plus
 apiErrorParent: ZitadelError
+clientClassName: Zitadel

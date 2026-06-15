@@ -308,7 +308,7 @@ module Zitadel::Client
         end
       else
         klass = begin
-          Zitadel::Client::Models.const_get(return_type)
+          ::Zitadel::Client::Models.const_get(return_type)
         rescue NameError
           Zitadel::Client.const_get(return_type)
         end

@@ -50,7 +50,7 @@ module Zitadel
         # @return [HttpAwareAuthenticator] the same authenticator, for chaining
         def inject_api_client(authenticator)
           authenticator.api_client =
-            Zitadel::Client::DefaultApiClient.new(Zitadel::Client::TransportOptions.builder.build)
+            ::Zitadel::Client::DefaultApiClient.new(::Zitadel::Client::TransportOptions.builder.build)
           authenticator
         end
       end

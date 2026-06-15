@@ -181,53 +181,5 @@ module Zitadel
         end
       end
     end
-
-    class Zitadel
-      # Re-export the enclosing namespace under the facade. The generated code
-      # refers to its own namespace with relative `Zitadel::Client::...`
-      # constants; because this facade class is itself named `Zitadel` and lives
-      # inside `Zitadel::Client`, a relative lookup of `Zitadel` resolves to this
-      # class first. Aliasing `Client` back to the real module makes those
-      # references resolve correctly (mirrors the runtime `Client = ::Zitadel::Client`).
-      module Client = ::Zitadel::Client
-
-      def self.with_access_token: (String host, String access_token, ?transport_options: TransportOptions?) -> Zitadel
-
-      def self.with_client_credentials: (String host, String client_id, String client_secret, ?transport_options: TransportOptions?) -> Zitadel
-
-      def self.with_private_key: (String host, String key_file, ?transport_options: TransportOptions?) -> Zitadel
-
-      def initialize: (Auth::Authenticator authenticator, ?TransportOptions? transport_options) -> void
-
-      attr_reader features: Api::FeatureServiceApi
-      attr_reader idps: Api::IdentityProviderServiceApi
-      attr_reader instances: Api::InstanceServiceApi
-      attr_reader internal_permissions: Api::InternalPermissionServiceApi
-      attr_reader oidc: Api::OIDCServiceApi
-      attr_reader organizations: Api::OrganizationServiceApi
-      attr_reader projects: Api::ProjectServiceApi
-      attr_reader saml: Api::SAMLServiceApi
-      attr_reader sessions: Api::SessionServiceApi
-      attr_reader settings: Api::SettingsServiceApi
-      attr_reader users: Api::UserServiceApi
-      attr_reader webkeys: Api::WebKeyServiceApi
-      attr_reader actions: Api::ActionServiceApi
-      attr_reader applications: Api::ApplicationServiceApi
-      attr_reader authorizations: Api::AuthorizationServiceApi
-      attr_reader beta_projects: Api::BetaProjectServiceApi
-      attr_reader beta_apps: Api::BetaAppServiceApi
-      attr_reader beta_oidc: Api::BetaOIDCServiceApi
-      attr_reader beta_users: Api::BetaUserServiceApi
-      attr_reader beta_organizations: Api::BetaOrganizationServiceApi
-      attr_reader beta_settings: Api::BetaSettingsServiceApi
-      attr_reader beta_permissions: Api::BetaInternalPermissionServiceApi
-      attr_reader beta_authorizations: Api::BetaAuthorizationServiceApi
-      attr_reader beta_sessions: Api::BetaSessionServiceApi
-      attr_reader beta_instance: Api::BetaInstanceServiceApi
-      attr_reader beta_telemetry: Api::BetaTelemetryServiceApi
-      attr_reader beta_features: Api::BetaFeatureServiceApi
-      attr_reader beta_webkeys: Api::BetaWebKeyServiceApi
-      attr_reader beta_actions: Api::BetaActionServiceApi
-    end
   end
 end
