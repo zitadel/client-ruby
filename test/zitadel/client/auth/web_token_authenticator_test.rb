@@ -104,6 +104,24 @@ module Zitadel
         def test_authenticator_honors_supplied_host
           assert_equal oauth_host, @authenticator.send(:host)
         end
+
+        ##
+        # @return [void]
+        #
+        # Verifies that the signing key and cached access token are masked in
+        # both #inspect and #to_s.
+        def test_redacts_secret
+          key = OpenSSL::PKey::RSA.new(2048)
+          assertion = WebTokenAuthenticator::JwtAssertion.new(
+            issuer: 'zitadel', subject: 'zitadel', audience: 'https://api.example.com',
+            private_key: key, lifetime: 3600, algorithm: 'RS256', key_id: nil
+          )
+          auth = WebTokenAuthenticator.new(redaction_open_id, 'zitadel', %w[openid].to_set, assertion)
+          auth.instance_variable_set(:@access_token, REDACTION_SECRET)
+
+          assert_redacted(auth)
+          refute_includes auth.inspect, key.to_pem
+        end
       end
     end
   end
