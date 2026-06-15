@@ -1,10 +1,5 @@
-projectName: zitadel-client
 gemName: zitadel-client
 gemVersion: 0.0.1
-gemAuthorEmail: hi@zitadel.com
-gemAuthor: Zitadel
-gemHomepage: https://zitadel.com/
-gemLicense: Apache-2.0
 moduleName: Zitadel::Client
 disallowAdditionalPropertiesIfNotPresent: false
 generateUnitTests: true
