@@ -121,11 +121,13 @@ module Zitadel
         # Verifies that the client secret is masked in both #inspect and #to_s
         # while the client id stays visible.
         def test_redacts_secret
-          auth = ClientCredentialsAuthenticator.new(redaction_open_id, 'visible-client-id',
-                                                    REDACTION_SECRET, %w[openid].to_set)
-          auth.instance_variable_set(:@access_token, REDACTION_SECRET)
+          secret = 'super-secret-credential-value'
+          auth = ClientCredentialsAuthenticator.new(OpenId.allocate, 'visible-client-id', secret, %w[openid].to_set)
+          auth.instance_variable_set(:@access_token, secret)
 
-          assert_redacted(auth)
+          rendered = auth.inspect + auth.to_s
+          refute_includes rendered, secret
+          assert_includes rendered, '***'
           assert_includes auth.inspect, 'visible-client-id'
         end
       end

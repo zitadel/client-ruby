@@ -113,14 +113,15 @@ module Zitadel
         def test_redacts_secret
           key = OpenSSL::PKey::RSA.new(2048)
           assertion = WebTokenAuthenticator::JwtAssertion.new(
-            issuer: 'zitadel', subject: 'zitadel', audience: 'https://api.example.com',
-            private_key: key, lifetime: 3600, algorithm: 'RS256', key_id: nil
+            issuer: 'z', subject: 'z', audience: 'a', private_key: key, lifetime: 1, algorithm: 'RS256', key_id: nil
           )
-          auth = WebTokenAuthenticator.new(redaction_open_id, 'zitadel', %w[openid].to_set, assertion)
-          auth.instance_variable_set(:@access_token, REDACTION_SECRET)
+          auth = WebTokenAuthenticator.new(OpenId.allocate, 'zitadel', %w[openid].to_set, assertion)
+          auth.instance_variable_set(:@access_token, 'super-secret-credential-value')
 
-          assert_redacted(auth)
-          refute_includes auth.inspect, key.to_pem
+          rendered = auth.inspect + auth.to_s
+          refute_includes rendered, 'super-secret-credential-value'
+          refute_includes rendered, key.to_pem
+          assert_includes rendered, '***'
         end
       end
     end
