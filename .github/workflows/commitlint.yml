@@ -19,7 +19,7 @@ jobs:
     name: Validate Commits
 
     steps:
-      - name: Harden Runner
+      - name: Harden runner
         uses: step-security/harden-runner@0634a2670c59f64b4a01f0f96f84700a4088b9f0 # v2.12.0
         with:
           egress-policy: audit
@@ -31,6 +31,6 @@ jobs:
           fetch-depth: 0
 
       - name: Inspect Commits
-        uses: wagoid/commitlint-github-action@b948419dd99f3fd78a6548d48f94e3df7f6bf3ed # v6.2.1
+        uses: mridang/action-commit-lint@v1
         with:
-          configFile: .commitlintrc.json
+          github-token: ${{ secrets.GITHUB_TOKEN }}
