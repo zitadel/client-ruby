@@ -1,0 +1,93 @@
+# OpenAPI Generator Ignore
+#
+# Hand-maintained keep-list: paths the generator must never overwrite and the
+# manifest-driven prune must never delete. Patterns follow .gitignore syntax;
+# negate with a leading `!`. Organized into the shared cross-SDK sections below
+# and sorted alphabetically (case-insensitive) within each section.
+
+# --- bespoke authenticators (ported onto the generated Authenticator / ApiClient contract) ---
+lib/zitadel/client/auth/client_credentials_authenticator.rb
+lib/zitadel/client/auth/no_auth_authenticator.rb
+lib/zitadel/client/auth/o_auth_authenticator.rb
+lib/zitadel/client/auth/open_id.rb
+lib/zitadel/client/auth/personal_access_token_authenticator.rb
+lib/zitadel/client/auth/web_token_authenticator.rb
+
+# --- bespoke support classes (error base, dual entrypoints, Zeitwerk inflector, RBS trees) ---
+# zitadel-client.rb is the gem-name entrypoint shim delegating to the Zeitwerk
+# entrypoint zitadel_client.rb, which loads zitadel_inflector.rb (custom acronym
+# inflector). The facade (zitadel.rb, named via clientClassName=Zitadel) is now
+# generated; the SDK-wide error base zitadel_error.rb is now generated too (via
+# the apiErrorParent option) and the generated ApiError extends it. sig/lib.rbs
+# is the `module Zitadel`/`module Client` namespace anchor the generated
+# signatures require; sig/lib, sig/spec, sig/test, sig/vendor are hand-authored
+# RBS trees the generator does not produce.
+lib/zitadel-client.rb
+lib/zitadel_client.rb
+lib/zitadel_inflector.rb
+sig/lib.rbs
+sig/lib/
+sig/spec/
+sig/test/
+sig/vendor/
+
+# --- bespoke tests + fixtures the generator does not emit ---
+# Zitadel authenticator unit tests, the facade test, the integration
+# test_helper (boots the CHASM mock + Squid proxy via testcontainers), the
+# wiremock/squid/cert fixtures, the spec tree, and the integration-test
+# docker-compose stack under etc/.
+etc/
+spec/
+test/fixtures/
+test/test_helper.rb
+test/zitadel/client/auth/client_credentials_authenticator_test.rb
+test/zitadel/client/auth/no_auth_authenticator_test.rb
+test/zitadel/client/auth/oauth_authenticator_test.rb
+test/zitadel/client/auth/personal_access_token_authenticator_test.rb
+test/zitadel/client/auth/web_token_authenticator_test.rb
+test/zitadel/client/zitadel_test.rb
+
+# --- repo identity + docs (team-owned) ---
+LICENSE
+README.md
+SECURITY.md
+VERSIONING.md
+
+# --- house tooling (team-owned task/lint/type config) ---
+# .gitignore is team-owned because the generated one omits .env and other
+# repo-specific entries. The rbs_collection.* + .gem_rbs_collection/ files are
+# the hand-managed `rbs collection` manifest/lock and vendored gem signatures.
+.commitlintrc.json
+.dockerignore
+.editorconfig
+.gem_rbs_collection/
+.github/
+.gitignore
+.pre-commit-config.yaml
+.releaserc.json
+.rubocop.yml
+.ruby-version
+Dockerfile
+devbox.json
+devbox.lock
+lefthook.yml
+qodana.yaml
+rbs_collection.lock.yaml
+rbs_collection.yaml
+Steepfile
+
+# --- build / package config (team-owned) ---
+Gemfile
+Rakefile
+zitadel-client.gemspec
+
+# --- generation tooling we added ---
+Makefile
+proc.yml
+.openapi-generator-ignore
+
+# --- generator bookkeeping ---
+# FILES is the prune manifest and VERSION records the generator version; the
+# generator rewrites both every run but never lists them in FILES, so the
+# manifest-driven prune would otherwise delete them.
+.openapi-generator/

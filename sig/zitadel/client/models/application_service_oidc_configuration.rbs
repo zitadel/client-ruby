@@ -1,0 +1,29 @@
+module Zitadel::Client::Models
+  class ApplicationServiceOIDCConfiguration < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader redirect_uris: Array[String]?
+    attr_reader response_types: Array[ApplicationServiceOIDCResponseType]?
+    attr_reader grant_types: Array[ApplicationServiceOIDCGrantType]?
+    attr_reader application_type: ApplicationServiceOIDCApplicationType?
+    attr_reader client_id: String?
+    attr_reader auth_method_type: ApplicationServiceOIDCAuthMethodType?
+    attr_reader post_logout_redirect_uris: Array[String]?
+    attr_reader version: ApplicationServiceOIDCVersion?
+    attr_reader non_compliant: bool?
+    attr_reader compliance_problems: Array[ApplicationServiceOIDCLocalizedMessage]?
+    attr_reader development_mode: bool?
+    attr_reader access_token_type: ApplicationServiceOIDCTokenType?
+    attr_reader access_token_role_assertion: bool?
+    attr_reader id_token_role_assertion: bool?
+    attr_reader id_token_userinfo_assertion: bool?
+    attr_reader clock_skew: ISO8601::Duration?
+    attr_reader additional_origins: Array[String]?
+    attr_reader allowed_origins: Array[String]?
+    attr_reader skip_native_app_success_page: bool?
+    attr_reader back_channel_logout_uri: String?
+    attr_reader login_version: ApplicationServiceLoginVersion?
+  end
+end

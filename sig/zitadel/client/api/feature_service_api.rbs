@@ -1,0 +1,31 @@
+module Zitadel::Client
+  module Api
+    class FeatureServiceApi < BaseApi
+      def initialize: (?::Zitadel::Client::ApiClient? api_client, ?::Zitadel::Client::Configuration config, ?::Zitadel::Client::Auth::Authenticator? authenticator) -> void
+      def get_instance_features: (Models::FeatureServiceGetInstanceFeaturesRequest feature_service_get_instance_features_request) -> Models::FeatureServiceGetInstanceFeaturesResponse
+      def get_instance_features_with_http_info: (Models::FeatureServiceGetInstanceFeaturesRequest feature_service_get_instance_features_request) -> ::Zitadel::Client::ApiResult[Models::FeatureServiceGetInstanceFeaturesResponse]
+      def get_organization_features: (Models::FeatureServiceGetOrganizationFeaturesRequest feature_service_get_organization_features_request) -> Models::FeatureServiceGetOrganizationFeaturesResponse
+      def get_organization_features_with_http_info: (Models::FeatureServiceGetOrganizationFeaturesRequest feature_service_get_organization_features_request) -> ::Zitadel::Client::ApiResult[Models::FeatureServiceGetOrganizationFeaturesResponse]
+      def get_system_features: (untyped body) -> Models::FeatureServiceGetSystemFeaturesResponse
+      def get_system_features_with_http_info: (untyped body) -> ::Zitadel::Client::ApiResult[Models::FeatureServiceGetSystemFeaturesResponse]
+      def get_user_features: (Models::FeatureServiceGetUserFeaturesRequest feature_service_get_user_features_request) -> Models::FeatureServiceGetUserFeaturesResponse
+      def get_user_features_with_http_info: (Models::FeatureServiceGetUserFeaturesRequest feature_service_get_user_features_request) -> ::Zitadel::Client::ApiResult[Models::FeatureServiceGetUserFeaturesResponse]
+      def reset_instance_features: (untyped body) -> Models::FeatureServiceResetInstanceFeaturesResponse
+      def reset_instance_features_with_http_info: (untyped body) -> ::Zitadel::Client::ApiResult[Models::FeatureServiceResetInstanceFeaturesResponse]
+      def reset_organization_features: (Models::FeatureServiceResetOrganizationFeaturesRequest feature_service_reset_organization_features_request) -> Models::FeatureServiceResetOrganizationFeaturesResponse
+      def reset_organization_features_with_http_info: (Models::FeatureServiceResetOrganizationFeaturesRequest feature_service_reset_organization_features_request) -> ::Zitadel::Client::ApiResult[Models::FeatureServiceResetOrganizationFeaturesResponse]
+      def reset_system_features: (untyped body) -> Models::FeatureServiceResetSystemFeaturesResponse
+      def reset_system_features_with_http_info: (untyped body) -> ::Zitadel::Client::ApiResult[Models::FeatureServiceResetSystemFeaturesResponse]
+      def reset_user_features: (Models::FeatureServiceResetUserFeaturesRequest feature_service_reset_user_features_request) -> Models::FeatureServiceResetUserFeaturesResponse
+      def reset_user_features_with_http_info: (Models::FeatureServiceResetUserFeaturesRequest feature_service_reset_user_features_request) -> ::Zitadel::Client::ApiResult[Models::FeatureServiceResetUserFeaturesResponse]
+      def set_instance_features: (Models::FeatureServiceSetInstanceFeaturesRequest feature_service_set_instance_features_request) -> Models::FeatureServiceSetInstanceFeaturesResponse
+      def set_instance_features_with_http_info: (Models::FeatureServiceSetInstanceFeaturesRequest feature_service_set_instance_features_request) -> ::Zitadel::Client::ApiResult[Models::FeatureServiceSetInstanceFeaturesResponse]
+      def set_organization_features: (Models::FeatureServiceSetOrganizationFeaturesRequest feature_service_set_organization_features_request) -> Models::FeatureServiceSetOrganizationFeaturesResponse
+      def set_organization_features_with_http_info: (Models::FeatureServiceSetOrganizationFeaturesRequest feature_service_set_organization_features_request) -> ::Zitadel::Client::ApiResult[Models::FeatureServiceSetOrganizationFeaturesResponse]
+      def set_system_features: (Models::FeatureServiceSetSystemFeaturesRequest feature_service_set_system_features_request) -> Models::FeatureServiceSetSystemFeaturesResponse
+      def set_system_features_with_http_info: (Models::FeatureServiceSetSystemFeaturesRequest feature_service_set_system_features_request) -> ::Zitadel::Client::ApiResult[Models::FeatureServiceSetSystemFeaturesResponse]
+      def set_user_features: (Models::FeatureServiceSetUserFeatureRequest feature_service_set_user_feature_request) -> Models::FeatureServiceSetUserFeaturesResponse
+      def set_user_features_with_http_info: (Models::FeatureServiceSetUserFeatureRequest feature_service_set_user_feature_request) -> ::Zitadel::Client::ApiResult[Models::FeatureServiceSetUserFeaturesResponse]
+    end
+  end
+end

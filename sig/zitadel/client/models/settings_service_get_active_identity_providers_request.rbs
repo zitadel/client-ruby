@@ -1,0 +1,13 @@
+module Zitadel::Client::Models
+  class SettingsServiceGetActiveIdentityProvidersRequest < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader ctx: SettingsServiceRequestContext?
+    attr_reader creation_allowed: bool?
+    attr_reader linking_allowed: bool?
+    attr_reader auto_creation: bool?
+    attr_reader auto_linking: bool?
+  end
+end

@@ -3,10 +3,52 @@ version: "1.0"
 profile:
   name: qodana.recommended
 
+# Ruby support is EAP and its static type-analysis (RBS resolution, argument
+# /type checking) is both noisy and redundant with Steep, which is this repo's
+# authoritative type checker and already passes. Vendored third-party RBS
+# (.gem_rbs_collection) and the SDK's own sig/ tree are Steep's domain, not
+# Qodana's, so they are excluded; the type-analysis inspections are scoped out.
 exclude:
   - name: All
     paths:
+      # Test code legitimately uses fixture classes, descriptive names and
+      # reaches into internals; production-grade IDE inspections are noise here.
+      - test
+      - spec
       - lib/zitadel/client/api
       - lib/zitadel/client/models
+      - .gem_rbs_collection
+      - sig
+  - name: RbsDuplicateDeclarations
+  - name: RbsInvalidMethodOverload
+  - name: RubyResolve
+  - name: RubyInterpreter
+  - name: RubyMismatchedArgumentType
+  - name: RubyMismatchedParameterType
+  - name: RubyMismatchedReturnType
+  - name: RubyMismatchedVariableType
+  - name: RubyMismatchedConstantType
+  - name: RubyIncorrectArgumentCount
+  - name: RubyNilAnalysis
+  - name: GemInspection
+  # The generated Client aggregates one accessor per service API, so the
+  # instance-variable count is inherent to the SDK surface, not a smell.
+  - name: RubyTooManyInstanceVariablesInspection
+  # $VERBOSE is a Ruby-defined global; the naming-convention check misfires on
+  # built-in globals set in the test harness (spec/spec_helper.rb).
+  - name: RubyGlobalVariableNamingConvention
+  # False positive: the \# in HeaderSelector's JSON MIME regex is required —
+  # dropping it makes Ruby interpolate #$& and silently breaks the pattern.
+  - name: RegExpRedundantEscape
+  # Cosmetic-only and confined to generated files; path-scoped so bespoke code
+  # keeps full coverage. The unused parameter is an abstract setter stub that
+  # always raises; the inner collection case is exhaustively guarded by the
+  # enclosing when, so an else would be dead code.
+  - name: RubyUnusedLocalVariable
+    paths:
+      - lib/zitadel/client/auth/http_aware_authenticator.rb
+  - name: RubyCaseWithoutElseBlockInspection
+    paths:
+      - lib/zitadel/client/object_serializer.rb
 
-linter: jetbrains/qodana-php:2025.1
+linter: jetbrains/qodana-ruby:2026.1-eap-ruby3.4

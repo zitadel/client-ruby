@@ -1,0 +1,12 @@
+module Zitadel::Client::Models
+  class BetaInternalPermissionServiceUser < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader id: String?
+    attr_reader preferred_login_name: String?
+    attr_reader display_name: String?
+    attr_reader organization_id: String?
+  end
+end

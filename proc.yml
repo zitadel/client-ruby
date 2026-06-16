@@ -1,0 +1,9 @@
+gemName: zitadel-client
+gemVersion: 0.0.1
+moduleName: Zitadel::Client
+disallowAdditionalPropertiesIfNotPresent: false
+generateUnitTests: true
+repoName: git@github.com:zitadel/client-ruby.git
+generatorName: ruby-plus
+apiErrorParent: ZitadelError
+clientClassName: Zitadel

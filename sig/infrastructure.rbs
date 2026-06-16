@@ -1,0 +1,309 @@
+module Zitadel::Client
+  def self.configure: () { (Configuration::Builder) -> void } -> void
+                    | () -> Configuration
+
+  VERSION: String
+
+  class Configuration
+    attr_reader base_url: String
+    attr_reader default_headers: Hash[String, String]
+    def initialize: (base_url: String, default_headers: Hash[String, String]) -> void
+    def self.builder: () -> Configuration::Builder
+    def self.default: () -> Configuration
+    def self.default=: (Configuration) -> Configuration
+
+    class Builder
+      def base_url: (String) -> Builder
+      def default_header: (String, String) -> Builder
+      def default_headers: (Hash[String, String]) -> Builder
+      def server: (ServerConfiguration, ?Hash[String, String]) -> Builder
+      def build: () -> Configuration
+    end
+  end
+
+  class TransportOptions
+    attr_reader verify_ssl: bool
+    attr_reader ca_cert_path: String?
+    attr_reader proxy: String?
+    attr_reader timeout: Integer?
+    attr_reader follow_redirects: bool
+    attr_reader max_redirects: Integer?
+    attr_reader user_agent: String?
+    attr_reader default_headers: Hash[String, String]
+    attr_reader inject_request_id: bool
+    def initialize: (verify_ssl: bool, ca_cert_path: String?, proxy: String?, timeout: Integer?, follow_redirects: bool, max_redirects: Integer?, user_agent: String?, default_headers: Hash[String, String], inject_request_id: bool) -> void
+    def self.builder: () -> TransportOptions::Builder
+
+    class Builder
+      def verify_ssl: (bool) -> Builder
+      def ca_cert_path: (String?) -> Builder
+      def proxy: (String?) -> Builder
+      def timeout: (Integer?) -> Builder
+      def follow_redirects: (bool) -> Builder
+      def max_redirects: (Integer?) -> Builder
+      def user_agent: (String?) -> Builder
+      def default_header: (String, String) -> Builder
+      def default_headers: (Hash[String, String]) -> Builder
+      def inject_request_id: (bool) -> Builder
+      def build: () -> TransportOptions
+    end
+  end
+
+  class ServerVariable
+    attr_reader default_value: String
+    attr_reader description: String?
+    attr_reader enum_values: Array[String]
+    def initialize: (default_value: String, ?description: String?, ?enum_values: Array[String]) -> void
+  end
+
+  class ServerConfiguration
+    attr_reader url_template: String
+    attr_reader description: String?
+    attr_reader variables: Hash[String, ServerVariable]
+    def initialize: (url_template: String, ?description: String?, ?variables: Hash[String, ServerVariable]) -> void
+    def url: (?Hash[String, String]) -> String
+  end
+
+  module Servers
+    SERVER_0: ServerConfiguration
+    ALL: Array[ServerConfiguration]
+  end
+
+  class ApiHttpResponse
+    attr_reader status_code: Integer
+    attr_reader body: String
+    attr_reader headers: Hash[String, String]
+    def initialize: (status_code: Integer, body: String, headers: Hash[String, String]) -> void
+  end
+
+  class ApiResult[T]
+    attr_reader status_code: Integer
+    attr_reader data: T
+    attr_reader raw_body: String
+    attr_reader headers: Hash[String, String]
+    def initialize: (status_code: Integer, data: T, raw_body: String, headers: Hash[String, String]) -> void
+  end
+
+  class ApiError < ZitadelError
+    attr_reader status_code: Integer?
+    attr_reader response_headers: Hash[String, String]?
+    attr_reader response_body: String?
+    def initialize: (?untyped) -> void
+    def message: () -> String
+    def typed_error_body: (untyped) -> untyped
+  end
+
+  module Errors
+    class ClientError < ApiError
+    end
+
+    class BadRequestError < ClientError
+      def initialize: (?message: untyped, ?response_body: untyped, ?error_body: untyped) -> void
+    end
+
+    class UnauthorizedError < ClientError
+      def initialize: (?message: untyped, ?response_body: untyped, ?error_body: untyped) -> void
+    end
+
+    class ForbiddenError < ClientError
+      def initialize: (?message: untyped, ?response_body: untyped, ?error_body: untyped) -> void
+    end
+
+    class NotFoundError < ClientError
+      def initialize: (?message: untyped, ?response_body: untyped, ?error_body: untyped) -> void
+    end
+
+    class ConflictError < ClientError
+      def initialize: (?message: untyped, ?response_body: untyped, ?error_body: untyped) -> void
+    end
+
+    class UnprocessableEntityError < ClientError
+      def initialize: (?message: untyped, ?response_body: untyped, ?error_body: untyped) -> void
+    end
+
+    class ServerError < ApiError
+    end
+
+    class InternalServerError < ServerError
+      def initialize: (?message: untyped, ?response_body: untyped, ?error_body: untyped) -> void
+    end
+  end
+
+  class ApiClient
+    def send_request: (Symbol, String, Hash[String, String], untyped, ?no_redirect: bool) -> ApiHttpResponse
+  end
+
+  class DefaultApiClient < ApiClient
+    EXTRA_SENSITIVE_HEADER_NAMES: Array[String]
+    def initialize: (?TransportOptions?) -> void
+    def send_request: (Symbol, String, Hash[String, String], untyped, ?no_redirect: bool) -> ApiHttpResponse
+    def close: () -> void
+    def self.supported_encodings: () -> String
+    private
+    def validate_ca_cert_path: (String?) -> void
+    def https_to_http_downgrade?: (String, String) -> bool
+    def text_content_type?: (String) -> bool
+    def decode_text_body: (String, String?) -> String
+    def detect_encoding: (String?) -> Encoding
+    def decompress_body: (untyped, untyped) -> untyped
+    def connection: () -> untyped
+    def build_connection: () -> untyped
+    def build_multipart_body: (Hash[String, untyped], String) -> String
+    def multipart_part: (String, untyped, String) -> String
+    def sanitize_multipart_field_name: (String | Symbol) -> String
+    def build_content_disposition: (String | Symbol, String?) -> String
+    def sniff_part_mime: (String?) -> String
+    def redirect_status?: (Integer | String) -> bool
+    def resolve_url: (String, String) -> String?
+    def safe_parse_uri: (String) -> URI::Generic?
+    def same_origin?: (String, String) -> bool
+    def effective_port: (URI::Generic) -> Integer
+  end
+
+  UUID_REGEX: Regexp
+
+  class SerializationError < ZitadelError
+    attr_reader cause: Exception?
+    def initialize: (String, ?Exception?) -> void
+  end
+
+  class SchemaMismatchError < ZitadelError
+  end
+
+  class ValueSerializer
+    def self.serialize: (untyped, Symbol, String, ?collection_format: Symbol?) -> untyped
+    def self.serialize_styled: (String, untyped, Symbol, String, Symbol?, String?, bool) -> untyped
+    def self.serialize_deep_object: (String, Hash[String, untyped]?) -> Hash[String, String]
+
+    PRESERVE_ENCODED: Hash[String, String]
+
+    private
+
+    def self.serialize_nil: (Symbol) -> untyped
+    def self.serialize_array: (Array[untyped], Symbol, Symbol?) -> untyped
+    def self.serialize_query_array: (Array[untyped], Symbol?) -> untyped
+    def self.encode_path_segment: (String str) -> String
+    def self.encode_item: (untyped value, Symbol location) -> String
+  end
+
+  class ObjectSerializer
+    DEFAULT_DATETIME_FORMAT: String
+    PROTOBUF_DURATION_REGEX: Regexp
+    def self.stringify: (untyped) -> String
+    def self.serialize: (untyped) -> String
+    def self.deserialize: (untyped, String) -> untyped
+    def self.to_path_value: (untyped) -> String
+    def self.to_query_value: (untyped, ?Symbol?) -> untyped
+    def self.to_header_value: (untyped) -> String
+    def self.to_cookie_value: (untyped) -> String
+    def self.to_form_value: (untyped) -> String
+    def self.convert_to_type: (untyped, String) -> untyped
+    def self.find_and_cast_into_type: (untyped, untyped) -> untyped
+    def self.sanitize_for_serialization: (untyped, ?Set[Integer]) -> untyped
+    def self.deserialize_model: (untyped, untyped) -> untyped
+    def self.resolve_one_of: (untyped, Array[Proc]) -> untyped
+    def self.resolve_any_of: (untyped, Array[Proc]) -> untyped
+    def self.apply_format_on_deserialize: (untyped, String?) -> untyped
+    def self.apply_format_on_serialize: (untyped, String?) -> untyped
+    def self.validate_uuid: (untyped) -> String
+    def self.encode_byte: (untyped) -> String
+    def self.decode_byte: (untyped) -> String
+    def self.duration_to_protobuf_json: (ISO8601::Duration) -> String
+    def self.duration_from_protobuf_json: (String) -> ISO8601::Duration
+  end
+
+  class TraceContextUtil
+    def self.inject_trace_context: (Hash[String, String]) -> void
+  end
+
+  class HeaderSelector
+    JSON_MIME_PATTERN: Regexp
+    def select_headers: (Array[String], String, bool) -> Hash[String, String]
+    def json_mime?: (String?) -> bool
+    private
+    def select_accept_header: (Array[String]?) -> String?
+  end
+
+  module Auth
+    class Authenticator
+      def host: () -> String
+      def auth_headers: () -> Hash[String, String]
+      def query_params: () -> Hash[String, String]
+      def cookie_params: () -> Hash[String, String]
+    end
+
+    class BaseAuthenticator < Authenticator
+      def query_params: () -> Hash[String, String]
+      def cookie_params: () -> Hash[String, String]
+    end
+
+    module HttpAwareAuthenticator
+      def api_client=: (ApiClient) -> void
+    end
+
+    class BearerAuthenticator < BaseAuthenticator
+      def initialize: (String, String) -> void
+      def inspect: () -> String
+      def to_s: () -> String
+    end
+  end
+
+  class Zitadel
+    attr_reader action_service: Api::ActionServiceApi
+    attr_reader application_service: Api::ApplicationServiceApi
+    attr_reader authorization_service: Api::AuthorizationServiceApi
+    attr_reader beta_action_service: Api::BetaActionServiceApi
+    attr_reader beta_app_service: Api::BetaAppServiceApi
+    attr_reader beta_authorization_service: Api::BetaAuthorizationServiceApi
+    attr_reader beta_feature_service: Api::BetaFeatureServiceApi
+    attr_reader beta_instance_service: Api::BetaInstanceServiceApi
+    attr_reader beta_internal_permission_service: Api::BetaInternalPermissionServiceApi
+    attr_reader beta_oidc_service: Api::BetaOIDCServiceApi
+    attr_reader beta_organization_service: Api::BetaOrganizationServiceApi
+    attr_reader beta_project_service: Api::BetaProjectServiceApi
+    attr_reader beta_session_service: Api::BetaSessionServiceApi
+    attr_reader beta_settings_service: Api::BetaSettingsServiceApi
+    attr_reader beta_telemetry_service: Api::BetaTelemetryServiceApi
+    attr_reader beta_user_service: Api::BetaUserServiceApi
+    attr_reader beta_web_key_service: Api::BetaWebKeyServiceApi
+    attr_reader feature_service: Api::FeatureServiceApi
+    attr_reader identity_provider_service: Api::IdentityProviderServiceApi
+    attr_reader instance_service: Api::InstanceServiceApi
+    attr_reader internal_permission_service: Api::InternalPermissionServiceApi
+    attr_reader oidc_service: Api::OIDCServiceApi
+    attr_reader organization_service: Api::OrganizationServiceApi
+    attr_reader project_service: Api::ProjectServiceApi
+    attr_reader saml_service: Api::SAMLServiceApi
+    attr_reader session_service: Api::SessionServiceApi
+    attr_reader settings_service: Api::SettingsServiceApi
+    attr_reader user_service: Api::UserServiceApi
+    attr_reader web_key_service: Api::WebKeyServiceApi
+    def initialize: (Auth::Authenticator, ?TransportOptions?) -> void
+    def self.with_token: (String, String) -> Zitadel
+    def self.with_authenticator: (Auth::Authenticator, ?TransportOptions?) -> Zitadel
+  end
+
+  module Models
+  end
+
+  module Api
+    class BaseApi
+      attr_reader config: Configuration
+      def initialize: (?ApiClient?, ?Configuration, ?Auth::Authenticator?) -> void
+      def invoke_api_for_result: (Symbol, String, Hash[String, untyped], Hash[String, String], untyped, Array[String], String?, String?, Auth::Authenticator?) -> ApiResult[untyped]
+      def invoke_api: (Symbol, String, Hash[String, untyped], Hash[String, String], untyped, Array[String], String?, String?, Auth::Authenticator?) -> untyped
+      private
+      def throw_api_error: (ApiHttpResponse) -> void
+      def build_query_string: (Hash[String, untyped]) -> String
+      def serialize_body: (untyped, String?) -> untyped
+      def binary_return_type?: (String?) -> bool
+      def text_response_content_type?: (String?) -> bool
+    end
+  end
+end
+
+module MIME
+  class Types
+    def self.type_for: (String) -> Array[untyped]
+  end
+end

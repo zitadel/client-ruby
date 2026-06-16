@@ -78,23 +78,28 @@ JSON file. This process creates a secure token.
 require 'zitadel-client'
 require 'securerandom'
 
-client = Zitadel::Client::Zitadel.with_private_key("https://example.us1.zitadel.cloud", "path/to/jwt-key.json")
+client = Zitadel::Client::Zitadel.with_authenticator(
+  Zitadel::Client::Auth::WebTokenAuthenticator.from_json(
+    "https://example.us1.zitadel.cloud",
+    "path/to/jwt-key.json"
+  )
+)
 
 begin
-  response = client.users.add_human_user(
-    Zitadel::Client::UserServiceAddHumanUserRequest.new(
+  response = client.user_service.add_human_user(
+    Zitadel::Client::Models::UserServiceAddHumanUserRequest.new(
       username: SecureRandom.hex,
-      profile: Zitadel::Client::UserServiceSetHumanProfile.new(
+      profile: Zitadel::Client::Models::UserServiceSetHumanProfile.new(
         given_name: 'John',
         family_name: 'Doe'
       ),
-      email: Zitadel::Client::UserServiceSetHumanEmail.new(
+      email: Zitadel::Client::Models::UserServiceSetHumanEmail.new(
         email: "john.doe@example.com"
       )
     )
   )
   puts "User created: #{response}"
-rescue StandardError => e
+rescue Zitadel::Client::ApiError => e
   puts "Error: #{e.message}"
 end
 ```
@@ -121,23 +126,29 @@ which is then used to authenticate.
 require 'zitadel-client'
 require 'securerandom'
 
-client = Zitadel::Client::Zitadel.with_client_credentials("https://example.us1.zitadel.cloud", "id", "secret")
+client = Zitadel::Client::Zitadel.with_authenticator(
+  Zitadel::Client::Auth::ClientCredentialsAuthenticator.builder(
+    "https://example.us1.zitadel.cloud",
+    "id",
+    "secret"
+  ).build
+)
 
 begin
-  response = client.users.add_human_user(
-    Zitadel::Client::UserServiceAddHumanUserRequest.new(
+  response = client.user_service.add_human_user(
+    Zitadel::Client::Models::UserServiceAddHumanUserRequest.new(
       username: SecureRandom.hex,
-      profile: Zitadel::Client::UserServiceSetHumanProfile.new(
+      profile: Zitadel::Client::Models::UserServiceSetHumanProfile.new(
         given_name: 'John',
         family_name: 'Doe'
       ),
-      email: Zitadel::Client::UserServiceSetHumanEmail.new(
+      email: Zitadel::Client::Models::UserServiceSetHumanEmail.new(
         email: "john.doe@example.com"
       )
     )
   )
   puts "User created: #{response}"
-rescue StandardError => e
+rescue Zitadel::Client::ApiError => e
   puts "Error: #{e.message}"
 end
 ```
@@ -164,23 +175,28 @@ authenticate without exchanging credentials every time.
 require 'zitadel-client'
 require 'securerandom'
 
-client = Zitadel::Client::Zitadel.with_access_token("https://example.us1.zitadel.cloud", "token")
+client = Zitadel::Client::Zitadel.with_authenticator(
+  Zitadel::Client::Auth::PersonalAccessTokenAuthenticator.new(
+    "https://example.us1.zitadel.cloud",
+    "token"
+  )
+)
 
 begin
-  response = client.users.add_human_user(
-    Zitadel::Client::UserServiceAddHumanUserRequest.new(
+  response = client.user_service.add_human_user(
+    Zitadel::Client::Models::UserServiceAddHumanUserRequest.new(
       username: SecureRandom.hex,
-      profile: Zitadel::Client::UserServiceSetHumanProfile.new(
+      profile: Zitadel::Client::Models::UserServiceSetHumanProfile.new(
         given_name: 'John',
         family_name: 'Doe'
       ),
-      email: Zitadel::Client::UserServiceSetHumanEmail.new(
+      email: Zitadel::Client::Models::UserServiceSetHumanEmail.new(
         email: "john.doe@example.com"
       )
     )
   )
   puts "User created: #{response}"
-rescue StandardError => e
+rescue Zitadel::Client::ApiError => e
   puts "Error: #{e.message}"
 end
 ```
@@ -198,12 +214,12 @@ and debugging purposes. You can enable debug logging by setting `debugging`
 to `true` via the configuration block when initializing the `Zitadel` client:
 
 ```ruby
-zitadel = Zitadel::Client::Zitadel.with_access_token(
-  'your-zitadel-base-url',
-  'your-valid-token'
-) do |config|
-  config.debugging = true
-end
+zitadel = Zitadel::Client::Zitadel.with_authenticator(
+  Zitadel::Client::Auth::PersonalAccessTokenAuthenticator.new(
+    'your-zitadel-base-url',
+    'your-valid-token'
+  )
+)
 ```
 
 When enabled, the SDK will log additional information, such as HTTP request
@@ -221,13 +237,15 @@ In development or testing environments with self-signed certificates, you can
 disable TLS verification entirely:
 
 ```ruby
-options = Zitadel::Client::TransportOptions.new(insecure: true)
+options = Zitadel::Client::TransportOptions.builder.verify_ssl(false).build
 
-zitadel = Zitadel::Client::Zitadel.with_client_credentials(
-  'https://your-instance.zitadel.cloud',
-  'client-id',
-  'client-secret',
-  transport_options: options
+zitadel = Zitadel::Client::Zitadel.with_authenticator(
+  Zitadel::Client::Auth::ClientCredentialsAuthenticator.builder(
+    'https://your-instance.zitadel.cloud',
+    'client-id',
+    'client-secret'
+  ).build,
+  options
 )
 ```
 
@@ -237,13 +255,15 @@ If your Zitadel instance uses a certificate signed by a private CA, you can
 provide the path to the CA certificate in PEM format:
 
 ```ruby
-options = Zitadel::Client::TransportOptions.new(ca_cert_path: '/path/to/ca.pem')
+options = Zitadel::Client::TransportOptions.builder.ca_cert_path('/path/to/ca.pem').build
 
-zitadel = Zitadel::Client::Zitadel.with_client_credentials(
-  'https://your-instance.zitadel.cloud',
-  'client-id',
-  'client-secret',
-  transport_options: options
+zitadel = Zitadel::Client::Zitadel.with_authenticator(
+  Zitadel::Client::Auth::ClientCredentialsAuthenticator.builder(
+    'https://your-instance.zitadel.cloud',
+    'client-id',
+    'client-secret'
+  ).build,
+  options
 )
 ```
 
@@ -253,15 +273,17 @@ You can attach default headers to every outgoing request. This is useful for
 custom routing or tracing headers:
 
 ```ruby
-options = Zitadel::Client::TransportOptions.new(
-  default_headers: { 'X-Custom-Header' => 'my-value' }
-)
+options = Zitadel::Client::TransportOptions.builder
+                                          .default_headers({ 'X-Custom-Header' => 'my-value' })
+                                          .build
 
-zitadel = Zitadel::Client::Zitadel.with_client_credentials(
-  'https://your-instance.zitadel.cloud',
-  'client-id',
-  'client-secret',
-  transport_options: options
+zitadel = Zitadel::Client::Zitadel.with_authenticator(
+  Zitadel::Client::Auth::ClientCredentialsAuthenticator.builder(
+    'https://your-instance.zitadel.cloud',
+    'client-id',
+    'client-secret'
+  ).build,
+  options
 )
 ```
 
@@ -272,13 +294,15 @@ specify the proxy URL. To authenticate with the proxy, embed the credentials
 directly in the URL:
 
 ```ruby
-options = Zitadel::Client::TransportOptions.new(proxy_url: 'http://user:pass@proxy:8080')
+options = Zitadel::Client::TransportOptions.builder.proxy('http://user:pass@proxy:8080').build
 
-zitadel = Zitadel::Client::Zitadel.with_client_credentials(
-  'https://your-instance.zitadel.cloud',
-  'client-id',
-  'client-secret',
-  transport_options: options
+zitadel = Zitadel::Client::Zitadel.with_authenticator(
+  Zitadel::Client::Auth::ClientCredentialsAuthenticator.builder(
+    'https://your-instance.zitadel.cloud',
+    'client-id',
+    'client-secret'
+  ).build,
+  options
 )
 ```
 

@@ -21,7 +21,8 @@ require 'securerandom'
 
 class SessionServiceSanityCheckSpec < BaseSpec
   def client
-    Zitadel::Client::Zitadel.with_access_token(@base_url, @auth_token)
+    authenticator = Zitadel::Client::Auth::PersonalAccessTokenAuthenticator.new(@base_url, @auth_token)
+    Zitadel::Client::Zitadel.with_authenticator(authenticator)
   end
 
   before do
@@ -37,7 +38,7 @@ class SessionServiceSanityCheckSpec < BaseSpec
       )
     )
 
-    @user = client.users.add_human_user(request)
+    @user = client.user_service.add_human_user(request)
     request = Zitadel::Client::Models::SessionServiceCreateSessionRequest.new(
       checks: Zitadel::Client::Models::SessionServiceChecks.new(
         user: Zitadel::Client::Models::SessionServiceCheckUser.new(
@@ -46,41 +47,42 @@ class SessionServiceSanityCheckSpec < BaseSpec
       ),
       lifetime: '18000s'
     )
-    resp = client.sessions.create_session(request)
+    resp = client.session_service.create_session(request)
     @session_id = resp.session_id
     @session_token = resp.session_token
   end
 
   after do
     request = Zitadel::Client::Models::SessionServiceDeleteSessionRequest.new(session_id: @session_id)
-    client.sessions.delete_session(request)
+    client.session_service.delete_session(request)
   rescue StandardError
     # Ignore cleanup errors
   end
 
   it 'retrieves the session details by the session identifier' do
-    request = Zitadel::Client::Models::SessionServiceGetSessionRequest.new(session_id: @session_id, session_token: @session_token)
-    response = client.sessions.get_session(request)
-    _(response.session.id).must_equal @session_id
+    request = Zitadel::Client::Models::SessionServiceGetSessionRequest.new(session_id: @session_id,
+                                                                           session_token: @session_token)
+    response = client.session_service.get_session(request)
+    _(response.session&.id).must_equal @session_id
   end
 
   it 'raises an error when retrieving a non-existent session' do
     request = Zitadel::Client::Models::SessionServiceGetSessionRequest.new(session_id: SecureRandom.uuid,
                                                                            session_token: @session_token)
     assert_raises(Zitadel::Client::ApiError) do
-      client.sessions.get_session(request)
+      client.session_service.get_session(request)
     end
   end
 
   it 'includes the created session when listing all sessions' do
     request = Zitadel::Client::Models::SessionServiceListSessionsRequest.new(queries: [])
-    response = client.sessions.list_sessions(request)
-    _(response.sessions.map(&:id)).must_include @session_id
+    response = client.session_service.list_sessions(request)
+    _(response.sessions&.map(&:id)).must_include @session_id
   end
 
   it 'updates the session lifetime and returns a new token' do
     request = Zitadel::Client::Models::SessionServiceSetSessionRequest.new(session_id: @session_id, lifetime: '36000s')
-    response = client.sessions.set_session(request)
+    response = client.session_service.set_session(request)
     _(response.session_token).must_be_instance_of String
   end
 end

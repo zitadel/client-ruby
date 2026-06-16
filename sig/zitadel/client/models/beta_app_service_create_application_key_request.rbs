@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class BetaAppServiceCreateApplicationKeyRequest < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader app_id: String?
+    attr_reader project_id: String?
+    attr_reader expiration_date: Time?
+  end
+end

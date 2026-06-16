@@ -1,0 +1,14 @@
+module Zitadel::Client::Models
+  class ApplicationServiceApplicationSearchFilter < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader client_id_filter: ApplicationServiceClientIDFilter?
+    attr_reader entity_id_filter: ApplicationServiceEntityIDFilter?
+    attr_reader name_filter: ApplicationServiceApplicationNameFilter?
+    attr_reader project_id_filter: ApplicationServiceProjectIDFilter?
+    attr_reader state_filter: ApplicationServiceApplicationState?
+    attr_reader type_filter: ApplicationServiceApplicationType?
+  end
+end

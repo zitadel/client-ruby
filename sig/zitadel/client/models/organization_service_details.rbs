@@ -1,0 +1,12 @@
+module Zitadel::Client::Models
+  class OrganizationServiceDetails < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader sequence: untyped?
+    attr_reader change_date: Time?
+    attr_reader resource_owner: String?
+    attr_reader creation_date: Time?
+  end
+end

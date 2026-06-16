@@ -1,0 +1,15 @@
+module Zitadel::Client
+  module Api
+    class BetaWebKeyServiceApi < BaseApi
+      def initialize: (?::Zitadel::Client::ApiClient? api_client, ?::Zitadel::Client::Configuration config, ?::Zitadel::Client::Auth::Authenticator? authenticator) -> void
+      def activate_web_key: (Models::BetaWebKeyServiceActivateWebKeyRequest beta_web_key_service_activate_web_key_request) -> Models::BetaWebKeyServiceActivateWebKeyResponse
+      def activate_web_key_with_http_info: (Models::BetaWebKeyServiceActivateWebKeyRequest beta_web_key_service_activate_web_key_request) -> ::Zitadel::Client::ApiResult[Models::BetaWebKeyServiceActivateWebKeyResponse]
+      def create_web_key: (Models::BetaWebKeyServiceCreateWebKeyRequest beta_web_key_service_create_web_key_request) -> Models::BetaWebKeyServiceCreateWebKeyResponse
+      def create_web_key_with_http_info: (Models::BetaWebKeyServiceCreateWebKeyRequest beta_web_key_service_create_web_key_request) -> ::Zitadel::Client::ApiResult[Models::BetaWebKeyServiceCreateWebKeyResponse]
+      def delete_web_key: (Models::BetaWebKeyServiceDeleteWebKeyRequest beta_web_key_service_delete_web_key_request) -> Models::BetaWebKeyServiceDeleteWebKeyResponse
+      def delete_web_key_with_http_info: (Models::BetaWebKeyServiceDeleteWebKeyRequest beta_web_key_service_delete_web_key_request) -> ::Zitadel::Client::ApiResult[Models::BetaWebKeyServiceDeleteWebKeyResponse]
+      def list_web_keys: (untyped body) -> Models::BetaWebKeyServiceListWebKeysResponse
+      def list_web_keys_with_http_info: (untyped body) -> ::Zitadel::Client::ApiResult[Models::BetaWebKeyServiceListWebKeysResponse]
+    end
+  end
+end

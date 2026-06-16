@@ -35,6 +35,7 @@ module Zitadel
                            .builder(oauth_host, 'dummy-client', key)
                            .token_lifetime_seconds(3600)
                            .build
+          inject_api_client(@authenticator)
         end
 
         ##
@@ -61,8 +62,7 @@ module Zitadel
         def test_refresh_token_returns_valid_token
           token = @authenticator.send(:refresh_token)
 
-          refute_nil token.token
-          refute_predicate token, :expired?
+          refute_nil token
         end
 
         ##
@@ -75,7 +75,7 @@ module Zitadel
         def test_auth_headers_contains_bearer_token
           token = @authenticator.send(:refresh_token)
 
-          expected = { 'Authorization' => "Bearer #{token.token}" }
+          expected = { 'Authorization' => "Bearer #{token}" }
 
           assert_equal expected, @authenticator.send(:auth_headers)
         end
@@ -88,8 +88,8 @@ module Zitadel
         # This confirms that the authenticator does not cache or reuse tokens
         # and generates fresh credentials on demand.
         def test_refresh_token_produces_unique_tokens
-          token1 = @authenticator.send(:refresh_token).token
-          token2 = @authenticator.send(:refresh_token).token
+          token1 = @authenticator.send(:refresh_token)
+          token2 = @authenticator.send(:refresh_token)
 
           refute_equal token1, token2
         end
@@ -103,6 +103,25 @@ module Zitadel
         # is correctly retained and exposed via the `#host` method.
         def test_authenticator_honors_supplied_host
           assert_equal oauth_host, @authenticator.send(:host)
+        end
+
+        ##
+        # @return [void]
+        #
+        # Verifies that the signing key and cached access token are masked in
+        # both #inspect and #to_s.
+        def test_redacts_secret
+          key = OpenSSL::PKey::RSA.new(2048)
+          assertion = WebTokenAuthenticator::JwtAssertion.new(
+            issuer: 'z', subject: 'z', audience: 'a', private_key: key, lifetime: 1, algorithm: 'RS256', key_id: nil
+          )
+          auth = WebTokenAuthenticator.new(OpenId.allocate, 'zitadel', %w[openid].to_set, assertion)
+          auth.instance_variable_set(:@access_token, 'super-secret-credential-value')
+
+          rendered = auth.inspect + auth.to_s
+          refute_includes rendered, 'super-secret-credential-value'
+          refute_includes rendered, key.to_pem
+          assert_includes rendered, '***'
         end
       end
     end

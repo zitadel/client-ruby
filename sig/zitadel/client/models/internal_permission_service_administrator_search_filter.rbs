@@ -1,0 +1,19 @@
+module Zitadel::Client::Models
+  class InternalPermissionServiceAdministratorSearchFilter < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader _and: InternalPermissionServiceAndFilter?
+    attr_reader change_date: InternalPermissionServiceTimestampFilter?
+    attr_reader creation_date: InternalPermissionServiceTimestampFilter?
+    attr_reader in_user_ids_filter: InternalPermissionServiceInIDsFilter?
+    attr_reader _not: InternalPermissionServiceNotFilter?
+    attr_reader _or: InternalPermissionServiceOrFilter?
+    attr_reader resource: InternalPermissionServiceResourceFilter?
+    attr_reader role: InternalPermissionServiceRoleFilter?
+    attr_reader user_display_name: InternalPermissionServiceUserDisplayNameFilter?
+    attr_reader user_organization_id: InternalPermissionServiceIDFilter?
+    attr_reader user_preferred_login_name: InternalPermissionServiceUserPreferredLoginNameFilter?
+  end
+end

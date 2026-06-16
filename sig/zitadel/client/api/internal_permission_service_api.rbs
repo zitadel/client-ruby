@@ -1,0 +1,15 @@
+module Zitadel::Client
+  module Api
+    class InternalPermissionServiceApi < BaseApi
+      def initialize: (?::Zitadel::Client::ApiClient? api_client, ?::Zitadel::Client::Configuration config, ?::Zitadel::Client::Auth::Authenticator? authenticator) -> void
+      def create_administrator: (Models::InternalPermissionServiceCreateAdministratorRequest internal_permission_service_create_administrator_request) -> Models::InternalPermissionServiceCreateAdministratorResponse
+      def create_administrator_with_http_info: (Models::InternalPermissionServiceCreateAdministratorRequest internal_permission_service_create_administrator_request) -> ::Zitadel::Client::ApiResult[Models::InternalPermissionServiceCreateAdministratorResponse]
+      def delete_administrator: (Models::InternalPermissionServiceDeleteAdministratorRequest internal_permission_service_delete_administrator_request) -> Models::InternalPermissionServiceDeleteAdministratorResponse
+      def delete_administrator_with_http_info: (Models::InternalPermissionServiceDeleteAdministratorRequest internal_permission_service_delete_administrator_request) -> ::Zitadel::Client::ApiResult[Models::InternalPermissionServiceDeleteAdministratorResponse]
+      def list_administrators: (Models::InternalPermissionServiceListAdministratorsRequest internal_permission_service_list_administrators_request) -> Models::InternalPermissionServiceListAdministratorsResponse
+      def list_administrators_with_http_info: (Models::InternalPermissionServiceListAdministratorsRequest internal_permission_service_list_administrators_request) -> ::Zitadel::Client::ApiResult[Models::InternalPermissionServiceListAdministratorsResponse]
+      def update_administrator: (Models::InternalPermissionServiceUpdateAdministratorRequest internal_permission_service_update_administrator_request) -> Models::InternalPermissionServiceUpdateAdministratorResponse
+      def update_administrator_with_http_info: (Models::InternalPermissionServiceUpdateAdministratorRequest internal_permission_service_update_administrator_request) -> ::Zitadel::Client::ApiResult[Models::InternalPermissionServiceUpdateAdministratorResponse]
+    end
+  end
+end

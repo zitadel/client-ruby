@@ -2,9 +2,11 @@
 
 target :app do
   check 'lib'
+  check 'spec'
+  check 'test'
   signature 'sig'
 
-  library 'json', 'time', 'date', 'uri', 'pathname', 'net-http', 'tempfile', 'openssl'
+  library 'json', 'time', 'date', 'uri', 'pathname', 'net-http', 'tempfile', 'openssl', 'securerandom', 'logger'
 
   ignore 'lib/zitadel/client/models'
   ignore 'lib/zitadel/client/api'

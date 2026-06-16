@@ -1,0 +1,9 @@
+module Zitadel::Client
+  module Api
+    class IdentityProviderServiceApi < BaseApi
+      def initialize: (?::Zitadel::Client::ApiClient? api_client, ?::Zitadel::Client::Configuration config, ?::Zitadel::Client::Auth::Authenticator? authenticator) -> void
+      def get_idpby_id: (Models::IdentityProviderServiceGetIDPByIDRequest identity_provider_service_get_idpby_id_request) -> Models::IdentityProviderServiceGetIDPByIDResponse
+      def get_idpby_id_with_http_info: (Models::IdentityProviderServiceGetIDPByIDRequest identity_provider_service_get_idpby_id_request) -> ::Zitadel::Client::ApiResult[Models::IdentityProviderServiceGetIDPByIDResponse]
+    end
+  end
+end

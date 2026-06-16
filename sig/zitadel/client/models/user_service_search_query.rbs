@@ -1,0 +1,26 @@
+module Zitadel::Client::Models
+  class UserServiceSearchQuery < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader and_query: UserServiceAndQuery?
+    attr_reader display_name_query: UserServiceDisplayNameQuery?
+    attr_reader email_query: UserServiceEmailQuery?
+    attr_reader first_name_query: UserServiceFirstNameQuery?
+    attr_reader in_user_emails_query: UserServiceInUserEmailsQuery?
+    attr_reader in_user_ids_query: UserServiceInUserIDQuery?
+    attr_reader last_name_query: UserServiceLastNameQuery?
+    attr_reader login_name_query: UserServiceLoginNameQuery?
+    attr_reader metadata_key_filter: UserServiceMetadataKeyFilter?
+    attr_reader metadata_value_filter: UserServiceMetadataValueFilter?
+    attr_reader nick_name_query: UserServiceNickNameQuery?
+    attr_reader not_query: UserServiceNotQuery?
+    attr_reader or_query: UserServiceOrQuery?
+    attr_reader organization_id_query: UserServiceOrganizationIdQuery?
+    attr_reader phone_query: UserServicePhoneQuery?
+    attr_reader state_query: UserServiceStateQuery?
+    attr_reader type_query: UserServiceTypeQuery?
+    attr_reader user_name_query: UserServiceUserNameQuery?
+  end
+end

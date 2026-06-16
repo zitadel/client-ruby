@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class ProjectServiceProjectRoleFieldName
+    PROJECT_ROLE_FIELD_NAME_UNSPECIFIED: String
+    PROJECT_ROLE_FIELD_NAME_KEY: String
+    PROJECT_ROLE_FIELD_NAME_CREATION_DATE: String
+    PROJECT_ROLE_FIELD_NAME_CHANGE_DATE: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

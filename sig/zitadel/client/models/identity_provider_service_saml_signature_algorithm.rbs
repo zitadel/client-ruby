@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class IdentityProviderServiceSAMLSignatureAlgorithm
+    SAML_SIGNATURE_UNSPECIFIED: String
+    SAML_SIGNATURE_RSA_SHA1: String
+    SAML_SIGNATURE_RSA_SHA256: String
+    SAML_SIGNATURE_RSA_SHA512: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

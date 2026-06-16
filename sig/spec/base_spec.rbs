@@ -1,0 +1,61 @@
+# Signature for the integration-test base class and the minitest spec DSL it
+# exposes to subclasses.
+#
+# BaseSpec is a Minitest::Spec (it/before/after DSL) that mixes in
+# Minitest::Hooks for once-per-suite docker provisioning. The gem_rbs_collection
+# types the spec-DSL blocks as `() -> untyped`, which loses the test-instance
+# self — so `client`, instance variables, and expectations inside `it` blocks
+# can't be resolved. We override it/before/after/_ here with `[self: instance]`
+# block self-types (a subclass override, NOT a redeclaration of the collection's
+# DSL, so there is no conflict). Subclasses inherit these, so their `it` blocks
+# type-check against the concrete spec instance.
+
+# Expectation wrapper returned by `_(value)` — only the matchers the specs use.
+interface _SpecExpectation[T]
+  def must_equal: (T expected) -> void
+
+  def must_include: (untyped member) -> void
+
+  def must_be_instance_of: (untyped klass) -> void
+end
+
+class BaseSpec < Minitest::Spec
+  include Minitest::Hooks
+
+  @compose_file_path: String
+  @base_url: String
+  @auth_token: String
+  @jwt_key: String
+
+  def setup_docker_compose: () -> void
+
+  def teardown_docker_compose: () -> void
+
+  def before_all: () -> void
+
+  def after_all: () -> void
+
+  def load_file_content_into_property: (String relative_path, String property_name) -> String
+
+  # Typed spec DSL — block bodies run against the test instance.
+  def self.it: (?::String desc) { () [self: instance] -> void } -> void
+
+  def self.before: (?Symbol? kind) { () [self: instance] -> void } -> void
+
+  def self.after: (?Symbol? kind) { () [self: instance] -> void } -> void
+
+  def _: [T] (T value) -> _SpecExpectation[T]
+
+  # Helpers and instance variables the concrete spec subclasses define and read
+  # inside it/before blocks. Because the block self-type resolves to BaseSpec,
+  # they are declared here so steep can see them across the DSL blocks.
+  def client: () -> Zitadel::Client::Zitadel
+
+  def generate_user_secret: (untyped token, ?::String login_name) -> ::Hash[::Symbol, ::String]
+
+  @user: untyped
+
+  @session_id: ::String?
+
+  @session_token: ::String?
+end

@@ -33,6 +33,7 @@ module Zitadel
                            .builder(oauth_host, 'dummy-client', 'dummy-secret')
                            .scopes('openid', 'foo')
                            .build
+          inject_api_client(@authenticator)
         end
 
         ##
@@ -59,7 +60,7 @@ module Zitadel
         def test_auth_headers_contains_bearer_token
           token = @authenticator.send(:refresh_token)
 
-          expected = { 'Authorization' => "Bearer #{token.token}" }
+          expected = { 'Authorization' => "Bearer #{token}" }
 
           assert_equal expected, @authenticator.send(:auth_headers)
         end
@@ -74,8 +75,7 @@ module Zitadel
         def test_refresh_token_returns_valid_token
           token = @authenticator.send(:refresh_token)
 
-          refute_nil token.token
-          refute_predicate token, :expired?
+          refute_nil token
         end
 
         ##
@@ -87,7 +87,7 @@ module Zitadel
         def test_auth_token_matches_refreshed_token
           token = @authenticator.send(:refresh_token)
 
-          assert_equal token.token, @authenticator.send(:auth_token)
+          assert_equal token, @authenticator.send(:auth_token)
         end
 
         ##
@@ -109,10 +109,26 @@ module Zitadel
         # This confirms that the authenticator does not cache or reuse tokens
         # and generates fresh credentials on demand.
         def test_refresh_token_produces_unique_tokens
-          token1 = @authenticator.send(:refresh_token).token
-          token2 = @authenticator.send(:refresh_token).token
+          token1 = @authenticator.send(:refresh_token)
+          token2 = @authenticator.send(:refresh_token)
 
           refute_equal token1, token2
+        end
+
+        ##
+        # @return [void]
+        #
+        # Verifies that the client secret is masked in both #inspect and #to_s
+        # while the client id stays visible.
+        def test_redacts_secret
+          secret = 'super-secret-credential-value'
+          auth = ClientCredentialsAuthenticator.new(OpenId.allocate, 'visible-client-id', secret, %w[openid].to_set)
+          auth.instance_variable_set(:@access_token, secret)
+
+          rendered = auth.inspect + auth.to_s
+          refute_includes rendered, secret
+          assert_includes rendered, '***'
+          assert_includes auth.inspect, 'visible-client-id'
         end
       end
     end

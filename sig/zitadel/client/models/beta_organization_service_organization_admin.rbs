@@ -1,0 +1,10 @@
+module Zitadel::Client::Models
+  class BetaOrganizationServiceOrganizationAdmin < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader assigned_admin: BetaOrganizationServiceAssignedAdmin?
+    attr_reader created_admin: BetaOrganizationServiceCreatedAdmin?
+  end
+end

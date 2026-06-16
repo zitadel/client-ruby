@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class SessionServiceUserVerificationRequirement
+    USER_VERIFICATION_REQUIREMENT_UNSPECIFIED: String
+    USER_VERIFICATION_REQUIREMENT_REQUIRED: String
+    USER_VERIFICATION_REQUIREMENT_PREFERRED: String
+    USER_VERIFICATION_REQUIREMENT_DISCOURAGED: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

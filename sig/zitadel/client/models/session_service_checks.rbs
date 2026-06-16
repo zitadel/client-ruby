@@ -1,0 +1,16 @@
+module Zitadel::Client::Models
+  class SessionServiceChecks < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader user: SessionServiceCheckUser?
+    attr_reader password: SessionServiceCheckPassword?
+    attr_reader web_auth_n: SessionServiceCheckWebAuthN?
+    attr_reader idp_intent: SessionServiceCheckIDPIntent?
+    attr_reader totp: SessionServiceCheckTOTP?
+    attr_reader otp_sms: SessionServiceCheckOTP?
+    attr_reader otp_email: SessionServiceCheckOTP?
+    attr_reader recovery_code: SessionServiceCheckRecoveryCode?
+  end
+end

@@ -1,0 +1,12 @@
+module Zitadel::Client::Models
+  class IdentityProviderServiceGenericOIDCConfig < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader issuer: String?
+    attr_reader client_id: String?
+    attr_reader scopes: Array[String]?
+    attr_reader is_id_token_mapping: bool?
+  end
+end

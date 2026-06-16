@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class ApplicationServiceOIDCAuthMethodType
+    OIDC_AUTH_METHOD_TYPE_BASIC: String
+    OIDC_AUTH_METHOD_TYPE_POST: String
+    OIDC_AUTH_METHOD_TYPE_NONE: String
+    OIDC_AUTH_METHOD_TYPE_PRIVATE_KEY_JWT: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

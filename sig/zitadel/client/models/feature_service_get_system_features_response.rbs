@@ -1,0 +1,17 @@
+module Zitadel::Client::Models
+  class FeatureServiceGetSystemFeaturesResponse < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader details: FeatureServiceDetails?
+    attr_reader login_default_org: FeatureServiceFeatureFlag?
+    attr_reader user_schema: FeatureServiceFeatureFlag?
+    attr_reader oidc_token_exchange: FeatureServiceFeatureFlag?
+    attr_reader improved_performance: FeatureServiceImprovedPerformanceFeatureFlag?
+    attr_reader oidc_single_v1_session_termination: FeatureServiceFeatureFlag?
+    attr_reader enable_back_channel_logout: FeatureServiceFeatureFlag?
+    attr_reader login_v2: FeatureServiceLoginV2FeatureFlag?
+    attr_reader permission_check_v2: FeatureServiceFeatureFlag?
+  end
+end
