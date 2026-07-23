@@ -26,7 +26,7 @@ Gem::Specification.new do |gemspec|
   gemspec.add_dependency 'time', '>= 0.1'
   gemspec.add_dependency 'typhoeus', '~> 1.0', '>= 1.0.1'
   gemspec.add_dependency 'uri', '>= 0.10'
-  gemspec.add_dependency 'warning', '~> 1.5.0'
+  gemspec.add_dependency 'warning', '>= 1.5', '< 1.7'
   gemspec.add_dependency 'zeitwerk', '~> 2.5'
 
   gemspec.files = Dir.chdir(File.expand_path(__dir__)) do
