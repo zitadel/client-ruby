@@ -48,8 +48,9 @@ module Zitadel
                                                 .with_filesystem_binds("#{squid_conf}:/etc/squid/squid.conf:ro")
                                                 .with_exposed_ports(3128)
                                                 .start
-        @proxy.wait_for_tcp_port(3128)
         @network.connect(@proxy._id)
+        @proxy.wait_for_logs(/Accepting HTTP Socket connections/)
+        @proxy.wait_for_tcp_port(3128)
 
         @host = @wiremock.host
         @http_port = @wiremock.mapped_port(8080)
