@@ -14,7 +14,7 @@ Gem::Specification.new do |gemspec|
   gemspec.description =
     "Official Zitadel SDK for Ruby. Authenticate and access Zitadel's authentication and management APIs in Ruby."
   gemspec.license = 'Apache-2.0'
-  gemspec.required_ruby_version = '>= 3.0'
+  gemspec.required_ruby_version = '>= 3.1'
   gemspec.metadata = { 'rubygems_mfa_required' => 'true' }
 
   gemspec.add_dependency 'cgi', '>= 0.1'

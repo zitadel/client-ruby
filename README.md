@@ -33,7 +33,7 @@ Zitadel website and obtain the necessary credentials to access the API.
 
 ### Minimum Requirements
 
-Ensure you have Ruby 3 or higher installed.
+Ensure you have Ruby 3.1 or higher installed.
 
 ## Using the SDK
 
