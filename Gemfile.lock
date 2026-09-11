@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    zitadel-client (4.2.0)
+    zitadel-client (4.2.1)
       cgi (>= 0.1)
       date (>= 3.0)
       logger (>= 1.4)
