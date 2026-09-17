@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # Only return resources that belong to this id.
-      # @example null
       attribute :id, Types::Any.optional.meta(omittable: true)
     end
   end

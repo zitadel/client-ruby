@@ -34,7 +34,7 @@ end
 module Zitadel::Client
   # Model classes generated from OpenAPI schemas.
   module Models
-    # Enumeration of allowed values for BetaOrganizationServiceDomainValidationType.
+    # from proto/zitadel/org.proto
     class BetaOrganizationServiceDomainValidationType
       DOMAIN_VALIDATION_TYPE_UNSPECIFIED = 'DOMAIN_VALIDATION_TYPE_UNSPECIFIED'
       DOMAIN_VALIDATION_TYPE_HTTP = 'DOMAIN_VALIDATION_TYPE_HTTP'

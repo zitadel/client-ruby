@@ -68,10 +68,8 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :details, Types::Any.optional.meta(omittable: true)
       # The sessions matching the search query. There might be more sessions available  than returned in this response. Use the details field to see if there are more sessions  available and to get the total count of sessions matching the query.
-      # @example null
       attribute :sessions, Types::Any.optional.meta(omittable: true)
     end
   end

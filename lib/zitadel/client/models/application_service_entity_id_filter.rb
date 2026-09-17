@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # The entityID to search for. The search is performed as an exact match.
-      # @example null
       attribute :entity_id, Types::Any.optional.meta(omittable: true)
     end
   end

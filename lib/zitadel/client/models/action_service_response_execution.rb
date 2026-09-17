@@ -71,13 +71,10 @@ module Zitadel::Client
       end
 
       # Define all calls as condition.  Before a response is returned to the client from any available service,  the execution is triggered.
-      # @example null
       attribute :all, Types::Any.optional.meta(omittable: true)
       # Define a GRPC-method as condition.  Before a response is returned to the client from this method, the execution is triggered.
-      # @example null
       attribute :method, Types::Any.optional.meta(omittable: true)
       # Define a GRPC-service as condition.  Before a response is returned to the client from any method of this service, the execution is triggered.
-      # @example null
       attribute :service, Types::Any.optional.meta(omittable: true)
     end
   end

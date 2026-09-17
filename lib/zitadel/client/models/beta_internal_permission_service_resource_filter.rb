@@ -73,16 +73,12 @@ module Zitadel::Client
       end
 
       # Search for administrators granted on the instance level.
-      # @example null
       attribute :instance, Types::Any.optional.meta(omittable: true)
       # Search for administrators granted on a specific organization.
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
       # Search for administrators granted on a specific project grant.
-      # @example null
       attribute :project_grant_id, Types::Any.optional.meta(omittable: true)
       # Search for administrators granted on a specific project.
-      # @example null
       attribute :project_id, Types::Any.optional.meta(omittable: true)
     end
   end

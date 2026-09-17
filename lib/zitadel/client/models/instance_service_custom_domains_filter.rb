@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # The domains to query for. All instances that have at least one of the  specified domains will be returned.  A maximum of 20 domains can be specified.
-      # @example null
       attribute :domains, Types::Any.optional.meta(omittable: true)
     end
   end

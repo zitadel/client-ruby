@@ -69,9 +69,7 @@ module Zitadel::Client
       end
 
       # Specify the key of the role the user was granted to search for.
-      # @example null
       attribute :key, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :method, Types::Any.optional.meta(omittable: true)
     end
   end

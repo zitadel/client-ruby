@@ -71,11 +71,8 @@ module Zitadel::Client
       end
 
       # The device authorization id returned when submitting the user code.
-      # @example null
       attribute :device_authorization_id, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :deny, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :session, Types::Any.optional.meta(omittable: true)
     end
   end

@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # The machine users name is a human readable field that helps identifying the user.
-      # @example null
       attribute :name, Types::Any.optional.meta(omittable: true)
       # The description is a field that helps to remember the purpose of the user.
-      # @example null
       attribute :description, Types::Any.optional.meta(omittable: true)
     end
   end

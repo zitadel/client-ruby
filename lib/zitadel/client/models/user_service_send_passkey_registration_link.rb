@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # Optionally set a url_template, which will be used in the mail sent by ZITADEL to guide the user to your passkey registration page.  If no template is set, the default ZITADEL url will be used.   The following placeholders can be used: UserID, OrgID, CodeID, Code
-      # @example null
       attribute :url_template, Types::Any.optional.meta(omittable: true)
     end
   end

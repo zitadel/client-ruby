@@ -71,12 +71,9 @@ module Zitadel::Client
       end
 
       # Organization ID of Orgalization which metadata is to be listed.
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :pagination, Types::Any.optional.meta(omittable: true)
       # Define the criteria to query for.
-      # @example null
       attribute :filter, Types::Any.optional.meta(omittable: true)
     end
   end

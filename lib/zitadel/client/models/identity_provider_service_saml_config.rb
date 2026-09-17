@@ -80,22 +80,15 @@ module Zitadel::Client
       end
 
       # Metadata of the SAML identity provider.
-      # @example null
       attribute :metadata_xml, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :binding, Types::Any.optional.meta(omittable: true)
       # Boolean which defines if the authentication requests are signed.
-      # @example null
       attribute :with_signed_request, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :name_id_format, Types::Any.optional.meta(omittable: true)
       # Optional name of the attribute, which will be used to map the user  in case the nameid-format returned is  `urn:oasis:names:tc:SAML:2.0:nameid-format:transient`.
-      # @example null
       attribute :transient_mapping_attribute_name, Types::Any.optional.meta(omittable: true)
       # Boolean weather federated logout is enabled. If enabled, ZITADEL will send a logout request to the identity provider,  if the user terminates the session in ZITADEL. Be sure to provide a SLO endpoint as part of the metadata.
-      # @example null
       attribute :federated_logout_enabled, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :signature_algorithm, Types::Any.optional.meta(omittable: true)
     end
   end

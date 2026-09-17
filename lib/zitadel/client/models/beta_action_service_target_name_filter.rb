@@ -69,9 +69,7 @@ module Zitadel::Client
       end
 
       # Defines the name of the target to query for.
-      # @example null
       attribute :target_name, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :method, Types::Any.optional.meta(omittable: true)
     end
   end

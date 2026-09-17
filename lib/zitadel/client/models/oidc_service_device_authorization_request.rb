@@ -75,19 +75,14 @@ module Zitadel::Client
       end
 
       # The unique identifier of the device authorization request to be used for authorizing or denying the request.
-      # @example null
       attribute :id, Types::Any.optional.meta(omittable: true)
       # The client_id of the application that initiated the device authorization request.
-      # @example null
       attribute :client_id, Types::Any.optional.meta(omittable: true)
       # The scopes requested by the application.
-      # @example null
       attribute :scope, Types::Any.optional.meta(omittable: true)
       # Name of the client application.
-      # @example null
       attribute :app_name, Types::Any.optional.meta(omittable: true)
       # Name of the project the client application is part of.
-      # @example null
       attribute :project_name, Types::Any.optional.meta(omittable: true)
     end
   end

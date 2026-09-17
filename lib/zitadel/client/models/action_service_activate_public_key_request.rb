@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # TargetID is the unique identifier of the target to activate the public key for.
-      # @example null
       attribute :target_id, Types::Any.optional.meta(omittable: true)
       # KeyID is the unique identifier of the public key to activate.
-      # @example null
       attribute :key_id, Types::Any.optional.meta(omittable: true)
     end
   end

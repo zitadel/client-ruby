@@ -71,10 +71,8 @@ module Zitadel::Client
       end
 
       # Key in the metadata key/value pair.
-      # @example null
       attribute :key, Types::Any.optional.meta(omittable: true)
       # Value in the metadata key/value pair.
-      # @example null
       attribute :value, Types::Any.optional.meta(omittable: true)
     end
   end

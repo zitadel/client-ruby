@@ -73,14 +73,10 @@ module Zitadel::Client
       end
 
       # The user id is the users unique identifier in the instance.  It can't be changed.
-      # @example null
       attribute :user_id, Types::Any.optional.meta(omittable: true)
       # Set a new username that is unique within the instance.  Beware that active tokens and sessions are invalidated when the username is changed.
-      # @example null
       attribute :username, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :human, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :machine, Types::Any.optional.meta(omittable: true)
     end
   end

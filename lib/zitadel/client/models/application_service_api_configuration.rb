@@ -69,9 +69,7 @@ module Zitadel::Client
       end
 
       # The unique OAuth2 client_id used for authentication of the API,  e.g. at the introspection endpoint.
-      # @example null
       attribute :client_id, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :auth_method_type, Types::Any.optional.meta(omittable: true)
     end
   end

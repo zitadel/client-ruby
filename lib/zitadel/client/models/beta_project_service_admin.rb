@@ -68,10 +68,8 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :user_id, Types::Any.optional.meta(omittable: true)
       # specify the Project Member Roles for the provided user (default is PROJECT_OWNER if roles are empty
-      # @example null
       attribute :roles, Types::Any.optional.meta(omittable: true)
     end
   end

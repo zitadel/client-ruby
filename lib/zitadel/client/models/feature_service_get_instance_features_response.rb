@@ -86,27 +86,16 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :details, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :login_default_org, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :user_schema, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :oidc_token_exchange, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :improved_performance, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :debug_oidc_parent_error, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :oidc_single_v1_session_termination, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :enable_back_channel_logout, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :login_v2, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :permission_check_v2, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :console_use_v2_user_api, Types::Any.optional.meta(omittable: true)
     end
   end

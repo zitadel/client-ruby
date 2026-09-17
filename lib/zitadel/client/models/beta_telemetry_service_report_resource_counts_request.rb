@@ -71,13 +71,10 @@ module Zitadel::Client
       end
 
       # The system ID is a unique identifier for the ZITADEL system.
-      # @example null
       attribute :system_id, Types::Any.optional.meta(omittable: true)
       # The previously returned report ID from the server to continue reporting.  Note that the report ID is only valid for the same system ID.
-      # @example null
       attribute :report_id, Types::Any.optional.meta(omittable: true)
       # A list of resource counts to report.
-      # @example null
       attribute :resource_counts, Types::Any.optional.meta(omittable: true)
     end
   end

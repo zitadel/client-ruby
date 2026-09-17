@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # Organization ID is the unique identifier of the organization whose metadata is to be set.
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
       # Metadata is a list of metadata entries to set.
-      # @example null
       attribute :metadata, Types::Any.optional.meta(omittable: true)
     end
   end

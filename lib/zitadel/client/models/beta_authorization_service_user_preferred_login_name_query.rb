@@ -69,9 +69,7 @@ module Zitadel::Client
       end
 
       # Specify the preferred login name of the granted user to search for.
-      # @example null
       attribute :login_name, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :method, Types::Any.optional.meta(omittable: true)
     end
   end

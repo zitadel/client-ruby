@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # InstanceID is the unique ID of the instance to which the trusted domain will be added.  If not set, the instance in the current context (e.g. identified by the host header) will be used.  If an ID is set, the caller must have additional permissions.
-      # @example null
       attribute :instance_id, Types::Any.optional.meta(omittable: true)
       # Trusted domain to be added to the instance.  Must be a valid domain name.  Once the domain is added, it can be used in API responses like OIDC discovery,  email templates, and more.  This can be used in cases where the API is accessed through a different domain  than the instance domain, e.g. proxy setups and custom login UIs.  Unlike custom domains, trusted domains are not used to route requests to this instance  and therefore do not need to be uniquely assigned to an instance.
-      # @example null
       attribute :trusted_domain, Types::Any.optional.meta(omittable: true)
     end
   end

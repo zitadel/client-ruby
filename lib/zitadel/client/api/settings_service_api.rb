@@ -60,14 +60,19 @@ module Zitadel::Client
         query_params = {}
         # @type var header_params: Hash[String, String]
         header_params = {}
-        request_body = settings_service_get_active_identity_providers_request
-
+        # A oneOf union body resolves to a bare Ruby value (e.g. a
+        # `format: byte` variant is a plain base64-bearing String), so the
+        # union's own wire-form rules are re-applied here before
+        # serialization. #encode_oneof_body is a no-op for non-union bodies
+        # (primitives, plain models) and for discriminated / model-ref unions,
+        # whose resolved value already serializes correctly.
+        request_body = ::Zitadel::Client::ObjectSerializer.encode_oneof_body(settings_service_get_active_identity_providers_request, 'SettingsServiceGetActiveIdentityProvidersRequest')
         invoke_api_for_result(
           :POST, path, query_params, header_params, request_body,
           ['application/json'],
           'application/json',
           'SettingsServiceGetActiveIdentityProvidersResponse',
-          nil
+          ::Zitadel::Client::Api::BaseApi::NO_AUTH
         )
       end
 
@@ -113,14 +118,19 @@ module Zitadel::Client
         query_params = {}
         # @type var header_params: Hash[String, String]
         header_params = {}
-        request_body = settings_service_get_branding_settings_request
-
+        # A oneOf union body resolves to a bare Ruby value (e.g. a
+        # `format: byte` variant is a plain base64-bearing String), so the
+        # union's own wire-form rules are re-applied here before
+        # serialization. #encode_oneof_body is a no-op for non-union bodies
+        # (primitives, plain models) and for discriminated / model-ref unions,
+        # whose resolved value already serializes correctly.
+        request_body = ::Zitadel::Client::ObjectSerializer.encode_oneof_body(settings_service_get_branding_settings_request, 'SettingsServiceGetBrandingSettingsRequest')
         invoke_api_for_result(
           :POST, path, query_params, header_params, request_body,
           ['application/json'],
           'application/json',
           'SettingsServiceGetBrandingSettingsResponse',
-          nil
+          ::Zitadel::Client::Api::BaseApi::NO_AUTH
         )
       end
 
@@ -166,14 +176,19 @@ module Zitadel::Client
         query_params = {}
         # @type var header_params: Hash[String, String]
         header_params = {}
-        request_body = settings_service_get_domain_settings_request
-
+        # A oneOf union body resolves to a bare Ruby value (e.g. a
+        # `format: byte` variant is a plain base64-bearing String), so the
+        # union's own wire-form rules are re-applied here before
+        # serialization. #encode_oneof_body is a no-op for non-union bodies
+        # (primitives, plain models) and for discriminated / model-ref unions,
+        # whose resolved value already serializes correctly.
+        request_body = ::Zitadel::Client::ObjectSerializer.encode_oneof_body(settings_service_get_domain_settings_request, 'SettingsServiceGetDomainSettingsRequest')
         invoke_api_for_result(
           :POST, path, query_params, header_params, request_body,
           ['application/json'],
           'application/json',
           'SettingsServiceGetDomainSettingsResponse',
-          nil
+          ::Zitadel::Client::Api::BaseApi::NO_AUTH
         )
       end
 
@@ -219,14 +234,19 @@ module Zitadel::Client
         query_params = {}
         # @type var header_params: Hash[String, String]
         header_params = {}
-        request_body = body
-
+        # A oneOf union body resolves to a bare Ruby value (e.g. a
+        # `format: byte` variant is a plain base64-bearing String), so the
+        # union's own wire-form rules are re-applied here before
+        # serialization. #encode_oneof_body is a no-op for non-union bodies
+        # (primitives, plain models) and for discriminated / model-ref unions,
+        # whose resolved value already serializes correctly.
+        request_body = ::Zitadel::Client::ObjectSerializer.encode_oneof_body(body, 'Object')
         invoke_api_for_result(
           :POST, path, query_params, header_params, request_body,
           ['application/json'],
           'application/json',
           'SettingsServiceGetGeneralSettingsResponse',
-          nil
+          ::Zitadel::Client::Api::BaseApi::NO_AUTH
         )
       end
 
@@ -272,14 +292,19 @@ module Zitadel::Client
         query_params = {}
         # @type var header_params: Hash[String, String]
         header_params = {}
-        request_body = settings_service_get_hosted_login_translation_request
-
+        # A oneOf union body resolves to a bare Ruby value (e.g. a
+        # `format: byte` variant is a plain base64-bearing String), so the
+        # union's own wire-form rules are re-applied here before
+        # serialization. #encode_oneof_body is a no-op for non-union bodies
+        # (primitives, plain models) and for discriminated / model-ref unions,
+        # whose resolved value already serializes correctly.
+        request_body = ::Zitadel::Client::ObjectSerializer.encode_oneof_body(settings_service_get_hosted_login_translation_request, 'SettingsServiceGetHostedLoginTranslationRequest')
         invoke_api_for_result(
           :POST, path, query_params, header_params, request_body,
           ['application/json'],
           'application/json',
           'SettingsServiceGetHostedLoginTranslationResponse',
-          nil
+          ::Zitadel::Client::Api::BaseApi::NO_AUTH
         )
       end
 
@@ -325,14 +350,19 @@ module Zitadel::Client
         query_params = {}
         # @type var header_params: Hash[String, String]
         header_params = {}
-        request_body = settings_service_get_legal_and_support_settings_request
-
+        # A oneOf union body resolves to a bare Ruby value (e.g. a
+        # `format: byte` variant is a plain base64-bearing String), so the
+        # union's own wire-form rules are re-applied here before
+        # serialization. #encode_oneof_body is a no-op for non-union bodies
+        # (primitives, plain models) and for discriminated / model-ref unions,
+        # whose resolved value already serializes correctly.
+        request_body = ::Zitadel::Client::ObjectSerializer.encode_oneof_body(settings_service_get_legal_and_support_settings_request, 'SettingsServiceGetLegalAndSupportSettingsRequest')
         invoke_api_for_result(
           :POST, path, query_params, header_params, request_body,
           ['application/json'],
           'application/json',
           'SettingsServiceGetLegalAndSupportSettingsResponse',
-          nil
+          ::Zitadel::Client::Api::BaseApi::NO_AUTH
         )
       end
 
@@ -378,14 +408,19 @@ module Zitadel::Client
         query_params = {}
         # @type var header_params: Hash[String, String]
         header_params = {}
-        request_body = settings_service_get_lockout_settings_request
-
+        # A oneOf union body resolves to a bare Ruby value (e.g. a
+        # `format: byte` variant is a plain base64-bearing String), so the
+        # union's own wire-form rules are re-applied here before
+        # serialization. #encode_oneof_body is a no-op for non-union bodies
+        # (primitives, plain models) and for discriminated / model-ref unions,
+        # whose resolved value already serializes correctly.
+        request_body = ::Zitadel::Client::ObjectSerializer.encode_oneof_body(settings_service_get_lockout_settings_request, 'SettingsServiceGetLockoutSettingsRequest')
         invoke_api_for_result(
           :POST, path, query_params, header_params, request_body,
           ['application/json'],
           'application/json',
           'SettingsServiceGetLockoutSettingsResponse',
-          nil
+          ::Zitadel::Client::Api::BaseApi::NO_AUTH
         )
       end
 
@@ -431,14 +466,19 @@ module Zitadel::Client
         query_params = {}
         # @type var header_params: Hash[String, String]
         header_params = {}
-        request_body = settings_service_get_login_settings_request
-
+        # A oneOf union body resolves to a bare Ruby value (e.g. a
+        # `format: byte` variant is a plain base64-bearing String), so the
+        # union's own wire-form rules are re-applied here before
+        # serialization. #encode_oneof_body is a no-op for non-union bodies
+        # (primitives, plain models) and for discriminated / model-ref unions,
+        # whose resolved value already serializes correctly.
+        request_body = ::Zitadel::Client::ObjectSerializer.encode_oneof_body(settings_service_get_login_settings_request, 'SettingsServiceGetLoginSettingsRequest')
         invoke_api_for_result(
           :POST, path, query_params, header_params, request_body,
           ['application/json'],
           'application/json',
           'SettingsServiceGetLoginSettingsResponse',
-          nil
+          ::Zitadel::Client::Api::BaseApi::NO_AUTH
         )
       end
 
@@ -484,14 +524,19 @@ module Zitadel::Client
         query_params = {}
         # @type var header_params: Hash[String, String]
         header_params = {}
-        request_body = settings_service_get_password_complexity_settings_request
-
+        # A oneOf union body resolves to a bare Ruby value (e.g. a
+        # `format: byte` variant is a plain base64-bearing String), so the
+        # union's own wire-form rules are re-applied here before
+        # serialization. #encode_oneof_body is a no-op for non-union bodies
+        # (primitives, plain models) and for discriminated / model-ref unions,
+        # whose resolved value already serializes correctly.
+        request_body = ::Zitadel::Client::ObjectSerializer.encode_oneof_body(settings_service_get_password_complexity_settings_request, 'SettingsServiceGetPasswordComplexitySettingsRequest')
         invoke_api_for_result(
           :POST, path, query_params, header_params, request_body,
           ['application/json'],
           'application/json',
           'SettingsServiceGetPasswordComplexitySettingsResponse',
-          nil
+          ::Zitadel::Client::Api::BaseApi::NO_AUTH
         )
       end
 
@@ -537,14 +582,19 @@ module Zitadel::Client
         query_params = {}
         # @type var header_params: Hash[String, String]
         header_params = {}
-        request_body = settings_service_get_password_expiry_settings_request
-
+        # A oneOf union body resolves to a bare Ruby value (e.g. a
+        # `format: byte` variant is a plain base64-bearing String), so the
+        # union's own wire-form rules are re-applied here before
+        # serialization. #encode_oneof_body is a no-op for non-union bodies
+        # (primitives, plain models) and for discriminated / model-ref unions,
+        # whose resolved value already serializes correctly.
+        request_body = ::Zitadel::Client::ObjectSerializer.encode_oneof_body(settings_service_get_password_expiry_settings_request, 'SettingsServiceGetPasswordExpirySettingsRequest')
         invoke_api_for_result(
           :POST, path, query_params, header_params, request_body,
           ['application/json'],
           'application/json',
           'SettingsServiceGetPasswordExpirySettingsResponse',
-          nil
+          ::Zitadel::Client::Api::BaseApi::NO_AUTH
         )
       end
 
@@ -590,14 +640,19 @@ module Zitadel::Client
         query_params = {}
         # @type var header_params: Hash[String, String]
         header_params = {}
-        request_body = body
-
+        # A oneOf union body resolves to a bare Ruby value (e.g. a
+        # `format: byte` variant is a plain base64-bearing String), so the
+        # union's own wire-form rules are re-applied here before
+        # serialization. #encode_oneof_body is a no-op for non-union bodies
+        # (primitives, plain models) and for discriminated / model-ref unions,
+        # whose resolved value already serializes correctly.
+        request_body = ::Zitadel::Client::ObjectSerializer.encode_oneof_body(body, 'Object')
         invoke_api_for_result(
           :POST, path, query_params, header_params, request_body,
           ['application/json'],
           'application/json',
           'SettingsServiceGetSecuritySettingsResponse',
-          nil
+          ::Zitadel::Client::Api::BaseApi::NO_AUTH
         )
       end
 
@@ -643,14 +698,19 @@ module Zitadel::Client
         query_params = {}
         # @type var header_params: Hash[String, String]
         header_params = {}
-        request_body = settings_service_set_hosted_login_translation_request
-
+        # A oneOf union body resolves to a bare Ruby value (e.g. a
+        # `format: byte` variant is a plain base64-bearing String), so the
+        # union's own wire-form rules are re-applied here before
+        # serialization. #encode_oneof_body is a no-op for non-union bodies
+        # (primitives, plain models) and for discriminated / model-ref unions,
+        # whose resolved value already serializes correctly.
+        request_body = ::Zitadel::Client::ObjectSerializer.encode_oneof_body(settings_service_set_hosted_login_translation_request, 'SettingsServiceSetHostedLoginTranslationRequest')
         invoke_api_for_result(
           :POST, path, query_params, header_params, request_body,
           ['application/json'],
           'application/json',
           'SettingsServiceSetHostedLoginTranslationResponse',
-          nil
+          ::Zitadel::Client::Api::BaseApi::NO_AUTH
         )
       end
 
@@ -696,14 +756,19 @@ module Zitadel::Client
         query_params = {}
         # @type var header_params: Hash[String, String]
         header_params = {}
-        request_body = settings_service_set_security_settings_request
-
+        # A oneOf union body resolves to a bare Ruby value (e.g. a
+        # `format: byte` variant is a plain base64-bearing String), so the
+        # union's own wire-form rules are re-applied here before
+        # serialization. #encode_oneof_body is a no-op for non-union bodies
+        # (primitives, plain models) and for discriminated / model-ref unions,
+        # whose resolved value already serializes correctly.
+        request_body = ::Zitadel::Client::ObjectSerializer.encode_oneof_body(settings_service_set_security_settings_request, 'SettingsServiceSetSecuritySettingsRequest')
         invoke_api_for_result(
           :POST, path, query_params, header_params, request_body,
           ['application/json'],
           'application/json',
           'SettingsServiceSetSecuritySettingsResponse',
-          nil
+          ::Zitadel::Client::Api::BaseApi::NO_AUTH
         )
       end
     end

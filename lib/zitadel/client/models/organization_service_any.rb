@@ -72,14 +72,18 @@ module Zitadel::Client
 
       # Whether this model accepts additional properties not defined in the schema.
       ADDITIONAL_PROPERTIES = true
+
+      # Undeclared JSON keys captured on deserialization and re-emitted
+      # verbatim on serialization, so a round-trip preserves additional
+      # properties (matching the 10 SDKs that round-trip them). Keyed by the
+      # original JSON key; values are typed via ADDITIONAL_PROPERTIES_TYPE
+      # when one is declared.
+      attribute :additional_properties, Types::Hash.optional.meta(omittable: true)
       # A URL that acts as a globally unique identifier for the type of the serialized message. For example: `type.googleapis.com/google.rpc.ErrorInfo`. This is used to determine the schema of the data in the `value` field and is the discriminator for the `debug` field.
-      # @example null
       attribute :type, Types::Any.optional.meta(omittable: true)
       # The Protobuf message, serialized as bytes and base64-encoded. The specific message type is identified by the `type` field.
-      # @example null
       attribute :value, Types::Any.optional.meta(omittable: true)
       # Deserialized error detail payload. The 'type' field indicates the schema. This field is for easier debugging and should not be relied upon for application logic.
-      # @example null
       attribute :debug, Types::Any.optional.meta(omittable: true)
     end
   end

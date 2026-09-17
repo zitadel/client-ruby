@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # The users resource ID.
-      # @example null
       attribute :user_id, Types::Any.optional.meta(omittable: true)
       # The tokens ID.
-      # @example null
       attribute :token_id, Types::Any.optional.meta(omittable: true)
     end
   end

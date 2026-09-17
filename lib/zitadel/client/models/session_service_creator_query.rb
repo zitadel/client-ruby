@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # ID of the user who created the session. If empty, the calling user's ID is used.
-      # @example null
       attribute :id, Types::Any.optional.meta(omittable: true)
     end
   end

@@ -69,9 +69,7 @@ module Zitadel::Client
       end
 
       # The domain on which the session was created. Will be used in the WebAuthN challenge.  It must be either the exact domain or a top-level domain of the origin of the request.  For example if the request is coming from \"login.example.com\", the domain can be  \"login.example.com\" or \"example.com\", but not \"other.com\" or \"sub.login.example.com\".  See also: https://www.w3.org/TR/webauthn/#relying-party-identifier
-      # @example null
       attribute :domain, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :user_verification_requirement, Types::Any.optional.meta(omittable: true)
     end
   end

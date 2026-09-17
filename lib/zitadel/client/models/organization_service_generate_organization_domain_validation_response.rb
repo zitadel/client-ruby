@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # Token is a verification token that needs to be added to the DNS records or as a file to the webserver.  Zitadel will check for this token to verify the domain.
-      # @example null
       attribute :token, Types::Any.optional.meta(omittable: true)
       # URL is the location where the token needs to be placed for HTTP challenge.
-      # @example null
       attribute :url, Types::Any.optional.meta(omittable: true)
     end
   end

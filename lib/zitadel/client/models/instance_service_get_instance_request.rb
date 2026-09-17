@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # InstanceID is the unique ID of the instance to be retrieved.  If not set, the instance in the current context (e.g. identified by the host header) will be returned.  If an ID is set, the caller must have additional permissions.
-      # @example null
       attribute :instance_id, Types::Any.optional.meta(omittable: true)
     end
   end

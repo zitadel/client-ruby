@@ -60,14 +60,19 @@ module Zitadel::Client
         query_params = {}
         # @type var header_params: Hash[String, String]
         header_params = {}
-        request_body = session_service_create_session_request
-
+        # A oneOf union body resolves to a bare Ruby value (e.g. a
+        # `format: byte` variant is a plain base64-bearing String), so the
+        # union's own wire-form rules are re-applied here before
+        # serialization. #encode_oneof_body is a no-op for non-union bodies
+        # (primitives, plain models) and for discriminated / model-ref unions,
+        # whose resolved value already serializes correctly.
+        request_body = ::Zitadel::Client::ObjectSerializer.encode_oneof_body(session_service_create_session_request, 'SessionServiceCreateSessionRequest')
         invoke_api_for_result(
           :POST, path, query_params, header_params, request_body,
           ['application/json'],
           'application/json',
           'SessionServiceCreateSessionResponse',
-          nil
+          ::Zitadel::Client::Api::BaseApi::NO_AUTH
         )
       end
 
@@ -113,14 +118,19 @@ module Zitadel::Client
         query_params = {}
         # @type var header_params: Hash[String, String]
         header_params = {}
-        request_body = session_service_delete_session_request
-
+        # A oneOf union body resolves to a bare Ruby value (e.g. a
+        # `format: byte` variant is a plain base64-bearing String), so the
+        # union's own wire-form rules are re-applied here before
+        # serialization. #encode_oneof_body is a no-op for non-union bodies
+        # (primitives, plain models) and for discriminated / model-ref unions,
+        # whose resolved value already serializes correctly.
+        request_body = ::Zitadel::Client::ObjectSerializer.encode_oneof_body(session_service_delete_session_request, 'SessionServiceDeleteSessionRequest')
         invoke_api_for_result(
           :POST, path, query_params, header_params, request_body,
           ['application/json'],
           'application/json',
           'SessionServiceDeleteSessionResponse',
-          nil
+          ::Zitadel::Client::Api::BaseApi::NO_AUTH
         )
       end
 
@@ -166,14 +176,19 @@ module Zitadel::Client
         query_params = {}
         # @type var header_params: Hash[String, String]
         header_params = {}
-        request_body = session_service_get_session_request
-
+        # A oneOf union body resolves to a bare Ruby value (e.g. a
+        # `format: byte` variant is a plain base64-bearing String), so the
+        # union's own wire-form rules are re-applied here before
+        # serialization. #encode_oneof_body is a no-op for non-union bodies
+        # (primitives, plain models) and for discriminated / model-ref unions,
+        # whose resolved value already serializes correctly.
+        request_body = ::Zitadel::Client::ObjectSerializer.encode_oneof_body(session_service_get_session_request, 'SessionServiceGetSessionRequest')
         invoke_api_for_result(
           :POST, path, query_params, header_params, request_body,
           ['application/json'],
           'application/json',
           'SessionServiceGetSessionResponse',
-          nil
+          ::Zitadel::Client::Api::BaseApi::NO_AUTH
         )
       end
 
@@ -219,14 +234,19 @@ module Zitadel::Client
         query_params = {}
         # @type var header_params: Hash[String, String]
         header_params = {}
-        request_body = session_service_list_sessions_request
-
+        # A oneOf union body resolves to a bare Ruby value (e.g. a
+        # `format: byte` variant is a plain base64-bearing String), so the
+        # union's own wire-form rules are re-applied here before
+        # serialization. #encode_oneof_body is a no-op for non-union bodies
+        # (primitives, plain models) and for discriminated / model-ref unions,
+        # whose resolved value already serializes correctly.
+        request_body = ::Zitadel::Client::ObjectSerializer.encode_oneof_body(session_service_list_sessions_request, 'SessionServiceListSessionsRequest')
         invoke_api_for_result(
           :POST, path, query_params, header_params, request_body,
           ['application/json'],
           'application/json',
           'SessionServiceListSessionsResponse',
-          nil
+          ::Zitadel::Client::Api::BaseApi::NO_AUTH
         )
       end
 
@@ -272,14 +292,19 @@ module Zitadel::Client
         query_params = {}
         # @type var header_params: Hash[String, String]
         header_params = {}
-        request_body = session_service_set_session_request
-
+        # A oneOf union body resolves to a bare Ruby value (e.g. a
+        # `format: byte` variant is a plain base64-bearing String), so the
+        # union's own wire-form rules are re-applied here before
+        # serialization. #encode_oneof_body is a no-op for non-union bodies
+        # (primitives, plain models) and for discriminated / model-ref unions,
+        # whose resolved value already serializes correctly.
+        request_body = ::Zitadel::Client::ObjectSerializer.encode_oneof_body(session_service_set_session_request, 'SessionServiceSetSessionRequest')
         invoke_api_for_result(
           :POST, path, query_params, header_params, request_body,
           ['application/json'],
           'application/json',
           'SessionServiceSetSessionResponse',
-          nil
+          ::Zitadel::Client::Api::BaseApi::NO_AUTH
         )
       end
     end

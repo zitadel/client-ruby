@@ -71,12 +71,9 @@ module Zitadel::Client
       end
 
       # OrganizationID is the unique identifier of the organization for which the domain validation is to be generated.
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
       # Domain is the full qualified domain name for which the validation is to be generated.
-      # @example null
       attribute :domain, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :type, Types::Any.optional.meta(omittable: true)
     end
   end

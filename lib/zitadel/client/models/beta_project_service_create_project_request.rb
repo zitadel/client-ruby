@@ -81,27 +81,19 @@ module Zitadel::Client
       end
 
       # The unique identifier of the organization the project belongs to.
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
       # The unique identifier of the project.
-      # @example null
       attribute :id, Types::Any.optional.meta(omittable: true)
       # Name of the project.
-      # @example null
       attribute :name, Types::Any.optional.meta(omittable: true)
       # Enable this setting to provide role information to your application. For OpenID Connect, the roles can be requested from the UserInfo endpoint or sent in the ID or Access Token, based on your application's configuration.
-      # @example null
       attribute :project_role_assertion, Types::Any.optional.meta(omittable: true)
       # Deny authentication if the user has no authorization assigned to this project. Authorizations to the project without assigned a specific role to the user are allowed.
-      # @example null
       attribute :authorization_required, Types::Any.optional.meta(omittable: true)
       # Before a user can be authenticated, it is verified that their affiliated organization has been granted access to this project. Authentication is not permitted for users from unauthorized organizations.
-      # @example null
       attribute :project_access_required, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :private_labeling_setting, Types::Any.optional.meta(omittable: true)
       # List of users and Project Member roles (PROJECT_OWNER, by default) to be assigned to those users.
-      # @example null
       attribute :admins, Types::Any.optional.meta(omittable: true)
     end
   end

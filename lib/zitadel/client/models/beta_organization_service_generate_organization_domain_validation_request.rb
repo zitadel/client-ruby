@@ -71,12 +71,9 @@ module Zitadel::Client
       end
 
       # Organization Id for the Organization which doman to be validated.
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
       # The domain which to be deleted.
-      # @example null
       attribute :domain, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :type, Types::Any.optional.meta(omittable: true)
     end
   end

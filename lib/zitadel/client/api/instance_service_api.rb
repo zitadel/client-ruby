@@ -60,14 +60,19 @@ module Zitadel::Client
         query_params = {}
         # @type var header_params: Hash[String, String]
         header_params = {}
-        request_body = instance_service_add_custom_domain_request
-
+        # A oneOf union body resolves to a bare Ruby value (e.g. a
+        # `format: byte` variant is a plain base64-bearing String), so the
+        # union's own wire-form rules are re-applied here before
+        # serialization. #encode_oneof_body is a no-op for non-union bodies
+        # (primitives, plain models) and for discriminated / model-ref unions,
+        # whose resolved value already serializes correctly.
+        request_body = ::Zitadel::Client::ObjectSerializer.encode_oneof_body(instance_service_add_custom_domain_request, 'InstanceServiceAddCustomDomainRequest')
         invoke_api_for_result(
           :POST, path, query_params, header_params, request_body,
           ['application/json'],
           'application/json',
           'InstanceServiceAddCustomDomainResponse',
-          nil
+          ::Zitadel::Client::Api::BaseApi::NO_AUTH
         )
       end
 
@@ -113,14 +118,19 @@ module Zitadel::Client
         query_params = {}
         # @type var header_params: Hash[String, String]
         header_params = {}
-        request_body = instance_service_add_trusted_domain_request
-
+        # A oneOf union body resolves to a bare Ruby value (e.g. a
+        # `format: byte` variant is a plain base64-bearing String), so the
+        # union's own wire-form rules are re-applied here before
+        # serialization. #encode_oneof_body is a no-op for non-union bodies
+        # (primitives, plain models) and for discriminated / model-ref unions,
+        # whose resolved value already serializes correctly.
+        request_body = ::Zitadel::Client::ObjectSerializer.encode_oneof_body(instance_service_add_trusted_domain_request, 'InstanceServiceAddTrustedDomainRequest')
         invoke_api_for_result(
           :POST, path, query_params, header_params, request_body,
           ['application/json'],
           'application/json',
           'InstanceServiceAddTrustedDomainResponse',
-          nil
+          ::Zitadel::Client::Api::BaseApi::NO_AUTH
         )
       end
 
@@ -166,14 +176,19 @@ module Zitadel::Client
         query_params = {}
         # @type var header_params: Hash[String, String]
         header_params = {}
-        request_body = instance_service_delete_instance_request
-
+        # A oneOf union body resolves to a bare Ruby value (e.g. a
+        # `format: byte` variant is a plain base64-bearing String), so the
+        # union's own wire-form rules are re-applied here before
+        # serialization. #encode_oneof_body is a no-op for non-union bodies
+        # (primitives, plain models) and for discriminated / model-ref unions,
+        # whose resolved value already serializes correctly.
+        request_body = ::Zitadel::Client::ObjectSerializer.encode_oneof_body(instance_service_delete_instance_request, 'InstanceServiceDeleteInstanceRequest')
         invoke_api_for_result(
           :POST, path, query_params, header_params, request_body,
           ['application/json'],
           'application/json',
           'InstanceServiceDeleteInstanceResponse',
-          nil
+          ::Zitadel::Client::Api::BaseApi::NO_AUTH
         )
       end
 
@@ -219,14 +234,19 @@ module Zitadel::Client
         query_params = {}
         # @type var header_params: Hash[String, String]
         header_params = {}
-        request_body = instance_service_get_instance_request
-
+        # A oneOf union body resolves to a bare Ruby value (e.g. a
+        # `format: byte` variant is a plain base64-bearing String), so the
+        # union's own wire-form rules are re-applied here before
+        # serialization. #encode_oneof_body is a no-op for non-union bodies
+        # (primitives, plain models) and for discriminated / model-ref unions,
+        # whose resolved value already serializes correctly.
+        request_body = ::Zitadel::Client::ObjectSerializer.encode_oneof_body(instance_service_get_instance_request, 'InstanceServiceGetInstanceRequest')
         invoke_api_for_result(
           :POST, path, query_params, header_params, request_body,
           ['application/json'],
           'application/json',
           'InstanceServiceGetInstanceResponse',
-          nil
+          ::Zitadel::Client::Api::BaseApi::NO_AUTH
         )
       end
 
@@ -272,14 +292,19 @@ module Zitadel::Client
         query_params = {}
         # @type var header_params: Hash[String, String]
         header_params = {}
-        request_body = instance_service_list_custom_domains_request
-
+        # A oneOf union body resolves to a bare Ruby value (e.g. a
+        # `format: byte` variant is a plain base64-bearing String), so the
+        # union's own wire-form rules are re-applied here before
+        # serialization. #encode_oneof_body is a no-op for non-union bodies
+        # (primitives, plain models) and for discriminated / model-ref unions,
+        # whose resolved value already serializes correctly.
+        request_body = ::Zitadel::Client::ObjectSerializer.encode_oneof_body(instance_service_list_custom_domains_request, 'InstanceServiceListCustomDomainsRequest')
         invoke_api_for_result(
           :POST, path, query_params, header_params, request_body,
           ['application/json'],
           'application/json',
           'InstanceServiceListCustomDomainsResponse',
-          nil
+          ::Zitadel::Client::Api::BaseApi::NO_AUTH
         )
       end
 
@@ -325,14 +350,19 @@ module Zitadel::Client
         query_params = {}
         # @type var header_params: Hash[String, String]
         header_params = {}
-        request_body = instance_service_list_instances_request
-
+        # A oneOf union body resolves to a bare Ruby value (e.g. a
+        # `format: byte` variant is a plain base64-bearing String), so the
+        # union's own wire-form rules are re-applied here before
+        # serialization. #encode_oneof_body is a no-op for non-union bodies
+        # (primitives, plain models) and for discriminated / model-ref unions,
+        # whose resolved value already serializes correctly.
+        request_body = ::Zitadel::Client::ObjectSerializer.encode_oneof_body(instance_service_list_instances_request, 'InstanceServiceListInstancesRequest')
         invoke_api_for_result(
           :POST, path, query_params, header_params, request_body,
           ['application/json'],
           'application/json',
           'InstanceServiceListInstancesResponse',
-          nil
+          ::Zitadel::Client::Api::BaseApi::NO_AUTH
         )
       end
 
@@ -378,14 +408,19 @@ module Zitadel::Client
         query_params = {}
         # @type var header_params: Hash[String, String]
         header_params = {}
-        request_body = instance_service_list_trusted_domains_request
-
+        # A oneOf union body resolves to a bare Ruby value (e.g. a
+        # `format: byte` variant is a plain base64-bearing String), so the
+        # union's own wire-form rules are re-applied here before
+        # serialization. #encode_oneof_body is a no-op for non-union bodies
+        # (primitives, plain models) and for discriminated / model-ref unions,
+        # whose resolved value already serializes correctly.
+        request_body = ::Zitadel::Client::ObjectSerializer.encode_oneof_body(instance_service_list_trusted_domains_request, 'InstanceServiceListTrustedDomainsRequest')
         invoke_api_for_result(
           :POST, path, query_params, header_params, request_body,
           ['application/json'],
           'application/json',
           'InstanceServiceListTrustedDomainsResponse',
-          nil
+          ::Zitadel::Client::Api::BaseApi::NO_AUTH
         )
       end
 
@@ -431,14 +466,19 @@ module Zitadel::Client
         query_params = {}
         # @type var header_params: Hash[String, String]
         header_params = {}
-        request_body = instance_service_remove_custom_domain_request
-
+        # A oneOf union body resolves to a bare Ruby value (e.g. a
+        # `format: byte` variant is a plain base64-bearing String), so the
+        # union's own wire-form rules are re-applied here before
+        # serialization. #encode_oneof_body is a no-op for non-union bodies
+        # (primitives, plain models) and for discriminated / model-ref unions,
+        # whose resolved value already serializes correctly.
+        request_body = ::Zitadel::Client::ObjectSerializer.encode_oneof_body(instance_service_remove_custom_domain_request, 'InstanceServiceRemoveCustomDomainRequest')
         invoke_api_for_result(
           :POST, path, query_params, header_params, request_body,
           ['application/json'],
           'application/json',
           'InstanceServiceRemoveCustomDomainResponse',
-          nil
+          ::Zitadel::Client::Api::BaseApi::NO_AUTH
         )
       end
 
@@ -484,14 +524,19 @@ module Zitadel::Client
         query_params = {}
         # @type var header_params: Hash[String, String]
         header_params = {}
-        request_body = instance_service_remove_trusted_domain_request
-
+        # A oneOf union body resolves to a bare Ruby value (e.g. a
+        # `format: byte` variant is a plain base64-bearing String), so the
+        # union's own wire-form rules are re-applied here before
+        # serialization. #encode_oneof_body is a no-op for non-union bodies
+        # (primitives, plain models) and for discriminated / model-ref unions,
+        # whose resolved value already serializes correctly.
+        request_body = ::Zitadel::Client::ObjectSerializer.encode_oneof_body(instance_service_remove_trusted_domain_request, 'InstanceServiceRemoveTrustedDomainRequest')
         invoke_api_for_result(
           :POST, path, query_params, header_params, request_body,
           ['application/json'],
           'application/json',
           'InstanceServiceRemoveTrustedDomainResponse',
-          nil
+          ::Zitadel::Client::Api::BaseApi::NO_AUTH
         )
       end
 
@@ -537,14 +582,19 @@ module Zitadel::Client
         query_params = {}
         # @type var header_params: Hash[String, String]
         header_params = {}
-        request_body = instance_service_update_instance_request
-
+        # A oneOf union body resolves to a bare Ruby value (e.g. a
+        # `format: byte` variant is a plain base64-bearing String), so the
+        # union's own wire-form rules are re-applied here before
+        # serialization. #encode_oneof_body is a no-op for non-union bodies
+        # (primitives, plain models) and for discriminated / model-ref unions,
+        # whose resolved value already serializes correctly.
+        request_body = ::Zitadel::Client::ObjectSerializer.encode_oneof_body(instance_service_update_instance_request, 'InstanceServiceUpdateInstanceRequest')
         invoke_api_for_result(
           :POST, path, query_params, header_params, request_body,
           ['application/json'],
           'application/json',
           'InstanceServiceUpdateInstanceResponse',
-          nil
+          ::Zitadel::Client::Api::BaseApi::NO_AUTH
         )
       end
     end

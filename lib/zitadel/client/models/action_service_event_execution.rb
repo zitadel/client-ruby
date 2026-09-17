@@ -71,13 +71,10 @@ module Zitadel::Client
       end
 
       # Define all events as condition.  After any event is created, the execution is triggered.
-      # @example null
       attribute :all, Types::Any.optional.meta(omittable: true)
       # Define a specific event as condition.  After this event is created, the execution is triggered.
-      # @example null
       attribute :event, Types::Any.optional.meta(omittable: true)
       # Define an event group as condition.  After any event under this group is created, the execution is triggered.
-      # @example null
       attribute :group, Types::Any.optional.meta(omittable: true)
     end
   end

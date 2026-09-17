@@ -76,16 +76,11 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :details, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :auth_url, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :form_data, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :idp_intent, Types::Any.optional.meta(omittable: true)
       # POST call information  Deprecated: Use form_data instead
-      # @example null
       attribute :post_form, Types::Any.optional.meta(omittable: true)
     end
   end

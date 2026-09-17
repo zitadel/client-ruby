@@ -73,16 +73,12 @@ module Zitadel::Client
       end
 
       # ProjectID is the unique identifier of the project.
-      # @example null
       attribute :project_id, Types::Any.optional.meta(omittable: true)
       # RoleKey identifies the role. It's the only relevant attribute for ZITADEL and  will be used for authorization checks and as claim in tokens and user info responses.
-      # @example null
       attribute :role_key, Types::Any.optional.meta(omittable: true)
       # DisplayName is a human readable name for the role, which might be displayed to users.
-      # @example null
       attribute :display_name, Types::Any.optional.meta(omittable: true)
       # Group allows grouping roles for display purposes. Zitadel will not handle it in any way.  It can be used to group roles in a UI to allow easier management for administrators.  This attribute is not to be confused with groups as a collection of users.
-      # @example null
       attribute :group, Types::Any.optional.meta(omittable: true)
     end
   end

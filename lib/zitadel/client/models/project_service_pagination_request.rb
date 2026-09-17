@@ -71,13 +71,10 @@ module Zitadel::Client
       end
 
       # Starting point for retrieval, in combination of offset used to query a set list of objects.
-      # @example null
       attribute :offset, Types::Any.optional.meta(omittable: true)
       # limit is the maximum amount of objects returned. The default is set to 100  with a maximum of 1000 in the runtime configuration.  If the limit exceeds the maximum configured ZITADEL will throw an error.  If no limit is present the default is taken.
-      # @example null
       attribute :limit, Types::Any.optional.meta(omittable: true)
       # Asc is the sorting order. If true the list is sorted ascending, if false  the list is sorted descending. The default is descending.
-      # @example null
       attribute :asc, Types::Any.optional.meta(omittable: true)
     end
   end

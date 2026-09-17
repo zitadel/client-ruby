@@ -68,10 +68,8 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :embedded_iframe, Types::Any.optional.meta(omittable: true)
       # If enabled, users are allowed to impersonate other users.  The impersonator needs the appropriate `*_IMPERSONATOR` roles assigned as well\".
-      # @example null
       attribute :enable_impersonation, Types::Any.optional.meta(omittable: true)
     end
   end

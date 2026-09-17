@@ -71,12 +71,9 @@ module Zitadel::Client
       end
 
       # Organization ID is the unique identifier of the organization whose metadata is to be listed.
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :pagination, Types::Any.optional.meta(omittable: true)
       # Filters define the criteria to query the metadata for.
-      # @example null
       attribute :filters, Types::Any.optional.meta(omittable: true)
     end
   end

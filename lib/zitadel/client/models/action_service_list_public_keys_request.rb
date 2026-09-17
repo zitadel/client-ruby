@@ -73,14 +73,10 @@ module Zitadel::Client
       end
 
       # TargetID is the unique identifier of the target to list the public keys for.
-      # @example null
       attribute :target_id, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :pagination, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :sorting_column, Types::Any.optional.meta(omittable: true)
       # Define the criteria to query for.
-      # @example null
       attribute :filters, Types::Any.optional.meta(omittable: true)
     end
   end

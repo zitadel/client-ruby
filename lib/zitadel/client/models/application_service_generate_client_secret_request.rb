@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # The unique ID of the application to generate a new client secret for.
-      # @example null
       attribute :application_id, Types::Any.optional.meta(omittable: true)
       # The ID of the project the application belongs to.
-      # @example null
       attribute :project_id, Types::Any.optional.meta(omittable: true)
     end
   end

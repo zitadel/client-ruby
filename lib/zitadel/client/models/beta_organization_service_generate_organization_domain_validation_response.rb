@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # The token verify domain.
-      # @example null
       attribute :token, Types::Any.optional.meta(omittable: true)
       # URL used to verify the domain.
-      # @example null
       attribute :url, Types::Any.optional.meta(omittable: true)
     end
   end

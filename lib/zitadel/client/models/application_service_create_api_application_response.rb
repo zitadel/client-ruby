@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # The unique OAuth2 client_id used for authentication of the API, e.g. at the introspection endpoint.
-      # @example null
       attribute :client_id, Types::Any.optional.meta(omittable: true)
       # In case of using the APIAuthMethodType.API_AUTH_METHOD_TYPE_BASIC the client_secret is generated and returned.  It must be stored safely, as it will not be possible to retrieve it again.  A new client_secret can be generated using the GenerateClientSecret endpoint.
-      # @example null
       attribute :client_secret, Types::Any.optional.meta(omittable: true)
     end
   end

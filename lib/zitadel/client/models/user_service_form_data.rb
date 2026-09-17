@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # The URL to which the form should be submitted using the POST method.
-      # @example null
       attribute :url, Types::Any.optional.meta(omittable: true)
       # The form fields to be submitted.  Each field is represented as a key-value pair, where the key is the field / input name  and the value is the field / input value.  All fields need to be submitted as is and as input type \"text\".
-      # @example null
       attribute :fields, Types::Any.optional.meta(omittable: true)
     end
   end

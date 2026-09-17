@@ -71,13 +71,10 @@ module Zitadel::Client
       end
 
       # The unique ID of the application key to be deleted.
-      # @example null
       attribute :key_id, Types::Any.optional.meta(omittable: true)
       # The ID of the application the key belongs to.
-      # @example null
       attribute :application_id, Types::Any.optional.meta(omittable: true)
       # The ID of the project the application belongs to.
-      # @example null
       attribute :project_id, Types::Any.optional.meta(omittable: true)
     end
   end

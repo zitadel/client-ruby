@@ -71,11 +71,8 @@ module Zitadel::Client
       end
 
       # specify Org Member Roles for the provided user (default is ORG_OWNER if roles are empty)
-      # @example null
       attribute :roles, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :human, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :user_id, Types::Any.optional.meta(omittable: true)
     end
   end

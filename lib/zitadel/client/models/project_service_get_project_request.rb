@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # ProjectID is the unique identifier of the project to be retrieved.
-      # @example null
       attribute :project_id, Types::Any.optional.meta(omittable: true)
     end
   end

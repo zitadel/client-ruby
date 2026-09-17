@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # The ID of the Auth Request, as obtained from the redirect URL.
-      # @example null
       attribute :auth_request_id, Types::Any.optional.meta(omittable: true)
     end
   end

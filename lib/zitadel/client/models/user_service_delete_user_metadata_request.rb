@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # ID of the user which metadata is to be deleted is stored on.
-      # @example null
       attribute :user_id, Types::Any.optional.meta(omittable: true)
       # The keys for the user metadata to be deleted.
-      # @example null
       attribute :keys, Types::Any.optional.meta(omittable: true)
     end
   end

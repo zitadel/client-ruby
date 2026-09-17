@@ -69,9 +69,7 @@ module Zitadel::Client
       end
 
       # used only to identify the instance to change.
-      # @example null
       attribute :instance_id, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :instance_name, Types::Any.optional.meta(omittable: true)
     end
   end

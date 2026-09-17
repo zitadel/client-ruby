@@ -78,20 +78,13 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :light_theme, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :dark_theme, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :font_url, Types::Any.optional.meta(omittable: true)
       # hides the org suffix on the login form if the scope \\\"urn:zitadel:iam:org:domain:primary:{domainname}\\\" is set
-      # @example null
       attribute :hide_login_name_suffix, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :disable_watermark, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :resource_owner_type, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :theme_mode, Types::Any.optional.meta(omittable: true)
     end
   end

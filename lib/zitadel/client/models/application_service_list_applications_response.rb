@@ -69,9 +69,7 @@ module Zitadel::Client
       end
 
       # The list of applications matching the query. Depending on the applied limit,  there might be more applications available than included in this list.  Use the returned pagination information to request further applications.
-      # @example null
       attribute :applications, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :pagination, Types::Any.optional.meta(omittable: true)
     end
   end

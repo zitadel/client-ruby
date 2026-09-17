@@ -69,9 +69,7 @@ module Zitadel::Client
       end
 
       # Specify the name of the project the user was granted the authorization for to search for.  Note that this will also include authorizations granted for project grants of the same project.
-      # @example null
       attribute :name, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :method, Types::Any.optional.meta(omittable: true)
     end
   end

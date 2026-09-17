@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # ID is the unique identifier of the authorization.
-      # @example null
       attribute :id, Types::Any.optional.meta(omittable: true)
       # RoleKeys are the keys of the roles the user should be granted.  Note that any role keys previously granted to the user and not present in the list will be revoked.
-      # @example null
       attribute :role_keys, Types::Any.optional.meta(omittable: true)
     end
   end

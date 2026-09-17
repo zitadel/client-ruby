@@ -73,14 +73,10 @@ module Zitadel::Client
       end
 
       # The locale of the translations to be set.  Needs to be a BCP 47 language tag (e.g. \"en\", \"de\", \"fr-CH\").
-      # @example null
       attribute :locale, Types::Any.optional.meta(omittable: true)
       # `Struct` represents a structured data value, consisting of fields  which map to dynamically typed values. In some languages, `Struct`  might be supported by a native representation. For example, in  scripting languages like JS a struct is represented as an  object. The details of that representation are described together  with the proto support for the language.   The JSON representation for `Struct` is JSON object.
-      # @example null
       attribute :translations, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :instance, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
     end
   end

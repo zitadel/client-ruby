@@ -72,14 +72,18 @@ module Zitadel::Client
 
       # Whether this model accepts additional properties not defined in the schema.
       ADDITIONAL_PROPERTIES = true
+
+      # Undeclared JSON keys captured on deserialization and re-emitted
+      # verbatim on serialization, so a round-trip preserves additional
+      # properties (matching the 10 SDKs that round-trip them). Keyed by the
+      # original JSON key; values are typed via ADDITIONAL_PROPERTIES_TYPE
+      # when one is declared.
+      attribute :additional_properties, Types::Hash.optional.meta(omittable: true)
       # The status code, which should be an enum value of [google.rpc.Code][google.rpc.Code].
-      # @example null
       attribute :code, Types::String.enum('canceled', 'unknown', 'invalid_argument', 'deadline_exceeded', 'not_found', 'already_exists', 'permission_denied', 'resource_exhausted', 'failed_precondition', 'aborted', 'out_of_range', 'unimplemented', 'internal', 'unavailable', 'data_loss', 'unauthenticated').optional.meta(omittable: true)
       # A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the [google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client.
-      # @example null
       attribute :message, Types::Any.optional.meta(omittable: true)
       # A list of messages that carry the error details. There is no limit on the number of messages.
-      # @example null
       attribute :details, Types::Any.optional.meta(omittable: true)
     end
   end

@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # hash of the saved translation. Valid only when ignore_inheritance = true
-      # @example null
       attribute :etag, Types::Any.optional.meta(omittable: true)
     end
   end

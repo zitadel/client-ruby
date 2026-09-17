@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # The unique identifier of the project.
-      # @example null
       attribute :id, Types::Any.optional.meta(omittable: true)
     end
   end

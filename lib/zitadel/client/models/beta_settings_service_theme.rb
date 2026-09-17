@@ -77,22 +77,16 @@ module Zitadel::Client
       end
 
       # hex value for primary color
-      # @example null
       attribute :primary_color, Types::Any.optional.meta(omittable: true)
       # hex value for background color
-      # @example null
       attribute :background_color, Types::Any.optional.meta(omittable: true)
       # hex value for warning color
-      # @example null
       attribute :warn_color, Types::Any.optional.meta(omittable: true)
       # hex value for font color
-      # @example null
       attribute :font_color, Types::Any.optional.meta(omittable: true)
       # url where the logo is served
-      # @example null
       attribute :logo_url, Types::Any.optional.meta(omittable: true)
       # url where the icon is served
-      # @example null
       attribute :icon_url, Types::Any.optional.meta(omittable: true)
     end
   end

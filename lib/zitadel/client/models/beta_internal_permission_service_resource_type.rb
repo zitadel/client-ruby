@@ -73,15 +73,11 @@ module Zitadel::Client
       end
 
       # Instance is the resource type for granting administrator privileges on the instance level.
-      # @example null
       attribute :instance, Types::Any.optional.meta(omittable: true)
       # OrganizationID is required to grant administrator privileges for a specific organization.
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :project_grant, Types::Any.optional.meta(omittable: true)
       # ProjectID is required to grant administrator privileges for a specific project.
-      # @example null
       attribute :project_id, Types::Any.optional.meta(omittable: true)
     end
   end

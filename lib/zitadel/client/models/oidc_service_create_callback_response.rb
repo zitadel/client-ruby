@@ -68,10 +68,8 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :details, Types::Any.optional.meta(omittable: true)
       # The callback URL where the user should be redirected using an HTTP \"302 FOUND\" status.  This contains details for the application to obtain the tokens on success, or error details on failure.  Note that this field must be treated as credentials, as the contained code can be used to obtain tokens on behalf of the user.\"
-      # @example null
       attribute :callback_url, Types::Any.optional.meta(omittable: true)
     end
   end

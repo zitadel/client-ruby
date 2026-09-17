@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # ProjectID is the unique identifier of the project the project grant belongs to.
-      # @example null
       attribute :project_id, Types::Any.optional.meta(omittable: true)
       # OrganizationID is the unique identifier of the organization the project was granted to  and on which the administrator role should be granted.
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
     end
   end

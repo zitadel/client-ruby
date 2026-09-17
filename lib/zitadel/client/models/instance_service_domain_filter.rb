@@ -69,9 +69,7 @@ module Zitadel::Client
       end
 
       # The domain to filter for.
-      # @example null
       attribute :domain, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :method, Types::Any.optional.meta(omittable: true)
     end
   end

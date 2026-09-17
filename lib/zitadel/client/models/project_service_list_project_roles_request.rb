@@ -73,14 +73,10 @@ module Zitadel::Client
       end
 
       # ProjectID is the unique identifier of the project.
-      # @example null
       attribute :project_id, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :pagination, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :sorting_column, Types::Any.optional.meta(omittable: true)
       # Filters define the criteria to query for.
-      # @example null
       attribute :filters, Types::Any.optional.meta(omittable: true)
     end
   end

@@ -71,13 +71,10 @@ module Zitadel::Client
       end
 
       # Key is the unique key of the role. It's the only relevant attribute for ZITADEL and  will be used for authorization checks and as claim in tokens and user info responses.
-      # @example null
       attribute :key, Types::Any.optional.meta(omittable: true)
       # Human readable name for the role, which might be displayed to users.
-      # @example null
       attribute :display_name, Types::Any.optional.meta(omittable: true)
       # The group the role belongs to. This is used to group roles in the UI.
-      # @example null
       attribute :group, Types::Any.optional.meta(omittable: true)
     end
   end

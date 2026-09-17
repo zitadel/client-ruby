@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # Search for administrators by the granted role.
-      # @example null
       attribute :role_key, Types::Any.optional.meta(omittable: true)
     end
   end

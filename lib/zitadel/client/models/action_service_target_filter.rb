@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # Defines the id of the target that needs to be part of the execution.
-      # @example null
       attribute :target_id, Types::Any.optional.meta(omittable: true)
     end
   end

@@ -77,17 +77,11 @@ module Zitadel::Client
       end
 
       # Unique identifier for the identity provider.
-      # @example null
       attribute :id, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :details, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :state, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :name, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :type, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :config, Types::Any.optional.meta(omittable: true)
     end
   end

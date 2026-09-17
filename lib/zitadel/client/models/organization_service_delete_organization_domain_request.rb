@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # OrganizationID is the unique identifier of the organization from which the domain is to be deleted.
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
       # Domain is the full qualified domain name to be deleted from the organization.  Note that if the domain is used as suffix for user logins,  those users will not be able to log in anymore. They have to use another domain instead.  Also if the domain was used for domain discovery,  users will not be able to find the organization by the domain anymore.
-      # @example null
       attribute :domain, Types::Any.optional.meta(omittable: true)
     end
   end

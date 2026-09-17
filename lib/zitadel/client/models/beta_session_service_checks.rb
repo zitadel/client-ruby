@@ -78,19 +78,12 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :user, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :password, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :web_auth_n, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :idp_intent, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :totp, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :otp_sms, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :otp_email, Types::Any.optional.meta(omittable: true)
     end
   end

@@ -69,9 +69,7 @@ module Zitadel::Client
       end
 
       # Search for administrators by the preferred login name of the user.
-      # @example null
       attribute :preferred_login_name, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :method, Types::Any.optional.meta(omittable: true)
     end
   end

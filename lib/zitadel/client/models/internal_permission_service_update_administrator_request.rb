@@ -71,12 +71,9 @@ module Zitadel::Client
       end
 
       # UserID is the ID of the user whose administrator roles should be updated.
-      # @example null
       attribute :user_id, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :resource, Types::Any.optional.meta(omittable: true)
       # Roles are the roles that the user should be granted.  Note that any role previously granted to the user and not present in the list will be revoked.
-      # @example null
       attribute :roles, Types::Any.optional.meta(omittable: true)
     end
   end

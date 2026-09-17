@@ -86,27 +86,16 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :_and, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :change_date, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :creation_date, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :in_user_ids_filter, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :_not, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :_or, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :resource, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :role, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :user_display_name, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :user_organization_id, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :user_preferred_login_name, Types::Any.optional.meta(omittable: true)
     end
   end

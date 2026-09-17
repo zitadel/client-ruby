@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # Define if any error stops the whole execution. By default the process continues as normal.
-      # @example null
       attribute :interrupt_on_error, Types::Any.optional.meta(omittable: true)
     end
   end

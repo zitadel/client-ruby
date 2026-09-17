@@ -73,15 +73,11 @@ module Zitadel::Client
       end
 
       # FingerprintID is a unique identifier for the user agent's fingerprint.  It can be used to group sessions by device or browser.
-      # @example null
       attribute :fingerprint_id, Types::Any.optional.meta(omittable: true)
       # IP is the IP address from which the session was created.
-      # @example null
       attribute :ip, Types::Any.optional.meta(omittable: true)
       # Description is a human-readable description of the user agent.
-      # @example null
       attribute :description, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :header, Types::Any.optional.meta(omittable: true)
     end
   end

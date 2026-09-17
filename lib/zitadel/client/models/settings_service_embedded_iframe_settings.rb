@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # Enabled states if iframe embedding is enabled or disabled.
-      # @example null
       attribute :enabled, Types::Any.optional.meta(omittable: true)
       # AllowedOrigins defines which origins are allowed to embed ZITADEL in an iframe.
-      # @example null
       attribute :allowed_origins, Types::Any.optional.meta(omittable: true)
     end
   end

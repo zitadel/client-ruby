@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # ProjectID is required to grant administrator privileges for a specific project.
-      # @example null
       attribute :project_id, Types::Any.optional.meta(omittable: true)
       # OrganizationID is required to grant administrator privileges for a specific project grant.
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
     end
   end

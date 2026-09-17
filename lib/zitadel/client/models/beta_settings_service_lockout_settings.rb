@@ -70,11 +70,8 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :max_password_attempts, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :resource_owner_type, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :max_otp_attempts, Types::Any.optional.meta(omittable: true)
     end
   end

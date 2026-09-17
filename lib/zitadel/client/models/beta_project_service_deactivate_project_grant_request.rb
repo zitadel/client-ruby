@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # ID of the project.
-      # @example null
       attribute :project_id, Types::Any.optional.meta(omittable: true)
       # Organization the project is granted to.
-      # @example null
       attribute :granted_organization_id, Types::Any.optional.meta(omittable: true)
     end
   end

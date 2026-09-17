@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # Organization ID is the unique identifier of the organization whose domain is to be verified.
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
       # Domain is the full qualified domain name to be verified.
-      # @example null
       attribute :domain, Types::Any.optional.meta(omittable: true)
     end
   end

@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # Optionally specify a base uri of the login UI. If unspecified the default URI will be used.
-      # @example null
       attribute :base_uri, Types::Any.optional.meta(omittable: true)
     end
   end

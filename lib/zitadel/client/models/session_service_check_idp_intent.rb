@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # The ID of the idp intent, previously returned on the success response of the IDP callback.
-      # @example null
       attribute :idp_intent_id, Types::Any.optional.meta(omittable: true)
       # The token of the idp intent, previously returned on the success response of the IDP callback.
-      # @example null
       attribute :idp_intent_token, Types::Any.optional.meta(omittable: true)
     end
   end

@@ -72,12 +72,9 @@ module Zitadel::Client
       end
 
       # The Metadata XML is the provided or fetched metadata stored at Zitadel.  If either the metadata was provided as XML or when Zitadel fetched it at the provided URL,  it is stored here.
-      # @example null
       attribute :metadata_xml, Types::Any.optional.meta(omittable: true)
       # The Metadata URL is the URL where the metadata was fetched from.  In case the metadata was provided as raw XML, this field is empty.
-      # @example null
       attribute :metadata_url, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :login_version, Types::Any.optional.meta(omittable: true)
     end
   end

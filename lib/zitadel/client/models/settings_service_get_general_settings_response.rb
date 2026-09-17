@@ -75,19 +75,14 @@ module Zitadel::Client
       end
 
       # The unique identifier of the default organization.  The default organization is used to assign new users to an organization if no other organization is specified.  Deprecated: use default_organization_id instead.
-      # @example null
       attribute :default_org_id, Types::Any.optional.meta(omittable: true)
       # The default language is use if no other language is specified or detected.  The format is a BCP 47 language tag (e.g. \"en\", \"de\", \"fr-CH\").
-      # @example null
       attribute :default_language, Types::Any.optional.meta(omittable: true)
       # The list of supported languages.  Note that the instance might restrict the languages further  only allowing a subset of these languages to be used.  The format is a BCP 47 language tag (e.g. \"en\", \"de\", \"fr-CH\").
-      # @example null
       attribute :supported_languages, Types::Any.optional.meta(omittable: true)
       # The unique identifier of the default organization.  The default organization is used to assign new users to an organization if no other organization is specified.
-      # @example null
       attribute :default_organization_id, Types::Any.optional.meta(omittable: true)
       # The list of allowed languages for the instance.  This is a subset of the supported languages to be used in the instance  e.g. for user selection during registration or language detection in the UI.  The format is a BCP 47 language tag (e.g. \"en\", \"de\", \"fr-CH\").
-      # @example null
       attribute :allowed_languages, Types::Any.optional.meta(omittable: true)
     end
   end

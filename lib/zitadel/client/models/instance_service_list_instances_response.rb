@@ -69,9 +69,7 @@ module Zitadel::Client
       end
 
       # The instances matching the query.
-      # @example null
       attribute :instances, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :pagination, Types::Any.optional.meta(omittable: true)
     end
   end

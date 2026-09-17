@@ -71,11 +71,8 @@ module Zitadel::Client
       end
 
       # Criterias the client is looking for.
-      # @example null
       attribute :queries, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :pagination, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :sorting_column, Types::Any.optional.meta(omittable: true)
     end
   end

@@ -70,12 +70,9 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :pagination, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :sorting_column, Types::Any.optional.meta(omittable: true)
       # Criteria to filter the application keys.  All provided filters are combined with a logical AND.
-      # @example null
       attribute :filters, Types::Any.optional.meta(omittable: true)
     end
   end

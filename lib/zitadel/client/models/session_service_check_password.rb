@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # The password of the user to be checked.
-      # @example null
       attribute :password, Types::Any.optional.meta(omittable: true)
     end
   end

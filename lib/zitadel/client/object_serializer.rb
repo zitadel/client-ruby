@@ -43,7 +43,13 @@ module Zitadel::Client
   #
   # @api private
   class ObjectSerializer # :nodoc:
-    DEFAULT_DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S%:z'
+    # %3N emits exactly three fractional-second digits (milliseconds), so a
+    # date-time carrying sub-second precision round-trips losslessly: the
+    # decode path (Time.parse) already accepts a fraction, and emitting one
+    # keeps the encode side symmetric. Milliseconds are the cross-SDK common
+    # denominator every native date-time type supports. Whole-second values
+    # render with a ".000" fraction, which RFC 3339 / ISO 8601 parsers accept.
+    DEFAULT_DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%3N%:z'
 
     # Serialize an object to a JSON string.
     #
@@ -56,6 +62,38 @@ module Zitadel::Client
       JSON.generate(sanitized, allow_nan: false)
     rescue StandardError => e
       raise SerializationError.new("Failed to serialize object to JSON: #{e.message}", e)
+    end
+
+    # Apply a oneOf union's own pre-serialization transform to a request
+    # body before it hits the normal serialize path.
+    #
+    # A oneOf union resolves to a bare Ruby value (e.g. a +format: byte+
+    # variant collapses to a plain String / Array of Strings), so the union's
+    # wire-form rules — base64-encoding each byte variant, matching the bare
+    # scalar +format: byte+ field path — can no longer be recovered from the
+    # value alone on the serialize side. The API layer therefore routes a
+    # oneOf body through here with the declared body type so the union module
+    # can re-apply them. Non-union types and unions without such a transform
+    # return +value+ unchanged.
+    #
+    # @param value [Object, nil] the resolved request-body value
+    # @param type [String] the declared body type name (e.g. a union module)
+    # @return [Object, nil] the value ready for #serialize
+    def self.encode_oneof_body(value, type)
+      return value if value.nil?
+
+      klass = begin
+        ::Zitadel::Client::Models.const_get(type)
+      rescue NameError
+        begin
+          Zitadel::Client.const_get(type)
+        rescue NameError
+          nil
+        end
+      end
+      return value unless klass.respond_to?(:serialize_oneof)
+
+      klass.serialize_oneof(value)
     end
 
     # Deserialize a JSON string to an object of the specified type.
@@ -83,11 +121,16 @@ module Zitadel::Client
       convert_to_type(data, target_type)
     rescue JSON::ParserError => e
       raise SerializationError.new("Failed to parse JSON: #{e.message}", e)
-    rescue ArgumentError
-      raise
     rescue StandardError => e
       raise e if e.is_a?(SerializationError)
 
+      # Schema-validation failures raised by convert_to_type — strict
+      # primitive type mismatches, unknown standalone-enum values, and the
+      # ArgumentErrors from Date/Time/Tod parsing — are all "server payload
+      # violates the schema" errors. Wrap them uniformly as SerializationError
+      # so a caller can `rescue SerializationError` and catch every bad-payload
+      # case, rather than having unknown-enum / wrong-type leak a raw stdlib
+      # ArgumentError while a missing-required-field is wrapped (dry-struct).
       raise SerializationError.new("Failed to deserialize JSON to #{target_type}: #{e.message}", e)
     end
 
@@ -171,6 +214,23 @@ module Zitadel::Client
     def self.sanitize_for_serialization(object, visited = nil)
       return sanitize_for_serialization(object.actual_instance, visited) if object.respond_to?(:actual_instance)
 
+      # Retain-all anyOf composite: a non-discriminated anyOf payload that
+      # satisfied more than one variant is held as the set of matched variant
+      # instances (see the anyOf module's Composite). Serialize each retained
+      # variant through its own ATTRIBUTE_MAP / OPENAPI_FORMATS path and merge
+      # the JSON-key hashes, so the encoded body carries the UNION of every
+      # variant's fields — the co-satisfied data round-trips losslessly instead
+      # of collapsing to whichever variant happened to match first.
+      if object.respond_to?(:anyof_matched_instances)
+        # @type var merged: Hash[untyped, untyped]
+        merged = {}
+        object.anyof_matched_instances.each do |instance|
+          part = sanitize_for_serialization(instance, visited)
+          merged.merge!(part) if part.is_a?(Hash)
+        end
+        return merged
+      end
+
       case object
       when nil
         nil
@@ -233,6 +293,21 @@ module Zitadel::Client
                                  sanitize_for_serialization(value, visited)
                                end
             end
+            # Re-emit additionalProperties captured on deserialize. They live on
+            # the :additional_properties accessor (outside ATTRIBUTE_MAP) and are
+            # merged back at the top level under their original JSON keys, so a
+            # round-trip preserves undeclared properties.
+            if object.class.const_defined?(:ADDITIONAL_PROPERTIES) && object.class::ADDITIONAL_PROPERTIES &&
+               object.respond_to?(:additional_properties)
+              extras = object.additional_properties
+              if extras.is_a?(Hash)
+                extras.each do |json_key, value|
+                  next if value.nil?
+
+                  hash[json_key] = sanitize_for_serialization(value, visited)
+                end
+              end
+            end
             hash
           ensure
             visited.delete(obj_id)
@@ -293,6 +368,15 @@ module Zitadel::Client
         duration_from_protobuf_json(data.to_s)
       when 'Object'
         data
+      when 'ByteArray'
+        # A top-level `type: string, format: byte` response carried as
+        # application/json arrives as a JSON string literal ("dGVzdC1pbWFnZQ==").
+        # By this point #deserialize has JSON-parsed it to the inner base64
+        # string, so base64-decode it to raw bytes — matching the nested
+        # `format: byte` field path (apply_format_on_deserialize) and the
+        # python/go/java/rust SDKs. Returning the inner string undecoded (or
+        # the quoted literal) is the regression this guards against.
+        decode_byte(data)
       when /\AArray<(.+)>\z/
         sub_type = ::Regexp.last_match(1).to_s
         data.map { |item| convert_to_type(item, sub_type) }
@@ -304,7 +388,13 @@ module Zitadel::Client
         # @type var converted: Hash[untyped, untyped]
         converted = {}
         data.each_with_object(converted) do |(key, value), hash|
-          hash[key] = convert_to_type(value, sub_type)
+          # The map type declares String keys, but JSON.parse(symbolize_names:
+          # true) symbolizes every key — including the keys of a generic map.
+          # Restore them to String so a Hash<String, X> always exposes String
+          # keys, including when it is nested inside another container
+          # (e.g. Array<Hash<String, Category>>) where the leaves must be
+          # reachable via the same String key the wire used.
+          hash[key.to_s] = convert_to_type(value, sub_type)
         end
       else
         klass = begin
@@ -333,6 +423,25 @@ module Zitadel::Client
       return nil unless data.is_a?(Hash)
 
       data = data.transform_keys(&:to_s)
+
+      # unevaluatedProperties:false (OAS 3.1 / JSON Schema 2020-12): reject any
+      # JSON key not declared in the schema. Enforced here against the full raw
+      # payload — before key-filtering below — because deserialize_model never
+      # routes the raw hash through the model's own transform_keys guard (it
+      # builds a clean attribute-keyed hash), so the model-level rejection would
+      # otherwise never see the extras. Aligns with Python's pydantic
+      # extra="forbid". (Models with additionalProperties:true skip this and
+      # capture extras instead — the two are mutually exclusive.)
+      if klass.const_defined?(:UNEVALUATED_PROPERTIES_FALSE) && klass::UNEVALUATED_PROPERTIES_FALSE
+        declared_keys = klass::ATTRIBUTE_MAP.values
+        data.each_key do |json_key|
+          next if declared_keys.include?(json_key)
+
+          raise SerializationError,
+                "Unknown property '#{json_key}' on #{klass} (unevaluatedProperties:false)"
+        end
+      end
+
       # @type var formats: Hash[Symbol, String]
       formats = klass.const_defined?(:OPENAPI_FORMATS) ? klass::OPENAPI_FORMATS : {}
       # @type var transformed: Hash[untyped, untyped]
@@ -350,6 +459,29 @@ module Zitadel::Client
                               converted
                             end
       end
+
+      # additionalProperties:true — capture every JSON key not declared in the
+      # schema so a round-trip preserves it. Values are typed via
+      # ADDITIONAL_PROPERTIES_TYPE when the schema declares one, otherwise kept
+      # as-is. Stored on the :additional_properties accessor and re-emitted by
+      # #sanitize_for_serialization. Matches the 10 SDKs that round-trip extras.
+      if klass.const_defined?(:ADDITIONAL_PROPERTIES) && klass::ADDITIONAL_PROPERTIES
+        declared_keys = klass::ATTRIBUTE_MAP.values
+        extra_type = klass.const_defined?(:ADDITIONAL_PROPERTIES_TYPE) ? klass::ADDITIONAL_PROPERTIES_TYPE : nil
+        # @type var extras: Hash[untyped, untyped]
+        extras = {}
+        data.each do |json_key, value|
+          next if declared_keys.include?(json_key)
+
+          extras[json_key] = if value.nil? || extra_type.nil?
+                               value
+                             else
+                               convert_to_type(value, extra_type.to_s)
+                             end
+        end
+        transformed[:additional_properties] = extras unless extras.empty?
+      end
+
       klass.new(transformed)
     end
 
@@ -447,13 +579,31 @@ module Zitadel::Client
         raise SerializationError, "Invalid protobuf-JSON duration for format: duration: #{value.inspect}"
       end
 
-      sign = value.start_with?('-') ? -1 : 1
+      negative = value.start_with?('-')
       digits = value.delete_prefix('-').delete_suffix('s')
       int_part, frac_part = digits.split('.', 2)
       secs = int_part.to_i
       nanos = frac_part.nil? ? 0 : frac_part.ljust(9, '0').to_i
-      total_seconds = sign * (secs + (nanos / 1_000_000_000.0))
-      ISO8601::Duration.new("PT#{total_seconds}S")
+      # ISO-8601 places the sign before the 'P' (the gem emits the "-PT…"
+      # form on the serialize side). Interpolating a signed Float into
+      # "PT…S" would build the malformed "PT-3600.0S", which the iso8601
+      # gem rejects — breaking the round-trip for any negative duration.
+      sign_prefix = negative ? '-' : ''
+      # Build the seconds literal from the integer parts, never from a
+      # Float: Float#to_s emits scientific notation for sub-0.0001s values
+      # (0.00001 → "1.0e-05"), and the iso8601 gem's grammar accepts only
+      # plain decimals (\d+(?:[.,]\d+)?) for the seconds field, so an "e"
+      # would break the round-trip for nanosecond/microsecond durations.
+      seconds_literal = if nanos.zero?
+                          secs.to_s
+                        else
+                          # Zero-pad nanos to 9 digits and strip trailing
+                          # zeros to keep the literal canonical (e.g.
+                          # "0.000001", "3600.000000001").
+                          frac = format('%09d', nanos).sub(/0+\z/, '')
+                          "#{secs}.#{frac}"
+                        end
+      ISO8601::Duration.new("#{sign_prefix}PT#{seconds_literal}S")
     end
 
     # Apply +format+-specific encoding before JSON serialization.
@@ -483,50 +633,6 @@ module Zitadel::Client
       raise SerializationError, "Expected String for format: byte, got #{value.class}" unless value.is_a?(String)
 
       Base64.strict_encode64(value)
-    end
-
-    # Attempt to deserialize data as a specific type for oneOf/anyOf resolution.
-    # Uses the try-deserialize-and-catch pattern: attempts deserialization via
-    # convert_to_type and raises on failure.
-    def self.find_and_cast_into_type(klass_name, data)
-      return if data.nil?
-
-      result = convert_to_type(data, klass_name.to_s)
-      return result unless result.nil?
-
-      raise SchemaMismatchError, "#{data.inspect} doesn't match the #{klass_name} type"
-    end
-
-    # Attempt to deserialize data against a list of candidate schemas, returning
-    # the first successful result. Each candidate is a lambda that accepts the
-    # raw JSON data and returns a deserialized object or raises on failure.
-    #
-    # @param data [Object] the parsed JSON data
-    # @param candidates [Array<Proc>] lambdas that attempt deserialization
-    # @return [Object] the first successfully deserialized result
-    # @raise [SchemaMismatchError] if no candidate matches the data. A payload
-    #   satisfying none of the declared variants is a contract violation and
-    #   must fail loudly rather than be silently dropped to nil.
-    # @api private
-    def self.resolve_one_of(data, candidates)
-      candidates.each do |candidate|
-        return candidate.call(data)
-      rescue StandardError
-        next
-      end
-      raise SchemaMismatchError, 'No oneOf/anyOf variant matched the JSON'
-    end
-
-    # Attempt to deserialize data against a list of candidate schemas using
-    # anyOf semantics. Delegates to {.resolve_one_of}.
-    #
-    # @param data [Object] the parsed JSON data
-    # @param candidates [Array<Proc>] lambdas that attempt deserialization
-    # @return [Object] the first successfully deserialized result
-    # @raise [SchemaMismatchError] if no candidate matches the data
-    # @api private
-    def self.resolve_any_of(data, candidates)
-      resolve_one_of(data, candidates)
     end
 
     private_class_method :sanitize_for_serialization, :deserialize_model

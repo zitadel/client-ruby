@@ -71,13 +71,10 @@ module Zitadel::Client
       end
 
       # The system ID is a unique identifier for the ZITADEL system.
-      # @example null
       attribute :system_id, Types::Any.optional.meta(omittable: true)
       # The current version of the ZITADEL system.
-      # @example null
       attribute :version, Types::Any.optional.meta(omittable: true)
       # A list of instances in the ZITADEL system and their information.
-      # @example null
       attribute :instances, Types::Any.optional.meta(omittable: true)
     end
   end

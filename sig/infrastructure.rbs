@@ -145,6 +145,7 @@ module Zitadel::Client
     def text_content_type?: (String) -> bool
     def decode_text_body: (String, String?) -> String
     def detect_encoding: (String?) -> Encoding
+    def utf16_bom?: (untyped) -> bool
     def decompress_body: (untyped, untyped) -> untyped
     def connection: () -> untyped
     def build_connection: () -> untyped
@@ -191,6 +192,7 @@ module Zitadel::Client
     PROTOBUF_DURATION_REGEX: Regexp
     def self.stringify: (untyped) -> String
     def self.serialize: (untyped) -> String
+    def self.encode_oneof_body: (untyped, String) -> untyped
     def self.deserialize: (untyped, String) -> untyped
     def self.to_path_value: (untyped) -> String
     def self.to_query_value: (untyped, ?Symbol?) -> untyped
@@ -198,11 +200,8 @@ module Zitadel::Client
     def self.to_cookie_value: (untyped) -> String
     def self.to_form_value: (untyped) -> String
     def self.convert_to_type: (untyped, String) -> untyped
-    def self.find_and_cast_into_type: (untyped, untyped) -> untyped
     def self.sanitize_for_serialization: (untyped, ?Set[Integer]) -> untyped
     def self.deserialize_model: (untyped, untyped) -> untyped
-    def self.resolve_one_of: (untyped, Array[Proc]) -> untyped
-    def self.resolve_any_of: (untyped, Array[Proc]) -> untyped
     def self.apply_format_on_deserialize: (untyped, String?) -> untyped
     def self.apply_format_on_serialize: (untyped, String?) -> untyped
     def self.validate_uuid: (untyped) -> String
@@ -288,14 +287,18 @@ module Zitadel::Client
 
   module Api
     class BaseApi
+      # Sentinel marking an explicitly-unauthenticated (security:[]) operation.
+      # A plain Object identity-compared against the per-call auth argument.
+      NO_AUTH: Object
       attr_reader config: Configuration
       def initialize: (?ApiClient?, ?Configuration, ?Auth::Authenticator?) -> void
-      def invoke_api_for_result: (Symbol, String, Hash[String, untyped], Hash[String, String], untyped, Array[String], String?, String?, Auth::Authenticator?) -> ApiResult[untyped]
-      def invoke_api: (Symbol, String, Hash[String, untyped], Hash[String, String], untyped, Array[String], String?, String?, Auth::Authenticator?) -> untyped
+      def invoke_api_for_result: (Symbol, String, Hash[String, untyped], Hash[String, String], untyped, Array[String], String?, String?, ?(Auth::Authenticator | Object)?) -> ApiResult[untyped]
+      def invoke_api: (Symbol, String, Hash[String, untyped], Hash[String, String], untyped, Array[String], String?, String?, ?(Auth::Authenticator | Object)?) -> untyped
       private
       def throw_api_error: (ApiHttpResponse) -> void
       def build_query_string: (Hash[String, untyped]) -> String
       def serialize_body: (untyped, String?) -> untyped
+      def binary_part_from_form_body: (Hash[String, untyped]) -> untyped
       def binary_return_type?: (String?) -> bool
       def text_response_content_type?: (String?) -> bool
     end

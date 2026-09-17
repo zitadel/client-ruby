@@ -73,16 +73,12 @@ module Zitadel::Client
       end
 
       # ID of the project.
-      # @example null
       attribute :project_id, Types::Any.optional.meta(omittable: true)
       # The key is the only relevant attribute for ZITADEL regarding the authorization checks.
-      # @example null
       attribute :role_key, Types::Any.optional.meta(omittable: true)
       # Name displayed for the role.
-      # @example null
       attribute :display_name, Types::Any.optional.meta(omittable: true)
       # The group is only used for display purposes. That you have better handling, like giving all the roles from a group to a user.
-      # @example null
       attribute :group, Types::Any.optional.meta(omittable: true)
     end
   end

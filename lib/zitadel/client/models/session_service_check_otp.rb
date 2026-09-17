@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # The One-Time Password sent over SMS or Email of the user to be checked.
-      # @example null
       attribute :code, Types::Any.optional.meta(omittable: true)
     end
   end

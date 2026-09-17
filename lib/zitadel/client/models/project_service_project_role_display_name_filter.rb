@@ -69,9 +69,7 @@ module Zitadel::Client
       end
 
       # The display name of the project role to query for.
-      # @example null
       attribute :display_name, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :method, Types::Any.optional.meta(omittable: true)
     end
   end

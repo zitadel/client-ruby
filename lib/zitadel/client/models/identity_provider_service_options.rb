@@ -75,18 +75,13 @@ module Zitadel::Client
       end
 
       # Enable if users should be able to link an existing ZITADEL user with an  external account.
-      # @example null
       attribute :is_linking_allowed, Types::Any.optional.meta(omittable: true)
       # Enable if users should be able to create a new account in ZITADEL when  using an external account.
-      # @example null
       attribute :is_creation_allowed, Types::Any.optional.meta(omittable: true)
       # Enable if a new account in ZITADEL should be created automatically when  login with an external account.
-      # @example null
       attribute :is_auto_creation, Types::Any.optional.meta(omittable: true)
       # Enable if a the ZITADEL account fields should be updated automatically on  each login.
-      # @example null
       attribute :is_auto_update, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :auto_linking, Types::Any.optional.meta(omittable: true)
     end
   end

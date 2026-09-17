@@ -77,19 +77,13 @@ module Zitadel::Client
       end
 
       # The ID of the project the application will be created in.
-      # @example null
       attribute :project_id, Types::Any.optional.meta(omittable: true)
       # Optionally, provide the unique ID of the new application. If omitted, the system will generate one for you,  which is the recommended way. The generated ID will be returned in the response.
-      # @example null
       attribute :application_id, Types::Any.optional.meta(omittable: true)
       # Publicly visible name of the application. This might be presented to users if they sign in.
-      # @example null
       attribute :name, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :api_configuration, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :oidc_configuration, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :saml_configuration, Types::Any.optional.meta(omittable: true)
     end
   end

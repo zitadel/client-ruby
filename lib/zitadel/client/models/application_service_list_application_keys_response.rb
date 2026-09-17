@@ -69,9 +69,7 @@ module Zitadel::Client
       end
 
       # The list of application keys matching the query. Depending on the applied limit,  there might be more keys available than returned in this list.  Use the returned pagination information to request further keys.
-      # @example null
       attribute :keys, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :pagination, Types::Any.optional.meta(omittable: true)
     end
   end

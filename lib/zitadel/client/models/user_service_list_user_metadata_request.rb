@@ -71,12 +71,9 @@ module Zitadel::Client
       end
 
       # ID of the user under which the metadata is to be listed.
-      # @example null
       attribute :user_id, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :pagination, Types::Any.optional.meta(omittable: true)
       # Define the criteria to query for.
-      # @example null
       attribute :filters, Types::Any.optional.meta(omittable: true)
     end
   end

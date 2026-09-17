@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # Organization ID is the unique identifier of the organization whose metadata is to be deleted.
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
       # Keys are the organization metadata entries to be deleted by their key.
-      # @example null
       attribute :keys, Types::Any.optional.meta(omittable: true)
     end
   end

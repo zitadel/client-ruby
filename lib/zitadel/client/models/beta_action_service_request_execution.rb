@@ -71,13 +71,10 @@ module Zitadel::Client
       end
 
       # All calls to any available services and methods as condition.
-      # @example null
       attribute :all, Types::Any.optional.meta(omittable: true)
       # GRPC-method as condition.
-      # @example null
       attribute :method, Types::Any.optional.meta(omittable: true)
       # GRPC-service as condition.
-      # @example null
       attribute :service, Types::Any.optional.meta(omittable: true)
     end
   end

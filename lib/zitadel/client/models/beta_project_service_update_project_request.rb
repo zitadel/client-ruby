@@ -76,21 +76,15 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :id, Types::Any.optional.meta(omittable: true)
       # Name of the project.
-      # @example null
       attribute :name, Types::Any.optional.meta(omittable: true)
       # Enable this setting to have role information included in the user info endpoint. It is also dependent on your application settings to include it in tokens and other types.
-      # @example null
       attribute :project_role_assertion, Types::Any.optional.meta(omittable: true)
       # When enabled ZITADEL will check if a user has a role of this project assigned when login into an application of this project.
-      # @example null
       attribute :project_role_check, Types::Any.optional.meta(omittable: true)
       # When enabled ZITADEL will check if the organization of the user, that is trying to log in, has a grant to this project.
-      # @example null
       attribute :has_project_check, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :private_labeling_setting, Types::Any.optional.meta(omittable: true)
     end
   end

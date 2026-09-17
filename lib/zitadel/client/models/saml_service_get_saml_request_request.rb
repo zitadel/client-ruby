@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # ID of the SAML Request, as obtained from the redirect URL.
-      # @example null
       attribute :saml_request_id, Types::Any.optional.meta(omittable: true)
     end
   end

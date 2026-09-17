@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # Unique identifier of the organization.
-      # @example null
       attribute :id, Types::Any.optional.meta(omittable: true)
     end
   end

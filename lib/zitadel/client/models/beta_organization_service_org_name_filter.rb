@@ -69,9 +69,7 @@ module Zitadel::Client
       end
 
       # Organization name.
-      # @example null
       attribute :name, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :method, Types::Any.optional.meta(omittable: true)
     end
   end

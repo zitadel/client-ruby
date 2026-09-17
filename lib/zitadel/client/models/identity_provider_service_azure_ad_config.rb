@@ -73,15 +73,11 @@ module Zitadel::Client
       end
 
       # Client id of the Azure AD application
-      # @example null
       attribute :client_id, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :tenant, Types::Any.optional.meta(omittable: true)
       # Azure AD doesn't send if the email has been verified. Enable this if the  user email should always be added verified in ZITADEL (no verification  emails will be sent).
-      # @example null
       attribute :email_verified, Types::Any.optional.meta(omittable: true)
       # The scopes requested by ZITADEL during the request to Azure AD.
-      # @example null
       attribute :scopes, Types::Any.optional.meta(omittable: true)
     end
   end

@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # The SAML RelaySate, that needs to be returned to the application to match the response to the request.
-      # @example null
       attribute :relay_state, Types::Any.optional.meta(omittable: true)
       # The SAML Response, that needs to be returned to the application to complete the SAML flow.
-      # @example null
       attribute :saml_response, Types::Any.optional.meta(omittable: true)
     end
   end

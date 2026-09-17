@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # The unique identifier of the target to retrieve.
-      # @example null
       attribute :id, Types::Any.optional.meta(omittable: true)
     end
   end

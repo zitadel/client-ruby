@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # InstanceID is the unique ID of the instance from which the domain will be removed.
-      # @example null
       attribute :instance_id, Types::Any.optional.meta(omittable: true)
       # CustomDomain is the the domain to remove from the instance.
-      # @example null
       attribute :custom_domain, Types::Any.optional.meta(omittable: true)
     end
   end

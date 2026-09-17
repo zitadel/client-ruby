@@ -69,9 +69,7 @@ module Zitadel::Client
       end
 
       # The list of trusted domains matching the query.
-      # @example null
       attribute :trusted_domain, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :pagination, Types::Any.optional.meta(omittable: true)
     end
   end

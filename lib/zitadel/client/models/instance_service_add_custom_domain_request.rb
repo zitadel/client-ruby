@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # InstanceID is the unique ID of the instance to which the domain will be added.
-      # @example null
       attribute :instance_id, Types::Any.optional.meta(omittable: true)
       # Custom domain to add to the instance.  Must be a valid domain name.  Once the domain is added, it will be used to route requests to this instance.
-      # @example null
       attribute :custom_domain, Types::Any.optional.meta(omittable: true)
     end
   end

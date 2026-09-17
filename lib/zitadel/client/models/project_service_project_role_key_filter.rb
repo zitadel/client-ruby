@@ -69,9 +69,7 @@ module Zitadel::Client
       end
 
       # The key of the project role to query for.
-      # @example null
       attribute :key, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :method, Types::Any.optional.meta(omittable: true)
     end
   end

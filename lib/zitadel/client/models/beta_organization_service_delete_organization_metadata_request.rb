@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # Organization ID of Orgalization which metadata is to be deleted is stored on.
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
       # The keys for the Organization metadata to be deleted.
-      # @example null
       attribute :keys, Types::Any.optional.meta(omittable: true)
     end
   end

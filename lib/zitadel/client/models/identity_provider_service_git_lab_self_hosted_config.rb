@@ -70,13 +70,10 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :issuer, Types::Any.optional.meta(omittable: true)
       # Client id of the GitLab application.
-      # @example null
       attribute :client_id, Types::Any.optional.meta(omittable: true)
       # The scopes requested by ZITADEL during the request to GitLab.
-      # @example null
       attribute :scopes, Types::Any.optional.meta(omittable: true)
     end
   end

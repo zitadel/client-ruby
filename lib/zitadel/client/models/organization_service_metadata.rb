@@ -71,10 +71,8 @@ module Zitadel::Client
       end
 
       # Key is identifier of the metadata entry.
-      # @example null
       attribute :key, Types::Any.optional.meta(omittable: true)
       # Value is the values of the metadata entry.
-      # @example null
       attribute :value, Types::Any.optional.meta(omittable: true)
     end
   end

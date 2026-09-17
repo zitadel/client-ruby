@@ -76,17 +76,11 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :creation_date_query, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :creator_query, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :expiration_date_query, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :ids_query, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :user_agent_query, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :user_id_query, Types::Any.optional.meta(omittable: true)
     end
   end

@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # Organization Id for the Organization to be deactivated
-      # @example null
       attribute :id, Types::Any.optional.meta(omittable: true)
     end
   end

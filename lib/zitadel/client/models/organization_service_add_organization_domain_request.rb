@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # OrganizationID is the unique identifier of the organization to which the domain is to be added.
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
       # Domain is the full qualified domain name to be added to the organization.  Note that the domain has to be unique across the instance.  Depending on the settings, you might have to verify the domain before it can be used.
-      # @example null
       attribute :domain, Types::Any.optional.meta(omittable: true)
     end
   end

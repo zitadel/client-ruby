@@ -69,9 +69,7 @@ module Zitadel::Client
       end
 
       # UserID is the ID of the user whose administrator roles should be removed.
-      # @example null
       attribute :user_id, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :resource, Types::Any.optional.meta(omittable: true)
     end
   end

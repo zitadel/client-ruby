@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # Request the code to be returned instead of sending an SMS.  This is useful for testing or in case you want to send the code yourself.
-      # @example null
       attribute :return_code, Types::Any.optional.meta(omittable: true)
     end
   end

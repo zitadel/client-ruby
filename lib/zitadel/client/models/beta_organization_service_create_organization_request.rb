@@ -71,13 +71,10 @@ module Zitadel::Client
       end
 
       # name of the Organization to be created.
-      # @example null
       attribute :name, Types::Any.optional.meta(omittable: true)
       # Optionally set your own id unique for the organization.
-      # @example null
       attribute :id, Types::Any.optional.meta(omittable: true)
       # Additional Admins for the Organization.
-      # @example null
       attribute :admins, Types::Any.optional.meta(omittable: true)
     end
   end

@@ -71,13 +71,10 @@ module Zitadel::Client
       end
 
       # all events as condition.
-      # @example null
       attribute :all, Types::Any.optional.meta(omittable: true)
       # Event name as condition.
-      # @example null
       attribute :event, Types::Any.optional.meta(omittable: true)
       # Event group as condition, all events under this group.
-      # @example null
       attribute :group, Types::Any.optional.meta(omittable: true)
     end
   end

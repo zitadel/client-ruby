@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # The unique ID of the application key to be retrieved.
-      # @example null
       attribute :key_id, Types::Any.optional.meta(omittable: true)
     end
   end

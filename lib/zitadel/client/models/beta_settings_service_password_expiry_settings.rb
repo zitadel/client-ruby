@@ -71,12 +71,9 @@ module Zitadel::Client
       end
 
       # Amount of days after which a password will expire. The user will be forced to change the password on the following authentication.
-      # @example null
       attribute :max_age_days, Types::Any.optional.meta(omittable: true)
       # Amount of days after which the user should be notified of the upcoming expiry. ZITADEL will not notify the user.
-      # @example null
       attribute :expire_warn_days, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :resource_owner_type, Types::Any.optional.meta(omittable: true)
     end
   end

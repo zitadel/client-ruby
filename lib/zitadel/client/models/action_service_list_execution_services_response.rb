@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # All available services to use in conditions.
-      # @example null
       attribute :services, Types::Any.optional.meta(omittable: true)
     end
   end

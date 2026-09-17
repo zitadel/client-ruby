@@ -75,17 +75,12 @@ module Zitadel::Client
       end
 
       # ID is the unique identifier of the organization.
-      # @example null
       attribute :id, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :details, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :state, Types::Any.optional.meta(omittable: true)
       # Name of the organization.
-      # @example null
       attribute :name, Types::Any.optional.meta(omittable: true)
       # Primary domain used in the organization.
-      # @example null
       attribute :primary_domain, Types::Any.optional.meta(omittable: true)
     end
   end

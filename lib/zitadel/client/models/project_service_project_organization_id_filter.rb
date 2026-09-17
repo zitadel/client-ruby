@@ -69,9 +69,7 @@ module Zitadel::Client
       end
 
       # OrganizationID Is the ID of the organization to query for.
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :type, Types::Any.optional.meta(omittable: true)
     end
   end

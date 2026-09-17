@@ -68,10 +68,8 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :pagination, Types::Any.optional.meta(omittable: true)
       # Metadata is a list of organization metadata that matched the query.
-      # @example null
       attribute :metadata, Types::Any.optional.meta(omittable: true)
     end
   end

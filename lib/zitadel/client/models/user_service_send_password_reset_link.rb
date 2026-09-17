@@ -68,10 +68,8 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :notification_type, Types::Any.optional.meta(omittable: true)
       # Optionally set a url_template, which will be used in the password reset mail sent by ZITADEL to guide the user to your password change page.  If no template is set, the default ZITADEL url will be used.   The following placeholders can be used: UserID, OrgID, Code
-      # @example null
       attribute :url_template, Types::Any.optional.meta(omittable: true)
     end
   end

@@ -76,17 +76,11 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :min_length, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :requires_uppercase, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :requires_lowercase, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :requires_number, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :requires_symbol, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :resource_owner_type, Types::Any.optional.meta(omittable: true)
     end
   end

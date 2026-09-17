@@ -73,16 +73,12 @@ module Zitadel::Client
       end
 
       # The unique OAuth2/OIDC client_id used for authentication of the application,  e.g. at the token endpoint.
-      # @example null
       attribute :client_id, Types::Any.optional.meta(omittable: true)
       # In case of using the OIDCAuthMethodType.OIDC_AUTH_METHOD_TYPE_CLIENT_SECRET_BASIC  or OIDCAuthMethodType.OIDC_AUTH_METHOD_TYPE_CLIENT_SECRET_POST the client_secret is generated and returned.  It must be stored safely, as it will not be possible to retrieve it again.  A new client_secret can be generated using the GenerateClientSecret endpoint.
-      # @example null
       attribute :client_secret, Types::Any.optional.meta(omittable: true)
       # NonCompliant specifies whether the config is OIDC compliant. A production configuration SHOULD be compliant.  Non-compliant configurations can run into interoperability issues with OIDC libraries and tools.  Compliance problems are listed in the compliance_problems field.
-      # @example null
       attribute :non_compliant, Types::Any.optional.meta(omittable: true)
       # ComplianceProblems lists the problems for non-compliant configurations.  In case of a compliant configuration, this list is empty.
-      # @example null
       attribute :compliance_problems, Types::Any.optional.meta(omittable: true)
     end
   end

@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # Optionally set a url_template, which will be used in the invite mail sent by ZITADEL to guide the user to your invitation page.  If no template is set and no previous code was created, the default ZITADEL url will be used.   The following placeholders can be used: UserID, OrgID, Code
-      # @example null
       attribute :url_template, Types::Any.optional.meta(omittable: true)
       # Optionally set an application name, which will be used in the invite mail sent by ZITADEL.  If no application name is set and no previous code was created, ZITADEL will be used as default.
-      # @example null
       attribute :application_name, Types::Any.optional.meta(omittable: true)
     end
   end

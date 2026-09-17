@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # All available methods to use in conditions.
-      # @example null
       attribute :methods, Types::Any.optional.meta(omittable: true)
     end
   end

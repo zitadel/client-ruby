@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # InstanceID is the unique ID of the instance to be deleted.
-      # @example null
       attribute :instance_id, Types::Any.optional.meta(omittable: true)
     end
   end

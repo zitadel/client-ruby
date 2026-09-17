@@ -75,16 +75,11 @@ module Zitadel::Client
       end
 
       # The locale of the translations to be returned.  Needs to be a BCP 47 language tag (e.g. \"en\", \"de\", \"fr-CH\").
-      # @example null
       attribute :locale, Types::Any.optional.meta(omittable: true)
       # if set to true, higher levels are ignored, if false higher levels are merged into the file
-      # @example null
       attribute :ignore_inheritance, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :instance, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :system, Types::Any.optional.meta(omittable: true)
     end
   end

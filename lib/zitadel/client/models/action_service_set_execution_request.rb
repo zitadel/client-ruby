@@ -68,10 +68,8 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :condition, Types::Any.optional.meta(omittable: true)
       # Ordered list of targets called during the execution.
-      # @example null
       attribute :targets, Types::Any.optional.meta(omittable: true)
     end
   end

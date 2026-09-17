@@ -71,13 +71,10 @@ module Zitadel::Client
       end
 
       # ID is the unique identifier of the project the user was granted the administrator role for.
-      # @example null
       attribute :id, Types::Any.optional.meta(omittable: true)
       # Name is the name of the project the user was granted the administrator role for.
-      # @example null
       attribute :name, Types::Any.optional.meta(omittable: true)
       # OrganizationID is the ID of the organization the project belongs to.
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
     end
   end

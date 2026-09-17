@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # TargetID is the unique identifier of the target to remove the public key from.
-      # @example null
       attribute :target_id, Types::Any.optional.meta(omittable: true)
       # KeyID is the unique identifier of the public key to remove.
-      # @example null
       attribute :key_id, Types::Any.optional.meta(omittable: true)
     end
   end

@@ -75,19 +75,14 @@ module Zitadel::Client
       end
 
       # ID represents the ID of the user who was granted the authorization.
-      # @example null
       attribute :id, Types::Any.optional.meta(omittable: true)
       # PreferredLoginName represents the preferred login name of the granted user.
-      # @example null
       attribute :preferred_login_name, Types::Any.optional.meta(omittable: true)
       # DisplayName represents the public display name of the granted user.
-      # @example null
       attribute :display_name, Types::Any.optional.meta(omittable: true)
       # AvatarURL is the URL to the user's public avatar image.
-      # @example null
       attribute :avatar_url, Types::Any.optional.meta(omittable: true)
       # The organization the user belong to.  This does not have to correspond with the authorizations organization.
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
     end
   end

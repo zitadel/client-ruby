@@ -73,15 +73,11 @@ module Zitadel::Client
       end
 
       # If enabled, the login name will automatically be suffixed with the domain of the organization.  This ensures that the login name is unique across the instance.
-      # @example null
       attribute :login_name_includes_domain, Types::Any.optional.meta(omittable: true)
       # If enabled, organization domains must be verified (through an DNS or HTTP challenge) upon creation.  If disabled, organization domains will be created as already verified automatically.
-      # @example null
       attribute :require_org_domain_verification, Types::Any.optional.meta(omittable: true)
       # If enabled, the SMTP sender address domain must match custom domain on the instance.
-      # @example null
       attribute :smtp_sender_address_matches_instance_domain, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :resource_owner_type, Types::Any.optional.meta(omittable: true)
     end
   end

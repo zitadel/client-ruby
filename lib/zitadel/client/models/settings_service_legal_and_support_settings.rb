@@ -81,27 +81,19 @@ module Zitadel::Client
       end
 
       # Link to the Terms of Service. Can be a relative or absolute URL.
-      # @example null
       attribute :tos_link, Types::Any.optional.meta(omittable: true)
       # Link to the Privacy Policy. Can be a relative or absolute URL.
-      # @example null
       attribute :privacy_policy_link, Types::Any.optional.meta(omittable: true)
       # Link to a help page. Can be a relative or absolute URL.
-      # @example null
       attribute :help_link, Types::Any.optional.meta(omittable: true)
       # Email address for support issues.
-      # @example null
       attribute :support_email, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :resource_owner_type, Types::Any.optional.meta(omittable: true)
       # Link to documentation to be shown in the console.
-      # @example null
       attribute :docs_link, Types::Any.optional.meta(omittable: true)
       # Link to an external resource that will be available to users in the console.
-      # @example null
       attribute :custom_link, Types::Any.optional.meta(omittable: true)
       # The button text that would be shown in console pointing to custom link.
-      # @example null
       attribute :custom_link_text, Types::Any.optional.meta(omittable: true)
     end
   end

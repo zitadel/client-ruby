@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # Organization Id for the Organization for which the domain is to be added to.
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
       # The domain you want to add to the organization.
-      # @example null
       attribute :domain, Types::Any.optional.meta(omittable: true)
     end
   end

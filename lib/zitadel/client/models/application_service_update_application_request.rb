@@ -77,19 +77,13 @@ module Zitadel::Client
       end
 
       # The unique ID of the application to be updated.
-      # @example null
       attribute :application_id, Types::Any.optional.meta(omittable: true)
       # The ID of the project the application belongs to.
-      # @example null
       attribute :project_id, Types::Any.optional.meta(omittable: true)
       # Publicly visible name of the application. This might be presented to users if they sign in.  If not set, the name will not be changed.
-      # @example null
       attribute :name, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :api_configuration, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :oidc_configuration, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :saml_configuration, Types::Any.optional.meta(omittable: true)
     end
   end

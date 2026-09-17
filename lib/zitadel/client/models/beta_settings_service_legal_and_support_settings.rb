@@ -80,21 +80,13 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :tos_link, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :privacy_policy_link, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :help_link, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :support_email, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :resource_owner_type, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :docs_link, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :custom_link, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :custom_link_text, Types::Any.optional.meta(omittable: true)
     end
   end

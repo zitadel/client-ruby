@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # Search for application keys belonging to the application with this ID.
-      # @example null
       attribute :application_id, Types::Any.optional.meta(omittable: true)
     end
   end

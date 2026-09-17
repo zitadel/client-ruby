@@ -77,21 +77,15 @@ module Zitadel::Client
       end
 
       # The minimum length a password must have.
-      # @example null
       attribute :min_length, Types::Any.optional.meta(omittable: true)
       # Defines if the password MUST contain an upper case letter.
-      # @example null
       attribute :requires_uppercase, Types::Any.optional.meta(omittable: true)
       # Defines if the password MUST contain a lowercase letter.
-      # @example null
       attribute :requires_lowercase, Types::Any.optional.meta(omittable: true)
       # Defines if the password MUST contain a number.
-      # @example null
       attribute :requires_number, Types::Any.optional.meta(omittable: true)
       # Defines if the password MUST contain a symbol or special character. E.g. \"$\"
-      # @example null
       attribute :requires_symbol, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :resource_owner_type, Types::Any.optional.meta(omittable: true)
     end
   end

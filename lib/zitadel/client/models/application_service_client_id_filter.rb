@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # The clientID to search for. The search is performed as an exact match.
-      # @example null
       attribute :client_id, Types::Any.optional.meta(omittable: true)
     end
   end

@@ -71,11 +71,8 @@ module Zitadel::Client
       end
 
       # The ID of the Auth Request to finalize.
-      # @example null
       attribute :auth_request_id, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :error, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :session, Types::Any.optional.meta(omittable: true)
     end
   end

@@ -359,6 +359,45 @@ describe Zitadel::Client::DefaultApiClient do
     stubs.verify_stubbed_calls
   end
 
+  # ── Multipart model part serialised via ObjectSerializer (cross-SDK parity) ──
+  #
+  # A model passed as a multipart form field must be JSON-encoded through the
+  # configured ObjectSerializer, NOT JSON.generate(value.to_hash). Dry::Struct
+  # #to_hash yields snake_case attribute names (is_primary/taken_at) and raw
+  # Time/Date/Duration values, so a naive generate would emit the wrong wire
+  # keys and an unformatted date-time. Routing through ObjectSerializer.serialize
+  # produces the same wire keys (isPrimary/takenAt) and date-time formatting as
+  # the JSON-body path. addPetPhotos sends a PhotoMetadata model as the
+  # "metadata" part — here we build that part directly and assert the wire form.
+  it 'serialises a multipart model part with wire keys and formatted date-time' do
+    captured_body = nil
+    stubs = Faraday::Adapter::Test::Stubs.new do |stub|
+      stub.post('/upload') do |env|
+        captured_body = env.body
+        [200, {}, '{}']
+      end
+    end
+    metadata = Zitadel::Client::Models::PhotoMetadata.new(
+      is_primary: true,
+      taken_at: Time.utc(2020, 1, 2, 3, 4, 5, 123_000)
+    )
+    client = Zitadel::Client::DefaultApiClient.new
+    client.stub(:build_connection, stub_connection(stubs)) do
+      client.send_request('POST', 'http://localhost/upload', {}, { 'metadata' => metadata })
+    end
+    body_str = captured_body.to_s.dup.force_encoding(Encoding::UTF_8)
+    # Wire property names, not the snake_case Ruby attribute names.
+    _(body_str).must_include '"isPrimary":true'
+    _(body_str).must_include '"takenAt"'
+    _(body_str).wont_include 'is_primary'
+    _(body_str).wont_include 'taken_at'
+    # The date-time carries the SDK's millisecond-precision wire format.
+    _(body_str).must_include '"takenAt":"2020-01-02T03:04:05.123'
+    # The part still declares application/json.
+    _(body_str).must_include 'Content-Type: application/json'
+    stubs.verify_stubbed_calls
+  end
+
   # ── Per-part MIME sniffing (Gap J) ──
 
   it 'sets image/png Content-Type for .png upload' do
@@ -418,6 +457,32 @@ describe Zitadel::Client::DefaultApiClient do
     stubs.verify_stubbed_calls
   end
 
+  # A raw-bytes part with no explicit filename reuses the FIELD NAME as the
+  # filename and, since that name has no/unknown extension, falls back to
+  # Content-Type: application/octet-stream. For a field named "file" the part
+  # must therefore emit both filename="file" and application/octet-stream
+  # (the agreed cross-language contract shared with go/node/java).
+  it 'reuses field name as filename with octet-stream for raw bytes' do
+    captured_body = nil
+    stubs = Faraday::Adapter::Test::Stubs.new do |stub|
+      stub.post('/upload') do |env|
+        captured_body = env.body
+        [200, {}, '{}']
+      end
+    end
+    require 'stringio'
+    # Raw binary bytes (0x00, 0x01, 0x02), an IO with no #path => no filename.
+    io = StringIO.new("\x00\x01\x02".b)
+    client = Zitadel::Client::DefaultApiClient.new
+    client.stub(:build_connection, stub_connection(stubs)) do
+      client.send_request('POST', 'http://localhost/upload', {}, { 'file' => io })
+    end
+    body_str = captured_body.to_s.dup.force_encoding(Encoding::ASCII_8BIT)
+    _(body_str).must_include 'Content-Disposition: form-data; name="file"; filename="file"'
+    _(body_str).must_include 'Content-Type: application/octet-stream'
+    stubs.verify_stubbed_calls
+  end
+
   # ── Response charset decoding (Gap H) ──
 
   it 'decodes ISO-8859-1 response body to UTF-8' do
@@ -459,6 +524,53 @@ describe Zitadel::Client::DefaultApiClient do
     client.stub(:build_connection, stub_connection(stubs)) do
       response = client.send_request('GET', 'http://localhost/bogus', {}, nil)
       _(response.body).must_equal 'hello'
+    end
+    stubs.verify_stubbed_calls
+  end
+
+  # ── BOM-less utf-16 decodes as big-endian (RFC 2781) ──
+  #
+  # A response whose Content-Type declares `charset=utf-16` with NO byte-order
+  # mark must be decoded as UTF-16BE per RFC 2781 — uniformly across all 12
+  # SDKs. The bytes `00 50 00 65 00 74` are "Pet" in big-endian; the same bytes
+  # read little-endian would be the unrelated CJK string "倀攀琀". Ruby's
+  # BOM-driven `Encoding::UTF_16` cannot decode BOM-less bytes, so the client
+  # forces UTF-16BE for a bare utf-16 charset with no BOM.
+  it 'decodes BOM-less utf-16 response body as big-endian' do
+    be_bytes = "\x00\x50\x00\x65\x00\x74".b
+    stubs = Faraday::Adapter::Test::Stubs.new do |stub|
+      stub.get('/utf16') do
+        [200, { 'content-type' => 'text/plain; charset=utf-16' }, be_bytes]
+      end
+    end
+    client = Zitadel::Client::DefaultApiClient.new
+    client.stub(:build_connection, stub_connection(stubs)) do
+      response = client.send_request('GET', 'http://localhost/utf16', {}, nil)
+      _(response.body.encoding).must_equal Encoding::UTF_8
+      _(response.body).must_equal 'Pet'
+      # Proves the big-endian choice: the same bytes read little-endian
+      # would decode to "倀攀琀", never to "Pet".
+      le_decoded = be_bytes.dup.force_encoding(Encoding::UTF_16LE)
+                           .encode(Encoding::UTF_8)
+      _(le_decoded).wont_equal 'Pet'
+    end
+    stubs.verify_stubbed_calls
+  end
+
+  # A utf-16 body that DOES carry a byte-order mark must still honor the BOM:
+  # a little-endian BOM (FF FE) followed by LE-encoded "Pet" decodes correctly,
+  # confirming the big-endian default applies only to the BOM-less case.
+  it 'honors the BOM for utf-16 response body with an explicit BOM' do
+    le_bom_bytes = ("\xFF\xFE".b + "\x50\x00\x65\x00\x74\x00".b)
+    stubs = Faraday::Adapter::Test::Stubs.new do |stub|
+      stub.get('/utf16-bom') do
+        [200, { 'content-type' => 'text/plain; charset=utf-16' }, le_bom_bytes]
+      end
+    end
+    client = Zitadel::Client::DefaultApiClient.new
+    client.stub(:build_connection, stub_connection(stubs)) do
+      response = client.send_request('GET', 'http://localhost/utf16-bom', {}, nil)
+      _(response.body).must_equal 'Pet'
     end
     stubs.verify_stubbed_calls
   end
@@ -719,6 +831,31 @@ describe Zitadel::Client::DefaultApiClient do
     stubs = Faraday::Adapter::Test::Stubs.new do |stub|
       stub.get('/gz') do
         [200, { 'content-type' => 'application/json', 'content-encoding' => 'gzip' }, 'not-actually-gzip']
+      end
+    end
+    client = Zitadel::Client::DefaultApiClient.new
+    client.stub(:build_connection, stub_connection(stubs)) do
+      err = assert_raises(Zitadel::Client::ApiError) do
+        client.send_request('GET', 'http://localhost/gz', {}, nil)
+      end
+      refute_kind_of Zlib::Error, err
+    end
+    stubs.verify_stubbed_calls
+  end
+
+  # ── Gap AL — Content-Encoding lie (gzip header, non-gzip body) ──
+  #
+  # Canonical cross-SDK scenario: a server advertises
+  # `Content-Encoding: gzip` but sends a plain (non-gzip) body. The client
+  # MUST surface the SDK's typed ApiError — no crash (dart) and no silent
+  # corrupt passthrough (csharp/kotlin/node/swift/elixir). Buggy before
+  # the fix in those six; ruby already wraps the Zlib failure as ApiError.
+  # Canonical = wrap as ApiError. Mirrors the malformed-Content-Encoding
+  # harness above, asserting the exact canonical input/expected pair.
+  it 'Gap AL: surfaces ApiError when gzip header lies about a plain body' do
+    stubs = Faraday::Adapter::Test::Stubs.new do |stub|
+      stub.get('/gz') do
+        [200, { 'content-type' => 'application/json', 'content-encoding' => 'gzip' }, 'plain-not-gzip']
       end
     end
     client = Zitadel::Client::DefaultApiClient.new

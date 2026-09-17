@@ -72,14 +72,10 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :user_id, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :u2f_id, Types::Any.optional.meta(omittable: true)
       # `Struct` represents a structured data value, consisting of fields  which map to dynamically typed values. In some languages, `Struct`  might be supported by a native representation. For example, in  scripting languages like JS a struct is represented as an  object. The details of that representation are described together  with the proto support for the language.   The JSON representation for `Struct` is JSON object.
-      # @example null
       attribute :public_key_credential, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :token_name, Types::Any.optional.meta(omittable: true)
     end
   end

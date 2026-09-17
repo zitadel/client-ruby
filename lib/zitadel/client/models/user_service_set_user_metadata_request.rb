@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # ID of the user under which the metadata gets set.
-      # @example null
       attribute :user_id, Types::Any.optional.meta(omittable: true)
       # Metadata to bet set. The values have to be base64 encoded.
-      # @example null
       attribute :metadata, Types::Any.optional.meta(omittable: true)
     end
   end

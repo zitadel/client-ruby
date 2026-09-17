@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # ID of the user whose sessions are being searched for.
-      # @example null
       attribute :id, Types::Any.optional.meta(omittable: true)
     end
   end

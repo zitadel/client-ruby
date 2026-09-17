@@ -328,10 +328,31 @@ module Zitadel::Client
     # @return [String] the decoded body as a UTF-8 string
     def decode_text_body(body, content_type)
       encoding = detect_encoding(content_type)
+      # RFC 2781: a UTF-16 stream with no byte-order mark defaults to
+      # big-endian. Ruby's +Encoding::UTF_16+ is BOM-driven — fed BOM-less
+      # bytes it cannot determine endianness and decodes to replacement
+      # characters. So for a bare +utf-16+ / +utf16+ charset we inspect the
+      # body: if it carries a BOM (FE FF or FF FE) we keep +UTF_16+ so the
+      # BOM is honored; otherwise we force +UTF_16BE+ per RFC 2781.
+      if encoding == Encoding::UTF_16 && !utf16_bom?(body)
+        encoding = Encoding::UTF_16BE
+      end
       bytes = body.dup.force_encoding(encoding)
       bytes.encode(Encoding::UTF_8, invalid: :replace, undef: :replace)
     rescue EncodingError
       body.dup.force_encoding(Encoding::UTF_8)
+    end
+
+    # Return true when the raw body begins with a UTF-16 byte-order mark
+    # (big-endian +FE FF+ or little-endian +FF FE+). Used to decide whether a
+    # bare +utf-16+ charset should defer to the BOM (when present) or default
+    # to big-endian per RFC 2781 (when absent).
+    def utf16_bom?(body)
+      head = body.to_s.b
+      return false if head.bytesize < 2
+
+      first_two = head.byteslice(0, 2)
+      first_two == "\xFE\xFF".b || first_two == "\xFF\xFE".b
     end
 
     # Parse the +charset=...+ parameter from a Content-Type header value
@@ -480,7 +501,14 @@ module Zitadel::Client
                  "Content-Type: #{part_mime}\r\n\r\n"
         header.b + data.b + "\r\n".b
       elsif value.respond_to?(:to_hash)
-        json_str = JSON.generate(value.to_hash)
+        # Route the model part through the configured ObjectSerializer
+        # rather than JSON.generate(value.to_hash). Dry::Struct#to_hash
+        # yields snake_case attribute names (is_primary/taken_at) and raw
+        # Time/Date/Duration/byte values, so a naive generate would emit
+        # the wrong wire keys and unformatted date-times. ObjectSerializer
+        # walks ATTRIBUTE_MAP + OPENAPI_FORMATS to produce the same wire
+        # keys (isPrimary/takenAt) and formatting as the JSON-body path.
+        json_str = ObjectSerializer.serialize(value)
         "--#{boundary}\r\nContent-Disposition: form-data; name=\"#{safe_name}\"\r\n" \
           "Content-Type: application/json\r\n\r\n#{json_str}\r\n"
       else

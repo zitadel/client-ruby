@@ -74,15 +74,10 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :created_date_filter, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :expiration_date_filter, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :key_id_filter, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :organization_id_filter, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :user_id_filter, Types::Any.optional.meta(omittable: true)
     end
   end

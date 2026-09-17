@@ -71,12 +71,9 @@ module Zitadel::Client
       end
 
       # UserID is the ID of the user who should be granted the administrator role.
-      # @example null
       attribute :user_id, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :resource, Types::Any.optional.meta(omittable: true)
       # Roles are the roles that should be granted to the user for the specified resource.  Note that roles are currently specific to the resource type.  This means that if you want to grant a user the administrator role for an organization and a project,  you need to create two administrator roles.
-      # @example null
       attribute :roles, Types::Any.optional.meta(omittable: true)
     end
   end

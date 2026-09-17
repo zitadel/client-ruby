@@ -73,16 +73,12 @@ module Zitadel::Client
       end
 
       # The endpoint where the JWT can be extracted.
-      # @example null
       attribute :jwt_endpoint, Types::Any.optional.meta(omittable: true)
       # The issuer of the JWT (for validation).
-      # @example null
       attribute :issuer, Types::Any.optional.meta(omittable: true)
       # The endpoint to the key (JWK) which is used to sign the JWT with.
-      # @example null
       attribute :keys_endpoint, Types::Any.optional.meta(omittable: true)
       # The name of the header where the JWT is sent in, default is authorization.
-      # @example null
       attribute :header_name, Types::Any.optional.meta(omittable: true)
     end
   end

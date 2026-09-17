@@ -69,9 +69,7 @@ module Zitadel::Client
       end
 
       # Domain used in organization, not necessary primary domain.
-      # @example null
       attribute :domain, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :method, Types::Any.optional.meta(omittable: true)
     end
   end

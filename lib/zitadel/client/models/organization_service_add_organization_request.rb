@@ -73,16 +73,12 @@ module Zitadel::Client
       end
 
       # Name is the unique name of the organization to be created.  This must be unique across the instance.
-      # @example null
       attribute :name, Types::Any.optional.meta(omittable: true)
       # Specify users to be assigned as organization admins.  If no users are specified here, the organization will be created without any admin users.  The organization can still be managed by any instance administrator.  If no roles are specified for a user, they will be assigned the role ORG_OWNER.
-      # @example null
       attribute :admins, Types::Any.optional.meta(omittable: true)
       # OrganizationID is the unique identifier of the organization. This field is optional.  If omitted, the system will generate one,  which is the recommended way. The generated ID will be returned in the response.
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
       # Optionally, set a unique id for the organization. If omitted, the system will generate one,  which is the recommended way. The generated ID will be returned in the response.   Deprecated: use 'organization_id' field instead.  If both org_id and organization_id are set, organization_id will take precedence.
-      # @example null
       # @deprecated This property is deprecated.
       attribute :org_id, Types::Any.optional.meta(omittable: true)
     end

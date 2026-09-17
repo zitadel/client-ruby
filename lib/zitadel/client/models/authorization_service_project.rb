@@ -71,13 +71,10 @@ module Zitadel::Client
       end
 
       # ID is the unique identifier of the project.
-      # @example null
       attribute :id, Types::Any.optional.meta(omittable: true)
       # Name is the name of the project.
-      # @example null
       attribute :name, Types::Any.optional.meta(omittable: true)
       # OrganizationID is the ID of the organization the project belongs to.  This does not have to correspond with the authorizations organization.  In case the authorization is given on a granted project, this is the organization  that owns the project and granted it.
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
     end
   end

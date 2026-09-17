@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # ID of the session, used to login the user. Connects the session to the SAML Request.
-      # @example null
       attribute :session_id, Types::Any.optional.meta(omittable: true)
       # Token to verify the session is valid.
-      # @example null
       attribute :session_token, Types::Any.optional.meta(omittable: true)
     end
   end

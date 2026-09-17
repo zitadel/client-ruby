@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # Defines the id to query for.
-      # @example null
       attribute :target_id, Types::Any.optional.meta(omittable: true)
     end
   end

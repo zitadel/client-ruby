@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # The user_code returned by the device authorization request and provided to the user by the device.
-      # @example null
       attribute :user_code, Types::Any.optional.meta(omittable: true)
     end
   end

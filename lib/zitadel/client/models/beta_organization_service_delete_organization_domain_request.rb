@@ -69,9 +69,7 @@ module Zitadel::Client
       end
 
       # Organization Id for the Organization which domain is to be deleted.
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :domain, Types::Any.optional.meta(omittable: true)
     end
   end

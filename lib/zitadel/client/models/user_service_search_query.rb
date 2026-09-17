@@ -100,41 +100,23 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :and_query, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :display_name_query, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :email_query, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :first_name_query, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :in_user_emails_query, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :in_user_ids_query, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :last_name_query, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :login_name_query, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :metadata_key_filter, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :metadata_value_filter, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :nick_name_query, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :not_query, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :or_query, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :organization_id_query, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :phone_query, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :state_query, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :type_query, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :user_name_query, Types::Any.optional.meta(omittable: true)
     end
   end

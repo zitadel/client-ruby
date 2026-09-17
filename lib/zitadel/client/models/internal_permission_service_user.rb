@@ -73,16 +73,12 @@ module Zitadel::Client
       end
 
       # ID is the unique identifier of the user.
-      # @example null
       attribute :id, Types::Any.optional.meta(omittable: true)
       # PreferredLoginName is the preferred login name of the user. This value is unique across the whole instance.
-      # @example null
       attribute :preferred_login_name, Types::Any.optional.meta(omittable: true)
       # DisplayName is the public display name of the user.  By default it's the user's given name and family name, their username or their email address.
-      # @example null
       attribute :display_name, Types::Any.optional.meta(omittable: true)
       # The organization the user belong to.
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
     end
   end

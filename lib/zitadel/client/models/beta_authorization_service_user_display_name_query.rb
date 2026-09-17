@@ -69,9 +69,7 @@ module Zitadel::Client
       end
 
       # Specify the public display name of the granted user to search for.
-      # @example null
       attribute :display_name, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :method, Types::Any.optional.meta(omittable: true)
     end
   end

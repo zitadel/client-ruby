@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # Organization Id for the Organization doman to be verified.
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
       # Organization Id for the Organization doman to be verified.
-      # @example null
       attribute :domain, Types::Any.optional.meta(omittable: true)
     end
   end

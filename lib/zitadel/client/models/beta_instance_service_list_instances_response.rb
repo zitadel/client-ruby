@@ -69,9 +69,7 @@ module Zitadel::Client
       end
 
       # The list of instances.
-      # @example null
       attribute :instances, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :pagination, Types::Any.optional.meta(omittable: true)
     end
   end

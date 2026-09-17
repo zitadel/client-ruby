@@ -69,9 +69,7 @@ module Zitadel::Client
       end
 
       # The name of the application to search for.
-      # @example null
       attribute :name, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :method, Types::Any.optional.meta(omittable: true)
     end
   end

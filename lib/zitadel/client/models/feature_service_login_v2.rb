@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # Require that all users must use the new login UI. If enabled, all users will be redirected to the login V2 regardless of the application's preference.
-      # @example null
       attribute :required, Types::Any.optional.meta(omittable: true)
       # Optionally specify a base uri of the login UI. If unspecified the default URI will be used.
-      # @example null
       attribute :base_uri, Types::Any.optional.meta(omittable: true)
     end
   end

@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # Defines the conditions to query for.
-      # @example null
       attribute :conditions, Types::Any.optional.meta(omittable: true)
     end
   end

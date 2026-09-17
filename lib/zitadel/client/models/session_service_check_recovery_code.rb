@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # The Recovery Code of the user to be checked.  The code must match the exact code previously generated for the user, including dashes if any.  On successful check, the recovery code will be invalidated and cannot be used again.
-      # @example null
       attribute :code, Types::Any.optional.meta(omittable: true)
     end
   end

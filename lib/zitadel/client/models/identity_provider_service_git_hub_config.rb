@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # The client ID of the GitHub App.
-      # @example null
       attribute :client_id, Types::Any.optional.meta(omittable: true)
       # The scopes requested by ZITADEL during the request to GitHub.
-      # @example null
       attribute :scopes, Types::Any.optional.meta(omittable: true)
     end
   end

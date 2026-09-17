@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # OrganizationID is the unique identifier of the organization to be deactivated.
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
     end
   end

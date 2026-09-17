@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # List also auth method types without domain information like passkey and U2F added through V1 APIs / Login UI.
-      # @example null
       attribute :include_without_domain, Types::Any.optional.meta(omittable: true)
       # List only auth methods with specific domain.
-      # @example null
       attribute :domain, Types::Any.optional.meta(omittable: true)
     end
   end

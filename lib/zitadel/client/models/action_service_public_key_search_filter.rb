@@ -71,11 +71,8 @@ module Zitadel::Client
       end
 
       # Filter the keys by their active status.
-      # @example null
       attribute :active_filter, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :expiration_date_filter, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :key_ids_filter, Types::Any.optional.meta(omittable: true)
     end
   end

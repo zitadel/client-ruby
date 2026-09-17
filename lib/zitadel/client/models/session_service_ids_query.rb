@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # List of session IDs to search for.  If multiple IDs are provided, sessions matching any of the IDs will be returned.
-      # @example null
       attribute :ids, Types::Any.optional.meta(omittable: true)
     end
   end

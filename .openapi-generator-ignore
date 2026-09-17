@@ -49,7 +49,6 @@ test/zitadel/client/zitadel_test.rb
 
 # --- repo identity + docs (team-owned) ---
 LICENSE
-README.md
 SECURITY.md
 VERSIONING.md
 
@@ -59,7 +58,6 @@ VERSIONING.md
 # the hand-managed `rbs collection` manifest/lock and vendored gem signatures.
 .commitlintrc.json
 .dockerignore
-.editorconfig
 .gem_rbs_collection/
 .github/
 .gitignore

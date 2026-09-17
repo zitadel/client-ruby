@@ -70,12 +70,9 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :query, Types::Any.optional.meta(omittable: true)
       # The criteria to be used when searching for sessions.  Multiple queries will be combined with a logical AND.
-      # @example null
       attribute :queries, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :sorting_column, Types::Any.optional.meta(omittable: true)
     end
   end

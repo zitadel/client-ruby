@@ -70,12 +70,9 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :query, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :sorting_column, Types::Any.optional.meta(omittable: true)
       # criteria the client is looking for
-      # @example null
       attribute :queries, Types::Any.optional.meta(omittable: true)
     end
   end

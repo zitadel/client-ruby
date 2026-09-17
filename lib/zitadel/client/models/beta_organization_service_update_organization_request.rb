@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # Organization Id for the Organization to be updated
-      # @example null
       attribute :id, Types::Any.optional.meta(omittable: true)
       # New Name for the Organization to be updated
-      # @example null
       attribute :name, Types::Any.optional.meta(omittable: true)
     end
   end

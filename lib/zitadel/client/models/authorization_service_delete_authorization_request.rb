@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # ID is the unique identifier of the authorization that should be deleted.
-      # @example null
       attribute :id, Types::Any.optional.meta(omittable: true)
     end
   end

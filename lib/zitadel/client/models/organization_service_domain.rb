@@ -75,18 +75,13 @@ module Zitadel::Client
       end
 
       # OrganizationID is the unique identifier of the organization the domain belongs to.
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
       # Domain is the fully qualified domain name.
-      # @example null
       attribute :domain, Types::Any.optional.meta(omittable: true)
       # IsVerified is a boolean flag indicating if the domain has been verified.
-      # @example null
       attribute :is_verified, Types::Any.optional.meta(omittable: true)
       # IsPrimary is a boolean flag indicating if the domain is the primary domain of the organization.
-      # @example null
       attribute :is_primary, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :validation_type, Types::Any.optional.meta(omittable: true)
     end
   end

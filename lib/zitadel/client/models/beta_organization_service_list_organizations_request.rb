@@ -70,12 +70,9 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :pagination, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :sorting_column, Types::Any.optional.meta(omittable: true)
       # Define the criteria to query for.  repeated ProjectRoleQuery filters = 4;
-      # @example null
       attribute :filter, Types::Any.optional.meta(omittable: true)
     end
   end

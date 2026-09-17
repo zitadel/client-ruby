@@ -70,13 +70,10 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :domain_filter, Types::Any.optional.meta(omittable: true)
       # Filter whether the domain is auto-generated.
-      # @example null
       attribute :generated_filter, Types::Any.optional.meta(omittable: true)
       # Filter whether the domain is the primary domain of the instance.
-      # @example null
       attribute :primary_filter, Types::Any.optional.meta(omittable: true)
     end
   end

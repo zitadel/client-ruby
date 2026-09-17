@@ -87,29 +87,18 @@ module Zitadel::Client
       end
 
       # optionally set your own id unique for the user.
-      # @example null
       attribute :user_id, Types::Any.optional.meta(omittable: true)
       # optionally set a unique username, if none is provided the email will be used.
-      # @example null
       attribute :username, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :organization, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :profile, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :email, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :phone, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :metadata, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :idp_links, Types::Any.optional.meta(omittable: true)
       # An Implementation of RFC 6238 is used, with HMAC-SHA-1 and time-step of 30 seconds.  Currently no other options are supported, and if anything different is used the validation will fail.
-      # @example null
       attribute :totp_secret, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :hashed_password, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :password, Types::Any.optional.meta(omittable: true)
     end
   end

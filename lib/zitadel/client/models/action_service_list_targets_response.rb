@@ -68,10 +68,8 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :pagination, Types::Any.optional.meta(omittable: true)
       # List of all targets matching the query.
-      # @example null
       attribute :targets, Types::Any.optional.meta(omittable: true)
     end
   end

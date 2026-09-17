@@ -68,10 +68,8 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :details, Types::Any.optional.meta(omittable: true)
       # in case the verification was set to return_code, the code will be returned
-      # @example null
       attribute :verification_code, Types::Any.optional.meta(omittable: true)
     end
   end

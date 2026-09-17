@@ -77,21 +77,15 @@ module Zitadel::Client
       end
 
       # The given name is the first name of the user.  For example, it can be used to personalize notifications and login UIs.
-      # @example null
       attribute :given_name, Types::Any.optional.meta(omittable: true)
       # The family name is the last name of the user.  For example, it can be used to personalize user interfaces and notifications.
-      # @example null
       attribute :family_name, Types::Any.optional.meta(omittable: true)
       # The nick name is the users short name.  For example, it can be used to personalize user interfaces and notifications.
-      # @example null
       attribute :nick_name, Types::Any.optional.meta(omittable: true)
       # The display name is how a user should primarily be displayed in lists.  It can also for example be used to personalize user interfaces and notifications.
-      # @example null
       attribute :display_name, Types::Any.optional.meta(omittable: true)
       # The users preferred language is the language that systems should use to interact with the user.  It has the format of a [BCP-47 language tag](https://datatracker.ietf.org/doc/html/rfc3066).  It is used by Zitadel where no higher prioritized preferred language can be used.  For example, browser settings can overwrite a users preferred_language.  Notification messages and standard login UIs use the users preferred language if it is supported and allowed on the instance.  Else, the default language of the instance is used.
-      # @example null
       attribute :preferred_language, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :gender, Types::Any.optional.meta(omittable: true)
     end
   end

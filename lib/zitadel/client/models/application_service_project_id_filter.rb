@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # Search for application belonging to the project with this ID.
-      # @example null
       attribute :project_id, Types::Any.optional.meta(omittable: true)
     end
   end

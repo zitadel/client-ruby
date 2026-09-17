@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # ID of the project.
-      # @example null
       attribute :project_id, Types::Any.optional.meta(omittable: true)
       # The key is the only relevant attribute for ZITADEL regarding the authorization checks.
-      # @example null
       attribute :role_key, Types::Any.optional.meta(omittable: true)
     end
   end

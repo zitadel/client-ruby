@@ -69,9 +69,7 @@ module Zitadel::Client
       end
 
       # The list of custom domains matching the query.
-      # @example null
       attribute :domains, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :pagination, Types::Any.optional.meta(omittable: true)
     end
   end

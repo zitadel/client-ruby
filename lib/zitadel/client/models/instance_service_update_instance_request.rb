@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # InstanceID is the unique ID of the instance to be updated.  If not set, the instance in the current context (e.g. identified by the host header) will be changed.  If an ID is set, the caller must have additional permissions.
-      # @example null
       attribute :instance_id, Types::Any.optional.meta(omittable: true)
       # InstanceName is the new name of the instance to be set.
-      # @example null
       attribute :instance_name, Types::Any.optional.meta(omittable: true)
     end
   end

@@ -90,31 +90,18 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :options, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :apple, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :azure_ad, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :github, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :github_es, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :gitlab, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :gitlab_self_hosted, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :google, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :jwt, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :ldap, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :oauth, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :oidc, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :saml, Types::Any.optional.meta(omittable: true)
     end
   end

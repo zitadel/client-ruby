@@ -72,13 +72,9 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :login_name_includes_domain, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :require_org_domain_verification, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :smtp_sender_address_matches_instance_domain, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :resource_owner_type, Types::Any.optional.meta(omittable: true)
     end
   end

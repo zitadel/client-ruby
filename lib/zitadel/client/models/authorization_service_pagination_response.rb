@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # Absolute number of objects matching the query, regardless of applied limit.
-      # @example null
       attribute :total_result, Types::Any.optional.meta(omittable: true)
       # Applied limit from query, defines maximum amount of objects per request, to compare if all objects are returned.
-      # @example null
       attribute :applied_limit, Types::Any.optional.meta(omittable: true)
     end
   end

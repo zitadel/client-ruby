@@ -67,7 +67,6 @@ module Zitadel::Client
       end
 
       # The unique ID of the application to be retrieved.
-      # @example null
       attribute :application_id, Types::Any.optional.meta(omittable: true)
     end
   end

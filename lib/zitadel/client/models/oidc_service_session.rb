@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # ID of the session, used to login the user. Connects the session to the Auth Request.
-      # @example null
       attribute :session_id, Types::Any.optional.meta(omittable: true)
       # Token of the session used to login the user. This token verifies that the session is valid.
-      # @example null
       attribute :session_token, Types::Any.optional.meta(omittable: true)
     end
   end

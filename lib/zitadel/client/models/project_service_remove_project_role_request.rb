@@ -69,10 +69,8 @@ module Zitadel::Client
       end
 
       # ProjectID is the unique identifier of the project.
-      # @example null
       attribute :project_id, Types::Any.optional.meta(omittable: true)
       # RoleKey is the key of the role to be removed.  All dependencies of this role will be removed as well, including project grants and user grants.  If the role is not found, the request will return a successful response as the desired state is already achieved.
-      # @example null
       attribute :role_key, Types::Any.optional.meta(omittable: true)
     end
   end

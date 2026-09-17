@@ -73,16 +73,12 @@ module Zitadel::Client
       end
 
       # UserID is the ID of the user who should be granted the authorization.
-      # @example null
       attribute :user_id, Types::Any.optional.meta(omittable: true)
       # Project ID is the ID of the project the user should be authorized for.
-      # @example null
       attribute :project_id, Types::Any.optional.meta(omittable: true)
       # OrganizationID is the ID of the organization on which the authorization should be created.  The organization must either own the project or have a grant for the project.
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
       # RoleKeys are the keys of the roles the user should be granted.
-      # @example null
       attribute :role_keys, Types::Any.optional.meta(omittable: true)
     end
   end

@@ -75,18 +75,13 @@ module Zitadel::Client
       end
 
       # The Organization id.
-      # @example null
       attribute :organization_id, Types::Any.optional.meta(omittable: true)
       # The domain name.
-      # @example null
       attribute :domain_name, Types::Any.optional.meta(omittable: true)
       # Defines if the domain is verified.
-      # @example null
       attribute :is_verified, Types::Any.optional.meta(omittable: true)
       # Defines if the domain is the primary domain.
-      # @example null
       attribute :is_primary, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :validation_type, Types::Any.optional.meta(omittable: true)
     end
   end

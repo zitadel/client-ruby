@@ -92,33 +92,19 @@ module Zitadel::Client
         JSON_KEY_MAP[key.to_s] || key.to_sym
       end
 
-      # @example null
       attribute :id_attribute, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :first_name_attribute, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :last_name_attribute, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :display_name_attribute, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :nick_name_attribute, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :preferred_username_attribute, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :email_attribute, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :email_verified_attribute, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :phone_attribute, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :phone_verified_attribute, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :preferred_language_attribute, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :avatar_url_attribute, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :profile_attribute, Types::Any.optional.meta(omittable: true)
-      # @example null
       attribute :root_ca, Types::Any.optional.meta(omittable: true)
     end
   end
