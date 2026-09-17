@@ -72,7 +72,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'AuthorizationServiceActivateAuthorizationResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -130,7 +130,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'AuthorizationServiceCreateAuthorizationResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -188,7 +188,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'AuthorizationServiceDeactivateAuthorizationResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -246,7 +246,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'AuthorizationServiceDeleteAuthorizationResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -304,7 +304,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'AuthorizationServiceListAuthorizationsResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -362,7 +362,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'AuthorizationServiceUpdateAuthorizationResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
     end

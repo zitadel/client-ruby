@@ -72,7 +72,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ActionServiceActivatePublicKeyResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -130,7 +130,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ActionServiceAddPublicKeyResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -188,7 +188,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ActionServiceCreateTargetResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -246,7 +246,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ActionServiceDeactivatePublicKeyResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -304,7 +304,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ActionServiceDeleteTargetResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -362,7 +362,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ActionServiceGetTargetResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -420,7 +420,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ActionServiceListExecutionFunctionsResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -478,7 +478,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ActionServiceListExecutionMethodsResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -536,7 +536,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ActionServiceListExecutionServicesResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -594,7 +594,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ActionServiceListExecutionsResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -652,7 +652,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ActionServiceListPublicKeysResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -710,7 +710,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ActionServiceListTargetsResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -768,7 +768,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ActionServiceRemovePublicKeyResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -826,7 +826,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ActionServiceSetExecutionResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -884,7 +884,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ActionServiceUpdateTargetResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
     end

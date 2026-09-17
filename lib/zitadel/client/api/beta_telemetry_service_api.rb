@@ -72,7 +72,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaTelemetryServiceReportBaseInformationResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -130,7 +130,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaTelemetryServiceReportResourceCountsResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
     end

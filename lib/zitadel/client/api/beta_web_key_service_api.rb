@@ -72,7 +72,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaWebKeyServiceActivateWebKeyResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -130,7 +130,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaWebKeyServiceCreateWebKeyResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -188,7 +188,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaWebKeyServiceDeleteWebKeyResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -246,7 +246,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaWebKeyServiceListWebKeysResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
     end

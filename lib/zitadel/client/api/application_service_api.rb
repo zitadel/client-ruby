@@ -72,7 +72,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ApplicationServiceCreateApplicationResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -130,7 +130,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ApplicationServiceCreateApplicationKeyResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -188,7 +188,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ApplicationServiceDeactivateApplicationResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -246,7 +246,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ApplicationServiceDeleteApplicationResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -304,7 +304,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ApplicationServiceDeleteApplicationKeyResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -362,7 +362,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ApplicationServiceGenerateClientSecretResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -420,7 +420,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ApplicationServiceGetApplicationResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -478,7 +478,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ApplicationServiceGetApplicationKeyResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -536,7 +536,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ApplicationServiceListApplicationKeysResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -594,7 +594,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ApplicationServiceListApplicationsResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -652,7 +652,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ApplicationServiceReactivateApplicationResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -710,7 +710,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ApplicationServiceUpdateApplicationResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
     end

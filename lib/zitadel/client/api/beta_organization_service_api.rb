@@ -72,7 +72,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaOrganizationServiceActivateOrganizationResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -130,7 +130,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaOrganizationServiceAddOrganizationDomainResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -188,7 +188,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaOrganizationServiceCreateOrganizationResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -246,7 +246,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaOrganizationServiceDeactivateOrganizationResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -304,7 +304,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaOrganizationServiceDeleteOrganizationResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -362,7 +362,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaOrganizationServiceDeleteOrganizationDomainResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -420,7 +420,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaOrganizationServiceDeleteOrganizationMetadataResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -478,7 +478,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaOrganizationServiceGenerateOrganizationDomainValidationResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -536,7 +536,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaOrganizationServiceListOrganizationDomainsResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -594,7 +594,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaOrganizationServiceListOrganizationMetadataResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -652,7 +652,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaOrganizationServiceListOrganizationsResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -710,7 +710,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaOrganizationServiceSetOrganizationMetadataResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -768,7 +768,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaOrganizationServiceUpdateOrganizationResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -826,7 +826,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaOrganizationServiceVerifyOrganizationDomainResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
     end

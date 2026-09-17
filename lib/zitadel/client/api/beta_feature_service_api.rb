@@ -71,7 +71,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaFeatureServiceGetInstanceFeaturesResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -128,7 +128,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaFeatureServiceGetOrganizationFeaturesResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -185,7 +185,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaFeatureServiceGetSystemFeaturesResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -242,7 +242,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaFeatureServiceGetUserFeaturesResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -299,7 +299,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaFeatureServiceResetInstanceFeaturesResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -356,7 +356,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaFeatureServiceResetOrganizationFeaturesResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -413,7 +413,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaFeatureServiceResetSystemFeaturesResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -470,7 +470,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaFeatureServiceResetUserFeaturesResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -527,7 +527,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaFeatureServiceSetInstanceFeaturesResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -584,7 +584,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaFeatureServiceSetOrganizationFeaturesResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -641,7 +641,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaFeatureServiceSetSystemFeaturesResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -698,7 +698,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'BetaFeatureServiceSetUserFeaturesResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
     end

@@ -72,7 +72,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ProjectServiceActivateProjectResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -130,7 +130,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ProjectServiceActivateProjectGrantResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -188,7 +188,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ProjectServiceAddProjectRoleResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -246,7 +246,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ProjectServiceCreateProjectResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -304,7 +304,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ProjectServiceCreateProjectGrantResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -362,7 +362,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ProjectServiceDeactivateProjectResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -420,7 +420,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ProjectServiceDeactivateProjectGrantResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -478,7 +478,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ProjectServiceDeleteProjectResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -536,7 +536,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ProjectServiceDeleteProjectGrantResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -594,7 +594,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ProjectServiceGetProjectResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -652,7 +652,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ProjectServiceListProjectGrantsResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -710,7 +710,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ProjectServiceListProjectRolesResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -768,7 +768,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ProjectServiceListProjectsResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -826,7 +826,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ProjectServiceRemoveProjectRoleResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -884,7 +884,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ProjectServiceUpdateProjectResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -942,7 +942,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ProjectServiceUpdateProjectGrantResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -1000,7 +1000,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'ProjectServiceUpdateProjectRoleResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
     end

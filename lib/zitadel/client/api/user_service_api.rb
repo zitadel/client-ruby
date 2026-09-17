@@ -72,7 +72,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceAddHumanUserResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -130,7 +130,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceAddIDPLinkResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -188,7 +188,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceAddKeyResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -246,7 +246,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceAddOTPEmailResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -304,7 +304,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceAddOTPSMSResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -362,7 +362,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceAddPersonalAccessTokenResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -420,7 +420,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceAddSecretResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -478,7 +478,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceCreateInviteCodeResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -536,7 +536,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceCreatePasskeyRegistrationLinkResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -594,7 +594,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceCreateUserResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -652,7 +652,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceDeactivateUserResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -710,7 +710,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceDeleteUserResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -768,7 +768,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceDeleteUserMetadataResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -826,7 +826,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceGenerateRecoveryCodesResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -884,7 +884,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceGetUserByIDResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -942,7 +942,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceHumanMFAInitSkippedResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -999,7 +999,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceListAuthenticationFactorsResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -1057,7 +1057,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceListAuthenticationMethodTypesResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -1115,7 +1115,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceListIDPLinksResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -1173,7 +1173,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceListKeysResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -1231,7 +1231,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceListPasskeysResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -1289,7 +1289,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceListPersonalAccessTokensResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -1347,7 +1347,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceListUserMetadataResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -1405,7 +1405,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceListUsersResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -1463,7 +1463,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceLockUserResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -1521,7 +1521,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServicePasswordResetResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -1579,7 +1579,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceReactivateUserResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -1637,7 +1637,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceRegisterPasskeyResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -1695,7 +1695,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceRegisterTOTPResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -1753,7 +1753,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceRegisterU2FResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -1811,7 +1811,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceRemoveIDPLinkResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -1869,7 +1869,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceRemoveKeyResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -1927,7 +1927,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceRemoveOTPEmailResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -1985,7 +1985,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceRemoveOTPSMSResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -2043,7 +2043,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceRemovePasskeyResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -2101,7 +2101,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceRemovePersonalAccessTokenResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -2159,7 +2159,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceRemovePhoneResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -2217,7 +2217,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceRemoveRecoveryCodesResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -2275,7 +2275,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceRemoveSecretResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -2333,7 +2333,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceRemoveTOTPResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -2391,7 +2391,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceRemoveU2FResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -2449,7 +2449,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceResendEmailCodeResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -2507,7 +2507,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceResendInviteCodeResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -2565,7 +2565,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceResendPhoneCodeResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -2623,7 +2623,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceRetrieveIdentityProviderIntentResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -2681,7 +2681,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceSendEmailCodeResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -2739,7 +2739,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceSetEmailResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -2797,7 +2797,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceSetPasswordResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -2855,7 +2855,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceSetPhoneResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -2913,7 +2913,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceSetUserMetadataResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -2971,7 +2971,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceStartIdentityProviderIntentResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -3029,7 +3029,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceUnlockUserResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -3087,7 +3087,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceUpdateHumanUserResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -3145,7 +3145,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceUpdateUserResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -3203,7 +3203,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceVerifyEmailResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -3261,7 +3261,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceVerifyInviteCodeResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -3319,7 +3319,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceVerifyPasskeyRegistrationResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -3377,7 +3377,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceVerifyPhoneResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -3435,7 +3435,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceVerifyTOTPRegistrationResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
 
@@ -3493,7 +3493,7 @@ module Zitadel::Client
           ['application/json'],
           'application/json',
           'UserServiceVerifyU2FRegistrationResponse',
-          ::Zitadel::Client::Api::BaseApi::NO_AUTH
+          nil
         )
       end
     end
