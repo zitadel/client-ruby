@@ -7,6 +7,34 @@ require 'stringio'
 require 'zlib'
 require 'zitadel-client'
 
+# A stand-in model part for the multipart serialisation test below. It is
+# declared here rather than taken from the generated models so the test holds
+# for EVERY spec this SDK is generated from — no spec is guaranteed to contain
+# a model with these properties. It mirrors how the generator emits models:
+# snake_case attributes carrying the camelCase wire name in ATTRIBUTE_MAP.
+class MultipartModelPart < Dry::Struct
+  ATTRIBUTE_MAP = {
+    is_primary: 'isPrimary',
+    taken_at: 'takenAt'
+  }.freeze
+
+  JSON_KEY_MAP = ATTRIBUTE_MAP.invert.freeze
+
+  OPENAPI_TYPES = {
+    is_primary: 'Boolean',
+    taken_at: 'Time'
+  }.freeze
+
+  OPENAPI_FORMATS = {}.freeze
+
+  transform_keys do |key|
+    JSON_KEY_MAP[key.to_s] || key.to_sym
+  end
+
+  attribute :is_primary, Types::Any.optional.meta(omittable: true)
+  attribute :taken_at, Types::Any.optional.meta(omittable: true)
+end
+
 describe Zitadel::Client::DefaultApiClient do
   parallelize_me!
 
@@ -367,8 +395,8 @@ describe Zitadel::Client::DefaultApiClient do
   # Time/Date/Duration values, so a naive generate would emit the wrong wire
   # keys and an unformatted date-time. Routing through ObjectSerializer.serialize
   # produces the same wire keys (isPrimary/takenAt) and date-time formatting as
-  # the JSON-body path. addPetPhotos sends a PhotoMetadata model as the
-  # "metadata" part — here we build that part directly and assert the wire form.
+  # the JSON-body path. A model is sent as the "metadata" part — here we build
+  # that part directly and assert the wire form.
   it 'serialises a multipart model part with wire keys and formatted date-time' do
     captured_body = nil
     stubs = Faraday::Adapter::Test::Stubs.new do |stub|
@@ -377,7 +405,7 @@ describe Zitadel::Client::DefaultApiClient do
         [200, {}, '{}']
       end
     end
-    metadata = Zitadel::Client::Models::PhotoMetadata.new(
+    metadata = MultipartModelPart.new(
       is_primary: true,
       taken_at: Time.utc(2020, 1, 2, 3, 4, 5, 123_000)
     )
