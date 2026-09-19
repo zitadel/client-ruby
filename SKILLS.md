@@ -71,7 +71,7 @@ All API errors inherit from `ApiError`. The error hierarchy is:
 
 ```ruby
 begin
-  result = client.pet_api.get_pet_by_id(pet_id)
+  result = client.action_service.activate_public_key(request)
 rescue Zitadel::Client::Errors::NotFoundError => e
   puts "Not found: #{e.message}"
 rescue Zitadel::Client::Errors::ClientError => e
@@ -98,14 +98,14 @@ client = Zitadel::Client::Zitadel.new(authenticator, transport)
 
 ## API Methods
 
-Each API group is exposed as a typed attribute on the client (e.g., `client.pet_api`). API classes have methods that correspond to OpenAPI operations, accepting typed request parameters and returning typed response models.
+Each API group is exposed as a typed attribute on the client (e.g., `client.action_service`). API classes have methods that correspond to OpenAPI operations, accepting typed request parameters and returning typed response models.
 
 ## Models
 
 Models are generated as Ruby classes under the `Zitadel::Client::Models` namespace.
 
 ```ruby
-pet = Zitadel::Client::Models::Pet.new(name: 'Fido', status: 'available')
+model = Zitadel::Client::Models::ActionServiceActivatePublicKeyRequest.new
 ```
 
 ## Binary / File Uploads

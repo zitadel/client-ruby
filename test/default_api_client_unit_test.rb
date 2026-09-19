@@ -560,12 +560,12 @@ describe Zitadel::Client::DefaultApiClient do
   #
   # A response whose Content-Type declares `charset=utf-16` with NO byte-order
   # mark must be decoded as UTF-16BE per RFC 2781 — uniformly across all 12
-  # SDKs. The bytes `00 50 00 65 00 74` are "Pet" in big-endian; the same bytes
-  # read little-endian would be the unrelated CJK string "倀攀琀". Ruby's
+  # SDKs. The bytes `00 54 00 61 00 67` are "Tag" in big-endian; the same bytes
+  # read little-endian would be the unrelated CJK string "吀愀最". Ruby's
   # BOM-driven `Encoding::UTF_16` cannot decode BOM-less bytes, so the client
   # forces UTF-16BE for a bare utf-16 charset with no BOM.
   it 'decodes BOM-less utf-16 response body as big-endian' do
-    be_bytes = "\x00\x50\x00\x65\x00\x74".b
+    be_bytes = "\x00\x54\x00\x61\x00\x67".b
     stubs = Faraday::Adapter::Test::Stubs.new do |stub|
       stub.get('/utf16') do
         [200, { 'content-type' => 'text/plain; charset=utf-16' }, be_bytes]
@@ -575,21 +575,21 @@ describe Zitadel::Client::DefaultApiClient do
     client.stub(:build_connection, stub_connection(stubs)) do
       response = client.send_request('GET', 'http://localhost/utf16', {}, nil)
       _(response.body.encoding).must_equal Encoding::UTF_8
-      _(response.body).must_equal 'Pet'
+      _(response.body).must_equal 'Tag'
       # Proves the big-endian choice: the same bytes read little-endian
-      # would decode to "倀攀琀", never to "Pet".
+      # would decode to "吀愀最", never to "Tag".
       le_decoded = be_bytes.dup.force_encoding(Encoding::UTF_16LE)
                            .encode(Encoding::UTF_8)
-      _(le_decoded).wont_equal 'Pet'
+      _(le_decoded).wont_equal 'Tag'
     end
     stubs.verify_stubbed_calls
   end
 
   # A utf-16 body that DOES carry a byte-order mark must still honor the BOM:
-  # a little-endian BOM (FF FE) followed by LE-encoded "Pet" decodes correctly,
+  # a little-endian BOM (FF FE) followed by LE-encoded "Tag" decodes correctly,
   # confirming the big-endian default applies only to the BOM-less case.
   it 'honors the BOM for utf-16 response body with an explicit BOM' do
-    le_bom_bytes = ("\xFF\xFE".b + "\x50\x00\x65\x00\x74\x00".b)
+    le_bom_bytes = ("\xFF\xFE".b + "\x54\x00\x61\x00\x67\x00".b)
     stubs = Faraday::Adapter::Test::Stubs.new do |stub|
       stub.get('/utf16-bom') do
         [200, { 'content-type' => 'text/plain; charset=utf-16' }, le_bom_bytes]
@@ -598,7 +598,7 @@ describe Zitadel::Client::DefaultApiClient do
     client = Zitadel::Client::DefaultApiClient.new
     client.stub(:build_connection, stub_connection(stubs)) do
       response = client.send_request('GET', 'http://localhost/utf16-bom', {}, nil)
-      _(response.body).must_equal 'Pet'
+      _(response.body).must_equal 'Tag'
     end
     stubs.verify_stubbed_calls
   end
