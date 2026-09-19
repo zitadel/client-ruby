@@ -1,0 +1,12 @@
+module Zitadel::Client::Models
+  class InstanceServiceState
+    STATE_UNSPECIFIED: String
+    STATE_CREATING: String
+    STATE_RUNNING: String
+    STATE_STOPPING: String
+    STATE_STOPPED: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

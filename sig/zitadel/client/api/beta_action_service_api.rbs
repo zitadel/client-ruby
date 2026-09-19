@@ -1,0 +1,27 @@
+module Zitadel::Client
+  module Api
+    class BetaActionServiceApi < BaseApi
+      def initialize: (?::Zitadel::Client::ApiClient? api_client, ?::Zitadel::Client::Configuration config, ?::Zitadel::Client::Auth::Authenticator? authenticator) -> void
+      def create_target: (Models::BetaActionServiceCreateTargetRequest beta_action_service_create_target_request) -> Models::BetaActionServiceCreateTargetResponse
+      def create_target_with_http_info: (Models::BetaActionServiceCreateTargetRequest beta_action_service_create_target_request) -> ::Zitadel::Client::ApiResult[Models::BetaActionServiceCreateTargetResponse]
+      def delete_target: (Models::BetaActionServiceDeleteTargetRequest beta_action_service_delete_target_request) -> Models::BetaActionServiceDeleteTargetResponse
+      def delete_target_with_http_info: (Models::BetaActionServiceDeleteTargetRequest beta_action_service_delete_target_request) -> ::Zitadel::Client::ApiResult[Models::BetaActionServiceDeleteTargetResponse]
+      def get_target: (Models::BetaActionServiceGetTargetRequest beta_action_service_get_target_request) -> Models::BetaActionServiceGetTargetResponse
+      def get_target_with_http_info: (Models::BetaActionServiceGetTargetRequest beta_action_service_get_target_request) -> ::Zitadel::Client::ApiResult[Models::BetaActionServiceGetTargetResponse]
+      def list_execution_functions: (untyped body) -> Models::BetaActionServiceListExecutionFunctionsResponse
+      def list_execution_functions_with_http_info: (untyped body) -> ::Zitadel::Client::ApiResult[Models::BetaActionServiceListExecutionFunctionsResponse]
+      def list_execution_methods: (untyped body) -> Models::BetaActionServiceListExecutionMethodsResponse
+      def list_execution_methods_with_http_info: (untyped body) -> ::Zitadel::Client::ApiResult[Models::BetaActionServiceListExecutionMethodsResponse]
+      def list_execution_services: (untyped body) -> Models::BetaActionServiceListExecutionServicesResponse
+      def list_execution_services_with_http_info: (untyped body) -> ::Zitadel::Client::ApiResult[Models::BetaActionServiceListExecutionServicesResponse]
+      def list_executions: (Models::BetaActionServiceListExecutionsRequest beta_action_service_list_executions_request) -> Models::BetaActionServiceListExecutionsResponse
+      def list_executions_with_http_info: (Models::BetaActionServiceListExecutionsRequest beta_action_service_list_executions_request) -> ::Zitadel::Client::ApiResult[Models::BetaActionServiceListExecutionsResponse]
+      def list_targets: (Models::BetaActionServiceListTargetsRequest beta_action_service_list_targets_request) -> Models::BetaActionServiceListTargetsResponse
+      def list_targets_with_http_info: (Models::BetaActionServiceListTargetsRequest beta_action_service_list_targets_request) -> ::Zitadel::Client::ApiResult[Models::BetaActionServiceListTargetsResponse]
+      def set_execution: (Models::BetaActionServiceSetExecutionRequest beta_action_service_set_execution_request) -> Models::BetaActionServiceSetExecutionResponse
+      def set_execution_with_http_info: (Models::BetaActionServiceSetExecutionRequest beta_action_service_set_execution_request) -> ::Zitadel::Client::ApiResult[Models::BetaActionServiceSetExecutionResponse]
+      def update_target: (Models::BetaActionServiceUpdateTargetRequest beta_action_service_update_target_request) -> Models::BetaActionServiceUpdateTargetResponse
+      def update_target_with_http_info: (Models::BetaActionServiceUpdateTargetRequest beta_action_service_update_target_request) -> ::Zitadel::Client::ApiResult[Models::BetaActionServiceUpdateTargetResponse]
+    end
+  end
+end

@@ -1,0 +1,23 @@
+# Signature for the OAuth authenticator unit-test base class.
+#
+# OAuthAuthenticatorTest is a Minitest::Test that mixes in Minitest::Hooks and
+# starts a mock OAuth2 server (Testcontainers) in before_all, exposing its URL
+# via `oauth_host`. Declared here so the concrete authenticator test subclasses
+# resolve their Minitest::Test assertions and `oauth_host` reader.
+module Zitadel
+  module Client
+    module Auth
+      class OAuthAuthenticatorTest < ::Minitest::Test
+        include ::Minitest::Hooks
+
+        attr_reader oauth_host: ::String
+
+        # Wires the shared ApiClient into a bespoke OAuth authenticator (required
+        # before token exchange against the mock OAuth2 server) and returns it.
+        def inject_api_client: (Zitadel::Client::Auth::HttpAwareAuthenticator authenticator) -> Zitadel::Client::Auth::HttpAwareAuthenticator
+
+        @mock_server: untyped
+      end
+    end
+  end
+end

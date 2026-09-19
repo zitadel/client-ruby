@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class BetaActionServiceListExecutionsRequest < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader pagination: BetaActionServicePaginationRequest?
+    attr_reader sorting_column: BetaActionServiceExecutionFieldName?
+    attr_reader filters: Array[BetaActionServiceExecutionSearchFilter]?
+  end
+end

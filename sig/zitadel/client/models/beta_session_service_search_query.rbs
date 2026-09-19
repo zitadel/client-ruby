@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class BetaSessionServiceSearchQuery < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader creation_date_query: BetaSessionServiceCreationDateQuery?
+    attr_reader ids_query: BetaSessionServiceIDsQuery?
+    attr_reader user_id_query: BetaSessionServiceUserIDQuery?
+  end
+end

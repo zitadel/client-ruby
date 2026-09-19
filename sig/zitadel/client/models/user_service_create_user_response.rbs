@@ -1,0 +1,12 @@
+module Zitadel::Client::Models
+  class UserServiceCreateUserResponse < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader id: String?
+    attr_reader creation_date: Time?
+    attr_reader email_code: String?
+    attr_reader phone_code: String?
+  end
+end

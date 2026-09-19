@@ -1,0 +1,10 @@
+module Zitadel::Client::Models
+  class BetaProjectServiceGrantedProjectState
+    GRANTED_PROJECT_STATE_UNSPECIFIED: String
+    GRANTED_PROJECT_STATE_ACTIVE: String
+    GRANTED_PROJECT_STATE_INACTIVE: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

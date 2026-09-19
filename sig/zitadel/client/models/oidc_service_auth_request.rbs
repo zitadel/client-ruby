@@ -1,0 +1,18 @@
+module Zitadel::Client::Models
+  class OIDCServiceAuthRequest < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader id: String?
+    attr_reader creation_date: Time?
+    attr_reader client_id: String?
+    attr_reader scope: Array[String]?
+    attr_reader redirect_uri: String?
+    attr_reader prompt: Array[OIDCServicePrompt]?
+    attr_reader ui_locales: Array[String]?
+    attr_reader login_hint: String?
+    attr_reader max_age: ISO8601::Duration?
+    attr_reader hint_user_id: String?
+  end
+end

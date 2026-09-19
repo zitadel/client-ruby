@@ -16,17 +16,16 @@ require_relative '../base_spec'
 # guarantee a clean, stateless call.
 class UseAccessTokenSpec < BaseSpec
   it 'retrieves general settings with valid token' do
-    client = Zitadel::Client::Zitadel.with_access_token(@base_url, @auth_token)
-    client.settings.get_general_settings
+    authenticator = Zitadel::Client::Auth::PersonalAccessTokenAuthenticator.new(@base_url, @auth_token)
+    client = Zitadel::Client::Zitadel.with_authenticator(authenticator)
+    client.settings_service.get_general_settings({})
   end
 
   it 'raises an ApiError with invalid token' do
-    client = Zitadel::Client::Zitadel.with_access_token(
-      @base_url,
-      'invalid'
-    )
+    authenticator = Zitadel::Client::Auth::PersonalAccessTokenAuthenticator.new(@base_url, 'invalid')
+    client = Zitadel::Client::Zitadel.with_authenticator(authenticator)
     assert_raises(Zitadel::Client::ZitadelError) do
-      client.settings.get_general_settings
+      client.settings_service.get_general_settings({})
     end
   end
 end

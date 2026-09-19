@@ -1,0 +1,20 @@
+module Zitadel::Client::Models
+  class IdentityProviderServiceIDPType
+    IDP_TYPE_UNSPECIFIED: String
+    IDP_TYPE_OIDC: String
+    IDP_TYPE_JWT: String
+    IDP_TYPE_LDAP: String
+    IDP_TYPE_OAUTH: String
+    IDP_TYPE_AZURE_AD: String
+    IDP_TYPE_GITHUB: String
+    IDP_TYPE_GITHUB_ES: String
+    IDP_TYPE_GITLAB: String
+    IDP_TYPE_GITLAB_SELF_HOSTED: String
+    IDP_TYPE_GOOGLE: String
+    IDP_TYPE_APPLE: String
+    IDP_TYPE_SAML: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

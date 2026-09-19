@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class BetaInternalPermissionServiceListAdministratorsRequest < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader pagination: BetaInternalPermissionServicePaginationRequest?
+    attr_reader sorting_column: BetaInternalPermissionServiceAdministratorFieldName?
+    attr_reader filters: Array[BetaInternalPermissionServiceAdministratorSearchFilter]?
+  end
+end

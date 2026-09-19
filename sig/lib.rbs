@@ -1,388 +1,185 @@
+# Hand-written RBS for the keep-listed (hand-written) sources.
+#
+# The code generator emits signatures only for the files it generates
+# (sig/infrastructure.rbs, sig/vendor.rbs and the per-model/per-api files under
+# sig/zitadel/). The bespoke, keep-listed sources have no generated signature,
+# so their types are declared here:
+#   - lib/zitadel/client/zitadel.rb            (the `Zitadel` facade)
+#   - lib/zitadel/client/zitadel_error.rb      (`ZitadelError`)
+#   - lib/zitadel/client/utils/url_util.rb     (`Utils::UrlUtil`)
+#   - lib/zitadel/client/auth/*.rb             (the bespoke authenticators)
+#
+# This file also provides the plain `module Zitadel` / `module Client` namespace
+# anchor. Every generated signature uses the qualified `module Zitadel::Client`
+# form, and RBS only resolves `::Zitadel::...` references once the outer
+# namespace is declared with the nested form.
+#
+# Types owned by the generated signatures (Configuration, ApiClient, ApiError,
+# TransportOptions, module Api, module Models, VERSION, Auth::Authenticator,
+# Auth::BaseAuthenticator, Auth::HttpAwareAuthenticator) are intentionally NOT
+# redeclared here.
 module Zitadel
-
   module Client
-
-    VERSION: String
-
-    module Models
-
+    class ZitadelError < StandardError
     end
 
     module Utils
       class UrlUtil
-
-        def self.build_hostname: (String) -> String
+        def self.build_hostname: (String host) -> String
       end
-    end
-
-    module Api
-      class FeatureServiceApi
-        def initialize: (ApiClient) -> void
-      end
-
-      class IdentityProviderServiceApi
-        def initialize: (ApiClient) -> void
-      end
-
-      class OIDCServiceApi
-        def initialize: (ApiClient) -> void
-      end
-
-      class OrganizationServiceApi
-        def initialize: (ApiClient) -> void
-      end
-
-      class SessionServiceApi
-        def initialize: (ApiClient) -> void
-      end
-
-      class SettingsServiceApi
-        def initialize: (ApiClient) -> void
-      end
-
-      class UserServiceApi
-        def initialize: (ApiClient) -> void
-      end
-
-      class WebKeyServiceApi
-        def initialize: (ApiClient) -> void
-      end
-
-      class ActionServiceApi
-        def initialize: (ApiClient) -> void
-      end
-
-      class SAMLServiceApi
-        def initialize: (ApiClient) -> void
-      end
-
-      # Beta Service APIs
-      class BetaProjectServiceApi
-        def initialize: (ApiClient) -> void
-      end
-
-      class BetaAppServiceApi
-        def initialize: (ApiClient) -> void
-      end
-
-      class BetaOIDCServiceApi
-        def initialize: (ApiClient) -> void
-      end
-
-      class BetaUserServiceApi
-        def initialize: (ApiClient) -> void
-      end
-
-      class BetaOrganizationServiceApi
-        def initialize: (ApiClient) -> void
-      end
-
-      class BetaSettingsServiceApi
-        def initialize: (ApiClient) -> void
-      end
-
-      class BetaInternalPermissionServiceApi
-        def initialize: (ApiClient) -> void
-      end
-
-      class BetaAuthorizationServiceApi
-        def initialize: (ApiClient) -> void
-      end
-
-      class BetaSessionServiceApi
-        def initialize: (ApiClient) -> void
-      end
-
-      class BetaInstanceServiceApi
-        def initialize: (ApiClient) -> void
-      end
-
-      class BetaTelemetryServiceApi
-        def initialize: (ApiClient) -> void
-      end
-
-      class BetaFeatureServiceApi
-        def initialize: (ApiClient) -> void
-      end
-
-      class BetaWebKeyServiceApi
-        def initialize: (ApiClient) -> void
-      end
-
-      class BetaActionServiceApi
-        def initialize: (ApiClient) -> void
-      end
-    end
-
-    class Configuration
-      USER_AGENT: String
-
-      @@default: Configuration
-
-      attr_reader authenticator: Auth::Authenticator
-      attr_accessor debugging: bool
-      attr_accessor logger: untyped
-      attr_accessor temp_folder_path: String
-      attr_accessor timeout: Integer
-      attr_accessor client_side_validation: bool
-      attr_accessor user_agent: String
-      attr_accessor verify_ssl: bool
-      attr_accessor verify_ssl_host: bool
-      attr_accessor ssl_ca_cert: String?
-      attr_accessor cert_file: String?
-      attr_accessor key_file: String?
-      attr_accessor params_encoding: Symbol?
-      attr_accessor default_headers: Hash[String, String]
-      attr_accessor proxy_url: String?
-
-      def self.default: () -> Configuration
-
-      def initialize: (?Auth::Authenticator) ?{ (Configuration) -> untyped } -> void
-
-      def configure: () ?{ (Configuration) -> untyped } -> void
-
-    end
-
-    class ApiClient
-
-      @config: Configuration
-      @default_headers: Hash[String, String]
-      @user_agent: String
-
-      attr_accessor config: Configuration
-
-      attr_accessor default_headers: Hash[String, String]
-
-      def initialize: (?Configuration) -> void
-
-      def self.default: () -> untyped
-
-      def call_api: (untyped http_method, untyped path, ?::Hash[untyped, untyped] opts) -> ::Array[untyped]
-
-      def build_request: (Symbol http_method, String path, Hash[Symbol, untyped] opts) -> Typhoeus::Request
-
-      def build_request_body: (untyped header_params, untyped form_params, untyped body) -> untyped
-
-      def download_file: (untyped request) ?{ (untyped) -> untyped } -> untyped
-
-      def ensure_tempfile: (::Tempfile?) -> ::Tempfile
-
-      def json_mime?: (untyped mime) -> untyped
-
-      def deserialize: (untyped response, untyped return_type) -> (nil | untyped)
-
-      def convert_to_type: (untyped data, untyped return_type) -> (nil | untyped)
-
-      def sanitize_filename: (untyped filename) -> untyped
-
-      def select_header_accept: (untyped accepts) -> (nil | untyped)
-
-      def select_header_content_type: (untyped content_types) -> (nil | untyped)
-
-      def object_to_http_body: (untyped model) -> untyped
-
-      def object_to_hash: (untyped obj) -> untyped
-
-      def build_collection_param: (untyped param, untyped collection_format) -> untyped
-    end
-
-    class ZitadelError < StandardError
-      def initialize: (String) -> void
-    end
-
-    #
-    # Represents an HTTP error returned from the Zitadel API.
-    #
-    # This class captures the HTTP status code, headers, and body,
-    # and provides a helpful string representation for debugging.
-    #
-    class ApiError < ZitadelError
-      attr_reader code: Integer
-      attr_reader response_headers: Hash[String, Array[String]]
-      attr_reader response_body: String | Typhoeus::Response
-
-      def initialize: (Integer, Hash[String, Array[String]], String | Typhoeus::Response) -> void
-    end
-
-    class TransportOptions
-      attr_reader default_headers: Hash[String, String]
-      attr_reader ca_cert_path: String?
-      attr_reader insecure: bool
-      attr_reader proxy_url: String?
-      def initialize: (?default_headers: Hash[String, String], ?ca_cert_path: String?, ?insecure: bool, ?proxy_url: String?) -> void
-      def self.defaults: -> TransportOptions
-      def to_connection_opts: -> Hash[Symbol, untyped]
     end
 
     module Auth
-
-      class Authenticator
-
-        @host: String
-
-        attr_reader host: String
-
-        def initialize: (String) -> void
-
-        def auth_headers: () -> Hash[String, String]
-      end
-
-      class ClientCredentialsAuthenticator < OAuthAuthenticator
-
-        def initialize: (OpenId, String, String, Set[String], ?transport_options: TransportOptions?) -> void
-
-        def get_grant: (OAuth2::Client, String) -> OAuth2::AccessToken
-
-        def self.builder: (String, String, String, ?transport_options: TransportOptions?) -> ClientCredentialsAuthenticatorBuilder
-
-        class ClientCredentialsAuthenticatorBuilder < OAuthAuthenticatorBuilder
-          @client_id: String
-          @client_secret: String
-
-          def initialize: (String, String, String, ?transport_options: TransportOptions?) -> void
-
-          def build: -> ClientCredentialsAuthenticator
-        end
-
-      end
-
-      class NoAuthAuthenticator < Authenticator
-
-        def initialize: (?String) -> void
-
-        def auth_headers: () -> Hash[String, String]
-      end
-
-      class OAuthAuthenticatorBuilder
-        @auth_scopes: Set[String]
-        @open_id: OpenId
-
-        attr_reader open_id: OpenId
-        attr_reader auth_scopes: Set[String]
-
-        def initialize: (String, ?transport_options: TransportOptions?) -> void
-
-        def scopes: (*String) -> self
-      end
-
-      class OAuthAuthenticator < Authenticator
-        @auth_session: OAuth2::Client
-        @mutex: Thread::Mutex
-        @open_id: OpenId
-        @token: OAuth2::AccessToken
-        @auth_scopes: String
-        @transport_options: TransportOptions
-
-        def initialize: (OpenId, Set[String], OAuth2::Client, ?transport_options: TransportOptions?) -> void
-
-        def auth_token: () -> String
-
-        def auth_headers: () -> Hash[String, String]
-
-        def get_grant: (OAuth2::Client, String) -> OAuth2::AccessToken
-
-        def refresh_token: () -> OAuth2::AccessToken
-      end
-
       class OpenId
-        @host_endpoint: String
-        @token_endpoint: String
-
         attr_accessor host_endpoint: String
         attr_accessor token_endpoint: String
 
-        def initialize: (String, ?transport_options: TransportOptions?) -> void
+        def initialize: (String hostname, ?transport_options: TransportOptions?) -> void
 
-        def self.build_well_known_url: (String) -> String
+        def self.build_well_known_url: (String hostname) -> String
+
+        private
+
+        def fetch_token_endpoint: (URI::Generic uri, TransportOptions transport_options) -> String
+
+        def build_http_client: (URI::Generic uri, TransportOptions transport_options) -> Net::HTTP
+
+        def new_http: (URI::Generic uri, String? proxy) -> Net::HTTP
+
+        def configure_tls: (Net::HTTP http, TransportOptions transport_options) -> void
       end
 
-      class PersonalAccessTokenAuthenticator < Authenticator
-        @token: String
+      class NoAuthAuthenticator < BaseAuthenticator
+        attr_reader host: String
 
-        def initialize: (String, String) -> void
+        def initialize: (?String host) -> void
 
-        def auth_headers: -> Hash[String, String]
+        def auth_headers: () -> Hash[String, String]
+      end
+
+      class PersonalAccessTokenAuthenticator < BaseAuthenticator
+        attr_reader host: String
+
+        def initialize: (String host, String token) -> void
+
+        def auth_headers: () -> Hash[String, String]
+
+        def inspect: () -> String
+
+        def to_s: () -> String
+
+        def self.build_hostname: (String host) -> String
+      end
+
+      class OAuthAuthenticator < BaseAuthenticator
+        include HttpAwareAuthenticator
+
+        REFRESH_SKEW_SECONDS: Integer
+
+        def initialize: (OpenId open_id, String client_id, String scope) -> void
+
+        def api_client=: (ApiClient client) -> void
+
+        def host: () -> String
+
+        def auth_headers: () -> Hash[String, String]
+
+        def auth_token: () -> String
+
+        def inspect: () -> String
+
+        def to_s: () -> String
+
+        def grant_type: () -> String
+
+        def access_token_options: () -> Hash[String, String]
+
+        def refresh_token: () -> String
+
+        def post_token_request: () -> ApiHttpResponse
+
+        def require_api_client!: () -> void
+
+        def parse_token_response: (ApiHttpResponse response) -> Hash[String, untyped]
+
+        def decode_token_payload: (ApiHttpResponse response) -> untyped
+
+        def token_error: (String detail, ApiHttpResponse response) -> ApiError
+
+        def expires_at_from: (untyped expires_in) -> Float
+      end
+
+      class OAuthAuthenticatorBuilder
+        DEFAULT_SCOPES: Array[String]
+
+        attr_reader open_id: OpenId
+        attr_reader auth_scopes: Set[String]
+        attr_reader transport_options: TransportOptions
+
+        def initialize: (String host, ?transport_options: TransportOptions?) -> void
+
+        def scopes: (*String auth_scopes) -> self
+      end
+
+      class ClientCredentialsAuthenticator < OAuthAuthenticator
+        GRANT_TYPE: String
+
+        def initialize: (OpenId open_id, String client_id, String client_secret, Set[String] auth_scopes) -> void
+
+        def self.builder: (String host, String client_id, String client_secret, ?transport_options: TransportOptions?) -> ClientCredentialsAuthenticatorBuilder
+
+        def grant_type: () -> String
+
+        def access_token_options: () -> Hash[String, String]
+
+        class ClientCredentialsAuthenticatorBuilder < OAuthAuthenticatorBuilder
+          def initialize: (String host, String client_id, String client_secret, ?transport_options: TransportOptions?) -> void
+
+          def build: () -> ClientCredentialsAuthenticator
+        end
       end
 
       class WebTokenAuthenticator < OAuthAuthenticator
-        @jwt_algorithm: String
-        @jwt_audience: String
-        @jwt_issuer: String
-        @jwt_lifetime: Integer
-        @jwt_subject: String
-        @key_id: String?
-        @private_key: OpenSSL::PKey::RSA
+        GRANT_TYPE: String
 
-        def self.builder: (String, String, String, ?transport_options: TransportOptions?) -> WebTokenAuthenticatorBuilder
+        class JwtAssertion
+          attr_reader issuer: String
+          attr_reader subject: String
+          attr_reader audience: String
+          attr_reader private_key: OpenSSL::PKey::RSA
+          attr_reader lifetime: Integer
+          attr_reader algorithm: String
+          attr_reader key_id: String?
 
-        def self.from_json: (String, String, ?transport_options: TransportOptions?) -> WebTokenAuthenticator
+          def self.new: (issuer: String, subject: String, audience: String, private_key: OpenSSL::PKey::RSA, lifetime: Integer, algorithm: String, key_id: String?) -> JwtAssertion
+        end
 
-        def get_grant: (OAuth2::Client, String) -> OAuth2::AccessToken
+        def initialize: (OpenId open_id, String client_id, Set[String] auth_scopes, JwtAssertion assertion) -> void
 
-        def initialize: (OpenId, Set[String], String, String, String, (String | OpenSSL::PKey::PKey), ?jwt_lifetime: Integer, ?jwt_algorithm: String, ?key_id: String?, ?transport_options: TransportOptions?) -> void
+        def self.from_json: (String host, String json_path, ?transport_options: TransportOptions?) -> WebTokenAuthenticator
+
+        def self.parse_json_file: (String json_path) -> untyped
+
+        def self.builder: (String host, String user_id, String private_key, ?transport_options: TransportOptions?) -> WebTokenAuthenticatorBuilder
+
+        def grant_type: () -> String
+
+        def access_token_options: () -> Hash[String, String]
+
+        def encode_assertion: (JwtAssertion assertion) -> String
 
         class WebTokenAuthenticatorBuilder < OAuthAuthenticatorBuilder
-          @jwt_audience: String
-          @jwt_issuer: String
-          @jwt_lifetime: Integer
-          @jwt_subject: String
-          @key_id: String
-          @private_key: String
+          def initialize: (String host, String user_id, String private_key, ?transport_options: TransportOptions?) -> void
 
-          def initialize: (String, String, String, String, String, ?transport_options: TransportOptions?) -> void
+          def token_lifetime_seconds: (Integer seconds) -> self
 
-          def build: -> WebTokenAuthenticator
+          def jwt_algorithm: (String jwt_algorithm) -> self
 
-          def key_identifier: (String) -> self
+          def key_identifier: (String? key_id) -> self
 
-          def token_lifetime_seconds: (Integer) -> self
+          def build: () -> WebTokenAuthenticator
         end
       end
     end
-
-    class Zitadel
-
-      def self.with_access_token: (String, String, ?transport_options: TransportOptions?) ?{ (Configuration) -> void } -> Zitadel
-
-      def self.with_client_credentials: (String, String, String, ?transport_options: TransportOptions?) ?{ (Configuration) -> void } -> Zitadel
-
-      def self.with_private_key: (String, String, ?transport_options: TransportOptions?) ?{ (Configuration) -> void } -> Zitadel
-
-      private
-
-      def self.apply_transport_options: (Configuration, TransportOptions) -> void
-
-      public
-
-      attr_reader configuration: Configuration
-      attr_reader features: Api::FeatureServiceApi
-      attr_reader idps: Api::IdentityProviderServiceApi
-      attr_reader oidc: Api::OIDCServiceApi
-      attr_reader organizations: Api::OrganizationServiceApi
-      attr_reader saml: Api::SAMLServiceApi
-      attr_reader sessions: Api::SessionServiceApi
-      attr_reader settings: Api::SettingsServiceApi
-      attr_reader users: Api::UserServiceApi
-      attr_reader webkeys: Api::WebKeyServiceApi
-      attr_reader actions: Api::ActionServiceApi
-      attr_reader beta_projects: Api::BetaProjectServiceApi
-      attr_reader beta_apps: Api::BetaAppServiceApi
-      attr_reader beta_oidc: Api::BetaOIDCServiceApi
-      attr_reader beta_users: Api::BetaUserServiceApi
-      attr_reader beta_organizations: Api::BetaOrganizationServiceApi
-      attr_reader beta_settings: Api::BetaSettingsServiceApi
-      attr_reader beta_permissions: Api::BetaInternalPermissionServiceApi
-      attr_reader beta_authorizations: Api::BetaAuthorizationServiceApi
-      attr_reader beta_sessions: Api::BetaSessionServiceApi
-      attr_reader beta_instance: Api::BetaInstanceServiceApi
-      attr_reader beta_telemetry: Api::BetaTelemetryServiceApi
-      attr_reader beta_features: Api::BetaFeatureServiceApi
-      attr_reader beta_webkeys: Api::BetaWebKeyServiceApi
-      attr_reader beta_actions: Api::BetaActionServiceApi
-
-      def initialize: (Auth::Authenticator) ?{ (Configuration) -> void } -> void
-
-    end
-
   end
 end

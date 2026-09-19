@@ -1,0 +1,12 @@
+module Zitadel::Client::Models
+  class BetaInternalPermissionServiceTimestampFilterMethod
+    TIMESTAMP_FILTER_METHOD_EQUALS: String
+    TIMESTAMP_FILTER_METHOD_GREATER: String
+    TIMESTAMP_FILTER_METHOD_GREATER_OR_EQUALS: String
+    TIMESTAMP_FILTER_METHOD_LESS: String
+    TIMESTAMP_FILTER_METHOD_LESS_OR_EQUALS: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

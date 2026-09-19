@@ -33,12 +33,40 @@ module Zitadel
         end
 
         def after_all
-          @mock_server&.stop
+          @mock_server.stop
           super
         end
 
         # Helper for subclasses to access the OAuth host.
         attr_reader :oauth_host
+
+        # Injects a real SDK transport into the authenticator, mirroring what
+        # Zitadel::Client::Client does for HttpAwareAuthenticator instances.
+        #
+        # The bespoke OAuth authenticators require the shared ApiClient before
+        # they can perform token exchange against the mock OAuth2 server.
+        #
+        # @param authenticator [HttpAwareAuthenticator]
+        # @return [HttpAwareAuthenticator] the same authenticator, for chaining
+        def inject_api_client(authenticator)
+          authenticator.api_client =
+            ::Zitadel::Client::DefaultApiClient.new(::Zitadel::Client::TransportOptions.builder.build)
+          authenticator
+        end
+
+        ##
+        # Verifies that the cached access token is masked in both #inspect and #to_s.
+        #
+        # @return [void]
+        def test_redacts_secret
+          secret = 'super-secret-credential-value'
+          auth = OAuthAuthenticator.new(OpenId.allocate, 'visible-client-id', 'openid')
+          auth.instance_variable_set(:@access_token, secret)
+
+          rendered = auth.inspect + auth.to_s
+          refute_includes rendered, secret
+          assert_includes rendered, '***'
+        end
       end
     end
   end

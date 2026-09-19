@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class IdentityProviderServiceSAMLBinding
+    SAML_BINDING_UNSPECIFIED: String
+    SAML_BINDING_POST: String
+    SAML_BINDING_REDIRECT: String
+    SAML_BINDING_ARTIFACT: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

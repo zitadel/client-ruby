@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class BetaWebKeyServiceECDSACurve
+    ECDSA_CURVE_UNSPECIFIED: String
+    ECDSA_CURVE_P256: String
+    ECDSA_CURVE_P384: String
+    ECDSA_CURVE_P512: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

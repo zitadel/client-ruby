@@ -1,0 +1,12 @@
+module Zitadel::Client::Models
+  class BetaWebKeyServiceState
+    STATE_UNSPECIFIED: String
+    STATE_INITIAL: String
+    STATE_ACTIVE: String
+    STATE_INACTIVE: String
+    STATE_REMOVED: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end
