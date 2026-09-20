@@ -70,9 +70,9 @@ base64 text from the wire. The transport layer base64-decodes on
 read and base64-encodes (strict, no line breaks) on write.
 
 ```ruby
-model = Zitadel::Client::ObjectSerializer.deserialize(json, 'ActionServiceActivatePublicKeyRequest')
-model.some_byte_property.encoding  # => #<Encoding:ASCII-8BIT>
-File.binwrite('thumb.jpg', model.some_byte_property)
+model = Zitadel::Client::ObjectSerializer.deserialize(json, 'ActionServiceAddPublicKeyRequest')
+model.public_key.encoding  # => #<Encoding:ASCII-8BIT>
+File.binwrite('out.bin', model.public_key)
 ```
 
 Assigning a non-base64 string when serializing raises

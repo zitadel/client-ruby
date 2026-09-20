@@ -14,15 +14,15 @@ require 'zitadel-client'
 # snake_case attributes carrying the camelCase wire name in ATTRIBUTE_MAP.
 class MultipartModelPart < Dry::Struct
   ATTRIBUTE_MAP = {
-    is_primary: 'isPrimary',
-    taken_at: 'takenAt'
+    is_enabled: 'isEnabled',
+    recorded_at: 'recordedAt'
   }.freeze
 
   JSON_KEY_MAP = ATTRIBUTE_MAP.invert.freeze
 
   OPENAPI_TYPES = {
-    is_primary: 'Boolean',
-    taken_at: 'Time'
+    is_enabled: 'Boolean',
+    recorded_at: 'Time'
   }.freeze
 
   OPENAPI_FORMATS = {}.freeze
@@ -31,8 +31,8 @@ class MultipartModelPart < Dry::Struct
     JSON_KEY_MAP[key.to_s] || key.to_sym
   end
 
-  attribute :is_primary, Types::Any.optional.meta(omittable: true)
-  attribute :taken_at, Types::Any.optional.meta(omittable: true)
+  attribute :is_enabled, Types::Any.optional.meta(omittable: true)
+  attribute :recorded_at, Types::Any.optional.meta(omittable: true)
 end
 
 describe Zitadel::Client::DefaultApiClient do
@@ -391,10 +391,10 @@ describe Zitadel::Client::DefaultApiClient do
   #
   # A model passed as a multipart form field must be JSON-encoded through the
   # configured ObjectSerializer, NOT JSON.generate(value.to_hash). Dry::Struct
-  # #to_hash yields snake_case attribute names (is_primary/taken_at) and raw
+  # #to_hash yields snake_case attribute names (is_enabled/recorded_at) and raw
   # Time/Date/Duration values, so a naive generate would emit the wrong wire
   # keys and an unformatted date-time. Routing through ObjectSerializer.serialize
-  # produces the same wire keys (isPrimary/takenAt) and date-time formatting as
+  # produces the same wire keys (isEnabled/recordedAt) and date-time formatting as
   # the JSON-body path. A model is sent as the "metadata" part — here we build
   # that part directly and assert the wire form.
   it 'serialises a multipart model part with wire keys and formatted date-time' do
@@ -406,8 +406,8 @@ describe Zitadel::Client::DefaultApiClient do
       end
     end
     metadata = MultipartModelPart.new(
-      is_primary: true,
-      taken_at: Time.utc(2020, 1, 2, 3, 4, 5, 123_000)
+      is_enabled: true,
+      recorded_at: Time.utc(2020, 1, 2, 3, 4, 5, 123_000)
     )
     client = Zitadel::Client::DefaultApiClient.new
     client.stub(:build_connection, stub_connection(stubs)) do
@@ -415,12 +415,12 @@ describe Zitadel::Client::DefaultApiClient do
     end
     body_str = captured_body.to_s.dup.force_encoding(Encoding::UTF_8)
     # Wire property names, not the snake_case Ruby attribute names.
-    _(body_str).must_include '"isPrimary":true'
-    _(body_str).must_include '"takenAt"'
-    _(body_str).wont_include 'is_primary'
-    _(body_str).wont_include 'taken_at'
+    _(body_str).must_include '"isEnabled":true'
+    _(body_str).must_include '"recordedAt"'
+    _(body_str).wont_include 'is_enabled'
+    _(body_str).wont_include 'recorded_at'
     # The date-time carries the SDK's millisecond-precision wire format.
-    _(body_str).must_include '"takenAt":"2020-01-02T03:04:05.123'
+    _(body_str).must_include '"recordedAt":"2020-01-02T03:04:05.123'
     # The part still declares application/json.
     _(body_str).must_include 'Content-Type: application/json'
     stubs.verify_stubbed_calls

@@ -17,24 +17,10 @@ require 'time'
 require 'tod'
 
 module Zitadel::Client
-  # Exception raised when serialization or deserialization fails.
-  class SerializationError < ZitadelError
-    attr_reader :cause
-
-    def initialize(message, cause = nil)
-      super(message)
-      @cause = cause
-    end
-  end
-
-  # Exception raised when data does not match a schema during oneOf/anyOf resolution.
-  class SchemaMismatchError < ZitadelError; end
-
-  # Canonical RFC 4122 UUID textual form. Validated on both the
-  # deserialize and serialize paths for any `format: uuid` property.
-  # Stdlib-only — no `uuid` gem dependency required.
-  UUID_REGEX = /\A\h{8}-\h{4}-\h{4}-\h{4}-\h{12}\z/
-
+  # NOTE: ObjectSerializer is declared first on purpose. Zeitwerk resolves
+  # this file to the first constant it declares, so a helper class above
+  # this point would take the file's name and leave ObjectSerializer
+  # unreachable — `Zitadel::Client::ObjectSerializer` raised NameError.
   # Handles JSON serialization and deserialization for API requests and responses.
   #
   # All serde operations in the generated client route through this class.
@@ -637,4 +623,19 @@ module Zitadel::Client
 
     private_class_method :sanitize_for_serialization, :deserialize_model
   end
+
+  # Exception raised when serialization or deserialization fails.
+  class SerializationError < ZitadelError
+    attr_reader :cause
+    def initialize(message, cause = nil)
+      super(message)
+      @cause = cause
+    end
+  end
+  # Exception raised when data does not match a schema during oneOf/anyOf resolution.
+  class SchemaMismatchError < ZitadelError; end
+  # Canonical RFC 4122 UUID textual form. Validated on both the
+  # deserialize and serialize paths for any `format: uuid` property.
+  # Stdlib-only — no `uuid` gem dependency required.
+  UUID_REGEX = /\A\h{8}-\h{4}-\h{4}-\h{4}-\h{12}\z/
 end
