@@ -34,7 +34,7 @@ lib/zitadel/client/api/user_service_api.rb
 lib/zitadel/client/api/web_key_service_api.rb
 lib/zitadel/client/api_client.rb
 lib/zitadel/client/api_error.rb
-lib/zitadel/client/api_response.rb
+lib/zitadel/client/api_http_response.rb
 lib/zitadel/client/api_result.rb
 lib/zitadel/client/auth/authenticator.rb
 lib/zitadel/client/auth/base_authenticator.rb
