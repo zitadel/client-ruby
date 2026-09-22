@@ -15,13 +15,13 @@ Gem::Specification.new do |s|
   s.name        = 'zitadel-client'
   s.version     = Zitadel::Client::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ['OpenAPI-Generator']
+  s.authors     = ['Zitadel']
   s.summary     = 'Zitadel SDK Ruby Gem'
   s.description = 'The Zitadel SDK is a convenience wrapper around the Zitadel ' \
                   'APIs to assist you in integrating with your Zitadel ' \
                   'environment. This SDK enables you to handle resources, ' \
                   'settings, and configurations within the Zitadel platform.'
-  s.license     = 'MIT'
+  s.license     = 'Apache-2.0'
   s.required_ruby_version = '>= 3.4'
   s.metadata['rubygems_mfa_required'] = 'true'
 
