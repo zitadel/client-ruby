@@ -9,9 +9,10 @@ require_relative '../lib/zitadel_client'
 # The SDK uses lazy Zeitwerk autoloading. The generator-owned unit tests
 # exercise classes (e.g. ValueSerializer) that reference sibling constants
 # (e.g. ObjectSerializer) which only resolve once Zeitwerk has loaded them.
-# Eager-load every registered loader so all constants are available without
-# relying on autoload trigger ordering during the tests.
-Zeitwerk::Registry.loaders.each(&:eager_load)
+# Eager-load the whole gem so all constants are available without relying on
+# autoload trigger ordering, and so a file that declares a constant other than
+# the one its path implies fails every test run.
+Zeitwerk::Loader.eager_load_all
 
 Warning.ignore(:method_redefined, __dir__)
 Dotenv.load('.env')

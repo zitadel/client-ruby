@@ -7,12 +7,18 @@
 
 # --- bespoke authenticators (ported onto the generated Authenticator / ApiClient contract) ---
 lib/zitadel/client/auth/client_credentials_authenticator.rb
+lib/zitadel/client/auth/client_credentials_authenticator_builder.rb
 lib/zitadel/client/auth/no_auth_authenticator.rb
 lib/zitadel/client/auth/o_auth_authenticator.rb
 lib/zitadel/client/auth/o_auth_authenticator_builder.rb
 lib/zitadel/client/auth/open_id.rb
 lib/zitadel/client/auth/personal_access_token_authenticator.rb
 lib/zitadel/client/auth/web_token_authenticator.rb
+lib/zitadel/client/auth/web_token_authenticator_builder.rb
+# The OAuth2 error types the authenticators raise. The generator only emits
+# them inside its own OAuth2 token manager, which this spec does not use.
+lib/zitadel/client/errors/oauth2_server_error.rb
+lib/zitadel/client/errors/oauth2_token_error.rb
 
 # --- bespoke support classes (error base, dual entrypoints, Zeitwerk inflector, RBS trees) ---
 # zitadel-client.rb is the gem-name entrypoint shim delegating to the Zeitwerk

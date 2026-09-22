@@ -19,39 +19,22 @@ module Zeitwerk
     attr_accessor inflector: Inflector
     def push_dir: (String dir, ?namespace: Module) -> void
     def setup: () -> void
+    def self.eager_load_all: () -> void
   end
 end
 
-# Top-level Zeitwerk inflector defined in lib/zitadel_inflector.rb.
-class ZitadelInflector < Zeitwerk::Inflector
-  IGNORED_DECLARATIONS: Array[String]
+# Zeitwerk inflector defined in lib/zitadel_inflector.rb.
+module Zitadel
+  class Inflector < Zeitwerk::Inflector
+    IGNORED_DECLARATIONS: Array[String]
 
-  DECLARATION: Regexp
+    DECLARATION: Regexp
 
-  def camelize: (String basename, String abspath) -> String
+    def camelize: (String basename, String abspath) -> String
 
-  def leaf_constant: (String abspath) -> String?
+    def leaf_constant: (String abspath) -> String?
 
-  def each_declaration: (String abspath) -> Array[[String, String]]
-end
-
-# Additional Net::HTTP surface used by lib/zitadel/client/auth/open_id.rb
-# (the proxy-aware constructor, TLS configuration setters and the GET request).
-module Net
-  class HTTP
-    def self.new: (String? address, Integer? port, ?String? proxy_address, ?Integer? proxy_port, ?String? proxy_user, ?String? proxy_pass) -> HTTP
-
-    def use_ssl=: (bool) -> void
-
-    def verify_mode=: (Integer?) -> void
-
-    def cert_store=: (OpenSSL::X509::Store) -> void
-
-    def request: (untyped request) -> untyped
-
-    class Get < HTTPRequest
-      def self.new: (URI::Generic | String) -> HTTPRequest
-    end
+    def each_declaration: (String abspath) -> Array[[String, String]]
   end
 end
 
@@ -66,4 +49,7 @@ end
 # The jwt gem, used by lib/zitadel/client/auth/web_token_authenticator.rb.
 module JWT
   def self.encode: (untyped payload, untyped key, ?String? algorithm, ?Hash[untyped, untyped] header_fields) -> String
+
+  class EncodeError < StandardError
+  end
 end

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+
 # Test for WebTokenAuthenticator to verify JWT token refresh functionality using the builder.
 # Extends the base OAuthAuthenticatorTest class.
 #
@@ -10,6 +12,7 @@
 require 'test_helper'
 require 'minitest/autorun'
 require 'openssl'
+require 'tempfile'
 require 'time'
 require_relative 'oauth_authenticator_test'
 
@@ -46,7 +49,7 @@ module Zitadel
         # This verifies that the authenticator is capable of producing
         # a valid JWT access token under normal conditions.
         def test_access_token_is_not_empty
-          token = @authenticator.send(:auth_token)
+          token = @authenticator.auth_token
 
           refute_nil token
           refute_empty token
@@ -60,7 +63,7 @@ module Zitadel
         # This test confirms that token refresh behavior works correctly
         # and produces a valid, active token that has not yet expired.
         def test_refresh_token_returns_valid_token
-          token = @authenticator.send(:refresh_token)
+          token = @authenticator.refresh_token
 
           refute_nil token
         end
@@ -73,11 +76,11 @@ module Zitadel
         # This ensures that consumers of the authenticator can retrieve properly
         # formatted headers for authenticated HTTP requests.
         def test_auth_headers_contains_bearer_token
-          token = @authenticator.send(:refresh_token)
+          token = @authenticator.refresh_token
 
           expected = { 'Authorization' => "Bearer #{token}" }
 
-          assert_equal expected, @authenticator.send(:auth_headers)
+          assert_equal expected, @authenticator.auth_headers
         end
 
         ##
@@ -88,8 +91,8 @@ module Zitadel
         # This confirms that the authenticator does not cache or reuse tokens
         # and generates fresh credentials on demand.
         def test_refresh_token_produces_unique_tokens
-          token1 = @authenticator.send(:refresh_token)
-          token2 = @authenticator.send(:refresh_token)
+          token1 = @authenticator.refresh_token
+          token2 = @authenticator.refresh_token
 
           refute_equal token1, token2
         end
@@ -102,7 +105,7 @@ module Zitadel
         # This verifies that the `host` parameter passed into the builder
         # is correctly retained and exposed via the `#host` method.
         def test_authenticator_honors_supplied_host
-          assert_equal oauth_host, @authenticator.send(:host)
+          assert_equal oauth_host, @authenticator.host
         end
 
         ##
@@ -115,7 +118,7 @@ module Zitadel
           assertion = WebTokenAuthenticator::JwtAssertion.new(
             issuer: 'z', subject: 'z', audience: 'a', private_key: key, lifetime: 1, algorithm: 'RS256', key_id: nil
           )
-          auth = WebTokenAuthenticator.new(OpenId.allocate, 'zitadel', %w[openid].to_set, assertion)
+          auth = WebTokenAuthenticator.new(OpenId.new('https://example.zitadel.cloud'), 'openid', assertion)
           auth.instance_variable_set(:@access_token, 'super-secret-credential-value')
 
           rendered = auth.inspect + auth.to_s
@@ -123,7 +126,61 @@ module Zitadel
           refute_includes rendered, key.to_pem
           assert_includes rendered, '***'
         end
+
+        # Writes +content+ to a temporary key file and returns its path.
+        def key_file(content)
+          file = Tempfile.new(%w[zitadel-key .json])
+          file.write(content)
+          file.close
+          (@key_files ||= []) << file
+          file.path.to_s
+        end
+
+        def teardown
+          @key_files&.each(&:unlink)
+          super
+        end
+
+        def test_loads_key_file
+          pem = OpenSSL::PKey::RSA.new(2048).to_pem
+          path = key_file({ type: 'serviceaccount', keyId: 'key-1', userId: 'user-1', key: pem }.to_json)
+
+          authenticator = WebTokenAuthenticator.from_json('https://example.zitadel.cloud', path)
+
+          assert_equal 'https://example.zitadel.cloud', authenticator.host
+        end
+
+        def test_rejects_bad_key_file
+          host = 'https://example.zitadel.cloud'
+          missing = File.join(__dir__ || '.', 'absent-zitadel-key.json')
+          error = assert_raises(ArgumentError) { WebTokenAuthenticator.from_json(host, missing) }
+          assert_instance_of ArgumentError, error
+
+          ['not json', '[]', '{"userId":"user-1","keyId":"key-1"}',
+           '{"userId":"user-1","keyId":"key-1","key":"not a pem"}'].each do |content|
+            path = key_file(content)
+            error = assert_raises(ArgumentError) { WebTokenAuthenticator.from_json(host, path) }
+            assert_instance_of ArgumentError, error
+          end
+        end
+
+        def test_rejects_bad_builder_arguments
+          host = 'https://example.zitadel.cloud'
+          pem = OpenSSL::PKey::RSA.new(2048).to_pem
+          builder = WebTokenAuthenticator.builder(host, 'user-1', pem)
+
+          [
+            -> { WebTokenAuthenticator.builder(host, '', pem) },
+            -> { WebTokenAuthenticator.builder(host, 'user-1', 'not a pem') },
+            -> { builder.jwt_algorithm('HS256') },
+            -> { builder.token_lifetime_seconds(0) },
+            -> { builder.key_id('') }
+          ].each do |action|
+            assert_instance_of ArgumentError, assert_raises(ArgumentError) { action.call }
+          end
+        end
       end
     end
   end
 end
+# rubocop:enable Metrics/AbcSize, Metrics/MethodLength

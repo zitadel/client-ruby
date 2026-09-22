@@ -3,45 +3,38 @@
 module Zitadel
   module Client
     module Auth
+      ##
       # Personal Access Token Authenticator.
       #
       # Uses a static personal access token (PAT) for API authentication. A PAT
       # is a long-lived bearer credential minted out-of-band in the Zitadel
-      # console, so no token exchange is required: the token is attached verbatim
-      # on every request. This authenticator therefore extends
-      # {BaseAuthenticator} directly and does NOT need {HttpAwareAuthenticator}.
+      # console, so no token exchange is required: the token is attached
+      # verbatim on every request.
       class PersonalAccessTokenAuthenticator < BaseAuthenticator
-        # @return [String]
+        # @return [String] the normalised host endpoint
         attr_reader :host
 
-        # @param host [String] the base URL for the service.
-        # @param token [String] the personal access token.
+        ##
+        # @param host [String] the base URL for the API endpoints
+        # @param token [String] the personal access token
+        # @raise [ArgumentError] if the host is not a valid http or https URL or the token is empty
         def initialize(host, token)
           super()
-          @host = self.class.build_hostname(host)
-          @token = token
+          @host = OpenId.new(host).host_endpoint
+          @token = OAuthAuthenticatorBuilder.require_text(token, 'Token')
         end
 
-        # @return [Hash{String => String}]
+        # @return [Hash{String => String}] the Authorization header
         def auth_headers
           { 'Authorization' => "Bearer #{@token}" }
         end
 
-        # Mask the token so it never leaks through inspect / logging.
+        # Redacts the token.
         def inspect
           "#<#{self.class.name} host=#{@host.inspect} token=\"***\">"
         end
-        alias to_s inspect
 
-        # Normalises a host into an absolute base URL, defaulting to https.
-        # @param host [String]
-        # @return [String]
-        def self.build_hostname(host)
-          host = host.strip
-          # noinspection HttpUrlsUsage
-          host = "https://#{host}" unless host.start_with?('http://', 'https://')
-          host
-        end
+        alias to_s inspect
       end
     end
   end

@@ -60,7 +60,7 @@ module Zitadel
         # @return [void]
         def test_redacts_secret
           secret = 'super-secret-credential-value'
-          auth = OAuthAuthenticator.new(OpenId.allocate, 'visible-client-id', 'openid')
+          auth = OAuthAuthenticator.new(OpenId.new('https://example.zitadel.cloud'), 'openid')
           auth.instance_variable_set(:@access_token, secret)
 
           rendered = auth.inspect + auth.to_s

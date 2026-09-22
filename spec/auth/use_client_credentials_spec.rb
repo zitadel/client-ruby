@@ -13,7 +13,7 @@ require 'json'
 # endpoint works when authenticating via Client Credentials:
 #
 #  1. Retrieve general settings successfully with valid credentials
-#  2. Expect an ApiError when using invalid credentials
+#  2. Expect an OAuth2ServerError when using invalid credentials
 #
 # Each test runs in isolation: the client is instantiated in each example to
 # guarantee a clean, stateless call.
@@ -90,13 +90,14 @@ class UseClientCredentialsSpec < BaseSpec
     client.settings_service.get_general_settings({})
   end
 
-  it 'raises an ApiError with invalid credentials' do
+  it 'raises an OAuth2ServerError with invalid credentials' do
     authenticator = Zitadel::Client::Auth::ClientCredentialsAuthenticator
                     .builder(@base_url, 'invalid', 'invalid')
                     .build
     client = Zitadel::Client::Zitadel.with_authenticator(authenticator)
-    assert_raises(Zitadel::Client::ZitadelError) do
+    error = assert_raises(Zitadel::Client::Errors::OAuth2ServerError) do
       client.settings_service.get_general_settings({})
     end
+    assert_instance_of Zitadel::Client::Errors::OAuth2ServerError, error
   end
 end

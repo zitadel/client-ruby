@@ -33,8 +33,8 @@ module Zitadel
           auth = Auth::PersonalAccessTokenAuthenticator.new('https://api.example.com',
                                                             'my-secret-token')
 
-          assert_equal({ 'Authorization' => 'Bearer my-secret-token' }, auth.send(:auth_headers))
-          assert_equal('https://api.example.com', auth.send(:host))
+          assert_equal({ 'Authorization' => 'Bearer my-secret-token' }, auth.auth_headers)
+          assert_equal('https://api.example.com', auth.host)
         end
 
         ##
@@ -49,6 +49,15 @@ module Zitadel
             refute_includes rendered, secret
             assert_includes rendered, '***'
           end
+        end
+
+        def test_rejects_bad_arguments
+          error = assert_raises(ArgumentError) { Auth::PersonalAccessTokenAuthenticator.new('https://api.example.com', '') }
+          assert_instance_of ArgumentError, error
+          error = assert_raises(ArgumentError) do
+            Auth::PersonalAccessTokenAuthenticator.new('ftp://api.example.com', 'my-secret-token')
+          end
+          assert_instance_of ArgumentError, error
         end
       end
     end

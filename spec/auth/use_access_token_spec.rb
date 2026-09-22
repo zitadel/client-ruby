@@ -10,7 +10,7 @@ require_relative '../base_spec'
 # endpoint works when authenticating via a Personal Access Token:
 #
 #  1. Retrieve general settings successfully with a valid token
-#  2. Expect an ApiError when using an invalid token
+#  2. Expect an UnauthorizedError when using an invalid token
 #
 # Each test runs in isolation: the client is instantiated in each example to
 # guarantee a clean, stateless call.
@@ -21,11 +21,12 @@ class UseAccessTokenSpec < BaseSpec
     client.settings_service.get_general_settings({})
   end
 
-  it 'raises an ApiError with invalid token' do
+  it 'raises an UnauthorizedError with invalid token' do
     authenticator = Zitadel::Client::Auth::PersonalAccessTokenAuthenticator.new(@base_url, 'invalid')
     client = Zitadel::Client::Zitadel.with_authenticator(authenticator)
-    assert_raises(Zitadel::Client::ZitadelError) do
+    error = assert_raises(Zitadel::Client::Errors::UnauthorizedError) do
       client.settings_service.get_general_settings({})
     end
+    assert_instance_of Zitadel::Client::Errors::UnauthorizedError, error
   end
 end

@@ -95,9 +95,7 @@ module Zitadel
       # Builds a client-credentials SDK client against the given URL with the
       # supplied transport options, then returns the general settings response.
       def general_settings(url, transport_options)
-        authenticator = Auth::ClientCredentialsAuthenticator
-                        .builder(url, 'dummy-client', 'dummy-secret', transport_options: transport_options)
-                        .build
+        authenticator = Auth::ClientCredentialsAuthenticator.builder(url, 'dummy-client', 'dummy-secret').build
         zitadel = ::Zitadel::Client::Zitadel.with_authenticator(authenticator, transport_options)
         zitadel.settings_service.get_general_settings({})
       end
@@ -147,12 +145,13 @@ module Zitadel
       end
 
       def test_no_ca_cert_fails
-        assert_raises(StandardError) do
-          authenticator = Auth::ClientCredentialsAuthenticator
-                          .builder("https://#{@host}:#{@https_port}", 'dummy-client', 'dummy-secret')
-                          .build
-          ::Zitadel::Client::Zitadel.with_authenticator(authenticator)
-        end
+        authenticator = Auth::ClientCredentialsAuthenticator
+                        .builder("https://#{@host}:#{@https_port}", 'dummy-client', 'dummy-secret')
+                        .build
+        zitadel = ::Zitadel::Client::Zitadel.with_authenticator(authenticator)
+
+        error = assert_raises(Errors::NetworkError) { zitadel.settings_service.get_general_settings({}) }
+        assert_instance_of Errors::NetworkError, error
       end
     end
   end

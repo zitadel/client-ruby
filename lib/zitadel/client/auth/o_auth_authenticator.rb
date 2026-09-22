@@ -6,6 +6,7 @@ require 'uri'
 module Zitadel
   module Client
     module Auth
+      ##
       # Abstract base class for OAuth-based, token-minting authenticators.
       #
       # Mints a bearer token by POSTing an OAuth2 grant (client-credentials or a
@@ -15,194 +16,166 @@ module Zitadel
       # within the refresh skew of expiring.
       #
       # Token-minting requires an outbound HTTP call, so this class includes
-      # {HttpAwareAuthenticator}: the shared {ApiClient} is injected by the
-      # {Client} constructor and the token POST is sent through it. Sharing the
-      # SDK transport means token exchange honours the same proxy, TLS, timeout
-      # and redirect configuration as regular API calls.
+      # HttpAwareAuthenticator: the shared ApiClient is injected by the Zitadel
+      # constructor and both OpenID discovery and the token POST are sent
+      # through it. A token request fails with:
       #
-      # Subclasses contribute the +grant_type+ and the grant-specific token
-      # request parameters (scope, client_secret, assertion, ...).
+      # - RuntimeError when no ApiClient has been injected;
+      # - Errors::NetworkError or Errors::NetworkTimeoutError when no HTTP
+      #   response arrived;
+      # - Errors::OAuth2ServerError when the token endpoint answered with a
+      #   non-2xx status;
+      # - Errors::OAuth2TokenError when it answered 2xx without a usable access
+      #   token.
       class OAuthAuthenticator < BaseAuthenticator
         include HttpAwareAuthenticator
 
-        # Seconds before expiry at which a cached token is treated as stale and
-        # re-minted.
+        # Seconds before expiry at which a cached token is treated as stale.
         REFRESH_SKEW_SECONDS = 300
 
-        # @param open_id [OpenId] Resolved OpenID configuration (host + token endpoint).
-        # @param client_id [String] The OAuth2 client identifier.
-        # @param scope [String] Space-delimited scope string for the token request.
-        def initialize(open_id, client_id, scope)
+        # Headers sent with every token request.
+        TOKEN_REQUEST_HEADERS = {
+          'Content-Type' => 'application/x-www-form-urlencoded',
+          'Accept' => 'application/json'
+        }.freeze
+
+        # @return [String] the space-delimited scope string for the token request
+        attr_reader :scope
+
+        ##
+        # @param open_id [OpenId] the OpenID discovery helper for the target host
+        # @param scope [String] the space-delimited scope string for the token request
+        def initialize(open_id, scope)
           super()
           @open_id = open_id
-          @client_id = client_id
           @scope = scope
           @api_client = nil
           @access_token = nil
-          @expires_at = 0.0
+          @expires_at = nil
           @mutex = Thread::Mutex.new
         end
 
-        # Inject the shared API client used for the token exchange.
-        # @!attribute [w] api_client
-        #   @param client [ApiClient]
-        #   @return [void]
+        # @param client [ApiClient] the shared transport
         attr_writer :api_client
 
-        # @return [String]
+        # @return [String] the normalised host endpoint
         def host
           @open_id.host_endpoint
         end
 
-        # @return [Hash{String => String}]
+        # @return [Hash{String => String}] the Authorization header
         def auth_headers
           { 'Authorization' => "Bearer #{auth_token}" }
         end
 
-        # Return a valid access token, minting (or re-minting) one if the cache
+        ##
+        # Returns a valid access token, minting (or re-minting) one if the cache
         # is empty or within the refresh skew of expiring.
         #
-        # @return [String]
-        # @raise [ApiError] if the token cannot be obtained.
+        # @return [String] the access token
         def auth_token
           @mutex.synchronize do
-            if @access_token.nil? ||
-               (@expires_at != 0 && Time.now.to_f >= (@expires_at - REFRESH_SKEW_SECONDS))
-              refresh_token
-            end
-
-            raise ApiError.new(message: 'Token is nil even after attempting to refresh.') if @access_token.nil?
-
-            @access_token
+            @access_token.nil? || stale? ? mint_token : @access_token
           end
         end
 
-        # Mask the cached token so it never leaks through inspect / logging.
-        def inspect
-          masked = @access_token.nil? ? nil : '***'
-          "#<#{self.class.name} host=#{host.inspect} client_id=#{@client_id.inspect} " \
-            "scope=#{@scope.inspect} access_token=#{masked.inspect} expires_at=#{@expires_at.inspect}>"
+        ##
+        # Exchanges the configured grant for a fresh access token and caches it.
+        #
+        # @return [String] the freshly minted access token
+        def refresh_token
+          @mutex.synchronize { mint_token }
         end
+
+        # Redacts the cached access token.
+        def inspect
+          "#<#{self.class.name} host=#{host.inspect} scope=#{@scope.inspect} access_token=#{masked_token.inspect}>"
+        end
+
         alias to_s inspect
 
         protected
 
-        # The OAuth2 grant_type value sent in the token request.
-        # @return [String]
+        # @return [String] the OAuth2 grant_type value sent in the token request
         def grant_type
           raise NotImplementedError, "#{self.class}#grant_type must be implemented"
         end
 
-        # Grant-specific token-request parameters (e.g. scope, assertion).
-        # @return [Hash{String => String}]
-        def access_token_options
-          raise NotImplementedError, "#{self.class}#access_token_options must be implemented"
+        # @return [Hash{String => String}] grant-specific token-request parameters
+        def token_request_params
+          raise NotImplementedError, "#{self.class}#token_request_params must be implemented"
+        end
+
+        # @return [String, nil] '***' when a token is cached, nil otherwise
+        def masked_token
+          @access_token.nil? ? nil : '***'
         end
 
         private
 
-        # Exchange the configured grant for a fresh access token and cache it.
-        #
-        # POSTs an +application/x-www-form-urlencoded+ body to the token endpoint
-        # through the injected {ApiClient}. Wraps any failure in a {ZitadelError}
-        # so callers see a single catchable error type.
-        #
-        # @return [String] the freshly minted access token.
-        # @raise [ZitadelError] if the client is not yet injected or the exchange fails.
-        def refresh_token
+        def stale?
+          expires_at = @expires_at
+          !expires_at.nil? && Time.now.to_f >= expires_at - REFRESH_SKEW_SECONDS
+        end
+
+        def mint_token
           response = post_token_request
-          payload = parse_token_response(response)
+          status = response.status_code
+          raise server_error(status, response.body) unless status >= 200 && status < 300
 
-          @access_token = payload['access_token']
-          @expires_at = expires_at_from(payload['expires_in'])
-          @access_token
-        rescue ApiError, ZitadelError
-          raise
-        rescue StandardError => e
-          raise ZitadelError.new("Failed to refresh token: #{e.message}"), cause: e
+          payload = parse_object(response.body)
+          raise ::Zitadel::Client::Errors::OAuth2TokenError, 'Token response is not a JSON object' if payload.nil?
+
+          cache_token(payload)
         end
 
-        # POST the configured grant to the token endpoint through the injected
-        # client and return the raw response.
-        #
-        # @return [ApiResponse]
-        # @raise [ZitadelError] if no ApiClient has been injected.
+        def cache_token(payload)
+          access_token = payload['access_token']
+          unless access_token.is_a?(String) && !access_token.empty?
+            raise ::Zitadel::Client::Errors::OAuth2TokenError, 'Token response missing or empty access_token field'
+          end
+
+          expires_in = payload['expires_in']
+          @expires_at = expires_in.is_a?(Numeric) && expires_in.positive? ? Time.now.to_f + expires_in : nil
+          @access_token = access_token
+        end
+
         def post_token_request
-          require_api_client!
-          params = { 'grant_type' => grant_type }.merge(access_token_options)
-          @api_client.send_request(
-            'POST',
-            @open_id.token_endpoint,
-            { 'Content-Type' => 'application/x-www-form-urlencoded', 'Accept' => 'application/json' },
-            URI.encode_www_form(params),
-            # Never replay a token POST across a redirect — a malicious 307/308
-            # could otherwise leak the assertion/secret.
-            no_redirect: true
-          )
+          client = injected_api_client
+          params = { 'grant_type' => grant_type, 'scope' => @scope }.merge(token_request_params)
+          # never replay a token POST across a redirect: a malicious 307/308
+          # could otherwise leak the assertion or secret.
+          client.send_request(:POST, @open_id.token_endpoint(client), TOKEN_REQUEST_HEADERS,
+                              URI.encode_www_form(params), no_redirect: true)
         end
 
-        # @raise [ZitadelError] unless the shared ApiClient has been injected.
-        def require_api_client!
-          return unless @api_client.nil?
+        def injected_api_client
+          client = @api_client
+          return client unless client.nil?
 
-          raise ZitadelError,
-                'OAuthAuthenticator has no ApiClient; it must be used via ' \
-                'Zitadel::Client::Client, which injects the shared transport before any token exchange.'
+          raise 'OAuthAuthenticator has no ApiClient; use it through the Zitadel client, ' \
+                'which injects one before the first token request.'
         end
 
-        # Validate the token-endpoint response and return the decoded payload.
-        #
-        # @param response [ApiResponse]
-        # @return [Hash] the parsed JSON payload containing the access token.
-        # @raise [ApiError] on a non-2xx status, invalid JSON, or a missing access_token.
-        def parse_token_response(response)
-          if response.status_code < 200 || response.status_code >= 300
-            raise token_error("token endpoint returned HTTP #{response.status_code}", response)
+        def parse_object(body)
+          payload = JSON.parse(body)
+          payload.is_a?(Hash) ? payload : nil
+        rescue JSON::ParserError
+          nil
+        end
+
+        def server_error(status, body)
+          payload = parse_object(body)
+          code = payload&.fetch('error', nil)
+          if payload.nil? || !code.is_a?(String) || code.empty?
+            return ::Zitadel::Client::Errors::OAuth2ServerError.new(status, nil, nil, nil, body)
           end
 
-          payload = decode_token_payload(response)
-          unless payload.is_a?(Hash) && payload['access_token'].is_a?(String)
-            raise token_error('token endpoint response did not contain an access_token.', response)
-          end
-
-          payload
-        end
-
-        # Parse the response body as JSON, mapping a parse failure onto an {ApiError}.
-        #
-        # @param response [ApiResponse]
-        # @return [Object] the decoded JSON document.
-        # @raise [ApiError] if the body is not valid JSON.
-        def decode_token_payload(response)
-          JSON.parse(response.body)
-        rescue JSON::ParserError => e
-          raise token_error('token endpoint response was not valid JSON.', response), cause: e
-        end
-
-        # Build an {ApiError} describing a token-refresh failure.
-        #
-        # @param detail [String] human-readable failure detail.
-        # @param response [ApiResponse] the offending response.
-        # @return [ApiError]
-        def token_error(detail, response)
-          ApiError.new(
-            message: "Token refresh failed: #{detail}",
-            status_code: response.status_code,
-            response_headers: response.headers,
-            response_body: response.body
+          description = payload['error_description']
+          uri = payload['error_uri']
+          ::Zitadel::Client::Errors::OAuth2ServerError.new(
+            status, code, description.is_a?(String) ? description : nil, uri.is_a?(String) ? uri : nil, body
           )
-        end
-
-        # Compute the absolute expiry timestamp from an +expires_in+ value,
-        # falling back to +0.0+ (never expires) when it is absent or invalid.
-        #
-        # @param expires_in [Object] the token endpoint's expires_in field.
-        # @return [Float]
-        def expires_at_from(expires_in)
-          return 0.0 unless expires_in.is_a?(Numeric) && expires_in.positive?
-
-          lifetime = Float(expires_in) # : Float
-          Time.now.to_f + lifetime
         end
       end
     end

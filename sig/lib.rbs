@@ -4,10 +4,8 @@
 # (sig/infrastructure.rbs, sig/vendor.rbs and the per-model/per-api files under
 # sig/zitadel/). The bespoke, keep-listed sources have no generated signature,
 # so their types are declared here:
-#   - lib/zitadel/client/zitadel.rb            (the `Zitadel` facade)
-#   - lib/zitadel/client/zitadel_error.rb      (`ZitadelError`)
-#   - lib/zitadel/client/utils/url_util.rb     (`Utils::UrlUtil`)
 #   - lib/zitadel/client/auth/*.rb             (the bespoke authenticators)
+#   - lib/zitadel/client/errors/oauth2_*.rb    (the OAuth2 error types)
 #
 # This file also provides the plain `module Zitadel` / `module Client` namespace
 # anchor. Every generated signature uses the qualified `module Zitadel::Client`
@@ -20,33 +18,51 @@
 # redeclared here.
 module Zitadel
   module Client
-    class ZitadelError < StandardError
-    end
+    module Errors
+      class OAuth2ServerError < ::Zitadel::Client::ZitadelError
+        attr_reader status_code: Integer
+        attr_reader code: String?
+        attr_reader description: String?
+        attr_reader uri: String?
+        attr_reader raw_body: String
 
-    module Utils
-      class UrlUtil
-        def self.build_hostname: (String host) -> String
+        def initialize: (Integer status_code, String? code, String? description, String? uri, String raw_body) -> void
+
+        def self.build_message: (Integer status_code, String? code, String? description, String raw_body) -> String
+      end
+
+      class OAuth2TokenError < ::Zitadel::Client::ZitadelError
       end
     end
 
     module Auth
       class OpenId
-        attr_accessor host_endpoint: String
-        attr_accessor token_endpoint: String
+        WELL_KNOWN_PATH: String
+        STATUS_ERRORS: Hash[Integer, untyped]
 
-        def initialize: (String hostname, ?transport_options: TransportOptions?) -> void
+        attr_reader host_endpoint: String
 
-        def self.build_well_known_url: (String hostname) -> String
+        @well_known_url: String
+        @token_endpoint: String?
+        @mutex: Thread::Mutex
+
+        def initialize: (String? host) -> void
+
+        def token_endpoint: (ApiClient api_client) -> String
 
         private
 
-        def fetch_token_endpoint: (URI::Generic uri, TransportOptions transport_options) -> String
+        def normalise_host: (String? host) -> String
 
-        def build_http_client: (URI::Generic uri, TransportOptions transport_options) -> Net::HTTP
+        def validate_host: (String host) -> String
 
-        def new_http: (URI::Generic uri, String? proxy) -> Net::HTTP
+        def discover: (ApiClient api_client) -> String
 
-        def configure_tls: (Net::HTTP http, TransportOptions transport_options) -> void
+        def token_endpoint_from: (Hash[String, untyped] document, String url) -> String
+
+        def parse_document: (String body, String url) -> Hash[String, untyped]
+
+        def status_error: (Integer status, String message, ApiHttpResponse response) -> ApiError
       end
 
       class NoAuthAuthenticator < BaseAuthenticator
@@ -60,6 +76,8 @@ module Zitadel
       class PersonalAccessTokenAuthenticator < BaseAuthenticator
         attr_reader host: String
 
+        @token: String
+
         def initialize: (String host, String token) -> void
 
         def auth_headers: () -> Hash[String, String]
@@ -67,16 +85,24 @@ module Zitadel
         def inspect: () -> String
 
         def to_s: () -> String
-
-        def self.build_hostname: (String host) -> String
       end
 
       class OAuthAuthenticator < BaseAuthenticator
         include HttpAwareAuthenticator
 
         REFRESH_SKEW_SECONDS: Integer
+        TOKEN_REQUEST_HEADERS: Hash[String, String]
 
-        def initialize: (OpenId open_id, String client_id, String scope) -> void
+        attr_reader scope: String
+
+        @open_id: OpenId
+        @scope: String
+        @api_client: ApiClient?
+        @access_token: String?
+        @expires_at: Float?
+        @mutex: Thread::Mutex
+
+        def initialize: (OpenId open_id, String scope) -> void
 
         def api_client=: (ApiClient client) -> void
 
@@ -86,61 +112,72 @@ module Zitadel
 
         def auth_token: () -> String
 
+        def refresh_token: () -> String
+
         def inspect: () -> String
 
         def to_s: () -> String
 
         def grant_type: () -> String
 
-        def access_token_options: () -> Hash[String, String]
+        def token_request_params: () -> Hash[String, String]
 
-        def refresh_token: () -> String
+        def masked_token: () -> String?
+
+        private
+
+        def stale?: () -> bool
+
+        def mint_token: () -> String
+
+        def cache_token: (Hash[String, untyped] payload) -> String
 
         def post_token_request: () -> ApiHttpResponse
 
-        def require_api_client!: () -> void
+        def injected_api_client: () -> ApiClient
 
-        def parse_token_response: (ApiHttpResponse response) -> Hash[String, untyped]
+        def parse_object: (String body) -> Hash[String, untyped]?
 
-        def decode_token_payload: (ApiHttpResponse response) -> untyped
-
-        def token_error: (String detail, ApiHttpResponse response) -> ApiError
-
-        def expires_at_from: (untyped expires_in) -> Float
+        def server_error: (Integer status, String body) -> Errors::OAuth2ServerError
       end
 
       class OAuthAuthenticatorBuilder
-        DEFAULT_SCOPES: Array[String]
+        DEFAULT_SCOPE: String
 
         attr_reader open_id: OpenId
-        attr_reader auth_scopes: Set[String]
-        attr_reader transport_options: TransportOptions
+        attr_reader scope: String
 
-        def initialize: (String host, ?transport_options: TransportOptions?) -> void
+        def initialize: (String host) -> void
 
         def scopes: (*String auth_scopes) -> self
+
+        def self.require_text: (untyped value, String label) -> String
       end
 
       class ClientCredentialsAuthenticator < OAuthAuthenticator
         GRANT_TYPE: String
 
-        def initialize: (OpenId open_id, String client_id, String client_secret, Set[String] auth_scopes) -> void
+        attr_reader client_id: String
 
-        def self.builder: (String host, String client_id, String client_secret, ?transport_options: TransportOptions?) -> ClientCredentialsAuthenticatorBuilder
+        @client_secret: String
 
-        def grant_type: () -> String
+        def initialize: (OpenId open_id, String client_id, String client_secret, String scope) -> void
 
-        def access_token_options: () -> Hash[String, String]
+        def self.builder: (String host, String client_id, String client_secret) -> ClientCredentialsAuthenticatorBuilder
+      end
 
-        class ClientCredentialsAuthenticatorBuilder < OAuthAuthenticatorBuilder
-          def initialize: (String host, String client_id, String client_secret, ?transport_options: TransportOptions?) -> void
+      class ClientCredentialsAuthenticatorBuilder < OAuthAuthenticatorBuilder
+        @client_id: String
+        @client_secret: String
 
-          def build: () -> ClientCredentialsAuthenticator
-        end
+        def initialize: (String host, String client_id, String client_secret) -> void
+
+        def build: () -> ClientCredentialsAuthenticator
       end
 
       class WebTokenAuthenticator < OAuthAuthenticator
         GRANT_TYPE: String
+        ALGORITHMS: Array[String]
 
         class JwtAssertion
           attr_reader issuer: String
@@ -154,31 +191,45 @@ module Zitadel
           def self.new: (issuer: String, subject: String, audience: String, private_key: OpenSSL::PKey::RSA, lifetime: Integer, algorithm: String, key_id: String?) -> JwtAssertion
         end
 
-        def initialize: (OpenId open_id, String client_id, Set[String] auth_scopes, JwtAssertion assertion) -> void
+        @assertion: JwtAssertion
 
-        def self.from_json: (String host, String json_path, ?transport_options: TransportOptions?) -> WebTokenAuthenticator
+        def initialize: (OpenId open_id, String scope, JwtAssertion assertion) -> void
 
-        def self.parse_json_file: (String json_path) -> untyped
+        def self.from_json: (String host, String json_path) -> WebTokenAuthenticator
 
-        def self.builder: (String host, String user_id, String private_key, ?transport_options: TransportOptions?) -> WebTokenAuthenticatorBuilder
+        def self.read_key_file: (String json_path) -> Hash[String, untyped]
 
-        def grant_type: () -> String
+        def self.read_file: (String json_path) -> String
 
-        def access_token_options: () -> Hash[String, String]
+        def self.parse_json: (String content) -> untyped
+
+        def self.builder: (String host, String user_id, String private_key) -> WebTokenAuthenticatorBuilder
+
+        private
 
         def encode_assertion: (JwtAssertion assertion) -> String
+      end
 
-        class WebTokenAuthenticatorBuilder < OAuthAuthenticatorBuilder
-          def initialize: (String host, String user_id, String private_key, ?transport_options: TransportOptions?) -> void
+      class WebTokenAuthenticatorBuilder < OAuthAuthenticatorBuilder
+        @user_id: String
+        @private_key: OpenSSL::PKey::RSA
+        @lifetime: Integer
+        @algorithm: String
+        @key_id: String?
 
-          def token_lifetime_seconds: (Integer seconds) -> self
+        def initialize: (String host, String user_id, String private_key) -> void
 
-          def jwt_algorithm: (String jwt_algorithm) -> self
+        def token_lifetime_seconds: (Integer seconds) -> self
 
-          def key_identifier: (String? key_id) -> self
+        def jwt_algorithm: (String jwt_algorithm) -> self
 
-          def build: () -> WebTokenAuthenticator
-        end
+        def key_id: (String key_id) -> self
+
+        def build: () -> WebTokenAuthenticator
+
+        private
+
+        def load_private_key: (String pem) -> OpenSSL::PKey::RSA
       end
     end
   end

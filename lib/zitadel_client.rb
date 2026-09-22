@@ -5,11 +5,6 @@ require 'warning'
 require_relative 'zitadel_inflector'
 
 Warning.ignore(:method_redefined, __dir__)
-# Every dry-struct model file re-opens the shared +Types+ helper module and
-# re-runs +Dry.Types()+, which re-assigns constants such as +Types::Builder+.
-# That is intentional and harmless, but Ruby warns "already initialized
-# constant" for each one; silence those for files under this SDK.
-Warning.ignore(/already initialized constant/, __dir__)
 
 # Main entrypoint for the Zitadel::Client Ruby SDK.
 #
@@ -42,6 +37,6 @@ end
 
 loader = Zeitwerk::Loader.new
 loader.tag = File.basename(__FILE__, '.rb')
-loader.inflector = ZitadelInflector.new
+loader.inflector = Zitadel::Inflector.new
 loader.push_dir("#{__dir__}/zitadel", namespace: Zitadel)
 loader.setup
