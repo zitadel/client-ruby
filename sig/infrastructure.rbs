@@ -84,7 +84,10 @@ module Zitadel::Client
     def initialize: (status_code: Integer, data: T, raw_body: String, headers: Hash[String, String]) -> void
   end
 
-  class ApiError < ZitadelError
+  class ZitadelError < StandardError
+  end
+
+  class ApiError < ::Zitadel::Client::ZitadelError
     attr_reader status_code: Integer?
     attr_reader response_headers: Hash[String, String]?
     attr_reader response_body: String?
@@ -127,6 +130,13 @@ module Zitadel::Client
     class InternalServerError < ServerError
       def initialize: (?message: untyped, ?response_body: untyped, ?error_body: untyped) -> void
     end
+
+    class NetworkError < ApiError
+      def initialize: (?message: String?) -> void
+    end
+
+    class NetworkTimeoutError < NetworkError
+    end
   end
 
   class ApiClient
@@ -140,6 +150,7 @@ module Zitadel::Client
     def close: () -> void
     def self.supported_encodings: () -> String
     private
+    def network_error_class: (Faraday::Error) -> singleton(Errors::NetworkError)
     def validate_ca_cert_path: (String?) -> void
     def https_to_http_downgrade?: (String, String) -> bool
     def text_content_type?: (String) -> bool
@@ -163,12 +174,9 @@ module Zitadel::Client
 
   UUID_REGEX: Regexp
 
-  class SerializationError < ZitadelError
+  class SerializationError < ::Zitadel::Client::ZitadelError
     attr_reader cause: Exception?
     def initialize: (String, ?Exception?) -> void
-  end
-
-  class SchemaMismatchError < ZitadelError
   end
 
   class ValueSerializer

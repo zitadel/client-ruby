@@ -92,6 +92,13 @@ describe Zitadel::Client::TransportOptions do
     end
   end
 
+  it 'unparseable proxy URL raises ArgumentError, not URI::InvalidURIError' do
+    error = assert_raises(ArgumentError) do
+      Zitadel::Client::TransportOptions.builder.proxy('http://[bad').build
+    end
+    _(error).must_be_instance_of ArgumentError
+  end
+
   it 'null proxy URL is accepted' do
     opts = Zitadel::Client::TransportOptions.builder.proxy(nil).build
     _(opts.proxy).must_be_nil

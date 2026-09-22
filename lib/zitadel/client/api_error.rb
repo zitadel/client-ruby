@@ -13,7 +13,7 @@ require_relative 'zitadel_error'
 module Zitadel::Client
   # Represents an error returned by the API, including the HTTP status code,
   # response headers, and response body.
-  class ApiError < ZitadelError
+  class ApiError < ::Zitadel::Client::ZitadelError
     attr_reader :status_code, :response_headers, :response_body, :error_body
 
     # Usage examples:
@@ -22,6 +22,8 @@ module Zitadel::Client
     #   ApiError.new(status_code: 500, response_headers: {}, response_body: '')
     #   ApiError.new(status_code: 404, message: 'Not Found')
     def initialize(arg = nil)
+      # A failure with no HTTP response carries status 0, as in every other SDK.
+      @status_code = 0
       if arg.is_a? Hash
         if arg.key?(:message) || arg.key?('message')
           super(arg[:message] || arg['message'])
@@ -55,7 +57,7 @@ module Zitadel::Client
     def message
       msg = @message.nil? ? 'Error message: the server returns an error' : @message
 
-      msg += "\nHTTP status code: #{status_code}" if status_code
+      msg += "\nHTTP status code: #{status_code}" if status_code && status_code != 0
       msg += "\nResponse headers: #{response_headers}" if response_headers
       msg += "\nResponse body: #{response_body}" if response_body
 

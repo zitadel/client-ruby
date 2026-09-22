@@ -48,6 +48,8 @@ lib/zitadel/client/errors/client_error.rb
 lib/zitadel/client/errors/conflict_error.rb
 lib/zitadel/client/errors/forbidden_error.rb
 lib/zitadel/client/errors/internal_server_error.rb
+lib/zitadel/client/errors/network_error.rb
+lib/zitadel/client/errors/network_timeout_error.rb
 lib/zitadel/client/errors/not_found_error.rb
 lib/zitadel/client/errors/server_error.rb
 lib/zitadel/client/errors/unauthorized_error.rb
@@ -1405,7 +1407,9 @@ lib/zitadel/client/models/web_key_service_rsa_hasher.rb
 lib/zitadel/client/models/web_key_service_state.rb
 lib/zitadel/client/models/web_key_service_web_key.rb
 lib/zitadel/client/object_serializer.rb
+lib/zitadel/client/serialization_error.rb
 lib/zitadel/client/server_configuration.rb
+lib/zitadel/client/server_variable.rb
 lib/zitadel/client/servers.rb
 lib/zitadel/client/trace_context_util.rb
 lib/zitadel/client/transport_options.rb

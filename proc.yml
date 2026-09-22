@@ -5,6 +5,6 @@ disallowAdditionalPropertiesIfNotPresent: false
 generateUnitTests: true
 repoName: git@github.com:zitadel/client-ruby.git
 generatorName: ruby-plus
-apiErrorParent: ZitadelError
 clientClassName: Zitadel
 licenseId: Apache-2.0
+errorPrefix: Zitadel

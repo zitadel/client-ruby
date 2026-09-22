@@ -841,12 +841,65 @@ describe Zitadel::Client::DefaultApiClient do
 
   # ── Bucket T4: explicit CA cert that cannot be read fails fast ──
   # An explicitly configured CA certificate path that cannot be read or parsed
-  # must fail fast at construction with a typed ApiError rather than silently
+  # must fail fast at construction with an ArgumentError rather than silently
   # falling back to the system trust store (security theater).
-  it 'raises ApiError at construction for a non-existent ca_cert_path' do
+  it 'raises ArgumentError at construction for a non-existent ca_cert_path' do
     transport = Zitadel::Client::TransportOptions.builder.ca_cert_path('/nonexistent/ca.pem').build
-    assert_raises(Zitadel::Client::ApiError) do
+    assert_raises(ArgumentError) do
       Zitadel::Client::DefaultApiClient.new(transport)
+    end
+  end
+
+  # A request that gets no HTTP response raises NetworkError, and one that
+  # times out raises NetworkTimeoutError, both with status 0 and the Faraday
+  # error kept as the cause.
+  it 'raises NetworkTimeoutError when the request times out' do
+    stubs = Faraday::Adapter::Test::Stubs.new do |stub|
+      stub.get('/slow') { raise Faraday::TimeoutError, 'execution expired' }
+    end
+    client = Zitadel::Client::DefaultApiClient.new
+    client.stub(:build_connection, stub_connection(stubs)) do
+      err = assert_raises(Zitadel::Client::Errors::NetworkTimeoutError) do
+        client.send_request('GET', 'http://localhost/slow', {}, nil)
+      end
+      _(err).must_be_kind_of Zitadel::Client::ApiError
+      _(err.status_code).must_equal 0
+      _(err.cause).must_be_kind_of Faraday::TimeoutError
+    end
+  end
+
+  it 'raises NetworkTimeoutError when the connect times out' do
+    # Faraday's net_http adapter wraps Net::OpenTimeout in ConnectionFailed.
+    stubs = Faraday::Adapter::Test::Stubs.new do |stub|
+      stub.get('/connect-timeout') do
+        begin
+          raise Net::OpenTimeout, 'execution expired'
+        rescue Net::OpenTimeout => e
+          raise Faraday::ConnectionFailed, e
+        end
+      end
+    end
+    client = Zitadel::Client::DefaultApiClient.new
+    client.stub(:build_connection, stub_connection(stubs)) do
+      err = assert_raises(Zitadel::Client::Errors::NetworkTimeoutError) do
+        client.send_request('GET', 'http://localhost/connect-timeout', {}, nil)
+      end
+      _(err.status_code).must_equal 0
+    end
+  end
+
+  it 'raises NetworkError when the connection fails' do
+    stubs = Faraday::Adapter::Test::Stubs.new do |stub|
+      stub.get('/refused') { raise Faraday::ConnectionFailed, 'Connection refused' }
+    end
+    client = Zitadel::Client::DefaultApiClient.new
+    client.stub(:build_connection, stub_connection(stubs)) do
+      err = assert_raises(Zitadel::Client::Errors::NetworkError) do
+        client.send_request('GET', 'http://localhost/refused', {}, nil)
+      end
+      _(err).wont_be_kind_of Zitadel::Client::Errors::NetworkTimeoutError
+      _(err.status_code).must_equal 0
+      _(err.cause).must_be_kind_of Faraday::ConnectionFailed
     end
   end
 

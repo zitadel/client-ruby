@@ -135,7 +135,11 @@ module Zitadel::Client
       # @raise [ArgumentError] if the URL is invalid
       def proxy(val)
         if val
-          uri = URI.parse(val)
+          begin
+            uri = URI.parse(val)
+          rescue URI::InvalidURIError => e
+            raise ArgumentError, "Invalid proxy URL (#{e.message}): #{val}"
+          end
           unless uri.scheme && %w[http https].include?(uri.scheme.downcase)
             raise ArgumentError, "Invalid proxy URL (must use http or https scheme): #{val}"
           end

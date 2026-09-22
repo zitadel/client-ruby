@@ -15,6 +15,7 @@ require 'securerandom'
 require 'openssl'
 require 'base64'
 require 'stringio'
+require 'timeout'
 require 'zlib'
 require 'uri'
 begin
@@ -231,8 +232,8 @@ module Zitadel::Client
         # Zlib::Error / decoder exception to the caller.
         content_type = response.headers['content-type'].to_s
         decoded_body = decompress_body(response.body, response.headers['content-encoding'])
-      rescue Faraday::ConnectionFailed, Faraday::TimeoutError, Faraday::SSLError => e
-        raise ApiError, e.message
+      rescue Faraday::TimeoutError, Faraday::ConnectionFailed, Faraday::SSLError => e
+        raise network_error_class(e).new(message: e.message)
       rescue Zlib::Error => e
         raise ApiError, "Failed to decompress response body: #{e.message}"
       end
@@ -288,6 +289,18 @@ module Zitadel::Client
 
     private
 
+    # Faraday's net_http adapter reports a connect timeout (Net::OpenTimeout)
+    # as Faraday::ConnectionFailed, so the underlying cause decides whether a
+    # connection failure is really a timeout.
+    def network_error_class(error)
+      return Errors::NetworkTimeoutError if error.is_a?(Faraday::TimeoutError)
+
+      cause = error.cause
+      return Errors::NetworkTimeoutError if cause.is_a?(Timeout::Error) || cause.is_a?(Errno::ETIMEDOUT)
+
+      Errors::NetworkError
+    end
+
     # Bucket T4: fail fast on a user-supplied CA cert that cannot be read or
     # parsed rather than silently falling back to the system trust store. If
     # the caller explicitly asked for SSL pinning we must not pretend it
@@ -298,13 +311,13 @@ module Zitadel::Client
       begin
         pem = File.read(ca_cert_path)
       rescue SystemCallError => e
-        raise ApiError, %(failed to read CA certificate from "#{ca_cert_path}": #{e.message})
+        raise ArgumentError, %(failed to read CA certificate from "#{ca_cert_path}": #{e.message})
       end
 
       begin
         OpenSSL::X509::Certificate.new(pem)
       rescue OpenSSL::X509::CertificateError => e
-        raise ApiError,
+        raise ArgumentError,
               %(failed to parse CA certificate from "#{ca_cert_path}": no PEM blocks found or unparseable: #{e.message})
       end
     end

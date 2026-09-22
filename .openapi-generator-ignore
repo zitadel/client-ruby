@@ -9,6 +9,7 @@
 lib/zitadel/client/auth/client_credentials_authenticator.rb
 lib/zitadel/client/auth/no_auth_authenticator.rb
 lib/zitadel/client/auth/o_auth_authenticator.rb
+lib/zitadel/client/auth/o_auth_authenticator_builder.rb
 lib/zitadel/client/auth/open_id.rb
 lib/zitadel/client/auth/personal_access_token_authenticator.rb
 lib/zitadel/client/auth/web_token_authenticator.rb
