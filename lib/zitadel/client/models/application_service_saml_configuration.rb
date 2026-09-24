@@ -45,7 +45,7 @@ module Zitadel::Client
       # on the (de)serialize path.
       # @type var openapi_formats: Hash[Symbol, String]
       openapi_formats = {
-        metadata_xml: 'byte',
+        metadata_xml: 'byte'
 
       }
       OPENAPI_FORMATS = openapi_formats.freeze

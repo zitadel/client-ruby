@@ -1,4 +1,5 @@
 .editorconfig
+.openapi-generator/DEV-DEPENDENCIES
 .rubocop.yml
 .yardopts
 README.md

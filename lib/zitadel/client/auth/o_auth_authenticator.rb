@@ -131,9 +131,7 @@ module Zitadel
 
         def cache_token(payload)
           access_token = payload['access_token']
-          unless access_token.is_a?(String) && !access_token.empty?
-            raise ::Zitadel::Client::Errors::OAuth2TokenError, 'Token response missing or empty access_token field'
-          end
+          raise ::Zitadel::Client::Errors::OAuth2TokenError, 'Token response missing or empty access_token field' unless access_token.is_a?(String) && !access_token.empty?
 
           expires_in = payload['expires_in']
           @expires_at = expires_in.is_a?(Numeric) && expires_in.positive? ? Time.now.to_f + expires_in : nil
@@ -167,9 +165,7 @@ module Zitadel
         def server_error(status, body)
           payload = parse_object(body)
           code = payload&.fetch('error', nil)
-          if payload.nil? || !code.is_a?(String) || code.empty?
-            return ::Zitadel::Client::Errors::OAuth2ServerError.new(status, nil, nil, nil, body)
-          end
+          return ::Zitadel::Client::Errors::OAuth2ServerError.new(status, nil, nil, nil, body) if payload.nil? || !code.is_a?(String) || code.empty?
 
           description = payload['error_description']
           uri = payload['error_uri']

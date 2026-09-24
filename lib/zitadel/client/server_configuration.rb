@@ -56,9 +56,7 @@ module Zitadel::Client
       result = url_template
       variables.each do |var_name, var|
         value = overrides.fetch(var_name, var.default_value)
-        unless var.enum_values.empty? || var.enum_values.include?(value)
-          raise ArgumentError, "Invalid value '#{value}' for variable '#{var_name}'. Allowed: #{var.enum_values}"
-        end
+        raise ArgumentError, "Invalid value '#{value}' for variable '#{var_name}'. Allowed: #{var.enum_values}" unless var.enum_values.empty? || var.enum_values.include?(value)
 
         result = result.gsub("{#{var_name}}", value)
       end

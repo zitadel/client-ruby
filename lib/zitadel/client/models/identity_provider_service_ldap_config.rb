@@ -60,7 +60,7 @@ module Zitadel::Client
       # @type var openapi_formats: Hash[Symbol, String]
       openapi_formats = {
 
-        root_ca: 'byte',
+        root_ca: 'byte'
 
       }
       OPENAPI_FORMATS = openapi_formats.freeze

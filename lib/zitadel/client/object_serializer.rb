@@ -149,9 +149,7 @@ module Zitadel::Client
       # but Windows-generated payloads often include one and Ruby's
       # JSON.parse rejects it. Strip silently for parity with Java
       # Jackson / C# System.Text.Json which strip transparently.
-      if json_string.is_a?(String) && json_string.start_with?("﻿")
-        json_string = json_string.sub(/\A﻿/, '')
-      end
+      json_string = json_string.sub(/\A﻿/, '') if json_string.is_a?(String) && json_string.start_with?('﻿')
 
       data = if json_string.is_a?(String)
                parse_json(json_string, symbolize_names: true)
@@ -447,9 +445,7 @@ module Zitadel::Client
           deserialize_model(data, klass)
         elsif klass.const_defined?(:VALUES)
           values = klass.const_get(:VALUES)
-          unless values.include?(data)
-            raise ArgumentError, "Unknown enum value for #{return_type}: #{data.inspect} (allowed: #{values.inspect})"
-          end
+          raise ArgumentError, "Unknown enum value for #{return_type}: #{data.inspect} (allowed: #{values.inspect})" unless values.include?(data)
 
           data
         else
@@ -560,9 +556,7 @@ module Zitadel::Client
     end
 
     def self.validate_uuid(value)
-      unless value.is_a?(String) && UUID_REGEX.match?(value)
-        raise Errors::SerializationError, "Invalid UUID for format: uuid: #{value.inspect}"
-      end
+      raise Errors::SerializationError, "Invalid UUID for format: uuid: #{value.inspect}" unless value.is_a?(String) && UUID_REGEX.match?(value)
 
       value
     end
@@ -614,9 +608,7 @@ module Zitadel::Client
     # Malformed input raises Errors::SerializationError, consistent with the
     # other format parsers in this class.
     def self.duration_from_protobuf_json(value)
-      unless PROTOBUF_DURATION_REGEX.match?(value)
-        raise Errors::SerializationError, "Invalid protobuf-JSON duration for format: duration: #{value.inspect}"
-      end
+      raise Errors::SerializationError, "Invalid protobuf-JSON duration for format: duration: #{value.inspect}" unless PROTOBUF_DURATION_REGEX.match?(value)
 
       negative = value.start_with?('-')
       digits = value.delete_prefix('-').delete_suffix('s')

@@ -885,11 +885,9 @@ describe Zitadel::Client::DefaultApiClient do
     # Faraday's net_http adapter wraps Net::OpenTimeout in ConnectionFailed.
     stubs = Faraday::Adapter::Test::Stubs.new do |stub|
       stub.get('/connect-timeout') do
-        begin
-          raise Net::OpenTimeout, 'execution expired'
-        rescue Net::OpenTimeout => e
-          raise Faraday::ConnectionFailed, e
-        end
+        raise Net::OpenTimeout, 'execution expired'
+      rescue Net::OpenTimeout => e
+        raise Faraday::ConnectionFailed, e
       end
     end
     client = Zitadel::Client::DefaultApiClient.new
@@ -907,11 +905,9 @@ describe Zitadel::Client::DefaultApiClient do
     # same budget as the connect and read ones, so it is the same error type.
     stubs = Faraday::Adapter::Test::Stubs.new do |stub|
       stub.post('/write-timeout') do
-        begin
-          raise Net::WriteTimeout, 'execution expired'
-        rescue Net::WriteTimeout => e
-          raise Faraday::TimeoutError, e
-        end
+        raise Net::WriteTimeout, 'execution expired'
+      rescue Net::WriteTimeout => e
+        raise Faraday::TimeoutError, e
       end
     end
     client = Zitadel::Client::DefaultApiClient.new

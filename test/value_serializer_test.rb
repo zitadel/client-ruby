@@ -437,7 +437,7 @@ describe Zitadel::Client::ValueSerializer do
       # Gap W — empty-string path values silently produce malformed
       # URLs like `/resource//details`; reject at serialization time so
       # callers see the real error rather than a downstream 404.
-      _(-> {
+      _(lambda {
         Zitadel::Client::ValueSerializer.serialize_styled('id', '', :path, 'string', nil, 'simple', false)
       }).must_raise ArgumentError
     end

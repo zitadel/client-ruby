@@ -116,9 +116,7 @@ module Zitadel::Client
       # surfacing the bug at the call site. The required-non-null check
       # lives in the operation method; here we catch the empty-string
       # case that slips through it.
-      if location == :path && value.is_a?(String) && value.empty?
-        raise ArgumentError, "Path parameter '#{param_name}' must not be empty"
-      end
+      raise ArgumentError, "Path parameter '#{param_name}' must not be empty" if location == :path && value.is_a?(String) && value.empty?
 
       return serialize(value, location, schema_type, collection_format: collection_format) if style.nil? || style.empty?
 

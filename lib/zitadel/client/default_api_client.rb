@@ -156,9 +156,7 @@ module Zitadel::Client
             # exfiltration vector. Refuse loudly with an ApiError carrying the
             # 3xx status instead of silently returning the 3xx response,
             # matching the other SDKs.
-            if next_uri.nil? || !%w[http https].include?(next_uri.scheme)
-              raise unusable_response(response, "Refusing to follow redirect to non-http(s) URL: #{next_url}")
-            end
+            raise unusable_response(response, "Refusing to follow redirect to non-http(s) URL: #{next_url}") if next_uri.nil? || !%w[http https].include?(next_uri.scheme)
 
             cross_origin = !same_origin?(original_url, next_url)
 
@@ -222,9 +220,7 @@ module Zitadel::Client
           # resource. Surface this loudly as an ApiError instead of silently
           # returning the last redirect response as if it were the answer,
           # matching the other SDKs.
-          if redirect_status?(response.status)
-            raise unusable_response(response, "Exceeded maximum number of redirects (#{max_redirects})")
-          end
+          raise unusable_response(response, "Exceeded maximum number of redirects (#{max_redirects})") if redirect_status?(response.status)
         end
       rescue Faraday::TimeoutError, Faraday::ConnectionFailed, Faraday::SSLError => e
         raise network_error_class(e).new(message: e.message)
@@ -351,9 +347,7 @@ module Zitadel::Client
       # characters. So for a bare +utf-16+ / +utf16+ charset we inspect the
       # body: if it carries a BOM (FE FF or FF FE) we keep +UTF_16+ so the
       # BOM is honored; otherwise we force +UTF_16BE+ per RFC 2781.
-      if encoding == Encoding::UTF_16 && !utf16_bom?(body)
-        encoding = Encoding::UTF_16BE
-      end
+      encoding = Encoding::UTF_16BE if encoding == Encoding::UTF_16 && !utf16_bom?(body)
       bytes = body.dup.force_encoding(encoding)
       bytes.encode(Encoding::UTF_8, invalid: :replace, undef: :replace)
     rescue EncodingError

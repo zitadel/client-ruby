@@ -20,9 +20,7 @@ module Zitadel::Client
         # Reject an empty/blank token: it would otherwise produce a literal
         # "Authorization: Bearer " header that silently fails auth, mirroring
         # the api-key authenticator's own empty-value guard.
-        if token.nil? || token.to_s.strip.empty?
-          raise ArgumentError, 'Bearer token must not be empty'
-        end
+        raise ArgumentError, 'Bearer token must not be empty' if token.nil? || token.to_s.strip.empty?
 
         # RFC 7230 §3.2.6 — field-value is HTAB / SP / VCHAR / obs-text.
         # Reject anything outside printable ASCII + TAB so callers see a
@@ -49,9 +47,7 @@ module Zitadel::Client
         # from env files are commonly stored already-prefixed; emitting
         # "Bearer Bearer xyz" would otherwise silently break auth.
         value = @token
-        if value.length >= 7 && value[0, 7].downcase == 'bearer '
-          value = value[7..] || ''
-        end
+        value = value[7..] || '' if value.length >= 7 && value[0, 7].downcase == 'bearer '
         { 'Authorization' => "Bearer #{value}" }
       end
     end

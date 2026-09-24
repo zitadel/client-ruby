@@ -28,9 +28,7 @@ module Zitadel
         # @return [self] the builder
         # @raise [ArgumentError] if the lifetime is not positive
         def token_lifetime_seconds(seconds)
-          unless seconds.is_a?(Integer) && seconds.positive?
-            raise ArgumentError, 'Token lifetime must be a positive number of seconds.'
-          end
+          raise ArgumentError, 'Token lifetime must be a positive number of seconds.' unless seconds.is_a?(Integer) && seconds.positive?
 
           @lifetime = seconds
           self
@@ -43,9 +41,7 @@ module Zitadel
         # @return [self] the builder
         # @raise [ArgumentError] if the algorithm is not supported
         def jwt_algorithm(jwt_algorithm)
-          unless WebTokenAuthenticator::ALGORITHMS.include?(jwt_algorithm)
-            raise ArgumentError, "Unsupported JWT algorithm '#{jwt_algorithm}'; use RS256, RS384 or RS512."
-          end
+          raise ArgumentError, "Unsupported JWT algorithm '#{jwt_algorithm}'; use RS256, RS384 or RS512." unless WebTokenAuthenticator::ALGORITHMS.include?(jwt_algorithm)
 
           @algorithm = jwt_algorithm
           self

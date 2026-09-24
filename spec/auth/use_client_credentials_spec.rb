@@ -33,9 +33,7 @@ class UseClientCredentialsSpec < BaseSpec
     query = URI.encode_www_form_component(login_name)
     uri = URI("#{management_base}/global/users/_by_login_name?loginName=#{query}")
     response = get_json(uri, token)
-    unless response.is_a?(Net::HTTPSuccess)
-      raise "API call to retrieve user failed for login name: '#{login_name}'. Response: #{response.body}"
-    end
+    raise "API call to retrieve user failed for login name: '#{login_name}'. Response: #{response.body}" unless response.is_a?(Net::HTTPSuccess)
 
     user_id = JSON.parse(response.body).dig('user', 'id')
     return user_id if user_id && !user_id.empty?
@@ -47,9 +45,7 @@ class UseClientCredentialsSpec < BaseSpec
   # Generates and returns a client-credentials secret for the given user id.
   def create_secret(token, user_id)
     response = put_json(URI("#{management_base}/users/#{user_id}/secret"), token)
-    unless response.is_a?(Net::HTTPSuccess)
-      raise "API call to generate secret failed for user ID: '#{user_id}'. Response: #{response.body}"
-    end
+    raise "API call to generate secret failed for user ID: '#{user_id}'. Response: #{response.body}" unless response.is_a?(Net::HTTPSuccess)
 
     data = JSON.parse(response.body)
     client_id = data['clientId']

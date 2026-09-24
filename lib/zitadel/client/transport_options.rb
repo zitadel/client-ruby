@@ -139,9 +139,7 @@ module Zitadel::Client
           rescue URI::InvalidURIError => e
             raise ArgumentError, "Invalid proxy URL (#{e.message}): #{val}"
           end
-          unless uri.scheme && %w[http https].include?(uri.scheme.downcase)
-            raise ArgumentError, "Invalid proxy URL (must use http or https scheme): #{val}"
-          end
+          raise ArgumentError, "Invalid proxy URL (must use http or https scheme): #{val}" unless uri.scheme && %w[http https].include?(uri.scheme.downcase)
           raise ArgumentError, "Invalid proxy URL (missing host): #{val}" unless uri.host && !uri.host.empty?
         end
         @proxy = val

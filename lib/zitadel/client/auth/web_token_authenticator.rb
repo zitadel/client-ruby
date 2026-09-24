@@ -51,9 +51,7 @@ module Zitadel
         def self.from_json(host, json_path)
           config = read_key_file(json_path)
           user_id, key_id, private_key = config.values_at('userId', 'keyId', 'key')
-          unless [user_id, key_id, private_key].all?(String)
-            raise ArgumentError, "The key file at #{json_path} must contain the string fields userId, keyId and key"
-          end
+          raise ArgumentError, "The key file at #{json_path} must contain the string fields userId, keyId and key" unless [user_id, key_id, private_key].all?(String)
 
           builder(host, user_id, private_key).key_id(key_id).build
         end

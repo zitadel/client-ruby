@@ -87,9 +87,7 @@ module Zitadel
           url = @well_known_url
           response = api_client.send_request(:GET, url, { 'Accept' => 'application/json' }, nil)
           status = response.status_code
-          unless status >= 200 && status < 300
-            raise ::Zitadel::Client::Errors::ApiError.from_response(status, response.headers, response.body)
-          end
+          raise ::Zitadel::Client::Errors::ApiError.from_response(status, response.headers, response.body) unless status >= 200 && status < 300
 
           token_endpoint_from(parse_document(response.body, url), url)
         end
