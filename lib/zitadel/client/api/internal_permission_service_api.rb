@@ -12,7 +12,7 @@ module Zitadel::Client
   module Api
     # InternalPermissionServiceApi provides methods for the InternalPermissionService API group.
     class InternalPermissionServiceApi < BaseApi
-      def initialize(api_client = nil, config = ::Zitadel::Client::Configuration.default, authenticator = nil)
+      def initialize(api_client = nil, config = ::Zitadel::Client::Configuration.default_configuration, authenticator = nil)
         super
       end
 

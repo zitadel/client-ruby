@@ -20,5 +20,14 @@ module Zitadel::Client
     def send_request(method, url, headers, body, no_redirect: false)
       raise NotImplementedError, "#{self.class}#send_request must be implemented"
     end
+
+    # Releases any resources held by this client (connection pool, executor
+    # threads, sockets). Default implementation is a no-op; implementations
+    # that own a pooled HTTP client should override and dispose of it.
+    #
+    # @return [void]
+    def close
+      # No-op by default. Implementations override to release resources.
+    end
   end
 end

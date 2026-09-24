@@ -790,6 +790,13 @@ describe Zitadel::Client::DefaultApiClient do
     client.close # must not raise
   end
 
+  it 'close is on the ApiClient contract, not just the default transport' do
+    # A custom transport must be closable through the abstraction, so the
+    # base class declares close with a no-op default.
+    _(Zitadel::Client::ApiClient.new).must_respond_to(:close)
+    _(Zitadel::Client::ApiClient.instance_method(:close).owner).must_equal(Zitadel::Client::ApiClient)
+  end
+
   # ── Bucket 3.1: API-key header names included in cross-origin strip set ──
 
   it 'EXTRA_SENSITIVE_HEADER_NAMES is defined and lowercase' do

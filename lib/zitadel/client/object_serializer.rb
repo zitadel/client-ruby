@@ -31,6 +31,67 @@ module Zitadel::Client
     # render with a ".000" fraction, which RFC 3339 / ISO 8601 parsers accept.
     DEFAULT_DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%3N%:z'
 
+    # Maximum allowed JSON nesting depth. Ruby's JSON.parse recurses through
+    # the interpreter stack, so a malicious 100k-deep `{"a":{"a":...}}`
+    # payload would exhaust it. Matches the 1000-cap Java/Kotlin Jackson use;
+    # Go uses the same. C# is stricter (64). F5 follow-up.
+    MAX_JSON_DEPTH = 1000
+
+    # Parse a JSON text into a plain Ruby value, refusing payloads that
+    # exceed the MAX_JSON_DEPTH nesting cap (DoS guard for malicious
+    # deeply-nested payloads).
+    #
+    # @param json_string [String] the raw JSON text
+    # @param symbolize_names [Boolean] whether object keys become Symbols
+    # @return [Object] the parsed value
+    # @raise [Errors::SerializationError] if the depth limit is exceeded or
+    #   parsing fails
+    def self.parse_json(json_string, symbolize_names: false)
+      depth = json_max_depth(json_string)
+      if depth > MAX_JSON_DEPTH
+        raise Errors::SerializationError.new(
+          "JSON nesting depth #{depth} exceeds limit #{MAX_JSON_DEPTH}", nil
+        )
+      end
+
+      JSON.parse(json_string, symbolize_names: symbolize_names, allow_nan: false,
+                              max_nesting: MAX_JSON_DEPTH)
+    rescue JSON::ParserError => e
+      raise Errors::SerializationError.new("Failed to parse JSON: #{e.message}", e)
+    end
+
+    # Return the maximum nesting depth of +{+/+[+ containers in the JSON
+    # text, ignoring characters inside string literals. A cheap pre-flight
+    # scan used to refuse a deeply-nested payload before invoking JSON.parse.
+    #
+    # @param data [String] the raw JSON text
+    # @return [Integer] the deepest container nesting found
+    def self.json_max_depth(data)
+      depth = 0
+      deepest = 0
+      in_string = false
+      escaped = false
+      data.each_char do |char|
+        if in_string
+          if escaped then escaped = false
+          elsif char == '\\' then escaped = true
+          elsif char == '"' then in_string = false
+          end
+          next
+        end
+        case char
+        when '"' then in_string = true
+        when '{', '['
+          depth += 1
+          deepest = depth if depth > deepest
+        when '}', ']'
+          depth -= 1 if depth.positive?
+        end
+      end
+      deepest
+    end
+    private_class_method :json_max_depth
+
     # Serialize an object to a JSON string.
     #
     # allow_nan: false rejects NaN/Infinity/-Infinity on encode (RFC 8259
@@ -93,14 +154,12 @@ module Zitadel::Client
       end
 
       data = if json_string.is_a?(String)
-               JSON.parse(json_string, symbolize_names: true, allow_nan: false)
+               parse_json(json_string, symbolize_names: true)
              else
                json_string
              end
 
       convert_to_type(data, target_type)
-    rescue JSON::ParserError => e
-      raise Errors::SerializationError.new("Failed to parse JSON: #{e.message}", e)
     rescue StandardError => e
       raise e if e.is_a?(Errors::SerializationError)
 

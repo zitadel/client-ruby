@@ -45,7 +45,7 @@ module Zitadel::Client
       #
       # @param api_client [ApiClient, nil] the HTTP transport client
       # @param config [Configuration] API-level configuration (base URL and default headers)
-      def initialize(api_client = nil, config = ::Zitadel::Client::Configuration.default, authenticator = nil)
+      def initialize(api_client = nil, config = ::Zitadel::Client::Configuration.default_configuration, authenticator = nil)
         @config = config
         @api_client = api_client || ::Zitadel::Client::DefaultApiClient.new
         @header_selector = ::Zitadel::Client::HeaderSelector.new

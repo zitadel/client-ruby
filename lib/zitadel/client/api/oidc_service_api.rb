@@ -12,7 +12,7 @@ module Zitadel::Client
   module Api
     # OIDCServiceApi provides methods for the OIDCService API group.
     class OIDCServiceApi < BaseApi
-      def initialize(api_client = nil, config = ::Zitadel::Client::Configuration.default, authenticator = nil)
+      def initialize(api_client = nil, config = ::Zitadel::Client::Configuration.default_configuration, authenticator = nil)
         super
       end
 

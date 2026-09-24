@@ -12,7 +12,7 @@ module Zitadel::Client
   module Api
     # SettingsServiceApi provides methods for the SettingsService API group.
     class SettingsServiceApi < BaseApi
-      def initialize(api_client = nil, config = ::Zitadel::Client::Configuration.default, authenticator = nil)
+      def initialize(api_client = nil, config = ::Zitadel::Client::Configuration.default_configuration, authenticator = nil)
         super
       end
 

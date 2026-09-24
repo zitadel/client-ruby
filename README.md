@@ -1,4 +1,4 @@
-# zitadel-client SDK
+# Zitadel SDK
 
 Auto-generated Ruby SDK client for the Zitadel SDK API.
 

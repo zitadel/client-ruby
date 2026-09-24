@@ -2,9 +2,6 @@ module Zitadel
 end
 
 module Zitadel::Client
-  def self.configure: () { (Configuration::Builder) -> void } -> void
-                    | () -> Configuration
-
   VERSION: String
 
   module Types
@@ -29,8 +26,7 @@ module Zitadel::Client
     attr_reader default_headers: Hash[String, String]
     def initialize: (base_url: String, default_headers: Hash[String, String]) -> void
     def self.builder: () -> Configuration::Builder
-    def self.default: () -> Configuration
-    def self.default=: (Configuration) -> Configuration
+    def self.default_configuration: () -> Configuration
 
     class Builder
       def base_url: (String) -> Builder
@@ -183,6 +179,7 @@ module Zitadel::Client
 
   class ApiClient
     def send_request: (Symbol | String, String, Hash[String, String], untyped, ?no_redirect: bool) -> ApiHttpResponse
+    def close: () -> void
   end
 
   class DefaultApiClient < ApiClient
@@ -233,11 +230,14 @@ module Zitadel::Client
 
   class ObjectSerializer
     DEFAULT_DATETIME_FORMAT: String
+    MAX_JSON_DEPTH: Integer
     PROTOBUF_DURATION_REGEX: Regexp
     UUID_REGEX: Regexp
     def self.stringify: (untyped) -> String
     def self.serialize: (untyped) -> String
     def self.encode_oneof_body: (untyped, String) -> untyped
+    def self.parse_json: (String, ?symbolize_names: bool) -> untyped
+    def self.json_max_depth: (String) -> Integer
     def self.deserialize: (untyped, String) -> untyped
     def self.to_path_value: (untyped) -> String
     def self.to_query_value: (untyped, ?Symbol?) -> untyped

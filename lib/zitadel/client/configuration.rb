@@ -45,14 +45,10 @@ module Zitadel::Client
       Builder.new
     end
 
-    class << self
-      attr_writer :default
-
-      # Return the default configuration instance, creating it lazily if needed.
-      # @return [Configuration]
-      def default
-        @default ||= builder.build
-      end
+    # Return a {Configuration} with default values.
+    # @return [Configuration]
+    def self.default_configuration
+      builder.build
     end
 
     # Builder for creating immutable {Configuration} instances.
