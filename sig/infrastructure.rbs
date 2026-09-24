@@ -1,8 +1,28 @@
+module Zitadel
+end
+
 module Zitadel::Client
   def self.configure: () { (Configuration::Builder) -> void } -> void
                     | () -> Configuration
 
   VERSION: String
+
+  module Types
+    Builder: untyped
+    Any: untyped
+    Required: untyped
+    String: untyped
+    Integer: untyped
+    Float: untyped
+    Decimal: untyped
+    Bool: untyped
+    Date: untyped
+    DateTime: untyped
+    Time: untyped
+    Hash: untyped
+    Array: untyped
+    Nil: untyped
+  end
 
   class Configuration
     attr_reader base_url: String
@@ -84,51 +104,54 @@ module Zitadel::Client
     def initialize: (status_code: Integer, data: T, raw_body: String, headers: Hash[String, String]) -> void
   end
 
-  class ZitadelError < StandardError
-  end
-
-  class ApiError < ::Zitadel::Client::ZitadelError
-    attr_reader status_code: Integer?
-    attr_reader response_headers: Hash[String, String]?
-    attr_reader response_body: String?
-    def initialize: (?untyped) -> void
-    def message: () -> String
-    def typed_error_body: (untyped) -> untyped
-  end
-
   module Errors
+    class ZitadelError < StandardError
+    end
+
+    class ApiError < ::Zitadel::Client::Errors::ZitadelError
+      attr_reader status_code: Integer
+      attr_reader response_headers: Hash[String, String]?
+      attr_reader response_body: String?
+      attr_reader error_body: untyped
+      def self.from_response: (Integer, Hash[String, String]?, String?) -> ApiError
+      def self.parse_error_body: (String?) -> untyped
+      def initialize: (?untyped) -> void
+      def message: () -> String
+      def typed_error_body: (untyped) -> untyped
+    end
+
     class ClientError < ApiError
     end
 
     class BadRequestError < ClientError
-      def initialize: (?message: untyped, ?response_body: untyped, ?error_body: untyped) -> void
+      def initialize: (?message: String?, ?response_body: String?, ?response_headers: Hash[String, String]?, ?error_body: untyped) -> void
     end
 
     class UnauthorizedError < ClientError
-      def initialize: (?message: untyped, ?response_body: untyped, ?error_body: untyped) -> void
+      def initialize: (?message: String?, ?response_body: String?, ?response_headers: Hash[String, String]?, ?error_body: untyped) -> void
     end
 
     class ForbiddenError < ClientError
-      def initialize: (?message: untyped, ?response_body: untyped, ?error_body: untyped) -> void
+      def initialize: (?message: String?, ?response_body: String?, ?response_headers: Hash[String, String]?, ?error_body: untyped) -> void
     end
 
     class NotFoundError < ClientError
-      def initialize: (?message: untyped, ?response_body: untyped, ?error_body: untyped) -> void
+      def initialize: (?message: String?, ?response_body: String?, ?response_headers: Hash[String, String]?, ?error_body: untyped) -> void
     end
 
     class ConflictError < ClientError
-      def initialize: (?message: untyped, ?response_body: untyped, ?error_body: untyped) -> void
+      def initialize: (?message: String?, ?response_body: String?, ?response_headers: Hash[String, String]?, ?error_body: untyped) -> void
     end
 
     class UnprocessableEntityError < ClientError
-      def initialize: (?message: untyped, ?response_body: untyped, ?error_body: untyped) -> void
+      def initialize: (?message: String?, ?response_body: String?, ?response_headers: Hash[String, String]?, ?error_body: untyped) -> void
     end
 
     class ServerError < ApiError
     end
 
     class InternalServerError < ServerError
-      def initialize: (?message: untyped, ?response_body: untyped, ?error_body: untyped) -> void
+      def initialize: (?message: String?, ?response_body: String?, ?response_headers: Hash[String, String]?, ?error_body: untyped) -> void
     end
 
     class NetworkError < ApiError
@@ -137,16 +160,35 @@ module Zitadel::Client
 
     class NetworkTimeoutError < NetworkError
     end
+
+    class SerializationError < ::Zitadel::Client::Errors::ZitadelError
+      attr_reader cause: Exception?
+      def initialize: (String, ?Exception?) -> void
+    end
+
+    class OAuth2TokenError < ::Zitadel::Client::Errors::ZitadelError
+    end
+
+    class OAuth2ServerError < ::Zitadel::Client::Errors::ZitadelError
+      attr_reader status_code: Integer
+      attr_reader code: String?
+      attr_reader description: String?
+      attr_reader uri: String?
+      attr_reader raw_body: String
+      def initialize: (Integer, String?, String?, String?, String) -> void
+      private
+      def build_message: () -> String
+    end
   end
 
   class ApiClient
-    def send_request: (Symbol, String, Hash[String, String], untyped, ?no_redirect: bool) -> ApiHttpResponse
+    def send_request: (Symbol | String, String, Hash[String, String], untyped, ?no_redirect: bool) -> ApiHttpResponse
   end
 
   class DefaultApiClient < ApiClient
     EXTRA_SENSITIVE_HEADER_NAMES: Array[String]
     def initialize: (?TransportOptions?) -> void
-    def send_request: (Symbol, String, Hash[String, String], untyped, ?no_redirect: bool) -> ApiHttpResponse
+    def send_request: (Symbol | String, String, Hash[String, String], untyped, ?no_redirect: bool) -> ApiHttpResponse
     def close: () -> void
     def self.supported_encodings: () -> String
     private
@@ -157,6 +199,7 @@ module Zitadel::Client
     def decode_text_body: (String, String?) -> String
     def detect_encoding: (String?) -> Encoding
     def utf16_bom?: (untyped) -> bool
+    def unusable_response: (untyped, String) -> Errors::ApiError
     def decompress_body: (untyped, untyped) -> untyped
     def connection: () -> untyped
     def build_connection: () -> untyped
@@ -170,13 +213,6 @@ module Zitadel::Client
     def safe_parse_uri: (String) -> URI::Generic?
     def same_origin?: (String, String) -> bool
     def effective_port: (URI::Generic) -> Integer
-  end
-
-  UUID_REGEX: Regexp
-
-  class SerializationError < ::Zitadel::Client::ZitadelError
-    attr_reader cause: Exception?
-    def initialize: (String, ?Exception?) -> void
   end
 
   class ValueSerializer
@@ -198,6 +234,7 @@ module Zitadel::Client
   class ObjectSerializer
     DEFAULT_DATETIME_FORMAT: String
     PROTOBUF_DURATION_REGEX: Regexp
+    UUID_REGEX: Regexp
     def self.stringify: (untyped) -> String
     def self.serialize: (untyped) -> String
     def self.encode_oneof_body: (untyped, String) -> untyped

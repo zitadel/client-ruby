@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/AbcSize, Metrics/MethodLength
-
 # Test for WebTokenAuthenticator to verify JWT token refresh functionality using the builder.
 # Extends the base OAuthAuthenticatorTest class.
 #
@@ -39,6 +37,11 @@ module Zitadel
                            .token_lifetime_seconds(3600)
                            .build
           inject_api_client(@authenticator)
+        end
+
+        def teardown
+          @key_files&.each(&:unlink)
+          super
         end
 
         ##
@@ -134,11 +137,6 @@ module Zitadel
           file.close
           (@key_files ||= []) << file
           file.path.to_s
-        end
-
-        def teardown
-          @key_files&.each(&:unlink)
-          super
         end
 
         def test_loads_key_file

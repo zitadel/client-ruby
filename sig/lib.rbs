@@ -5,7 +5,6 @@
 # sig/zitadel/). The bespoke, keep-listed sources have no generated signature,
 # so their types are declared here:
 #   - lib/zitadel/client/auth/*.rb             (the bespoke authenticators)
-#   - lib/zitadel/client/errors/oauth2_*.rb    (the OAuth2 error types)
 #
 # This file also provides the plain `module Zitadel` / `module Client` namespace
 # anchor. Every generated signature uses the qualified `module Zitadel::Client`
@@ -18,27 +17,9 @@
 # redeclared here.
 module Zitadel
   module Client
-    module Errors
-      class OAuth2ServerError < ::Zitadel::Client::ZitadelError
-        attr_reader status_code: Integer
-        attr_reader code: String?
-        attr_reader description: String?
-        attr_reader uri: String?
-        attr_reader raw_body: String
-
-        def initialize: (Integer status_code, String? code, String? description, String? uri, String raw_body) -> void
-
-        def self.build_message: (Integer status_code, String? code, String? description, String raw_body) -> String
-      end
-
-      class OAuth2TokenError < ::Zitadel::Client::ZitadelError
-      end
-    end
-
     module Auth
       class OpenId
         WELL_KNOWN_PATH: String
-        STATUS_ERRORS: Hash[Integer, untyped]
 
         attr_reader host_endpoint: String
 
@@ -61,8 +42,6 @@ module Zitadel
         def token_endpoint_from: (Hash[String, untyped] document, String url) -> String
 
         def parse_document: (String body, String url) -> Hash[String, untyped]
-
-        def status_error: (Integer status, String message, ApiHttpResponse response) -> ApiError
       end
 
       class NoAuthAuthenticator < BaseAuthenticator

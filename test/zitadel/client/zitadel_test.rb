@@ -138,7 +138,7 @@ module Zitadel
       def with_proxy_retry(attempts: 5)
         (1...attempts).each do
           return yield
-        rescue ::Zitadel::Client::ApiError
+        rescue ::Zitadel::Client::Errors::ApiError
           sleep 1
         end
         yield

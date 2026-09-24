@@ -16,21 +16,12 @@ module Zitadel
       # any other request:
       #
       # - no HTTP response: Errors::NetworkError or Errors::NetworkTimeoutError;
-      # - a non-2xx status: the ApiError subclass for that status;
+      # - a non-2xx status: the Errors::ApiError subclass for that status, as
+      #   chosen by Errors::ApiError.from_response;
       # - a body that is not a JSON object with a +token_endpoint+:
-      #   SerializationError.
+      #   Errors::SerializationError.
       class OpenId
         WELL_KNOWN_PATH = '/.well-known/openid-configuration'
-
-        STATUS_ERRORS = {
-          400 => ::Zitadel::Client::Errors::BadRequestError,
-          401 => ::Zitadel::Client::Errors::UnauthorizedError,
-          403 => ::Zitadel::Client::Errors::ForbiddenError,
-          404 => ::Zitadel::Client::Errors::NotFoundError,
-          409 => ::Zitadel::Client::Errors::ConflictError,
-          422 => ::Zitadel::Client::Errors::UnprocessableEntityError,
-          500 => ::Zitadel::Client::Errors::InternalServerError
-        }.freeze
 
         # @return [String] the normalised host endpoint
         attr_reader :host_endpoint
@@ -54,8 +45,8 @@ module Zitadel
         #
         # @param api_client [ApiClient] the shared API client used for the discovery request
         # @return [String] the token endpoint URL
-        # @raise [ApiError] if discovery fails at the transport or HTTP level
-        # @raise [SerializationError] if the discovery document is unusable
+        # @raise [Errors::ApiError] if discovery fails at the transport or HTTP level
+        # @raise [Errors::SerializationError] if the discovery document is unusable
         def token_endpoint(api_client)
           @mutex.synchronize do
             @token_endpoint ||= discover(api_client)
@@ -97,7 +88,7 @@ module Zitadel
           response = api_client.send_request(:GET, url, { 'Accept' => 'application/json' }, nil)
           status = response.status_code
           unless status >= 200 && status < 300
-            raise status_error(status, "OpenID discovery at #{url} failed with status #{status}", response)
+            raise ::Zitadel::Client::Errors::ApiError.from_response(status, response.headers, response.body)
           end
 
           token_endpoint_from(parse_document(response.body, url), url)
@@ -107,26 +98,19 @@ module Zitadel
           endpoint = document['token_endpoint']
           return endpoint if endpoint.is_a?(String) && !endpoint.empty?
 
-          raise ::Zitadel::Client::SerializationError, "OpenID configuration at #{url} has no valid token_endpoint"
+          raise ::Zitadel::Client::Errors::SerializationError,
+                "OpenID configuration at #{url} has no valid token_endpoint"
         end
 
         def parse_document(body, url)
           document = JSON.parse(body)
           return document if document.is_a?(Hash)
 
-          raise ::Zitadel::Client::SerializationError, "OpenID configuration at #{url} is not a JSON object"
+          raise ::Zitadel::Client::Errors::SerializationError, "OpenID configuration at #{url} is not a JSON object"
         rescue JSON::ParserError => e
-          raise ::Zitadel::Client::SerializationError.new("OpenID configuration at #{url} is not a JSON object", e)
-        end
-
-        def status_error(status, message, response)
-          options = { message: message, response_body: response.body, response_headers: response.headers }
-          error = STATUS_ERRORS[status]
-          return error.new(**options) unless error.nil?
-          return ::Zitadel::Client::Errors::ClientError.new(status_code: status, **options) if status.between?(400, 499)
-          return ::Zitadel::Client::Errors::ServerError.new(status_code: status, **options) if status >= 500
-
-          ::Zitadel::Client::ApiError.new(status_code: status, **options)
+          raise ::Zitadel::Client::Errors::SerializationError.new(
+            "OpenID configuration at #{url} is not a JSON object", e
+          )
         end
       end
     end

@@ -69,7 +69,7 @@ class SessionServiceSanityCheckSpec < BaseSpec
   it 'raises an error when retrieving a non-existent session' do
     request = Zitadel::Client::Models::SessionServiceGetSessionRequest.new(session_id: SecureRandom.uuid,
                                                                            session_token: @session_token)
-    assert_raises(Zitadel::Client::ApiError) do
+    assert_raises(Zitadel::Client::Errors::ApiError) do
       client.session_service.get_session(request)
     end
   end

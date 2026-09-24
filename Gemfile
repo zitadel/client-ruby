@@ -29,6 +29,7 @@ group :development, :test do
   gem 'minitest', '~> 5.0'
   gem 'minitest-hooks', '~> 1.5'
   gem 'minitest-reporters', '~> 1.8'
+  gem 'opentelemetry-sdk', '~> 1.5'
   gem 'rake', '~> 13.4'
   gem 'rubocop', '~> 1.87', require: false
   gem 'rubocop-minitest', '~> 0.39', require: false

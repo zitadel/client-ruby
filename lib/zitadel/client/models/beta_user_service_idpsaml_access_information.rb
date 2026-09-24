@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable all
 # Zitadel SDK
 # The Zitadel SDK is a convenience wrapper around the Zitadel APIs to assist you in integrating with your Zitadel environment. This SDK enables you to handle resources, settings, and configurations within the Zitadel platform.
 #
@@ -13,22 +12,7 @@ require 'iso8601'
 require 'time'
 require 'tod'
 require 'dry-struct'
-
-# :nodoc:
-module Types
-  # The dry-types module built dynamically by +Dry.Types()+. Bound to a
-  # constant first so YARD resolves the mixin statically (it cannot resolve
-  # the bare +include Dry.Types()+ method-call form and would otherwise emit
-  # an "Undocumentable mixin" warning).
-  Builder = Dry.Types()
-  include Builder
-
-  Required = Types::Any.constructor do |v|
-    raise Dry::Types::CoercionError, 'value cannot be nil' if v.nil?
-
-    v
-  end
-end
+require_relative '../types'
 
 # :nodoc:
 module Zitadel::Client
@@ -58,7 +42,7 @@ module Zitadel::Client
       # @type var openapi_formats: Hash[Symbol, String]
       openapi_formats = {
         assertion: 'byte',
-        
+
       }
       OPENAPI_FORMATS = openapi_formats.freeze
 

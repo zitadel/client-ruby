@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable all
 # Zitadel SDK
 # The Zitadel SDK is a convenience wrapper around the Zitadel APIs to assist you in integrating with your Zitadel environment. This SDK enables you to handle resources, settings, and configurations within the Zitadel platform.
 #
@@ -11,16 +10,18 @@
 require_relative 'zitadel_error'
 
 module Zitadel::Client
-  # Exception raised when serialization or deserialization fails.
-  #
-  # Declared in its own file so an autoloader that maps each file to the
-  # one constant named after it can resolve this class directly.
-  class SerializationError < ::Zitadel::Client::ZitadelError
-    attr_reader :cause
+  module Errors
+    # Exception raised when serialization or deserialization fails.
+    #
+    # Declared in its own file so an autoloader that maps each file to the
+    # one constant named after it can resolve this class directly.
+    class SerializationError < ::Zitadel::Client::Errors::ZitadelError
+      attr_reader :cause
 
-    def initialize(message, cause = nil)
-      super(message)
-      @cause = cause
+      def initialize(message, cause = nil)
+        super(message)
+        @cause = cause
+      end
     end
   end
 end

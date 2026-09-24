@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable all
 # Zitadel SDK
 # The Zitadel SDK is a convenience wrapper around the Zitadel APIs to assist you in integrating with your Zitadel environment. This SDK enables you to handle resources, settings, and configurations within the Zitadel platform.
 #
@@ -14,7 +13,7 @@ module Zitadel::Client
     # refused, the host name did not resolve, the TLS handshake failed, or the
     # connection was reset. The status code is always 0; the underlying
     # library error is kept as +cause+.
-    class NetworkError < ::Zitadel::Client::ApiError
+    class NetworkError < ::Zitadel::Client::Errors::ApiError
       def initialize(message: nil)
         super({ status_code: 0, message: message })
       end

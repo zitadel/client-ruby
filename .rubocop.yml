@@ -1,4 +1,95 @@
+# Declared here rather than passed on each command line so every rubocop
+# invocation -- the spec, the Makefile, an editor -- sees the same cops.
+plugins:
+  - rubocop-minitest
+  - rubocop-rake
+
 AllCops:
   TargetRubyVersion: 3.4
   NewCops: enable
   SuggestExtensions: false
+
+# The cops below are the only ones turned off, and they are named one by one
+# rather than disabled per file: every other cop runs over lib/ and test/, so
+# a new violation fails the build. Each of these asks for a shape the twelve
+# SDKs cannot share -- the size of a generated method, where a namespace is
+# opened, how an assertion is spaced -- or for a Ruby-only name where the
+# accessor is called get_url in all twelve.
+
+Layout/LineLength:
+  Enabled: false
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
+
+# One behaviour is often worth several assertions -- that a failure carries the
+# right type, status and cause is one fact checked three ways -- and a test
+# written as `def test_x` in a hand-written suite is flagged where the same
+# test written in spec style is not. The count is not a defect.
+Minitest/MultipleAssertions:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: false
+Metrics/BlockNesting:
+  Enabled: false
+Metrics/ClassLength:
+  Enabled: false
+Metrics/CyclomaticComplexity:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+Metrics/ParameterLists:
+  Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Minitest/AssertMatch:
+  Enabled: false
+Minitest/AssertPredicate:
+  Enabled: false
+Minitest/EmptyLineBeforeAssertionMethods:
+  Enabled: false
+Minitest/RefuteRespondTo:
+  Enabled: false
+
+Naming/AccessorMethodName:
+  Enabled: false
+
+Style/ArgumentsForwarding:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/DefWithParentheses:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/IfUnlessModifier:
+  Enabled: false
+Style/Lambda:
+  Enabled: false
+Style/MethodCallWithoutArgsParentheses:
+  Enabled: false
+Style/MultilineIfModifier:
+  Enabled: false
+Style/OneClassPerFile:
+  Enabled: false
+Style/RedundantBegin:
+  Enabled: false
+Style/RedundantConstantBase:
+  Enabled: false
+Style/RedundantException:
+  Enabled: false
+Style/RedundantInterpolation:
+  Enabled: false
+Style/RegexpLiteral:
+  Enabled: false
+Style/RescueModifier:
+  Enabled: false
+Style/StringConcatenation:
+  Enabled: false
+Style/StringLiterals:
+  Enabled: false
+Style/TrailingCommaInHashLiteral:
+  Enabled: false

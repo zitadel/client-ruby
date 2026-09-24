@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/ClassLength, Metrics/AbcSize, Metrics/MethodLength
-
 # Test for ClientCredentialsAuthenticator to verify token refresh functionality,
 # and for the OAuth contract it shares with every OAuth authenticator: host
 # validation, OpenID discovery failures and token endpoint failures.
@@ -201,7 +199,7 @@ module Zitadel
             error = assert_raises_exactly(ArgumentError) do
               ClientCredentialsAuthenticator.builder(host, 'client-1', 'client-secret')
             end
-            refute_kind_of ::Zitadel::Client::ZitadelError, error
+            refute_kind_of ::Zitadel::Client::Errors::ZitadelError, error
           end
         end
 
@@ -216,7 +214,7 @@ module Zitadel
                                   'http://127.0.0.1:1')
 
           error = assert_raises_exactly(::Zitadel::Client::Errors::NetworkError) { authenticator.auth_token }
-          assert_kind_of ::Zitadel::Client::ApiError, error
+          assert_kind_of ::Zitadel::Client::Errors::ApiError, error
           assert_equal 0, error.status_code
         end
 
@@ -225,7 +223,7 @@ module Zitadel
             stubbed(StubApiClient.new(response(404, '{}'), response(200, '{}'))).auth_token
           end
           assert_equal 404, error.status_code
-          assert_kind_of ::Zitadel::Client::ZitadelError, error
+          assert_kind_of ::Zitadel::Client::Errors::ZitadelError, error
 
           assert_raises_exactly(::Zitadel::Client::Errors::InternalServerError) do
             stubbed(StubApiClient.new(response(500, '{}'), response(200, '{}'))).auth_token
@@ -234,10 +232,10 @@ module Zitadel
 
         def test_discovery_malformed
           ['not json', '[]', '{"issuer":"x"}'].each do |body|
-            error = assert_raises_exactly(::Zitadel::Client::SerializationError) do
+            error = assert_raises_exactly(::Zitadel::Client::Errors::SerializationError) do
               stubbed(StubApiClient.new(response(200, body), response(200, '{}'))).auth_token
             end
-            assert_kind_of ::Zitadel::Client::ZitadelError, error
+            assert_kind_of ::Zitadel::Client::Errors::ZitadelError, error
           end
         end
 
@@ -248,8 +246,8 @@ module Zitadel
           assert_equal 401, error.status_code
           assert_equal 'invalid_client', error.code
           assert_equal 'bad', error.description
-          assert_kind_of ::Zitadel::Client::ZitadelError, error
-          refute_kind_of ::Zitadel::Client::ApiError, error
+          assert_kind_of ::Zitadel::Client::Errors::ZitadelError, error
+          refute_kind_of ::Zitadel::Client::Errors::ApiError, error
 
           raw = assert_raises_exactly(::Zitadel::Client::Errors::OAuth2ServerError) { token_stubbed(503, 'down').auth_token }
           assert_equal 503, raw.status_code
@@ -261,7 +259,7 @@ module Zitadel
             error = assert_raises_exactly(::Zitadel::Client::Errors::OAuth2TokenError) do
               token_stubbed(200, body).auth_token
             end
-            assert_kind_of ::Zitadel::Client::ZitadelError, error
+            assert_kind_of ::Zitadel::Client::Errors::ZitadelError, error
           end
         end
 

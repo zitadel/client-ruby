@@ -1,4 +1,5 @@
 .editorconfig
+.rubocop.yml
 .yardopts
 README.md
 SKILLS.md
@@ -33,7 +34,6 @@ lib/zitadel/client/api/settings_service_api.rb
 lib/zitadel/client/api/user_service_api.rb
 lib/zitadel/client/api/web_key_service_api.rb
 lib/zitadel/client/api_client.rb
-lib/zitadel/client/api_error.rb
 lib/zitadel/client/api_http_response.rb
 lib/zitadel/client/api_result.rb
 lib/zitadel/client/auth/authenticator.rb
@@ -43,6 +43,7 @@ lib/zitadel/client/auth/http_aware_authenticator.rb
 lib/zitadel/client/auth/zitadel_access_token_authenticator.rb
 lib/zitadel/client/configuration.rb
 lib/zitadel/client/default_api_client.rb
+lib/zitadel/client/errors/api_error.rb
 lib/zitadel/client/errors/bad_request_error.rb
 lib/zitadel/client/errors/client_error.rb
 lib/zitadel/client/errors/conflict_error.rb
@@ -51,9 +52,13 @@ lib/zitadel/client/errors/internal_server_error.rb
 lib/zitadel/client/errors/network_error.rb
 lib/zitadel/client/errors/network_timeout_error.rb
 lib/zitadel/client/errors/not_found_error.rb
+lib/zitadel/client/errors/oauth2_server_error.rb
+lib/zitadel/client/errors/oauth2_token_error.rb
+lib/zitadel/client/errors/serialization_error.rb
 lib/zitadel/client/errors/server_error.rb
 lib/zitadel/client/errors/unauthorized_error.rb
 lib/zitadel/client/errors/unprocessable_entity_error.rb
+lib/zitadel/client/errors/zitadel_error.rb
 lib/zitadel/client/header_selector.rb
 lib/zitadel/client/models/action_service_activate_public_key_request.rb
 lib/zitadel/client/models/action_service_activate_public_key_response.rb
@@ -1407,16 +1412,15 @@ lib/zitadel/client/models/web_key_service_rsa_hasher.rb
 lib/zitadel/client/models/web_key_service_state.rb
 lib/zitadel/client/models/web_key_service_web_key.rb
 lib/zitadel/client/object_serializer.rb
-lib/zitadel/client/serialization_error.rb
 lib/zitadel/client/server_configuration.rb
 lib/zitadel/client/server_variable.rb
 lib/zitadel/client/servers.rb
 lib/zitadel/client/trace_context_util.rb
 lib/zitadel/client/transport_options.rb
+lib/zitadel/client/types.rb
 lib/zitadel/client/value_serializer.rb
 lib/zitadel/client/version.rb
 lib/zitadel/client/zitadel.rb
-lib/zitadel/client/zitadel_error.rb
 sig/infrastructure.rbs
 sig/vendor.rbs
 sig/zitadel/client/api/action_service_api.rbs

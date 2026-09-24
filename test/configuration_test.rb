@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-# rubocop:disable all
 
 require 'test_helper'
 
@@ -45,15 +44,15 @@ describe Zitadel::Client::Configuration do
   it 'builder sets multiple default headers' do
     config = Zitadel::Client::Configuration.builder
       .default_headers({
-        'Authorization' => 'Bearer token123',
-        'X-Custom' => 'value'
-      })
+                         'Authorization' => 'Bearer token123',
+                         'X-Custom' => 'value'
+                       })
       .build
 
     _(config.default_headers).must_equal({
-      'Authorization' => 'Bearer token123',
-      'X-Custom' => 'value'
-    })
+                                           'Authorization' => 'Bearer token123',
+                                           'X-Custom' => 'value'
+                                         })
   end
 
   it 'builder accumulates headers' do
@@ -78,9 +77,9 @@ describe Zitadel::Client::Configuration do
 
     _(config.base_url).must_equal('https://api.example.com')
     _(config.default_headers).must_equal({
-      'Authorization' => 'Bearer token',
-      'X-Custom' => 'value'
-    })
+                                           'Authorization' => 'Bearer token',
+                                           'X-Custom' => 'value'
+                                         })
   end
 
   it 'server resolves URL with default variables' do

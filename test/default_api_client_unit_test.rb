@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-# rubocop:disable all
 
 require 'minitest/autorun'
 require 'json'
@@ -31,8 +30,8 @@ class MultipartModelPart < Dry::Struct
     JSON_KEY_MAP[key.to_s] || key.to_sym
   end
 
-  attribute :is_enabled, Types::Any.optional.meta(omittable: true)
-  attribute :recorded_at, Types::Any.optional.meta(omittable: true)
+  attribute :is_enabled, ::Zitadel::Client::Types::Any.optional.meta(omittable: true)
+  attribute :recorded_at, ::Zitadel::Client::Types::Any.optional.meta(omittable: true)
 end
 
 describe Zitadel::Client::DefaultApiClient do
@@ -603,18 +602,6 @@ describe Zitadel::Client::DefaultApiClient do
     stubs.verify_stubbed_calls
   end
 
-  # ── Proxy authentication (#29) ──
-  #
-  # The test fixture Squid config does NOT enable basic auth, so any
-  # proxy-with-credentials request will succeed at the proxy level just
-  # like an unauthenticated request. We assert that the userinfo portion
-  # of the proxy URL is accepted and forwarded to Faraday's proxy config
-  # without raising; full end-to-end basic-auth verification is skipped
-  # because the fixture Squid lacks auth_param config.
-  it 'accepts proxy URL with basic-auth userinfo (skips if Squid lacks auth)' do
-    skip 'Squid fixture has no auth_param basic configuration'
-  end
-
   it 'parses proxy URL with userinfo without raising' do
     transport = Zitadel::Client::TransportOptions.builder
       .proxy('http://user:pass@proxy.example.com:3128')
@@ -696,10 +683,14 @@ describe Zitadel::Client::DefaultApiClient do
     transport = Zitadel::Client::TransportOptions.builder.follow_redirects(true).build
     client = Zitadel::Client::DefaultApiClient.new(transport)
     client.stub(:build_connection, stub_connection(stubs)) do
-      err = assert_raises(Zitadel::Client::ApiError) do
+      err = assert_raises(Zitadel::Client::Errors::ApiError) do
         client.send_request(:POST, 'https://localhost/upload', {}, 'secret=payload')
       end
       _(err.message).must_match(/TLS downgrade/)
+      # A refused redirect is a response that could not be used: an
+      # ApiError with the 3xx status, never a NetworkError.
+      _(err).must_be_instance_of Zitadel::Client::Errors::ApiError
+      _(err.status_code).must_equal 307
     end
     _(call_count).must_equal 1
   end
@@ -740,10 +731,14 @@ describe Zitadel::Client::DefaultApiClient do
       .build
     client = Zitadel::Client::DefaultApiClient.new(transport)
     client.stub(:build_connection, stub_connection(stubs)) do
-      err = assert_raises(Zitadel::Client::ApiError) do
+      err = assert_raises(Zitadel::Client::Errors::ApiError) do
         client.send_request(:GET, 'http://localhost/loop', {}, nil)
       end
       _(err.message).must_match(/redirect/i)
+      # A refused redirect is a response that could not be used: an
+      # ApiError with the 3xx status, never a NetworkError.
+      _(err).must_be_instance_of Zitadel::Client::Errors::ApiError
+      _(err.status_code).must_equal 302
     end
   end
 
@@ -761,24 +756,31 @@ describe Zitadel::Client::DefaultApiClient do
     transport = Zitadel::Client::TransportOptions.builder.follow_redirects(true).build
     client = Zitadel::Client::DefaultApiClient.new(transport)
     client.stub(:build_connection, stub_connection(stubs)) do
-      err = assert_raises(Zitadel::Client::ApiError) do
+      err = assert_raises(Zitadel::Client::Errors::ApiError) do
         client.send_request(:GET, 'http://localhost/evil', {}, nil)
       end
       _(err.message).must_match(/non-http/i)
+      # A refused redirect is a response that could not be used: an
+      # ApiError with the 3xx status, never a NetworkError.
+      _(err).must_be_instance_of Zitadel::Client::Errors::ApiError
+      _(err.status_code).must_equal 302
     end
   end
 
   # ── Bucket 3: use-after-close raises loudly ──
 
-  it 'raises ApiError when send_request is called after close' do
+  it 'raises RuntimeError when send_request is called after close' do
     # After #close releases the connection pool the client is dead; a
-    # subsequent send_request MUST raise an ApiError rather than lazily
-    # rebuilding a connection (which would make close a silent no-op).
+    # subsequent send_request MUST raise the invalid-state RuntimeError
+    # rather than lazily rebuilding a connection (which would make close a
+    # silent no-op).
     client = Zitadel::Client::DefaultApiClient.new
     client.close
-    err = assert_raises(Zitadel::Client::ApiError) do
+    err = assert_raises(RuntimeError) do
       client.send_request(:GET, 'http://localhost/echo', {}, nil)
     end
+    _(err).must_be_instance_of RuntimeError
+    _(err).wont_be_kind_of ::Zitadel::Client::Errors::ZitadelError
     _(err.message).must_match(/closed/i)
   end
 
@@ -845,9 +847,11 @@ describe Zitadel::Client::DefaultApiClient do
   # falling back to the system trust store (security theater).
   it 'raises ArgumentError at construction for a non-existent ca_cert_path' do
     transport = Zitadel::Client::TransportOptions.builder.ca_cert_path('/nonexistent/ca.pem').build
-    assert_raises(ArgumentError) do
+    err = assert_raises(ArgumentError) do
       Zitadel::Client::DefaultApiClient.new(transport)
     end
+    _(err).must_be_instance_of ArgumentError
+    _(err).wont_be_kind_of ::Zitadel::Client::Errors::ZitadelError
   end
 
   # A request that gets no HTTP response raises NetworkError, and one that
@@ -862,7 +866,9 @@ describe Zitadel::Client::DefaultApiClient do
       err = assert_raises(Zitadel::Client::Errors::NetworkTimeoutError) do
         client.send_request('GET', 'http://localhost/slow', {}, nil)
       end
-      _(err).must_be_kind_of Zitadel::Client::ApiError
+      _(err).must_be_instance_of Zitadel::Client::Errors::NetworkTimeoutError
+      _(err).must_be_kind_of Zitadel::Client::Errors::NetworkError
+      _(err).must_be_kind_of Zitadel::Client::Errors::ApiError
       _(err.status_code).must_equal 0
       _(err.cause).must_be_kind_of Faraday::TimeoutError
     end
@@ -888,19 +894,40 @@ describe Zitadel::Client::DefaultApiClient do
     end
   end
 
-  it 'raises NetworkError when the connection fails' do
+  it 'raises NetworkTimeoutError when the write times out' do
+    # Faraday's net_http adapter rescues Timeout::Error, which Net::WriteTimeout
+    # is, and re-raises it as Faraday::TimeoutError. The write deadline is the
+    # same budget as the connect and read ones, so it is the same error type.
     stubs = Faraday::Adapter::Test::Stubs.new do |stub|
-      stub.get('/refused') { raise Faraday::ConnectionFailed, 'Connection refused' }
+      stub.post('/write-timeout') do
+        begin
+          raise Net::WriteTimeout, 'execution expired'
+        rescue Net::WriteTimeout => e
+          raise Faraday::TimeoutError, e
+        end
+      end
     end
     client = Zitadel::Client::DefaultApiClient.new
     client.stub(:build_connection, stub_connection(stubs)) do
-      err = assert_raises(Zitadel::Client::Errors::NetworkError) do
-        client.send_request('GET', 'http://localhost/refused', {}, nil)
+      err = assert_raises(Zitadel::Client::Errors::NetworkTimeoutError) do
+        client.send_request('POST', 'http://localhost/write-timeout', {}, 'body')
       end
-      _(err).wont_be_kind_of Zitadel::Client::Errors::NetworkTimeoutError
+      _(err).must_be_instance_of Zitadel::Client::Errors::NetworkTimeoutError
+      _(err).must_be_kind_of Zitadel::Client::Errors::NetworkError
       _(err.status_code).must_equal 0
-      _(err.cause).must_be_kind_of Faraday::ConnectionFailed
     end
+  end
+
+  it 'raises NetworkError when the connection is refused' do
+    # Nothing listens on port 1, so the connect is refused for real.
+    client = Zitadel::Client::DefaultApiClient.new
+    err = assert_raises(Zitadel::Client::Errors::NetworkError) do
+      client.send_request('GET', 'http://127.0.0.1:1/refused', {}, nil)
+    end
+    _(err).must_be_instance_of Zitadel::Client::Errors::NetworkError
+    _(err).must_be_kind_of Zitadel::Client::Errors::ApiError
+    _(err.status_code).must_equal 0
+    _(err.cause).must_be_kind_of Faraday::ConnectionFailed
   end
 
   # ── decompression-error-not-wrapped ──
@@ -911,14 +938,19 @@ describe Zitadel::Client::DefaultApiClient do
   it 'wraps a malformed Content-Encoding body as ApiError' do
     stubs = Faraday::Adapter::Test::Stubs.new do |stub|
       stub.get('/gz') do
-        [200, { 'content-type' => 'application/json', 'content-encoding' => 'gzip' }, 'not-actually-gzip']
+        [502, { 'content-type' => 'application/json', 'content-encoding' => 'gzip' }, 'not-actually-gzip']
       end
     end
     client = Zitadel::Client::DefaultApiClient.new
     client.stub(:build_connection, stub_connection(stubs)) do
-      err = assert_raises(Zitadel::Client::ApiError) do
+      err = assert_raises(Zitadel::Client::Errors::ApiError) do
         client.send_request('GET', 'http://localhost/gz', {}, nil)
       end
+      # A response arrived, so this is an ApiError with that response's
+      # status, never a NetworkError with status 0.
+      _(err).must_be_instance_of Zitadel::Client::Errors::ApiError
+      _(err).wont_be_kind_of Zitadel::Client::Errors::NetworkError
+      _(err.status_code).must_equal 502
       refute_kind_of Zlib::Error, err
     end
     stubs.verify_stubbed_calls
@@ -941,7 +973,7 @@ describe Zitadel::Client::DefaultApiClient do
     end
     client = Zitadel::Client::DefaultApiClient.new
     client.stub(:build_connection, stub_connection(stubs)) do
-      err = assert_raises(Zitadel::Client::ApiError) do
+      err = assert_raises(Zitadel::Client::Errors::ApiError) do
         client.send_request('GET', 'http://localhost/gz', {}, nil)
       end
       refute_kind_of Zlib::Error, err

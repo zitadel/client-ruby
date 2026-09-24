@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable all
 # Zitadel SDK
 # The Zitadel SDK is a convenience wrapper around the Zitadel APIs to assist you in integrating with your Zitadel environment. This SDK enables you to handle resources, settings, and configurations within the Zitadel platform.
 #
@@ -109,7 +108,7 @@ module Zitadel::Client
         @follow_redirects = true
         @max_redirects = nil
         @user_agent = 'zitadel-client/0.0.1 (ruby)'
-        @default_headers = {} #: Hash[String, String]
+        @default_headers = {} # : Hash[String, String]
         @inject_request_id = false
       end
 

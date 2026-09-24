@@ -1,8 +1,37 @@
 # frozen_string_literal: true
-# rubocop:disable all
 
 require 'test_helper'
+require 'logger'
+require 'opentelemetry/sdk'
 require 'zitadel/client/trace_context_util'
+
+# The W3C propagator the SDK installs by default. Set explicitly, without
+# OpenTelemetry::SDK.configure, so no global tracer provider is installed:
+# each test drives its own provider and so controls the active span.
+OpenTelemetry.logger = Logger.new(File::NULL)
+OpenTelemetry.propagation = OpenTelemetry::Trace::Propagation::TraceContext.text_map_propagator
+
+# A tracer from a real OpenTelemetry SDK provider that records every finished
+# span in memory.
+def sdk_tracer(sampler = OpenTelemetry::SDK::Trace::Samplers::ALWAYS_ON)
+  exporter = OpenTelemetry::SDK::Trace::Export::InMemorySpanExporter.new
+  provider = OpenTelemetry::SDK::Trace::TracerProvider.new(sampler: sampler)
+  provider.add_span_processor(OpenTelemetry::SDK::Trace::Export::SimpleSpanProcessor.new(exporter))
+  [provider.tracer('trace-context-test'), exporter]
+end
+
+# A context whose active span is a sampled remote parent carrying the given
+# tracestate, which a child span inherits.
+def remote_parent(tracestate)
+  parent = OpenTelemetry::Trace::SpanContext.new(
+    trace_id: ['0af7651916cd43dd8448eb211c80319c'].pack('H*'),
+    span_id: ['b7ad6b7169203331'].pack('H*'),
+    trace_flags: OpenTelemetry::Trace::TraceFlags::SAMPLED,
+    tracestate: OpenTelemetry::Trace::Tracestate.from_hash(tracestate),
+    remote: true
+  )
+  OpenTelemetry::Trace.context_with_span(OpenTelemetry::Trace.non_recording_span(parent))
+end
 
 describe Zitadel::Client::TraceContextUtil do
   parallelize_me!
@@ -64,27 +93,55 @@ describe Zitadel::Client::TraceContextUtil do
     end
 
     it 'injects traceparent when a span is active' do
-      # .NET-specific scenario: Ruby has no ambient tracer like .NET Activity.Current;
-      # active-span injection requires a fully configured OpenTelemetry SDK.
-      skip('no ambient tracer; active-span injection requires a configured OpenTelemetry SDK')
+      tracer, exporter = sdk_tracer
+      headers = {}
+      span_context = nil
+      tracer.in_span('request') do |span|
+        Zitadel::Client::TraceContextUtil.inject_trace_context(headers)
+        span_context = span.context
+      end
+      flags = span_context.trace_flags.sampled? ? '01' : '00'
+      _(headers['traceparent']).must_equal(
+        "00-#{span_context.hex_trace_id}-#{span_context.hex_span_id}-#{flags}"
+      )
+      _(exporter.finished_spans.map(&:name)).must_equal(['request'])
     end
 
     it 'includes tracestate when present on the active span' do
-      # .NET-specific scenario: setting tracestate on an active span requires a
-      # fully configured OpenTelemetry SDK, which is out of scope for this unit test.
-      skip('no ambient tracer; tracestate-present requires a configured OpenTelemetry SDK')
+      tracer, = sdk_tracer
+      headers = {}
+      OpenTelemetry::Context.with_current(remote_parent('vendor' => 'value')) do
+        tracer.in_span('request') do
+          Zitadel::Client::TraceContextUtil.inject_trace_context(headers)
+        end
+      end
+      _(headers['tracestate']).must_equal('vendor=value')
     end
 
     it 'omits tracestate when empty on the active span' do
-      # .NET-specific scenario: exercising an empty tracestate on an active span
-      # requires a fully configured OpenTelemetry SDK, which is out of scope here.
-      skip('no ambient tracer; empty-tracestate requires a configured OpenTelemetry SDK')
+      tracer, = sdk_tracer
+      headers = {}
+      tracer.in_span('request') do
+        Zitadel::Client::TraceContextUtil.inject_trace_context(headers)
+      end
+      _(headers).must_include('traceparent')
+      _(headers).wont_include('tracestate')
     end
 
     it 'formats trace flags correctly on the active span' do
-      # .NET-specific scenario: verifying the recorded trace-flags byte requires a
-      # fully configured OpenTelemetry SDK with an active span.
-      skip('no ambient tracer; trace-flags formatting requires a configured OpenTelemetry SDK')
+      sampled, = sdk_tracer
+      unsampled, = sdk_tracer(OpenTelemetry::SDK::Trace::Samplers::ALWAYS_OFF)
+      sampled_headers = {}
+      unsampled_headers = {}
+      sampled.in_span('sampled') { Zitadel::Client::TraceContextUtil.inject_trace_context(sampled_headers) }
+      unsampled.in_span('unsampled') { Zitadel::Client::TraceContextUtil.inject_trace_context(unsampled_headers) }
+      sampled_flags = sampled_headers['traceparent'].split('-')[3]
+      unsampled_flags = unsampled_headers['traceparent'].split('-')[3]
+      # Two lowercase hex digits; the low bit is the sampled flag.
+      _(sampled_flags).must_match(/\A[0-9a-f]{2}\z/)
+      _(unsampled_flags).must_match(/\A[0-9a-f]{2}\z/)
+      _(sampled_flags.to_i(16) & 1).must_equal(1)
+      _(unsampled_flags.to_i(16) & 1).must_equal(0)
     end
   end
 end

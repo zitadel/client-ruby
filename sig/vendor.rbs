@@ -19,23 +19,6 @@ module Dry
   end
 end
 
-module Types
-  Builder: untyped
-  Any: untyped
-  Required: untyped
-  String: untyped
-  Integer: untyped
-  Float: untyped
-  Decimal: untyped
-  Bool: untyped
-  Date: untyped
-  DateTime: untyped
-  Time: untyped
-  Hash: untyped
-  Array: untyped
-  Nil: untyped
-end
-
 module Brotli
   def self.inflate: (String) -> String
 end

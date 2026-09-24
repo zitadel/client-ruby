@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable all
 # Zitadel SDK
 # The Zitadel SDK is a convenience wrapper around the Zitadel APIs to assist you in integrating with your Zitadel environment. This SDK enables you to handle resources, settings, and configurations within the Zitadel platform.
 #
@@ -10,7 +9,11 @@
 
 module Zitadel
   module Client
-    class ZitadelError < StandardError
+    module Errors
+      # The root of every error this SDK raises: HTTP failures (ApiError and its
+      # subclasses), serialization failures and OAuth2 token failures.
+      class ZitadelError < StandardError
+      end
     end
   end
 end

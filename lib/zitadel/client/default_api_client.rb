@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable all
 # Zitadel SDK
 # The Zitadel SDK is a convenience wrapper around the Zitadel APIs to assist you in integrating with your Zitadel environment. This SDK enables you to handle resources, settings, and configurations within the Zitadel platform.
 #
@@ -89,10 +88,10 @@ module Zitadel::Client
     # @return [ApiHttpResponse] the HTTP response
     def send_request(method, url, headers, body, no_redirect: false)
       # Bucket 3: using the client after #close has released its connection
-      # pool is a caller error. Surface it loudly as an ApiError instead of
-      # lazily rebuilding a connection (which would make close a silent
-      # no-op), matching the uniform closed-flag contract across SDKs.
-      raise ApiError, 'ApiClient has been closed and can no longer send requests' if @closed
+      # pool is a caller error. Surface it loudly as a RuntimeError (the
+      # invalid-state error) instead of lazily rebuilding a connection (which
+      # would make close a silent no-op), matching the other SDKs.
+      raise 'ApiClient has been closed and can no longer send requests' if @closed
 
       merged = @transport_options.default_headers.dup.merge(headers)
       merged['User-Agent'] ||= @transport_options.user_agent if @transport_options.user_agent
@@ -154,10 +153,11 @@ module Zitadel::Client
             next_uri = safe_parse_uri(next_url)
             # Bucket 3: a Location header pointing at a non-http(s) scheme
             # (file:, javascript:, data:, ...) is an SSRF / local-file
-            # exfiltration vector. Refuse loudly with an ApiError instead of
-            # silently returning the 3xx response, matching the other SDKs.
+            # exfiltration vector. Refuse loudly with an ApiError carrying the
+            # 3xx status instead of silently returning the 3xx response,
+            # matching the other SDKs.
             if next_uri.nil? || !%w[http https].include?(next_uri.scheme)
-              raise ApiError, "Refusing to follow redirect to non-http(s) URL: #{next_url}"
+              raise unusable_response(response, "Refusing to follow redirect to non-http(s) URL: #{next_url}")
             end
 
             cross_origin = !same_origin?(original_url, next_url)
@@ -187,8 +187,8 @@ module Zitadel::Client
             # actually a body to replay — 301/302/303 demotions to GET
             # drop the body and are allowed.
             if !next_body.nil? && https_to_http_downgrade?(url, next_url)
-              raise ApiError, "Refusing to replay body across HTTPS -> HTTP " \
-                              "redirect (TLS downgrade): #{next_url}"
+              raise unusable_response(response, 'Refusing to replay body across HTTPS -> HTTP ' \
+                                                "redirect (TLS downgrade): #{next_url}")
             end
 
             redirect_headers = current_headers.dup
@@ -223,19 +223,23 @@ module Zitadel::Client
           # returning the last redirect response as if it were the answer,
           # matching the other SDKs.
           if redirect_status?(response.status)
-            raise ApiError, "Exceeded maximum number of redirects (#{max_redirects})"
+            raise unusable_response(response, "Exceeded maximum number of redirects (#{max_redirects})")
           end
         end
-        # Decompress inside the rescue so a malformed Content-Encoding body
-        # (a truncated/garbage gzip/deflate/br/zstd payload) surfaces as an
-        # SDK ApiError rather than leaking a raw Zlib::GzipFile::Error /
-        # Zlib::Error / decoder exception to the caller.
-        content_type = response.headers['content-type'].to_s
-        decoded_body = decompress_body(response.body, response.headers['content-encoding'])
       rescue Faraday::TimeoutError, Faraday::ConnectionFailed, Faraday::SSLError => e
         raise network_error_class(e).new(message: e.message)
-      rescue Zlib::Error => e
-        raise ApiError, "Failed to decompress response body: #{e.message}"
+      rescue URI::InvalidURIError => e
+        raise ArgumentError, "Invalid request URL (#{e.message}): #{url}"
+      end
+      content_type = response.headers['content-type'].to_s
+      # A malformed Content-Encoding body (a truncated/garbage
+      # gzip/deflate/br/zstd payload) arrived with a real response, so it
+      # surfaces as an ApiError carrying that response's status rather than
+      # a network error or a raw Zlib / decoder exception.
+      decoded_body = begin
+        decompress_body(response.body, response.headers['content-encoding'])
+      rescue StandardError => e
+        raise unusable_response(response, "Failed to decompress response body: #{e.message}")
       end
       response_body = if text_content_type?(content_type)
                         decode_text_body(decoded_body.to_s, content_type)
@@ -254,7 +258,7 @@ module Zitadel::Client
       # normalise both shapes. The joined form is not directly parseable
       # for Set-Cookie; callers needing structured cookie access should
       # use HTTP::Cookie.parse or read the raw Faraday::Utils::Headers.
-      normalized_headers = {} #: Hash[String, String]
+      normalized_headers = {} # : Hash[String, String]
       response.headers.each do |name, value|
         joined = value.is_a?(Array) ? value.join(', ') : value.to_s
         normalized_headers[name.to_s.downcase] = joined
@@ -268,9 +272,9 @@ module Zitadel::Client
     end
 
     # Releases the Faraday connection and its underlying socket pool and
-    # marks the client closed. Subsequent calls to {#send_request} raise an
-    # {ApiError} rather than silently rebuilding a connection. It is safe to
-    # call this method repeatedly (idempotent).
+    # marks the client closed. Subsequent calls to {#send_request} raise a
+    # RuntimeError rather than silently rebuilding a connection. It is safe
+    # to call this method repeatedly (idempotent).
     def close
       conn = @connection
       @connection = nil
@@ -388,6 +392,18 @@ module Zitadel::Client
       Encoding::UTF_8
     end
 
+    # A response arrived but cannot be used (a refused redirect, an
+    # undecodable body): an ApiError carrying the response's real status.
+    #
+    # @return [Errors::ApiError]
+    def unusable_response(response, message)
+      Errors::ApiError.new(
+        status_code: response.status.to_i,
+        message: message,
+        response_headers: response.headers.to_h
+      )
+    end
+
     def decompress_body(body, encoding)
       return body if body.nil? || body.empty?
 
@@ -420,9 +436,15 @@ module Zitadel::Client
         f.ssl.ca_file = @transport_options.ca_cert_path if @transport_options.ca_cert_path
 
         if @transport_options.timeout
+          # The one deadline is applied to every phase Faraday times
+          # separately -- connect, read and write. Each raises a different
+          # error, and all three classify as NetworkTimeoutError; the write
+          # deadline is set here rather than left to Faraday's fallback so
+          # the three are visibly the same budget.
           timeout_secs = @transport_options.timeout / 1000.0
           f.options.timeout = timeout_secs
           f.options.open_timeout = timeout_secs
+          f.options.write_timeout = timeout_secs
         end
 
         # Gap BH: do not register the Faraday follow_redirects middleware

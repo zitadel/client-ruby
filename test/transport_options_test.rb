@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-# rubocop:disable all
 
 require 'minitest/autorun'
 require 'zitadel-client'
@@ -86,10 +85,12 @@ describe Zitadel::Client::TransportOptions do
     _(opts.max_redirects).must_be_nil
   end
 
-  it 'invalid proxy URL throws exception' do
-    assert_raises(ArgumentError) do
+  it 'invalid proxy URL raises ArgumentError, not an SDK error' do
+    error = assert_raises(ArgumentError) do
       Zitadel::Client::TransportOptions.builder.proxy('not-a-url').build
     end
+    _(error).must_be_instance_of ArgumentError
+    _(error).wont_be_kind_of ::Zitadel::Client::Errors::ZitadelError
   end
 
   it 'unparseable proxy URL raises ArgumentError, not URI::InvalidURIError' do

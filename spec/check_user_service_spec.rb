@@ -54,7 +54,7 @@ class UserServiceSanityCheckSpec < BaseSpec
 
   it 'raises an error when retrieving a non-existent user' do
     request = Zitadel::Client::Models::UserServiceGetUserByIDRequest.new(user_id: SecureRandom.uuid)
-    assert_raises(Zitadel::Client::ApiError) do
+    assert_raises(Zitadel::Client::Errors::ApiError) do
       client.user_service.get_user_by_id(request)
     end
   end
