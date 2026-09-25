@@ -74,7 +74,6 @@ lefthook.yml
 qodana.yaml
 rbs_collection.lock.yaml
 rbs_collection.yaml
-Steepfile
 
 # --- build / package config (team-owned) ---
 Gemfile
