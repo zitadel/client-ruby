@@ -17,6 +17,24 @@ WIREMOCK_COMMAND = [
   '--global-response-templating'
 ].freeze
 
+# A +DockerContainer+ that also supports tmpfs mounts. testcontainers-ruby has
+# no tmpfs helper of its own, so this injects the mounts straight into the
+# container's HostConfig. Squid drops to the unprivileged +proxy+ user, so a
+# root-owned log or spool directory makes it die; mounting them as world-
+# writable tmpfs keeps it alive.
+class TmpfsDockerContainer < Testcontainers::DockerContainer
+  def with_tmpfs(mounts)
+    @tmpfs_mounts = mounts
+    self
+  end
+
+  def _container_create_options
+    opts = super
+    opts['HostConfig']['Tmpfs'] = @tmpfs_mounts if @tmpfs_mounts
+    opts
+  end
+end
+
 module Zitadel
   module Client
     class ZitadelTest < Minitest::Test
@@ -40,6 +58,7 @@ module Zitadel
         @http_port = @wiremock.mapped_port(8080)
         @https_port = @wiremock.mapped_port(8443)
         @proxy_port = @proxy.mapped_port(3128)
+        @proxy_auth_port = @proxy.mapped_port(3129)
       end
 
       def start_wiremock
@@ -58,15 +77,20 @@ module Zitadel
 
       def start_proxy
         squid_conf = File.join(FIXTURES_DIR, 'squid.conf')
-        container = Testcontainers::DockerContainer.new('ubuntu/squid:6.10-24.10_beta')
-                                                   .with_filesystem_binds("#{squid_conf}:/etc/squid/squid.conf:ro")
-                                                   .with_exposed_ports(3128)
-                                                   .start
+        container = TmpfsDockerContainer.new('ubuntu/squid:6.10-24.10_beta')
+                                        .with_filesystem_binds("#{squid_conf}:/etc/squid/squid.conf:ro")
+                                        .with_exposed_ports(3128, 3129)
+                                        .with_tmpfs('/var/log/squid' => 'rw,mode=1777',
+                                                    '/var/spool/squid' => 'rw,mode=1777')
+                                        .start
         # Attach to the network before squid finishes booting so it resolves the
         # wiremock alias through the embedded Docker DNS.
         @network.connect(container._id)
         container.wait_for_logs(/Accepting HTTP Socket connections/)
+        # Wait for BOTH the open (3128) and the auth-required (3129) ports to be
+        # listening before any test reads their mapped ports.
         container.wait_for_tcp_port(3128)
+        container.wait_for_tcp_port(3129)
         container
       end
 
@@ -142,6 +166,29 @@ module Zitadel
           sleep 1
         end
         yield
+      end
+
+      # Port 3129 is the same proxy but requires Basic proxy credentials; a
+      # request without any credentials must be refused with a 407.
+      def test_proxy_auth_required_without_credentials
+        transport_options = TransportOptions.builder.proxy("http://#{@host}:#{@proxy_auth_port}").build
+        authenticator = Auth::PersonalAccessTokenAuthenticator.new('http://wiremock:8080', 'test-token')
+        zitadel = ::Zitadel::Client::Zitadel.with_authenticator(authenticator, transport_options)
+
+        error = assert_raises(Errors::ApiError) { zitadel.settings_service.get_general_settings({}) }
+        assert_equal 407, error.status_code
+      end
+
+      # The same credentialed proxy succeeds once user:pass are supplied in the
+      # proxy URL, proving the SDK sends Proxy-Authorization.
+      def test_proxy_auth_with_credentials
+        transport_options = TransportOptions.builder.proxy("http://user:pass@#{@host}:#{@proxy_auth_port}").build
+        authenticator = Auth::PersonalAccessTokenAuthenticator.new('http://wiremock:8080', 'test-token')
+        zitadel = ::Zitadel::Client::Zitadel.with_authenticator(authenticator, transport_options)
+
+        response = with_proxy_retry { zitadel.settings_service.get_general_settings({}) }
+
+        assert_equal 'http', response.default_language
       end
 
       def test_no_ca_cert_fails
