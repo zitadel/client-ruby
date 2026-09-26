@@ -6,31 +6,35 @@ module Zitadel
       ##
       # Personal Access Token Authenticator.
       #
-      # Uses a static personal access token for API authentication.
-      #
-      class PersonalAccessTokenAuthenticator < Authenticator
+      # Uses a static personal access token (PAT) for API authentication. A PAT
+      # is a long-lived bearer credential minted out-of-band in the Zitadel
+      # console, so no token exchange is required: the token is attached
+      # verbatim on every request.
+      class PersonalAccessTokenAuthenticator < BaseAuthenticator
+        # @return [String] the normalised host endpoint
+        attr_reader :host
+
         ##
-        # Initializes the PersonalAccessTokenAuthenticator with host and token.
-        #
-        # @param host [String] the base URL for the service.
-        # @param token [String] the personal access token.
-        #
+        # @param host [String] the base URL for the API endpoints
+        # @param token [String] the personal access token
+        # @raise [ArgumentError] if the host is not a valid http or https URL or the token is empty
         def initialize(host, token)
-          # noinspection RubyArgCount
-          super(Utils::UrlUtil.build_hostname(host))
-          @token = token
+          super()
+          @host = OpenId.new(host).host_endpoint
+          @token = OAuthAuthenticatorBuilder.require_text(token, 'Token')
         end
 
-        protected
-
-        ##
-        # Returns the authentication headers using the personal access token.
-        #
-        # @return [Hash{String => String}] a hash containing the 'Authorization' header.
-        #
+        # @return [Hash{String => String}] the Authorization header
         def auth_headers
           { 'Authorization' => "Bearer #{@token}" }
         end
+
+        # Redacts the token.
+        def inspect
+          "#<#{self.class.name} host=#{@host.inspect} token=\"***\">"
+        end
+
+        alias to_s inspect
       end
     end
   end

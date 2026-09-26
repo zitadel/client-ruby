@@ -1,64 +1,41 @@
 # frozen_string_literal: true
 
-require 'time'
+require 'json'
+require 'jwt'
 require 'openssl'
 
 module Zitadel
   module Client
     module Auth
-      # -----------------------------------------------------------------------------
-      # WebTokenAuthenticator
-      # -----------------------------------------------------------------------------
-
-      # OAuth authenticator implementing the JWT bearer flow.
+      ##
+      # JWT-bearer authenticator using the JWT Bearer Grant (RFC 7523).
       #
-      # This implementation builds a JWT assertion dynamically in get_grant().
+      # Signs a short-lived JWT assertion and exchanges it at the provider's
+      # token endpoint for an access token. The exchange is sent through the
+      # SDK's shared transport; see OAuthAuthenticator for the caching and
+      # HTTP-injection contract.
       class WebTokenAuthenticator < Auth::OAuthAuthenticator
-        # Constructs a WebTokenAuthenticator.
-        #
-        # @param open_id [OpenId] The OpenId instance with OAuth endpoint information.
-        # @param auth_scopes [Set<String>] The scope(s) for the token request.
-        # @param jwt_issuer [String] The JWT issuer.
-        # @param jwt_subject [String] The JWT subject.
-        # @param jwt_audience [String] The JWT audience.
-        # @param private_key [String] The private key used to sign the JWT.
-        # @param jwt_lifetime [Integer] Lifetime of the JWT in seconds (default 3600 seconds).
-        # @param jwt_algorithm [String] The JWT signing algorithm (default "RS256").
-        # @param key_id [String, nil] Optional key identifier for the JWT header (default: nil).
-        # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
-        # rubocop:disable Metrics/ParameterLists, Metrics/MethodLength
-        def initialize(open_id, auth_scopes, jwt_issuer, jwt_subject, jwt_audience, private_key,
-                       jwt_lifetime: 3600, jwt_algorithm: 'RS256', key_id: nil, transport_options: nil)
-          transport_options ||= TransportOptions.defaults
+        GRANT_TYPE = 'urn:ietf:params:oauth:grant-type:jwt-bearer'
 
-          conn_opts = transport_options.to_connection_opts
+        # The signing algorithms the builder accepts.
+        ALGORITHMS = %w[RS256 RS384 RS512].freeze
 
-          # noinspection RubyArgCount,RubyMismatchedArgumentType
-          super(open_id, auth_scopes, OAuth2::Client.new('zitadel', 'zitadel', {
-                                                           site: open_id.host_endpoint,
-                                                           token_url: open_id.token_endpoint,
-                                                           connection_opts: conn_opts
-                                                         }), transport_options: transport_options)
-          @jwt_issuer = jwt_issuer
-          @jwt_subject = jwt_subject
-          @jwt_audience = jwt_audience
-          @jwt_lifetime = jwt_lifetime
-          @jwt_algorithm = jwt_algorithm
-          @key_id = key_id
-          # noinspection RubyMismatchedVariableType
-          @private_key = if private_key.is_a?(String)
-                           OpenSSL::PKey::RSA.new(private_key)
-                         else
-                           private_key
-                         end
+        # The claims and signing material of the JWT assertion.
+        JwtAssertion = Data.define(:issuer, :subject, :audience, :private_key, :lifetime, :algorithm, :key_id)
+
+        ##
+        # @param open_id [OpenId] the OpenID discovery helper for the target host
+        # @param scope [String] the space-delimited scope string for the token request
+        # @param assertion [JwtAssertion] the assertion claims and signing key
+        def initialize(open_id, scope, assertion)
+          super(open_id, scope)
+          @assertion = assertion
         end
 
-        # rubocop:enable Metrics/ParameterLists, Metrics/MethodLength
-
-        # Creates a WebTokenAuthenticator instance from a JSON configuration file.
+        ##
+        # Creates a WebTokenAuthenticator from a Zitadel service-account key file.
         #
-        # The JSON file must be formatted as follows:
-        #
+        # Expected JSON format:
         #   {
         #     "type": "serviceaccount",
         #     "keyId": "<key-id>",
@@ -66,117 +43,80 @@ module Zitadel
         #     "userId": "<user-id>"
         #   }
         #
-        # @param host [String] Base URL for the API endpoints.
-        # @param json_path [String] File path to the JSON configuration file.
-        # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
-        # @return [WebTokenAuthenticator] A new instance of WebTokenAuthenticator.
-        # @raise [RuntimeError] If the file cannot be read, the JSON is invalid, or required keys are missing.
-        # rubocop:disable Metrics/MethodLength
-        def self.from_json(host, json_path, transport_options: nil)
-          config = JSON.parse(File.read(json_path))
-        rescue Errno::ENOENT => e
-          raise "Unable to read JSON file at #{json_path}: #{e.message}"
-        rescue JSON::ParserError => e
-          raise "Invalid JSON in file at #{json_path}: #{e.message}"
-        else
-          raise "Expected a JSON object, got #{config.class}" unless config.is_a?(Hash)
+        # @param host [String] the base URL for the API endpoints
+        # @param json_path [String] the path to the key file
+        # @return [WebTokenAuthenticator] the configured authenticator
+        # @raise [ArgumentError] if the file cannot be read, is not a JSON object,
+        #   lacks the string fields userId, keyId and key, or holds an invalid key
+        def self.from_json(host, json_path)
+          config = read_key_file(json_path)
+          user_id, key_id, private_key = config.values_at('userId', 'keyId', 'key')
+          raise ArgumentError, "The key file at #{json_path} must contain the string fields userId, keyId and key" unless [user_id, key_id, private_key].all?(String)
 
-          user_id, private_key, key_id = config.values_at('userId', 'key', 'keyId')
-          raise "Missing required keys 'userId', 'keyId' or 'key'" unless user_id && key_id && private_key
-
-          WebTokenAuthenticator.builder(host, user_id, private_key, transport_options: transport_options)
-                               .key_identifier(key_id).build
+          builder(host, user_id, private_key).key_id(key_id).build
         end
-        # rubocop:enable Metrics/MethodLength
 
-        # Returns a builder for constructing a WebTokenAuthenticator.
+        # @return [Hash] the parsed key file
+        # @raise [ArgumentError] if the file cannot be read or is not a JSON object
+        def self.read_key_file(json_path)
+          config = parse_json(read_file(json_path))
+          raise ArgumentError, "The key file at #{json_path} is not a JSON object" unless config.is_a?(Hash)
+
+          config
+        end
+
+        # @return [String] the file content
+        # @raise [ArgumentError] if the file cannot be read
+        def self.read_file(json_path)
+          File.read(json_path)
+        rescue SystemCallError, IOError => e
+          raise ArgumentError, "Unable to read the key file at #{json_path}", cause: e
+        end
+
+        # @return [Object, nil] the parsed JSON, or nil when it does not parse
+        def self.parse_json(content)
+          JSON.parse(content)
+        rescue JSON::ParserError
+          nil
+        end
+
+        private_class_method :read_key_file, :read_file, :parse_json
+
+        ##
+        # Returns a builder for a WebTokenAuthenticator.
         #
-        # @param host [String] The base URL for the OAuth provider.
-        # @param user_id [String] The user identifier (used as both the issuer and subject).
-        # @param private_key [String] The private key used to sign the JWT.
-        # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
-        # @return [WebTokenAuthenticatorBuilder] A builder instance.
-        def self.builder(host, user_id, private_key, transport_options: nil)
-          WebTokenAuthenticatorBuilder.new(host, user_id, user_id, host, private_key,
-                                           transport_options: transport_options)
+        # @param host [String] the base URL for the OAuth provider
+        # @param user_id [String] the user ID, used as both the issuer and the subject
+        # @param private_key [String] the PEM-encoded RSA private key used to sign the JWT
+        # @return [WebTokenAuthenticatorBuilder] the builder
+        # @raise [ArgumentError] if the host is not a valid http or https URL, the
+        #   user ID is empty, or the key is not an RSA private key
+        def self.builder(host, user_id, private_key)
+          WebTokenAuthenticatorBuilder.new(host, user_id, private_key)
         end
 
         protected
 
-        # Overrides the base get_grant to return client credentials grant parameters.
-        #
-        # @return [OAuth2::AccessToken] A hash containing the grant type.
-        # rubocop:disable Metrics/MethodLength
-        def get_grant(client, auth_scopes)
-          client.assertion.get_token(
-            { iss: @jwt_issuer,
-              sub: @jwt_subject,
-              aud: @jwt_audience,
-              iat: Time.now.utc.to_i,
-              exp: (Time.now.utc + @jwt_lifetime).to_i },
-            {
-              algorithm: @jwt_algorithm,
-              key: @private_key,
-              kid: @key_id
-            },
-            {
-              scope: auth_scopes
-            }
-          )
+        def grant_type
+          GRANT_TYPE
         end
 
-        # rubocop:enable Metrics/MethodLength
+        def token_request_params
+          { 'assertion' => encode_assertion(@assertion) }
+        end
 
-        # -----------------------------------------------------------------------------
-        # WebTokenAuthenticatorBuilder
-        # -----------------------------------------------------------------------------
+        private
 
-        # Builder for WebTokenAuthenticator.
-        #
-        # Provides a fluent API for configuring and constructing a WebTokenAuthenticator instance.
-        class WebTokenAuthenticatorBuilder < OAuthAuthenticatorBuilder
-          # Initializes the WebTokenAuthenticatorBuilder with required parameters.
-          #
-          # @param host [String] The base URL for API endpoints.
-          # @param jwt_issuer [String] The issuer claim for the JWT.
-          # @param jwt_subject [String] The subject claim for the JWT.
-          # @param jwt_audience [String] The audience claim for the JWT.
-          # @param private_key [String] The PEM-formatted private key used for signing the JWT.
-          # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
-          # rubocop:disable Metrics/ParameterLists
-          def initialize(host, jwt_issuer, jwt_subject, jwt_audience, private_key, transport_options: nil)
-            # noinspection RubyArgCount
-            super(host, transport_options: transport_options)
-            @jwt_issuer = jwt_issuer
-            @jwt_subject = jwt_subject
-            @jwt_audience = jwt_audience
-            @private_key = private_key
-            @jwt_lifetime = 3600
-          end
-          # rubocop:enable Metrics/ParameterLists
-
-          # Sets the JWT token lifetime in seconds.
-          #
-          # @param seconds [Integer] Lifetime of the JWT in seconds.
-          # @return [WebTokenAuthenticatorBuilder] The builder instance.
-          def token_lifetime_seconds(seconds)
-            @jwt_lifetime = seconds
-            self
-          end
-
-          def key_identifier(key_id)
-            @key_id = key_id
-            self
-          end
-
-          # Constructs and returns a new WebTokenAuthenticator instance using the configured parameters.
-          #
-          # @return [WebTokenAuthenticator] A configured instance.
-          def build
-            WebTokenAuthenticator.new(open_id, auth_scopes, @jwt_issuer, @jwt_subject, @jwt_audience,
-                                      @private_key, jwt_lifetime: @jwt_lifetime, key_id: @key_id,
-                                                    transport_options: @transport_options)
-          end
+        def encode_assertion(assertion)
+          now = Time.now.utc
+          claims = {
+            iss: assertion.issuer, sub: assertion.subject, aud: assertion.audience,
+            iat: now.to_i, exp: (now + assertion.lifetime).to_i
+          }
+          headers = assertion.key_id.nil? ? {} : { 'kid' => assertion.key_id }
+          JWT.encode(claims, assertion.private_key, assertion.algorithm, headers)
+        rescue JWT::EncodeError, OpenSSL::PKey::PKeyError => e
+          raise 'Unable to sign the JWT assertion', cause: e
         end
       end
     end

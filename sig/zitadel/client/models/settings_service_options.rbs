@@ -1,0 +1,13 @@
+module Zitadel::Client::Models
+  class SettingsServiceOptions < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader is_linking_allowed: bool?
+    attr_reader is_creation_allowed: bool?
+    attr_reader is_auto_creation: bool?
+    attr_reader is_auto_update: bool?
+    attr_reader auto_linking: SettingsServiceAutoLinkingOption?
+  end
+end

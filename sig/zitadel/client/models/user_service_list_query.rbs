@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class UserServiceListQuery < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader offset: untyped?
+    attr_reader limit: Integer?
+    attr_reader asc: bool?
+  end
+end

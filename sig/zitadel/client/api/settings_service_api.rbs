@@ -1,0 +1,33 @@
+module Zitadel::Client
+  module Api
+    class SettingsServiceApi < BaseApi
+      def initialize: (?::Zitadel::Client::ApiClient? api_client, ?::Zitadel::Client::Configuration config, ?::Zitadel::Client::Auth::Authenticator? authenticator) -> void
+      def get_active_identity_providers: (Models::SettingsServiceGetActiveIdentityProvidersRequest settings_service_get_active_identity_providers_request) -> Models::SettingsServiceGetActiveIdentityProvidersResponse
+      def get_active_identity_providers_with_http_info: (Models::SettingsServiceGetActiveIdentityProvidersRequest settings_service_get_active_identity_providers_request) -> ::Zitadel::Client::ApiResult[Models::SettingsServiceGetActiveIdentityProvidersResponse]
+      def get_branding_settings: (Models::SettingsServiceGetBrandingSettingsRequest settings_service_get_branding_settings_request) -> Models::SettingsServiceGetBrandingSettingsResponse
+      def get_branding_settings_with_http_info: (Models::SettingsServiceGetBrandingSettingsRequest settings_service_get_branding_settings_request) -> ::Zitadel::Client::ApiResult[Models::SettingsServiceGetBrandingSettingsResponse]
+      def get_domain_settings: (Models::SettingsServiceGetDomainSettingsRequest settings_service_get_domain_settings_request) -> Models::SettingsServiceGetDomainSettingsResponse
+      def get_domain_settings_with_http_info: (Models::SettingsServiceGetDomainSettingsRequest settings_service_get_domain_settings_request) -> ::Zitadel::Client::ApiResult[Models::SettingsServiceGetDomainSettingsResponse]
+      def get_general_settings: (untyped body) -> Models::SettingsServiceGetGeneralSettingsResponse
+      def get_general_settings_with_http_info: (untyped body) -> ::Zitadel::Client::ApiResult[Models::SettingsServiceGetGeneralSettingsResponse]
+      def get_hosted_login_translation: (Models::SettingsServiceGetHostedLoginTranslationRequest settings_service_get_hosted_login_translation_request) -> Models::SettingsServiceGetHostedLoginTranslationResponse
+      def get_hosted_login_translation_with_http_info: (Models::SettingsServiceGetHostedLoginTranslationRequest settings_service_get_hosted_login_translation_request) -> ::Zitadel::Client::ApiResult[Models::SettingsServiceGetHostedLoginTranslationResponse]
+      def get_legal_and_support_settings: (Models::SettingsServiceGetLegalAndSupportSettingsRequest settings_service_get_legal_and_support_settings_request) -> Models::SettingsServiceGetLegalAndSupportSettingsResponse
+      def get_legal_and_support_settings_with_http_info: (Models::SettingsServiceGetLegalAndSupportSettingsRequest settings_service_get_legal_and_support_settings_request) -> ::Zitadel::Client::ApiResult[Models::SettingsServiceGetLegalAndSupportSettingsResponse]
+      def get_lockout_settings: (Models::SettingsServiceGetLockoutSettingsRequest settings_service_get_lockout_settings_request) -> Models::SettingsServiceGetLockoutSettingsResponse
+      def get_lockout_settings_with_http_info: (Models::SettingsServiceGetLockoutSettingsRequest settings_service_get_lockout_settings_request) -> ::Zitadel::Client::ApiResult[Models::SettingsServiceGetLockoutSettingsResponse]
+      def get_login_settings: (Models::SettingsServiceGetLoginSettingsRequest settings_service_get_login_settings_request) -> Models::SettingsServiceGetLoginSettingsResponse
+      def get_login_settings_with_http_info: (Models::SettingsServiceGetLoginSettingsRequest settings_service_get_login_settings_request) -> ::Zitadel::Client::ApiResult[Models::SettingsServiceGetLoginSettingsResponse]
+      def get_password_complexity_settings: (Models::SettingsServiceGetPasswordComplexitySettingsRequest settings_service_get_password_complexity_settings_request) -> Models::SettingsServiceGetPasswordComplexitySettingsResponse
+      def get_password_complexity_settings_with_http_info: (Models::SettingsServiceGetPasswordComplexitySettingsRequest settings_service_get_password_complexity_settings_request) -> ::Zitadel::Client::ApiResult[Models::SettingsServiceGetPasswordComplexitySettingsResponse]
+      def get_password_expiry_settings: (Models::SettingsServiceGetPasswordExpirySettingsRequest settings_service_get_password_expiry_settings_request) -> Models::SettingsServiceGetPasswordExpirySettingsResponse
+      def get_password_expiry_settings_with_http_info: (Models::SettingsServiceGetPasswordExpirySettingsRequest settings_service_get_password_expiry_settings_request) -> ::Zitadel::Client::ApiResult[Models::SettingsServiceGetPasswordExpirySettingsResponse]
+      def get_security_settings: (untyped body) -> Models::SettingsServiceGetSecuritySettingsResponse
+      def get_security_settings_with_http_info: (untyped body) -> ::Zitadel::Client::ApiResult[Models::SettingsServiceGetSecuritySettingsResponse]
+      def set_hosted_login_translation: (Models::SettingsServiceSetHostedLoginTranslationRequest settings_service_set_hosted_login_translation_request) -> Models::SettingsServiceSetHostedLoginTranslationResponse
+      def set_hosted_login_translation_with_http_info: (Models::SettingsServiceSetHostedLoginTranslationRequest settings_service_set_hosted_login_translation_request) -> ::Zitadel::Client::ApiResult[Models::SettingsServiceSetHostedLoginTranslationResponse]
+      def set_security_settings: (Models::SettingsServiceSetSecuritySettingsRequest settings_service_set_security_settings_request) -> Models::SettingsServiceSetSecuritySettingsResponse
+      def set_security_settings_with_http_info: (Models::SettingsServiceSetSecuritySettingsRequest settings_service_set_security_settings_request) -> ::Zitadel::Client::ApiResult[Models::SettingsServiceSetSecuritySettingsResponse]
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class UserServiceAuthFactorState
+    AUTH_FACTOR_STATE_UNSPECIFIED: String
+    AUTH_FACTOR_STATE_NOT_READY: String
+    AUTH_FACTOR_STATE_READY: String
+    AUTH_FACTOR_STATE_REMOVED: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

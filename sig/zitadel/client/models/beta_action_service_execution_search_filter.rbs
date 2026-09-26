@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class BetaActionServiceExecutionSearchFilter < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader execution_type_filter: BetaActionServiceExecutionTypeFilter?
+    attr_reader in_conditions_filter: BetaActionServiceInConditionsFilter?
+    attr_reader target_filter: BetaActionServiceTargetFilter?
+  end
+end

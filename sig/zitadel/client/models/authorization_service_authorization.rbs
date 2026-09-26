@@ -1,0 +1,16 @@
+module Zitadel::Client::Models
+  class AuthorizationServiceAuthorization < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader id: String?
+    attr_reader creation_date: Time?
+    attr_reader change_date: Time?
+    attr_reader project: AuthorizationServiceProject?
+    attr_reader organization: AuthorizationServiceOrganization?
+    attr_reader user: AuthorizationServiceUser?
+    attr_reader state: AuthorizationServiceState?
+    attr_reader roles: Array[AuthorizationServiceRole]?
+  end
+end

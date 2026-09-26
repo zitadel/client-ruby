@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class BetaWebKeyServiceCreateWebKeyRequest < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader ecdsa: BetaWebKeyServiceECDSA?
+    attr_reader ed25519: untyped?
+    attr_reader rsa: BetaWebKeyServiceRSA?
+  end
+end

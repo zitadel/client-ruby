@@ -1,0 +1,13 @@
+module Zitadel::Client::Models
+  class BetaProjectServiceProjectGrantSearchFilter < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader in_project_ids_filter: BetaProjectServiceInIDsFilter?
+    attr_reader project_grant_resource_owner_filter: BetaProjectServiceIDFilter?
+    attr_reader project_name_filter: BetaProjectServiceProjectNameFilter?
+    attr_reader project_resource_owner_filter: BetaProjectServiceIDFilter?
+    attr_reader role_key_filter: BetaProjectServiceProjectRoleKeyFilter?
+  end
+end

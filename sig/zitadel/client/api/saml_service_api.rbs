@@ -1,0 +1,11 @@
+module Zitadel::Client
+  module Api
+    class SAMLServiceApi < BaseApi
+      def initialize: (?::Zitadel::Client::ApiClient? api_client, ?::Zitadel::Client::Configuration config, ?::Zitadel::Client::Auth::Authenticator? authenticator) -> void
+      def create_response: (Models::SAMLServiceCreateResponseRequest saml_service_create_response_request) -> Models::SAMLServiceCreateResponseResponse
+      def create_response_with_http_info: (Models::SAMLServiceCreateResponseRequest saml_service_create_response_request) -> ::Zitadel::Client::ApiResult[Models::SAMLServiceCreateResponseResponse]
+      def get_saml_request: (Models::SAMLServiceGetSAMLRequestRequest saml_service_get_saml_request_request) -> Models::SAMLServiceGetSAMLRequestResponse
+      def get_saml_request_with_http_info: (Models::SAMLServiceGetSAMLRequestRequest saml_service_get_saml_request_request) -> ::Zitadel::Client::ApiResult[Models::SAMLServiceGetSAMLRequestResponse]
+    end
+  end
+end

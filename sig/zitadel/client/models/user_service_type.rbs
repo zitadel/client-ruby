@@ -1,0 +1,10 @@
+module Zitadel::Client::Models
+  class UserServiceType
+    TYPE_UNSPECIFIED: String
+    TYPE_HUMAN: String
+    TYPE_MACHINE: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

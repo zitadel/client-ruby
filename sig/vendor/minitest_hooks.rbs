@@ -1,0 +1,29 @@
+# Signatures for the minitest-hooks gem (no RBS in gem_rbs_collection).
+#
+# Source: minitest-hooks 1.5.2, lib/minitest/hooks/test.rb. Only the surface
+# that the test suite relies on is declared: the instance hooks that test
+# classes override (before_all/after_all/around/around_all) and the
+# self.included callback that wires in the class methods.
+module Minitest
+  module Hooks
+    def self.included: (Module mod) -> void
+
+    def before_all: () -> void
+
+    def after_all: () -> void
+
+    def around: () { () -> void } -> void
+
+    def around_all: () { () -> void } -> void
+
+    def time_it: () { () -> void } -> void
+
+    module ClassMethods
+      def before: (?Symbol? type) { () -> void } -> void
+
+      def after: (?Symbol? type) { () -> void } -> void
+
+      def around: (?Symbol? type) { () -> void } -> void
+    end
+  end
+end

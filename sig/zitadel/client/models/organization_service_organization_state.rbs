@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class OrganizationServiceOrganizationState
+    ORGANIZATION_STATE_UNSPECIFIED: String
+    ORGANIZATION_STATE_ACTIVE: String
+    ORGANIZATION_STATE_INACTIVE: String
+    ORGANIZATION_STATE_REMOVED: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

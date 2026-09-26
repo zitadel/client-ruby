@@ -1,0 +1,10 @@
+module Zitadel::Client::Models
+  class UserServiceVerifyPhoneRequest < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader user_id: String?
+    attr_reader verification_code: String?
+  end
+end

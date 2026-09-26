@@ -1,0 +1,10 @@
+module Zitadel::Client::Models
+  class ApplicationServiceOIDCApplicationType
+    OIDC_APP_TYPE_WEB: String
+    OIDC_APP_TYPE_USER_AGENT: String
+    OIDC_APP_TYPE_NATIVE: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

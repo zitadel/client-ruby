@@ -1,0 +1,57 @@
+# Signature for the OAuth authenticator unit-test base class.
+#
+# OAuthAuthenticatorTest is a Minitest::Test that mixes in Minitest::Hooks and
+# starts a mock OAuth2 server (Testcontainers) in before_all, exposing its URL
+# via `oauth_host`. Declared here so the concrete authenticator test subclasses
+# resolve their Minitest::Test assertions and `oauth_host` reader.
+module Zitadel
+  module Client
+    module Auth
+      class OAuthAuthenticatorTest < ::Minitest::Test
+        include ::Minitest::Hooks
+
+        attr_reader oauth_host: ::String
+
+        # Wires the shared ApiClient into a bespoke OAuth authenticator (required
+        # before token exchange against the mock OAuth2 server) and returns it.
+        def inject_api_client: (Zitadel::Client::Auth::HttpAwareAuthenticator authenticator) -> Zitadel::Client::Auth::HttpAwareAuthenticator
+
+        @mock_server: untyped
+      end
+
+      # The client-credentials test also carries the OAuth contract tests, which
+      # answer discovery and token requests from an in-memory ApiClient.
+      class ClientCredentialsAuthenticatorTest < OAuthAuthenticatorTest
+        HOST: ::String
+        DISCOVERY: ::String
+
+        class StubApiClient < ::Zitadel::Client::ApiClient
+          attr_reader bodies: ::Array[::String]
+
+          @discovery: ::Zitadel::Client::ApiHttpResponse
+          @token: ::Zitadel::Client::ApiHttpResponse
+          @bodies: ::Array[::String]
+
+          def initialize: (::Zitadel::Client::ApiHttpResponse discovery, ::Zitadel::Client::ApiHttpResponse token) -> void
+        end
+
+        @authenticator: ClientCredentialsAuthenticator
+
+        def response: (::Integer status, ::String body) -> ::Zitadel::Client::ApiHttpResponse
+
+        def stubbed: (::Zitadel::Client::ApiClient api_client, ?::String host) -> ClientCredentialsAuthenticator
+
+        def token_stubbed: (::Integer status, ::String body) -> ClientCredentialsAuthenticator
+
+        def assert_raises_exactly: [E < ::Exception] (singleton(::Exception) klass) { () -> void } -> untyped
+      end
+
+      class WebTokenAuthenticatorTest < OAuthAuthenticatorTest
+        @authenticator: WebTokenAuthenticator
+        @key_files: ::Array[::Tempfile]?
+
+        def key_file: (::String content) -> ::String
+      end
+    end
+  end
+end

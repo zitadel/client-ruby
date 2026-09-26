@@ -1,0 +1,10 @@
+module Zitadel::Client::Models
+  class ProjectServicePrivateLabelingSetting
+    PRIVATE_LABELING_SETTING_UNSPECIFIED: String
+    PRIVATE_LABELING_SETTING_ENFORCE_PROJECT_RESOURCE_OWNER_POLICY: String
+    PRIVATE_LABELING_SETTING_ALLOW_LOGIN_USER_RESOURCE_OWNER_POLICY: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

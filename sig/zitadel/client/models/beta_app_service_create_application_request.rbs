@@ -1,0 +1,14 @@
+module Zitadel::Client::Models
+  class BetaAppServiceCreateApplicationRequest < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader project_id: String?
+    attr_reader id: String?
+    attr_reader name: String?
+    attr_reader api_request: BetaAppServiceCreateAPIApplicationRequest?
+    attr_reader oidc_request: BetaAppServiceCreateOIDCApplicationRequest?
+    attr_reader saml_request: BetaAppServiceCreateSAMLApplicationRequest?
+  end
+end

@@ -1,0 +1,15 @@
+module Zitadel::Client::Models
+  class BetaSessionServiceChecks < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader user: BetaSessionServiceCheckUser?
+    attr_reader password: BetaSessionServiceCheckPassword?
+    attr_reader web_auth_n: BetaSessionServiceCheckWebAuthN?
+    attr_reader idp_intent: BetaSessionServiceCheckIDPIntent?
+    attr_reader totp: BetaSessionServiceCheckTOTP?
+    attr_reader otp_sms: BetaSessionServiceCheckOTP?
+    attr_reader otp_email: BetaSessionServiceCheckOTP?
+  end
+end

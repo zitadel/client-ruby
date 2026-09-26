@@ -1,0 +1,12 @@
+module Zitadel::Client::Models
+  class BetaProjectServiceProjectFieldName
+    PROJECT_FIELD_NAME_UNSPECIFIED: String
+    PROJECT_FIELD_NAME_ID: String
+    PROJECT_FIELD_NAME_CREATION_DATE: String
+    PROJECT_FIELD_NAME_CHANGE_DATE: String
+    PROJECT_FIELD_NAME_NAME: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

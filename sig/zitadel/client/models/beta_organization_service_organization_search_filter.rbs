@@ -1,0 +1,12 @@
+module Zitadel::Client::Models
+  class BetaOrganizationServiceOrganizationSearchFilter < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader domain_filter: BetaOrganizationServiceOrgDomainFilter?
+    attr_reader id_filter: BetaOrganizationServiceOrgIDFilter?
+    attr_reader name_filter: BetaOrganizationServiceOrgNameFilter?
+    attr_reader state_filter: BetaOrganizationServiceOrgStateFilter?
+  end
+end

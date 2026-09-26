@@ -1,0 +1,10 @@
+module Zitadel::Client::Models
+  class BetaSettingsServiceResourceOwnerType
+    RESOURCE_OWNER_TYPE_UNSPECIFIED: String
+    RESOURCE_OWNER_TYPE_INSTANCE: String
+    RESOURCE_OWNER_TYPE_ORG: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

@@ -1,26 +1,98 @@
+# Declared here rather than passed on each command line so every rubocop
+# invocation -- the spec, the Makefile, an editor -- sees the same cops.
 plugins:
   - rubocop-minitest
   - rubocop-rake
 
 AllCops:
-  Exclude:
-    - 'lib/zitadel/client/models/**/*'
-    - 'lib/zitadel/client/api/**/*'
-    - 'vendor/**/*'
+  TargetRubyVersion: 3.4
   NewCops: enable
-  TargetRubyVersion: 3.1
+  SuggestExtensions: false
 
+# The cops below are the only ones turned off. No generated file carries a
+# `# rubocop:disable` of any kind, so every other cop runs over lib/ and test/
+# and a new violation fails the build. Each entry names one cop and says why
+# the generated shape cannot satisfy it; anything a generation-time
+# `rubocop -A` pass can correct is corrected there instead of being listed.
+
+# The twelve SDKs share their doc prose and their method bodies line for line,
+# so a Ruby-only re-wrap would make this one SDK read differently from the
+# other eleven.
 Layout/LineLength:
-  Max: 130
+  Enabled: false
+# Same reason: the call chains are laid out to match the other eleven SDKs,
+# not to Ruby's preferred continuation indent.
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
 
-Style/StringLiterals:
-  EnforcedStyle: single_quotes
-
+# The Metrics cops all measure the size of a method, class or block. A
+# generated operation carries the whole request pipeline -- parameter
+# validation, query and header assembly, body serialization, response
+# dispatch -- in one method because every other SDK generates it as one
+# method, and a model carries one accessor pair per property in the spec. The
+# size is a property of the spec being generated, not a defect in the
+# template.
 Metrics/AbcSize:
-  Exclude:
-    - 'test/**/*'
-
+  Enabled: false
 Metrics/BlockLength:
-  Max: 100
-  Exclude:
-    - 'spec/**/*'
+  Enabled: false
+Metrics/BlockNesting:
+  Enabled: false
+Metrics/ClassLength:
+  Enabled: false
+Metrics/CyclomaticComplexity:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+Metrics/ParameterLists:
+  Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+# One behaviour is often worth several assertions -- that a failure carries
+# the right type, status and cause is one fact checked three ways -- and the
+# same test is written the same way in all twelve SDKs. Inserting a blank line
+# before every assertion would make the Ruby suite the only one shaped that
+# way.
+# Reports nothing against the generated tests, which are spec-style `it` blocks
+# it cannot see into -- but a real client's hand-written suite uses `def test_x`,
+# where one behaviour is legitimately checked by several assertions (that a
+# failure carries the right type, status and cause is one fact, three asserts).
+# Removing this because the golden shows zero offences breaks those six clients.
+Minitest/MultipleAssertions:
+  Enabled: false
+
+Minitest/EmptyLineBeforeAssertionMethods:
+  Enabled: false
+
+# The accessors are named for the property they expose in all twelve SDKs
+# (`get_url`, `get_token`), so renaming them Ruby-style would break the one
+# name a reader moving between two of these SDKs can rely on.
+Naming/AccessorMethodName:
+  Enabled: false
+
+# Anonymous argument forwarding (`*`) erases the parameter names that the
+# generated RBS signatures in sig/ declare, so steep can no longer match the
+# method against its signature.
+Style/ArgumentsForwarding:
+  Enabled: false
+
+# Every generated file opens its namespace in the compact `module A::B` form.
+# The nested form would re-indent every file by two levels per namespace
+# segment and, more importantly, change constant lookup inside those files --
+# which is the exact failure the Ruby constant-resolution regression covers.
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# The only undocumented module is the empty namespace shim the gem entrypoint
+# opens so that the compact `module A::B` form in every other file has its
+# parent defined. There is nothing there to document.
+Style/Documentation:
+  Enabled: false
+
+# The root error constant is written fully qualified from the root (`::A::B::
+# Error`) everywhere, including at the top level where the `::` is redundant,
+# so that the same text resolves identically whether it is read inside a
+# nested module or outside one.
+Style/RedundantConstantBase:
+  Enabled: false

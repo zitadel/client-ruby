@@ -1,0 +1,28 @@
+module Zitadel::Client::Models
+  class BetaSettingsServiceLoginSettings < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader allow_username_password: bool?
+    attr_reader allow_register: bool?
+    attr_reader allow_external_idp: bool?
+    attr_reader force_mfa: bool?
+    attr_reader passkeys_type: BetaSettingsServicePasskeysType?
+    attr_reader hide_password_reset: bool?
+    attr_reader ignore_unknown_usernames: bool?
+    attr_reader default_redirect_uri: String?
+    attr_reader password_check_lifetime: ISO8601::Duration?
+    attr_reader external_login_check_lifetime: ISO8601::Duration?
+    attr_reader mfa_init_skip_lifetime: ISO8601::Duration?
+    attr_reader second_factor_check_lifetime: ISO8601::Duration?
+    attr_reader multi_factor_check_lifetime: ISO8601::Duration?
+    attr_reader second_factors: Array[BetaSettingsServiceSecondFactorType]?
+    attr_reader multi_factors: Array[BetaSettingsServiceMultiFactorType]?
+    attr_reader allow_domain_discovery: bool?
+    attr_reader disable_login_with_email: bool?
+    attr_reader disable_login_with_phone: bool?
+    attr_reader resource_owner_type: BetaSettingsServiceResourceOwnerType?
+    attr_reader force_mfa_local_only: bool?
+  end
+end

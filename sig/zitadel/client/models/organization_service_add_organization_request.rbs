@@ -1,0 +1,12 @@
+module Zitadel::Client::Models
+  class OrganizationServiceAddOrganizationRequest < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader name: String?
+    attr_reader admins: Array[OrganizationServiceAdmin]?
+    attr_reader organization_id: String?
+    attr_reader org_id: String?
+  end
+end

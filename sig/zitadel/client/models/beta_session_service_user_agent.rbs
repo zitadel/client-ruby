@@ -1,0 +1,12 @@
+module Zitadel::Client::Models
+  class BetaSessionServiceUserAgent < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader fingerprint_id: String?
+    attr_reader ip: String?
+    attr_reader description: String?
+    attr_reader header: Hash[String, BetaSessionServiceHeaderValues]?
+  end
+end

@@ -1,0 +1,21 @@
+module Zitadel::Client::Models
+  class IdentityProviderServiceIDPConfig < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader options: IdentityProviderServiceOptions?
+    attr_reader apple: IdentityProviderServiceAppleConfig?
+    attr_reader azure_ad: IdentityProviderServiceAzureADConfig?
+    attr_reader github: IdentityProviderServiceGitHubConfig?
+    attr_reader github_es: IdentityProviderServiceGitHubEnterpriseServerConfig?
+    attr_reader gitlab: IdentityProviderServiceGitLabConfig?
+    attr_reader gitlab_self_hosted: IdentityProviderServiceGitLabSelfHostedConfig?
+    attr_reader google: IdentityProviderServiceGoogleConfig?
+    attr_reader jwt: IdentityProviderServiceJWTConfig?
+    attr_reader ldap: IdentityProviderServiceLDAPConfig?
+    attr_reader oauth: IdentityProviderServiceOAuthConfig?
+    attr_reader oidc: IdentityProviderServiceGenericOIDCConfig?
+    attr_reader saml: IdentityProviderServiceSAMLConfig?
+  end
+end
