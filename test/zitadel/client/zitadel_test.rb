@@ -175,7 +175,7 @@ module Zitadel
         authenticator = Auth::PersonalAccessTokenAuthenticator.new('http://wiremock:8080', 'test-token')
         zitadel = ::Zitadel::Client::Zitadel.with_authenticator(authenticator, transport_options)
 
-        error = assert_raises(Errors::ApiError) { zitadel.settings_service.get_general_settings({}) }
+        error = assert_raises(Errors::ClientError) { zitadel.settings_service.get_general_settings({}) }
         assert_equal 407, error.status_code
       end
 
