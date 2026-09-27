@@ -26,11 +26,56 @@ module Zitadel::Client
       '%2B' => '+', '%7E' => '~'
     }.freeze
 
+    # RFC 3986 reserved characters that must be left literal when a query
+    # parameter declares +allowReserved: true+. Everything else (spaces,
+    # control characters, non-ASCII) is still percent-encoded, so the result
+    # is always a valid query segment. URI.encode_www_form_component
+    # percent-encodes each of these; restore it to its literal byte. '~' is
+    # restored for the same reason as in PRESERVE_ENCODED.
+    RESERVED_PRESERVED = {
+      '%3A' => ':', '%2F' => '/', '%3F' => '?', '%23' => '#',
+      '%5B' => '[', '%5D' => ']', '%40' => '@', '%21' => '!',
+      '%24' => '$', '%26' => '&', '%27' => "'", '%28' => '(',
+      '%29' => ')', '%2A' => '*', '%2B' => '+', '%2C' => ',',
+      '%3B' => ';', '%3D' => '=', '%7E' => '~'
+    }.freeze
+
+    # Wraps a query value so the query-string builder preserves RFC 3986
+    # reserved characters instead of percent-encoding them (OAS
+    # +allowReserved: true+). The wrapped value is a String, or an Array of
+    # strings for exploded parameters.
+    class AllowReservedValue
+      attr_reader :value
+
+      def initialize(value)
+        @value = value
+      end
+    end
+
     def self.encode_path_segment(value)
       return '' if value.nil? || value.empty?
 
       encoded = URI.encode_www_form_component(value).gsub('+', '%20')
       PRESERVE_ENCODED.reduce(encoded) { |s, (from, to)| s.gsub(from, to) }
+    end
+
+    # Percent-encode a query value while leaving RFC 3986 reserved characters
+    # literal (OAS +allowReserved: true+). A space is illegal in a URL and is
+    # still encoded as +%20+; only the reserved set is restored.
+    def self.encode_query_allowing_reserved(value)
+      return '' if value.nil? || value.empty?
+
+      encoded = URI.encode_www_form_component(value).gsub('+', '%20')
+      RESERVED_PRESERVED.reduce(encoded) { |s, (from, to)| s.gsub(from, to) }
+    end
+
+    # Wrap +value+ in an {AllowReservedValue} when the parameter declares
+    # +allowReserved: true+; otherwise return it unchanged. A nil value is
+    # never wrapped so the query builder still omits it.
+    def self.maybe_allow_reserved(value, allow_reserved)
+      return value if value.nil? || !allow_reserved
+
+      AllowReservedValue.new(value)
     end
 
     def self.serialize(value, location, _schema_type, collection_format: nil)
@@ -151,7 +196,9 @@ module Zitadel::Client
         return nil if value.nil? && location == :query
         return '' if value.nil?
 
-        if value.is_a?(Array)
+        if value.is_a?(Array) && explode
+          value.map { |v| ObjectSerializer.stringify(v) }
+        elsif value.is_a?(Array)
           value.map { |v| ObjectSerializer.stringify(v) }.join(' ')
         else
           ObjectSerializer.stringify(value)
@@ -160,7 +207,9 @@ module Zitadel::Client
         return nil if value.nil? && location == :query
         return '' if value.nil?
 
-        if value.is_a?(Array)
+        if value.is_a?(Array) && explode
+          value.map { |v| ObjectSerializer.stringify(v) }
+        elsif value.is_a?(Array)
           value.map { |v| ObjectSerializer.stringify(v) }.join('|')
         else
           ObjectSerializer.stringify(value)

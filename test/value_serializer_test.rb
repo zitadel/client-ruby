@@ -229,6 +229,13 @@ describe Zitadel::Client::ValueSerializer do
         _(result).must_equal('blue black')
       end
 
+      it 'array with explode true returns list' do
+        result = Zitadel::Client::ValueSerializer.serialize_styled(
+          'color', %w[blue black], :query, 'array', nil, 'spaceDelimited', true
+        )
+        _(result).must_equal(%w[blue black])
+      end
+
       it 'scalar returns stringified value' do
         result = Zitadel::Client::ValueSerializer.serialize_styled(
           'color', 'blue', :query, 'string', nil, 'spaceDelimited', false
@@ -243,6 +250,13 @@ describe Zitadel::Client::ValueSerializer do
           'color', %w[blue black], :query, 'array', nil, 'pipeDelimited', false
         )
         _(result).must_equal('blue|black')
+      end
+
+      it 'array with explode true returns list' do
+        result = Zitadel::Client::ValueSerializer.serialize_styled(
+          'color', %w[blue black], :query, 'array', nil, 'pipeDelimited', true
+        )
+        _(result).must_equal(%w[blue black])
       end
 
       it 'scalar returns stringified value' do
@@ -452,6 +466,26 @@ describe Zitadel::Client::ValueSerializer do
       slash = Zitadel::Client::ValueSerializer.serialize_styled('id', 'a/b', :path, 'string', nil, 'simple', false)
       _(slash).must_equal('a%2Fb')
       _(slash).wont_include('%252F')
+    end
+  end
+
+  # allowReserved query encoding: a query parameter with allowReserved: true
+  # leaves RFC 3986 reserved characters literal on the wire, while everything
+  # else (spaces, control, non-ASCII) is still percent-encoded.
+  describe 'allowReserved query encoding' do
+    it 'reserved characters are left literal, other characters still encoded' do
+      _(Zitadel::Client::ValueSerializer.encode_query_allowing_reserved('v1.0/beta:rc1')).must_equal('v1.0/beta:rc1')
+      # Space is illegal in a URL and must still be percent-encoded even
+      # when reserved characters are preserved.
+      _(Zitadel::Client::ValueSerializer.encode_query_allowing_reserved('a b:c')).must_equal('a%20b:c')
+    end
+
+    it 'maybe_allow_reserved wraps only when allow_reserved is true' do
+      _(Zitadel::Client::ValueSerializer.maybe_allow_reserved('plain', false)).must_equal('plain')
+      wrapped = Zitadel::Client::ValueSerializer.maybe_allow_reserved('v1/beta', true)
+      _(wrapped).must_be_instance_of(Zitadel::Client::ValueSerializer::AllowReservedValue)
+      _(wrapped.value).must_equal('v1/beta')
+      _(Zitadel::Client::ValueSerializer.maybe_allow_reserved(nil, true)).must_be_nil
     end
   end
 

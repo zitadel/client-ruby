@@ -183,18 +183,31 @@ module Zitadel::Client
       def build_query_string(query_params)
         pairs = query_params.compact.flat_map do |k, v|
           encoded_key = CGI.escape(k.to_s)
+          # OAS allowReserved: a wrapped value keeps RFC 3986 reserved
+          # characters literal instead of percent-encoding them.
+          allow_reserved = v.is_a?(::Zitadel::Client::ValueSerializer::AllowReservedValue)
+          v = v.value if allow_reserved
           if v.is_a?(Array)
             next [] if v.empty?
 
-            v.map do |val|
-              "#{encoded_key}=#{CGI.escape(::Zitadel::Client::ObjectSerializer.to_query_value(val))}"
-            end
+            v.map { |val| "#{encoded_key}=#{encode_query_value(val, allow_reserved)}" }
           else
-            encoded_val = CGI.escape(::Zitadel::Client::ObjectSerializer.to_query_value(v))
-            "#{encoded_key}=#{encoded_val}"
+            "#{encoded_key}=#{encode_query_value(v, allow_reserved)}"
           end
         end
         pairs.join('&')
+      end
+
+      # Percent-encode a query-parameter value. When the parameter declared
+      # +allowReserved: true+ the RFC 3986 reserved characters are left
+      # literal; otherwise every reserved character is encoded as before.
+      def encode_query_value(value, allow_reserved)
+        str = ::Zitadel::Client::ObjectSerializer.to_query_value(value)
+        if allow_reserved
+          ::Zitadel::Client::ValueSerializer.encode_query_allowing_reserved(str)
+        else
+          CGI.escape(str)
+        end
       end
 
       def serialize_body(body, content_type)

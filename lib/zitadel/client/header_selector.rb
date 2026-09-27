@@ -59,7 +59,7 @@ module Zitadel::Client
     def select_accept_header(accept)
       return nil if accept.nil?
 
-      filtered_accept = accept.select { |s| !s.nil? && !s.empty? }
+      filtered_accept = accept.select { |s| !s.nil? && !s.strip.empty? }
 
       return '' if filtered_accept.empty?
 

@@ -149,6 +149,15 @@ describe Zitadel::Client::HeaderSelector do
       )
       _(headers['Accept']).must_equal('application/json')
     end
+
+    it 'drops whitespace-only entries' do
+      headers = @header_selector.select_headers(
+        ['   ', 'application/json'],
+        'application/json',
+        false
+      )
+      _(headers['Accept']).must_equal('application/json')
+    end
   end
 
   describe '#select_accept_header (private)' do
