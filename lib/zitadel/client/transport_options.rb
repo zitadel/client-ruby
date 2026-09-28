@@ -98,6 +98,8 @@ module Zitadel::Client
     # - +verify_ssl+ -- +true+
     # - +follow_redirects+ -- +true+
     # - +inject_request_id+ -- +false+
+    # - +timeout+ -- +10_000+ (10 seconds)
+    # - +user_agent+ -- a package-specific default string
     # - All other fields -- +nil+ or empty
     class Builder
       def initialize

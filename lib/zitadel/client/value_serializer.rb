@@ -10,7 +10,11 @@
 require 'uri'
 
 module Zitadel::Client
-  # Serializes parameter values for HTTP requests based on their location.
+  # Serializes parameter values for HTTP requests based on their location and format.
+  #
+  # Converts values into their string representations suitable for HTTP request
+  # paths, query strings, and headers. Handles null values, collections with various
+  # collection formats, and URL encoding.
   #
   # @api private
   class ValueSerializer # :nodoc:
@@ -39,44 +43,6 @@ module Zitadel::Client
       '%29' => ')', '%2A' => '*', '%2B' => '+', '%2C' => ',',
       '%3B' => ';', '%3D' => '=', '%7E' => '~'
     }.freeze
-
-    # Wraps a query value so the query-string builder preserves RFC 3986
-    # reserved characters instead of percent-encoding them (OAS
-    # +allowReserved: true+). The wrapped value is a String, or an Array of
-    # strings for exploded parameters.
-    class AllowReservedValue
-      attr_reader :value
-
-      def initialize(value)
-        @value = value
-      end
-    end
-
-    def self.encode_path_segment(value)
-      return '' if value.nil? || value.empty?
-
-      encoded = URI.encode_www_form_component(value).gsub('+', '%20')
-      PRESERVE_ENCODED.reduce(encoded) { |s, (from, to)| s.gsub(from, to) }
-    end
-
-    # Percent-encode a query value while leaving RFC 3986 reserved characters
-    # literal (OAS +allowReserved: true+). A space is illegal in a URL and is
-    # still encoded as +%20+; only the reserved set is restored.
-    def self.encode_query_allowing_reserved(value)
-      return '' if value.nil? || value.empty?
-
-      encoded = URI.encode_www_form_component(value).gsub('+', '%20')
-      RESERVED_PRESERVED.reduce(encoded) { |s, (from, to)| s.gsub(from, to) }
-    end
-
-    # Wrap +value+ in an {AllowReservedValue} when the parameter declares
-    # +allowReserved: true+; otherwise return it unchanged. A nil value is
-    # never wrapped so the query builder still omits it.
-    def self.maybe_allow_reserved(value, allow_reserved)
-      return value if value.nil? || !allow_reserved
-
-      AllowReservedValue.new(value)
-    end
 
     def self.serialize(value, location, _schema_type, collection_format: nil)
       return serialize_nil(location) if value.nil?
@@ -118,29 +84,43 @@ module Zitadel::Client
       end
     end
 
-    def self.encode_item(value, location)
-      str = ObjectSerializer.stringify(value)
-      location == :path ? encode_path_segment(str) : str
+    def self.encode_path_segment(value)
+      return '' if value.nil? || value.empty?
+
+      encoded = URI.encode_www_form_component(value).gsub('+', '%20')
+      PRESERVE_ENCODED.reduce(encoded) { |s, (from, to)| s.gsub(from, to) }
     end
 
-    # Serialize a deepObject-style query parameter.
-    #
-    # Produces a hash of flattened keys in the form +param_name[key]+ to
-    # stringified values, suitable for inclusion in a query string.
-    #
-    # @param param_name [String] the parameter name (e.g. 'filter')
-    # @param value [Hash, nil] the hash value to serialize
-    # @return [Hash{String => String}] expanded keys to serialized values
-    def self.serialize_deep_object(param_name, value)
-      # @type var empty: Hash[String, String]
-      empty = {}
-      return empty if value.nil?
+    # Wraps a query value so the query-string builder preserves RFC 3986
+    # reserved characters (OAS +allowReserved: true+) instead of
+    # percent-encoding them. Produced by .maybe_allow_reserved and unwrapped
+    # when the query string is assembled. The wrapped value is a String, or
+    # an Array of strings for exploded parameters.
+    class AllowReservedValue
+      attr_reader :value
 
-      # @type var acc: Hash[String, String]
-      acc = {}
-      value.each_with_object(acc) do |(key, val), result|
-        result["#{param_name}[#{key}]"] = ObjectSerializer.stringify(val)
+      def initialize(value)
+        @value = value
       end
+    end
+
+    # Wrap +value+ in an {AllowReservedValue} when the parameter declares
+    # +allowReserved: true+; otherwise return it unchanged. A nil value is
+    # never wrapped so the query builder still omits it.
+    def self.maybe_allow_reserved(value, allow_reserved)
+      return value if value.nil? || !allow_reserved
+
+      AllowReservedValue.new(value)
+    end
+
+    # Percent-encode a query value while leaving RFC 3986 reserved characters
+    # literal (OAS +allowReserved: true+). A space is illegal in a URL and is
+    # still encoded as +%20+; only the reserved set is restored.
+    def self.encode_query_allowing_reserved(value)
+      return '' if value.nil? || value.empty?
+
+      encoded = URI.encode_www_form_component(value).gsub('+', '%20')
+      RESERVED_PRESERVED.reduce(encoded) { |s, (from, to)| s.gsub(from, to) }
     end
 
     # Serialize a parameter value according to OAS 3.0 style and explode rules.
@@ -165,11 +145,15 @@ module Zitadel::Client
 
       return serialize(value, location, schema_type, collection_format: collection_format) if style.nil? || style.empty?
 
+      # A nil value serializes to nil for a query parameter (so it is
+      # omitted) or '' for every other location, regardless of which style
+      # was requested — checked once here rather than in each style branch
+      # below.
+      return nil if value.nil? && location == :query
+      return '' if value.nil?
+
       case style
       when 'matrix'
-        return nil if value.nil? && location == :query
-        return '' if value.nil?
-
         if value.is_a?(Array)
           if explode
             value.map do |v|
@@ -183,9 +167,6 @@ module Zitadel::Client
           ";#{param_name}=#{encode_item(value, location)}"
         end
       when 'label'
-        return nil if value.nil? && location == :query
-        return '' if value.nil?
-
         if value.is_a?(Array)
           items = value.map { |v| encode_item(v, location) }
           explode ? ".#{items.join('.')}" : ".#{items.join(',')}"
@@ -193,9 +174,6 @@ module Zitadel::Client
           ".#{encode_item(value, location)}"
         end
       when 'spaceDelimited'
-        return nil if value.nil? && location == :query
-        return '' if value.nil?
-
         if value.is_a?(Array) && explode
           value.map { |v| ObjectSerializer.stringify(v) }
         elsif value.is_a?(Array)
@@ -204,9 +182,6 @@ module Zitadel::Client
           ObjectSerializer.stringify(value)
         end
       when 'pipeDelimited'
-        return nil if value.nil? && location == :query
-        return '' if value.nil?
-
         if value.is_a?(Array) && explode
           value.map { |v| ObjectSerializer.stringify(v) }
         elsif value.is_a?(Array)
@@ -215,9 +190,6 @@ module Zitadel::Client
           ObjectSerializer.stringify(value)
         end
       when 'form'
-        return nil if value.nil? && location == :query
-        return '' if value.nil?
-
         if value.is_a?(Array) && explode
           value.map { |v| ObjectSerializer.stringify(v) }
         elsif value.is_a?(Array)
@@ -226,9 +198,6 @@ module Zitadel::Client
           ObjectSerializer.stringify(value)
         end
       when 'simple'
-        return nil if value.nil? && location == :query
-        return '' if value.nil?
-
         if value.is_a?(Array)
           value.map { |v| encode_item(v, location) }.join(',')
         else
@@ -236,6 +205,31 @@ module Zitadel::Client
         end
       else
         serialize(value, location, schema_type, collection_format: collection_format)
+      end
+    end
+
+    def self.encode_item(value, location)
+      str = ObjectSerializer.stringify(value)
+      location == :path ? encode_path_segment(str) : str
+    end
+
+    # Serialize a deepObject-style query parameter.
+    #
+    # Produces a hash of flattened keys in the form +param_name[key]+ to
+    # stringified values, suitable for inclusion in a query string.
+    #
+    # @param param_name [String] the parameter name (e.g. 'filter')
+    # @param value [Hash, nil] the hash value to serialize
+    # @return [Hash{String => String}] expanded keys to serialized values
+    def self.serialize_deep_object(param_name, value)
+      # @type var empty: Hash[String, String]
+      empty = {}
+      return empty if value.nil?
+
+      # @type var acc: Hash[String, String]
+      acc = {}
+      value.each_with_object(acc) do |(key, val), result|
+        result["#{param_name}[#{key}]"] = ObjectSerializer.stringify(val)
       end
     end
 

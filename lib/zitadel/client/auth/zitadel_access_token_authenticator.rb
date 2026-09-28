@@ -9,7 +9,7 @@
 
 module Zitadel::Client
   module Auth
-    # Scheme-specific authenticator for the ZitadelAccessTokenAuthenticator security scheme.
+    # Scheme-specific authenticator for the zitadelAccessToken security scheme.
     class ZitadelAccessTokenAuthenticator < BearerAuthenticator
       def initialize(host:, token:)
         super(

@@ -33,8 +33,7 @@ module Zitadel::Client
 
     # Maximum allowed JSON nesting depth. Ruby's JSON.parse recurses through
     # the interpreter stack, so a malicious 100k-deep `{"a":{"a":...}}`
-    # payload would exhaust it. Matches the 1000-cap Java/Kotlin Jackson use;
-    # Go uses the same. C# is stricter (64). F5 follow-up.
+    # payload would exhaust it. All twelve SDKs use the same cap.
     MAX_JSON_DEPTH = 1000
 
     # Parse a JSON text into a plain Ruby value, refusing payloads that

@@ -20,7 +20,7 @@ module Zitadel::Client
     def self.inject_trace_context(headers)
       require 'opentelemetry-api'
       OpenTelemetry.propagation.inject(headers) # steep:ignore UnknownConstant
-    rescue LoadError
+    rescue LoadError, StandardError
       nil
     end
   end

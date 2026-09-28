@@ -26,101 +26,130 @@ module Zitadel::Client
   #     .build
   #   client = ::Zitadel::Client::Zitadel.new(authenticator, transport)
   class Zitadel
+    # API operations for the ActionServiceApi group.
     # @return [::Zitadel::Client::Api::ActionServiceApi]
     attr_reader :action_service
 
+    # API operations for the ApplicationServiceApi group.
     # @return [::Zitadel::Client::Api::ApplicationServiceApi]
     attr_reader :application_service
 
+    # API operations for the AuthorizationServiceApi group.
     # @return [::Zitadel::Client::Api::AuthorizationServiceApi]
     attr_reader :authorization_service
 
+    # API operations for the BetaActionServiceApi group.
     # @return [::Zitadel::Client::Api::BetaActionServiceApi]
     attr_reader :beta_action_service
 
+    # API operations for the BetaAppServiceApi group.
     # @return [::Zitadel::Client::Api::BetaAppServiceApi]
     attr_reader :beta_app_service
 
+    # API operations for the BetaAuthorizationServiceApi group.
     # @return [::Zitadel::Client::Api::BetaAuthorizationServiceApi]
     attr_reader :beta_authorization_service
 
+    # API operations for the BetaFeatureServiceApi group.
     # @return [::Zitadel::Client::Api::BetaFeatureServiceApi]
     attr_reader :beta_feature_service
 
+    # API operations for the BetaInstanceServiceApi group.
     # @return [::Zitadel::Client::Api::BetaInstanceServiceApi]
     attr_reader :beta_instance_service
 
+    # API operations for the BetaInternalPermissionServiceApi group.
     # @return [::Zitadel::Client::Api::BetaInternalPermissionServiceApi]
     attr_reader :beta_internal_permission_service
 
+    # API operations for the BetaOIDCServiceApi group.
     # @return [::Zitadel::Client::Api::BetaOIDCServiceApi]
     attr_reader :beta_oidc_service
 
+    # API operations for the BetaOrganizationServiceApi group.
     # @return [::Zitadel::Client::Api::BetaOrganizationServiceApi]
     attr_reader :beta_organization_service
 
+    # API operations for the BetaProjectServiceApi group.
     # @return [::Zitadel::Client::Api::BetaProjectServiceApi]
     attr_reader :beta_project_service
 
+    # API operations for the BetaSessionServiceApi group.
     # @return [::Zitadel::Client::Api::BetaSessionServiceApi]
     attr_reader :beta_session_service
 
+    # API operations for the BetaSettingsServiceApi group.
     # @return [::Zitadel::Client::Api::BetaSettingsServiceApi]
     attr_reader :beta_settings_service
 
+    # API operations for the BetaTelemetryServiceApi group.
     # @return [::Zitadel::Client::Api::BetaTelemetryServiceApi]
     attr_reader :beta_telemetry_service
 
+    # API operations for the BetaUserServiceApi group.
     # @return [::Zitadel::Client::Api::BetaUserServiceApi]
     attr_reader :beta_user_service
 
+    # API operations for the BetaWebKeyServiceApi group.
     # @return [::Zitadel::Client::Api::BetaWebKeyServiceApi]
     attr_reader :beta_web_key_service
 
+    # API operations for the FeatureServiceApi group.
     # @return [::Zitadel::Client::Api::FeatureServiceApi]
     attr_reader :feature_service
 
+    # API operations for the IdentityProviderServiceApi group.
     # @return [::Zitadel::Client::Api::IdentityProviderServiceApi]
     attr_reader :identity_provider_service
 
+    # API operations for the InstanceServiceApi group.
     # @return [::Zitadel::Client::Api::InstanceServiceApi]
     attr_reader :instance_service
 
+    # API operations for the InternalPermissionServiceApi group.
     # @return [::Zitadel::Client::Api::InternalPermissionServiceApi]
     attr_reader :internal_permission_service
 
+    # API operations for the OIDCServiceApi group.
     # @return [::Zitadel::Client::Api::OIDCServiceApi]
     attr_reader :oidc_service
 
+    # API operations for the OrganizationServiceApi group.
     # @return [::Zitadel::Client::Api::OrganizationServiceApi]
     attr_reader :organization_service
 
+    # API operations for the ProjectServiceApi group.
     # @return [::Zitadel::Client::Api::ProjectServiceApi]
     attr_reader :project_service
 
+    # API operations for the SAMLServiceApi group.
     # @return [::Zitadel::Client::Api::SAMLServiceApi]
     attr_reader :saml_service
 
+    # API operations for the SessionServiceApi group.
     # @return [::Zitadel::Client::Api::SessionServiceApi]
     attr_reader :session_service
 
+    # API operations for the SettingsServiceApi group.
     # @return [::Zitadel::Client::Api::SettingsServiceApi]
     attr_reader :settings_service
 
+    # API operations for the UserServiceApi group.
     # @return [::Zitadel::Client::Api::UserServiceApi]
     attr_reader :user_service
 
+    # API operations for the WebKeyServiceApi group.
     # @return [::Zitadel::Client::Api::WebKeyServiceApi]
     attr_reader :web_key_service
 
-    # Creates a new client with the given authenticator and optional transport options.
+    # Creates a new client with the given authenticator and transport options.
     #
     # If the authenticator includes {Auth::HttpAwareAuthenticator}, the shared
     # {ApiClient} is injected so that token exchange and discovery requests
     # use the same proxy, TLS, and timeout settings.
     #
     # @param authenticator [Auth::Authenticator] Provides host URL and auth headers.
-    # @param transport_options [TransportOptions, nil] HTTP transport configuration.
+    # @param transport_options [TransportOptions, nil] HTTP transport configuration (proxy, TLS, timeouts, etc.).
     def initialize(authenticator, transport_options = nil)
       transport_options ||= TransportOptions.builder.build
       api_client = DefaultApiClient.new(transport_options)
@@ -163,7 +192,7 @@ module Zitadel::Client
     # Creates a client authenticated with a static Bearer token.
     # @param host [String] API base URL.
     # @param access_token [String] Bearer token.
-    # @param transport_options [TransportOptions, nil] Optional HTTP transport configuration.
+    # @param transport_options [TransportOptions, nil] Optional HTTP transport configuration (proxy, TLS, timeouts, etc.).
     # @return [Zitadel] Configured client instance.
     def self.with_token(host, access_token, transport_options = nil)
       new(Auth::BearerAuthenticator.new(host, access_token), transport_options)
@@ -172,12 +201,14 @@ module Zitadel::Client
     # Creates a client from a ready-made authenticator.
     #
     # This is the generic entry point for bespoke authentication strategies
-    # such as OAuth2 client credentials, JWT private-key (JWT bearer), or a
-    # personal access token (PAT). Build the appropriate {Auth::Authenticator}
-    # and pass it here; use {.with_token} for the simple static Bearer case.
+    # such as OAuth2 client credentials, JWT private-key (service account),
+    # or a personal access token (PAT). Supply any {Auth::Authenticator}
+    # implementation; if it also includes {Auth::HttpAwareAuthenticator}, the
+    # shared {ApiClient} is injected so its HTTP calls reuse the same
+    # transport configuration.
     #
     # @param authenticator [Auth::Authenticator] Provides host URL and auth headers.
-    # @param transport_options [TransportOptions, nil] Optional HTTP transport configuration.
+    # @param transport_options [TransportOptions, nil] Optional HTTP transport configuration (proxy, TLS, timeouts, etc.).
     # @return [Zitadel] Configured client instance.
     def self.with_authenticator(authenticator, transport_options = nil)
       new(authenticator, transport_options)

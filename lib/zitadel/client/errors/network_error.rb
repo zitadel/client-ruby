@@ -9,10 +9,9 @@
 
 module Zitadel::Client
   module Errors
-    # Exception for a request that got no HTTP response: the connection was
-    # refused, the host name did not resolve, the TLS handshake failed, or the
-    # connection was reset. The status code is always 0; the underlying
-    # library error is kept as +cause+.
+    # Exception for a request that got no HTTP response: connection refused,
+    # DNS failure, TLS failure, or connection reset. The status code is
+    # always 0; the underlying library error is kept as +cause+.
     class NetworkError < ::Zitadel::Client::Errors::ApiError
       def initialize(message: nil)
         super({ status_code: 0, message: message })

@@ -13,7 +13,7 @@ module Zitadel::Client
   #
   # @api private
   class HeaderSelector # :nodoc:
-    JSON_MIME_PATTERN = %r{^application/(json|[\w!\#$&.+\-^]+\+json)\s*(;|$)}i
+    JSON_MIME_PATTERN = %r{^application/(json|[\w!\#$&.+\-^_]+\+json)\s*(;|$)}i
 
     # Select headers for an API request.
     #
@@ -36,16 +36,6 @@ module Zitadel::Client
       headers
     end
 
-    # Detects whether a string contains a valid JSON mime type.
-    #
-    # @param search_string [String] the MIME type string to check
-    # @return [Boolean] true if the string represents a JSON MIME type
-    def json_mime?(search_string)
-      return false if search_string.nil?
-
-      JSON_MIME_PATTERN.match?(search_string)
-    end
-
     private
 
     # Return the header 'Accept' based on an array of Accept provided.
@@ -64,6 +54,18 @@ module Zitadel::Client
       return '' if filtered_accept.empty?
 
       filtered_accept.join(', ')
+    end
+
+    public
+
+    # Detects whether a string contains a valid JSON mime type.
+    #
+    # @param search_string [String] the MIME type string to check
+    # @return [Boolean] true if the string represents a JSON MIME type
+    def json_mime?(search_string)
+      return false if search_string.nil?
+
+      JSON_MIME_PATTERN.match?(search_string)
     end
   end
 end
