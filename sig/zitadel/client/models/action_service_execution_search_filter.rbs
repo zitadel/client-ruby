@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class ActionServiceExecutionSearchFilter < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader execution_type_filter: ActionServiceExecutionTypeFilter?
+    attr_reader in_conditions_filter: ActionServiceInConditionsFilter?
+    attr_reader target_filter: ActionServiceTargetFilter?
+  end
+end

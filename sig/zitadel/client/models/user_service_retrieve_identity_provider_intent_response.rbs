@@ -1,0 +1,13 @@
+module Zitadel::Client::Models
+  class UserServiceRetrieveIdentityProviderIntentResponse < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader details: UserServiceDetails?
+    attr_reader idp_information: UserServiceIDPInformation?
+    attr_reader user_id: String?
+    attr_reader add_human_user: UserServiceAddHumanUserRequest?
+    attr_reader update_human_user: UserServiceUpdateHumanUserRequest?
+  end
+end

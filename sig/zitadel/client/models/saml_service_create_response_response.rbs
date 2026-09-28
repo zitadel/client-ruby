@@ -1,0 +1,12 @@
+module Zitadel::Client::Models
+  class SAMLServiceCreateResponseResponse < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader details: SAMLServiceDetails?
+    attr_reader url: String?
+    attr_reader post: SAMLServicePostResponse?
+    attr_reader redirect: untyped?
+  end
+end

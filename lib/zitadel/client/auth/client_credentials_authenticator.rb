@@ -3,71 +3,58 @@
 module Zitadel
   module Client
     module Auth
-      # ClientCredentialsAuthenticator implements the client credentials flow.
+      ##
+      # OAuth authenticator implementing the client-credentials flow (RFC 6749 §4.4).
+      #
+      # Mints a bearer token by POSTing client_id / client_secret to the
+      # provider's token endpoint through the SDK's shared transport. See
+      # OAuthAuthenticator for the caching and HTTP-injection contract.
       class ClientCredentialsAuthenticator < Auth::OAuthAuthenticator
-        # Constructs a ClientCredentialsAuthenticator using client credentials flow.
-        #
-        # @param open_id [OpenId] The OpenId instance with OAuth endpoint info.
-        # @param client_id [String] The OAuth client identifier.
-        # @param client_secret [String] The OAuth client secret.
-        # @param auth_scopes [Set<String>] The scope(s) for the token request.
-        # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
-        def initialize(open_id, client_id, client_secret, auth_scopes, transport_options: nil)
-          transport_options ||= TransportOptions.defaults
+        GRANT_TYPE = 'client_credentials'
 
-          conn_opts = transport_options.to_connection_opts
+        # @return [String] the OAuth2 client identifier
+        attr_reader :client_id
 
-          # noinspection RubyArgCount
-          super(open_id, auth_scopes, OAuth2::Client.new(client_id, client_secret, {
-                                                           site: open_id.host_endpoint,
-                                                           token_url: open_id.token_endpoint,
-                                                           connection_opts: conn_opts
-                                                         }), transport_options: transport_options)
+        ##
+        # @param open_id [OpenId] the OpenID discovery helper for the target host
+        # @param client_id [String] the OAuth2 client identifier
+        # @param client_secret [String] the OAuth2 client secret
+        # @param scope [String] the space-delimited scope string for the token request
+        def initialize(open_id, client_id, client_secret, scope)
+          super(open_id, scope)
+          @client_id = client_id
+          @client_secret = client_secret
         end
 
-        # Returns a new builder for constructing a ClientCredentialsAuthenticator.
+        ##
+        # Returns a builder for a ClientCredentialsAuthenticator.
         #
-        # @param host [String] The OAuth provider's base URL.
-        # @param client_id [String] The OAuth client identifier.
-        # @param client_secret [String] The OAuth client secret.
-        # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
-        # @return [ClientCredentialsAuthenticatorBuilder] A builder instance.
-        def self.builder(host, client_id, client_secret, transport_options: nil)
-          ClientCredentialsAuthenticatorBuilder.new(host, client_id, client_secret,
-                                                    transport_options: transport_options)
+        # @param host [String] the base URL for the OAuth provider
+        # @param client_id [String] the OAuth2 client identifier
+        # @param client_secret [String] the OAuth2 client secret
+        # @return [ClientCredentialsAuthenticatorBuilder] the builder
+        # @raise [ArgumentError] if the host is not a valid http or https URL, or
+        #   the client identifier or secret is empty
+        def self.builder(host, client_id, client_secret)
+          ClientCredentialsAuthenticatorBuilder.new(host, client_id, client_secret)
         end
+
+        # Redacts the client secret and the cached access token.
+        def inspect
+          "#<#{self.class.name} host=#{host.inspect} client_id=#{@client_id.inspect} client_secret=\"***\" " \
+            "scope=#{@scope.inspect} access_token=#{masked_token.inspect}>"
+        end
+
+        alias to_s inspect
 
         protected
 
-        # Overrides the base get_grant to return client credentials grant parameters.
-
-        # @return [OAuth2::AccessToken] A hash containing the grant type.
-        def get_grant(client, auth_scopes)
-          client.client_credentials.get_token({ scope: auth_scopes })
+        def grant_type
+          GRANT_TYPE
         end
 
-        # Builder class for ClientCredentialsAuthenticator.
-        class ClientCredentialsAuthenticatorBuilder < OAuthAuthenticatorBuilder
-          # Initializes the builder with host, client ID, and client secret.
-          #
-          # @param host [String] The OAuth provider's base URL.
-          # @param client_id [String] The OAuth client identifier.
-          # @param client_secret [String] The OAuth client secret.
-          # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
-          def initialize(host, client_id, client_secret, transport_options: nil)
-            # noinspection RubyArgCount
-            super(host, transport_options: transport_options)
-            @client_id = client_id
-            @client_secret = client_secret
-          end
-
-          # Constructs and returns a ClientCredentialsAuthenticator using the configured parameters.
-          #
-          # @return [ClientCredentialsAuthenticator] A configured instance.
-          def build
-            ClientCredentialsAuthenticator.new(open_id, @client_id, @client_secret, auth_scopes,
-                                               transport_options: @transport_options)
-          end
+        def token_request_params
+          { 'client_id' => @client_id, 'client_secret' => @client_secret }
         end
       end
     end

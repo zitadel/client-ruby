@@ -1,0 +1,75 @@
+module Zitadel::Client
+  module Api
+    class BetaUserServiceApi < BaseApi
+      def initialize: (?::Zitadel::Client::ApiClient? api_client, ?::Zitadel::Client::Configuration config, ?::Zitadel::Client::Auth::Authenticator? authenticator) -> void
+      def add_human_user: (Models::BetaUserServiceAddHumanUserRequest beta_user_service_add_human_user_request) -> Models::BetaUserServiceAddHumanUserResponse
+      def add_human_user_with_http_info: (Models::BetaUserServiceAddHumanUserRequest beta_user_service_add_human_user_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceAddHumanUserResponse]
+      def add_idp_link: (Models::BetaUserServiceAddIDPLinkRequest beta_user_service_add_idp_link_request) -> Models::BetaUserServiceAddIDPLinkResponse
+      def add_idp_link_with_http_info: (Models::BetaUserServiceAddIDPLinkRequest beta_user_service_add_idp_link_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceAddIDPLinkResponse]
+      def add_otp_email: (Models::BetaUserServiceAddOTPEmailRequest beta_user_service_add_otp_email_request) -> Models::BetaUserServiceAddOTPEmailResponse
+      def add_otp_email_with_http_info: (Models::BetaUserServiceAddOTPEmailRequest beta_user_service_add_otp_email_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceAddOTPEmailResponse]
+      def add_otpsms: (Models::BetaUserServiceAddOTPSMSRequest beta_user_service_add_otpsms_request) -> Models::BetaUserServiceAddOTPSMSResponse
+      def add_otpsms_with_http_info: (Models::BetaUserServiceAddOTPSMSRequest beta_user_service_add_otpsms_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceAddOTPSMSResponse]
+      def create_passkey_registration_link: (Models::BetaUserServiceCreatePasskeyRegistrationLinkRequest beta_user_service_create_passkey_registration_link_request) -> Models::BetaUserServiceCreatePasskeyRegistrationLinkResponse
+      def create_passkey_registration_link_with_http_info: (Models::BetaUserServiceCreatePasskeyRegistrationLinkRequest beta_user_service_create_passkey_registration_link_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceCreatePasskeyRegistrationLinkResponse]
+      def deactivate_user: (Models::BetaUserServiceDeactivateUserRequest beta_user_service_deactivate_user_request) -> Models::BetaUserServiceDeactivateUserResponse
+      def deactivate_user_with_http_info: (Models::BetaUserServiceDeactivateUserRequest beta_user_service_deactivate_user_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceDeactivateUserResponse]
+      def delete_user: (Models::BetaUserServiceDeleteUserRequest beta_user_service_delete_user_request) -> Models::BetaUserServiceDeleteUserResponse
+      def delete_user_with_http_info: (Models::BetaUserServiceDeleteUserRequest beta_user_service_delete_user_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceDeleteUserResponse]
+      def get_user_by_id: (Models::BetaUserServiceGetUserByIDRequest beta_user_service_get_user_by_id_request) -> Models::BetaUserServiceGetUserByIDResponse
+      def get_user_by_id_with_http_info: (Models::BetaUserServiceGetUserByIDRequest beta_user_service_get_user_by_id_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceGetUserByIDResponse]
+      def list_authentication_method_types: (Models::BetaUserServiceListAuthenticationMethodTypesRequest beta_user_service_list_authentication_method_types_request) -> Models::BetaUserServiceListAuthenticationMethodTypesResponse
+      def list_authentication_method_types_with_http_info: (Models::BetaUserServiceListAuthenticationMethodTypesRequest beta_user_service_list_authentication_method_types_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceListAuthenticationMethodTypesResponse]
+      def list_users: (Models::BetaUserServiceListUsersRequest beta_user_service_list_users_request) -> Models::BetaUserServiceListUsersResponse
+      def list_users_with_http_info: (Models::BetaUserServiceListUsersRequest beta_user_service_list_users_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceListUsersResponse]
+      def lock_user: (Models::BetaUserServiceLockUserRequest beta_user_service_lock_user_request) -> Models::BetaUserServiceLockUserResponse
+      def lock_user_with_http_info: (Models::BetaUserServiceLockUserRequest beta_user_service_lock_user_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceLockUserResponse]
+      def password_reset: (Models::BetaUserServicePasswordResetRequest beta_user_service_password_reset_request) -> Models::BetaUserServicePasswordResetResponse
+      def password_reset_with_http_info: (Models::BetaUserServicePasswordResetRequest beta_user_service_password_reset_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServicePasswordResetResponse]
+      def reactivate_user: (Models::BetaUserServiceReactivateUserRequest beta_user_service_reactivate_user_request) -> Models::BetaUserServiceReactivateUserResponse
+      def reactivate_user_with_http_info: (Models::BetaUserServiceReactivateUserRequest beta_user_service_reactivate_user_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceReactivateUserResponse]
+      def register_passkey: (Models::BetaUserServiceRegisterPasskeyRequest beta_user_service_register_passkey_request) -> Models::BetaUserServiceRegisterPasskeyResponse
+      def register_passkey_with_http_info: (Models::BetaUserServiceRegisterPasskeyRequest beta_user_service_register_passkey_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceRegisterPasskeyResponse]
+      def register_totp: (Models::BetaUserServiceRegisterTOTPRequest beta_user_service_register_totp_request) -> Models::BetaUserServiceRegisterTOTPResponse
+      def register_totp_with_http_info: (Models::BetaUserServiceRegisterTOTPRequest beta_user_service_register_totp_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceRegisterTOTPResponse]
+      def register_u2_f: (Models::BetaUserServiceRegisterU2FRequest beta_user_service_register_u2_f_request) -> Models::BetaUserServiceRegisterU2FResponse
+      def register_u2_f_with_http_info: (Models::BetaUserServiceRegisterU2FRequest beta_user_service_register_u2_f_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceRegisterU2FResponse]
+      def remove_otp_email: (Models::BetaUserServiceRemoveOTPEmailRequest beta_user_service_remove_otp_email_request) -> Models::BetaUserServiceRemoveOTPEmailResponse
+      def remove_otp_email_with_http_info: (Models::BetaUserServiceRemoveOTPEmailRequest beta_user_service_remove_otp_email_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceRemoveOTPEmailResponse]
+      def remove_otpsms: (Models::BetaUserServiceRemoveOTPSMSRequest beta_user_service_remove_otpsms_request) -> Models::BetaUserServiceRemoveOTPSMSResponse
+      def remove_otpsms_with_http_info: (Models::BetaUserServiceRemoveOTPSMSRequest beta_user_service_remove_otpsms_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceRemoveOTPSMSResponse]
+      def remove_phone: (Models::BetaUserServiceRemovePhoneRequest beta_user_service_remove_phone_request) -> Models::BetaUserServiceRemovePhoneResponse
+      def remove_phone_with_http_info: (Models::BetaUserServiceRemovePhoneRequest beta_user_service_remove_phone_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceRemovePhoneResponse]
+      def remove_totp: (Models::BetaUserServiceRemoveTOTPRequest beta_user_service_remove_totp_request) -> Models::BetaUserServiceRemoveTOTPResponse
+      def remove_totp_with_http_info: (Models::BetaUserServiceRemoveTOTPRequest beta_user_service_remove_totp_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceRemoveTOTPResponse]
+      def resend_email_code: (Models::BetaUserServiceResendEmailCodeRequest beta_user_service_resend_email_code_request) -> Models::BetaUserServiceResendEmailCodeResponse
+      def resend_email_code_with_http_info: (Models::BetaUserServiceResendEmailCodeRequest beta_user_service_resend_email_code_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceResendEmailCodeResponse]
+      def resend_phone_code: (Models::BetaUserServiceResendPhoneCodeRequest beta_user_service_resend_phone_code_request) -> Models::BetaUserServiceResendPhoneCodeResponse
+      def resend_phone_code_with_http_info: (Models::BetaUserServiceResendPhoneCodeRequest beta_user_service_resend_phone_code_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceResendPhoneCodeResponse]
+      def retrieve_identity_provider_intent: (Models::BetaUserServiceRetrieveIdentityProviderIntentRequest beta_user_service_retrieve_identity_provider_intent_request) -> Models::BetaUserServiceRetrieveIdentityProviderIntentResponse
+      def retrieve_identity_provider_intent_with_http_info: (Models::BetaUserServiceRetrieveIdentityProviderIntentRequest beta_user_service_retrieve_identity_provider_intent_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceRetrieveIdentityProviderIntentResponse]
+      def set_email: (Models::BetaUserServiceSetEmailRequest beta_user_service_set_email_request) -> Models::BetaUserServiceSetEmailResponse
+      def set_email_with_http_info: (Models::BetaUserServiceSetEmailRequest beta_user_service_set_email_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceSetEmailResponse]
+      def set_password: (Models::BetaUserServiceSetPasswordRequest beta_user_service_set_password_request) -> Models::BetaUserServiceSetPasswordResponse
+      def set_password_with_http_info: (Models::BetaUserServiceSetPasswordRequest beta_user_service_set_password_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceSetPasswordResponse]
+      def set_phone: (Models::BetaUserServiceSetPhoneRequest beta_user_service_set_phone_request) -> Models::BetaUserServiceSetPhoneResponse
+      def set_phone_with_http_info: (Models::BetaUserServiceSetPhoneRequest beta_user_service_set_phone_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceSetPhoneResponse]
+      def start_identity_provider_intent: (Models::BetaUserServiceStartIdentityProviderIntentRequest beta_user_service_start_identity_provider_intent_request) -> Models::BetaUserServiceStartIdentityProviderIntentResponse
+      def start_identity_provider_intent_with_http_info: (Models::BetaUserServiceStartIdentityProviderIntentRequest beta_user_service_start_identity_provider_intent_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceStartIdentityProviderIntentResponse]
+      def unlock_user: (Models::BetaUserServiceUnlockUserRequest beta_user_service_unlock_user_request) -> Models::BetaUserServiceUnlockUserResponse
+      def unlock_user_with_http_info: (Models::BetaUserServiceUnlockUserRequest beta_user_service_unlock_user_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceUnlockUserResponse]
+      def update_human_user: (Models::BetaUserServiceUpdateHumanUserRequest beta_user_service_update_human_user_request) -> Models::BetaUserServiceUpdateHumanUserResponse
+      def update_human_user_with_http_info: (Models::BetaUserServiceUpdateHumanUserRequest beta_user_service_update_human_user_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceUpdateHumanUserResponse]
+      def verify_email: (Models::BetaUserServiceVerifyEmailRequest beta_user_service_verify_email_request) -> Models::BetaUserServiceVerifyEmailResponse
+      def verify_email_with_http_info: (Models::BetaUserServiceVerifyEmailRequest beta_user_service_verify_email_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceVerifyEmailResponse]
+      def verify_passkey_registration: (Models::BetaUserServiceVerifyPasskeyRegistrationRequest beta_user_service_verify_passkey_registration_request) -> Models::BetaUserServiceVerifyPasskeyRegistrationResponse
+      def verify_passkey_registration_with_http_info: (Models::BetaUserServiceVerifyPasskeyRegistrationRequest beta_user_service_verify_passkey_registration_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceVerifyPasskeyRegistrationResponse]
+      def verify_phone: (Models::BetaUserServiceVerifyPhoneRequest beta_user_service_verify_phone_request) -> Models::BetaUserServiceVerifyPhoneResponse
+      def verify_phone_with_http_info: (Models::BetaUserServiceVerifyPhoneRequest beta_user_service_verify_phone_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceVerifyPhoneResponse]
+      def verify_totp_registration: (Models::BetaUserServiceVerifyTOTPRegistrationRequest beta_user_service_verify_totp_registration_request) -> Models::BetaUserServiceVerifyTOTPRegistrationResponse
+      def verify_totp_registration_with_http_info: (Models::BetaUserServiceVerifyTOTPRegistrationRequest beta_user_service_verify_totp_registration_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceVerifyTOTPRegistrationResponse]
+      def verify_u2_f_registration: (Models::BetaUserServiceVerifyU2FRegistrationRequest beta_user_service_verify_u2_f_registration_request) -> Models::BetaUserServiceVerifyU2FRegistrationResponse
+      def verify_u2_f_registration_with_http_info: (Models::BetaUserServiceVerifyU2FRegistrationRequest beta_user_service_verify_u2_f_registration_request) -> ::Zitadel::Client::ApiResult[Models::BetaUserServiceVerifyU2FRegistrationResponse]
+    end
+  end
+end

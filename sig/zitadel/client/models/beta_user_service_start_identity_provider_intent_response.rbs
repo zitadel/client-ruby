@@ -1,0 +1,13 @@
+module Zitadel::Client::Models
+  class BetaUserServiceStartIdentityProviderIntentResponse < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader details: BetaUserServiceDetails?
+    attr_reader auth_url: String?
+    attr_reader form_data: BetaUserServiceFormData?
+    attr_reader idp_intent: BetaUserServiceIDPIntent?
+    attr_reader post_form: String?
+  end
+end

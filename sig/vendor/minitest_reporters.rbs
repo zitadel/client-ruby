@@ -1,0 +1,38 @@
+# Signatures for the minitest-reporters gem (no RBS in gem_rbs_collection).
+#
+# spec/spec_helper.rb and test/test_helper.rb reopen
+# Minitest::Reporters::JUnitReporter to override #parse_xml_for, calling the
+# reporter's own (inherited) private helpers. Declare just that surface plus the
+# reporters and #use! entry point those helpers instantiate.
+module Minitest
+  module Reporters
+    def self.use!: (untyped reporters, ?untyped env, ?untyped output) -> untyped
+
+    class BaseReporter
+    end
+
+    class SpecReporter < BaseReporter
+      def initialize: (?untyped options) -> void
+    end
+
+    class JUnitReporter < BaseReporter
+      def initialize: (?String reports_dir, ?bool empty, ?untyped options) -> void
+
+      def parse_xml_for: (untyped xml, untyped suite, untyped tests) -> untyped
+
+      def testsuite_attributes: (untyped suite, untyped tests, untyped file_path) -> Hash[Symbol, untyped]
+
+      def emit_testcase: (untyped xml, untyped suite, untyped file_path, untyped test) -> untyped
+
+      def analyze_suite: (untyped tests) -> untyped
+
+      def get_relative_path: (untyped result) -> untyped
+
+      def get_source_location: (untyped result) -> untyped
+
+      def xml_message_for: (untyped test) -> untyped
+
+      def xml_attachment_for: (untyped test) -> untyped
+    end
+  end
+end

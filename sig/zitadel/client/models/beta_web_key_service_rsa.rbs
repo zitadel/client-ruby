@@ -1,0 +1,10 @@
+module Zitadel::Client::Models
+  class BetaWebKeyServiceRSA < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader bits: BetaWebKeyServiceRSABits?
+    attr_reader hasher: BetaWebKeyServiceRSAHasher?
+  end
+end

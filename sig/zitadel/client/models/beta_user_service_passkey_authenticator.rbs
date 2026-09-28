@@ -1,0 +1,10 @@
+module Zitadel::Client::Models
+  class BetaUserServicePasskeyAuthenticator
+    PASSKEY_AUTHENTICATOR_UNSPECIFIED: String
+    PASSKEY_AUTHENTICATOR_PLATFORM: String
+    PASSKEY_AUTHENTICATOR_CROSS_PLATFORM: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class OIDCServiceCreateCallbackRequest < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader auth_request_id: String?
+    attr_reader error: OIDCServiceAuthorizationError?
+    attr_reader session: OIDCServiceSession?
+  end
+end

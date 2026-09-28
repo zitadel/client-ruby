@@ -2,75 +2,113 @@
 
 require 'json'
 require 'uri'
-require 'net/http'
-require 'openssl'
 
 module Zitadel
   module Client
     module Auth
       ##
-      # OpenId retrieves OpenID Connect configuration from a given host.
+      # Resolves the OpenID Connect discovery document for a Zitadel host.
       #
-      # It builds the well-known configuration URL from the provided hostname,
-      # fetches the configuration, and extracts the token endpoint.
+      # The constructor only validates and normalises the host; it performs no
+      # I/O. The +token_endpoint+ is fetched through the shared ApiClient the
+      # first time #token_endpoint is called, so discovery honours the SDK's
+      # proxy, TLS and timeout settings and fails with the same error types as
+      # any other request:
       #
+      # - no HTTP response: Errors::NetworkError or Errors::NetworkTimeoutError;
+      # - a non-2xx status: the Errors::ApiError subclass for that status, as
+      #   chosen by Errors::ApiError.from_response;
+      # - a body that is not a JSON object with a +token_endpoint+:
+      #   Errors::SerializationError.
       class OpenId
-        attr_accessor :token_endpoint, :host_endpoint
+        WELL_KNOWN_PATH = '/.well-known/openid-configuration'
+
+        # @return [String] the normalised host endpoint
+        attr_reader :host_endpoint
 
         ##
-        # Initializes a new OpenId instance.
+        # Validates and normalises the host. A host without a scheme gets +https://+.
         #
-        # @param hostname [String] the hostname for the OpenID provider.
-        # @param transport_options [TransportOptions, nil] Optional transport options for TLS, proxy, and headers.
-        # @raise [RuntimeError] if the OpenID configuration cannot be fetched or the token_endpoint is missing.
-        #
-        # noinspection HttpUrlsUsage
-        # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-        def initialize(hostname, transport_options: nil)
-          transport_options ||= TransportOptions.defaults
-          hostname = "https://#{hostname}" unless hostname.start_with?('http://', 'https://')
-          @host_endpoint = hostname
-          well_known_url = self.class.build_well_known_url(hostname)
-
-          uri = URI.parse(well_known_url)
-          http = if transport_options.proxy_url
-                   proxy_uri = URI.parse(transport_options.proxy_url)
-                   Net::HTTP.new(uri.host.to_s, uri.port, proxy_uri.host, proxy_uri.port,
-                                 proxy_uri.user, proxy_uri.password)
-                 else
-                   Net::HTTP.new(uri.host.to_s, uri.port)
-                 end
-          http.use_ssl = (uri.scheme == 'https')
-          if transport_options.insecure
-            http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-          elsif transport_options.ca_cert_path
-            store = OpenSSL::X509::Store.new
-            store.set_default_paths
-            store.add_file(transport_options.ca_cert_path)
-            http.cert_store = store
-            http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-          end
-          request = Net::HTTP::Get.new(uri)
-          transport_options.default_headers.each { |k, v| request[k] = v }
-          response = http.request(request)
-          raise "Failed to fetch OpenID configuration: HTTP #{response.code}" unless response.code.to_i == 200
-
-          config = JSON.parse(response.body)
-          token_endpoint = config['token_endpoint']
-          raise 'token_endpoint not found in OpenID configuration' unless token_endpoint
-
-          @token_endpoint = token_endpoint
+        # @param host [String] the Zitadel instance host name or URL
+        # @raise [ArgumentError] if the host is empty, uses a scheme other than
+        #   http or https, or is not a valid URL
+        def initialize(host)
+          @host_endpoint = normalise_host(host)
+          @well_known_url = URI.join(@host_endpoint, WELL_KNOWN_PATH).to_s
+          @token_endpoint = nil
+          @mutex = Thread::Mutex.new
         end
-        # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
         ##
-        # Builds the well-known OpenID configuration URL for the given hostname.
+        # Returns the OAuth2 token endpoint, fetching the discovery document
+        # through the given API client on first access and caching the result.
         #
-        # @param hostname [String] the hostname for the OpenID provider.
-        # @return [String] the well-known configuration URL.
+        # @param api_client [ApiClient] the shared API client used for the discovery request
+        # @return [String] the token endpoint URL
+        # @raise [Errors::ApiError] if discovery fails at the transport or HTTP level
+        # @raise [Errors::SerializationError] if the discovery document is unusable
+        def token_endpoint(api_client)
+          @mutex.synchronize do
+            @token_endpoint ||= discover(api_client)
+          end
+        end
+
+        private
+
+        # Validates a host and prefixes +https://+ when it has no scheme.
         #
-        def self.build_well_known_url(hostname)
-          URI.join(hostname, '/.well-known/openid-configuration').to_s
+        # @param host [String, nil] the host name or URL
+        # @return [String] the normalised host
+        # @raise [ArgumentError] if the host is not a valid http or https URL
+        def normalise_host(host)
+          trimmed = host.to_s.strip
+          raise ArgumentError, 'Host cannot be empty.' if trimmed.empty?
+
+          unless trimmed.downcase.start_with?('http://', 'https://')
+            raise ArgumentError, "Host must use the http or https scheme: #{trimmed}" if trimmed.include?('://')
+
+            trimmed = "https://#{trimmed}"
+          end
+          validate_host(trimmed)
+        end
+
+        # @return [String] the host, when it parses and names a host
+        # @raise [ArgumentError] otherwise
+        def validate_host(host)
+          parsed = URI.parse(host)
+          raise ArgumentError, "Host is not a valid URL: #{host}" if parsed.host.nil? || parsed.host.empty?
+
+          host
+        rescue URI::InvalidURIError => e
+          raise ArgumentError, "Host is not a valid URL: #{host}", cause: e
+        end
+
+        def discover(api_client)
+          url = @well_known_url
+          response = api_client.send_request(:GET, url, { 'Accept' => 'application/json' }, nil)
+          status = response.status_code
+          raise ::Zitadel::Client::Errors::ApiError.from_response(status, response.headers, response.body) unless status >= 200 && status < 300
+
+          token_endpoint_from(parse_document(response.body, url), url)
+        end
+
+        def token_endpoint_from(document, url)
+          endpoint = document['token_endpoint']
+          return endpoint if endpoint.is_a?(String) && !endpoint.empty?
+
+          raise ::Zitadel::Client::Errors::SerializationError,
+                "OpenID configuration at #{url} has no valid token_endpoint"
+        end
+
+        def parse_document(body, url)
+          document = JSON.parse(body)
+          return document if document.is_a?(Hash)
+
+          raise ::Zitadel::Client::Errors::SerializationError, "OpenID configuration at #{url} is not a JSON object"
+        rescue JSON::ParserError => e
+          raise ::Zitadel::Client::Errors::SerializationError.new(
+            "OpenID configuration at #{url} is not a JSON object", e
+          )
         end
       end
     end

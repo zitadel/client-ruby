@@ -1,0 +1,19 @@
+# Supplemental SimpleCov signatures.
+#
+# The gem_rbs_collection ships SimpleCov (.gem_rbs_collection/simplecov), but
+# its SimpleCov::Configuration omits a few accessors the test harness uses in
+# spec/spec_helper.rb and test/test_helper.rb. Reopen the module to ADD them —
+# do NOT redeclare anything the collection already provides.
+module SimpleCov
+  module Configuration
+    def coverage_dir: (?String? dir) -> String
+
+    def coverage_path: () -> String
+
+    def formatters=: (untyped formatters) -> untyped
+
+    def running=: (bool value) -> bool
+
+    def running: () -> bool
+  end
+end

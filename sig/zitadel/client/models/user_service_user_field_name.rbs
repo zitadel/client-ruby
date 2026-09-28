@@ -1,0 +1,17 @@
+module Zitadel::Client::Models
+  class UserServiceUserFieldName
+    USER_FIELD_NAME_UNSPECIFIED: String
+    USER_FIELD_NAME_USER_NAME: String
+    USER_FIELD_NAME_FIRST_NAME: String
+    USER_FIELD_NAME_LAST_NAME: String
+    USER_FIELD_NAME_NICK_NAME: String
+    USER_FIELD_NAME_DISPLAY_NAME: String
+    USER_FIELD_NAME_EMAIL: String
+    USER_FIELD_NAME_STATE: String
+    USER_FIELD_NAME_TYPE: String
+    USER_FIELD_NAME_CREATION_DATE: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

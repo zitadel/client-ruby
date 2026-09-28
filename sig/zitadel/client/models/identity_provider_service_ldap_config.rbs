@@ -1,0 +1,18 @@
+module Zitadel::Client::Models
+  class IdentityProviderServiceLDAPConfig < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader servers: Array[String]?
+    attr_reader start_tls: bool?
+    attr_reader base_dn: String?
+    attr_reader bind_dn: String?
+    attr_reader user_base: String?
+    attr_reader user_object_classes: Array[String]?
+    attr_reader user_filters: Array[String]?
+    attr_reader timeout: ISO8601::Duration?
+    attr_reader attributes: IdentityProviderServiceLDAPAttributes?
+    attr_reader root_ca: String?
+  end
+end

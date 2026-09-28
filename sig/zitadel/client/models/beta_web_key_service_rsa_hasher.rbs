@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class BetaWebKeyServiceRSAHasher
+    RSA_HASHER_UNSPECIFIED: String
+    RSA_HASHER_SHA256: String
+    RSA_HASHER_SHA384: String
+    RSA_HASHER_SHA512: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

@@ -1,0 +1,14 @@
+module Zitadel::Client::Models
+  class BetaSettingsServiceTheme < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader primary_color: String?
+    attr_reader background_color: String?
+    attr_reader warn_color: String?
+    attr_reader font_color: String?
+    attr_reader logo_url: String?
+    attr_reader icon_url: String?
+  end
+end

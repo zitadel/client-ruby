@@ -1,0 +1,19 @@
+module Zitadel::Client::Models
+  class ActionServiceTarget < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader id: String?
+    attr_reader creation_date: Time?
+    attr_reader change_date: Time?
+    attr_reader name: String?
+    attr_reader timeout: ISO8601::Duration?
+    attr_reader endpoint: String?
+    attr_reader signing_key: String?
+    attr_reader payload_type: ActionServicePayloadType?
+    attr_reader rest_async: untyped?
+    attr_reader rest_call: ActionServiceRESTCall?
+    attr_reader rest_webhook: ActionServiceRESTWebhook?
+  end
+end

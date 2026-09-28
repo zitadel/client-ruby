@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class WebKeyServiceRSABits
+    RSA_BITS_UNSPECIFIED: String
+    RSA_BITS_2048: String
+    RSA_BITS_3072: String
+    RSA_BITS_4096: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

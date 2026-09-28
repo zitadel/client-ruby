@@ -1,0 +1,31 @@
+module Zitadel::Client
+  module Api
+    class ApplicationServiceApi < BaseApi
+      def initialize: (?::Zitadel::Client::ApiClient? api_client, ?::Zitadel::Client::Configuration config, ?::Zitadel::Client::Auth::Authenticator? authenticator) -> void
+      def create_application: (Models::ApplicationServiceCreateApplicationRequest application_service_create_application_request) -> Models::ApplicationServiceCreateApplicationResponse
+      def create_application_with_http_info: (Models::ApplicationServiceCreateApplicationRequest application_service_create_application_request) -> ::Zitadel::Client::ApiResult[Models::ApplicationServiceCreateApplicationResponse]
+      def create_application_key: (Models::ApplicationServiceCreateApplicationKeyRequest application_service_create_application_key_request) -> Models::ApplicationServiceCreateApplicationKeyResponse
+      def create_application_key_with_http_info: (Models::ApplicationServiceCreateApplicationKeyRequest application_service_create_application_key_request) -> ::Zitadel::Client::ApiResult[Models::ApplicationServiceCreateApplicationKeyResponse]
+      def deactivate_application: (Models::ApplicationServiceDeactivateApplicationRequest application_service_deactivate_application_request) -> Models::ApplicationServiceDeactivateApplicationResponse
+      def deactivate_application_with_http_info: (Models::ApplicationServiceDeactivateApplicationRequest application_service_deactivate_application_request) -> ::Zitadel::Client::ApiResult[Models::ApplicationServiceDeactivateApplicationResponse]
+      def delete_application: (Models::ApplicationServiceDeleteApplicationRequest application_service_delete_application_request) -> Models::ApplicationServiceDeleteApplicationResponse
+      def delete_application_with_http_info: (Models::ApplicationServiceDeleteApplicationRequest application_service_delete_application_request) -> ::Zitadel::Client::ApiResult[Models::ApplicationServiceDeleteApplicationResponse]
+      def delete_application_key: (Models::ApplicationServiceDeleteApplicationKeyRequest application_service_delete_application_key_request) -> Models::ApplicationServiceDeleteApplicationKeyResponse
+      def delete_application_key_with_http_info: (Models::ApplicationServiceDeleteApplicationKeyRequest application_service_delete_application_key_request) -> ::Zitadel::Client::ApiResult[Models::ApplicationServiceDeleteApplicationKeyResponse]
+      def generate_client_secret: (Models::ApplicationServiceGenerateClientSecretRequest application_service_generate_client_secret_request) -> Models::ApplicationServiceGenerateClientSecretResponse
+      def generate_client_secret_with_http_info: (Models::ApplicationServiceGenerateClientSecretRequest application_service_generate_client_secret_request) -> ::Zitadel::Client::ApiResult[Models::ApplicationServiceGenerateClientSecretResponse]
+      def get_application: (Models::ApplicationServiceGetApplicationRequest application_service_get_application_request) -> Models::ApplicationServiceGetApplicationResponse
+      def get_application_with_http_info: (Models::ApplicationServiceGetApplicationRequest application_service_get_application_request) -> ::Zitadel::Client::ApiResult[Models::ApplicationServiceGetApplicationResponse]
+      def get_application_key: (Models::ApplicationServiceGetApplicationKeyRequest application_service_get_application_key_request) -> Models::ApplicationServiceGetApplicationKeyResponse
+      def get_application_key_with_http_info: (Models::ApplicationServiceGetApplicationKeyRequest application_service_get_application_key_request) -> ::Zitadel::Client::ApiResult[Models::ApplicationServiceGetApplicationKeyResponse]
+      def list_application_keys: (Models::ApplicationServiceListApplicationKeysRequest application_service_list_application_keys_request) -> Models::ApplicationServiceListApplicationKeysResponse
+      def list_application_keys_with_http_info: (Models::ApplicationServiceListApplicationKeysRequest application_service_list_application_keys_request) -> ::Zitadel::Client::ApiResult[Models::ApplicationServiceListApplicationKeysResponse]
+      def list_applications: (Models::ApplicationServiceListApplicationsRequest application_service_list_applications_request) -> Models::ApplicationServiceListApplicationsResponse
+      def list_applications_with_http_info: (Models::ApplicationServiceListApplicationsRequest application_service_list_applications_request) -> ::Zitadel::Client::ApiResult[Models::ApplicationServiceListApplicationsResponse]
+      def reactivate_application: (Models::ApplicationServiceReactivateApplicationRequest application_service_reactivate_application_request) -> Models::ApplicationServiceReactivateApplicationResponse
+      def reactivate_application_with_http_info: (Models::ApplicationServiceReactivateApplicationRequest application_service_reactivate_application_request) -> ::Zitadel::Client::ApiResult[Models::ApplicationServiceReactivateApplicationResponse]
+      def update_application: (Models::ApplicationServiceUpdateApplicationRequest application_service_update_application_request) -> Models::ApplicationServiceUpdateApplicationResponse
+      def update_application_with_http_info: (Models::ApplicationServiceUpdateApplicationRequest application_service_update_application_request) -> ::Zitadel::Client::ApiResult[Models::ApplicationServiceUpdateApplicationResponse]
+    end
+  end
+end

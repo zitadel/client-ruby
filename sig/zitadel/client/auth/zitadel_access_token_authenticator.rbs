@@ -1,0 +1,7 @@
+module Zitadel::Client
+  module Auth
+    class ZitadelAccessTokenAuthenticator < BearerAuthenticator
+      def initialize: (host: String, token: String) -> void
+    end
+  end
+end

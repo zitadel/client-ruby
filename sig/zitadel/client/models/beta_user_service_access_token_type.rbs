@@ -1,0 +1,9 @@
+module Zitadel::Client::Models
+  class BetaUserServiceAccessTokenType
+    ACCESS_TOKEN_TYPE_BEARER: String
+    ACCESS_TOKEN_TYPE_JWT: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

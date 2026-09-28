@@ -1,0 +1,15 @@
+module Zitadel::Client::Models
+  class BetaUserServiceAuthenticationMethodType
+    AUTHENTICATION_METHOD_TYPE_UNSPECIFIED: String
+    AUTHENTICATION_METHOD_TYPE_PASSWORD: String
+    AUTHENTICATION_METHOD_TYPE_PASSKEY: String
+    AUTHENTICATION_METHOD_TYPE_IDP: String
+    AUTHENTICATION_METHOD_TYPE_TOTP: String
+    AUTHENTICATION_METHOD_TYPE_U2_F: String
+    AUTHENTICATION_METHOD_TYPE_OTP_SMS: String
+    AUTHENTICATION_METHOD_TYPE_OTP_EMAIL: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

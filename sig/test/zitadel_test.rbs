@@ -1,0 +1,34 @@
+# Signature for the Zitadel facade integration test.
+#
+# ZitadelTest is a Minitest::Test that mixes in Minitest::Hooks and boots a
+# WireMock + Squid stack via Testcontainers in before_all. Declared here so the
+# extracted container-lifecycle and assertion helpers resolve against the test
+# class rather than the bare Minitest::Test.
+module Zitadel
+  module Client
+    class ZitadelTest < ::Minitest::Test
+      include ::Minitest::Hooks
+
+      def start_wiremock: () -> untyped
+
+      def start_proxy: () -> untyped
+
+      def capture_endpoints: () -> void
+
+      def service_api_classes: (Array[untyped] klasses) -> Set[untyped]
+
+      def general_settings: (String url, untyped transport_options) -> untyped
+
+      def with_proxy_retry: (?attempts: Integer) { () -> untyped } -> untyped
+
+      @ca_cert_path: String
+      @network: untyped
+      @wiremock: untyped
+      @proxy: untyped
+      @host: String
+      @http_port: Integer
+      @https_port: Integer
+      @proxy_port: Integer
+    end
+  end
+end

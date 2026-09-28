@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class BetaActionServiceResponseExecution < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader all: bool?
+    attr_reader method: String?
+    attr_reader service: String?
+  end
+end

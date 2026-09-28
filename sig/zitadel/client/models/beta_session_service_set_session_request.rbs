@@ -1,0 +1,14 @@
+module Zitadel::Client::Models
+  class BetaSessionServiceSetSessionRequest < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader session_id: String?
+    attr_reader session_token: String?
+    attr_reader checks: BetaSessionServiceChecks?
+    attr_reader metadata: Hash[String, String]?
+    attr_reader challenges: BetaSessionServiceRequestChallenges?
+    attr_reader lifetime: ISO8601::Duration?
+  end
+end

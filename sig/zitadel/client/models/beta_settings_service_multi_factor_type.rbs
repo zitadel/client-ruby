@@ -1,0 +1,9 @@
+module Zitadel::Client::Models
+  class BetaSettingsServiceMultiFactorType
+    MULTI_FACTOR_TYPE_UNSPECIFIED: String
+    MULTI_FACTOR_TYPE_U2_F_WITH_VERIFICATION: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

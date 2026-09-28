@@ -1,0 +1,13 @@
+module Zitadel::Client::Models
+  class BetaAppServiceApplicationSearchFilter < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader api_app_only: bool?
+    attr_reader name_filter: BetaAppServiceApplicationNameQuery?
+    attr_reader oidc_app_only: bool?
+    attr_reader saml_app_only: bool?
+    attr_reader state_filter: BetaAppServiceAppState?
+  end
+end

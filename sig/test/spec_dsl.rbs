@@ -1,0 +1,28 @@
+# Top-level Minitest spec-DSL entrypoints for the generator-owned unit tests
+# (configuration_test, value_serializer_test, header_selector_test,
+# transport_options_test, trace_context_util_test, default_api_client_unit_test).
+#
+# Those files use the spec DSL (`describe ... do`) at the file top level. At
+# runtime `minitest/spec` injects `describe` into Kernel and runs each block
+# with `self` set to a `Minitest::Spec` subclass, so `before`/`after`/`it`/`_`
+# resolve. The gem_rbs_collection ships the DSL on `Minitest::Spec::DSL` but
+# never declares the Kernel entrypoint, so Steep sees `::Object#describe` as
+# missing and the whole block fails to resolve. Declare the entrypoint here so
+# these untyped spec files type-check (mirrors the hand-written RBS the repo
+# already keeps for the class-based auth tests under sig/test/).
+module Kernel
+  def describe: (untyped desc, *untyped additional) ?{ () [self: singleton(Minitest::Spec)] -> void } -> singleton(Minitest::Spec)
+end
+
+# Reopen the DSL so the example/hook blocks run with `self` typed as a spec
+# *instance* (where `_`/`value`/`expect` and the assertion helpers live), and
+# so nested `describe` inside a describe block resolves too. The collection
+# declares these with bare blocks (no self-type), which leaves `_(...)`
+# unresolved inside every `it`/`before`/`after`.
+module Minitest::Spec::DSL
+  def describe: (untyped desc, *untyped additional) ?{ () [self: singleton(Minitest::Spec)] -> void } -> singleton(Minitest::Spec)
+  def it: (?::String desc) ?{ () [self: Minitest::Spec] -> void } -> untyped
+  def specify: (?::String desc) ?{ () [self: Minitest::Spec] -> void } -> untyped
+  def before: (?untyped? _type) { () [self: Minitest::Spec] -> void } -> untyped
+  def after: (?untyped? _type) { () [self: Minitest::Spec] -> void } -> untyped
+end

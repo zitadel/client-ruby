@@ -1,0 +1,17 @@
+module Zitadel::Client
+  module Api
+    class BetaSessionServiceApi < BaseApi
+      def initialize: (?::Zitadel::Client::ApiClient? api_client, ?::Zitadel::Client::Configuration config, ?::Zitadel::Client::Auth::Authenticator? authenticator) -> void
+      def create_session: (Models::BetaSessionServiceCreateSessionRequest beta_session_service_create_session_request) -> Models::BetaSessionServiceCreateSessionResponse
+      def create_session_with_http_info: (Models::BetaSessionServiceCreateSessionRequest beta_session_service_create_session_request) -> ::Zitadel::Client::ApiResult[Models::BetaSessionServiceCreateSessionResponse]
+      def delete_session: (Models::BetaSessionServiceDeleteSessionRequest beta_session_service_delete_session_request) -> Models::BetaSessionServiceDeleteSessionResponse
+      def delete_session_with_http_info: (Models::BetaSessionServiceDeleteSessionRequest beta_session_service_delete_session_request) -> ::Zitadel::Client::ApiResult[Models::BetaSessionServiceDeleteSessionResponse]
+      def get_session: (Models::BetaSessionServiceGetSessionRequest beta_session_service_get_session_request) -> Models::BetaSessionServiceGetSessionResponse
+      def get_session_with_http_info: (Models::BetaSessionServiceGetSessionRequest beta_session_service_get_session_request) -> ::Zitadel::Client::ApiResult[Models::BetaSessionServiceGetSessionResponse]
+      def list_sessions: (Models::BetaSessionServiceListSessionsRequest beta_session_service_list_sessions_request) -> Models::BetaSessionServiceListSessionsResponse
+      def list_sessions_with_http_info: (Models::BetaSessionServiceListSessionsRequest beta_session_service_list_sessions_request) -> ::Zitadel::Client::ApiResult[Models::BetaSessionServiceListSessionsResponse]
+      def set_session: (Models::BetaSessionServiceSetSessionRequest beta_session_service_set_session_request) -> Models::BetaSessionServiceSetSessionResponse
+      def set_session_with_http_info: (Models::BetaSessionServiceSetSessionRequest beta_session_service_set_session_request) -> ::Zitadel::Client::ApiResult[Models::BetaSessionServiceSetSessionResponse]
+    end
+  end
+end

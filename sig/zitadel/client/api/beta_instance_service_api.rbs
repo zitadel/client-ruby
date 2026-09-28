@@ -1,0 +1,27 @@
+module Zitadel::Client
+  module Api
+    class BetaInstanceServiceApi < BaseApi
+      def initialize: (?::Zitadel::Client::ApiClient? api_client, ?::Zitadel::Client::Configuration config, ?::Zitadel::Client::Auth::Authenticator? authenticator) -> void
+      def add_custom_domain: (Models::BetaInstanceServiceAddCustomDomainRequest beta_instance_service_add_custom_domain_request) -> Models::BetaInstanceServiceAddCustomDomainResponse
+      def add_custom_domain_with_http_info: (Models::BetaInstanceServiceAddCustomDomainRequest beta_instance_service_add_custom_domain_request) -> ::Zitadel::Client::ApiResult[Models::BetaInstanceServiceAddCustomDomainResponse]
+      def add_trusted_domain: (Models::BetaInstanceServiceAddTrustedDomainRequest beta_instance_service_add_trusted_domain_request) -> Models::BetaInstanceServiceAddTrustedDomainResponse
+      def add_trusted_domain_with_http_info: (Models::BetaInstanceServiceAddTrustedDomainRequest beta_instance_service_add_trusted_domain_request) -> ::Zitadel::Client::ApiResult[Models::BetaInstanceServiceAddTrustedDomainResponse]
+      def delete_instance: (Models::BetaInstanceServiceDeleteInstanceRequest beta_instance_service_delete_instance_request) -> Models::BetaInstanceServiceDeleteInstanceResponse
+      def delete_instance_with_http_info: (Models::BetaInstanceServiceDeleteInstanceRequest beta_instance_service_delete_instance_request) -> ::Zitadel::Client::ApiResult[Models::BetaInstanceServiceDeleteInstanceResponse]
+      def get_instance: (Models::BetaInstanceServiceGetInstanceRequest beta_instance_service_get_instance_request) -> Models::BetaInstanceServiceGetInstanceResponse
+      def get_instance_with_http_info: (Models::BetaInstanceServiceGetInstanceRequest beta_instance_service_get_instance_request) -> ::Zitadel::Client::ApiResult[Models::BetaInstanceServiceGetInstanceResponse]
+      def list_custom_domains: (Models::BetaInstanceServiceListCustomDomainsRequest beta_instance_service_list_custom_domains_request) -> Models::BetaInstanceServiceListCustomDomainsResponse
+      def list_custom_domains_with_http_info: (Models::BetaInstanceServiceListCustomDomainsRequest beta_instance_service_list_custom_domains_request) -> ::Zitadel::Client::ApiResult[Models::BetaInstanceServiceListCustomDomainsResponse]
+      def list_instances: (Models::BetaInstanceServiceListInstancesRequest beta_instance_service_list_instances_request) -> Models::BetaInstanceServiceListInstancesResponse
+      def list_instances_with_http_info: (Models::BetaInstanceServiceListInstancesRequest beta_instance_service_list_instances_request) -> ::Zitadel::Client::ApiResult[Models::BetaInstanceServiceListInstancesResponse]
+      def list_trusted_domains: (Models::BetaInstanceServiceListTrustedDomainsRequest beta_instance_service_list_trusted_domains_request) -> Models::BetaInstanceServiceListTrustedDomainsResponse
+      def list_trusted_domains_with_http_info: (Models::BetaInstanceServiceListTrustedDomainsRequest beta_instance_service_list_trusted_domains_request) -> ::Zitadel::Client::ApiResult[Models::BetaInstanceServiceListTrustedDomainsResponse]
+      def remove_custom_domain: (Models::BetaInstanceServiceRemoveCustomDomainRequest beta_instance_service_remove_custom_domain_request) -> Models::BetaInstanceServiceRemoveCustomDomainResponse
+      def remove_custom_domain_with_http_info: (Models::BetaInstanceServiceRemoveCustomDomainRequest beta_instance_service_remove_custom_domain_request) -> ::Zitadel::Client::ApiResult[Models::BetaInstanceServiceRemoveCustomDomainResponse]
+      def remove_trusted_domain: (Models::BetaInstanceServiceRemoveTrustedDomainRequest beta_instance_service_remove_trusted_domain_request) -> Models::BetaInstanceServiceRemoveTrustedDomainResponse
+      def remove_trusted_domain_with_http_info: (Models::BetaInstanceServiceRemoveTrustedDomainRequest beta_instance_service_remove_trusted_domain_request) -> ::Zitadel::Client::ApiResult[Models::BetaInstanceServiceRemoveTrustedDomainResponse]
+      def update_instance: (Models::BetaInstanceServiceUpdateInstanceRequest beta_instance_service_update_instance_request) -> Models::BetaInstanceServiceUpdateInstanceResponse
+      def update_instance_with_http_info: (Models::BetaInstanceServiceUpdateInstanceRequest beta_instance_service_update_instance_request) -> ::Zitadel::Client::ApiResult[Models::BetaInstanceServiceUpdateInstanceResponse]
+    end
+  end
+end

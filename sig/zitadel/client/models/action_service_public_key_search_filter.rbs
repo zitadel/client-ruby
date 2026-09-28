@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class ActionServicePublicKeySearchFilter < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader active_filter: bool?
+    attr_reader expiration_date_filter: ActionServiceTimestampFilter?
+    attr_reader key_ids_filter: ActionServiceInIDsFilter?
+  end
+end

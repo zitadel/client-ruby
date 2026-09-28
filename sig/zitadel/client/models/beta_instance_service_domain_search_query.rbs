@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class BetaInstanceServiceDomainSearchQuery < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader domain_query: BetaInstanceServiceDomainQuery?
+    attr_reader generated_query: BetaInstanceServiceDomainGeneratedQuery?
+    attr_reader primary_query: BetaInstanceServiceDomainPrimaryQuery?
+  end
+end

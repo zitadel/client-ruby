@@ -1,0 +1,10 @@
+module Zitadel::Client::Models
+  class SessionServiceCheckIDPIntent < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader idp_intent_id: String?
+    attr_reader idp_intent_token: String?
+  end
+end

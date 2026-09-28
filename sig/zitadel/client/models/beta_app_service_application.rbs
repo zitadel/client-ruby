@@ -1,0 +1,16 @@
+module Zitadel::Client::Models
+  class BetaAppServiceApplication < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader id: String?
+    attr_reader creation_date: Time?
+    attr_reader change_date: Time?
+    attr_reader state: BetaAppServiceAppState?
+    attr_reader name: String?
+    attr_reader api_config: BetaAppServiceAPIConfig?
+    attr_reader oidc_config: BetaAppServiceOIDCConfig?
+    attr_reader saml_config: BetaAppServiceSAMLConfig?
+  end
+end

@@ -1,0 +1,12 @@
+module Zitadel::Client::Models
+  class ActionServiceTimestampFilterMethod
+    TIMESTAMP_FILTER_METHOD_EQUALS: String
+    TIMESTAMP_FILTER_METHOD_AFTER: String
+    TIMESTAMP_FILTER_METHOD_AFTER_OR_EQUALS: String
+    TIMESTAMP_FILTER_METHOD_BEFORE: String
+    TIMESTAMP_FILTER_METHOD_BEFORE_OR_EQUALS: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

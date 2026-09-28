@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class BetaAppServiceAppState
+    APP_STATE_UNSPECIFIED: String
+    APP_STATE_ACTIVE: String
+    APP_STATE_INACTIVE: String
+    APP_STATE_REMOVED: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

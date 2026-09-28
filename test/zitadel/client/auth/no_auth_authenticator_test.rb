@@ -38,8 +38,8 @@ module Zitadel
         def test_default_host
           auth = NoAuthAuthenticator.new
 
-          assert_empty(auth.send(:auth_headers))
-          assert_equal('http://localhost', auth.send(:host))
+          assert_empty(auth.auth_headers)
+          assert_equal('http://localhost', auth.host)
         end
 
         ##
@@ -49,8 +49,8 @@ module Zitadel
         def test_custom_host
           auth = NoAuthAuthenticator.new('https://custom-host')
 
-          assert_empty(auth.send(:auth_headers))
-          assert_equal('https://custom-host', auth.send(:host))
+          assert_empty(auth.auth_headers)
+          assert_equal('https://custom-host', auth.host)
         end
       end
     end

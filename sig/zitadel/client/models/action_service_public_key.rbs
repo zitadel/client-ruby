@@ -1,0 +1,15 @@
+module Zitadel::Client::Models
+  class ActionServicePublicKey < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader key_id: String?
+    attr_reader active: bool?
+    attr_reader public_key: String?
+    attr_reader fingerprint: String?
+    attr_reader expiration_date: Time?
+    attr_reader creation_date: Time?
+    attr_reader change_date: Time?
+  end
+end

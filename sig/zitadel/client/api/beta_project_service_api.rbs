@@ -1,0 +1,41 @@
+module Zitadel::Client
+  module Api
+    class BetaProjectServiceApi < BaseApi
+      def initialize: (?::Zitadel::Client::ApiClient? api_client, ?::Zitadel::Client::Configuration config, ?::Zitadel::Client::Auth::Authenticator? authenticator) -> void
+      def activate_project: (Models::BetaProjectServiceActivateProjectRequest beta_project_service_activate_project_request) -> Models::BetaProjectServiceActivateProjectResponse
+      def activate_project_with_http_info: (Models::BetaProjectServiceActivateProjectRequest beta_project_service_activate_project_request) -> ::Zitadel::Client::ApiResult[Models::BetaProjectServiceActivateProjectResponse]
+      def activate_project_grant: (Models::BetaProjectServiceActivateProjectGrantRequest beta_project_service_activate_project_grant_request) -> Models::BetaProjectServiceActivateProjectGrantResponse
+      def activate_project_grant_with_http_info: (Models::BetaProjectServiceActivateProjectGrantRequest beta_project_service_activate_project_grant_request) -> ::Zitadel::Client::ApiResult[Models::BetaProjectServiceActivateProjectGrantResponse]
+      def add_project_role: (Models::BetaProjectServiceAddProjectRoleRequest beta_project_service_add_project_role_request) -> Models::BetaProjectServiceAddProjectRoleResponse
+      def add_project_role_with_http_info: (Models::BetaProjectServiceAddProjectRoleRequest beta_project_service_add_project_role_request) -> ::Zitadel::Client::ApiResult[Models::BetaProjectServiceAddProjectRoleResponse]
+      def create_project: (Models::BetaProjectServiceCreateProjectRequest beta_project_service_create_project_request) -> Models::BetaProjectServiceCreateProjectResponse
+      def create_project_with_http_info: (Models::BetaProjectServiceCreateProjectRequest beta_project_service_create_project_request) -> ::Zitadel::Client::ApiResult[Models::BetaProjectServiceCreateProjectResponse]
+      def create_project_grant: (Models::BetaProjectServiceCreateProjectGrantRequest beta_project_service_create_project_grant_request) -> Models::BetaProjectServiceCreateProjectGrantResponse
+      def create_project_grant_with_http_info: (Models::BetaProjectServiceCreateProjectGrantRequest beta_project_service_create_project_grant_request) -> ::Zitadel::Client::ApiResult[Models::BetaProjectServiceCreateProjectGrantResponse]
+      def deactivate_project: (Models::BetaProjectServiceDeactivateProjectRequest beta_project_service_deactivate_project_request) -> Models::BetaProjectServiceDeactivateProjectResponse
+      def deactivate_project_with_http_info: (Models::BetaProjectServiceDeactivateProjectRequest beta_project_service_deactivate_project_request) -> ::Zitadel::Client::ApiResult[Models::BetaProjectServiceDeactivateProjectResponse]
+      def deactivate_project_grant: (Models::BetaProjectServiceDeactivateProjectGrantRequest beta_project_service_deactivate_project_grant_request) -> Models::BetaProjectServiceDeactivateProjectGrantResponse
+      def deactivate_project_grant_with_http_info: (Models::BetaProjectServiceDeactivateProjectGrantRequest beta_project_service_deactivate_project_grant_request) -> ::Zitadel::Client::ApiResult[Models::BetaProjectServiceDeactivateProjectGrantResponse]
+      def delete_project: (Models::BetaProjectServiceDeleteProjectRequest beta_project_service_delete_project_request) -> Models::BetaProjectServiceDeleteProjectResponse
+      def delete_project_with_http_info: (Models::BetaProjectServiceDeleteProjectRequest beta_project_service_delete_project_request) -> ::Zitadel::Client::ApiResult[Models::BetaProjectServiceDeleteProjectResponse]
+      def delete_project_grant: (Models::BetaProjectServiceDeleteProjectGrantRequest beta_project_service_delete_project_grant_request) -> Models::BetaProjectServiceDeleteProjectGrantResponse
+      def delete_project_grant_with_http_info: (Models::BetaProjectServiceDeleteProjectGrantRequest beta_project_service_delete_project_grant_request) -> ::Zitadel::Client::ApiResult[Models::BetaProjectServiceDeleteProjectGrantResponse]
+      def get_project: (Models::BetaProjectServiceGetProjectRequest beta_project_service_get_project_request) -> Models::BetaProjectServiceGetProjectResponse
+      def get_project_with_http_info: (Models::BetaProjectServiceGetProjectRequest beta_project_service_get_project_request) -> ::Zitadel::Client::ApiResult[Models::BetaProjectServiceGetProjectResponse]
+      def list_project_grants: (Models::BetaProjectServiceListProjectGrantsRequest beta_project_service_list_project_grants_request) -> Models::BetaProjectServiceListProjectGrantsResponse
+      def list_project_grants_with_http_info: (Models::BetaProjectServiceListProjectGrantsRequest beta_project_service_list_project_grants_request) -> ::Zitadel::Client::ApiResult[Models::BetaProjectServiceListProjectGrantsResponse]
+      def list_project_roles: (Models::BetaProjectServiceListProjectRolesRequest beta_project_service_list_project_roles_request) -> Models::BetaProjectServiceListProjectRolesResponse
+      def list_project_roles_with_http_info: (Models::BetaProjectServiceListProjectRolesRequest beta_project_service_list_project_roles_request) -> ::Zitadel::Client::ApiResult[Models::BetaProjectServiceListProjectRolesResponse]
+      def list_projects: (Models::BetaProjectServiceListProjectsRequest beta_project_service_list_projects_request) -> Models::BetaProjectServiceListProjectsResponse
+      def list_projects_with_http_info: (Models::BetaProjectServiceListProjectsRequest beta_project_service_list_projects_request) -> ::Zitadel::Client::ApiResult[Models::BetaProjectServiceListProjectsResponse]
+      def remove_project_role: (Models::BetaProjectServiceRemoveProjectRoleRequest beta_project_service_remove_project_role_request) -> Models::BetaProjectServiceRemoveProjectRoleResponse
+      def remove_project_role_with_http_info: (Models::BetaProjectServiceRemoveProjectRoleRequest beta_project_service_remove_project_role_request) -> ::Zitadel::Client::ApiResult[Models::BetaProjectServiceRemoveProjectRoleResponse]
+      def update_project: (Models::BetaProjectServiceUpdateProjectRequest beta_project_service_update_project_request) -> Models::BetaProjectServiceUpdateProjectResponse
+      def update_project_with_http_info: (Models::BetaProjectServiceUpdateProjectRequest beta_project_service_update_project_request) -> ::Zitadel::Client::ApiResult[Models::BetaProjectServiceUpdateProjectResponse]
+      def update_project_grant: (Models::BetaProjectServiceUpdateProjectGrantRequest beta_project_service_update_project_grant_request) -> Models::BetaProjectServiceUpdateProjectGrantResponse
+      def update_project_grant_with_http_info: (Models::BetaProjectServiceUpdateProjectGrantRequest beta_project_service_update_project_grant_request) -> ::Zitadel::Client::ApiResult[Models::BetaProjectServiceUpdateProjectGrantResponse]
+      def update_project_role: (Models::BetaProjectServiceUpdateProjectRoleRequest beta_project_service_update_project_role_request) -> Models::BetaProjectServiceUpdateProjectRoleResponse
+      def update_project_role_with_http_info: (Models::BetaProjectServiceUpdateProjectRoleRequest beta_project_service_update_project_role_request) -> ::Zitadel::Client::ApiResult[Models::BetaProjectServiceUpdateProjectRoleResponse]
+    end
+  end
+end

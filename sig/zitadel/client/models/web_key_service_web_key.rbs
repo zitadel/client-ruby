@@ -1,0 +1,15 @@
+module Zitadel::Client::Models
+  class WebKeyServiceWebKey < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader id: String?
+    attr_reader creation_date: Time?
+    attr_reader change_date: Time?
+    attr_reader state: WebKeyServiceState?
+    attr_reader ecdsa: WebKeyServiceECDSA?
+    attr_reader ed25519: untyped?
+    attr_reader rsa: WebKeyServiceRSA?
+  end
+end

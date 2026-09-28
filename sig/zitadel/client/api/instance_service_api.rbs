@@ -1,0 +1,27 @@
+module Zitadel::Client
+  module Api
+    class InstanceServiceApi < BaseApi
+      def initialize: (?::Zitadel::Client::ApiClient? api_client, ?::Zitadel::Client::Configuration config, ?::Zitadel::Client::Auth::Authenticator? authenticator) -> void
+      def add_custom_domain: (Models::InstanceServiceAddCustomDomainRequest instance_service_add_custom_domain_request) -> Models::InstanceServiceAddCustomDomainResponse
+      def add_custom_domain_with_http_info: (Models::InstanceServiceAddCustomDomainRequest instance_service_add_custom_domain_request) -> ::Zitadel::Client::ApiResult[Models::InstanceServiceAddCustomDomainResponse]
+      def add_trusted_domain: (Models::InstanceServiceAddTrustedDomainRequest instance_service_add_trusted_domain_request) -> Models::InstanceServiceAddTrustedDomainResponse
+      def add_trusted_domain_with_http_info: (Models::InstanceServiceAddTrustedDomainRequest instance_service_add_trusted_domain_request) -> ::Zitadel::Client::ApiResult[Models::InstanceServiceAddTrustedDomainResponse]
+      def delete_instance: (Models::InstanceServiceDeleteInstanceRequest instance_service_delete_instance_request) -> Models::InstanceServiceDeleteInstanceResponse
+      def delete_instance_with_http_info: (Models::InstanceServiceDeleteInstanceRequest instance_service_delete_instance_request) -> ::Zitadel::Client::ApiResult[Models::InstanceServiceDeleteInstanceResponse]
+      def get_instance: (Models::InstanceServiceGetInstanceRequest instance_service_get_instance_request) -> Models::InstanceServiceGetInstanceResponse
+      def get_instance_with_http_info: (Models::InstanceServiceGetInstanceRequest instance_service_get_instance_request) -> ::Zitadel::Client::ApiResult[Models::InstanceServiceGetInstanceResponse]
+      def list_custom_domains: (Models::InstanceServiceListCustomDomainsRequest instance_service_list_custom_domains_request) -> Models::InstanceServiceListCustomDomainsResponse
+      def list_custom_domains_with_http_info: (Models::InstanceServiceListCustomDomainsRequest instance_service_list_custom_domains_request) -> ::Zitadel::Client::ApiResult[Models::InstanceServiceListCustomDomainsResponse]
+      def list_instances: (Models::InstanceServiceListInstancesRequest instance_service_list_instances_request) -> Models::InstanceServiceListInstancesResponse
+      def list_instances_with_http_info: (Models::InstanceServiceListInstancesRequest instance_service_list_instances_request) -> ::Zitadel::Client::ApiResult[Models::InstanceServiceListInstancesResponse]
+      def list_trusted_domains: (Models::InstanceServiceListTrustedDomainsRequest instance_service_list_trusted_domains_request) -> Models::InstanceServiceListTrustedDomainsResponse
+      def list_trusted_domains_with_http_info: (Models::InstanceServiceListTrustedDomainsRequest instance_service_list_trusted_domains_request) -> ::Zitadel::Client::ApiResult[Models::InstanceServiceListTrustedDomainsResponse]
+      def remove_custom_domain: (Models::InstanceServiceRemoveCustomDomainRequest instance_service_remove_custom_domain_request) -> Models::InstanceServiceRemoveCustomDomainResponse
+      def remove_custom_domain_with_http_info: (Models::InstanceServiceRemoveCustomDomainRequest instance_service_remove_custom_domain_request) -> ::Zitadel::Client::ApiResult[Models::InstanceServiceRemoveCustomDomainResponse]
+      def remove_trusted_domain: (Models::InstanceServiceRemoveTrustedDomainRequest instance_service_remove_trusted_domain_request) -> Models::InstanceServiceRemoveTrustedDomainResponse
+      def remove_trusted_domain_with_http_info: (Models::InstanceServiceRemoveTrustedDomainRequest instance_service_remove_trusted_domain_request) -> ::Zitadel::Client::ApiResult[Models::InstanceServiceRemoveTrustedDomainResponse]
+      def update_instance: (Models::InstanceServiceUpdateInstanceRequest instance_service_update_instance_request) -> Models::InstanceServiceUpdateInstanceResponse
+      def update_instance_with_http_info: (Models::InstanceServiceUpdateInstanceRequest instance_service_update_instance_request) -> ::Zitadel::Client::ApiResult[Models::InstanceServiceUpdateInstanceResponse]
+    end
+  end
+end

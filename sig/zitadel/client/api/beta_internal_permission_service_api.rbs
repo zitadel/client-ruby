@@ -1,0 +1,15 @@
+module Zitadel::Client
+  module Api
+    class BetaInternalPermissionServiceApi < BaseApi
+      def initialize: (?::Zitadel::Client::ApiClient? api_client, ?::Zitadel::Client::Configuration config, ?::Zitadel::Client::Auth::Authenticator? authenticator) -> void
+      def create_administrator: (Models::BetaInternalPermissionServiceCreateAdministratorRequest beta_internal_permission_service_create_administrator_request) -> Models::BetaInternalPermissionServiceCreateAdministratorResponse
+      def create_administrator_with_http_info: (Models::BetaInternalPermissionServiceCreateAdministratorRequest beta_internal_permission_service_create_administrator_request) -> ::Zitadel::Client::ApiResult[Models::BetaInternalPermissionServiceCreateAdministratorResponse]
+      def delete_administrator: (Models::BetaInternalPermissionServiceDeleteAdministratorRequest beta_internal_permission_service_delete_administrator_request) -> Models::BetaInternalPermissionServiceDeleteAdministratorResponse
+      def delete_administrator_with_http_info: (Models::BetaInternalPermissionServiceDeleteAdministratorRequest beta_internal_permission_service_delete_administrator_request) -> ::Zitadel::Client::ApiResult[Models::BetaInternalPermissionServiceDeleteAdministratorResponse]
+      def list_administrators: (Models::BetaInternalPermissionServiceListAdministratorsRequest beta_internal_permission_service_list_administrators_request) -> Models::BetaInternalPermissionServiceListAdministratorsResponse
+      def list_administrators_with_http_info: (Models::BetaInternalPermissionServiceListAdministratorsRequest beta_internal_permission_service_list_administrators_request) -> ::Zitadel::Client::ApiResult[Models::BetaInternalPermissionServiceListAdministratorsResponse]
+      def update_administrator: (Models::BetaInternalPermissionServiceUpdateAdministratorRequest beta_internal_permission_service_update_administrator_request) -> Models::BetaInternalPermissionServiceUpdateAdministratorResponse
+      def update_administrator_with_http_info: (Models::BetaInternalPermissionServiceUpdateAdministratorRequest beta_internal_permission_service_update_administrator_request) -> ::Zitadel::Client::ApiResult[Models::BetaInternalPermissionServiceUpdateAdministratorResponse]
+    end
+  end
+end

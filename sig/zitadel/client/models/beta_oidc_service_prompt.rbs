@@ -1,0 +1,13 @@
+module Zitadel::Client::Models
+  class BetaOIDCServicePrompt
+    PROMPT_UNSPECIFIED: String
+    PROMPT_NONE: String
+    PROMPT_LOGIN: String
+    PROMPT_CONSENT: String
+    PROMPT_SELECT_ACCOUNT: String
+    PROMPT_CREATE: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

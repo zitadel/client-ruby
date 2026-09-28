@@ -1,0 +1,20 @@
+module Zitadel::Client::Models
+  class BetaAuthorizationServiceAuthorization < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader id: String?
+    attr_reader project_id: String?
+    attr_reader project_name: String?
+    attr_reader project_organization_id: String?
+    attr_reader project_grant_id: String?
+    attr_reader granted_organization_id: String?
+    attr_reader organization_id: String?
+    attr_reader creation_date: Time?
+    attr_reader change_date: Time?
+    attr_reader state: BetaAuthorizationServiceState?
+    attr_reader user: BetaAuthorizationServiceUser?
+    attr_reader roles: Array[String]?
+  end
+end

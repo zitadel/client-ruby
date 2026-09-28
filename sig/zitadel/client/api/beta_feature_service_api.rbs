@@ -1,0 +1,31 @@
+module Zitadel::Client
+  module Api
+    class BetaFeatureServiceApi < BaseApi
+      def initialize: (?::Zitadel::Client::ApiClient? api_client, ?::Zitadel::Client::Configuration config, ?::Zitadel::Client::Auth::Authenticator? authenticator) -> void
+      def get_instance_features: (Models::BetaFeatureServiceGetInstanceFeaturesRequest beta_feature_service_get_instance_features_request) -> Models::BetaFeatureServiceGetInstanceFeaturesResponse
+      def get_instance_features_with_http_info: (Models::BetaFeatureServiceGetInstanceFeaturesRequest beta_feature_service_get_instance_features_request) -> ::Zitadel::Client::ApiResult[Models::BetaFeatureServiceGetInstanceFeaturesResponse]
+      def get_organization_features: (Models::BetaFeatureServiceGetOrganizationFeaturesRequest beta_feature_service_get_organization_features_request) -> Models::BetaFeatureServiceGetOrganizationFeaturesResponse
+      def get_organization_features_with_http_info: (Models::BetaFeatureServiceGetOrganizationFeaturesRequest beta_feature_service_get_organization_features_request) -> ::Zitadel::Client::ApiResult[Models::BetaFeatureServiceGetOrganizationFeaturesResponse]
+      def get_system_features: (untyped body) -> Models::BetaFeatureServiceGetSystemFeaturesResponse
+      def get_system_features_with_http_info: (untyped body) -> ::Zitadel::Client::ApiResult[Models::BetaFeatureServiceGetSystemFeaturesResponse]
+      def get_user_features: (Models::BetaFeatureServiceGetUserFeaturesRequest beta_feature_service_get_user_features_request) -> Models::BetaFeatureServiceGetUserFeaturesResponse
+      def get_user_features_with_http_info: (Models::BetaFeatureServiceGetUserFeaturesRequest beta_feature_service_get_user_features_request) -> ::Zitadel::Client::ApiResult[Models::BetaFeatureServiceGetUserFeaturesResponse]
+      def reset_instance_features: (untyped body) -> Models::BetaFeatureServiceResetInstanceFeaturesResponse
+      def reset_instance_features_with_http_info: (untyped body) -> ::Zitadel::Client::ApiResult[Models::BetaFeatureServiceResetInstanceFeaturesResponse]
+      def reset_organization_features: (Models::BetaFeatureServiceResetOrganizationFeaturesRequest beta_feature_service_reset_organization_features_request) -> Models::BetaFeatureServiceResetOrganizationFeaturesResponse
+      def reset_organization_features_with_http_info: (Models::BetaFeatureServiceResetOrganizationFeaturesRequest beta_feature_service_reset_organization_features_request) -> ::Zitadel::Client::ApiResult[Models::BetaFeatureServiceResetOrganizationFeaturesResponse]
+      def reset_system_features: (untyped body) -> Models::BetaFeatureServiceResetSystemFeaturesResponse
+      def reset_system_features_with_http_info: (untyped body) -> ::Zitadel::Client::ApiResult[Models::BetaFeatureServiceResetSystemFeaturesResponse]
+      def reset_user_features: (Models::BetaFeatureServiceResetUserFeaturesRequest beta_feature_service_reset_user_features_request) -> Models::BetaFeatureServiceResetUserFeaturesResponse
+      def reset_user_features_with_http_info: (Models::BetaFeatureServiceResetUserFeaturesRequest beta_feature_service_reset_user_features_request) -> ::Zitadel::Client::ApiResult[Models::BetaFeatureServiceResetUserFeaturesResponse]
+      def set_instance_features: (Models::BetaFeatureServiceSetInstanceFeaturesRequest beta_feature_service_set_instance_features_request) -> Models::BetaFeatureServiceSetInstanceFeaturesResponse
+      def set_instance_features_with_http_info: (Models::BetaFeatureServiceSetInstanceFeaturesRequest beta_feature_service_set_instance_features_request) -> ::Zitadel::Client::ApiResult[Models::BetaFeatureServiceSetInstanceFeaturesResponse]
+      def set_organization_features: (Models::BetaFeatureServiceSetOrganizationFeaturesRequest beta_feature_service_set_organization_features_request) -> Models::BetaFeatureServiceSetOrganizationFeaturesResponse
+      def set_organization_features_with_http_info: (Models::BetaFeatureServiceSetOrganizationFeaturesRequest beta_feature_service_set_organization_features_request) -> ::Zitadel::Client::ApiResult[Models::BetaFeatureServiceSetOrganizationFeaturesResponse]
+      def set_system_features: (Models::BetaFeatureServiceSetSystemFeaturesRequest beta_feature_service_set_system_features_request) -> Models::BetaFeatureServiceSetSystemFeaturesResponse
+      def set_system_features_with_http_info: (Models::BetaFeatureServiceSetSystemFeaturesRequest beta_feature_service_set_system_features_request) -> ::Zitadel::Client::ApiResult[Models::BetaFeatureServiceSetSystemFeaturesResponse]
+      def set_user_features: (Models::BetaFeatureServiceSetUserFeatureRequest beta_feature_service_set_user_feature_request) -> Models::BetaFeatureServiceSetUserFeaturesResponse
+      def set_user_features_with_http_info: (Models::BetaFeatureServiceSetUserFeatureRequest beta_feature_service_set_user_feature_request) -> ::Zitadel::Client::ApiResult[Models::BetaFeatureServiceSetUserFeaturesResponse]
+    end
+  end
+end

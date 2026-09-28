@@ -1,0 +1,15 @@
+# Signatures for the docker-api gem (no RBS in gem_rbs_collection).
+#
+# Only the Docker::Network surface used by test/zitadel/client/zitadel_test.rb
+# is declared.
+module Docker
+  class Network
+    def self.create: (String name, ?untyped opts) -> Network
+
+    def connect: (String container, ?untyped opts, **untyped) -> untyped
+
+    def remove: (?untyped opts) -> untyped
+
+    def _id: () -> String
+  end
+end

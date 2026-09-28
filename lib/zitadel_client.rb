@@ -2,6 +2,7 @@
 
 require 'zeitwerk'
 require 'warning'
+require_relative 'zitadel_inflector'
 
 Warning.ignore(:method_redefined, __dir__)
 
@@ -36,6 +37,6 @@ end
 
 loader = Zeitwerk::Loader.new
 loader.tag = File.basename(__FILE__, '.rb')
+loader.inflector = Zitadel::Inflector.new
 loader.push_dir("#{__dir__}/zitadel", namespace: Zitadel)
-loader.inflector.inflect('version' => 'VERSION')
 loader.setup

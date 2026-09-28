@@ -1,0 +1,22 @@
+module Zitadel::Client::Models
+  class IdentityProviderServiceLDAPAttributes < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader id_attribute: String?
+    attr_reader first_name_attribute: String?
+    attr_reader last_name_attribute: String?
+    attr_reader display_name_attribute: String?
+    attr_reader nick_name_attribute: String?
+    attr_reader preferred_username_attribute: String?
+    attr_reader email_attribute: String?
+    attr_reader email_verified_attribute: String?
+    attr_reader phone_attribute: String?
+    attr_reader phone_verified_attribute: String?
+    attr_reader preferred_language_attribute: String?
+    attr_reader avatar_url_attribute: String?
+    attr_reader profile_attribute: String?
+    attr_reader root_ca: String?
+  end
+end

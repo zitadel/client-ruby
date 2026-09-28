@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class ActionServicePublicKeyFieldName
+    PUBLIC_KEY_FIELD_NAME_UNSPECIFIED: String
+    PUBLIC_KEY_FIELD_NAME_CREATION_DATE: String
+    PUBLIC_KEY_FIELD_NAME_CHANGE_DATE: String
+    PUBLIC_KEY_FIELD_NAME_EXPIRATION_DATE: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

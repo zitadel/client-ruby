@@ -1,0 +1,11 @@
+module Zitadel::Client::Models
+  class ApplicationServiceOIDCResponseType
+    OIDC_RESPONSE_TYPE_UNSPECIFIED: String
+    OIDC_RESPONSE_TYPE_CODE: String
+    OIDC_RESPONSE_TYPE_ID_TOKEN: String
+    OIDC_RESPONSE_TYPE_ID_TOKEN_TOKEN: String
+    VALUES: Array[String]
+    def self.all_vars: () -> Array[String]
+    def self.validate!: (String?) -> String?
+  end
+end

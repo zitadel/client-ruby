@@ -1,0 +1,37 @@
+module Zitadel::Client
+  module Api
+    class ActionServiceApi < BaseApi
+      def initialize: (?::Zitadel::Client::ApiClient? api_client, ?::Zitadel::Client::Configuration config, ?::Zitadel::Client::Auth::Authenticator? authenticator) -> void
+      def activate_public_key: (Models::ActionServiceActivatePublicKeyRequest action_service_activate_public_key_request) -> Models::ActionServiceActivatePublicKeyResponse
+      def activate_public_key_with_http_info: (Models::ActionServiceActivatePublicKeyRequest action_service_activate_public_key_request) -> ::Zitadel::Client::ApiResult[Models::ActionServiceActivatePublicKeyResponse]
+      def add_public_key: (Models::ActionServiceAddPublicKeyRequest action_service_add_public_key_request) -> Models::ActionServiceAddPublicKeyResponse
+      def add_public_key_with_http_info: (Models::ActionServiceAddPublicKeyRequest action_service_add_public_key_request) -> ::Zitadel::Client::ApiResult[Models::ActionServiceAddPublicKeyResponse]
+      def create_target: (Models::ActionServiceCreateTargetRequest action_service_create_target_request) -> Models::ActionServiceCreateTargetResponse
+      def create_target_with_http_info: (Models::ActionServiceCreateTargetRequest action_service_create_target_request) -> ::Zitadel::Client::ApiResult[Models::ActionServiceCreateTargetResponse]
+      def deactivate_public_key: (Models::ActionServiceDeactivatePublicKeyRequest action_service_deactivate_public_key_request) -> Models::ActionServiceDeactivatePublicKeyResponse
+      def deactivate_public_key_with_http_info: (Models::ActionServiceDeactivatePublicKeyRequest action_service_deactivate_public_key_request) -> ::Zitadel::Client::ApiResult[Models::ActionServiceDeactivatePublicKeyResponse]
+      def delete_target: (Models::ActionServiceDeleteTargetRequest action_service_delete_target_request) -> Models::ActionServiceDeleteTargetResponse
+      def delete_target_with_http_info: (Models::ActionServiceDeleteTargetRequest action_service_delete_target_request) -> ::Zitadel::Client::ApiResult[Models::ActionServiceDeleteTargetResponse]
+      def get_target: (Models::ActionServiceGetTargetRequest action_service_get_target_request) -> Models::ActionServiceGetTargetResponse
+      def get_target_with_http_info: (Models::ActionServiceGetTargetRequest action_service_get_target_request) -> ::Zitadel::Client::ApiResult[Models::ActionServiceGetTargetResponse]
+      def list_execution_functions: (untyped body) -> Models::ActionServiceListExecutionFunctionsResponse
+      def list_execution_functions_with_http_info: (untyped body) -> ::Zitadel::Client::ApiResult[Models::ActionServiceListExecutionFunctionsResponse]
+      def list_execution_methods: (untyped body) -> Models::ActionServiceListExecutionMethodsResponse
+      def list_execution_methods_with_http_info: (untyped body) -> ::Zitadel::Client::ApiResult[Models::ActionServiceListExecutionMethodsResponse]
+      def list_execution_services: (untyped body) -> Models::ActionServiceListExecutionServicesResponse
+      def list_execution_services_with_http_info: (untyped body) -> ::Zitadel::Client::ApiResult[Models::ActionServiceListExecutionServicesResponse]
+      def list_executions: (Models::ActionServiceListExecutionsRequest action_service_list_executions_request) -> Models::ActionServiceListExecutionsResponse
+      def list_executions_with_http_info: (Models::ActionServiceListExecutionsRequest action_service_list_executions_request) -> ::Zitadel::Client::ApiResult[Models::ActionServiceListExecutionsResponse]
+      def list_public_keys: (Models::ActionServiceListPublicKeysRequest action_service_list_public_keys_request) -> Models::ActionServiceListPublicKeysResponse
+      def list_public_keys_with_http_info: (Models::ActionServiceListPublicKeysRequest action_service_list_public_keys_request) -> ::Zitadel::Client::ApiResult[Models::ActionServiceListPublicKeysResponse]
+      def list_targets: (Models::ActionServiceListTargetsRequest action_service_list_targets_request) -> Models::ActionServiceListTargetsResponse
+      def list_targets_with_http_info: (Models::ActionServiceListTargetsRequest action_service_list_targets_request) -> ::Zitadel::Client::ApiResult[Models::ActionServiceListTargetsResponse]
+      def remove_public_key: (Models::ActionServiceRemovePublicKeyRequest action_service_remove_public_key_request) -> Models::ActionServiceRemovePublicKeyResponse
+      def remove_public_key_with_http_info: (Models::ActionServiceRemovePublicKeyRequest action_service_remove_public_key_request) -> ::Zitadel::Client::ApiResult[Models::ActionServiceRemovePublicKeyResponse]
+      def set_execution: (Models::ActionServiceSetExecutionRequest action_service_set_execution_request) -> Models::ActionServiceSetExecutionResponse
+      def set_execution_with_http_info: (Models::ActionServiceSetExecutionRequest action_service_set_execution_request) -> ::Zitadel::Client::ApiResult[Models::ActionServiceSetExecutionResponse]
+      def update_target: (Models::ActionServiceUpdateTargetRequest action_service_update_target_request) -> Models::ActionServiceUpdateTargetResponse
+      def update_target_with_http_info: (Models::ActionServiceUpdateTargetRequest action_service_update_target_request) -> ::Zitadel::Client::ApiResult[Models::ActionServiceUpdateTargetResponse]
+    end
+  end
+end

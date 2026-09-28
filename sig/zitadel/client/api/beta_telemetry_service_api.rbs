@@ -1,0 +1,11 @@
+module Zitadel::Client
+  module Api
+    class BetaTelemetryServiceApi < BaseApi
+      def initialize: (?::Zitadel::Client::ApiClient? api_client, ?::Zitadel::Client::Configuration config, ?::Zitadel::Client::Auth::Authenticator? authenticator) -> void
+      def report_base_information: (Models::BetaTelemetryServiceReportBaseInformationRequest beta_telemetry_service_report_base_information_request) -> Models::BetaTelemetryServiceReportBaseInformationResponse
+      def report_base_information_with_http_info: (Models::BetaTelemetryServiceReportBaseInformationRequest beta_telemetry_service_report_base_information_request) -> ::Zitadel::Client::ApiResult[Models::BetaTelemetryServiceReportBaseInformationResponse]
+      def report_resource_counts: (Models::BetaTelemetryServiceReportResourceCountsRequest beta_telemetry_service_report_resource_counts_request) -> Models::BetaTelemetryServiceReportResourceCountsResponse
+      def report_resource_counts_with_http_info: (Models::BetaTelemetryServiceReportResourceCountsRequest beta_telemetry_service_report_resource_counts_request) -> ::Zitadel::Client::ApiResult[Models::BetaTelemetryServiceReportResourceCountsResponse]
+    end
+  end
+end

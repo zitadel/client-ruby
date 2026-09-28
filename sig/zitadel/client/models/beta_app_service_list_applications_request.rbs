@@ -1,0 +1,12 @@
+module Zitadel::Client::Models
+  class BetaAppServiceListApplicationsRequest < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader project_id: String?
+    attr_reader pagination: BetaAppServicePaginationRequest?
+    attr_reader filters: Array[BetaAppServiceApplicationSearchFilter]?
+    attr_reader sorting_column: BetaAppServiceAppSorting?
+  end
+end

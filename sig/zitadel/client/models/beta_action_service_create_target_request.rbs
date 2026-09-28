@@ -1,0 +1,14 @@
+module Zitadel::Client::Models
+  class BetaActionServiceCreateTargetRequest < Dry::Struct
+    ATTRIBUTE_MAP: Hash[Symbol, String]
+    JSON_KEY_MAP: Hash[String, Symbol]
+    OPENAPI_TYPES: Hash[Symbol, String]
+    OPENAPI_FORMATS: Hash[Symbol, String]
+    attr_reader name: String?
+    attr_reader timeout: ISO8601::Duration?
+    attr_reader endpoint: String?
+    attr_reader rest_async: untyped?
+    attr_reader rest_call: BetaActionServiceRESTCall?
+    attr_reader rest_webhook: BetaActionServiceRESTWebhook?
+  end
+end

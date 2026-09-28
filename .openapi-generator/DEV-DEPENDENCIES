@@ -1,0 +1,15 @@
+# Every dev dependency an emitted test imports, one per line as
+# `<name> <version-range>  # <which test needs it>`. This file is
+# generator-owned and rewritten on every generation. It is the contract between
+# the generator and a client that keep-lists its own Gemfile: a dependency
+# added to a generated test but missing from the client's manifest kills the
+# whole suite at load, so the test bootstrap (test/test_helper.rb) probes this
+# set up front and names this file when one is missing.
+minitest ~> 5.0  # every file under test/
+minitest-reporters ~> 1.8  # test/test_helper.rb installs the console reporter
+better_coverage ~> 1.1  # test/test_helper.rb requires better_junit for the report
+simplecov ~> 0.22  # test/test_helper.rb starts coverage
+simplecov-cobertura ~> 3.1  # test/test_helper.rb writes .out/coverage.xml
+testcontainers ~> 0.2  # test/test_helper.rb starts the mock server and the proxy
+docker-api ~> 2.4  # test/test_helper.rb joins both containers to a Docker network
+opentelemetry-sdk ~> 1.5  # test/trace_context_util_test.rb
